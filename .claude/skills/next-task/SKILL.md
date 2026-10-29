@@ -6,6 +6,7 @@ disable-model-invocation: true
 
 # Siguiente tarea del backlog
 
+0. Haz git pull.
 1. Busca con Grep la primera línea `- [ ]` de `docs/12-backlog.md`. No leas el archivo entero.
 2. Si la tarea está marcada **(TÚ)**, dile al usuario qué tiene que hacer (con la referencia del doc) y pasa a la siguiente sin marcarla.
 3. Lee SOLO las secciones de docs que indica `ref` (Grep por el encabezado y lee ese bloque).
@@ -14,6 +15,6 @@ disable-model-invocation: true
 6. Implementa. Si usas MCP for Unity, agrupa operaciones con `batch_execute` y activa grupos extra de herramientas solo para esta tarea.
 7. Verifica con la skill `qa-check` (versión corta: consola sin errores, Play Mode de 30 s en la escena afectada, pruebas relacionadas).
 8. Marca la línea como `- [x]` y agrega la fecha al final (`· hecho AAAA-MM-DD`). Si no se pudo, deja `- [ ]` y agrega `BLOQUEADO: motivo`.
-9. Responde en 3 líneas: qué se hizo, cómo se verificó, qué sigue. Sugiere hacer commit y `/clear`.
+9. Responde en 3 líneas: qué se hizo, cómo se verificó, qué sigue. Haz commit con el formato '<ID>: <tarea>' y git push. Sugiere `/clear`.
 
 Una sola tarea por invocación.
