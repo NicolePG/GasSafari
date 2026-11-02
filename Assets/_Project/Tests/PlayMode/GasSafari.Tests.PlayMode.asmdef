@@ -3,6 +3,8 @@
     "rootNamespace": "GasSafari.Tests",
     "references": [
         "GasSafari.Runtime",
+        "Unity.InputSystem",
+        "Unity.InputSystem.TestFramework",
         "UnityEngine.TestRunner"
     ],
     "includePlatforms": [],

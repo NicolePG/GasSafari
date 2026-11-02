@@ -4,6 +4,8 @@
     "references": [
         "GasSafari.Runtime",
         "Unity.InputSystem",
+        "Unity.Netcode.Runtime",
+        "Unity.Collections",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],
