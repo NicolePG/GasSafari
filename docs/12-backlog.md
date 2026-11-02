@@ -6,7 +6,7 @@ Tareas marcadas **(TÚ)** las hace el usuario fuera de Claude Code (generar mode
 Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. Entrega: 10/11/2026. Si falta tiempo, posponer en este orden: M8 Online → M7-09/10/11 (Infinito, Diario, Carrera) → Mundo 6.
 
 ## M0 · Base del proyecto (29 oct)
-- [ ] **M0-01** Estructura de carpetas y asmdefs · unity-csharp-2022 · 10 §2
+- [x] **M0-01** Estructura de carpetas y asmdefs · unity-csharp-2022 · 10 §2 · hecho 2026-11-02
 - [ ] **M0-02** Instalar paquetes y configurar proyecto (Input System, Linear, Depth/Opaque Texture, Fixed Timestep 0.02) · unity-csharp-2022 · 10 §1
 - [ ] **M0-03** Capas físicas y matriz de colisiones · raft-physics · 10 §11
 - [ ] **M0-04** Input actions `GasSafariControls` (Player y UI) · unity-csharp-2022 · 02 §13, 10 §8
