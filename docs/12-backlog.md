@@ -7,7 +7,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 
 ## M0 · Base del proyecto (29 oct)
 - [x] **M0-01** Estructura de carpetas y asmdefs · unity-csharp-2022 · 10 §2 · hecho 2026-11-02
-- [ ] **M0-02** Instalar paquetes y configurar proyecto (Input System, Linear, Depth/Opaque Texture, Fixed Timestep 0.02) · unity-csharp-2022 · 10 §1
+- [x] **M0-02** Instalar paquetes y configurar proyecto (Input System, Linear, Depth/Opaque Texture, Fixed Timestep 0.02) · unity-csharp-2022 · 10 §1 · hecho 2026-11-02
 - [ ] **M0-03** Capas físicas y matriz de colisiones · raft-physics · 10 §11
 - [ ] **M0-04** Input actions `GasSafariControls` (Player y UI) · unity-csharp-2022 · 02 §13, 10 §8
 - [ ] **M0-05** `PlayerCommand`, `IPlayerCommandSource`, `HumanCommandSource` · unity-csharp-2022 · 10 §8
