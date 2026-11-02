@@ -26,6 +26,8 @@ namespace GasSafari.Editor
             PlayerSettings.colorSpace = ColorSpace.Linear;
             SetSerialized("TimeManager", "Fixed Timestep", FIXED_TIMESTEP);
             Physics.defaultSolverIterations = SOLVER_ITERATIONS;
+            // Las pruebas PlayMode por MCP lo dejan activo; el proyecto recarga el dominio al entrar a Play.
+            EditorSettings.enterPlayModeOptionsEnabled = false;
 #if GS_URP
             SetupUrp();
 #endif
