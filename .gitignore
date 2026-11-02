@@ -109,3 +109,7 @@ InitTestScene*.unity*
 /[Aa]ssets/[Ss]ceneDependencyCache*
 
 .claude/settings.local.json
+
+# Capturas de MCP for Unity (manage_camera screenshot)
+/[Aa]ssets/[Ss]creenshots/
+/[Aa]ssets/[Ss]creenshots.meta

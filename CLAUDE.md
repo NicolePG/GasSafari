@@ -33,6 +33,7 @@ Usa Grep por el encabezado de la sección antes de leer un doc completo.
 - Si un dato de diseño no está en los docs, preguntar. No inventar diseño.
 - Personajes y nombres de Madagascar: proyecto no comercial. Nunca usar modelos, audio ni frases extraídos de las películas.
 - Git: antes de empezar, git pull. Al terminar cada tarea, commit con el formato '<ID>: <tarea>' (ej. 'M1-05: FartThruster toque y ráfaga') y git push a origin main. Nunca subir Library/, Temp/, Logs/ ni archivos de más de 50 MB.
+- MCP: no usar execute_code, manage_build, generación de assets con IA ni importación desde Sketchfab sin pedirme permiso. Las capturas de pantalla no se suben a Git.
 
 ## Flujo de trabajo
 
