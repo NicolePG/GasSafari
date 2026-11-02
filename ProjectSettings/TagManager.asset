@@ -13,14 +13,14 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Raft
+  - Character
+  - CharacterInWater
+  - Environment
+  - Hazard
+  - Trigger
+  - PowerUp
+  - Ghost
   - 
   - 
   - 
