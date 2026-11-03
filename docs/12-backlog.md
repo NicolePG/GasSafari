@@ -33,7 +33,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M1-15** Cámara Cinemachine 2.x con TargetGroup e Impulse · vfx-juice · 02 §12 · hecho 2026-11-03 · provisionales a ajustar en playtest: velocidad máxima del zoom (14), suavizado (0.5 s), sacudidas (0.5/1.0)
 - [x] **M1-16** `PingSystem` + cuenta regresiva · ui-hud · 02 §11 · hecho 2026-11-03 (lógica y eventos; los iconos llegan con el HUD en M3-07)
 - [x] **M1-17** VFX y SFX provisionales de pedos con pool · vfx-juice, audio-sfx · 09 §6, 08 §2 · hecho 2026-11-03
-- [ ] **M1-18** Pruebas T-GAS, T-SYNC, T-RAFT, T-FALL, T-CP · qa-check · 11 §2
+- [x] **M1-18** Pruebas T-GAS, T-SYNC, T-RAFT, T-FALL, T-CP · qa-check · 11 §2 · hecho 2026-11-03
 
 ## M2 · Personajes (31 oct-2 nov)
 - [ ] **M2-01** (TÚ) Generar los 5 personajes en Meshy y riggear · — · 09 §4

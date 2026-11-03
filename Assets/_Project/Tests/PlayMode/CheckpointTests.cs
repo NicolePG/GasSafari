@@ -136,6 +136,31 @@ namespace GasSafari.Tests
             Assert.AreEqual(Services.Session.Difficulty.respawnPenalty, timer.PenaltyTime, 0.001f);
         }
 
+        // T-RAFT-04 (docs/11 §2): vuelco de 70° durante 1.5 s → reaparición.
+        [UnityTest]
+        public IEnumerator TRaft04_CapsizeHeld_RespawnsAtCheckpointUpright()
+        {
+            var body = rig.Get<Rigidbody>();
+            body.isKinematic = true;
+            rig.Raft.transform.rotation = Quaternion.Euler(0f, 0f, rig.Balance.capsizeAngle + 5f);
+
+            float t = 0f;
+            while (!system.IsRespawning && t < rig.Balance.capsizeTime + 1f)
+            {
+                t += Time.deltaTime;
+                yield return null;
+            }
+            Assert.IsTrue(system.IsRespawning, "debió pedir reaparición");
+            Assert.AreEqual(rig.Balance.capsizeTime, t, 0.2f);
+
+            body.isKinematic = false;
+            yield return WaitRespawn();
+
+            Assert.Less(Vector3.Angle(rig.Raft.transform.up, Vector3.up), 5f);
+            Assert.AreEqual(start.transform.position.z, rig.Raft.transform.position.z, 0.5f);
+            Assert.IsFalse(rig.Get<RaftStateMonitor>().HasCapsized);
+        }
+
         [UnityTest]
         public IEnumerator Respawn_ReturnsCrewWithFullGas()
         {
