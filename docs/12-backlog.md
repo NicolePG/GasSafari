@@ -13,7 +13,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M0-05** `PlayerCommand`, `IPlayerCommandSource`, `HumanCommandSource` · unity-csharp-2022 · 10 §8 · hecho 2026-11-02
 - [x] **M0-06** `GameServices`, `Services`, bootstrap del editor y escena 00_Boot · unity-csharp-2022 · 10 §3-4 · hecho 2026-11-03
 - [x] **M0-07** `BalanceConfig` y `DifficultyData` (3 assets) con valores de los docs · unity-csharp-2022 · 02 §14, 06 §3 · hecho 2026-11-03
-- [ ] **M0-08** Escena `Test/Sandbox_Raft` con agua plana y luz · level-builder · 10 §3
+- [x] **M0-08** Escena `Test/Sandbox_Raft` con agua plana y luz · level-builder · 10 §3 · hecho 2026-11-03
 
 ## M1 · Núcleo de la balsa (29-31 oct)
 - [ ] **M1-01** `RaftController` + `RaftBuoyancy` · raft-physics · 02 §1
