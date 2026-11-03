@@ -17,6 +17,7 @@ namespace GasSafari.Core
         public static event Action<float> OnTeamMeterChanged;
         public static event Action<float> OnSuperFart;
         public static event Action<PlayerAvatar, Input.PingType> OnPing;
+        public static event Action<PlayerAvatar, string> OnAbilityUsed;
         public static event Action<int> OnCheckpoint;
         public static event Action OnRespawn;
         public static event Action<PlayerAvatar> OnPlayerFell;
@@ -28,6 +29,7 @@ namespace GasSafari.Core
         public static void RaiseTeamMeterChanged(float value) => OnTeamMeterChanged?.Invoke(value);
         public static void RaiseSuperFart(float power) => OnSuperFart?.Invoke(power);
         public static void RaisePing(PlayerAvatar avatar, Input.PingType type) => OnPing?.Invoke(avatar, type);
+        public static void RaiseAbilityUsed(PlayerAvatar avatar, string id) => OnAbilityUsed?.Invoke(avatar, id);
         public static void RaiseCheckpoint(int index) => OnCheckpoint?.Invoke(index);
         public static void RaiseRespawn() => OnRespawn?.Invoke();
         public static void RaisePlayerFell(PlayerAvatar avatar) => OnPlayerFell?.Invoke(avatar);
@@ -52,6 +54,7 @@ namespace GasSafari.Core
             OnTeamMeterChanged = null;
             OnSuperFart = null;
             OnPing = null;
+            OnAbilityUsed = null;
             OnCheckpoint = null;
             OnRespawn = null;
             OnPlayerFell = null;

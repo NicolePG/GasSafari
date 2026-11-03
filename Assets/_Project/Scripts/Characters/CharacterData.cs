@@ -18,6 +18,10 @@ namespace GasSafari.Characters
         [Tooltip("kg")] public float weight;
         [Tooltip("m")] public float height;
 
+        [Header("Habilidad")]
+        [Tooltip("La pasiva es un componente PassiveBase en el prefab del personaje")]
+        public Abilities.AbilityBase ability;
+
         [Header("Presentación")]
         [Tooltip("Provisional: avatar genérico hasta los prefabs finales (M2-13)")]
         public GameObject prefab;

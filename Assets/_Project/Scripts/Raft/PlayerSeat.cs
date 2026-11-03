@@ -1,3 +1,4 @@
+using System;
 using GasSafari.Characters;
 using GasSafari.Core;
 using UnityEngine;
@@ -24,6 +25,9 @@ namespace GasSafari.Raft
         public float AimOffset { get; set; }
         public Vector3 WorldPoint => transform.position;
 
+        public event Action<RaftSeats> SatDown;
+        public event Action<RaftSeats> StoodUp;
+
         // Hacia el centro de la balsa en el plano XZ: el sentido en que empuja un pedo sin puntería.
         public Vector3 InwardDirection
         {
@@ -48,6 +52,7 @@ namespace GasSafari.Raft
             ApplyPose();
             raft.Register(this);
             raft.Controller.AddWeight(transform, avatar.Character.weight);
+            SatDown?.Invoke(raft);
         }
 
         public void Leave()
@@ -55,10 +60,12 @@ namespace GasSafari.Raft
             if (!IsSeated)
                 return;
 
-            Raft.Unregister(this);
-            Raft.Controller.RemoveWeight(transform);
+            var raft = Raft;
+            raft.Unregister(this);
+            raft.Controller.RemoveWeight(transform);
             transform.SetParent(null, true);
             Raft = null;
+            StoodUp?.Invoke(raft);
         }
 
         private void Update()

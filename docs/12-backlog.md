@@ -39,7 +39,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [ ] **M2-01** (TÚ) Generar los 5 personajes en Meshy y riggear · — · 09 §4
 - [ ] **M2-02** (TÚ) Grabar pedos y voces de los 5 personajes · — · 08 §6
 - [x] **M2-03** `CharacterData` x5 · character-ability · 03 Resumen · hecho 2026-11-03 · `ability`/`passive` se asignan en M2-05..09 y `sfxSet` en M2-13; PENDIENTE de diseño: color de UI por personaje (no está en docs)
-- [ ] **M2-04** `AbilityBase`, `AbilityRunner`, `AbilityContext`, `PassiveBase` · character-ability · 03
+- [x] **M2-04** `AbilityBase`, `AbilityRunner`, `AbilityContext`, `PassiveBase` · character-ability · 03 · hecho 2026-11-03
 - [ ] **M2-05** Alex: Rugido + Estrella del Show · character-ability · 03 Alex
 - [ ] **M2-06** Marty: Galope Turbo · character-ability · 03 Marty
 - [ ] **M2-07** Melman: Cuello Gancho, Botiquín, Vista Alta · character-ability · 03 Melman
