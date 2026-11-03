@@ -71,6 +71,10 @@ namespace GasSafari.Core
 
         [Header("Aire y pings")]
         public float airControlFactor;
+        [Tooltip("Segundos en que 2+ jugadores deben marcar ¡Ahora! para la cuenta (docs/02 §11)")] public float pingNowWindow;
+        [Tooltip("Segundos por número de la cuenta 3-2-1")] public float pingCountdownStep;
+        [Tooltip("Segundos extra de ventana de sync en ¡YA!")] public float pingSyncBonus;
+        [Tooltip("Fracción de gas bajo la que sale el ping Sin gas")] public float noGasPingThreshold;
         [Tooltip("Grados: aterrizaje torcido (docs/02 §15)")] public float landingTiltAngle;
         [Tooltip("PENDIENTE de diseño: impulso de rebote al aterrizar torcido (docs/02 §15 no da el valor)")]
         public float landingBounceImpulse;

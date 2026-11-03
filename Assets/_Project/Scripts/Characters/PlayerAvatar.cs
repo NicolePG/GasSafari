@@ -13,10 +13,12 @@ namespace GasSafari.Characters
 
         public CharacterData Character => character;
         public PlayerCommand Command { get; private set; }
+        public GasTank Gas { get; private set; }
 
         private void Awake()
         {
             source = GetComponent<IPlayerCommandSource>();
+            Gas = GetComponent<GasTank>();
         }
 
         public void SetCommandSource(IPlayerCommandSource commandSource)

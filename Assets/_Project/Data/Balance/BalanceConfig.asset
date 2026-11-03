@@ -81,6 +81,10 @@ MonoBehaviour:
   respawnGasFraction: 0.5
   respawnFade: 0.4
   airControlFactor: 0.5
+  pingNowWindow: 2
+  pingCountdownStep: 0.5
+  pingSyncBonus: 0.1
+  noGasPingThreshold: 0.1
   landingTiltAngle: 35
   landingBounceImpulse: 0
   cameraTilt: 50

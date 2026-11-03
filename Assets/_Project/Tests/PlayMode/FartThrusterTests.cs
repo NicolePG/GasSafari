@@ -37,6 +37,7 @@ namespace GasSafari.Tests
             input.Command.FartHeld = true;
             yield return null;
             input.Command.FartHeld = false;
+            yield return null;
             yield return new WaitForFixedUpdate();
             yield return new WaitForFixedUpdate();
 
@@ -48,6 +49,7 @@ namespace GasSafari.Tests
         public IEnumerator TapBetweenFrames_StillPuffs()
         {
             input.Command.FartPresses++;
+            yield return null;
             yield return new WaitForFixedUpdate();
             yield return new WaitForFixedUpdate();
 
@@ -90,6 +92,7 @@ namespace GasSafari.Tests
             input.Command.FartHeld = true;
             yield return null;
             input.Command.FartHeld = false;
+            yield return null;
             yield return new WaitForFixedUpdate();
             yield return new WaitForFixedUpdate();
 
