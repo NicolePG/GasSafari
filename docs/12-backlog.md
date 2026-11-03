@@ -23,7 +23,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M1-05** `FartThruster`: toque, ráfaga y puntería · raft-physics · 02 §3 · hecho 2026-11-03
 - [x] **M1-06** `FartThruster`: pedo cargado · raft-physics · 02 §3 · hecho 2026-11-03
 - [x] **M1-07** `SyncDetector` + `TeamMeter` · raft-physics · 02 §5-6 · hecho 2026-11-03
-- [ ] **M1-08** `SuperFartController` + `TimeController` · raft-physics · 02 §6
+- [x] **M1-08** `SuperFartController` + `TimeController` · raft-physics · 02 §6 · hecho 2026-11-03
 - [ ] **M1-09** `AvatarStateMachine` + agarrarse · raft-physics · 02 §7
 - [ ] **M1-10** Caída, nado, subir y reaparición automática · raft-physics · 02 §9
 - [ ] **M1-11** `FlowSpline` + `RaftFlowReceiver` · raft-physics · 02 §1

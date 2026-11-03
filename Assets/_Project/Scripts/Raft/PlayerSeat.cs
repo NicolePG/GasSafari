@@ -14,6 +14,7 @@ namespace GasSafari.Raft
 
         private PlayerAvatar avatar;
 
+        public PlayerAvatar Avatar => avatar;
         public RaftSeats Raft { get; private set; }
         public float Angle { get; private set; }
         public bool IsSeated => Raft != null;
