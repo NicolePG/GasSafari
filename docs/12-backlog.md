@@ -42,7 +42,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M2-04** `AbilityBase`, `AbilityRunner`, `AbilityContext`, `PassiveBase` · character-ability · 03 · hecho 2026-11-03
 - [x] **M2-05** Alex: Rugido + Estrella del Show · character-ability · 03 Alex · hecho 2026-11-03
 - [x] **M2-06** Marty: Galope Turbo · character-ability · 03 Marty · hecho 2026-11-03
-- [ ] **M2-07** Melman: Cuello Gancho, Botiquín, Vista Alta · character-ability · 03 Melman
+- [x] **M2-07** Melman: Cuello Gancho, Botiquín, Vista Alta · character-ability · 03 Melman · hecho 2026-11-03 · el Botiquín solo corre si la pulsación no activó el gancho (sin objetivo en rango); falta el aro de ancla en rango (HUD)
 - [ ] **M2-08** Gloria: Panzazo + Peso Pesado · character-ability · 03 Gloria
 - [ ] **M2-09** Julien: Fiesta Real, Corona Magnética, Salto · character-ability · 03 Julien
 - [ ] **M2-10** `AbilitySynergySystem` (5 sinergias) · character-ability · 03 Sinergias

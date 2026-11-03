@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GasSafari.Raft
 {
-    // Efectos temporales sobre la balsa que dejan las habilidades. Volver a aplicar uno lo renueva.
+    // Efectos que las habilidades y pasivas dejan sobre la balsa. Volver a aplicar uno temporal lo renueva.
     [RequireComponent(typeof(RaftBuoyancy))]
     public class RaftEffects : MonoBehaviour
     {
@@ -12,6 +12,8 @@ namespace GasSafari.Raft
 
         public bool IsWaterDragScaled => waterDragTimer > 0f;
         public bool IsAngularDragScaled => angularDragTimer > 0f;
+        // Segundos extra de anticipación de los avisos de peligro (Vista Alta). Lo lee el aviso común (M3-05).
+        public float WarningLeadBonus { get; set; }
 
         private void Awake()
         {

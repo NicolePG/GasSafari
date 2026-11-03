@@ -23,6 +23,8 @@ namespace GasSafari.Abilities
         public AbilityContext Context => context;
 
         public event Action<AbilityBase> Activated;
+        // Cada pulsación del botón de habilidad, indicando si activó la habilidad.
+        public event Action<bool> AbilityPressed;
 
         private void Awake()
         {
@@ -41,7 +43,7 @@ namespace GasSafari.Abilities
             bool pressed = PlayerCommand.NewPresses(cmd.AbilityPresses, lastPresses) > 0;
             lastPresses = cmd.AbilityPresses;
             if (pressed)
-                TryActivate();
+                AbilityPressed?.Invoke(TryActivate());
         }
 
         public bool TryActivate()

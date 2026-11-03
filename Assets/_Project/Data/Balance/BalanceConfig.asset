@@ -89,6 +89,8 @@ MonoBehaviour:
   landingBounceImpulse: 0
   showWindowBonus: 0.08
   showBonusDuration: 3
+  medkitHoldTime: 1.5
+  lookoutWarningLead: 3
   cameraTilt: 50
   cameraDistanceMin: 14
   cameraDistanceMax: 18

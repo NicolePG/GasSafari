@@ -22,7 +22,7 @@ namespace GasSafari.Editor
         {
             Variant("Alex", typeof(AlexShowPassive));
             Variant("Marty");
-            Variant("Melman");
+            Variant("Melman", typeof(MelmanMedkitPassive), typeof(MelmanLookoutPassive));
             Variant("Gloria");
             Variant("Julien");
             AssetDatabase.SaveAssets();

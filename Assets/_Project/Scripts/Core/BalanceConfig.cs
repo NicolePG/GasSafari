@@ -82,6 +82,8 @@ namespace GasSafari.Core
         [Header("Pasivas (docs/03)")]
         [Tooltip("Estrella del Show: segundos extra de ventana de sync")] public float showWindowBonus;
         [Tooltip("Estrella del Show: duración del bono")] public float showBonusDuration;
+        [Tooltip("Botiquín: segundos manteniendo el botón")] public float medkitHoldTime;
+        [Tooltip("Vista Alta: segundos de anticipación de avisos")] public float lookoutWarningLead;
 
         [Header("Cámara (docs/02 §12)")]
         [Tooltip("Grados")] public float cameraTilt;
