@@ -71,6 +71,9 @@ namespace GasSafari.Core
 
         [Header("Aire y pings")]
         public float airControlFactor;
+        [Tooltip("Grados: aterrizaje torcido (docs/02 §15)")] public float landingTiltAngle;
+        [Tooltip("PENDIENTE de diseño: impulso de rebote al aterrizar torcido (docs/02 §15 no da el valor)")]
+        public float landingBounceImpulse;
         public float pingCooldown;
     }
 }

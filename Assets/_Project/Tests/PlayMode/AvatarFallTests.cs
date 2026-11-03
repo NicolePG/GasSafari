@@ -55,15 +55,15 @@ namespace GasSafari.Tests
         [Test]
         public void Knockoff_RespectsThresholdAndGrab()
         {
-            Assert.IsFalse(fall.Knockoff(rig.Balance.knockoffImpulse, Vector3.zero));
+            Assert.IsFalse(fall.Knockoff(rig.Balance.knockoffImpulse, 0f));
             Assert.IsTrue(seat.IsSeated);
 
             states.Enter(AvatarState.Grabbing);
-            Assert.IsFalse(fall.Knockoff(rig.Balance.knockoffImpulse * 10f, Vector3.zero));
+            Assert.IsFalse(fall.Knockoff(rig.Balance.knockoffImpulse * 10f, 0f));
             Assert.IsTrue(seat.IsSeated);
 
             states.Enter(AvatarState.Seated);
-            Assert.IsTrue(fall.Knockoff(rig.Balance.knockoffImpulse + 1f, Vector3.zero));
+            Assert.IsTrue(fall.Knockoff(rig.Balance.knockoffImpulse + 1f, 0f));
             Assert.IsFalse(seat.IsSeated);
         }
 
@@ -92,6 +92,33 @@ namespace GasSafari.Tests
             yield return null;
             Assert.IsTrue(seat.IsSeated);
             Assert.AreEqual(180f, seat.Angle, 10f);
+        }
+
+        [UnityTest]
+        public IEnumerator RaftRunningOverSwimmer_RescuesIt()
+        {
+            fall.Fall(new Vector3(0f, 0f, -4f));
+            yield return new WaitForSeconds(1.2f);
+            Assert.AreEqual(AvatarState.Swimming, states.State);
+
+            bool rescued = false;
+            GameEvents.OnPlayerRescued += (who, by) => rescued |= who == input.GetComponent<PlayerAvatar>();
+            var toSwimmer = input.transform.position - rig.Raft.transform.position;
+            toSwimmer.y = 0f;
+            rig.Get<Rigidbody>().velocity = toSwimmer.normalized * (rig.Balance.swimSpeed * 2f);
+            yield return new WaitForSeconds(1.5f);
+
+            Assert.IsTrue(rescued);
+            Assert.IsTrue(seat.IsSeated);
+        }
+
+        [UnityTest]
+        public IEnumerator KnockedOntoDeck_SitsAgain()
+        {
+            fall.Fall(new Vector3(0f, 3f, 4f));
+            yield return new WaitForSeconds(1.5f);
+            Assert.IsTrue(seat.IsSeated);
+            Assert.AreEqual(AvatarState.Seated, states.State);
         }
 
         [UnityTest]

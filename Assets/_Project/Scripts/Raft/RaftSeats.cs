@@ -55,6 +55,14 @@ namespace GasSafari.Raft
             return offset.magnitude - balance.raftRadius;
         }
 
+        // Sobre la cubierta y a más de 'margin' del borde, medido en el espacio de la balsa (sirve inclinada).
+        public bool IsOverDeck(Vector3 worldPoint, float margin)
+        {
+            var local = transform.InverseTransformPoint(worldPoint);
+            float radial = new Vector2(local.x, local.z).magnitude;
+            return local.y > 0f && radial < balance.raftRadius - margin;
+        }
+
         // El ángulo libre más cercano al pedido, respetando la separación mínima.
         public float FindFreeAngle(float desired)
         {

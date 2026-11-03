@@ -27,7 +27,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M1-09** `AvatarStateMachine` + agarrarse · raft-physics · 02 §7 · hecho 2026-11-03
 - [x] **M1-10** Caída, nado, subir y reaparición automática · raft-physics · 02 §9 · hecho 2026-11-03
 - [x] **M1-11** `FlowSpline` + `RaftFlowReceiver` · raft-physics · 02 §1 · hecho 2026-11-03
-- [ ] **M1-12** `RaftStateMonitor` (vuelco, aire, aterrizaje) + control aéreo · raft-physics · 02 §1, §15
+- [x] **M1-12** `RaftStateMonitor` (vuelco, aire, aterrizaje) + control aéreo · raft-physics · 02 §1, §15 · hecho 2026-11-03 · PENDIENTE de diseño: valor de `landingBounceImpulse` (02 §15 no lo da; está en 0)
 - [ ] **M1-13** `CheckpointSystem` + reaparición + `LevelTimer` · level-builder · 02 §10
 - [ ] **M1-14** `InputHub`: unión de 1-4 jugadores locales + colores · ui-hud · 02 §13, 03 Reglas
 - [ ] **M1-15** Cámara Cinemachine 2.x con TargetGroup e Impulse · vfx-juice · 02 §12

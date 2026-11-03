@@ -10,6 +10,7 @@ namespace GasSafari.Core
         public static event Action<int> OnChamberPopped;
         public static event Action<int> OnChamberRepaired;
         public static event Action OnRaftSunk;
+        public static event Action OnRaftCapsized;
         public static event Action<PlayerAvatar> OnGasEmpty;
         public static event Action<PlayerAvatar, FartType, float> OnFart;
         public static event Action<int, float> OnSync;
@@ -28,6 +29,7 @@ namespace GasSafari.Core
         public static void RaiseChamberPopped(int chamber) => OnChamberPopped?.Invoke(chamber);
         public static void RaiseChamberRepaired(int chamber) => OnChamberRepaired?.Invoke(chamber);
         public static void RaiseRaftSunk() => OnRaftSunk?.Invoke();
+        public static void RaiseRaftCapsized() => OnRaftCapsized?.Invoke();
         public static void RaiseGasEmpty(PlayerAvatar avatar) => OnGasEmpty?.Invoke(avatar);
 
         // Al descargar un nivel.
@@ -37,6 +39,7 @@ namespace GasSafari.Core
             OnChamberPopped = null;
             OnChamberRepaired = null;
             OnRaftSunk = null;
+            OnRaftCapsized = null;
             OnGasEmpty = null;
             OnFart = null;
             OnSync = null;

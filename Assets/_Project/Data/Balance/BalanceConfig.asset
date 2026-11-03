@@ -81,4 +81,6 @@ MonoBehaviour:
   respawnGasFraction: 0.5
   respawnFade: 0.4
   airControlFactor: 0.5
+  landingTiltAngle: 35
+  landingBounceImpulse: 0
   pingCooldown: 1

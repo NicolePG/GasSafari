@@ -31,14 +31,14 @@ namespace GasSafari.Raft
             if (layer != GameLayers.Environment && layer != GameLayers.Hazard && layer != GameLayers.Raft)
                 return;
 
-            // Los animales siguen con la velocidad que la balsa perdió en el choque.
-            var kick = lastVelocity - raft.Body.velocity;
+            // Salen despedidos con la velocidad que la balsa perdió en el choque.
+            float speed = (lastVelocity - raft.Body.velocity).magnitude;
             float impulse = collision.impulse.magnitude;
 
             buffer.Clear();
             buffer.AddRange(seats.Seats);
             for (int i = 0; i < buffer.Count; i++)
-                buffer[i].GetComponent<AvatarFall>().Knockoff(impulse, kick);
+                buffer[i].GetComponent<AvatarFall>().Knockoff(impulse, speed);
         }
     }
 }

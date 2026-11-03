@@ -34,12 +34,15 @@ namespace GasSafari.Characters
             SetOnRaftPhysics();
         }
 
-        // Golpe recibido sentado. kick: velocidad extra respecto de la balsa al salir despedido.
-        public bool Knockoff(float impulse, Vector3 kick)
+        // Golpe recibido sentado: sale despedido hacia afuera de la balsa a 'speed' m/s.
+        public bool Knockoff(float impulse, float speed)
         {
             if (!seat.IsSeated || states.IsGrabbing || impulse <= balance.knockoffImpulse)
                 return false;
-            Fall(kick);
+
+            var outward = transform.position - seat.Raft.transform.position;
+            outward.y = 0f;
+            Fall(outward.normalized * speed);
             return true;
         }
 
