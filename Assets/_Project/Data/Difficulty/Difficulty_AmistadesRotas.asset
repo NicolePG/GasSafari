@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8e8b35ba206bf44836bc4935ff1064, type: 3}
+  m_Name: Difficulty_AmistadesRotas
+  m_EditorClassIdentifier: 
+  id: AmistadesRotas
+  displayName: Amistades Rotas
+  syncWindow: 0.18
+  regenMultiplier: 0.85
+  impactsDamageChambers: 1
+  chamberDamageImpulse: 15
+  respawnPenalty: 6
+  hazardSpeed: 1.15
+  autoRespawnTime: 8
+  checkpointFilter: 2
