@@ -15,9 +15,13 @@ namespace GasSafari.Raft
         [SerializeField] private float seatHeight;
 
         private readonly List<PlayerSeat> seats = new List<PlayerSeat>();
+        private readonly List<PlayerSeat> crew = new List<PlayerSeat>();
 
         public RaftController Controller { get; private set; }
+        // Sentados ahora mismo.
         public IReadOnlyList<PlayerSeat> Seats => seats;
+        // Todo el equipo de esta balsa, incluidos los que están en el agua.
+        public IReadOnlyList<PlayerSeat> Crew => crew;
 
         private void Awake()
         {
@@ -28,6 +32,8 @@ namespace GasSafari.Raft
         {
             if (!seats.Contains(seat))
                 seats.Add(seat);
+            if (!crew.Contains(seat))
+                crew.Add(seat);
         }
 
         public void Unregister(PlayerSeat seat)

@@ -16,6 +16,8 @@ namespace GasSafari.Core
         public static event Action<int, float> OnSync;
         public static event Action<float> OnTeamMeterChanged;
         public static event Action<float> OnSuperFart;
+        public static event Action<int> OnCheckpoint;
+        public static event Action OnRespawn;
         public static event Action<PlayerAvatar> OnPlayerFell;
         // rescuer es null cuando la balsa pasa por encima del caído.
         public static event Action<PlayerAvatar, PlayerAvatar> OnPlayerRescued;
@@ -24,6 +26,8 @@ namespace GasSafari.Core
         public static void RaiseSync(int players, float multiplier) => OnSync?.Invoke(players, multiplier);
         public static void RaiseTeamMeterChanged(float value) => OnTeamMeterChanged?.Invoke(value);
         public static void RaiseSuperFart(float power) => OnSuperFart?.Invoke(power);
+        public static void RaiseCheckpoint(int index) => OnCheckpoint?.Invoke(index);
+        public static void RaiseRespawn() => OnRespawn?.Invoke();
         public static void RaisePlayerFell(PlayerAvatar avatar) => OnPlayerFell?.Invoke(avatar);
         public static void RaisePlayerRescued(PlayerAvatar rescued, PlayerAvatar rescuer) => OnPlayerRescued?.Invoke(rescued, rescuer);
         public static void RaiseChamberPopped(int chamber) => OnChamberPopped?.Invoke(chamber);
@@ -45,6 +49,8 @@ namespace GasSafari.Core
             OnSync = null;
             OnTeamMeterChanged = null;
             OnSuperFart = null;
+            OnCheckpoint = null;
+            OnRespawn = null;
             OnPlayerFell = null;
             OnPlayerRescued = null;
         }

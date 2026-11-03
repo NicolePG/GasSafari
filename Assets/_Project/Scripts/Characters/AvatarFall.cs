@@ -87,11 +87,19 @@ namespace GasSafari.Characters
                 AutoRespawn();
         }
 
+        // Reaparición del equipo en un checkpoint: vuelve a su asiento si estaba en el agua.
+        public void ReturnToRaft()
+        {
+            if (!IsOverboard)
+                return;
+            states.Enter(AvatarState.Respawning);
+            Board(lastAngle);
+        }
+
         private void AutoRespawn()
         {
-            states.Enter(AvatarState.Respawning);
             gas.SetFraction(balance.respawnGasFraction);
-            Board(lastAngle);
+            ReturnToRaft();
         }
 
         private void SetInWaterPhysics()
