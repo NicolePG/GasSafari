@@ -5,6 +5,8 @@
         "GasSafari.Runtime",
         "Unity.InputSystem",
         "Unity.InputSystem.TestFramework",
+        "Unity.Splines",
+        "Unity.Mathematics",
         "UnityEngine.TestRunner"
     ],
     "includePlatforms": [],

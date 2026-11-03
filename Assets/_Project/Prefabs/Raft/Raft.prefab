@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3824064463365234657}
   - component: {fileID: 2992618106284147809}
   - component: {fileID: 1077037301662061506}
+  - component: {fileID: 7959301675662445355}
   m_Layer: 8
   m_Name: Raft
   m_TagString: Untagged
@@ -177,6 +178,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9256ce1ccf6ac4da6430d9a811b95a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7959301675662445355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173049110701024019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd340963385998d48b166abbf46f333f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flow: {fileID: 0}
 --- !u!1 &4641403110951379498
 GameObject:
   m_ObjectHideFlags: 0
