@@ -16,7 +16,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M0-08** Escena `Test/Sandbox_Raft` con agua plana y luz · level-builder · 10 §3 · hecho 2026-11-03
 
 ## M1 · Núcleo de la balsa (29-31 oct)
-- [ ] **M1-01** `RaftController` + `RaftBuoyancy` · raft-physics · 02 §1
+- [x] **M1-01** `RaftController` + `RaftBuoyancy` · raft-physics · 02 §1 · hecho 2026-11-03
 - [ ] **M1-02** `RaftChambers` (reventar, reparar, escudo, hundimiento) · raft-physics · 02 §8
 - [ ] **M1-03** `PlayerSeat` (movimiento por el borde, separación, posiciones iniciales) · raft-physics · 02 §2
 - [ ] **M1-04** `GasTank` · raft-physics · 02 §4
