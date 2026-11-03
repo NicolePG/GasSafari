@@ -19,6 +19,8 @@ namespace GasSafari.Raft
         public bool IsSeated => Raft != null;
         // La máquina de estados lo apaga mientras carga o se agarra.
         public bool CanMove { get; set; } = true;
+        // Giro de puntería en grados respecto de mirar al centro (lo fija FartThruster).
+        public float AimOffset { get; set; }
         public Vector3 WorldPoint => transform.position;
 
         // Hacia el centro de la balsa en el plano XZ: el sentido en que empuja un pedo sin puntería.
@@ -60,24 +62,24 @@ namespace GasSafari.Raft
 
         private void Update()
         {
-            if (!IsSeated || !CanMove)
+            if (!IsSeated)
                 return;
 
             float input = avatar.Command.SeatMove;
-            if (Mathf.Abs(input) < INPUT_DEADZONE)
-                return;
-
-            // Con la cámara detrás de la balsa, derecha lleva al animal hacia la derecha de la pantalla
-            // cuando está en la mitad trasera (ángulo decreciente).
-            float delta = -input * balance.seatMoveSpeed * Time.deltaTime;
-            Angle = Mathf.Repeat(Angle + Raft.ClampMove(this, delta), 360f);
+            if (CanMove && Mathf.Abs(input) >= INPUT_DEADZONE)
+            {
+                // Con la cámara detrás de la balsa, derecha lleva al animal hacia la derecha de la pantalla
+                // cuando está en la mitad trasera (ángulo decreciente).
+                float delta = -input * balance.seatMoveSpeed * Time.deltaTime;
+                Angle = Mathf.Repeat(Angle + Raft.ClampMove(this, delta), 360f);
+            }
             ApplyPose();
         }
 
         private void ApplyPose()
         {
             transform.localPosition = Raft.LocalSeatPosition(Angle);
-            transform.localRotation = Quaternion.Euler(0f, Angle + 180f, 0f);
+            transform.localRotation = Quaternion.Euler(0f, Angle + 180f + AimOffset, 0f);
         }
     }
 }

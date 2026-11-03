@@ -20,12 +20,14 @@ namespace GasSafari.Raft
         private Rigidbody rb;
 
         public Rigidbody Body => rb;
+        public RaftBuoyancy Buoyancy { get; private set; }
         public BalanceConfig Balance => balance;
         public float OnboardWeight { get; private set; }
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
+            Buoyancy = GetComponent<RaftBuoyancy>();
             rb.interpolation = RigidbodyInterpolation.Interpolate;
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.centerOfMass = balance.centerOfMassOffset;
