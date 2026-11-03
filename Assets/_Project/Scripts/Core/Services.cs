@@ -9,6 +9,8 @@ namespace GasSafari.Core
         public static GameSession Session { get; private set; }
         public static TimeController TimeController { get; private set; }
         public static Input.InputHub InputHub { get; private set; }
+        public static Audio.AudioDirector Audio { get; private set; }
+        public static VFX.VfxPool Vfx { get; private set; }
         public static bool IsReady => Root != null;
 
         internal static void Bind(GameServices root)
@@ -17,6 +19,8 @@ namespace GasSafari.Core
             Session = root.GetComponentInChildren<GameSession>();
             TimeController = root.GetComponentInChildren<TimeController>();
             InputHub = root.GetComponentInChildren<Input.InputHub>();
+            Audio = root.GetComponentInChildren<Audio.AudioDirector>();
+            Vfx = root.GetComponentInChildren<VFX.VfxPool>();
         }
 
         internal static void Unbind(GameServices root)
@@ -33,6 +37,8 @@ namespace GasSafari.Core
             Session = null;
             TimeController = null;
             InputHub = null;
+            Audio = null;
+            Vfx = null;
         }
     }
 }

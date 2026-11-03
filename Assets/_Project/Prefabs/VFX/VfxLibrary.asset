@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd7b3b46dca5bc489acf04b67765d5b, type: 3}
+  m_Name: VfxLibrary
+  m_EditorClassIdentifier: 
+  entries:
+  - id: 0
+    prefab: {fileID: 2095460418618120044, guid: cbcb2cc2a17204446aa410c830ec8056, type: 3}
+    prewarm: 8
+  - id: 1
+    prefab: {fileID: 5260777227466379419, guid: dfdf65d869982884fa311687e9bb3abd, type: 3}
+    prewarm: 4
+  - id: 2
+    prefab: {fileID: 5061667102361150019, guid: cdc8131b141ec3342bb1482388ab385c, type: 3}
+    prewarm: 4
+  - id: 3
+    prefab: {fileID: 22701065754996816, guid: 1d32c3183d1075f448d3b75403b20fdd, type: 3}
+    prewarm: 4

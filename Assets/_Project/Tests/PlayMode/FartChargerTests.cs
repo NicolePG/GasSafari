@@ -28,7 +28,7 @@ namespace GasSafari.Tests
             charger = input.GetComponent<FartCharger>();
             raftBody = rig.Get<Rigidbody>();
             farts = 0;
-            thruster.Farted += (type, impulse) => { farts++; lastType = type; lastImpulse = impulse; };
+            thruster.Farted += (type, impulse, multiplier) => { farts++; lastType = type; lastImpulse = impulse; };
             yield return new WaitForSeconds(0.5f);
         }
 

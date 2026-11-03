@@ -33,7 +33,8 @@ namespace GasSafari.Characters
         public bool CanFart { get; set; } = true;
         public Vector3 ThrustDirection { get; private set; }
 
-        public event Action<FartType, float> Farted;
+        // tipo, impulso aplicado, multiplicador de sync (> 1 si este pedo completó un grupo).
+        public event Action<FartType, float, float> Farted;
         public event Action Coughed;
 
         private void Awake()
@@ -154,9 +155,10 @@ namespace GasSafari.Characters
                 Cough();
                 return false;
             }
-            float total = impulse * RegisterSync(type, impulse);
+            float multiplier = RegisterSync(type, impulse);
+            float total = impulse * multiplier;
             Push(total, ForceMode.Impulse);
-            Notify(type, total);
+            Notify(type, total, multiplier);
             return true;
         }
 
@@ -178,7 +180,7 @@ namespace GasSafari.Characters
             float multiplier = RegisterSync(FartType.Blast, force);
             if (multiplier > 1f)
                 StartBlastBonus(multiplier);
-            Notify(FartType.Blast, force * multiplier);
+            Notify(FartType.Blast, force * multiplier, multiplier);
         }
 
         // Una ráfaga que entra en un grupo mantiene el multiplicador syncBlastBonusTime.
@@ -205,9 +207,9 @@ namespace GasSafari.Characters
             raft.ApplyThrust(ThrustDirection * (magnitude * factor), seat.WorldPoint, mode);
         }
 
-        private void Notify(FartType type, float impulse)
+        private void Notify(FartType type, float impulse, float multiplier)
         {
-            Farted?.Invoke(type, impulse);
+            Farted?.Invoke(type, impulse, multiplier);
             GameEvents.RaiseFart(avatar, type, impulse);
         }
 
