@@ -8,6 +8,7 @@ namespace GasSafari.Core
         public static GameServices Root { get; private set; }
         public static GameSession Session { get; private set; }
         public static TimeController TimeController { get; private set; }
+        public static Input.InputHub InputHub { get; private set; }
         public static bool IsReady => Root != null;
 
         internal static void Bind(GameServices root)
@@ -15,6 +16,7 @@ namespace GasSafari.Core
             Root = root;
             Session = root.GetComponentInChildren<GameSession>();
             TimeController = root.GetComponentInChildren<TimeController>();
+            InputHub = root.GetComponentInChildren<Input.InputHub>();
         }
 
         internal static void Unbind(GameServices root)
@@ -30,6 +32,7 @@ namespace GasSafari.Core
             Root = null;
             Session = null;
             TimeController = null;
+            InputHub = null;
         }
     }
 }

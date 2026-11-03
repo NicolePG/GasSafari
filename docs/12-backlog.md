@@ -29,7 +29,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M1-11** `FlowSpline` + `RaftFlowReceiver` · raft-physics · 02 §1 · hecho 2026-11-03
 - [x] **M1-12** `RaftStateMonitor` (vuelco, aire, aterrizaje) + control aéreo · raft-physics · 02 §1, §15 · hecho 2026-11-03 · PENDIENTE de diseño: valor de `landingBounceImpulse` (02 §15 no lo da; está en 0)
 - [x] **M1-13** `CheckpointSystem` + reaparición + `LevelTimer` · level-builder · 02 §10 · hecho 2026-11-03
-- [ ] **M1-14** `InputHub`: unión de 1-4 jugadores locales + colores · ui-hud · 02 §13, 03 Reglas
+- [x] **M1-14** `InputHub`: unión de 1-4 jugadores locales + colores · ui-hud · 02 §13, 03 Reglas · hecho 2026-11-03
 - [ ] **M1-15** Cámara Cinemachine 2.x con TargetGroup e Impulse · vfx-juice · 02 §12
 - [ ] **M1-16** `PingSystem` + cuenta regresiva · ui-hud · 02 §11
 - [ ] **M1-17** VFX y SFX provisionales de pedos con pool · vfx-juice, audio-sfx · 09 §6, 08 §2

@@ -1,0 +1,29 @@
+using GasSafari.Characters;
+using GasSafari.Input;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace GasSafari.Core
+{
+    // Un lugar en la partida (docs/10 §4): humano local, bot o remoto.
+    public class PlayerSlot
+    {
+        public int Index { get; }
+        public Color Color { get; }
+        // Solo humanos locales.
+        public PlayerInput Input { get; }
+        public IPlayerCommandSource CommandSource { get; set; }
+        public CharacterData Character { get; set; }
+        public bool IsBot { get; set; }
+        public bool IsRemote { get; set; }
+        public bool IsReady { get; set; }
+
+        public PlayerSlot(int index, Color color, PlayerInput input, IPlayerCommandSource commandSource)
+        {
+            Index = index;
+            Color = color;
+            Input = input;
+            CommandSource = commandSource;
+        }
+    }
+}
