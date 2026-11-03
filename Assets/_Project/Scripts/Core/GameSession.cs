@@ -21,6 +21,8 @@ namespace GasSafari.Core
         }
 
         public IReadOnlyList<PlayerSlot> Players => players;
+        // Opción de accesibilidad (docs/07). La cargará el guardado.
+        public bool ScreenShake { get; set; } = true;
 
         public event Action<PlayerSlot> PlayerAdded;
         public event Action<PlayerSlot> PlayerRemoved;

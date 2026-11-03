@@ -74,6 +74,19 @@ namespace GasSafari.Core
         [Tooltip("Grados: aterrizaje torcido (docs/02 §15)")] public float landingTiltAngle;
         [Tooltip("PENDIENTE de diseño: impulso de rebote al aterrizar torcido (docs/02 §15 no da el valor)")]
         public float landingBounceImpulse;
+
+        [Header("Cámara (docs/02 §12)")]
+        [Tooltip("Grados")] public float cameraTilt;
+        [Tooltip("Balsa sola")] public float cameraDistanceMin;
+        [Tooltip("Alguien en el agua")] public float cameraDistanceMax;
+        [Tooltip("Segundos de anticipación")] public float cameraLookahead;
+        [Tooltip("Metros extra a máxima velocidad")] public float cameraSpeedZoom;
+        [Tooltip("Provisional: velocidad que se toma como máxima (la del Súper Pedo)")] public float cameraZoomSpeedReference;
+        [Tooltip("Provisional: suavizado del zoom en segundos")] public float cameraZoomSmoothTime;
+        public float cameraRaftWeight;
+        public float cameraSwimmerWeight;
+        [Tooltip("Provisional: fuerza de sacudida media (cámara reventada)")] public float shakeMedium;
+        [Tooltip("Provisional: fuerza de sacudida fuerte (Súper Pedo)")] public float shakeStrong;
         public float pingCooldown;
     }
 }

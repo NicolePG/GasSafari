@@ -83,4 +83,15 @@ MonoBehaviour:
   airControlFactor: 0.5
   landingTiltAngle: 35
   landingBounceImpulse: 0
+  cameraTilt: 50
+  cameraDistanceMin: 14
+  cameraDistanceMax: 18
+  cameraLookahead: 0.3
+  cameraSpeedZoom: 2
+  cameraZoomSpeedReference: 14
+  cameraZoomSmoothTime: 0.5
+  cameraRaftWeight: 2
+  cameraSwimmerWeight: 1
+  shakeMedium: 0.5
+  shakeStrong: 1
   pingCooldown: 1
