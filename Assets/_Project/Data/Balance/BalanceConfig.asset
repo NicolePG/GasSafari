@@ -76,7 +76,9 @@ MonoBehaviour:
   sinkDuration: 1.5
   knockoffImpulse: 12
   swimSpeed: 3
+  climbReach: 1
   autoRespawnTime: 6
+  respawnGasFraction: 0.5
   respawnFade: 0.4
   airControlFactor: 0.5
   pingCooldown: 1

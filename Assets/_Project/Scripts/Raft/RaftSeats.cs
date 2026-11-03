@@ -8,6 +8,8 @@ namespace GasSafari.Raft
     [RequireComponent(typeof(RaftController))]
     public class RaftSeats : MonoBehaviour
     {
+        private const int FREE_ANGLE_STEP = 5;
+
         [SerializeField] private BalanceConfig balance;
         [Tooltip("Altura local de los asientos respecto del centro de la balsa")]
         [SerializeField] private float seatHeight;
@@ -36,6 +38,44 @@ namespace GasSafari.Raft
         public float[] GetStartAngles(int players)
         {
             return balance.startSeatAngles[players - 1].angles;
+        }
+
+        // Ángulo del borde más cercano a un punto del mundo.
+        public float AngleTowards(Vector3 worldPoint)
+        {
+            var local = transform.InverseTransformPoint(worldPoint);
+            return Mathf.Repeat(Mathf.Atan2(local.x, local.z) * Mathf.Rad2Deg, 360f);
+        }
+
+        // Distancia horizontal de un punto al borde (negativa si está dentro).
+        public float DistanceToEdge(Vector3 worldPoint)
+        {
+            var offset = worldPoint - transform.position;
+            offset.y = 0f;
+            return offset.magnitude - balance.raftRadius;
+        }
+
+        // El ángulo libre más cercano al pedido, respetando la separación mínima.
+        public float FindFreeAngle(float desired)
+        {
+            for (int step = 0; step <= 180; step += FREE_ANGLE_STEP)
+            {
+                if (IsFree(desired + step))
+                    return Mathf.Repeat(desired + step, 360f);
+                if (IsFree(desired - step))
+                    return Mathf.Repeat(desired - step, 360f);
+            }
+            return Mathf.Repeat(desired, 360f);
+        }
+
+        private bool IsFree(float angle)
+        {
+            for (int i = 0; i < seats.Count; i++)
+            {
+                if (Mathf.Abs(Mathf.DeltaAngle(angle, seats[i].Angle)) < balance.minSeatSeparation)
+                    return false;
+            }
+            return true;
         }
 
         public Vector3 LocalSeatPosition(float angle)

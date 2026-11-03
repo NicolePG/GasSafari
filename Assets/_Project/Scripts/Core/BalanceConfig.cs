@@ -64,7 +64,9 @@ namespace GasSafari.Core
         [Tooltip("Segundos que tarda en hundirse sin cámaras (docs/02 §8)")] public float sinkDuration;
         public float knockoffImpulse;
         public float swimSpeed;
+        [Tooltip("Distancia máxima al borde para subir (docs/02 §9)")] public float climbReach;
         public float autoRespawnTime;
+        [Tooltip("Gas al reaparecer solo tras caer (docs/02 §9)")] public float respawnGasFraction;
         public float respawnFade;
 
         [Header("Aire y pings")]
