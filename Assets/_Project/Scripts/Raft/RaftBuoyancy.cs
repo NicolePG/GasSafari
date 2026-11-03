@@ -22,6 +22,9 @@ namespace GasSafari.Raft
         public bool IsAirborne { get; private set; }
         public int SubmergedPoints { get; private set; }
         public int PointCount => floatPoints.Length;
+        // Los fija RaftEffects (Galope Turbo, Panzazo).
+        public float WaterDragMultiplier { get; set; } = 1f;
+        public float AngularDragMultiplier { get; set; } = 1f;
 
         public event Action<bool> AirborneChanged;
 
@@ -76,6 +79,8 @@ namespace GasSafari.Raft
 
             SubmergedPoints = submerged;
             SetAirborne(submerged == 0);
+            rb.drag = IsAirborne ? balance.airDrag : balance.waterDrag * WaterDragMultiplier;
+            rb.angularDrag = (IsAirborne ? balance.airAngularDrag : balance.waterAngularDrag) * AngularDragMultiplier;
         }
 
         private void SetAirborne(bool airborne)
@@ -85,8 +90,6 @@ namespace GasSafari.Raft
 
             hasState = true;
             IsAirborne = airborne;
-            rb.drag = airborne ? balance.airDrag : balance.waterDrag;
-            rb.angularDrag = airborne ? balance.airAngularDrag : balance.waterAngularDrag;
             AirborneChanged?.Invoke(airborne);
         }
 

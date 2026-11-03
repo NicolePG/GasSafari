@@ -21,6 +21,7 @@ namespace GasSafari.Abilities
         public RaftController Raft { get; private set; }
         public RaftChambers Chambers { get; private set; }
         public RaftFlowReceiver Flow { get; private set; }
+        public RaftEffects Effects { get; private set; }
         public SyncDetector Sync { get; private set; }
         public TeamMeter Meter { get; private set; }
 
@@ -47,6 +48,7 @@ namespace GasSafari.Abilities
             Raft = seats != null ? seats.Controller : null;
             Chambers = seats != null ? seats.GetComponent<RaftChambers>() : null;
             Flow = seats != null ? seats.GetComponent<RaftFlowReceiver>() : null;
+            Effects = seats != null ? seats.GetComponent<RaftEffects>() : null;
             Sync = seats != null ? seats.GetComponent<SyncDetector>() : null;
             Meter = Sync != null ? Sync.Meter : null;
         }

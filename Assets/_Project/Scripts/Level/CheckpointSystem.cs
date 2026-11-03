@@ -19,6 +19,7 @@ namespace GasSafari.Level
         private LevelTimer timer;
         private RaftChambers chambers;
         private RaftStateMonitor monitor;
+        private RaftEffects effects;
         private RaftSeats seats;
         private int savedChambers;
         private float fadeTimer;
@@ -70,6 +71,7 @@ namespace GasSafari.Level
         {
             chambers = raft.GetComponent<RaftChambers>();
             monitor = raft.GetComponent<RaftStateMonitor>();
+            effects = raft.GetComponent<RaftEffects>();
             seats = raft.GetComponent<RaftSeats>();
         }
 
@@ -136,6 +138,7 @@ namespace GasSafari.Level
 
             chambers.SetState(savedChambers);
             monitor.ResetState();
+            effects.ClearAll();
 
             var crew = seats.Crew;
             for (int i = 0; i < crew.Count; i++)

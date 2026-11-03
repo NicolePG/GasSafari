@@ -41,7 +41,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M2-03** `CharacterData` x5 · character-ability · 03 Resumen · hecho 2026-11-03 · `ability`/`passive` se asignan en M2-05..09 y `sfxSet` en M2-13; PENDIENTE de diseño: color de UI por personaje (no está en docs)
 - [x] **M2-04** `AbilityBase`, `AbilityRunner`, `AbilityContext`, `PassiveBase` · character-ability · 03 · hecho 2026-11-03
 - [x] **M2-05** Alex: Rugido + Estrella del Show · character-ability · 03 Alex · hecho 2026-11-03
-- [ ] **M2-06** Marty: Galope Turbo · character-ability · 03 Marty
+- [x] **M2-06** Marty: Galope Turbo · character-ability · 03 Marty · hecho 2026-11-03
 - [ ] **M2-07** Melman: Cuello Gancho, Botiquín, Vista Alta · character-ability · 03 Melman
 - [ ] **M2-08** Gloria: Panzazo + Peso Pesado · character-ability · 03 Gloria
 - [ ] **M2-09** Julien: Fiesta Real, Corona Magnética, Salto · character-ability · 03 Julien

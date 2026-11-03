@@ -21,7 +21,7 @@ MonoBehaviour:
   regenDelay: 0.3
   weight: 2
   height: 1.7
-  ability: {fileID: 0}
+  ability: {fileID: 11400000, guid: 8eae44562f47acf48a9999f2e0b9e36a, type: 2}
   prefab: {fileID: 1066758302062582418, guid: 3ddd9b15168bd3a44a6afbc363a6e839, type: 3}
   overrideController: {fileID: 0}
   icon: {fileID: 0}
