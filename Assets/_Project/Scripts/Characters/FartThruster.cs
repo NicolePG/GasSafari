@@ -19,6 +19,8 @@ namespace GasSafari.Characters
         private bool pressing;
         private float pressTime;
         private float coughTimer;
+        // Tras recuperar CanFart con el botón aún pulsado, no empezar una ráfaga hasta soltarlo.
+        private bool waitForRelease;
 
         public bool IsBlasting { get; private set; }
         public bool IsCoughing => coughTimer > 0f;
@@ -59,6 +61,12 @@ namespace GasSafari.Characters
             if (!CanFart)
             {
                 CancelPress();
+                waitForRelease = true;
+                return;
+            }
+            if (waitForRelease)
+            {
+                waitForRelease = cmd.FartHeld;
                 return;
             }
 
@@ -115,16 +123,24 @@ namespace GasSafari.Characters
             ThrustDirection = Quaternion.AngleAxis(yaw, Vector3.up) * seat.InwardDirection;
         }
 
-        private void Puff()
+        // Pedo instantáneo (toque o cargado). Sin gas suficiente, tose.
+        public bool FireImpulse(FartType type, float impulse, float cost)
         {
-            if (!gas.TrySpend(balance.puffCost))
+            if (!seat.IsSeated || IsCoughing)
+                return false;
+            if (!gas.TrySpend(cost))
             {
                 Cough();
-                return;
+                return false;
             }
-            float impulse = avatar.Character.puffImpulse;
             Push(impulse, ForceMode.Impulse);
-            Notify(FartType.Puff, impulse);
+            Notify(type, impulse);
+            return true;
+        }
+
+        private void Puff()
+        {
+            FireImpulse(FartType.Puff, avatar.Character.puffImpulse, balance.puffCost);
         }
 
         private void StartBlast()
