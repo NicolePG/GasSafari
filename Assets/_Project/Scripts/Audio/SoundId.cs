@@ -8,6 +8,12 @@ namespace GasSafari.Audio
         FartBlast,
         FartCharge,
         FartMega,
-        FartCough
+        FartCough,
+        AbilityRoar,
+        AbilityGallop,
+        AbilityNeck,
+        AbilityBellyflop,
+        AbilityParty,
+        AbilityRepair
     }
 }

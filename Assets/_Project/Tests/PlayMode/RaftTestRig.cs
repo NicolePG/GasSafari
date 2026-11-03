@@ -36,12 +36,16 @@ namespace GasSafari.Tests
 
         public T Get<T>() where T : Component => Raft.GetComponent<T>();
 
-        // Avatar provisional sentado en el ángulo dado, controlado por un ScriptedCommandSource.
-        public ScriptedCommandSource AddAvatar(float angle)
+        // Avatar sentado en el ángulo dado, controlado por un ScriptedCommandSource.
+        // character: nombre de la variante (Avatar_<character>); vacío = avatar provisional genérico.
+        public ScriptedCommandSource AddAvatar(float angle, string character = "")
         {
+            string path = string.IsNullOrEmpty(character)
+                ? AVATAR_PREFAB
+                : "Assets/_Project/Prefabs/Characters/Avatar_" + character + ".prefab";
             GameObject go = null;
 #if UNITY_EDITOR
-            go = Object.Instantiate(UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(AVATAR_PREFAB));
+            go = Object.Instantiate(UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(path));
 #endif
             avatars.Add(go);
             var source = go.AddComponent<ScriptedCommandSource>();

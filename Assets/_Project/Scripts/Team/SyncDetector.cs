@@ -59,6 +59,9 @@ namespace GasSafari.Team
             }
         }
 
+        // Si el miembro está en el grupo de sync actual (válido justo al recibir OnSync).
+        public bool IsInGroup(ISyncMember member) => tracker.Contains(member);
+
         // Lo llama cada inicio de pedo. Devuelve el multiplicador para ese pedo.
         public float Register(ISyncMember member, FartType type, float baseImpulse)
         {

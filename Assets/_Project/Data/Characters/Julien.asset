@@ -21,7 +21,8 @@ MonoBehaviour:
   regenDelay: 0.5
   weight: 1
   height: 1
-  prefab: {fileID: 884872161448545324, guid: d3191eedb9d1af548bcd494608ee6c6d, type: 3}
+  ability: {fileID: 0}
+  prefab: {fileID: 6618060406104082185, guid: 7812377bf193ec948a6463dfdae1a69b, type: 3}
   overrideController: {fileID: 0}
   icon: {fileID: 0}
   uiColor: {r: 1, g: 1, b: 1, a: 1}

@@ -65,7 +65,7 @@ namespace GasSafari.Team
             entries[count++] = new Entry { Member = member, Type = type, BaseImpulse = baseImpulse };
         }
 
-        private bool Contains(ISyncMember member)
+        public bool Contains(ISyncMember member)
         {
             for (int i = 0; i < count; i++)
             {

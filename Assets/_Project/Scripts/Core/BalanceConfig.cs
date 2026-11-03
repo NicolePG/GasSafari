@@ -79,6 +79,10 @@ namespace GasSafari.Core
         [Tooltip("PENDIENTE de diseño: impulso de rebote al aterrizar torcido (docs/02 §15 no da el valor)")]
         public float landingBounceImpulse;
 
+        [Header("Pasivas (docs/03)")]
+        [Tooltip("Estrella del Show: segundos extra de ventana de sync")] public float showWindowBonus;
+        [Tooltip("Estrella del Show: duración del bono")] public float showBonusDuration;
+
         [Header("Cámara (docs/02 §12)")]
         [Tooltip("Grados")] public float cameraTilt;
         [Tooltip("Balsa sola")] public float cameraDistanceMin;

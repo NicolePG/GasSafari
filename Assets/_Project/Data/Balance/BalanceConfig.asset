@@ -87,6 +87,8 @@ MonoBehaviour:
   noGasPingThreshold: 0.1
   landingTiltAngle: 35
   landingBounceImpulse: 0
+  showWindowBonus: 0.08
+  showBonusDuration: 3
   cameraTilt: 50
   cameraDistanceMin: 14
   cameraDistanceMax: 18
