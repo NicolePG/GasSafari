@@ -27,17 +27,23 @@ namespace GasSafari.Tests
         public IEnumerator Gallop_PushesAlongThrust_HalvesWaterDrag_WithoutGas()
         {
             var marty = rig.AddAvatar(180f, "Marty");
-            var gallop = (GallopAbility)marty.GetComponent<AbilityRunner>().Ability;
+            var runner = marty.GetComponent<AbilityRunner>();
+            var gallop = (GallopAbility)runner.Ability;
             var body = rig.Get<Rigidbody>();
+            var states = marty.GetComponent<AvatarStateMachine>();
+            string log = "";
+            runner.AbilityPressed += ok => log += $"pulsó(activó={ok}, estado={states.State}) ";
             yield return new WaitForSeconds(0.3f);
 
+            int frame = Time.frameCount;
             marty.Command.AbilityPresses++;
             yield return null;
+            string afterPress = $"{log}| frames={Time.frameCount - frame} cmd={marty.GetComponent<PlayerAvatar>().Command.AbilityPresses} lista={runner.Cooldown.IsReady} estado={states.State} ts={Time.timeScale}";
             yield return new WaitForFixedUpdate();
             yield return new WaitForFixedUpdate();
 
             float expected = gallop.impulse / body.mass;
-            Assert.AreEqual(expected, body.velocity.z, expected * 0.15f, "impulso hacia la proa");
+            Assert.AreEqual(expected, body.velocity.z, expected * 0.15f, "impulso hacia la proa " + afterPress);
             Assert.AreEqual(rig.Balance.waterDrag * gallop.waterDragMultiplier, body.drag, 1e-4f);
             var gas = marty.GetComponent<GasTank>();
             Assert.AreEqual(gas.Capacity, gas.Gas, 0.01f, "sin costo de gas");

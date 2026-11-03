@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1589adc388677844bbe58c3b5e22cd9c, type: 3}
+  m_Name: BellyFlop
+  m_EditorClassIdentifier: 
+  id: belly_flop
+  cooldown: 20
+  icon: {fileID: 0}
+  sound: 9
+  jumpTime: 0.6
+  angularDragMultiplier: 2
+  effectDuration: 2
+  currentImpulse: 40

@@ -91,6 +91,7 @@ MonoBehaviour:
   showBonusDuration: 3
   medkitHoldTime: 1.5
   lookoutWarningLead: 3
+  heavyLateralFactor: 0.7
   cameraTilt: 50
   cameraDistanceMin: 14
   cameraDistanceMax: 18

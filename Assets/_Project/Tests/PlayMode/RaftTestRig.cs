@@ -22,6 +22,9 @@ namespace GasSafari.Tests
 
         public RaftTestRig(Vector3 raftPosition)
         {
+            // Las pruebas se suscriben con lambdas: sin esto, las de pruebas anteriores tocarían objetos destruidos.
+            GameEvents.ClearAll();
+
             Water = GameObject.CreatePrimitive(PrimitiveType.Plane);
             Water.name = "TestWater";
             Water.layer = GameLayers.Water;

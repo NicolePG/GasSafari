@@ -67,8 +67,13 @@ namespace GasSafari.Tests
         [UnityTest]
         public IEnumerator Press_ActivatesAndRespectsCooldown()
         {
+            string log = "";
+            var states = input.GetComponent<AvatarStateMachine>();
+            runner.AbilityPressed += ok => log += $"pulsó(activó={ok}, estado={states.State}) ";
+            int frameBefore = Time.frameCount;
             yield return Press();
-            Assert.AreEqual(1, ability.Activations);
+            Assert.AreEqual(1, ability.Activations,
+                $"{log}| cmd={input.GetComponent<PlayerAvatar>().Command.AbilityPresses} src={input.Command.AbilityPresses} frames={Time.frameCount - frameBefore} enabled={runner.isActiveAndEnabled}");
             Assert.IsNotNull(ability.LastContext.Raft);
             Assert.IsNotNull(ability.LastContext.Sync);
             Assert.IsNotNull(ability.LastContext.Meter);

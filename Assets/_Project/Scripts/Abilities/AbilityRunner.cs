@@ -42,8 +42,11 @@ namespace GasSafari.Abilities
             var cmd = avatar.Command;
             bool pressed = PlayerCommand.NewPresses(cmd.AbilityPresses, lastPresses) > 0;
             lastPresses = cmd.AbilityPresses;
-            if (pressed)
-                AbilityPressed?.Invoke(TryActivate());
+            if (!pressed)
+                return;
+            // Evaluar antes: con ?.Invoke(...) el argumento no se evalúa si nadie escucha.
+            bool activated = TryActivate();
+            AbilityPressed?.Invoke(activated);
         }
 
         public bool TryActivate()

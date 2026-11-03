@@ -84,6 +84,7 @@ namespace GasSafari.Core
         [Tooltip("Estrella del Show: duración del bono")] public float showBonusDuration;
         [Tooltip("Botiquín: segundos manteniendo el botón")] public float medkitHoldTime;
         [Tooltip("Vista Alta: segundos de anticipación de avisos")] public float lookoutWarningLead;
+        [Tooltip("Peso Pesado: factor de la componente lateral de corriente y viento")] public float heavyLateralFactor;
 
         [Header("Cámara (docs/02 §12)")]
         [Tooltip("Grados")] public float cameraTilt;

@@ -39,6 +39,12 @@ namespace GasSafari.Raft
             rb.AddForceAtPosition(force, point, mode);
         }
 
+        // Panzazo de Gloria: anula el giro de golpe.
+        public void StopRotation()
+        {
+            rb.angularVelocity = Vector3.zero;
+        }
+
         // Un animal a bordo: suma su peso a la masa e inclina la balsa hacia su asiento.
         public void AddWeight(Transform point, float weight)
         {
