@@ -24,6 +24,7 @@ namespace GasSafari.Tests
             Assert.AreEqual(40f, b.maxAimAngle);
             CollectionAssert.AreEqual(new[] { 1f, 1f, 1.3f, 1.6f, 2f }, b.syncMultipliers);
             CollectionAssert.AreEqual(new[] { 0f, 0f, 10f, 15f, 20f }, b.syncMeterGain);
+            Assert.AreEqual(1.5f, b.sinkDuration);
             Assert.AreEqual(0.5f, b.airControlFactor);
             Assert.AreEqual(1f, b.pingCooldown);
         }

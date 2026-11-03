@@ -53,6 +53,7 @@ namespace GasSafari.Core
 
         [Header("Daño, caídas y reaparición")]
         public float chamberDamageImpulse;
+        [Tooltip("Segundos que tarda en hundirse sin cámaras (docs/02 §8)")] public float sinkDuration;
         public float knockoffImpulse;
         public float swimSpeed;
         public float autoRespawnTime;

@@ -17,7 +17,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 
 ## M1 · Núcleo de la balsa (29-31 oct)
 - [x] **M1-01** `RaftController` + `RaftBuoyancy` · raft-physics · 02 §1 · hecho 2026-11-03
-- [ ] **M1-02** `RaftChambers` (reventar, reparar, escudo, hundimiento) · raft-physics · 02 §8
+- [x] **M1-02** `RaftChambers` (reventar, reparar, escudo, hundimiento) · raft-physics · 02 §8 · hecho 2026-11-03
 - [ ] **M1-03** `PlayerSeat` (movimiento por el borde, separación, posiciones iniciales) · raft-physics · 02 §2
 - [ ] **M1-04** `GasTank` · raft-physics · 02 §4
 - [ ] **M1-05** `FartThruster`: toque, ráfaga y puntería · raft-physics · 02 §3

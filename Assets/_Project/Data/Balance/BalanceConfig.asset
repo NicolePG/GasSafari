@@ -58,6 +58,7 @@ MonoBehaviour:
   superFartSlowMoScale: 0.4
   superFartSlowMoDuration: 0.6
   chamberDamageImpulse: 25
+  sinkDuration: 1.5
   knockoffImpulse: 12
   swimSpeed: 3
   autoRespawnTime: 6
