@@ -10,14 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70f34e28b88d47c47b3664ce5a2521f2, type: 3}
-  m_Name: Character_Gloria
+  m_Name: Alex
   m_EditorClassIdentifier: 
-  id: Gloria
-  displayName: Gloria
-  gasCapacity: 140
-  puffImpulse: 25
-  blastForce: 150
-  regenPerSecond: 8
-  regenDelay: 0.8
-  weight: 4
-  height: 1.6
+  id: Alex
+  displayName: Alex
+  gasCapacity: 100
+  puffImpulse: 22
+  blastForce: 135
+  regenPerSecond: 12
+  regenDelay: 0.6
+  weight: 3
+  height: 1.8
+  prefab: {fileID: 884872161448545324, guid: d3191eedb9d1af548bcd494608ee6c6d, type: 3}
+  overrideController: {fileID: 0}
+  icon: {fileID: 0}
+  uiColor: {r: 1, g: 1, b: 1, a: 1}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70f34e28b88d47c47b3664ce5a2521f2, type: 3}
-  m_Name: Character_Marty
+  m_Name: Marty
   m_EditorClassIdentifier: 
   id: Marty
   displayName: Marty
@@ -21,3 +21,7 @@ MonoBehaviour:
   regenDelay: 0.3
   weight: 2
   height: 1.7
+  prefab: {fileID: 884872161448545324, guid: d3191eedb9d1af548bcd494608ee6c6d, type: 3}
+  overrideController: {fileID: 0}
+  icon: {fileID: 0}
+  uiColor: {r: 1, g: 1, b: 1, a: 1}

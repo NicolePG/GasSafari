@@ -10,14 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70f34e28b88d47c47b3664ce5a2521f2, type: 3}
-  m_Name: Character_Julien
+  m_Name: Gloria
   m_EditorClassIdentifier: 
-  id: Julien
-  displayName: Rey Julien
-  gasCapacity: 80
-  puffImpulse: 16
-  blastForce: 95
-  regenPerSecond: 15
-  regenDelay: 0.5
-  weight: 1
-  height: 1
+  id: Gloria
+  displayName: Gloria
+  gasCapacity: 140
+  puffImpulse: 25
+  blastForce: 150
+  regenPerSecond: 8
+  regenDelay: 0.8
+  weight: 4
+  height: 1.6
+  prefab: {fileID: 884872161448545324, guid: d3191eedb9d1af548bcd494608ee6c6d, type: 3}
+  overrideController: {fileID: 0}
+  icon: {fileID: 0}
+  uiColor: {r: 1, g: 1, b: 1, a: 1}
