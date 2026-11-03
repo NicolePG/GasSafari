@@ -90,6 +90,15 @@ namespace GasSafari.Core
         [Tooltip("Salto de Julien: vuelve solo si cae a esta distancia del borde")] public float julienJumpReturnDistance;
         [Tooltip("Salto de Julien: recarga en s")] public float julienJumpCooldown;
 
+        [Header("Sinergias (docs/03)")]
+        [Tooltip("Honda de la Selva: velocidad al soltar el ancla")] public float slingReleaseMultiplier;
+        [Tooltip("Terremoto: segundos máximos entre Rugido y Panzazo")] public float earthquakeWindow;
+        [Tooltip("Terremoto: radio en m")] public float earthquakeRadius;
+        [Tooltip("Fiesta Total: potencia del Súper Pedo")] public float partySuperFartPower;
+        [Tooltip("Dúo Pesado: fuerza de los pedos")] public float heavyDuoForceMultiplier;
+        [Tooltip("Dúo Pesado: duración en s")] public float heavyDuoDuration;
+        [Tooltip("Dúo Pesado: ángulo máximo entre asientos")] public float heavyDuoMaxSeatAngle;
+
         [Header("Cámara (docs/02 §12)")]
         [Tooltip("Grados")] public float cameraTilt;
         [Tooltip("Balsa sola")] public float cameraDistanceMin;

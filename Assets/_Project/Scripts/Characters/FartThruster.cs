@@ -24,8 +24,9 @@ namespace GasSafari.Characters
         private bool waitForRelease;
         private float blastMultiplier = 1f;
         private float blastBonusTimer;
-        private RaftSeats syncRaft;
+        private RaftSeats cachedRaft;
         private SyncDetector sync;
+        private RaftEffects effects;
 
         public bool IsBlasting { get; private set; }
         public bool IsCoughing => coughTimer > 0f;
@@ -192,19 +193,28 @@ namespace GasSafari.Characters
 
         private float RegisterSync(FartType type, float baseImpulse)
         {
-            if (seat.Raft != syncRaft)
-            {
-                syncRaft = seat.Raft;
-                sync = syncRaft.GetComponent<SyncDetector>();
-            }
+            RefreshRaft();
             return sync != null ? sync.Register(this, type, baseImpulse) : 1f;
         }
 
         private void Push(float magnitude, ForceMode mode)
         {
+            RefreshRaft();
             var raft = seat.Raft.Controller;
             float factor = raft.Buoyancy.IsAirborne ? balance.airControlFactor : 1f;
+            if (effects != null)
+                factor *= effects.FartForceMultiplier;
             raft.ApplyThrust(ThrustDirection * (magnitude * factor), seat.WorldPoint, mode);
+        }
+
+        // Componentes de equipo de la balsa actual; solo se buscan al cambiar de balsa.
+        private void RefreshRaft()
+        {
+            if (seat.Raft == cachedRaft)
+                return;
+            cachedRaft = seat.Raft;
+            sync = cachedRaft.GetComponent<SyncDetector>();
+            effects = cachedRaft.GetComponent<RaftEffects>();
         }
 
         private void Notify(FartType type, float impulse, float multiplier)

@@ -17,6 +17,7 @@ namespace GasSafari.Team
         private RaftController raft;
         private RaftSeats seats;
         private TeamMeter meter;
+        private AbilitySynergySystem synergy;
         private float windowTimer;
         private bool wasReady;
 
@@ -32,6 +33,7 @@ namespace GasSafari.Team
             raft = GetComponent<RaftController>();
             seats = GetComponent<RaftSeats>();
             meter = GetComponent<TeamMeter>();
+            synergy = GetComponent<AbilitySynergySystem>();
         }
 
         private void Update()
@@ -80,6 +82,8 @@ namespace GasSafari.Team
         {
             pressed.Clear();
             meter.Consume();
+            if (synergy != null)
+                power = synergy.ApplySuperFart(power);
 
             var forward = raft.transform.forward;
             forward.y = 0f;

@@ -23,6 +23,8 @@ namespace GasSafari.Raft
         public RaftBuoyancy Buoyancy { get; private set; }
         public BalanceConfig Balance => balance;
         public float OnboardWeight { get; private set; }
+        // 0 anula la inclinación por peso (Dúo Pesado).
+        public float WeightTiltScale { get; set; } = 1f;
 
         private void Awake()
         {
@@ -67,7 +69,9 @@ namespace GasSafari.Raft
 
         private void FixedUpdate()
         {
-            float tilt = Physics.gravity.magnitude * balance.seatTiltFactor;
+            float tilt = Physics.gravity.magnitude * balance.seatTiltFactor * WeightTiltScale;
+            if (tilt <= 0f)
+                return;
             for (int i = 0; i < weights.Count; i++)
             {
                 var w = weights[i];

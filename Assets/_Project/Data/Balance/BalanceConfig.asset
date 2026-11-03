@@ -96,6 +96,13 @@ MonoBehaviour:
   julienJumpDistance: 4
   julienJumpReturnDistance: 1.5
   julienJumpCooldown: 3
+  slingReleaseMultiplier: 1.5
+  earthquakeWindow: 1
+  earthquakeRadius: 10
+  partySuperFartPower: 1.5
+  heavyDuoForceMultiplier: 1.2
+  heavyDuoDuration: 2
+  heavyDuoMaxSeatAngle: 60
   cameraTilt: 50
   cameraDistanceMin: 14
   cameraDistanceMax: 18

@@ -18,6 +18,8 @@ namespace GasSafari.Core
         public static event Action<float> OnSuperFart;
         public static event Action<PlayerAvatar, Input.PingType> OnPing;
         public static event Action<PlayerAvatar, string> OnAbilityUsed;
+        // firstTime: primera vez que este equipo la logra (nombre en pantalla y logro).
+        public static event Action<string, bool> OnSynergy;
         public static event Action<int> OnCheckpoint;
         public static event Action OnRespawn;
         public static event Action<PlayerAvatar> OnPlayerFell;
@@ -30,6 +32,7 @@ namespace GasSafari.Core
         public static void RaiseSuperFart(float power) => OnSuperFart?.Invoke(power);
         public static void RaisePing(PlayerAvatar avatar, Input.PingType type) => OnPing?.Invoke(avatar, type);
         public static void RaiseAbilityUsed(PlayerAvatar avatar, string id) => OnAbilityUsed?.Invoke(avatar, id);
+        public static void RaiseSynergy(string id, bool firstTime) => OnSynergy?.Invoke(id, firstTime);
         public static void RaiseCheckpoint(int index) => OnCheckpoint?.Invoke(index);
         public static void RaiseRespawn() => OnRespawn?.Invoke();
         public static void RaisePlayerFell(PlayerAvatar avatar) => OnPlayerFell?.Invoke(avatar);
@@ -55,6 +58,7 @@ namespace GasSafari.Core
             OnSuperFart = null;
             OnPing = null;
             OnAbilityUsed = null;
+            OnSynergy = null;
             OnCheckpoint = null;
             OnRespawn = null;
             OnPlayerFell = null;
