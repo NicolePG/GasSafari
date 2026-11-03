@@ -46,7 +46,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M2-08** Gloria: Panzazo + Peso Pesado · character-ability · 03 Gloria · hecho 2026-11-03
 - [x] **M2-09** Julien: Fiesta Real, Corona Magnética, Salto · character-ability · 03 Julien · hecho 2026-11-03 · PENDIENTE de diseño: control del Salto (hoy siempre hacia afuera, 4 m)
 - [x] **M2-10** `AbilitySynergySystem` (5 sinergias) · character-ability · 03 Sinergias · hecho 2026-11-03
-- [ ] **M2-11** `FartJuice` (animación procedural de pedos) · vfx-juice · 09 §4
+- [x] **M2-11** `FartJuice` (animación procedural de pedos) · vfx-juice · 09 §4 · hecho 2026-11-03 · provisionales: temblor de carga, estiramiento y duración del megapedo
 - [ ] **M2-12** Importar personajes, `CharacterBase.controller` y overrides · model-import · 09 §3-4
 - [ ] **M2-13** Prefabs finales de personaje con sonidos (`SfxSet`) · model-import, audio-sfx · 03, 08 §4
 - [ ] **M2-14** Prueba T-ABIL-01 · qa-check · 11 §2
