@@ -37,6 +37,21 @@ MonoBehaviour:
   maxAimAngle: 40
   seatMoveSpeed: 120
   minSeatSeparation: 45
+  startSeatAngles:
+  - angles:
+    - 180
+  - angles:
+    - 150
+    - 210
+  - angles:
+    - 120
+    - 180
+    - 240
+  - angles:
+    - 90
+    - 150
+    - 210
+    - 270
   syncWindow: 0.25
   syncMultipliers:
   - 1

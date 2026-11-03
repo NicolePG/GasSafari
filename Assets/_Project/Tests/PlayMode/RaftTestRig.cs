@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using GasSafari.Characters;
 using GasSafari.Core;
 using GasSafari.Raft;
 using UnityEngine;
@@ -8,8 +10,11 @@ namespace GasSafari.Tests
     public class RaftTestRig
     {
         private const string RAFT_PREFAB = "Assets/_Project/Prefabs/Raft/Raft.prefab";
+        private const string AVATAR_PREFAB = "Assets/_Project/Prefabs/Characters/Avatar_Placeholder.prefab";
         private const string BALANCE_PATH = "Assets/_Project/Data/Balance/BalanceConfig.asset";
         private const float WATER_SCALE = 20f;
+
+        private readonly List<GameObject> avatars = new List<GameObject>();
 
         public GameObject Water { get; }
         public GameObject Raft { get; }
@@ -31,8 +36,24 @@ namespace GasSafari.Tests
 
         public T Get<T>() where T : Component => Raft.GetComponent<T>();
 
+        // Avatar provisional sentado en el ángulo dado, controlado por un ScriptedCommandSource.
+        public ScriptedCommandSource AddAvatar(float angle)
+        {
+            GameObject go = null;
+#if UNITY_EDITOR
+            go = Object.Instantiate(UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(AVATAR_PREFAB));
+#endif
+            avatars.Add(go);
+            var source = go.AddComponent<ScriptedCommandSource>();
+            go.GetComponent<PlayerAvatar>().SetCommandSource(source);
+            go.GetComponent<PlayerSeat>().Sit(Get<RaftSeats>(), angle);
+            return source;
+        }
+
         public void Destroy()
         {
+            foreach (var avatar in avatars)
+                Object.Destroy(avatar);
             Object.Destroy(Raft);
             Object.Destroy(Water);
         }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace GasSafari.Core
@@ -6,6 +7,12 @@ namespace GasSafari.Core
     [CreateAssetMenu(menuName = "Gas Safari/Balance Config", fileName = "BalanceConfig")]
     public class BalanceConfig : ScriptableObject
     {
+        [Serializable]
+        public struct SeatLayout
+        {
+            public float[] angles;
+        }
+
         [Header("Balsa")]
         public float raftBaseMass;
         public float raftRadius;
@@ -36,6 +43,7 @@ namespace GasSafari.Core
         [Tooltip("Grados")] public float maxAimAngle;
         [Tooltip("Grados por segundo")] public float seatMoveSpeed;
         [Tooltip("Grados")] public float minSeatSeparation;
+        [Tooltip("Ángulos iniciales (docs/02 §2). Índice 0 = 1 jugador")] public SeatLayout[] startSeatAngles;
 
         [Header("Sincronía y equipo")]
         [Tooltip("Por defecto; la dificultad activa lo reemplaza")] public float syncWindow;
