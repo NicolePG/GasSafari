@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 996985910274381704}
   - component: {fileID: 6592916995266461419}
   - component: {fileID: 2187400386338610549}
+  - component: {fileID: 2108750702999600555}
   m_Layer: 9
   m_Name: Avatar_Placeholder
   m_TagString: Untagged
@@ -102,6 +103,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balance: {fileID: 11400000, guid: ddedf7f726d1c024cb7a3535a02c9ab5, type: 2}
+--- !u!114 &2108750702999600555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884872161448545324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5a9e3ba932bd24fad823ca3b42ae19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5571319927014315635
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ using UnityEngine;
 namespace GasSafari.Characters
 {
     // Pedo cargado (docs/02 §3): mantener Aguantar y soltar con el botón de pedo.
+    // AvatarStateMachine habilita CanCharge solo en el estado Charging.
     [RequireComponent(typeof(PlayerAvatar), typeof(FartThruster), typeof(PlayerSeat))]
     public class FartCharger : MonoBehaviour
     {
@@ -75,8 +76,6 @@ namespace GasSafari.Characters
             holding = true;
             fired = false;
             ChargeTime = 0f;
-            // Mientras se aguanta no hay toques ni ráfagas. En M1-09 lo decide la máquina de estados.
-            thruster.CanFart = false;
             ChargeStarted?.Invoke();
         }
 
@@ -86,7 +85,6 @@ namespace GasSafari.Characters
                 ChargeLost?.Invoke();
             holding = false;
             ChargeTime = 0f;
-            thruster.CanFart = true;
         }
 
         private void Fire()
