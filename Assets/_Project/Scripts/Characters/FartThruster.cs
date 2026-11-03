@@ -2,13 +2,14 @@ using System;
 using GasSafari.Core;
 using GasSafari.Input;
 using GasSafari.Raft;
+using GasSafari.Team;
 using UnityEngine;
 
 namespace GasSafari.Characters
 {
     // Toque y ráfaga con puntería (docs/02 §2-3). La fuerza entra a la balsa por RaftController.ApplyThrust.
     [RequireComponent(typeof(PlayerAvatar), typeof(PlayerSeat), typeof(GasTank))]
-    public class FartThruster : MonoBehaviour
+    public class FartThruster : MonoBehaviour, ISyncMember
     {
         [SerializeField] private BalanceConfig balance;
 
@@ -21,6 +22,10 @@ namespace GasSafari.Characters
         private float coughTimer;
         // Tras recuperar CanFart con el botón aún pulsado, no empezar una ráfaga hasta soltarlo.
         private bool waitForRelease;
+        private float blastMultiplier = 1f;
+        private float blastBonusTimer;
+        private RaftSeats syncRaft;
+        private SyncDetector sync;
 
         public bool IsBlasting { get; private set; }
         public bool IsCoughing => coughTimer > 0f;
@@ -92,10 +97,9 @@ namespace GasSafari.Characters
             if (cmd.FartHeld)
                 return;
 
-            pressing = false;
-            if (IsBlasting)
-                IsBlasting = false;
-            else
+            bool wasBlasting = IsBlasting;
+            CancelPress();
+            if (!wasBlasting)
                 Puff();
         }
 
@@ -112,7 +116,24 @@ namespace GasSafari.Characters
                 Cough();
                 return;
             }
-            Push(avatar.Character.blastForce * (used / needed), ForceMode.Force);
+
+            float multiplier = blastBonusTimer > 0f ? blastMultiplier : 1f;
+            blastBonusTimer -= Time.fixedDeltaTime;
+            Push(avatar.Character.blastForce * multiplier * (used / needed), ForceMode.Force);
+        }
+
+        // Un grupo de sync creció después de este pedo.
+        public void ApplySyncTopUp(FartType type, float baseImpulse, float from, float to)
+        {
+            if (!seat.IsSeated)
+                return;
+            if (type == FartType.Blast)
+            {
+                if (IsBlasting)
+                    StartBlastBonus(to);
+                return;
+            }
+            Push((to - from) * baseImpulse, ForceMode.Impulse);
         }
 
         private void UpdateAim(float aim)
@@ -133,8 +154,9 @@ namespace GasSafari.Characters
                 Cough();
                 return false;
             }
-            Push(impulse, ForceMode.Impulse);
-            Notify(type, impulse);
+            float total = impulse * RegisterSync(type, impulse);
+            Push(total, ForceMode.Impulse);
+            Notify(type, total);
             return true;
         }
 
@@ -152,7 +174,28 @@ namespace GasSafari.Characters
                 return;
             }
             IsBlasting = true;
-            Notify(FartType.Blast, avatar.Character.blastForce);
+            float force = avatar.Character.blastForce;
+            float multiplier = RegisterSync(FartType.Blast, force);
+            if (multiplier > 1f)
+                StartBlastBonus(multiplier);
+            Notify(FartType.Blast, force * multiplier);
+        }
+
+        // Una ráfaga que entra en un grupo mantiene el multiplicador syncBlastBonusTime.
+        private void StartBlastBonus(float multiplier)
+        {
+            blastMultiplier = multiplier;
+            blastBonusTimer = balance.syncBlastBonusTime;
+        }
+
+        private float RegisterSync(FartType type, float baseImpulse)
+        {
+            if (seat.Raft != syncRaft)
+            {
+                syncRaft = seat.Raft;
+                sync = syncRaft.GetComponent<SyncDetector>();
+            }
+            return sync != null ? sync.Register(this, type, baseImpulse) : 1f;
         }
 
         private void Push(float magnitude, ForceMode mode)
@@ -178,6 +221,7 @@ namespace GasSafari.Characters
         {
             pressing = false;
             IsBlasting = false;
+            blastBonusTimer = 0f;
         }
     }
 }
