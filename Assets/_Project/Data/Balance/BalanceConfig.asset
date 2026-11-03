@@ -92,6 +92,10 @@ MonoBehaviour:
   medkitHoldTime: 1.5
   lookoutWarningLead: 3
   heavyLateralFactor: 0.7
+  julienMagnetRadius: 6
+  julienJumpDistance: 4
+  julienJumpReturnDistance: 1.5
+  julienJumpCooldown: 3
   cameraTilt: 50
   cameraDistanceMin: 14
   cameraDistanceMax: 18

@@ -58,6 +58,12 @@ namespace GasSafari.Characters
             {
                 if (rb.position.y > waterHeight)
                     return;
+                if (fall.IsLeaping)
+                {
+                    fall.EndLeap();
+                    if (!fall.IsOverboard)
+                        return;
+                }
                 rb.useGravity = false;
                 states.Enter(AvatarState.Swimming);
             }

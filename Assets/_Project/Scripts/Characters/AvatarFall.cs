@@ -21,6 +21,10 @@ namespace GasSafari.Characters
         public RaftSeats HomeRaft { get; private set; }
         public bool IsOverboard { get; private set; }
         public float TimeOverboard { get; private set; }
+        // Salto de Julien en curso (todavía no tocó el agua).
+        public bool IsLeaping { get; private set; }
+
+        private float leapReturnDistance;
 
         private void Awake()
         {
@@ -65,6 +69,42 @@ namespace GasSafari.Characters
             GameEvents.RaisePlayerFell(avatar);
         }
 
+        // Salto voluntario (Julien): sale de la balsa sin contar como caída y puede atrapar power-ups.
+        public void Leap(Vector3 velocity, float returnDistance)
+        {
+            if (!seat.IsSeated)
+                return;
+
+            HomeRaft = seat.Raft;
+            lastAngle = seat.Angle;
+            var carried = HomeRaft.Controller.Body.GetPointVelocity(transform.position);
+            seat.Leave();
+            rb.isKinematic = false;
+            rb.useGravity = true;
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
+            gameObject.layer = GameLayers.Character;
+            rb.velocity = carried + velocity;
+
+            IsOverboard = true;
+            IsLeaping = true;
+            leapReturnDistance = returnDistance;
+            TimeOverboard = 0f;
+            states.Enter(AvatarState.Falling);
+        }
+
+        // Toca el agua tras el salto: cerca del borde vuelve solo; si no, cae con las reglas normales.
+        public void EndLeap()
+        {
+            IsLeaping = false;
+            if (HomeRaft.DistanceToEdge(transform.position) <= leapReturnDistance)
+            {
+                Board(HomeRaft.AngleTowards(transform.position));
+                return;
+            }
+            gameObject.layer = GameLayers.CharacterInWater;
+            GameEvents.RaisePlayerFell(avatar);
+        }
+
         // Vuelve a la balsa en el ángulo libre más cercano (trepar, rescate o reaparición).
         public void Board(float angle)
         {
@@ -72,6 +112,7 @@ namespace GasSafari.Characters
                 return;
 
             IsOverboard = false;
+            IsLeaping = false;
             SetOnRaftPhysics();
             seat.Sit(HomeRaft, HomeRaft.FindFreeAngle(angle));
             states.Enter(AvatarState.Seated);

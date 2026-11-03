@@ -85,6 +85,10 @@ namespace GasSafari.Core
         [Tooltip("Botiquín: segundos manteniendo el botón")] public float medkitHoldTime;
         [Tooltip("Vista Alta: segundos de anticipación de avisos")] public float lookoutWarningLead;
         [Tooltip("Peso Pesado: factor de la componente lateral de corriente y viento")] public float heavyLateralFactor;
+        [Tooltip("Corona Magnética: radio en m")] public float julienMagnetRadius;
+        [Tooltip("Salto de Julien: distancia máxima fuera de la balsa en m")] public float julienJumpDistance;
+        [Tooltip("Salto de Julien: vuelve solo si cae a esta distancia del borde")] public float julienJumpReturnDistance;
+        [Tooltip("Salto de Julien: recarga en s")] public float julienJumpCooldown;
 
         [Header("Cámara (docs/02 §12)")]
         [Tooltip("Grados")] public float cameraTilt;
