@@ -19,7 +19,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M1-01** `RaftController` + `RaftBuoyancy` · raft-physics · 02 §1 · hecho 2026-11-03
 - [x] **M1-02** `RaftChambers` (reventar, reparar, escudo, hundimiento) · raft-physics · 02 §8 · hecho 2026-11-03
 - [x] **M1-03** `PlayerSeat` (movimiento por el borde, separación, posiciones iniciales) · raft-physics · 02 §2 · hecho 2026-11-03
-- [ ] **M1-04** `GasTank` · raft-physics · 02 §4
+- [x] **M1-04** `GasTank` · raft-physics · 02 §4 · hecho 2026-11-03
 - [ ] **M1-05** `FartThruster`: toque, ráfaga y puntería · raft-physics · 02 §3
 - [ ] **M1-06** `FartThruster`: pedo cargado · raft-physics · 02 §3
 - [ ] **M1-07** `SyncDetector` + `TeamMeter` · raft-physics · 02 §5-6
