@@ -342,14 +342,15 @@ def buoy(v, a, b, light, metal):
     return P, moving
 
 
-def rock_variant(v, mats, seed=0, scale=1.0, top_index=1):
+def rock_variant(v, mats, seed=0, scale=1.0, top_index=1, subdiv=2):
     """A: canto rodado. B: aguja inclinada. C: grupo de lajas."""
     s = scale
     if v == 0:
-        return [rock("Boulder", (0, 0, 0), (1.6 * s, 1.3 * s, 1.1 * s), mats, seed=seed, top_index=top_index)]
+        return [rock("Boulder", (0, 0, 0), (1.6 * s, 1.3 * s, 1.1 * s), mats, seed=seed, top_index=top_index,
+                     subdiv=subdiv)]
     if v == 1:
         return [rock("Spire", (0, 0, 0), (0.8 * s, 0.7 * s, 2.6 * s), mats, seed=seed + 1, rough=0.25,
-                     top_index=top_index, top_dot=0.7),
+                     top_index=top_index, top_dot=0.7, subdiv=subdiv),
                 rock("Base", (0.6 * s, 0.3 * s, 0), (0.7 * s, 0.6 * s, 0.45 * s), mats, seed=seed + 2, subdiv=1,
                      top_index=top_index)]
     out = []
