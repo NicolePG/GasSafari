@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3823af70eb53499e56e5f983a8c59, type: 3}
+  m_Name: W2-2
+  m_EditorClassIdentifier: 
+  id: W2-2
+  sceneName: L_W2_2_Tormenta
+  world: {fileID: 11400000, guid: 7a5cb2de31eda314d901a8d48f53c3fb, type: 2}
+  orderInWorld: 2
+  goldTime: 225
+  silverTime: 315
+  mangoCount: 3
+  checkpointCount: 4
+  isBoss: 0
+  showTimer: 1
+  raceCompatible: 1
+  musicId: mus_w2
+  mechanicText: "viento lateral por r\xE1fagas (H08) con indicador 1 s antes."

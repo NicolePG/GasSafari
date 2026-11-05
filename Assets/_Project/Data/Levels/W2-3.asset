@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3823af70eb53499e56e5f983a8c59, type: 3}
+  m_Name: W2-3
+  m_EditorClassIdentifier: 
+  id: W2-3
+  sceneName: L_W2_3_CementerioBarcos
+  world: {fileID: 11400000, guid: 7a5cb2de31eda314d901a8d48f53c3fb, type: 2}
+  orderInWorld: 3
+  goldTime: 240
+  silverTime: 340
+  mangoCount: 3
+  checkpointCount: 4
+  isBoss: 0
+  showTimer: 1
+  raceCompatible: 0
+  musicId: mus_w2
+  mechanicText: "anclas (`Anchor`) para el Cuello Gancho de Melman. Sin Melman, las
+    curvas se hacen con punter\xEDa y toques."

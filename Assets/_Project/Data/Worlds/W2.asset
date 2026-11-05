@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eeebdc6faa4c3d40997d5b2286e936e, type: 3}
+  m_Name: W2
+  m_EditorClassIdentifier: 
+  id: W2
+  displayName: Mar Abierto
+  palette:
+  - {r: 0.18039216, g: 0.76862746, b: 0.7137255, a: 1}
+  - {r: 0.36078432, g: 0.41960785, b: 0.4509804, a: 1}
+  musicId: mus_w2
+  unlockKind: 1
+  unlockAmount: 8
+  levels:
+  - {fileID: 11400000, guid: 4f6cac36f28c13f48838f9a936dda13f, type: 2}
+  - {fileID: 11400000, guid: c6d95a822cd456c4eaff9cfa97a7d76e, type: 2}
+  - {fileID: 11400000, guid: 63da94dee5ce3ff439d5b696b2d71749, type: 2}
+  - {fileID: 11400000, guid: eddc0e76078797c49840398fc8b8f6b5, type: 2}
+  - {fileID: 11400000, guid: baf9d176e699e0049bde7531205ec5a7, type: 2}

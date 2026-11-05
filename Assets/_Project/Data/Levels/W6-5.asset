@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b3823af70eb53499e56e5f983a8c59, type: 3}
+  m_Name: W6-5
+  m_EditorClassIdentifier: 
+  id: W6-5
+  sceneName: L_W6_5_CoronaReyJefe
+  world: {fileID: 11400000, guid: 9b6dea01fe91300418f8d9d65804331f, type: 2}
+  orderInWorld: 5
+  goldTime: 390
+  silverTime: 550
+  mangoCount: 3
+  checkpointCount: 6
+  isBoss: 1
+  showTimer: 1
+  raceCompatible: 0
+  musicId: mus_w6_boss
+  mechanicText: "recorrido con un tramo de cada mundo, 2 S\xFAper Pedos obligatorios
+    y final r\xEDtmico."

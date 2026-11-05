@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eeebdc6faa4c3d40997d5b2286e936e, type: 3}
+  m_Name: W1
+  m_EditorClassIdentifier: 
+  id: W1
+  displayName: "Fuga del Zool\xF3gico"
+  palette:
+  - {r: 0.105882354, g: 0.16470589, b: 0.2901961, a: 1}
+  - {r: 1, g: 0.30980393, b: 0.6392157, a: 1}
+  - {r: 0.22745098, g: 0.88235295, b: 1, a: 1}
+  musicId: mus_w1
+  unlockKind: 0
+  unlockAmount: 0
+  levels:
+  - {fileID: 11400000, guid: 62ab62cdf3f2df24dbdd7a943d219208, type: 2}
+  - {fileID: 11400000, guid: 6e108b991164af94b9e488bc06b5d750, type: 2}
+  - {fileID: 11400000, guid: 13f4c5d19d83893468eb17952cde15e4, type: 2}
+  - {fileID: 11400000, guid: 7880e941ec31a814db398074b4915d76, type: 2}
+  - {fileID: 11400000, guid: b73d50f1a9b79444792dfc201e51d11b, type: 2}

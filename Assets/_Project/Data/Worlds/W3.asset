@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eeebdc6faa4c3d40997d5b2286e936e, type: 3}
+  m_Name: W3
+  m_EditorClassIdentifier: 
+  id: W3
+  displayName: Selva de Madagascar
+  palette:
+  - {r: 0.1764706, g: 0.41568628, b: 0.30980393, a: 1}
+  - {r: 0.96862745, g: 0.49803922, b: 0, a: 1}
+  musicId: mus_w3
+  unlockKind: 1
+  unlockAmount: 20
+  levels:
+  - {fileID: 11400000, guid: fcad062931a310d40afc7203edf3f8cb, type: 2}
+  - {fileID: 11400000, guid: 97347162265126041b0e5c3eb98372ee, type: 2}
+  - {fileID: 11400000, guid: e68f6a048edf59d49ab2aaf6b35b8d7c, type: 2}
+  - {fileID: 11400000, guid: f98fe286b844f984eba52fee082a18ba, type: 2}
+  - {fileID: 11400000, guid: 5ed9e3b08fc882d4d8f5edfb8807a3e0, type: 2}
