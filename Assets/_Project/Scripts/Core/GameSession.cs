@@ -11,6 +11,7 @@ namespace GasSafari.Core
         public const int MAX_PLAYERS = 4;
 
         [SerializeField] private DifficultyData difficulty;
+        [SerializeField] private Bots.BotConfig botConfig;
 
         private readonly List<PlayerSlot> players = new List<PlayerSlot>();
 
@@ -20,6 +21,7 @@ namespace GasSafari.Core
             set => difficulty = value;
         }
 
+        public Bots.BotConfig BotConfig => botConfig;
         public IReadOnlyList<PlayerSlot> Players => players;
         // Opción de accesibilidad (docs/07). La cargará el guardado.
         public bool ScreenShake { get; set; } = true;

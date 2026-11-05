@@ -43,6 +43,17 @@ namespace GasSafari.Level
             return Raft;
         }
 
+        // Un slot de bot: su BotBrain escribe los comandos en un BotCommandSource.
+        private static void AttachBot(PlayerAvatar avatar, PlayerSlot slot)
+        {
+            var source = slot.CommandSource as Bots.BotCommandSource ?? new Bots.BotCommandSource();
+            slot.CommandSource = source;
+            var brain = avatar.GetComponent<Bots.BotBrain>();
+            if (brain == null)
+                brain = avatar.gameObject.AddComponent<Bots.BotBrain>();
+            brain.Attach(source, Services.IsReady ? Services.Session.BotConfig : null);
+        }
+
         public void SetInputLocked(bool locked)
         {
             for (int i = 0; i < avatars.Count; i++)
@@ -57,6 +68,8 @@ namespace GasSafari.Level
             if (slot.CommandSource != null)
                 avatar.SetCommandSource(slot.CommandSource);
             avatar.GetComponent<PlayerSeat>().Sit(seats, angle);
+            if (slot.IsBot)
+                AttachBot(avatar, slot);
             return avatar;
         }
     }

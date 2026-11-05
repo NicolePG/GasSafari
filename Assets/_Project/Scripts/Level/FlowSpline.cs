@@ -75,6 +75,25 @@ namespace GasSafari.Level
             return FindNearest(position, ref hint) / (positions.Length - 1f);
         }
 
+        // Punto del cauce 'distance' metros por delante de la posición (bots).
+        public Vector3 GetPointAhead(Vector3 position, ref int hint, float distance)
+        {
+            return positions[AheadIndex(position, ref hint, distance)];
+        }
+
+        // Dirección del cauce 'distance' metros por delante de la posición (bots: ¿es recta larga?).
+        public Vector3 GetDirectionAhead(Vector3 position, ref int hint, float distance)
+        {
+            return directions[AheadIndex(position, ref hint, distance)];
+        }
+
+        private int AheadIndex(Vector3 position, ref int hint, float distance)
+        {
+            int index = FindNearest(position, ref hint);
+            float spacing = Length / (positions.Length - 1f);
+            return Mathf.Min(positions.Length - 1, index + Mathf.RoundToInt(distance / Mathf.Max(spacing, 0.01f)));
+        }
+
         private int FindNearest(Vector3 position, ref int hint)
         {
             int last = positions.Length - 1;

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cb5dbbac016ea4fa37538aab18145c, type: 3}
+  m_Name: BotConfig
+  m_EditorClassIdentifier: 
+  decideInterval: 0.1
+  lookaheadSeconds: 2
+  lookaheadMin: 6
+  lookaheadMax: 30
+  hazardRange: 8
+  hazardRadius: 1.5
+  avoidAngle: 35
+  cruiseSpeed: 7
+  bigHeadingError: 25
+  lateralDamping: 0.35
+  straightAngle: 12
+  seatSpread: 50
+  seatTolerance: 25
+  aimTolerance: 20
+  minGasToFire: 20
+  blastStartGas: 0.5
+  blastStopGas: 0.25
+  puffCadenceMin: 0.5
+  puffCadenceMax: 0.8
+  idleLimit: 4
+  stoppedSpeed: 1
+  syncDelayMin: 0.05
+  syncDelayMax: 0.15
+  waitPingTime: 1.5
+  releaseAfter: 0.5
+  climbDistance: 1.5

@@ -64,7 +64,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M3-10** `SaveSystem` + `ProgressionService` + pruebas T-SAVE y T-PROG · save-progression · 10 §13, 06 §2 · hecho 2026-11-04 · ProgressionService se agrega solo a GameServices; mango dorado con ranura 0-2 (GoldenMangoPowerUp.slot, la fija el nivel); StatsService/AchievementService/CosmeticsService quedan para M6
 
 ## M4 · Bots y modo solo (3 nov)
-- [ ] **M4-01** `BotBrain`: percepción y navegación · bot-ai · 10 §15
+- [x] **M4-01** `BotBrain`: percepción y navegación · bot-ai · 10 §15 · hecho 2026-11-05 · empuje radial (sin puntería no hace girar la balsa; la puntería solo frena el giro) con asiento opuesto al rumbo; no dispara con la balsa inclinada más de 20° (3 bots en sync la volcaban); valores en `Data/Balance/BotConfig` (provisionales salvo los de docs); `RaftSpawner` adjunta el bot si `PlayerSlot.IsBot`; pruebas `BotNavigationTests`
 - [ ] **M4-02** Bots: sincronía, habilidades, agarrarse, Súper Pedo, pings · bot-ai · 10 §15
 - [ ] **M4-03** Modo solo con 2 animales (doble control) · unity-csharp-2022 · 02 §13
 - [ ] **M4-04** Validar QA-10 · qa-check · 11 §3

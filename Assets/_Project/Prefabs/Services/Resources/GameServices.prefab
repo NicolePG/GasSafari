@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: {fileID: 11400000, guid: 910cb9694495bc34a984eaed5066d902, type: 2}
+  botConfig: {fileID: 11400000, guid: 3363ab99e533b554e96ee8c450ac6f7e, type: 2}
 --- !u!114 &5274219382114254636
 MonoBehaviour:
   m_ObjectHideFlags: 0
