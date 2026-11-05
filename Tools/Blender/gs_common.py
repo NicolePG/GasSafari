@@ -448,7 +448,7 @@ def paint_faces(obj, fn, mat_index):
 def eye(name, center, radius, look=(0, -1, 0), bone="Head", pupil=0.55, pupil_col="pupil",
         iris_col=None, lid_col=None, lid_angle=None, lid_tilt=0.0, squash=0.85, side=1):
     """Ojo grande de caricatura: globo blanco, iris/pupila, brillo y párpado opcional.
-    lid_angle: grados que baja el párpado superior (0 = cerrado arriba al ras, 90 = medio ojo)."""
+    lid_angle: grados que baja el párpado superior desde arriba (90 = cubre medio ojo)."""
     c = Vector(center)
     lk = Vector(look).normalized()
     rot = lk.to_track_quat("-Y", "Z").to_matrix().to_4x4()
@@ -472,10 +472,10 @@ def eye(name, center, radius, look=(0, -1, 0), bone="Head", pupil=0.55, pupil_co
     if lid_col is not None and lid_angle is not None:
         # párpado superior: casquete de esfera algo mayor que el globo, rotado hacia abajo
         prof = []
-        top = math.radians(90 - lid_angle)
+        start = math.radians(90 - lid_angle)
         steps = 8
         for k in range(steps + 1):
-            a = -top + k / steps * (math.pi / 2 + top)
+            a = start + k / steps * (math.pi / 2 - start)
             prof.append((radius * 1.08 * math.cos(a), radius * 1.08 * math.sin(a)))
         prof[-1] = (0.0, radius * 1.08)
         prof.insert(0, (0.0, prof[0][1]))
@@ -608,9 +608,12 @@ def join_and_skin(name, parts, arm):
             continue
         tot = sum(g.weight for g in v.groups if g.group in deform_idx)
         if tot < 1e-4:
+            # respaldo suave: 2 huesos más cercanos con peso por distancia inversa
             co = mw @ v.co
-            best = min(deform, key=lambda b: _dist_seg(co, *segs[b]))
-            groups[best].add([v.index], 1.0, "REPLACE")
+            ds = sorted((max(_dist_seg(co, *segs[b]), 1e-4), b) for b in deform)[:2]
+            ws = [1.0 / d ** 4 for d, _ in ds]
+            for (d, b), w in zip(ds, ws):
+                groups[b].add([v.index], w / sum(ws), "REPLACE")
             unweighted += 1
     for vg in list(body.vertex_groups):
         if vg.name.startswith("RIGID__"):
@@ -939,8 +942,11 @@ def _world_bbox(objs):
     return lo, hi
 
 
-def _render_view(path, objs, direction, cam, margin=1.12):
+def _render_view(path, objs, direction, cam, margin=1.12, focus=None):
     lo, hi = _world_bbox(objs)
+    if focus is not None:
+        fc, fs = focus
+        lo, hi = fc - Vector((fs, fs, fs)) / 2, fc + Vector((fs, fs, fs)) / 2
     center = (lo + hi) / 2
     d = Vector(direction).normalized()
     rot = (-d).to_track_quat("-Z", "Y")
@@ -970,6 +976,14 @@ def render_sheet(name, objs, arm=None, poses=(), res=520, views=VIEWS, out_name=
         p = os.path.join(PREVIEW_DIR, f"_tmp_{name}_{vn}.png")
         _render_view(p, objs, d, cam)
         tmp.append(p)
+    if arm is not None and "Head" in arm.data.bones:
+        hb = arm.data.bones["Head"]
+        fc = arm.matrix_world @ ((hb.head_local + hb.tail_local) / 2)
+        fs = max((hb.tail_local - hb.head_local).length * 1.9, 0.45)
+        for vn, d in (("face", (0, -1, 0.05)), ("face3q", (0.6, -0.8, 0.15))):
+            p = os.path.join(PREVIEW_DIR, f"_tmp_{name}_{vn}.png")
+            _render_view(p, objs, d, cam, margin=1.0, focus=(fc + Vector((0, -0.05, 0)), fs))
+            tmp.append(p)
     for (act, frame, d) in poses:
         arm.animation_data.action = bpy.data.actions[act]
         sc.frame_set(frame)
@@ -1072,3 +1086,37 @@ def standard_limbs(j, arm_mat, leg_mat, r, hand_fn=None, foot_fn=None, arm_mat_f
 def X(p, s):
     """Refleja un punto del lado izquierdo al lado s (+1 izq, -1 der)."""
     return Vector((p[0] * s, p[1], p[2]))
+
+
+def stickers(obj, count, size, material, rnd, keep_fn=None, min_dist=None, seg=7, rings=4, flat=0.22):
+    """Parches poligonales (manchas) pegados a la superficie de 'obj': elipsoides aplanados según la normal,
+    con pocas caras para que parezcan polígonos de jirafa. Heredan el hueso de 'obj'."""
+    me = obj.data
+    faces = [(p.center.copy(), p.normal.copy(), p.area) for p in me.polygons
+             if keep_fn is None or keep_fn(p.center)]
+    total = sum(a for _, _, a in faces)
+    min_dist = min_dist or size * 1.7
+    out, placed = [], []
+    tries = 0
+    while len(out) < count and tries < count * 60:
+        tries += 1
+        r = rnd.uniform(0, total)
+        acc = 0.0
+        for c, n, a in faces:
+            acc += a
+            if acc >= r:
+                break
+        if any((c - q).length < min_dist for q in placed):
+            continue
+        placed.append(c)
+        sz = size * rnd.uniform(0.75, 1.2)
+        rot = n.to_track_quat("Z", "Y") @ gs_quat_z(rnd.uniform(0, 6.28))
+        out.append(ellipsoid(f"{obj.name}_spot{len(out)}", c - n * sz * flat * 0.35,
+                             (sz * rnd.uniform(0.8, 1.15), sz * rnd.uniform(0.7, 1.0), sz * flat),
+                             material, bone=obj.get("bone", "auto"), seg=seg, rings=rings,
+                             rot=rot.to_matrix().to_4x4()))
+    return out
+
+
+def gs_quat_z(a):
+    return Quaternion((0, 0, 1), a)
