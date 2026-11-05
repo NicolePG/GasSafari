@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W1_1_FuentesZoo.unity
+    guid: d369dceb51d67234d865519f8227e45c
   m_configObjects: {}
