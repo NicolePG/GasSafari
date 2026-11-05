@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 7259628341096722324}
   - component: {fileID: 762549099540677297}
   - component: {fileID: 1096975188636663866}
+  - component: {fileID: 7169599177155392689}
   - component: {fileID: 375725874575269999}
   m_Layer: 9
   m_Name: Avatar_Melman
@@ -268,6 +269,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balance: {fileID: 11400000, guid: ddedf7f726d1c024cb7a3535a02c9ab5, type: 2}
+--- !u!114 &7169599177155392689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572597161067542546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9ec18a1594b7146812496eec02f429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &375725874575269999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,7 +350,7 @@ Transform:
   m_GameObject: {fileID: 7009596339794410212}
   serializedVersion: 2
   m_LocalRotation: {x: -2.2204458e-16, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2079996, z: 0.0000000020436444}
+  m_LocalPosition: {x: 0, y: 0.20799917, z: 0.000000009494227}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000002}
   m_ConstrainProportionsScale: 0
   m_Children: []

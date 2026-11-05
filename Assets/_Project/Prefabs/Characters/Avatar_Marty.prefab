@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 6734229403664295831}
   - component: {fileID: 4574276577060763979}
   - component: {fileID: 7890522673650715924}
+  - component: {fileID: 9158743497663524868}
   - component: {fileID: 8180339713895937697}
   m_Layer: 9
   m_Name: Avatar_Marty
@@ -240,6 +241,18 @@ MonoBehaviour:
   config: {fileID: 11400000, guid: 9dc0128cf6a5ddc4ea8f28268b705fb1, type: 2}
   hips: {fileID: 4354770488568063816}
   head: {fileID: 7700913700958486642}
+--- !u!114 &9158743497663524868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066758302062582418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9ec18a1594b7146812496eec02f429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8180339713895937697
 MonoBehaviour:
   m_ObjectHideFlags: 0

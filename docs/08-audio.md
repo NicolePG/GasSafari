@@ -18,6 +18,12 @@ Parámetros expuestos: `vol_master`, `vol_music`, `vol_sfx`, `vol_voices`, `vol_
 - Todo pasa por `AudioDirector.Play(SoundId id, Vector3 pos)`: pool de 16 `AudioSource` 3D + 4 2D para UI.
 - Variación: pitch aleatorio 0.9-1.15 y nunca el mismo clip dos veces seguidas del mismo `SoundId`.
 - Límite de voces: máximo 4 pedos simultáneos; el pedo que completa un grupo de sync suena +3 dB.
+- Voces de personaje (CharacterVoice, clips oice_<pj>_<tipo> del SfxSet): cada personaje tiene 3 s de enfriamiento entre voces y nunca dice dos a la vez. Cuándo suena cada una:
+  - **effort**: al soltar un pedo cargado, al lanzar el Súper Pedo y al subir a la balsa.
+  - **fall**: siempre que cae al agua (ignora el enfriamiento y corta la voz que estuviera sonando).
+  - **laugh**: cuando el equipo hace sync x3 o x4, y con 30 % de probabilidad cuando otro jugador cae al agua.
+  - **cheer**: en checkpoint, en la meta, la primera vez de cada sinergia y al desbloquear un logro.
+  - Un animal que está en el agua solo emite effort (al subir) y fall; no se ríe ni celebra desde ahí.
 - Cada `SoundId` apunta a un `SoundDef` (SO): lista de clips, grupo del mixer, volumen, rango de pitch, 2D/3D, distancia máxima.
 
 ## 3. Importación
@@ -81,7 +87,7 @@ ui_move, ui_select, ui_back, ui_locked, ui_buy, ui_achievement, ui_join, ui_read
 | mus_w6 / mus_w6_boss | Mundo 6 | Fiesta electrónica |
 | mus_party | Fiesta | Rápida, caótica |
 | mus_results | Resultados | Corta, en loop |
-| stinger_victory / stinger_fail | Meta / hundimiento | 2-4 s |
+| stinger_victory / stinger_fail | Meta / hundimiento | 0.9-1.4 s (stingers cortos; el resultado largo lo da `mus_results`) |
 
 Música adaptativa simple: cada pista de mundo tiene 2 capas (base + intensidad). La capa de intensidad sube cuando la velocidad de la balsa supera 8 m/s o en jefes; transición de 1 s.
 

@@ -30,6 +30,10 @@ namespace GasSafari.Core
         public static event Action<PowerUps.PowerUpData, PlayerAvatar> OnPowerUp;
         // Ranura 0-2 del mango dorado recogido en el nivel (docs/05 P07).
         public static event Action<int> OnGoldenMango;
+        // La balsa cruzó la meta (segundos del cronómetro).
+        public static event Action<float> OnLevelFinished;
+        // Logro desbloqueado (id de docs/06); lo emitirá el sistema de logros.
+        public static event Action<string> OnAchievementUnlocked;
 
         public static void RaiseFart(PlayerAvatar avatar, FartType type, float impulse) => OnFart?.Invoke(avatar, type, impulse);
         public static void RaiseSync(int players, float multiplier) => OnSync?.Invoke(players, multiplier);
@@ -45,6 +49,8 @@ namespace GasSafari.Core
         public static void RaiseHazardWarning(Hazards.HazardBase hazard) => OnHazardWarning?.Invoke(hazard);
         public static void RaisePowerUp(PowerUps.PowerUpData data, PlayerAvatar taker) => OnPowerUp?.Invoke(data, taker);
         public static void RaiseGoldenMango(int slot) => OnGoldenMango?.Invoke(slot);
+        public static void RaiseLevelFinished(float time) => OnLevelFinished?.Invoke(time);
+        public static void RaiseAchievementUnlocked(string id) => OnAchievementUnlocked?.Invoke(id);
         public static void RaiseChamberPopped(int chamber) => OnChamberPopped?.Invoke(chamber);
         public static void RaiseChamberRepaired(int chamber) => OnChamberRepaired?.Invoke(chamber);
         public static void RaiseRaftSunk() => OnRaftSunk?.Invoke();
@@ -74,6 +80,8 @@ namespace GasSafari.Core
             OnHazardWarning = null;
             OnPowerUp = null;
             OnGoldenMango = null;
+            OnLevelFinished = null;
+            OnAchievementUnlocked = null;
         }
     }
 }

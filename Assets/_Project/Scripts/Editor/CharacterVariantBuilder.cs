@@ -90,6 +90,7 @@ namespace GasSafari.Editor
             capsule.height = Mathf.Max(data.height, COLLIDER_RADIUS * 2f);
             capsule.center = new Vector3(0f, data.height * 0.5f, 0f);
 
+            instance.AddComponent<Audio.CharacterVoice>();
             var characterAnimator = instance.AddComponent<CharacterAnimator>();
             SetReference(characterAnimator, "animator", animator);
             var juice = instance.GetComponent<VFX.FartJuice>();

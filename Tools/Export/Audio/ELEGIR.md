@@ -221,4 +221,4 @@ Pistas sin capa de intensidad: usar solo la `_base` (`MusicDirector` debe tolera
 - `stinger_victory`: queda `stinger_victory_02.ogg`. stinger_victory_01.ogg: 1.16 s, pendiente 1.11 oct/s, brillo final +457 Hz; stinger_victory_02.ogg: 0.96 s, pendiente 1.48 oct/s, brillo final +442 Hz; stinger_victory_03.ogg: 0.96 s, pendiente 1.41 oct/s, brillo final +263 Hz
 - `stinger_fail`: queda `stinger_fail_03.ogg`. stinger_fail_01.ogg: 1.38 s, pendiente -0.22 oct/s, brillo final -187 Hz; stinger_fail_02.ogg: 1.38 s, pendiente -1.58 oct/s, brillo final -258 Hz; stinger_fail_03.ogg: 0.94 s, pendiente -2.62 oct/s, brillo final -243 Hz
 
-Nota: docs/08 §5 pide stingers de 2-4 s; los de Kenney duran 1-1.4 s. Quedan así hasta que se decida alargarlos.
+Nota: docs/08 §5 pedía stingers de 2-4 s; los de Kenney duran 0.9-1.4 s y se aceptan así (decisión 2026-11-05, docs/08 §5 corregido).

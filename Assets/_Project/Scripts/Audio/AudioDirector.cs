@@ -81,6 +81,15 @@ namespace GasSafari.Audio
                 Release(ref voices2D[index]);
         }
 
+        public bool IsPlaying(int handle)
+        {
+            int index = Find(voices3D, handle);
+            if (index >= 0)
+                return voices3D[index].Source.isPlaying;
+            index = Find(voices2D, handle);
+            return index >= 0 && voices2D[index].Source.isPlaying;
+        }
+
         public void SetPitch(int handle, float pitch)
         {
             int index = Find(voices3D, handle);

@@ -192,6 +192,7 @@ namespace GasSafari.Level
             stateTimer = finishDelay;
             SetState(LevelState.Finished);
             Finished?.Invoke(timer.Total);
+            GameEvents.RaiseLevelFinished(timer.Total);
         }
 
         private void OnRespawnStarted()
