@@ -52,9 +52,11 @@ generan los demás scripts (los personajes se guardan en caché en `Tools/Blende
 
 ```
 blender --background --python Tools/Blender/ui_art.py   # retratos, poses, iconos, logo y mapa → Tools/Export/UI/
+blender --background --python Tools/Blender/story.py    # viñetas → Tools/Export/Story/<Momento>/ y fondos de carga
+blender --background --python Tools/Blender/story.py -- Intro W2_End   # solo esos momentos (o --loading / W1 ... W6)
 ```
 
-Cada archivo de `Tools/Export/UI/` está explicado en `Tools/Export/UI/README.md`.
+Cada archivo de `Tools/Export/UI/` y `Tools/Export/Story/` está explicado en `Tools/Export/UI/README.md`.
 
 ## Sonidos (Python 3 + numpy, scipy, soundfile)
 

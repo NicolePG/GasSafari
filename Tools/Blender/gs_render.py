@@ -705,7 +705,7 @@ def _mesh_obj(name, bm, mats, no_outline=False):
 
 
 def water(size=400, deep="#1F7FB8", light="#3FB4E0", foam="#E8FBFF", z=0.0, scale=0.08, waves=0.0,
-          loc=(0, 0, 0), foam_amt=0.06, name="Water", res=120):
+          loc=(0, 0, 0), foam_amt=0.06, name="Water", res=120, emission=0.0):
     """Plano de agua con manchas de color y líneas de espuma (dibujo animado). Recibe sombras."""
     bm = bmesh.new()
     bmesh.ops.create_grid(bm, x_segments=res, y_segments=res, size=size / 2)
@@ -744,6 +744,7 @@ def water(size=400, deep="#1F7FB8", light="#3FB4E0", foam="#E8FBFF", z=0.0, scal
     L.new(noise.outputs["Fac"], ramp.inputs["Fac"])
     g = N.new("ShaderNodeGroup")
     g.node_tree = toon_group()
+    g.inputs["Emission"].default_value = emission
     L.new(ramp.outputs["Color"], g.inputs["Color"])
     out = N.new("ShaderNodeOutputMaterial")
     L.new(g.outputs[0], out.inputs["Surface"])
