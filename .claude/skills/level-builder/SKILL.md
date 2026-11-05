@@ -20,6 +20,18 @@ Diseño del nivel: docs/04 (Grep `## <ID>`, por ejemplo `## W3-2`). Obstáculos 
 10. **Ambiente:** paleta y música del mundo (docs/04 "Mundos"), Volume del mundo, Directional Light, lightmaps baked en objetos estáticos y light probes en el cauce.
 11. **Carrera por Equipos:** si `raceCompatible`, 2 `TeamRaceSpawn`.
 
+## Dirección visual
+Aplica a todo nivel con arte (no al greybox). Perfiles de Bloom por mundo en `Settings/Volumes/Volume_W<N>.asset`; props en `Art/Environment/W<N>/` (docs/09 §5).
+- **Luz por mundo:** W1 noche azulada con farolas y neón emisivo con Bloom fuerte; W2 día soleado (W2-2 tormenta gris con niebla y rayos); W3 atardecer tropical cálido; W4 cuevas oscuras con cristales cian y lava roja emisivos; W5 atardecer dorado.
+- **Cielo y niebla:** cielo degradado por mundo y niebla lineal del color del horizonte.
+- **Partículas de ambiente:** luciérnagas (W3 y W4), hojas (W3), chispas de lava (W4), gaviotas simples (W2), confeti (W3-5).
+- **Orillas siempre decoradas:** algún prop o planta cada 3-5 m; nunca una orilla vacía. Usa las 3 variantes de cada prop rotadas y escaladas (0.9-1.1) para que no se repitan.
+- **Hito del mundo:** se ve desde la salida y enmarca el momento estrella.
+- **Agua:** con el color del mundo, espuma en la orilla y corriente visible (UV scroll).
+- **Partes móviles animadas** (noria, faro, banderas, hélices, aspas): con un componente simple de giro o vaivén.
+- **Nada alto tapa la balsa:** los props altos van lejos del cauce o se desvanecen cerca de la cámara.
+- **Rendimiento:** objetos estáticos con static batching y lightmaps; 60 FPS.
+
 ## MCP for Unity
 - Crear objetos en lote con `batch_execute`; localizar con `find_gameobjects` antes de modificar.
 - Activar el grupo `probuilder` solo para el greybox y desactivarlo al terminar.
