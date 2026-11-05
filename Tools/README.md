@@ -31,6 +31,25 @@ blender --background --python Tools/Blender/env_w1.py      # escenario por mundo
 - Vistas previas en `Tools/Blender/previews/` (no se suben a Git).
 - Balsa: cámaras `Chamber_0_NE`, `Chamber_1_NO`, `Chamber_2_SE`, `Chamber_3_SO` (índices de `RaftChambers`), cada una con su pivote.
 
+### Cosméticos de la tienda (docs/06 §2)
+
+```
+blender --background --python Tools/Blender/cosmetics.py   # -- --hats | --rafts | --fit
+```
+
+- Sombreros `Tools/Export/Cosmetics/Hats/H01_ZooCap … H08_GoldenCrown.fbx`: ≤ 800 triángulos, pivote en la base,
+  frente hacia -Y (adelante en Unity), hechos para una cabeza de 0.42 m. Se cuelgan del hueso Head;
+  `hat_anchors.json` da por personaje la base del sombrero en reposo (espacio del modelo en Unity) y su escala.
+- Balsas `Tools/Export/Cosmetics/Rafts/R01_LilyPad … R06_WatermelonRind.fbx`: ≤ 3000 triángulos, vacío raíz
+  `Raft_<Nombre>` con `Chamber_0_NE … Chamber_3_SO` (mismos cuadrantes y pivotes que la balsa naranja),
+  `Raft_Floor` y `Raft_Deco`.
+- Hojas de revisión en `Tools/Blender/previews/Cosmetics_*.png` (sombreros puestos en cada personaje y balsas en toon).
+
+### Ilustraciones (`gs_render.py`)
+
+Render EEVEE con sombreado toon de 3 bandas y contorno de grosor constante, armado con los modelos que ya
+generan los demás scripts (los personajes se guardan en caché en `Tools/Blender/previews/_cache/`).
+
 ## Sonidos (Python 3 + numpy, scipy, soundfile)
 
 ```

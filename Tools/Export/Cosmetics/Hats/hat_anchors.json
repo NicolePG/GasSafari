@@ -1,0 +1,45 @@
+{
+  "_nota": "Parte superior de la cabeza en reposo, espacio del modelo en Unity (m); scale = escala sugerida del sombrero (hechos para cabeza de 0.42 m).",
+  "personajes": {
+    "Alex": {
+      "headTop": [
+        0.0,
+        1.665,
+        0.03
+      ],
+      "scale": 1.18
+    },
+    "Marty": {
+      "headTop": [
+        0.0,
+        1.625,
+        0.02
+      ],
+      "scale": 0.85
+    },
+    "Melman": {
+      "headTop": [
+        0.0,
+        2.47,
+        0.08
+      ],
+      "scale": 0.86
+    },
+    "Gloria": {
+      "headTop": [
+        0.0,
+        1.5,
+        0.04
+      ],
+      "scale": 1.1
+    },
+    "Julien": {
+      "headTop": [
+        0.0,
+        0.875,
+        0.01
+      ],
+      "scale": 0.74
+    }
+  }
+}
