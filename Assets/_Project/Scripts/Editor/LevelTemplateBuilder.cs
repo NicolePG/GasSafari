@@ -64,6 +64,12 @@ namespace GasSafari.Editor
                 var pause = manager.AddComponent<PauseController>();
                 SetField(pause, "level", levelManager);
                 SetField(pause, "checkpoints", checkpoints);
+                var stats = manager.AddComponent<LevelStats>();
+                var recorder = manager.AddComponent<ReplayRecorder>();
+                var results = manager.AddComponent<ResultsController>();
+                SetField(results, "level", levelManager);
+                SetField(results, "stats", stats);
+                SetField(results, "recorder", recorder);
                 CreateFlow();
                 CreateCamera();
                 CreateLight();
@@ -71,6 +77,7 @@ namespace GasSafari.Editor
                 CreateHud();
                 CreateEventSystem();
                 PauseMenuBuilder.Populate(pause);
+                ResultsScreenBuilder.Populate(results, levelManager);
                 water.transform.SetAsLastSibling();
 
                 EnsureFolder("Assets/_Project/Scenes/Levels");

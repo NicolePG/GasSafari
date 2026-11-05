@@ -68,6 +68,30 @@ MonoBehaviour:
       {2})"
   - key: results.who
     text: "\xBFQui\xE9n fue?"
+  - key: results.beans
+    text: Frijolitos +{0}
+  - key: results.next
+    text: Siguiente
+  - key: results.retry
+    text: Repetir
+  - key: results.map
+    text: Mapa
+  - key: award.sync_master
+    text: "Maestro de la Sincron\xEDa"
+  - key: award.lifeguard
+    text: Salvavidas
+  - key: award.show_king
+    text: Rey del Show
+  - key: award.glutton
+    text: "Trag\xF3n"
+  - key: award.untimely_fart
+    text: "Pedo m\xE1s inoportuno"
+  - key: award.captain_titanic
+    text: "Capit\xE1n Titanic"
+  - key: award.wasted_gas
+    text: Gas Desperdiciado
+  - key: award.sleeping_beauty
+    text: Bello Durmiente
   - key: assist.offer
     text: "\xBFNecesitan una Ayuda Real?"
   - key: synergy.honda_selva

@@ -68,7 +68,12 @@ namespace GasSafari.Editor
                 E("pause.restart_level", "Reiniciar nivel"), E("pause.options", "Opciones"), E("pause.controls", "Controles"),
                 E("pause.quit", "Salir al mapa"), E("pause.yes", "Sí"), E("pause.no", "No"),
                 E("pause.vote", "¿Reiniciar desde el checkpoint? Sí {0} · No {1} (hacen falta {2})"),
-                E("results.who", "¿Quién fue?"), E("assist.offer", "¿Necesitan una Ayuda Real?"),
+                E("results.who", "¿Quién fue?"), E("results.beans", "Frijolitos +{0}"), E("results.next", "Siguiente"),
+                E("results.retry", "Repetir"), E("results.map", "Mapa"),
+                // Premios de docs/06 §4.
+                E("award.sync_master", "Maestro de la Sincronía"), E("award.lifeguard", "Salvavidas"), E("award.show_king", "Rey del Show"),
+                E("award.glutton", "Tragón"), E("award.untimely_fart", "Pedo más inoportuno"), E("award.captain_titanic", "Capitán Titanic"),
+                E("award.wasted_gas", "Gas Desperdiciado"), E("award.sleeping_beauty", "Bello Durmiente"), E("assist.offer", "¿Necesitan una Ayuda Real?"),
                 // Nombres de sinergias (docs/03).
                 E("synergy.honda_selva", "Honda de la Selva"), E("synergy.terremoto", "Terremoto"), E("synergy.fiesta_total", "Fiesta Total"),
                 E("synergy.duo_pesado", "Dúo Pesado"), E("synergy.rescate_real", "Rescate Real")
@@ -316,6 +321,9 @@ namespace GasSafari.Editor
             image.sprite = AssetDatabase.GetBuiltinExtraResource<Sprite>(builtinSprite);
             image.color = color;
             image.raycastTarget = false;
+            // El sprite de caja es de 9 trozos: así los bordes no se estiran.
+            if (builtinSprite == SPRITE_BOX)
+                image.type = Image.Type.Sliced;
             return image;
         }
 
