@@ -16,6 +16,8 @@ namespace GasSafari.Characters
         public GasTank Gas { get; private set; }
         // Intro, cuenta 3-2-1 y resultados: el avatar recibe un comando vacío (LevelManager).
         public bool InputLocked { get; set; }
+        // Color del jugador (aro, destellos de power-ups).
+        public Color PlayerColor { get; set; } = Color.white;
 
         private void Awake()
         {

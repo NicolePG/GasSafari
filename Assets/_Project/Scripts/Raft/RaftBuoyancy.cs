@@ -25,6 +25,8 @@ namespace GasSafari.Raft
         // Los fija RaftEffects (Galope Turbo, Panzazo).
         public float WaterDragMultiplier { get; set; } = 1f;
         public float AngularDragMultiplier { get; set; } = 1f;
+        // Gaseosa: sube la superficie efectiva para que la balsa flote a esta altura sobre el agua (m).
+        public float HoverOffset { get; set; }
 
         public event Action<bool> AirborneChanged;
 
@@ -68,7 +70,7 @@ namespace GasSafari.Raft
                 if (!TryGetWaterHeight(point, out float waterHeight))
                     continue;
 
-                float depth = waterHeight - point.y;
+                float depth = waterHeight + HoverOffset - point.y;
                 if (depth <= 0f)
                     continue;
 

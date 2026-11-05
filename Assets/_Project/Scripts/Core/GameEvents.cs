@@ -27,6 +27,7 @@ namespace GasSafari.Core
         public static event Action<PlayerAvatar, PlayerAvatar> OnPlayerRescued;
         // Un peligro empieza su aviso previo (docs/05): lo usan el HUD, Melman y los bots.
         public static event Action<Hazards.HazardBase> OnHazardWarning;
+        public static event Action<PowerUps.PowerUpData, PlayerAvatar> OnPowerUp;
 
         public static void RaiseFart(PlayerAvatar avatar, FartType type, float impulse) => OnFart?.Invoke(avatar, type, impulse);
         public static void RaiseSync(int players, float multiplier) => OnSync?.Invoke(players, multiplier);
@@ -40,6 +41,7 @@ namespace GasSafari.Core
         public static void RaisePlayerFell(PlayerAvatar avatar) => OnPlayerFell?.Invoke(avatar);
         public static void RaisePlayerRescued(PlayerAvatar rescued, PlayerAvatar rescuer) => OnPlayerRescued?.Invoke(rescued, rescuer);
         public static void RaiseHazardWarning(Hazards.HazardBase hazard) => OnHazardWarning?.Invoke(hazard);
+        public static void RaisePowerUp(PowerUps.PowerUpData data, PlayerAvatar taker) => OnPowerUp?.Invoke(data, taker);
         public static void RaiseChamberPopped(int chamber) => OnChamberPopped?.Invoke(chamber);
         public static void RaiseChamberRepaired(int chamber) => OnChamberRepaired?.Invoke(chamber);
         public static void RaiseRaftSunk() => OnRaftSunk?.Invoke();
@@ -67,6 +69,7 @@ namespace GasSafari.Core
             OnPlayerFell = null;
             OnPlayerRescued = null;
             OnHazardWarning = null;
+            OnPowerUp = null;
         }
     }
 }

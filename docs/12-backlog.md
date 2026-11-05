@@ -57,7 +57,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M3-03** Escena `_LevelTemplate` · level-builder · 10 §3 · hecho 2026-11-04 · generada con Gas Safari/Setup/Crear plantilla de nivel; agua con material provisional hasta M3-04; HUD vacío hasta M3-07
 - [x] **M3-04** Shaders `SG_Toon` y `SG_ToonWater` · level-builder · 09 §2 · hecho 2026-11-04 · escritos en HLSL URP (no Shader Graph) con materiales M_Toon_Default y M_ToonWater; verificado con captura
 - [x] **M3-05** `HazardBase`, `HazardTag`, `HazardConfig` y aviso común · hazards-powerups · 05 · hecho 2026-11-04 · HazardTag ya existía (M2); GameEvents.OnHazardWarning
-- [ ] **M3-06** `PowerUpBase` + P01-P07 · hazards-powerups · 05 Power-ups
+- [x] **M3-06** `PowerUpBase` + P01-P07 · hazards-powerups · 05 Power-ups · hecho 2026-11-04 · prefabs provisionales (esferas); sonidos pickup_* sin clips (SoundIds añadidos); alcance de quema del locoto 3 m provisional; Gaseosa vía RaftBuoyancy.HoverOffset
 - [ ] **M3-07** HUD completo · ui-hud · 07 §3
 - [ ] **M3-08** Pausa · ui-hud · 07 §4
 - [ ] **M3-09** `ResultsBuilder`, premios y repetición "¿Quién fue?" · ui-hud · 06 §4

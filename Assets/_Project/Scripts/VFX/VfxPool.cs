@@ -12,6 +12,7 @@ namespace GasSafari.VFX
         private ObjectPool<PooledVfx>[] pools;
         private int[] prewarmTargets;
 
+        public bool Has(VfxId id) => (int)id < pools.Length && pools[(int)id] != null;
         public int CountInactive(VfxId id) => pools[(int)id].CountInactive;
         public int CountAll(VfxId id) => pools[(int)id].CountAll;
 

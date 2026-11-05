@@ -15,6 +15,9 @@ namespace GasSafari.Characters
         private SyncDetector sync;
         private RaftEffects effects;
 
+        // Locoto: multiplica la fuerza de los pedos de este animal.
+        public float Multiplier { get; set; } = 1f;
+
         public FartDelivery(PlayerSeat seat, BalanceConfig balance)
         {
             this.seat = seat;
@@ -31,7 +34,7 @@ namespace GasSafari.Characters
         {
             Refresh();
             var raft = seat.Raft.Controller;
-            float factor = raft.Buoyancy.IsAirborne ? balance.airControlFactor : 1f;
+            float factor = Multiplier * (raft.Buoyancy.IsAirborne ? balance.airControlFactor : 1f);
             if (effects != null)
                 factor *= effects.FartForceMultiplier;
             raft.ApplyThrust(direction * (magnitude * factor), seat.WorldPoint, mode);

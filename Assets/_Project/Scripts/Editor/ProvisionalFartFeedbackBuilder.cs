@@ -14,7 +14,7 @@ namespace GasSafari.Editor
         private const string URP_PARTICLE_MAT = "Packages/com.unity.render-pipelines.universal/Runtime/Materials/ParticlesUnlit.mat";
         private const float FART_VOLUME = 0.7f;
 
-        private struct Spec
+        internal struct Spec
         {
             public float Duration, LifeMin, LifeMax, SpeedMin, SpeedMax, SizeMin, SizeMax, Angle, Gravity, Rate;
             public short BurstMin, BurstMax;
@@ -78,7 +78,7 @@ namespace GasSafari.Editor
             return new SoundLibrary.Entry { id = id, sound = def };
         }
 
-        private static VfxLibrary.Entry VfxEntry(VfxId id, string name, int prewarm, Spec spec)
+        internal static VfxLibrary.Entry VfxEntry(VfxId id, string name, int prewarm, Spec spec)
         {
             return new VfxLibrary.Entry { id = id, prefab = BuildParticles(name, spec), prewarm = prewarm };
         }
@@ -146,7 +146,7 @@ namespace GasSafari.Editor
             return mat;
         }
 
-        private static T LoadOrCreate<T>(string path) where T : ScriptableObject
+        internal static T LoadOrCreate<T>(string path) where T : ScriptableObject
         {
             var asset = AssetDatabase.LoadAssetAtPath<T>(path);
             if (asset != null)

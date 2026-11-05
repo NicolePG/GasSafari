@@ -14,6 +14,13 @@ namespace GasSafari.Audio
         AbilityNeck,
         AbilityBellyflop,
         AbilityParty,
-        AbilityRepair
+        AbilityRepair,
+        PickupBeans,
+        PickupLocoto,
+        PickupMango,
+        PickupCoconut,
+        PickupSoda,
+        PickupOnion,
+        PickupGoldenMango
     }
 }

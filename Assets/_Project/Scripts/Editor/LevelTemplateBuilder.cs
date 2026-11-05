@@ -1,6 +1,7 @@
 using Cinemachine;
 using GasSafari.Core;
 using GasSafari.Level;
+using GasSafari.PowerUps;
 using Unity.Mathematics;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -54,6 +55,7 @@ namespace GasSafari.Editor
                 var checkpoints = manager.AddComponent<CheckpointSystem>();
                 SetField(checkpoints, "balance", balance);
                 SetArray(checkpoints, "checkpoints", checkpoint.GetComponent<Checkpoint>());
+                SetField(manager.AddComponent<PowerUpRespawner>(), "checkpoints", checkpoints);
                 SetField(levelManager, "balance", balance);
                 SetField(levelManager, "spawner", spawner);
                 SetField(levelManager, "finishGate", finish);

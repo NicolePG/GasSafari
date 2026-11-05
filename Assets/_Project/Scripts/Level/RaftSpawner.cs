@@ -53,6 +53,7 @@ namespace GasSafari.Level
         {
             var prefab = slot.Character != null && slot.Character.prefab != null ? slot.Character.prefab : fallbackAvatarPrefab;
             var avatar = Instantiate(prefab).GetComponent<PlayerAvatar>();
+            avatar.PlayerColor = slot.Color;
             if (slot.CommandSource != null)
                 avatar.SetCommandSource(slot.CommandSource);
             avatar.GetComponent<PlayerSeat>().Sit(seats, angle);

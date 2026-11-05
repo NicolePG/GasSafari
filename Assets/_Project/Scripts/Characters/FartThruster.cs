@@ -22,7 +22,7 @@ namespace GasSafari.Characters
         private float coughTimer;
         // Tras recuperar CanFart con el botón aún pulsado, no empezar una ráfaga hasta soltarlo.
         private bool waitForRelease;
-        private FartDelivery delivery;
+        public FartDelivery Delivery { get; private set; }
         private BlastBonus blastBonus;
 
         public bool IsBlasting { get; private set; }
@@ -40,7 +40,7 @@ namespace GasSafari.Characters
             avatar = GetComponent<PlayerAvatar>();
             seat = GetComponent<PlayerSeat>();
             gas = GetComponent<GasTank>();
-            delivery = new FartDelivery(seat, balance);
+            Delivery = new FartDelivery(seat, balance);
         }
 
         private void Update()
@@ -118,7 +118,7 @@ namespace GasSafari.Characters
             }
 
             float multiplier = blastBonus.Consume(Time.fixedDeltaTime);
-            delivery.Push(ThrustDirection, avatar.Character.blastForce * multiplier * (used / needed), ForceMode.Force);
+            Delivery.Push(ThrustDirection, avatar.Character.blastForce * multiplier * (used / needed), ForceMode.Force);
         }
 
         // Un grupo de sync creció después de este pedo.
@@ -132,7 +132,7 @@ namespace GasSafari.Characters
                     blastBonus.Start(to, balance.syncBlastBonusTime);
                 return;
             }
-            delivery.Push(ThrustDirection, (to - from) * baseImpulse, ForceMode.Impulse);
+            Delivery.Push(ThrustDirection, (to - from) * baseImpulse, ForceMode.Impulse);
         }
 
         private void UpdateAim(float aim)
@@ -153,9 +153,9 @@ namespace GasSafari.Characters
                 Cough();
                 return false;
             }
-            float multiplier = delivery.RegisterSync(this, type, impulse);
+            float multiplier = Delivery.RegisterSync(this, type, impulse);
             float total = impulse * multiplier;
-            delivery.Push(ThrustDirection, total, ForceMode.Impulse);
+            Delivery.Push(ThrustDirection, total, ForceMode.Impulse);
             Notify(type, total, multiplier);
             return true;
         }
@@ -172,7 +172,7 @@ namespace GasSafari.Characters
             }
             IsBlasting = true;
             float force = avatar.Character.blastForce;
-            float multiplier = delivery.RegisterSync(this, FartType.Blast, force);
+            float multiplier = Delivery.RegisterSync(this, FartType.Blast, force);
             if (multiplier > 1f)
                 blastBonus.Start(multiplier, balance.syncBlastBonusTime);
             Notify(FartType.Blast, force * multiplier, multiplier);

@@ -6,6 +6,7 @@ namespace GasSafari.VFX
         FartPuff,
         FartBlast,
         FartMega,
-        Cough
+        Cough,
+        Pickup
     }
 }
