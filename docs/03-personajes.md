@@ -96,6 +96,17 @@ La primera vez que un equipo logra cada sinergia aparece su nombre en pantalla y
 
 Controlador base `CharacterBase.controller` + un Animator Override Controller por personaje (docs/09).
 
+Estado (2026-11-05, M2-12): el FBX de cada personaje trae Idle_Sit, Swim, Fall, Climb, Celebrate y Hit. En los overrides (`Art/Characters/<Nombre>/<Nombre>_Override.overrideController`) faltan estos y usan un clip sustituto:
+
+| Falta | Sustituto | Nota |
+|---|---|---|
+| Shuffle_L, Shuffle_R, Grab, Select_Pose | Idle_Sit | Idle_Sit hace loop |
+| Fart_Puff, Fart_Blast, Charge, Fart_Mega, Cough | Idle_Sit | Los estira `FartJuice` por código (docs/09 §4) |
+| Ability, Victory | Celebrate | Celebrate no hace loop: Victory se queda en el último cuadro |
+| Disappointed | Hit | |
+
+Cuando lleguen los clips propios (dentro del FBX con el mismo nombre, o en `Art/Characters/<Nombre>/Anims/`), correr el menú `Gas Safari/Setup/Importar personajes y props (M2-12)`: el override toma el clip propio y deja de usar el sustituto. `CharacterAnimator` maneja los parámetros `State`, `Seat`, `Charge`, `Blast`, `Pose` y los triggers `Puff`, `Mega`, `Cough`, `Ability`, `Hit`, `Celebrate` de `CharacterBase.controller`.
+
 ## Sonidos por personaje (IDs en docs/08)
 
 6 toques, 2 ráfagas en loop, 1 carga, 2 megapedos, 2 toses, 1 habilidad y voces sin palabras (3 esfuerzos, 2 gritos de caída, 2 risas, 2 celebraciones). Timbre: Gloria grave, Alex medio-grave, Marty rápido, Melman agudo y nervioso, Julien muy agudo.

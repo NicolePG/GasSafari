@@ -15,6 +15,9 @@ namespace GasSafari.Editor
         private const string DATA_FOLDER = "Assets/_Project/Data/PowerUps/";
         private const string PREFAB_FOLDER = "Assets/_Project/Prefabs/PowerUps/";
         private const string MATERIAL_FOLDER = "Assets/_Project/Art/PowerUps/";
+        private const string MODEL_FOLDER = "Assets/_Project/Art/Props/PowerUps/";
+        // Los modelos miden 0.3-0.6 m: se agrandan para que se lean en una balsa de 4 m (la esfera medía 0.6 m).
+        private const float MODEL_SCALE = 1.3f;
         private const string VFX_LIBRARY = "Assets/_Project/Prefabs/VFX/VfxLibrary.asset";
         private const float PICKUP_RADIUS = 0.8f;
 
@@ -71,16 +74,37 @@ namespace GasSafari.Editor
 
         private static void BuildPrefab(Spec spec, PowerUpData data)
         {
-            var go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            go.name = spec.Id + "_" + spec.Name;
-            go.layer = GameLayers.PowerUp;
-            go.transform.localScale = Vector3.one * 0.6f;
-            UnityEngine.Object.DestroyImmediate(go.GetComponent<Collider>());
-            var trigger = go.AddComponent<SphereCollider>();
-            trigger.isTrigger = true;
-            trigger.radius = PICKUP_RADIUS / 0.6f;
+            string name = spec.Id + "_" + spec.Name;
+            var model = AssetDatabase.LoadAssetAtPath<GameObject>(MODEL_FOLDER + name + ".fbx");
+            GameObject go;
+            float scale;
+            if (model != null)
+            {
+                // Modelo de Blender (M2-12): raíz vacía con el disparador y el modelo toon como hijo.
+                go = new GameObject(name);
+                var visual = (GameObject)PrefabUtility.InstantiatePrefab(model, go.transform);
+                visual.name = "Model";
+                visual.transform.localScale = Vector3.one * MODEL_SCALE;
+                scale = 1f;
+                go.layer = GameLayers.PowerUp;
+                var trigger = go.AddComponent<SphereCollider>();
+                trigger.isTrigger = true;
+                trigger.radius = PICKUP_RADIUS;
+            }
+            else
+            {
+                go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                go.name = name;
+                go.layer = GameLayers.PowerUp;
+                scale = 0.6f;
+                go.transform.localScale = Vector3.one * scale;
+                UnityEngine.Object.DestroyImmediate(go.GetComponent<Collider>());
+                var trigger = go.AddComponent<SphereCollider>();
+                trigger.isTrigger = true;
+                trigger.radius = PICKUP_RADIUS / scale;
+                go.GetComponent<MeshRenderer>().sharedMaterial = BuildMaterial(spec);
+            }
 
-            go.GetComponent<MeshRenderer>().sharedMaterial = BuildMaterial(spec);
             var script = (PowerUpBase)go.AddComponent(spec.Script);
             var so = new SerializedObject(script);
             so.FindProperty("data").objectReferenceValue = data;
@@ -88,6 +112,8 @@ namespace GasSafari.Editor
 
             PrefabUtility.SaveAsPrefabAsset(go, PREFAB_FOLDER + go.name + ".prefab");
             UnityEngine.Object.DestroyImmediate(go);
+            if (model != null)
+                AssetDatabase.DeleteAsset(MATERIAL_FOLDER + "M_" + name + ".mat"); // el de la esfera provisional
         }
 
         private static Material BuildMaterial(Spec spec)
