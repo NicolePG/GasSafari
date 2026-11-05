@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0562d27ad2f3f741babccbf44cfe6e0, type: 3}
+  m_Name: voice_alex_effort
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 7b3b52edcb34b4f469690e5d51bed3f5, type: 3}
+  - {fileID: 8300000, guid: aebfd445b515543428df919648689d9b, type: 3}
+  - {fileID: 8300000, guid: 5347032b154fc8c45a7ec67d61f5b968, type: 3}
+  - {fileID: 8300000, guid: 03e5b130035ffc742b5dc1a9697458d6, type: 3}
+  - {fileID: 8300000, guid: abe03ae5623d4fd4e93d081f903bf359, type: 3}
+  - {fileID: 8300000, guid: ca205eac51b614f49b36260386fe319e, type: 3}
+  mixerGroup: {fileID: 0}
+  volume: 0.8
+  pitchMin: 0.9
+  pitchMax: 1.15
+  spatial: 1
+  maxDistance: 40
+  priority: 0
+  isFart: 0

@@ -20,6 +20,7 @@ namespace GasSafari.VFX
 
         private FartThruster thruster;
         private FartCharger charger;
+        private SfxSet sfx;
         private PooledVfx blastFx;
         private int blastLoop;
         private int chargeLoop;
@@ -31,6 +32,8 @@ namespace GasSafari.VFX
         {
             thruster = GetComponent<FartThruster>();
             charger = GetComponent<FartCharger>();
+            var avatar = GetComponent<PlayerAvatar>();
+            sfx = avatar != null && avatar.Character != null ? avatar.Character.sfxSet : null;
             if (emitPoint == null)
                 emitPoint = transform;
         }
@@ -51,6 +54,22 @@ namespace GasSafari.VFX
             StopCharge();
         }
 
+        // Sonido del personaje; si no tiene SfxSet, el genérico de la SoundLibrary.
+        private static void PlayFart(SoundDef own, SoundId fallback, Vector3 position, float gainDb)
+        {
+            if (own != null)
+                Services.Audio.Play(own, position, gainDb, null, false);
+            else
+                Services.Audio.Play(fallback, position, gainDb);
+        }
+
+        private int PlayFartLoop(SoundDef own, SoundId fallback)
+        {
+            return own != null
+                ? Services.Audio.Play(own, emitPoint.position, 0f, emitPoint, true)
+                : Services.Audio.PlayLoop(fallback, emitPoint);
+        }
+
         private Quaternion Exhaust => Quaternion.LookRotation(-thruster.ThrustDirection);
 
         private void OnFarted(FartType type, float impulse, float multiplier)
@@ -61,17 +80,17 @@ namespace GasSafari.VFX
             {
                 case FartType.Puff:
                     Services.Vfx.Play(VfxId.FartPuff, position, Exhaust, GasColor);
-                    Services.Audio.Play(SoundId.FartPuff, position, gain);
+                    PlayFart(sfx != null ? sfx.puff : null, SoundId.FartPuff, position, gain);
                     break;
                 case FartType.Charged:
                     StopCharge();
                     Services.Vfx.Play(VfxId.FartMega, position, Exhaust, GasColor);
-                    Services.Audio.Play(SoundId.FartMega, position, gain);
+                    PlayFart(sfx != null ? sfx.mega : null, SoundId.FartMega, position, gain);
                     break;
                 case FartType.Blast:
                     StopBlast();
                     blastFx = Services.Vfx.Play(VfxId.FartBlast, position, Exhaust, GasColor, emitPoint);
-                    blastLoop = Services.Audio.PlayLoop(SoundId.FartBlast, emitPoint);
+                    blastLoop = PlayFartLoop(sfx != null ? sfx.blast : null, SoundId.FartBlast);
                     break;
             }
         }
@@ -80,13 +99,13 @@ namespace GasSafari.VFX
         {
             var position = emitPoint.position;
             Services.Vfx.Play(VfxId.Cough, position, Quaternion.identity, coughColor);
-            Services.Audio.Play(SoundId.FartCough, position);
+            PlayFart(sfx != null ? sfx.cough : null, SoundId.FartCough, position, 0f);
         }
 
         private void OnChargeStarted()
         {
             StopCharge();
-            chargeLoop = Services.Audio.PlayLoop(SoundId.FartCharge, emitPoint);
+            chargeLoop = PlayFartLoop(sfx != null ? sfx.charge : null, SoundId.FartCharge);
         }
 
         private void Update()

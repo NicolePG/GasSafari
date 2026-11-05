@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: FartPuff
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 99530ceda1d92b54eb660e741c7eaf0b, type: 3}
-  - {fileID: 8300000, guid: aff40a81eda133d4a8dfd726195f7252, type: 3}
-  - {fileID: 8300000, guid: 73440416d779d544f920228ea7b3ec40, type: 3}
+  - {fileID: 8300000, guid: 66c40beca5cdaf844b6e78cf1a512f86, type: 3}
+  - {fileID: 8300000, guid: ac20a39e946932e47825b9f71e7822ad, type: 3}
+  - {fileID: 8300000, guid: 9cd7008c5917e1c4498f53e788c04c29, type: 3}
+  - {fileID: 8300000, guid: 076a5df48594f6441a5fe5147bd3c34c, type: 3}
+  - {fileID: 8300000, guid: 64fc063a7f6fa7f4c85f81ef9b2aaceb, type: 3}
+  - {fileID: 8300000, guid: fd1c53cee9ab6d249b6baff00fba9181, type: 3}
   mixerGroup: {fileID: 0}
   volume: 0.7
   pitchMin: 0.9

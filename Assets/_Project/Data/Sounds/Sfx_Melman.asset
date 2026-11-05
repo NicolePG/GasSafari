@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3292bed2118234db31b2381aff55b0, type: 3}
+  m_Name: Sfx_Melman
+  m_EditorClassIdentifier: 
+  puff: {fileID: 11400000, guid: cd341ca3601fe774b8f531f18824cf30, type: 2}
+  blast: {fileID: 11400000, guid: 1bd97ccfdbfc6074ebc6b3e0c74f75c2, type: 2}
+  charge: {fileID: 11400000, guid: 397b4d79cbcfe844890427099695436b, type: 2}
+  mega: {fileID: 11400000, guid: 3fcf408b0cfea4345b782b2bf303e3f5, type: 2}
+  cough: {fileID: 11400000, guid: 736cda74fd5e72d44b9636cb1eab0ad2, type: 2}
+  ability: {fileID: 11400000, guid: 5d270ce53f89d0841bf3e83dc32ddbaa, type: 2}
+  voiceEffort: {fileID: 11400000, guid: 7412a497ebd29e543b09f9cf247df4fd, type: 2}
+  voiceFall: {fileID: 11400000, guid: 1ecb45766723ec945b785baa5d781cc4, type: 2}
+  voiceLaugh: {fileID: 11400000, guid: c22d94cc69b6b31438e09aabe3cc600b, type: 2}
+  voiceCheer: {fileID: 11400000, guid: 98d2dc2275efa464db2c62d0a8178a70, type: 2}

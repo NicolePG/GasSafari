@@ -23,6 +23,7 @@ MonoBehaviour:
   height: 1.8
   ability: {fileID: 11400000, guid: 2af70f30296d7304d87fa48bc41fd112, type: 2}
   prefab: {fileID: 737119756747343465, guid: 0e55d1ff355545e4497e796f36e0dbf2, type: 3}
-  overrideController: {fileID: 0}
+  overrideController: {fileID: 22100000, guid: 4a9b05c8fd975454e82cd58047c3352f, type: 2}
+  sfxSet: {fileID: 11400000, guid: c5cdf8877f6e52c409f47089fa609bd3, type: 2}
   icon: {fileID: 0}
   uiColor: {r: 0.898039, g: 0.603922, b: 0.184314, a: 1}

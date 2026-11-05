@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0562d27ad2f3f741babccbf44cfe6e0, type: 3}
+  m_Name: fart_puff_alex
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 66c40beca5cdaf844b6e78cf1a512f86, type: 3}
+  - {fileID: 8300000, guid: ac20a39e946932e47825b9f71e7822ad, type: 3}
+  - {fileID: 8300000, guid: 9cd7008c5917e1c4498f53e788c04c29, type: 3}
+  - {fileID: 8300000, guid: 076a5df48594f6441a5fe5147bd3c34c, type: 3}
+  - {fileID: 8300000, guid: 64fc063a7f6fa7f4c85f81ef9b2aaceb, type: 3}
+  - {fileID: 8300000, guid: fd1c53cee9ab6d249b6baff00fba9181, type: 3}
+  mixerGroup: {fileID: 0}
+  volume: 0.7
+  pitchMin: 0.9
+  pitchMax: 1.15
+  spatial: 1
+  maxDistance: 40
+  priority: 0
+  isFart: 1

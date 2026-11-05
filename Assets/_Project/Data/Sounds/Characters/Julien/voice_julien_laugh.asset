@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0562d27ad2f3f741babccbf44cfe6e0, type: 3}
+  m_Name: voice_julien_laugh
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 547800331ed4e4441b457ccfb4912909, type: 3}
+  - {fileID: 8300000, guid: d84f61d09f28aec4099384888f0afc5f, type: 3}
+  - {fileID: 8300000, guid: 16d7c1dd66df02a49980d8d7c82cc146, type: 3}
+  - {fileID: 8300000, guid: 1d9817ff7bb3e114eb633609b22384a1, type: 3}
+  - {fileID: 8300000, guid: 62246fceddf23d94693b47bb09a976a9, type: 3}
+  mixerGroup: {fileID: 0}
+  volume: 0.8
+  pitchMin: 0.9
+  pitchMax: 1.15
+  spatial: 1
+  maxDistance: 40
+  priority: 0
+  isFart: 0

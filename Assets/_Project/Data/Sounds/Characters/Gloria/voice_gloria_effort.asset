@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0562d27ad2f3f741babccbf44cfe6e0, type: 3}
+  m_Name: voice_gloria_effort
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 849e2e2d12fd16c47a6d73a0f69f94db, type: 3}
+  - {fileID: 8300000, guid: ada249ce5e643f747b4950ccbf9e17c2, type: 3}
+  - {fileID: 8300000, guid: 40a360363a272e840b5e52fb017a4863, type: 3}
+  - {fileID: 8300000, guid: da261bb9c740af94e9e1bdb0cf39195f, type: 3}
+  - {fileID: 8300000, guid: cce5444a217439840975929c5faba21b, type: 3}
+  - {fileID: 8300000, guid: c2a3eba9d0f7efc4fad82bf26ba36423, type: 3}
+  mixerGroup: {fileID: 0}
+  volume: 0.8
+  pitchMin: 0.9
+  pitchMax: 1.15
+  spatial: 1
+  maxDistance: 40
+  priority: 0
+  isFart: 0

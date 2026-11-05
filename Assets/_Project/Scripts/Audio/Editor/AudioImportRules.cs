@@ -16,7 +16,8 @@ namespace GasSafari.Editor
             var importer = (AudioImporter)assetImporter;
             var settings = importer.defaultSampleSettings;
             bool music = assetPath.StartsWith(ROOT + "Music/");
-            bool loop = assetPath.Contains("loop");
+            // Las ráfagas y cargas de pedo son loops aunque su nombre no diga "loop" (fart_blast_<pj>_nn).
+            bool loop = assetPath.Contains("loop") || assetPath.Contains("fart_blast") || assetPath.Contains("fart_charge");
 
             if (music)
             {

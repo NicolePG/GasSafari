@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3292bed2118234db31b2381aff55b0, type: 3}
+  m_Name: Sfx_Gloria
+  m_EditorClassIdentifier: 
+  puff: {fileID: 11400000, guid: fd7802405ed749a4ab5140d88edfde4a, type: 2}
+  blast: {fileID: 11400000, guid: f83ae728ab58db14b93fa4f210e3fd34, type: 2}
+  charge: {fileID: 11400000, guid: b85c4713ad1ae6149bf717419e1161d5, type: 2}
+  mega: {fileID: 11400000, guid: b3905367cc0ef114f97380e2a1b856a6, type: 2}
+  cough: {fileID: 11400000, guid: 8879b9f3f42fe06458c6591dbfa4e6c8, type: 2}
+  ability: {fileID: 11400000, guid: 6f9392333203cde4e8f3d545b26b9028, type: 2}
+  voiceEffort: {fileID: 11400000, guid: a3462c25543f9f0448f437cf4f2e8ec7, type: 2}
+  voiceFall: {fileID: 11400000, guid: ebd19b367da1f654caf5a63fb9488e05, type: 2}
+  voiceLaugh: {fileID: 11400000, guid: 873dbcde6866e8c4498d96fff319c347, type: 2}
+  voiceCheer: {fileID: 11400000, guid: 3cdc61c9e2bf1e447b421dc9914be57a, type: 2}

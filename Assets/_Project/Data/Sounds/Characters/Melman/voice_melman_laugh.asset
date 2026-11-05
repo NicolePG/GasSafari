@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0562d27ad2f3f741babccbf44cfe6e0, type: 3}
+  m_Name: voice_melman_laugh
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 0c35191b4b358774daefae5271c6c383, type: 3}
+  - {fileID: 8300000, guid: fad83a7475e4fb649a0e95a052d51c10, type: 3}
+  - {fileID: 8300000, guid: ca7d5dd81d7dce140851f714b39fccd1, type: 3}
+  - {fileID: 8300000, guid: 63a7484f7eb0ea14b8bb293e30b9b90c, type: 3}
+  mixerGroup: {fileID: 0}
+  volume: 0.8
+  pitchMin: 0.9
+  pitchMax: 1.15
+  spatial: 1
+  maxDistance: 40
+  priority: 0
+  isFart: 0

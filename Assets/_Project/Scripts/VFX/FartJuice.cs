@@ -17,6 +17,7 @@ namespace GasSafari.VFX
         private FartThruster thruster;
         private FartCharger charger;
         private PlayerSeat seatRef;
+        private Animator animator;
         private Vector3 hipsScale;
         private Vector3 hipsPosition;
         private Vector3 headScale;
@@ -29,6 +30,7 @@ namespace GasSafari.VFX
             thruster = GetComponent<FartThruster>();
             charger = GetComponent<FartCharger>();
             seatRef = GetComponent<PlayerSeat>();
+            animator = GetComponentInChildren<Animator>();
             if (hips != null)
             {
                 hipsScale = hips.localScale;
@@ -106,7 +108,9 @@ namespace GasSafari.VFX
                 offset += Vector3.right * (Mathf.Sin(Time.time * config.blastFrequency * 2f * Mathf.PI) * config.blastAmplitude);
 
             hips.localScale = new Vector3(hipsScale.x, hipsScale.y * scaleY, hipsScale.z);
-            hips.localPosition = hipsPosition + offset;
+            // Con un Animator, este reescribe la posición de las caderas cada frame (pose sentada): se suma encima.
+            bool driven = animator != null && animator.isActiveAndEnabled && animator.runtimeAnimatorController != null;
+            hips.localPosition = (driven ? hips.localPosition : hipsPosition) + offset;
         }
 
         private void AnimateHead()

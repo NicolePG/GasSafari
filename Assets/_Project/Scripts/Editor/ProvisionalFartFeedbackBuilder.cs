@@ -5,14 +5,11 @@ using UnityEngine;
 
 namespace GasSafari.Editor
 {
-    // Crea los sonidos y partículas provisionales de pedos (M1-17). Se reemplazan con los definitivos en M2.
+    // Crea las partículas provisionales de pedos (M1-17). Los sonidos definitivos los crea AudioSetBuilder (M2-13).
     public static class ProvisionalFartFeedbackBuilder
     {
-        private const string SFX = "Assets/_Project/Audio/SFX/";
-        private const string SOUNDS = "Assets/_Project/Data/Sounds/";
         private const string VFX_FOLDER = "Assets/_Project/Prefabs/VFX/";
         private const string URP_PARTICLE_MAT = "Packages/com.unity.render-pipelines.universal/Runtime/Materials/ParticlesUnlit.mat";
-        private const float FART_VOLUME = 0.7f;
 
         internal struct Spec
         {
@@ -22,20 +19,10 @@ namespace GasSafari.Editor
             public bool Loop;
         }
 
-        [MenuItem("Gas Safari/Setup/Crear pedos provisionales (audio y VFX)")]
+        [MenuItem("Gas Safari/Setup/Crear VFX de pedos provisionales")]
         public static void Build()
         {
-            var library = LoadOrCreate<SoundLibrary>(SOUNDS + "SoundLibrary.asset");
-            library.entries = new[]
-            {
-                Entry(SoundId.FartPuff, "fart_provpuff_01", "fart_provpuff_02", "fart_provpuff_03"),
-                Entry(SoundId.FartBlast, "fart_provblast_loop_01"),
-                Entry(SoundId.FartCharge, "fart_provcharge_loop_01"),
-                Entry(SoundId.FartMega, "fart_provmega_01"),
-                Entry(SoundId.FartCough, "fart_provcough_01", "fart_provcough_02")
-            };
-            EditorUtility.SetDirty(library);
-
+            // Los sonidos de pedos son los definitivos de M2-13 (AudioSetBuilder); aquí solo quedan las partículas.
             var vfx = LoadOrCreate<VfxLibrary>(VFX_FOLDER + "VfxLibrary.asset");
             vfx.entries = new[]
             {
@@ -62,20 +49,6 @@ namespace GasSafari.Editor
             };
             EditorUtility.SetDirty(vfx);
             AssetDatabase.SaveAssets();
-        }
-
-        private static SoundLibrary.Entry Entry(SoundId id, params string[] clipNames)
-        {
-            var def = LoadOrCreate<SoundDef>(SOUNDS + id + ".asset");
-            def.clips = new AudioClip[clipNames.Length];
-            for (int i = 0; i < clipNames.Length; i++)
-                def.clips[i] = AssetDatabase.LoadAssetAtPath<AudioClip>(SFX + clipNames[i] + ".wav");
-            def.isFart = true;
-            def.spatial = true;
-            // Margen para el +3 dB del pedo que completa un sync (docs/08 §2).
-            def.volume = FART_VOLUME;
-            EditorUtility.SetDirty(def);
-            return new SoundLibrary.Entry { id = id, sound = def };
         }
 
         internal static VfxLibrary.Entry VfxEntry(VfxId id, string name, int prewarm, Spec spec)

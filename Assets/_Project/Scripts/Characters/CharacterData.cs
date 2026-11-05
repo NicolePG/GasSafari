@@ -23,9 +23,9 @@ namespace GasSafari.Characters
         public Abilities.AbilityBase ability;
 
         [Header("Presentación")]
-        [Tooltip("Provisional: avatar genérico hasta los prefabs finales (M2-13)")]
         public GameObject prefab;
         public AnimatorOverrideController overrideController;
+        public Audio.SfxSet sfxSet;
         public Sprite icon;
         [Tooltip("Color de UI del personaje (docs/03)")]
         public Color uiColor = Color.white;

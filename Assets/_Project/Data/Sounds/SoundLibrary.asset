@@ -13,6 +13,32 @@ MonoBehaviour:
   m_Name: SoundLibrary
   m_EditorClassIdentifier: 
   entries:
+  - id: 6
+    sound: {fileID: 11400000, guid: e587b56215599724f833e8c78531b2e1, type: 2}
+  - id: 7
+    sound: {fileID: 11400000, guid: b1ffcb16ee336bc44a22030fa0ac87cd, type: 2}
+  - id: 8
+    sound: {fileID: 11400000, guid: 5d270ce53f89d0841bf3e83dc32ddbaa, type: 2}
+  - id: 9
+    sound: {fileID: 11400000, guid: 6f9392333203cde4e8f3d545b26b9028, type: 2}
+  - id: 10
+    sound: {fileID: 11400000, guid: a36cfc497bcb1384787e8a50e4106c9f, type: 2}
+  - id: 11
+    sound: {fileID: 11400000, guid: 980617be3d63fac4eb24b59ed43c792c, type: 2}
+  - id: 12
+    sound: {fileID: 11400000, guid: 95c76b4223e9cf143976a9b9bc67cb49, type: 2}
+  - id: 13
+    sound: {fileID: 11400000, guid: 1a51216a0777038428017295aa4c29b1, type: 2}
+  - id: 14
+    sound: {fileID: 11400000, guid: e74bb01a53657f546b4339812d85eff5, type: 2}
+  - id: 15
+    sound: {fileID: 11400000, guid: 4ba79c75db4c2f34d955bf391d771fe2, type: 2}
+  - id: 16
+    sound: {fileID: 11400000, guid: fad4f7a4d7d5c5744a12a0201a8bbf61, type: 2}
+  - id: 17
+    sound: {fileID: 11400000, guid: 9cd4d58587cf82746928fd4fa6e0cf1d, type: 2}
+  - id: 18
+    sound: {fileID: 11400000, guid: 182110d976f845a4ea8c9d72d79666a9, type: 2}
   - id: 1
     sound: {fileID: 11400000, guid: 6b6cb01ca703f384eabaed582e2570ba, type: 2}
   - id: 2

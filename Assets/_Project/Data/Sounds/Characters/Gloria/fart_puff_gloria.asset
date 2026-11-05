@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0562d27ad2f3f741babccbf44cfe6e0, type: 3}
+  m_Name: fart_puff_gloria
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 71cc15e7bf62cc844bf6d88c1dc3f588, type: 3}
+  - {fileID: 8300000, guid: b3ed9ec53bc6f8b4397750344905ed49, type: 3}
+  - {fileID: 8300000, guid: 9136585b246892d47afa220892dcc6d7, type: 3}
+  - {fileID: 8300000, guid: 732d4f1aa25c9184cba15cfd797f4d17, type: 3}
+  - {fileID: 8300000, guid: 30874c283d1cb9d44a2c0aa1292bf0ee, type: 3}
+  - {fileID: 8300000, guid: 61c4036b75b391e4abc8886311c89d1a, type: 3}
+  - {fileID: 8300000, guid: 61a02bfb1a8875a4bbe3111d1f79d51c, type: 3}
+  - {fileID: 8300000, guid: fcf5e77b4ccb3e9498d30be9ad94a31a, type: 3}
+  - {fileID: 8300000, guid: d2019a0daf6f0d340836fb3f605afd0f, type: 3}
+  - {fileID: 8300000, guid: 58c0c7e8517c3e04a99d8607816c3990, type: 3}
+  - {fileID: 8300000, guid: 5e27bb1fad81dd6438748ee8b66fa60a, type: 3}
+  mixerGroup: {fileID: 0}
+  volume: 0.7
+  pitchMin: 0.9
+  pitchMax: 1.15
+  spatial: 1
+  maxDistance: 40
+  priority: 0
+  isFart: 1

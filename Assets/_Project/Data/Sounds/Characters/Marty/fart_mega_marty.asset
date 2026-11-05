@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0562d27ad2f3f741babccbf44cfe6e0, type: 3}
+  m_Name: fart_mega_marty
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 7ed06b922b003574da6726e9c1fb6262, type: 3}
+  - {fileID: 8300000, guid: 7010c17265e3d5f4f939f1905364a72f, type: 3}
+  - {fileID: 8300000, guid: b0253674365f6764a83ace52cf92bd37, type: 3}
+  - {fileID: 8300000, guid: 587f74fc1b5ac3b499e164a692696e20, type: 3}
+  mixerGroup: {fileID: 0}
+  volume: 0.7
+  pitchMin: 0.9
+  pitchMax: 1.15
+  spatial: 1
+  maxDistance: 40
+  priority: 0
+  isFart: 1

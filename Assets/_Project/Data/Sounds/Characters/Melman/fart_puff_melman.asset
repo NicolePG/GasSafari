@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0562d27ad2f3f741babccbf44cfe6e0, type: 3}
+  m_Name: fart_puff_melman
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: c128c5187b0c3d645a2824c4b446fbbc, type: 3}
+  - {fileID: 8300000, guid: f5b0a7bab9ffeab43a2b17ce5358684f, type: 3}
+  - {fileID: 8300000, guid: 8dfefc016964b93488fada82ecd659f0, type: 3}
+  - {fileID: 8300000, guid: 54436a1fa17888c42a664be744b6865e, type: 3}
+  - {fileID: 8300000, guid: 717e4cd87cb00ae4c8263966370ba3ce, type: 3}
+  - {fileID: 8300000, guid: 881b66cf579f27a49b9b1f4e0107b338, type: 3}
+  - {fileID: 8300000, guid: 988d948d927fe9f43a8f7394576d9175, type: 3}
+  - {fileID: 8300000, guid: 558cbbef6f5e05346bcdcc07233c02fe, type: 3}
+  - {fileID: 8300000, guid: 0c6a821dd0d711041b360d66409ec4fb, type: 3}
+  - {fileID: 8300000, guid: e9d43a66612c28843a18a57241758d6a, type: 3}
+  mixerGroup: {fileID: 0}
+  volume: 0.7
+  pitchMin: 0.9
+  pitchMax: 1.15
+  spatial: 1
+  maxDistance: 40
+  priority: 0
+  isFart: 1

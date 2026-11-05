@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: FartCough
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: b17fc3f9133f9b94a95851982e3eeecd, type: 3}
-  - {fileID: 8300000, guid: b81baefd8822f244e826685daff676d9, type: 3}
+  - {fileID: 8300000, guid: c9e0099aeae3eba42904d46ae67046a9, type: 3}
+  - {fileID: 8300000, guid: 3da31779259b7ce45914ebf6952fc9ed, type: 3}
+  - {fileID: 8300000, guid: c3277feafe3210a4886585d1f21ee598, type: 3}
+  - {fileID: 8300000, guid: 54f7016e0d5c3d74aa56e33b677fd576, type: 3}
   mixerGroup: {fileID: 0}
   volume: 0.7
   pitchMin: 0.9

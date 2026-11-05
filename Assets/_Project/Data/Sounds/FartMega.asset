@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: FartMega
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 7c531fb6bad412848a121e88dea55d2f, type: 3}
+  - {fileID: 8300000, guid: 92494ddb97b16fb4681f84d301e680e1, type: 3}
+  - {fileID: 8300000, guid: c21238001de291a44a7ba4060221df1e, type: 3}
+  - {fileID: 8300000, guid: 934e2562677f4c84787dc35cd09a1c41, type: 3}
+  - {fileID: 8300000, guid: 6ff080c427a6cf74e9ab11b2462066e7, type: 3}
   mixerGroup: {fileID: 0}
   volume: 0.7
   pitchMin: 0.9
