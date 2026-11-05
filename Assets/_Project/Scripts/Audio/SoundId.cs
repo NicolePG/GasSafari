@@ -21,6 +21,15 @@ namespace GasSafari.Audio
         PickupCoconut,
         PickupSoda,
         PickupOnion,
-        PickupGoldenMango
+        PickupGoldenMango,
+        // Obstáculos y balsa (docs/08 §4)
+        GateOpen,
+        GateClose,
+        CrateBreak,
+        CraneWarn,
+        CraneSlam,
+        RaftBounce,
+        RaftHitHard,
+        WaterSplashBig
     }
 }

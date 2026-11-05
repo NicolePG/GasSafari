@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf637dc826a7544e9434f6092f1c668, type: 3}
+  m_Name: H24_Crane
+  m_EditorClassIdentifier: 
+  id: H24
+  displayName: "Gr\xFAa con gancho"
+  warningTime: 1
+  warningSound: 0
+  alwaysDamagesChambers: 0
+  parameters:
+  - key: radius
+    value: 3
+  - key: trackSpeed
+    value: 14
+  - key: impulse
+    value: 35

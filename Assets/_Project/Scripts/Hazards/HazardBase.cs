@@ -59,6 +59,10 @@ namespace GasSafari.Hazards
         protected virtual void OnRaftStay(RaftController raft) { }
         protected virtual void OnRaftExit(RaftController raft) { }
         protected virtual void OnAvatarHit(PlayerAvatar avatar) { }
+        // Choque físico con la balsa (con su impulso y puntos de contacto); OnRaftEnter se llama también.
+        protected virtual void OnRaftCollision(RaftController raft, Collision collision) { }
+        // Contacto sostenido (empuje contra el obstáculo): el impulso es el de cada paso de física.
+        protected virtual void OnRaftCollisionStay(RaftController raft, Collision collision) { }
 
         // Revienta la cámara del punto, salvo que la dificultad solo permita pinchos y mordidas.
         protected bool DamageRaft(RaftController raft, Vector3 worldPoint)
@@ -89,8 +93,19 @@ namespace GasSafari.Hazards
         private void OnTriggerEnter(Collider other) => Dispatch(other.attachedRigidbody, 0);
         private void OnTriggerStay(Collider other) => Dispatch(other.attachedRigidbody, 1);
         private void OnTriggerExit(Collider other) => Dispatch(other.attachedRigidbody, 2);
-        private void OnCollisionEnter(Collision collision) => Dispatch(collision.rigidbody, 0);
-        private void OnCollisionStay(Collision collision) => Dispatch(collision.rigidbody, 1);
+        private void OnCollisionEnter(Collision collision)
+        {
+            Dispatch(collision.rigidbody, 0);
+            if (collision.rigidbody != null && collision.rigidbody.TryGetComponent<RaftController>(out var raft))
+                OnRaftCollision(raft, collision);
+        }
+
+        private void OnCollisionStay(Collision collision)
+        {
+            Dispatch(collision.rigidbody, 1);
+            if (collision.rigidbody != null && collision.rigidbody.TryGetComponent<RaftController>(out var raft))
+                OnRaftCollisionStay(raft, collision);
+        }
         private void OnCollisionExit(Collision collision) => Dispatch(collision.rigidbody, 2);
 
         // phase: 0 entra, 1 permanece, 2 sale.

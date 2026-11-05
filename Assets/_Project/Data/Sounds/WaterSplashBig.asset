@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0562d27ad2f3f741babccbf44cfe6e0, type: 3}
+  m_Name: WaterSplashBig
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 00af6a6fa10df1349a2415e96f80272c, type: 3}
+  - {fileID: 8300000, guid: 5235d7fa524cd5848b41547a711ae4fc, type: 3}
+  - {fileID: 8300000, guid: 00a201d2cb9a1514fa781725cc269a3e, type: 3}
+  mixerGroup: {fileID: 0}
+  volume: 1
+  pitchMin: 0.9
+  pitchMax: 1.15
+  spatial: 1
+  maxDistance: 40
+  priority: 0
+  isFart: 0

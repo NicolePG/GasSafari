@@ -29,7 +29,10 @@ namespace GasSafari.Editor
             (SoundId.AbilityBellyflop, "ability_bellyflop"), (SoundId.AbilityParty, "ability_party"), (SoundId.AbilityRepair, "ability_repair"),
             (SoundId.PickupBeans, "pickup_beans"), (SoundId.PickupLocoto, "pickup_locoto"), (SoundId.PickupMango, "pickup_mango"),
             (SoundId.PickupCoconut, "pickup_coconut"), (SoundId.PickupSoda, "pickup_soda"), (SoundId.PickupOnion, "pickup_onion"),
-            (SoundId.PickupGoldenMango, "pickup_golden_mango")
+            (SoundId.PickupGoldenMango, "pickup_golden_mango"),
+            (SoundId.GateOpen, "gate_open"), (SoundId.GateClose, "gate_close"), (SoundId.CrateBreak, "crate_break"),
+            (SoundId.CraneWarn, "crane_warn"), (SoundId.CraneSlam, "crane_slam"), (SoundId.RaftBounce, "raft_bounce"),
+            (SoundId.RaftHitHard, "raft_hit_hard"), (SoundId.WaterSplashBig, "water_splash_big")
         };
 
         [MenuItem("Gas Safari/Setup/Crear sonidos y SfxSet (M2-13)")]

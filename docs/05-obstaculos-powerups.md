@@ -43,6 +43,14 @@ Reglas comunes:
 | H31 | Corriente cruzada | Dos corrientes perpendiculares que chocan | 4 m/s² cada una | Puntería y Gloria | — | W4-4 |
 | H32 | Red de pesca | Frena (`waterDrag` x3) mientras la balsa está dentro | — | Rugido la rompe; rodearla | Fragile | W2-1 |
 
+Parámetros provisionales de los obstáculos de W1 (no están en la tabla; se afinan con QA, viven en `Data/Hazards/H<id>_*.asset`):
+- H03: empuje hacia atrás de la compuerta cerrada `pushBack` 12; abre y cierra en 0.25 s; avisa 0.5 s antes de cerrar.
+- H04: la cresta recorre el cauce a `crestSpeed` 4 m/s; levanta con un impulso vertical que sube la balsa `amplitude` (m) y empuja `push` en el punto de contacto.
+- H05: parada `dwell` de 1 s en cada extremo (avisa 0.5 s antes de arrancar).
+- H24: radio del golpe 3 m, empuje 35, la grúa sigue a la balsa a 14 m/s; intervalos 3, 2, 4, 2.5, 2, 3.5 s en bucle (el sprint final fija 2 s); se reinicia al reaparecer.
+- H28: velocidad 3 m/s, parada de 2.5 s en cada orilla (aviso), golpe 30; su estela es una cresta de H04 que baja por el cauce.
+- H07: el impacto es el impulso del choque en N·s (misma unidad que los golpes de la tabla).
+
 ## Power-ups
 
 | ID | Nombre | Efecto | Duración | Lo toma |
