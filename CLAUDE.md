@@ -23,6 +23,7 @@ Usa Grep por el encabezado de la sección antes de leer un doc completo.
 
 ## Reglas fijas
 
+- Usar solo las herramientas del servidor unityGasSafari.
 - Unity 2022.3: `rb.velocity`, `rb.drag`, `rb.angularDrag`. PROHIBIDO `linearVelocity`, `linearDamping`, `angularDamping` (son de Unity 6).
 - Cinemachine 2.x (`CinemachineVirtualCamera`, `CinemachineTargetGroup`). Netcode for GameObjects 1.x. Input System nuevo. C# 9.
 - Código propio solo en `Assets/_Project/`. Namespace `GasSafari.<Carpeta>`.

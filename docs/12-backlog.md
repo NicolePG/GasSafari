@@ -27,7 +27,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M1-09** `AvatarStateMachine` + agarrarse · raft-physics · 02 §7 · hecho 2026-11-03
 - [x] **M1-10** Caída, nado, subir y reaparición automática · raft-physics · 02 §9 · hecho 2026-11-03
 - [x] **M1-11** `FlowSpline` + `RaftFlowReceiver` · raft-physics · 02 §1 · hecho 2026-11-03
-- [x] **M1-12** `RaftStateMonitor` (vuelco, aire, aterrizaje) + control aéreo · raft-physics · 02 §1, §15 · hecho 2026-11-03 · PENDIENTE de diseño: valor de `landingBounceImpulse` (02 §15 no lo da; está en 0)
+- [x] **M1-12** `RaftStateMonitor` (vuelco, aire, aterrizaje) + control aéreo · raft-physics · 02 §1, §15 · hecho 2026-11-03 · `landingBounceImpulse` = 15 (decidido 2026-11-04)
 - [x] **M1-13** `CheckpointSystem` + reaparición + `LevelTimer` · level-builder · 02 §10 · hecho 2026-11-03
 - [x] **M1-14** `InputHub`: unión de 1-4 jugadores locales + colores · ui-hud · 02 §13, 03 Reglas · hecho 2026-11-03
 - [x] **M1-15** Cámara Cinemachine 2.x con TargetGroup e Impulse · vfx-juice · 02 §12 · hecho 2026-11-03 · provisionales a ajustar en playtest: velocidad máxima del zoom (14), suavizado (0.5 s), sacudidas (0.5/1.0)
@@ -38,13 +38,13 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 ## M2 · Personajes (31 oct-2 nov)
 - [ ] **M2-01** (TÚ) Generar los 5 personajes en Meshy y riggear · — · 09 §4
 - [ ] **M2-02** (TÚ) Grabar pedos y voces de los 5 personajes · — · 08 §6
-- [x] **M2-03** `CharacterData` x5 · character-ability · 03 Resumen · hecho 2026-11-03 · `ability`/`passive` se asignan en M2-05..09 y `sfxSet` en M2-13; PENDIENTE de diseño: color de UI por personaje (no está en docs)
+- [x] **M2-03** `CharacterData` x5 · character-ability · 03 Resumen · hecho 2026-11-03 · `ability`/`passive` se asignan en M2-05..09 y `sfxSet` en M2-13; color de UI por personaje decidido 2026-11-04 (docs/03)
 - [x] **M2-04** `AbilityBase`, `AbilityRunner`, `AbilityContext`, `PassiveBase` · character-ability · 03 · hecho 2026-11-03
 - [x] **M2-05** Alex: Rugido + Estrella del Show · character-ability · 03 Alex · hecho 2026-11-03
 - [x] **M2-06** Marty: Galope Turbo · character-ability · 03 Marty · hecho 2026-11-03
 - [x] **M2-07** Melman: Cuello Gancho, Botiquín, Vista Alta · character-ability · 03 Melman · hecho 2026-11-03 · el Botiquín solo corre si la pulsación no activó el gancho (sin objetivo en rango); falta el aro de ancla en rango (HUD)
 - [x] **M2-08** Gloria: Panzazo + Peso Pesado · character-ability · 03 Gloria · hecho 2026-11-03
-- [x] **M2-09** Julien: Fiesta Real, Corona Magnética, Salto · character-ability · 03 Julien · hecho 2026-11-03 · PENDIENTE de diseño: control del Salto (hoy siempre hacia afuera, 4 m)
+- [x] **M2-09** Julien: Fiesta Real, Corona Magnética, Salto · character-ability · 03 Julien · hecho 2026-11-03 · Salto con stick relativo a la cámara y corrección hacia power-ups (2026-11-04, docs/03)
 - [x] **M2-10** `AbilitySynergySystem` (5 sinergias) · character-ability · 03 Sinergias · hecho 2026-11-03
 - [x] **M2-11** `FartJuice` (animación procedural de pedos) · vfx-juice · 09 §4 · hecho 2026-11-03 · provisionales: temblor de carga, estiramiento y duración del megapedo
 - [ ] **M2-12** Importar personajes, `CharacterBase.controller` y overrides · model-import · 09 §3-4 · BLOQUEADO: faltan los modelos riggeados de M2-01 (TÚ)

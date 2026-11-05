@@ -25,4 +25,4 @@ MonoBehaviour:
   prefab: {fileID: 6618060406104082185, guid: 7812377bf193ec948a6463dfdae1a69b, type: 3}
   overrideController: {fileID: 0}
   icon: {fileID: 0}
-  uiColor: {r: 1, g: 1, b: 1, a: 1}
+  uiColor: {r: 0.423529, g: 0.760784, b: 0.290196, a: 1}

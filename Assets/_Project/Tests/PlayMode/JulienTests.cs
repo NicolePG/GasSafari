@@ -103,6 +103,94 @@ namespace GasSafari.Tests
             Assert.IsTrue(julien.GetComponent<PlayerSeat>().IsSeated, "en recarga");
         }
 
+        [Test]
+        public void StickDirection_RelativeToCamera_OrFallbackWithoutStick()
+        {
+            var fallback = Vector3.left;
+            Assert.AreEqual(fallback, JulienLeap.StickDirection(Vector2.zero, null, fallback));
+            Assert.AreEqual(fallback, JulienLeap.StickDirection(new Vector2(0.1f, 0.1f), null, fallback));
+            Assert.AreEqual(Vector3.forward, JulienLeap.StickDirection(Vector2.up, null, fallback));
+
+            var camObject = new GameObject("Cam");
+            try
+            {
+                var cam = camObject.AddComponent<Camera>();
+                camObject.transform.rotation = Quaternion.Euler(30f, 90f, 0f);
+                var dir = JulienLeap.StickDirection(Vector2.up, cam, fallback);
+                Assert.AreEqual(0f, Vector3.Distance(Vector3.right, dir), 1e-4f, "arriba = hacia donde mira la cámara");
+                dir = JulienLeap.StickDirection(Vector2.right, cam, fallback);
+                Assert.AreEqual(0f, Vector3.Distance(Vector3.back, dir), 1e-4f);
+            }
+            finally
+            {
+                Object.DestroyImmediate(camObject);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator Leap_FollowsLeftStick()
+        {
+            var julien = rig.AddAvatar(90f, "Julien");
+            yield return new WaitForSeconds(0.2f);
+
+            julien.Command.Swim = Vector2.up;
+            julien.Command.JumpPresses++;
+            yield return null;
+
+            var v = julien.GetComponent<Rigidbody>().velocity;
+            v.y = 0f;
+            Assert.Greater(Vector3.Dot(v.normalized, Vector3.forward), 0.95f);
+        }
+
+        [UnityTest]
+        public IEnumerator Leap_SnapsTowardPowerUpNearLanding()
+        {
+            var julien = rig.AddAvatar(90f, "Julien");
+            yield return new WaitForSeconds(0.2f);
+
+            var origin = julien.transform.position;
+            var outward = origin - rig.Get<RaftSeats>().transform.position;
+            outward.y = 0f;
+            outward.Normalize();
+            var side = Vector3.Cross(Vector3.up, outward);
+            var powerUp = new GameObject("PowerUp").transform;
+            powerUp.position = origin + outward * 3.5f + side * 1f;
+            PowerUpTargets.Add(powerUp);
+            try
+            {
+                julien.Command.JumpPresses++;
+                yield return null;
+
+                var v = julien.GetComponent<Rigidbody>().velocity;
+                v.y = 0f;
+                var toTarget = powerUp.position - origin;
+                toTarget.y = 0f;
+                Assert.Greater(Vector3.Dot(v.normalized, toTarget.normalized), 0.99f);
+            }
+            finally
+            {
+                PowerUpTargets.Remove(powerUp);
+                Object.Destroy(powerUp.gameObject);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator Leap_NoFartsWhileInAir()
+        {
+            var julien = rig.AddAvatar(90f, "Julien");
+            int farts = 0;
+            julien.GetComponent<FartThruster>().Farted += (_, _, _) => farts++;
+            yield return new WaitForSeconds(0.2f);
+
+            julien.Command.JumpPresses++;
+            yield return null;
+            julien.Command.FartPresses++;
+            yield return null;
+
+            Assert.IsTrue(julien.GetComponent<AvatarFall>().IsLeaping);
+            Assert.AreEqual(0, farts);
+        }
+
         [UnityTest]
         public IEnumerator Magnet_ActiveOnlyWhileOnBoard()
         {

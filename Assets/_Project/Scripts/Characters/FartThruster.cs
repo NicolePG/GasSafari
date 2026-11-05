@@ -22,11 +22,8 @@ namespace GasSafari.Characters
         private float coughTimer;
         // Tras recuperar CanFart con el botón aún pulsado, no empezar una ráfaga hasta soltarlo.
         private bool waitForRelease;
-        private float blastMultiplier = 1f;
-        private float blastBonusTimer;
-        private RaftSeats cachedRaft;
-        private SyncDetector sync;
-        private RaftEffects effects;
+        private FartDelivery delivery;
+        private BlastBonus blastBonus;
 
         public bool IsBlasting { get; private set; }
         public bool IsCoughing => coughTimer > 0f;
@@ -43,6 +40,7 @@ namespace GasSafari.Characters
             avatar = GetComponent<PlayerAvatar>();
             seat = GetComponent<PlayerSeat>();
             gas = GetComponent<GasTank>();
+            delivery = new FartDelivery(seat, balance);
         }
 
         private void Update()
@@ -119,9 +117,8 @@ namespace GasSafari.Characters
                 return;
             }
 
-            float multiplier = blastBonusTimer > 0f ? blastMultiplier : 1f;
-            blastBonusTimer -= Time.fixedDeltaTime;
-            Push(avatar.Character.blastForce * multiplier * (used / needed), ForceMode.Force);
+            float multiplier = blastBonus.Consume(Time.fixedDeltaTime);
+            delivery.Push(ThrustDirection, avatar.Character.blastForce * multiplier * (used / needed), ForceMode.Force);
         }
 
         // Un grupo de sync creció después de este pedo.
@@ -132,10 +129,10 @@ namespace GasSafari.Characters
             if (type == FartType.Blast)
             {
                 if (IsBlasting)
-                    StartBlastBonus(to);
+                    blastBonus.Start(to, balance.syncBlastBonusTime);
                 return;
             }
-            Push((to - from) * baseImpulse, ForceMode.Impulse);
+            delivery.Push(ThrustDirection, (to - from) * baseImpulse, ForceMode.Impulse);
         }
 
         private void UpdateAim(float aim)
@@ -156,17 +153,14 @@ namespace GasSafari.Characters
                 Cough();
                 return false;
             }
-            float multiplier = RegisterSync(type, impulse);
+            float multiplier = delivery.RegisterSync(this, type, impulse);
             float total = impulse * multiplier;
-            Push(total, ForceMode.Impulse);
+            delivery.Push(ThrustDirection, total, ForceMode.Impulse);
             Notify(type, total, multiplier);
             return true;
         }
 
-        private void Puff()
-        {
-            FireImpulse(FartType.Puff, avatar.Character.puffImpulse, balance.puffCost);
-        }
+        private void Puff() => FireImpulse(FartType.Puff, avatar.Character.puffImpulse, balance.puffCost);
 
         private void StartBlast()
         {
@@ -178,43 +172,10 @@ namespace GasSafari.Characters
             }
             IsBlasting = true;
             float force = avatar.Character.blastForce;
-            float multiplier = RegisterSync(FartType.Blast, force);
+            float multiplier = delivery.RegisterSync(this, FartType.Blast, force);
             if (multiplier > 1f)
-                StartBlastBonus(multiplier);
+                blastBonus.Start(multiplier, balance.syncBlastBonusTime);
             Notify(FartType.Blast, force * multiplier, multiplier);
-        }
-
-        // Una ráfaga que entra en un grupo mantiene el multiplicador syncBlastBonusTime.
-        private void StartBlastBonus(float multiplier)
-        {
-            blastMultiplier = multiplier;
-            blastBonusTimer = balance.syncBlastBonusTime;
-        }
-
-        private float RegisterSync(FartType type, float baseImpulse)
-        {
-            RefreshRaft();
-            return sync != null ? sync.Register(this, type, baseImpulse) : 1f;
-        }
-
-        private void Push(float magnitude, ForceMode mode)
-        {
-            RefreshRaft();
-            var raft = seat.Raft.Controller;
-            float factor = raft.Buoyancy.IsAirborne ? balance.airControlFactor : 1f;
-            if (effects != null)
-                factor *= effects.FartForceMultiplier;
-            raft.ApplyThrust(ThrustDirection * (magnitude * factor), seat.WorldPoint, mode);
-        }
-
-        // Componentes de equipo de la balsa actual; solo se buscan al cambiar de balsa.
-        private void RefreshRaft()
-        {
-            if (seat.Raft == cachedRaft)
-                return;
-            cachedRaft = seat.Raft;
-            sync = cachedRaft.GetComponent<SyncDetector>();
-            effects = cachedRaft.GetComponent<RaftEffects>();
         }
 
         private void Notify(FartType type, float impulse, float multiplier)
@@ -233,7 +194,7 @@ namespace GasSafari.Characters
         {
             pressing = false;
             IsBlasting = false;
-            blastBonusTimer = 0f;
+            blastBonus.Clear();
         }
     }
 }

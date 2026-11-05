@@ -53,7 +53,10 @@
 
 - **Personalidad:** caótico, fiestero, se cree el jefe.
 - **Pasiva "Corona Magnética":** atrae power-ups a 6 m.
-- **Salto** (A/Cruz, recarga 3 s): salta hasta 4 m fuera de la balsa para atrapar un objeto. Si aterriza a menos de 1.5 m del borde, vuelve solo; si no, cae al agua con las reglas normales.
+- **Salto** (A/Cruz, recarga 3 s): salta en arco hasta 4 m fuera de la balsa para atrapar un objeto. Si aterriza a menos de 1.5 m del borde, vuelve solo; si no, cae al agua con las reglas normales.
+  - Dirección: stick izquierdo relativo a la cámara. Sin stick, salta hacia afuera desde su asiento.
+  - Ayuda de puntería: si hay un power-up a menos de 1.5 m del punto de aterrizaje (`julienJumpSnapRadius`), el salto se corrige hacia él (sin pasar de 4 m).
+  - En el aire no puede tirarse pedos.
 - **Habilidad "Fiesta Real"** (recarga 30 s): 4 s de música de fiesta. Todo inicio de pedo cuenta como grupo de sincronía completo (multiplicador según los animales a bordo) y el medidor de equipo sube x2.
 - **Brilla en:** el nivel rítmico W3-5, junto al Súper Pedo, y con equipos que no se coordinan.
 
@@ -101,4 +104,5 @@ Controlador base `CharacterBase.controller` + un Animator Override Controller po
 
 - Cada jugador elige un personaje distinto. Botón "Aleatorio".
 - Con bots, el anfitrión elige a los bots o se asignan al azar entre los libres.
+- Colores de UI por personaje (`CharacterData.uiColor`): Alex `#E59A2F`, Marty `#5C6F82`, Melman `#F2C94C`, Gloria `#9B8FD6`, Rey Julien `#6CC24A`.
 - Colores de jugador (aro, HUD, ping), independientes del personaje: J1 naranja `#F28C28`, J2 azul `#3A86FF`, J3 verde `#2DC653`, J4 morado `#9B5DE5`.

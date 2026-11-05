@@ -76,7 +76,7 @@ namespace GasSafari.Core
         [Tooltip("Segundos extra de ventana de sync en ¡YA!")] public float pingSyncBonus;
         [Tooltip("Fracción de gas bajo la que sale el ping Sin gas")] public float noGasPingThreshold;
         [Tooltip("Grados: aterrizaje torcido (docs/02 §15)")] public float landingTiltAngle;
-        [Tooltip("PENDIENTE de diseño: impulso de rebote al aterrizar torcido (docs/02 §15 no da el valor)")]
+        [Tooltip("Impulso de rebote al aterrizar torcido (docs/02 §15)")]
         public float landingBounceImpulse;
 
         [Header("Pasivas (docs/03)")]
@@ -89,6 +89,7 @@ namespace GasSafari.Core
         [Tooltip("Salto de Julien: distancia máxima fuera de la balsa en m")] public float julienJumpDistance;
         [Tooltip("Salto de Julien: vuelve solo si cae a esta distancia del borde")] public float julienJumpReturnDistance;
         [Tooltip("Salto de Julien: recarga en s")] public float julienJumpCooldown;
+        [Tooltip("Salto de Julien: radio en m en que el aterrizaje se corrige hacia un power-up")] public float julienJumpSnapRadius;
 
         [Header("Sinergias (docs/03)")]
         [Tooltip("Honda de la Selva: velocidad al soltar el ancla")] public float slingReleaseMultiplier;

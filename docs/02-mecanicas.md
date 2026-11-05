@@ -159,9 +159,10 @@ Unidades: metros, segundos, kilogramos, newtons. Todos los valores viven en `Bal
 | autoRespawnTime | 6 s | |
 | respawnFade | 0.4 s | |
 | airControlFactor | 0.5 | los pedos en el aire aplican 50 % |
+| landingBounceImpulse | 15 | impulso vertical de rebote al aterrizar torcido (§15) |
 | pingCooldown | 1 s | |
 
 ## 15. Física en el aire
 
 - En el aire (ningún punto de flotación sumergido) los pedos aplican `airControlFactor` (50 %) de su fuerza: sirven para girar y corregir el aterrizaje.
-- Aterrizaje torcido (más de 35°) en una caída: impulso de rebote y riesgo de caída de animales no agarrados.
+- Aterrizaje torcido (más de 35°) en una caída: impulso de rebote (`landingBounceImpulse`) y riesgo de caída de animales no agarrados.

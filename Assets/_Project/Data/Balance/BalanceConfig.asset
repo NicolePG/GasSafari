@@ -86,7 +86,7 @@ MonoBehaviour:
   pingSyncBonus: 0.1
   noGasPingThreshold: 0.1
   landingTiltAngle: 35
-  landingBounceImpulse: 0
+  landingBounceImpulse: 15
   showWindowBonus: 0.08
   showBonusDuration: 3
   medkitHoldTime: 1.5
@@ -96,6 +96,7 @@ MonoBehaviour:
   julienJumpDistance: 4
   julienJumpReturnDistance: 1.5
   julienJumpCooldown: 3
+  julienJumpSnapRadius: 1.5
   slingReleaseMultiplier: 1.5
   earthquakeWindow: 1
   earthquakeRadius: 10

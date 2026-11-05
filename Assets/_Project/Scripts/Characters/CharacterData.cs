@@ -27,7 +27,7 @@ namespace GasSafari.Characters
         public GameObject prefab;
         public AnimatorOverrideController overrideController;
         public Sprite icon;
-        [Tooltip("PENDIENTE de diseño: los docs no definen un color de UI por personaje")]
+        [Tooltip("Color de UI del personaje (docs/03)")]
         public Color uiColor = Color.white;
     }
 }
