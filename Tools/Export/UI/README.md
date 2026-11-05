@@ -79,4 +79,48 @@ W4 (1180, 330), W5 (1510, 630), W6 (1670, 310). Sin textos (los pone la UI y se 
 
 ## Fondos de carga — `Loading/Loading_W<N>.png`
 
-Uno por mundo, 1920x1080, opacos. Ver la sección al final de este archivo.
+1920x1080, opacos, uno por mundo. La balsa naranja con su tripulación avanza hacia el fondo del escenario; el
+tercio inferior queda más tranquilo (agua) para el consejo y la barra de carga.
+
+| Archivo | Mundo | Escena |
+|---|---|---|
+| `Loading_W1.png` | W1 Fuga del Zoológico | Canal de la ciudad de noche: muelles con farolas, puente, puerta del zoo, noria y luna |
+| `Loading_W2.png` | W2 Mar Abierto | Mar con oleaje: faro, rocas, boyas y barco hundido |
+| `Loading_W3.png` | W3 Selva de Madagascar | Río de selva: palmeras, baobabs, lianas, nenúfares y un cocodrilo dormido |
+| `Loading_W4.png` | W4 Cuevas y Volcán | Cueva morada: estalactitas, cristales, hongos que brillan y lava |
+| `Loading_W5.png` | W5 El Gran Regreso | Cañón al atardecer: paredes rojas, arco natural y la represa al fondo |
+| `Loading_W6.png` | W6 Reino de Julien | Fiesta nocturna: escenario con trono y corona gigante, luces y confeti |
+
+## Viñetas de la historia — `Tools/Export/Story/<Momento>/<Momento>_0N.png`
+
+1920x1080, opacas, viñeta suave. Se generan con `story.py` (docs/01, tabla "Historia"); orden = número. Sin textos:
+los globos o subtítulos los pone la UI (Timeline de M5-39).
+
+| Momento | Archivo | Qué muestra |
+|---|---|---|
+| Intro | `Intro_01` | Noche en el zoo: los cinco salen de puntillas por la puerta bajo un reflector |
+| | `Intro_02` | En el muelle solo hay una balsa inflable y un barril de frijoles |
+| | `Intro_03` | Gloria se come los frijoles y... ¡pedo! (fondo de rayos, los demás retroceden) |
+| | `Intro_04` | El "método": la balsa sale disparada con nubes de gas |
+| | `Intro_05` | Todos a bordo celebran y se alejan de la ciudad bajo la luna |
+| W1_End | `W1_End_01` | En el puerto, escondidos tras el barco de carga, con la grúa y un reflector |
+| | `W1_End_02` | En silencio a la sombra del casco (Alex pide silencio) |
+| | `W1_End_03` | Mar abierto al amanecer, Alex señala el horizonte |
+| W2_End | `W2_End_01` | La tormenta: olas, rayo y lluvia, la balsa volcándose |
+| | `W2_End_02` | Amanecen tirados en la playa de una isla tropical |
+| | `W2_End_03` | De espaldas, miran la selva de baobabs y palmeras |
+| W3_End | `W3_End_01` | Ganan la fiesta de los lémures frente al escenario de DJ |
+| | `W3_End_02` | El Rey Julien se une "oficialmente" sobre un pedestal (fondo de rayos) |
+| | `W3_End_03` | Julien señala el volcán como atajo a casa |
+| | `W3_End_04` | Rumbo al volcán por el río de la selva |
+| W4_End | `W4_End_01` | Dentro del volcán: un géiser levanta la balsa sobre la lava |
+| | `W4_End_02` | Salen disparados del cráter entre lava y humo |
+| | `W4_End_03` | Vuelan sobre el cañón al atardecer |
+| W5_End | `W5_End_01` | Bajan el megatobogán |
+| | `W5_End_02` | Caen al agua frente al barco de regreso |
+| | `W5_End_03` | A bordo del barco, saludan a la ciudad al atardecer |
+| | `W5_End_04` | De vuelta en el zoológico, ahora con piscina de olas |
+| | `W5_End_05` | Final feliz: foto de grupo frente a la puerta con confeti |
+| W6_Secret | `W6_Secret_01` | El Rey Julien en su trono organiza "El Reino de Julien" |
+| | `W6_Secret_02` | Desafíos remix: tentáculo, cocodrilo gigante y grúa con luces de fiesta |
+| | `W6_Secret_03` | Coronan al mejor equipo (Alex con la Corona dorada) |
