@@ -45,6 +45,11 @@ namespace GasSafari.Editor
             var boat = Config("H28_CrossingBoat", "H28", "Barco que cruza", 1f, SoundId.None, false,
                 ("speed", 3f), ("hit", 30f), ("dwell", 2.5f)); // speed, dwell: prov.
 
+            // W1-1: chorros (sin ID en docs/05): lateral suave y vertical que eleva.
+            var jetSide = Config("Jet_Lateral", "jet", "Chorro lateral suave", 0.5f, SoundId.None, false, ("accel", 3f)); // prov.
+            var jetUp = Config("H27_Jet", "H27", "Chorro que eleva", 0.5f, SoundId.None, false, ("launchSpeed", 6f), ("cooldown", 0.5f)); // prov.
+            var jetMat = Toon("M_Jet", new Color(0.35f, 0.85f, 1f));
+
             var wallMat = Toon("M_H01_Wall", new Color(0.55f, 0.6f, 0.68f));
             var waveMat = Toon("M_H04_Wave", new Color(0.45f, 0.8f, 0.95f));
             var shadowMat = Unlit("M_H24_HookShadow", new Color(0.9f, 0.1f, 0.1f));
@@ -158,7 +163,44 @@ namespace GasSafari.Editor
                 trigger.size = new Vector3(7f, 2f, 7f);
                 var hazard = root.AddComponent<Trampoline>();
                 SetRef(hazard, "config", trampoline);
-                hazard.Configure(null, 8f); // lanza hacia el frente: por encima de la reja
+                hazard.Configure(null, 10f); // lanza hacia el frente: por encima de la reja
+                return root;
+            });
+
+            Prefab("Jet_Lateral", () =>
+            {
+                var root = new GameObject("Jet_Lateral");
+                var basin = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                basin.name = "Model";
+                Object.DestroyImmediate(basin.GetComponent<Collider>()); // solo visual: el chorro empuja, no bloquea
+                basin.transform.SetParent(root.transform, false);
+                basin.transform.localScale = new Vector3(2.4f, 0.8f, 2.4f);
+                basin.transform.localPosition = new Vector3(0f, 0.3f, 0f);
+                basin.GetComponent<MeshRenderer>().sharedMaterial = jetMat;
+                var trigger = root.AddComponent<BoxCollider>();
+                trigger.isTrigger = true;
+                trigger.center = new Vector3(3.5f, 1f, 0f);
+                trigger.size = new Vector3(6f, 3f, 6f);
+                SetRef(root.AddComponent<SoftJet>(), "config", jetSide);
+                return root;
+            });
+            Prefab("H27_Jet", () =>
+            {
+                var root = new GameObject("H27_Jet");
+                var column = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                column.name = "Model";
+                Object.DestroyImmediate(column.GetComponent<Collider>());
+                column.transform.SetParent(root.transform, false);
+                column.transform.localScale = new Vector3(1.8f, 1.2f, 1.8f);
+                column.transform.localPosition = new Vector3(0f, 0.4f, 0f);
+                column.GetComponent<MeshRenderer>().sharedMaterial = jetMat;
+                var trigger = root.AddComponent<BoxCollider>();
+                trigger.isTrigger = true;
+                trigger.center = new Vector3(0f, 0.5f, 0f);
+                trigger.size = new Vector3(3f, 2f, 3f);
+                var hazard = root.AddComponent<Trampoline>();
+                SetRef(hazard, "config", jetUp);
+                hazard.Configure(column.transform, 0f);
                 return root;
             });
 
@@ -211,7 +253,7 @@ namespace GasSafari.Editor
                 var parent = new GameObject("Hazards");
                 UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(parent, scene);
                 float x = -30f;
-                foreach (var name in new[] { "H01_Wall", "H03_TimedGate", "H04_Wave", "H05_MovingBlocker", "H07_Crate", "H27_Awning", "H27_Fountain", "H28_Speedboat", "H28_Ferry", "H24_Crane" })
+                foreach (var name in new[] { "H01_Wall", "H03_TimedGate", "H04_Wave", "H05_MovingBlocker", "H07_Crate", "H27_Awning", "H27_Fountain", "Jet_Lateral", "H27_Jet", "H28_Speedboat", "H28_Ferry", "H24_Crane" })
                 {
                     var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(PREFABS + name + ".prefab");
                     var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab, scene);

@@ -69,7 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 85b936ba8cbad4a48986321b3a0f7953, type: 2}
   squash: {fileID: 0}
-  forwardSpeed: 8
+  forwardSpeed: 10
 --- !u!1001 &4876337446235397477
 PrefabInstance:
   m_ObjectHideFlags: 0
