@@ -13,6 +13,7 @@ Shader "GasSafari/SG_Toon"
         _RimColor("Color rim", Color) = (1, 1, 1, 1)
         _RimPower("Potencia rim", Range(0.5, 8)) = 3
         _RimStrength("Fuerza rim", Range(0, 1)) = 0.25
+        [HDR] _EmissionColor("Emision (HDR, para Bloom)", Color) = (0, 0, 0, 1)
     }
 
     SubShader
@@ -47,6 +48,7 @@ Shader "GasSafari/SG_Toon"
                 half4 _RimColor;
                 half _RimPower;
                 half _RimStrength;
+                half4 _EmissionColor;
             CBUFFER_END
 
             struct Attributes
@@ -102,6 +104,7 @@ Shader "GasSafari/SG_Toon"
                 color += _RimColor.rgb * rim;
 
                 color = MixFog(color, IN.fogFactor);
+                color += _EmissionColor.rgb; // neón, cristales, lava: pasan de 1 y los toma el Bloom
                 return half4(color, 1);
             }
             ENDHLSL

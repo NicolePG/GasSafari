@@ -10,7 +10,7 @@
 ## 2. Shaders (Shader Graph, URP 14)
 | Shader | Detalle |
 |---|---|
-| `SG_Toon` | Rampa de luz de 3 bandas, color base + textura, rim light suave, color de sombra por mundo |
+| `SG_Toon` | Rampa de luz de 3 bandas, color base + textura, rim light suave, color de sombra por mundo, `_EmissionColor` HDR (neón, cristales, lava: el valor pasa de 1 y lo toma el Bloom del Volume del mundo, `Settings/Volumes/Volume_W<N>.asset`) |
 | `SG_ToonWater` | Color por profundidad (requiere Depth Texture en el URP Asset), espuma en intersecciones, olas por vértice (seno, 2 octavas), desplazamiento de UV según la dirección de la corriente |
 | `SG_Gas` | Partículas de gas con color del cosmético, disolución con ruido |
 | `SG_Fog` | Niebla para W5-3 y cuevas |
@@ -67,6 +67,12 @@ Licencias: lo generado en el plan gratis de Meshy es CC BY 4.0 (poner "Meshy" en
 | ProBuilder | Canales, rampas, toboganes y bloques del greybox | Propio |
 
 Antes de mezclar packs, pasar todos los materiales a `SG_Toon` para que el estilo sea uniforme.
+
+Estado (2026-11-05, M5-38): el escenario salió de Blender por script, no de packs. Importación: menú `Gas Safari/Setup/Importar Blender: clips, fauna, jefe y escenario (M2-01)` (`BlenderAssetImporter`).
+- Escenario: `Art/Environment/W<N>/W<N>_<Nombre>.fbx` (≤ 3000 tris, pivote en la base) con un material SG_Toon por color en `W<N>/Materials/` compartido por todos los props del mundo (los `E_*` son emisivos); Generate Lightmap UVs activado, sin colliders (se agregan al armar el prefab).
+- Fauna: `Art/Fauna/<Nombre>.fbx`, rig Generic, y `Fauna/Controllers/<Nombre>.controller` con un estado por clip y un trigger con el nombre del clip (Idle, Attack, Retreat, Walk, Sleep, Wake, Swim, Bite). Los clips sin loop vuelven a Idle; el cocodrilo arranca en Sleep.
+- Jefe grúa: `Art/Bosses/Crane.fbx` y `Bosses/Controllers/Crane.controller` (Idle, Move, Lower_Hook).
+- Volúmenes de post-proceso por mundo: menú `Gas Safari/Setup/Crear perfiles de volumen por mundo` (Bloom y viñeta; W1 y W4 con Bloom fuerte).
 
 ## 6. VFX (Particle System, URP)
 

@@ -36,7 +36,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M1-18** Pruebas T-GAS, T-SYNC, T-RAFT, T-FALL, T-CP · qa-check · 11 §2 · hecho 2026-11-03
 
 ## M2 · Personajes (31 oct-2 nov)
-- [x] **M2-01** (TÚ) Generar los 5 personajes en Meshy y riggear · — · 09 §4 · hecho 2026-11-04 con Blender por script (no Meshy): `Tools/Blender/*.py`, FBX en `Tools/Export/Characters/<Nombre>/`, rig Humanoid (+Neck1-3 en Melman, cadena Tail*), clips Idle_Sit, Swim, Fall, Climb, Celebrate, Hit; faltan Shuffle, Grab, Ability, Disappointed, Victory y Select_Pose (Fart_* por código)
+- [x] **M2-01** (TÚ) Generar los 5 personajes en Meshy y riggear · — · 09 §4 · hecho 2026-11-04 con Blender por script (no Meshy): `Tools/Blender/*.py`, FBX en `Tools/Export/Characters/<Nombre>/`, rig Humanoid (+Neck1-3 en Melman, cadena Tail*), clips Idle_Sit, Swim, Fall, Climb, Celebrate, Hit; clips Shuffle, Grab, Ability, Disappointed, Victory y Select_Pose importados 2026-11-05 en `Art/Characters/<Nombre>/Anims/` (Fart_*, Charge y Cough por código)
 - [x] **M2-02** (TÚ) Grabar pedos y voces de los 5 personajes · — · 08 §6 · hecho 2026-11-05 sin grabar: selección automática (`Tools/Audio/curate_audio.py`, motivos en `Tools/Export/Audio/ELEGIR.md`); 382 de 408 efectos aprobados, megapedos regenerados más cortos (0.8-1.4 s), voces de Windows; capas de intensidad que quedan: w2, w3_boss, w4_boss, w6_boss
 - [x] **M2-03** `CharacterData` x5 · character-ability · 03 Resumen · hecho 2026-11-03 · `ability`/`passive` se asignan en M2-05..09 y `sfxSet` en M2-13; color de UI por personaje decidido 2026-11-04 (docs/03)
 - [x] **M2-04** `AbilityBase`, `AbilityRunner`, `AbilityContext`, `PassiveBase` · character-ability · 03 · hecho 2026-11-03
@@ -107,7 +107,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [ ] **M5-35** W6-3 Todo a Contracorriente · level-builder · 04 W6-3
 - [ ] **M5-36** W6-4 Lluvia de Cocos · level-builder · 04 W6-4
 - [ ] **M5-37** W6-5 La Corona del Rey (jefe) · level-builder · 04 W6-5
-- [ ] **M5-38** (TÚ) Revisar arte de escenario por mundo (packs CC0 + Meshy) · — · 09 §5
+- [x] **M5-38** (TÚ) Revisar arte de escenario por mundo (packs CC0 + Meshy) · — · 09 §5 · hecho 2026-11-05 con Blender por script (no packs CC0 ni Meshy): 137 props y piezas modulares W1-W5 en `Art/Environment/W<N>/`, fauna en `Art/Fauna/`, grúa en `Art/Bosses/`; todos con SG_Toon (emisivos con `_EmissionColor` HDR, Bloom verificado)
 - [ ] **M5-39** Viñetas entre mundos con Timeline · ui-hud · 01 Historia
 - [ ] **M5-40** Música por mundo con capas · audio-sfx · 08 §5
 

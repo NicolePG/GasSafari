@@ -96,16 +96,16 @@ La primera vez que un equipo logra cada sinergia aparece su nombre en pantalla y
 
 Controlador base `CharacterBase.controller` + un Animator Override Controller por personaje (docs/09).
 
-Estado (2026-11-05, M2-12): el FBX de cada personaje trae Idle_Sit, Swim, Fall, Climb, Celebrate y Hit. En los overrides (`Art/Characters/<Nombre>/<Nombre>_Override.overrideController`) faltan estos y usan un clip sustituto:
+Estado (2026-11-05, M2-01): los 5 personajes tienen clips propios de Blender para todo salvo los que se animan por código. El FBX del personaje trae Idle_Sit, Swim, Fall, Climb, Celebrate y Hit; `Art/Characters/<Nombre>/Anims/<Nombre>@<Clip>.fbx` trae Shuffle_L, Shuffle_R, Grab, Ability, Disappointed, Victory y Select_Pose (Humanoid; cada FBX arma su propio avatar porque no trae la capa raíz del modelo, y se retargetea por músculos). Los overrides (`Art/Characters/<Nombre>/<Nombre>_Override.overrideController`) usan estos clips:
 
-| Falta | Sustituto | Nota |
+| Clip | Origen | Nota |
 |---|---|---|
-| Shuffle_L, Shuffle_R, Grab, Select_Pose | Idle_Sit | Idle_Sit hace loop |
-| Fart_Puff, Fart_Blast, Charge, Fart_Mega, Cough | Idle_Sit | Los estira `FartJuice` por código (docs/09 §4) |
-| Ability, Victory | Celebrate | Celebrate no hace loop: Victory se queda en el último cuadro |
-| Disappointed | Hit | |
+| Idle_Sit, Swim, Fall, Climb, Celebrate, Hit | FBX del personaje | |
+| Shuffle_L, Shuffle_R, Grab, Victory, Select_Pose | `Anims/` (Blender) | Con loop |
+| Ability, Disappointed | `Anims/` (Blender) | Sin loop |
+| Fart_Puff, Fart_Blast, Charge, Fart_Mega, Cough | Sustituto: Idle_Sit | Los anima `FartJuice` por código (docs/09 §4); no habrá clip propio |
 
-Cuando lleguen los clips propios (dentro del FBX con el mismo nombre, o en `Art/Characters/<Nombre>/Anims/`), correr el menú `Gas Safari/Setup/Importar personajes y props (M2-12)`: el override toma el clip propio y deja de usar el sustituto. `CharacterAnimator` maneja los parámetros `State`, `Seat`, `Charge`, `Blast`, `Pose` y los triggers `Puff`, `Mega`, `Cough`, `Ability`, `Hit`, `Celebrate` de `CharacterBase.controller`.
+Las colas (Tail*) quedan fuera del avatar Humanoid: las mueve el código, no los clips. Para repetir la importación (clips nuevos de Blender): copiar los FBX a `Anims/` y correr `Gas Safari/Setup/Importar Blender: clips, fauna, jefe y escenario (M2-01)`; el override toma el clip propio y deja de usar el sustituto. `CharacterAnimator` maneja los parámetros `State`, `Seat`, `Charge`, `Blast`, `Pose` y los triggers `Puff`, `Mega`, `Cough`, `Ability`, `Hit`, `Celebrate` de `CharacterBase.controller`.
 
 ## Sonidos por personaje (IDs en docs/08)
 
