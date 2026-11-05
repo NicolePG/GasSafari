@@ -8,6 +8,14 @@ namespace GasSafari.Level
     {
         // Mejor número de estrellas ya logrado en un nivel, -1 si nunca se terminó. Lo conecta ProgressionService (M3-10).
         public static Func<string, int> PreviousBestStars = _ => -1;
+        // Guarda el resultado (nivel, resultados, modificadores activos). Lo conecta ProgressionService.
+        public static Action<LevelData, LevelResults, bool> Commit = (level, results, modifiers) => { };
+
+        public static void ResetHooks()
+        {
+            PreviousBestStars = _ => -1;
+            Commit = (level, results, modifiers) => { };
+        }
 
         [SerializeField] private LevelManager level;
         [SerializeField] private LevelStats stats;
@@ -39,6 +47,8 @@ namespace GasSafari.Level
 
             string id = level.Data != null ? level.Data.id : string.Empty;
             Results = ResultsBuilder.Build(level.Data, level.Timer.Total, stats.Data, PreviousBestStars(id), recorder.Worst, Rng);
+            if (level.Data != null)
+                Commit(level.Data, Results, false);
             ResultsReady?.Invoke(Results);
         }
     }

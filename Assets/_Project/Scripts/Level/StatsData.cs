@@ -18,6 +18,8 @@ namespace GasSafari.Level
         public int Players;
         public int FullSyncGroups;
         public int GoldenMangos;
+        // Un bit por mango dorado recogido (ranura 0-2).
+        public int MangoMask;
         public int SunkCount;
     }
 }

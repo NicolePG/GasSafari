@@ -61,7 +61,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M3-07** HUD completo · ui-hud · 07 §3 · hecho 2026-11-04 · arte provisional (sprites UGUI); faltan forma por jugador en daltonismo y escala de texto 125/150 % (Opciones, M6); TMP Essentials importados
 - [x] **M3-08** Pausa · ui-hud · 07 §4 · hecho 2026-11-04 · Opciones, Controles, Reiniciar nivel y Salir al mapa solo emiten eventos (los conecta M6); votación por turnos en una consola; textos de la votación provisionales
 - [x] **M3-09** `ResultsBuilder`, premios y repetición "¿Quién fue?" · ui-hud · 06 §4 · hecho 2026-11-04 · arte provisional; SaveSystem conecta ResultsController.PreviousBestStars en M3-10; premios sin empate y solo con 2+ jugadores; choque = cámara reventada, vuelco o hundimiento; botones Siguiente/Repetir/Mapa solo emiten eventos (M6-03)
-- [ ] **M3-10** `SaveSystem` + `ProgressionService` + pruebas T-SAVE y T-PROG · save-progression · 10 §13, 06 §2
+- [x] **M3-10** `SaveSystem` + `ProgressionService` + pruebas T-SAVE y T-PROG · save-progression · 10 §13, 06 §2 · hecho 2026-11-04 · ProgressionService se agrega solo a GameServices; mango dorado con ranura 0-2 (GoldenMangoPowerUp.slot, la fija el nivel); StatsService/AchievementService/CosmeticsService quedan para M6
 
 ## M4 · Bots y modo solo (3 nov)
 - [ ] **M4-01** `BotBrain`: percepción y navegación · bot-ai · 10 §15

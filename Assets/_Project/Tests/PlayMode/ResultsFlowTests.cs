@@ -16,12 +16,16 @@ namespace GasSafari.Tests
         private const string TEMPLATE = "Assets/_Project/Scenes/Levels/_LevelTemplate.unity";
 
         private GameObject sources;
+        private string savePath;
 
         [UnitySetUp]
         public IEnumerator SetUp()
         {
             GameEvents.ClearAll();
             Services.Session.ClearPlayers();
+            // Nunca escribir en el guardado real durante las pruebas.
+            savePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "gasSafariFlow_" + System.Guid.NewGuid().ToString("N"), "save.json");
+            Services.Progression.Initialize(new Save.SaveSystem(savePath));
             sources = new GameObject("Sources");
 #if UNITY_EDITOR
             for (int i = 0; i < 2; i++)
@@ -42,6 +46,8 @@ namespace GasSafari.Tests
         [UnityTearDown]
         public IEnumerator TearDown()
         {
+            if (System.IO.File.Exists(savePath))
+                System.IO.Directory.Delete(System.IO.Path.GetDirectoryName(savePath), true);
             Services.Session.ClearPlayers();
             Object.Destroy(sources);
             var replay = Object.FindFirstObjectByType<ReplayPlayer>();

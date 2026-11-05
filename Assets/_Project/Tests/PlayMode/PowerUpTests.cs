@@ -168,7 +168,9 @@ namespace GasSafari.Tests
             rig.AddAvatar(90f);
             yield return null;
             PowerUpData seen = null;
+            int slotSeen = -1;
             GameEvents.OnPowerUp += (data, taker) => seen = data;
+            GameEvents.OnGoldenMango += slot => slotSeen = slot;
             var meter = rig.Get<TeamMeter>();
 
             Spawn("P07_GoldenMango", Vector3.zero).Collect(rig.Get<RaftSeats>(), null);
@@ -176,6 +178,7 @@ namespace GasSafari.Tests
             Assert.AreEqual(15f, meter.Value, 1e-4f);
             Assert.IsNotNull(seen);
             Assert.AreEqual("P07", seen.id);
+            Assert.AreEqual(0, slotSeen, "ranura del mango dorado");
         }
 
         [UnityTest]

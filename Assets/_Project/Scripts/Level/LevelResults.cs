@@ -17,6 +17,7 @@ namespace GasSafari.Level
         public int Stars;
         public int Mangos;
         public int MangoTotal;
+        public int MangoMask;
         // Frijolitos ganados (docs/06 §2).
         public int Beans;
         public bool FirstTime;

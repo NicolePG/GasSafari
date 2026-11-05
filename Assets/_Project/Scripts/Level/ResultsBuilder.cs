@@ -41,6 +41,7 @@ namespace GasSafari.Level
                 Time = time,
                 RaftSunk = stats.SunkCount > 0,
                 Mangos = stats.GoldenMangos,
+                MangoMask = stats.MangoMask,
                 MangoTotal = level != null ? level.mangoCount : 3,
                 FirstTime = previousBestStars < 0,
                 Replay = worstCrash

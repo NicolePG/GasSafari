@@ -28,6 +28,8 @@ namespace GasSafari.Core
         // Un peligro empieza su aviso previo (docs/05): lo usan el HUD, Melman y los bots.
         public static event Action<Hazards.HazardBase> OnHazardWarning;
         public static event Action<PowerUps.PowerUpData, PlayerAvatar> OnPowerUp;
+        // Ranura 0-2 del mango dorado recogido en el nivel (docs/05 P07).
+        public static event Action<int> OnGoldenMango;
 
         public static void RaiseFart(PlayerAvatar avatar, FartType type, float impulse) => OnFart?.Invoke(avatar, type, impulse);
         public static void RaiseSync(int players, float multiplier) => OnSync?.Invoke(players, multiplier);
@@ -42,6 +44,7 @@ namespace GasSafari.Core
         public static void RaisePlayerRescued(PlayerAvatar rescued, PlayerAvatar rescuer) => OnPlayerRescued?.Invoke(rescued, rescuer);
         public static void RaiseHazardWarning(Hazards.HazardBase hazard) => OnHazardWarning?.Invoke(hazard);
         public static void RaisePowerUp(PowerUps.PowerUpData data, PlayerAvatar taker) => OnPowerUp?.Invoke(data, taker);
+        public static void RaiseGoldenMango(int slot) => OnGoldenMango?.Invoke(slot);
         public static void RaiseChamberPopped(int chamber) => OnChamberPopped?.Invoke(chamber);
         public static void RaiseChamberRepaired(int chamber) => OnChamberRepaired?.Invoke(chamber);
         public static void RaiseRaftSunk() => OnRaftSunk?.Invoke();
@@ -70,6 +73,7 @@ namespace GasSafari.Core
             OnPlayerRescued = null;
             OnHazardWarning = null;
             OnPowerUp = null;
+            OnGoldenMango = null;
         }
     }
 }

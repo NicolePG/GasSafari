@@ -43,6 +43,7 @@ namespace GasSafari.Level
             GameEvents.OnPlayerRescued += OnRescued;
             GameEvents.OnAbilityUsed += OnAbility;
             GameEvents.OnPowerUp += OnPowerUp;
+            GameEvents.OnGoldenMango += OnGoldenMango;
             GameEvents.OnPlayerFell += OnFell;
             GameEvents.OnGasEmpty += OnGasEmpty;
             GameEvents.OnFart += OnFart;
@@ -57,6 +58,7 @@ namespace GasSafari.Level
             GameEvents.OnPlayerRescued -= OnRescued;
             GameEvents.OnAbilityUsed -= OnAbility;
             GameEvents.OnPowerUp -= OnPowerUp;
+            GameEvents.OnGoldenMango -= OnGoldenMango;
             GameEvents.OnPlayerFell -= OnFell;
             GameEvents.OnGasEmpty -= OnGasEmpty;
             GameEvents.OnFart -= OnFart;
@@ -107,6 +109,8 @@ namespace GasSafari.Level
             if (powerUp.id == GOLDEN_MANGO_ID)
                 data.GoldenMangos++;
         }
+
+        private void OnGoldenMango(int slot) => data.MangoMask |= 1 << slot;
 
         private void OnFart(PlayerAvatar avatar, FartType type, float impulse)
         {

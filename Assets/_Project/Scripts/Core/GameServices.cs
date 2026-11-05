@@ -15,6 +15,9 @@ namespace GasSafari.Core
             }
 
             DontDestroyOnLoad(gameObject);
+            // El guardado vive en el prefab de servicios; si falta, se agrega.
+            if (GetComponentInChildren<Progression.ProgressionService>() == null)
+                gameObject.AddComponent<Progression.ProgressionService>();
             Services.Bind(this);
         }
 

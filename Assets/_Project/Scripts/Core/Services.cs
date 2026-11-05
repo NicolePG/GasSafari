@@ -11,6 +11,7 @@ namespace GasSafari.Core
         public static Input.InputHub InputHub { get; private set; }
         public static Audio.AudioDirector Audio { get; private set; }
         public static VFX.VfxPool Vfx { get; private set; }
+        public static Progression.ProgressionService Progression { get; private set; }
         public static bool IsReady => Root != null;
 
         internal static void Bind(GameServices root)
@@ -21,6 +22,7 @@ namespace GasSafari.Core
             InputHub = root.GetComponentInChildren<Input.InputHub>();
             Audio = root.GetComponentInChildren<Audio.AudioDirector>();
             Vfx = root.GetComponentInChildren<VFX.VfxPool>();
+            Progression = root.GetComponentInChildren<Progression.ProgressionService>();
         }
 
         internal static void Unbind(GameServices root)
@@ -39,6 +41,7 @@ namespace GasSafari.Core
             InputHub = null;
             Audio = null;
             Vfx = null;
+            Progression = null;
         }
     }
 }
