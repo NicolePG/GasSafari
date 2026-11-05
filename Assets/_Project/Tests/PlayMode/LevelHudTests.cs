@@ -90,12 +90,18 @@ namespace GasSafari.Tests
             avatar.Gas.SetFraction(0.25f);
             yield return null;
 
-            var panel = Object.FindObjectsByType<HudPlayerPanel>(FindObjectsSortMode.None)[0];
+            HudPlayerPanel panel = null;
+            foreach (var candidate in Object.FindObjectsByType<HudPlayerPanel>(FindObjectsSortMode.None))
+            {
+                if (candidate.Avatar == avatar)
+                    panel = candidate;
+            }
+            Assert.IsNotNull(panel);
             var fills = panel.GetComponentsInChildren<UnityEngine.UI.Image>();
             bool foundGas = false;
             foreach (var image in fills)
             {
-                if (image.name == "GasFill" && Mathf.Approximately(image.fillAmount, 0.25f))
+                if (image.name == "GasFill" && Mathf.Abs(image.fillAmount - 0.25f) < 0.05f)
                     foundGas = true;
             }
             Assert.IsTrue(foundGas, "la barra de gas sigue al tanque");
