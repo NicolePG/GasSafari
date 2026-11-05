@@ -40,7 +40,15 @@ namespace GasSafari.Bots
         public float syncDelayMax = 0.15f;
         [Tooltip("s sin disparar tras un ping Espera (docs: 1.5)")] public float waitPingTime = 1.5f;
 
+        [Header("Habilidades (docs/10 §15)")]
+        [Tooltip("m por delante en que busca marcas de rampa o abismo (Marty)")] public float hintRange = 12f;
+        [Tooltip("Grados entre el rumbo cercano y el lejano a partir de los que la curva es cerrada (Melman)")] public float sharpCurveAngle = 45f;
+        [Tooltip("Grados por segundo de giro de la balsa desde los que Gloria hace Panzazo (docs: 90)")] public float spinForBellyFlop = 90f;
+        [Tooltip("Medidor de equipo por debajo del que Julien activa la Fiesta (docs: 80)")] public float partyMeterBelow = 80f;
+        [Tooltip("s mínimos entre dos pulsaciones del botón de habilidad")] public float abilityRetry = 1f;
+
         [Header("Agarrarse y nadar")]
+        [Tooltip("m a los que un aviso de fauna hace que el bot se agarre")] public float warningRange = 25f;
         [Tooltip("s que se mantiene agarrado tras el aviso o golpe (docs: 0.5)")] public float releaseAfter = 0.5f;
         [Tooltip("m de la balsa a los que un bot nadando intenta subir")] public float climbDistance = 1.5f;
     }

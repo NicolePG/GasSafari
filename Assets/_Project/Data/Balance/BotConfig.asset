@@ -25,7 +25,8 @@ MonoBehaviour:
   straightAngle: 12
   seatSpread: 50
   seatTolerance: 25
-  aimTolerance: 20
+  yawDamping: 0.6
+  maxTilt: 20
   minGasToFire: 20
   blastStartGas: 0.5
   blastStopGas: 0.25
@@ -36,5 +37,11 @@ MonoBehaviour:
   syncDelayMin: 0.05
   syncDelayMax: 0.15
   waitPingTime: 1.5
+  hintRange: 12
+  sharpCurveAngle: 45
+  spinForBellyFlop: 90
+  partyMeterBelow: 80
+  abilityRetry: 1
+  warningRange: 25
   releaseAfter: 0.5
   climbDistance: 1.5

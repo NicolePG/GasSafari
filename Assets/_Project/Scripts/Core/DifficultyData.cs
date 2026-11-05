@@ -16,5 +16,6 @@ namespace GasSafari.Core
         public float hazardSpeed;
         public float autoRespawnTime;
         public CheckpointFilter checkpointFilter;
+        [Tooltip("Probabilidad de que un bot responda a un pedo humano (docs/10 §15)")] public float botSyncChance = 0.75f;
     }
 }

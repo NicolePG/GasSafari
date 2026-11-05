@@ -44,6 +44,7 @@ namespace GasSafari.Bots
         public BotConfig Config => config;
         public BotCommandSource Source => source;
         public bool IsBlasting => blasting;
+        public bool IsTiltLocked => tiltLocked;
 
         private void Awake()
         {
@@ -96,6 +97,7 @@ namespace GasSafari.Bots
             if (source == null)
                 return;
 
+            UpdateSkills(Time.deltaTime);
             decideTimer -= Time.deltaTime;
             if (decideTimer > 0f)
                 return;
@@ -273,15 +275,30 @@ namespace GasSafari.Bots
                 else
                     wantBlast = needsCorrection || (straight && deficit > 1f && frac >= config.blastStartGas);
             }
+            // Pings y sincronía (BotBrain.Skills): "Espera" calla, la ráfaga de un humano se acompaña.
+            bool hold = Time.time < holdFireUntil;
+            if (mirrorBlast != null && !mirrorBlast.IsBlasting)
+                mirrorBlast = null;
+            if (hold)
+                wantBlast = false;
+            else if (mirrorBlast != null && gas.Gas > 0f && !thruster.IsCoughing && !tiltLocked)
+                wantBlast = true;
             blasting = wantBlast;
             cmd.FartHeld = wantBlast;
 
+            bool force = forceFire;
+            forceFire = false;
             if (wantBlast)
                 return;
 
             bool puff = aligned && canFire && deficit > 0f && puffTimer <= 0f;
+            // "¡Ahora!" y la cuenta 3-2-1 piden disparar ya, bien alineado o no.
+            if (force && canFire)
+                puff = true;
             // Equipo detenido: nunca pasa más de idleLimit sin disparar, esté o no bien alineado (docs/10 §15).
             bool stopped = speed < config.stoppedSpeed && Time.time - lastFartTime >= config.idleLimit && gas.Gas >= 5f && !tiltLocked;
+            if (hold)
+                puff = stopped = false;
             if (puff || stopped)
             {
                 source.PressFart();

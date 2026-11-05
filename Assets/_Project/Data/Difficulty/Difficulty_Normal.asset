@@ -22,3 +22,4 @@ MonoBehaviour:
   hazardSpeed: 1
   autoRespawnTime: 6
   checkpointFilter: 1
+  botSyncChance: 0.75

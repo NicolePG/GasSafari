@@ -65,7 +65,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 
 ## M4 · Bots y modo solo (3 nov)
 - [x] **M4-01** `BotBrain`: percepción y navegación · bot-ai · 10 §15 · hecho 2026-11-05 · empuje radial (sin puntería no hace girar la balsa; la puntería solo frena el giro) con asiento opuesto al rumbo; no dispara con la balsa inclinada más de 20° (3 bots en sync la volcaban); valores en `Data/Balance/BotConfig` (provisionales salvo los de docs); `RaftSpawner` adjunta el bot si `PlayerSlot.IsBot`; pruebas `BotNavigationTests`
-- [ ] **M4-02** Bots: sincronía, habilidades, agarrarse, Súper Pedo, pings · bot-ai · 10 §15
+- [x] **M4-02** Bots: sincronía, habilidades, agarrarse, Súper Pedo, pings · bot-ai · 10 §15 · hecho 2026-11-05 · `DifficultyData.botSyncChance` (0.9 / 0.75 / 0.6); los bots solo pulsan el Súper Pedo cuando un humano abre la ventana (solos lo lanzaban y volcaban la balsa); Marty y Gloria necesitan marcas `BotHint` (Ramp, Drop, Whirlpool) que debe colocar cada nivel de M5; Gloria también hace Panzazo si la balsa gira > 90°/s; pruebas `BotSkillsTests`
 - [ ] **M4-03** Modo solo con 2 animales (doble control) · unity-csharp-2022 · 02 §13
 - [ ] **M4-04** Validar QA-10 · qa-check · 11 §3
 
