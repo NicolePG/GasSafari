@@ -51,7 +51,7 @@ def _save_cache(path):
 def char_cache(name):
     """Construye el personaje con su script, sus clips estándar y los de char_anims, y lo guarda en caché."""
     path = os.path.join(CACHE_DIR, name + ".blend")
-    srcs = [os.path.join(BLENDER_DIR, f) for f in ("gs_common.py", "char_anims.py", name.lower() + ".py")]
+    srcs = [os.path.join(BLENDER_DIR, f) for f in ("gs_common.py", "char_anims.py", "celebrations.py", name.lower() + ".py")]
     if not _stale(path, srcs):
         return path
     import char_anims
@@ -66,6 +66,8 @@ def char_cache(name):
     arm, spec = cap["arm"], cap["spec"]
     gs.build_standard_actions(arm, spec)
     char_anims.build_clips(arm, spec, name)
+    import celebrations
+    celebrations.build_clips(arm, spec)
     for a in list(bpy.data.actions):
         a.name = f"{name}|{a.name}"
         a.use_fake_user = True
