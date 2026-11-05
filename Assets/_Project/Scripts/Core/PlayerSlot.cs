@@ -17,6 +17,8 @@ namespace GasSafari.Core
         public bool IsBot { get; set; }
         public bool IsRemote { get; set; }
         public bool IsReady { get; set; }
+        // Modo solo con 2 animales: el segundo animal que controla el mismo mando (docs/02 §13).
+        public PlayerSlot Partner { get; set; }
 
         public PlayerSlot(int index, Color color, PlayerInput input, IPlayerCommandSource commandSource)
         {
