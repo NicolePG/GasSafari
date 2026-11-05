@@ -39,10 +39,9 @@ python Tools/Audio/voices.py                          # voces sin palabras (voz 
 python -I Tools/Audio/oga_fetch.py <packs>/oga_sfx <slug> ...    # descarga CC0 de OpenGameArt con manifiesto
 python -I Tools/Audio/build_sfx.py <packs>            # resto de efectos de docs/08 §4
 python -I Tools/Audio/build_music.py <packs>          # música OGG + capas de intensidad
-python -I Tools/Audio/gen_docs.py <packs>             # ELEGIR.md y CREDITS_pendiente.md
 ```
 
 `<packs>` contiene `kenney_impact/` (kenney.nl), `kenney_interfaceSounds/`, `jingleSounds_Kenney/`,
-`oga_sfx/<slug>/` y `oga_music/<slug>/`. Los packs no se suben a Git; los slugs usados están en
-`Tools/Export/CREDITS_pendiente.md`. Salida en `Tools/Export/Audio/` (misma estructura que `Assets/_Project/Audio/`),
-con el origen de cada archivo en `sources.json` y la lista para escuchar en `ELEGIR.md`.
+`oga_sfx/<slug>/` y `oga_music/<slug>/`. Los packs no se suben a Git; los créditos oficiales están en
+`Assets/_Project/CREDITS.md`. Salida en `Tools/Export/Audio/` (misma estructura que `Assets/_Project/Audio/`),
+con el origen de cada archivo en `sources.json` y la lista para escuchar en `ELEGIR.md` (definitivo, ya no se regenera).
