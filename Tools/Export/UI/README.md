@@ -8,6 +8,9 @@ Sprite (2D and UI), sin compresión con pérdida para los iconos).
 blender --background --python Tools/Blender/ui_art.py        # todo
 blender --background --python Tools/Blender/ui_art.py -- portraits poses icons logo map
 blender --background --python Tools/Blender/story.py -- --loading   # fondos de carga (Loading/)
+blender --background --python Tools/Blender/ui_icons.py      # iconos de tienda, logros, modos y dificultades
+blender --background --python Tools/Blender/ui_icons.py -- achievements modes   # solo esos grupos
+blender --background --python Tools/Blender/menu_scene.py    # escena 3D del título (Tools/Export/Menu/)
 ```
 
 Hojas de revisión (no se suben a Git): `Tools/Blender/previews/UI_*_sheet.png`.
@@ -52,6 +55,112 @@ personaje llena el cuadro (Melman se ve más delgado por su altura); alinear por
 
 Los power-ups son los modelos de `props.py` (los mismos FBX del juego). Contorno de ~3 px para que se lean a
 64-96 px en el HUD; la recarga radial se dibuja encima desde la UI.
+
+## Iconos de la tienda, logros, modos y dificultades — `Icons/<Grupo>/`
+
+Todos 256x256, PNG con transparencia, mismo estilo toon con contorno de ~3 px que los iconos de arriba (`ui_icons.py`
+y los dibujos de `ui_glyphs.py`). Sin textos. Hojas de revisión: `Tools/Blender/previews/UI_Icons_<Grupo>_sheet.png`.
+
+### Tienda (docs/06 §2)
+
+| Grupo | Archivos | Qué es |
+|---|---|---|
+| `Hats/` | `Icon_Hat_H01_ZooCap`, `H02_DivingGoggles`, `H03_PirateHat`, `H04_ExplorerHelmet`, `H05_FlowerCrown`, `H06_ChefHat`, `H07_CowboyHat`, `H08_GoldenCrown` | Los 8 sombreros (los mismos modelos de `Cosmetics/Hats`), 3/4 desde arriba |
+| `Rafts/` | `Icon_Raft_R00_Orange` (inicial), `R01_LilyPad`, `R02_ZooCrate`, `R03_HollowLog`, `R04_CoconutFloat`, `R05_Lifeboat`, `R06_WatermelonRind` | Las 7 balsas (modelos de `Cosmetics/Rafts` y balsa naranja), vista desde arriba en 3/4 |
+| `Gas/` | `Icon_Gas_G01_Classic` (verde clásico), `G02_BlackSmoke` (humo negro), `G03_NeonPink` (neón rosa), `G04_Bubbles` (burbujas), `G05_Rainbow` (arcoíris), `G06_GoldGlitter` (brillantina dorada) | Una nube de pedo con el color de cada artículo |
+| `Celebrations/` | `Icon_Celebrate_Aplauso` (Alex), `BaileRobot` (Marty), `Reverencia` (Gloria), `SaludoCapitan` (Julien con sombrero pirata), `Voltereta` (Melman), `PasoConga` (Gloria) | El personaje en la pose clave del clip, sobre un disco de color con aro blanco |
+
+Los nombres de archivo no llevan tildes ni espacios (`SaludoCapitan`, `PasoConga`, `BaileRobot`). El gas "Mango" del hito
+de 10 mangos dorados, la balsa "Mango gigante" y el sombrero "Cáscara de mango" no tienen icono: no son artículos de la tienda.
+
+### Logros (docs/06 §5) — `Achievements/Icon_Ach_<NN>_<Nombre>.png`
+
+Medalla común: aro dorado, disco de color por categoría, borde blanco interior y cinta magenta y lima. El dibujo va en
+el centro del disco (radio útil ≈ 70 % del disco).
+
+| # | Archivo | Logro | Dibujo (color del disco) |
+|---|---|---|---|
+| 1 | `01_PrimerPedo` | Primer Pedo | Nube de gas con líneas de velocidad (verde) |
+| 2 | `02_Dueto` | Dueto | Dos nubes con una chispa en medio (turquesa) |
+| 3 | `03_Orquesta` | Orquesta | Cuatro nubes de colores alrededor de una nota (azul) |
+| 4 | `04_SuperPedo` | ¡Súper Pedo! | Estallido amarillo con una nube verde (violeta) |
+| 5 | `05_HondaSelva` | Honda de la Selva | Honda con piedra y hoja (naranja) |
+| 6 | `06_Terremoto` | Terremoto | Suelo agrietado, rocas y ondas (naranja) |
+| 7 | `07_FiestaTotal` | Fiesta Total | Gorro de fiesta y confeti (naranja) |
+| 8 | `08_DuoPesado` | Dúo Pesado | Pesa de gimnasio (naranja) |
+| 9 | `09_RescateReal` | Rescate Real | Salvavidas con corona (naranja) |
+| 10 | `10_CapitanTitanic` | Capitán Titanic | Balsa hundiéndose con burbujas (azul) |
+| 11 | `11_SinRasguno` | Sin un Rasguño | Escudo con visto (turquesa) |
+| 12 | `12_Mundo1` | Mundo 1 | Puerta del zoológico (azul marino) |
+| 13 | `13_Mundo2` | Mundo 2 | Faro con olas (turquesa) |
+| 14 | `14_Mundo3` | Mundo 3 | Palmera con cocos (naranja) |
+| 15 | `15_Mundo4` | Mundo 4 | Volcán con lava y humo (cian) |
+| 16 | `16_Mundo5` | Mundo 5 | Arco natural con sol (dorado) |
+| 17 | `17_Mundo6` | Mundo 6 | Corona dorada con gemas (magenta) |
+| 18 | `18_Perfeccionista` | Perfeccionista | Estrella grande con tres pequeñas (azul noche) |
+| 19 | `19_Constelacion` | Constelación | Estrellas unidas por líneas (azul noche) |
+| 20 | `20_ColeccionistaReal` | Coleccionista Real | Mango dorado con corona (morado) |
+| 21 | `21_Velocista` | Velocista | Cronómetro con líneas de velocidad (rojo naranja) |
+| 22 | `22_AmistadesRotas` | Amistades Rotas | Corazón partido (rosa) |
+| 23 | `23_Fiestero` | Fiestero | Pelota de playa con chispas (magenta) |
+| 24 | `24_Kilometro` | Kilómetro | Infinito sobre una regla de marcas (morado) |
+| 25 | `25_Constante` | Constante | Calendario con una llama (verde) |
+
+### Modos (docs/06 §1) — `Modes/Icon_Mode_<N>_<Nombre>.png`
+
+Insignia redonda: aro blanco, disco de color y brillo arriba a la izquierda.
+
+| Archivo | Modo | Dibujo |
+|---|---|---|
+| `M1_Historia` | Historia | Libro abierto con marcapáginas |
+| `M2_Contrarreloj` | Contrarreloj | Cronómetro con un fantasma |
+| `M3_Espejo` | Espejo | Espejo ovalado dorado |
+| `M4_Caos` | Modificadores (Caos) | Dado con un rayo |
+| `M5_Fiesta` | Fiesta | Cañón de confeti con chispas |
+| `M6_Infinito` | Infinito | Símbolo infinito en magenta y lima |
+| `M7_DesafioDiario` | Desafío Diario | Calendario con una estrella |
+| `M8_CarreraEquipos` | Carrera por Equipos | Dos balsas (roja y azul) y bandera de cuadros |
+
+### Dificultad (docs/06 §3) — `Difficulty/Icon_Difficulty_<N>_<Nombre>.png`
+
+Misma insignia con disco azul noche y una cara: `D1_Familiar` (verde sonriente con gorro de fiesta), `D2_Normal`
+(naranja, gesto firme) y `D3_AmistadesRotas` (roja, ceño fruncido y grieta).
+
+## Escena 3D del título — `Tools/Export/Menu/`
+
+Fondo animado del menú principal (`menu_scene.py`). Unidades en metros; el .blend es Z arriba y el FBX sale con la
+conversión de siempre (-Z adelante, Y arriba).
+
+| Archivo | Contenido |
+|---|---|
+| `TitleScene.blend` | Escena completa con materiales planos, cielo, sol y la cámara `TitleCamera` (32 mm) |
+| `TitleScene.fbx` | Mallas, 5 esqueletos y la cámara, con una sola toma de 360 cuadros a 30 fps (12 s) que cierra en bucle |
+| `TitleScene_preview.png` | Fotograma de referencia 1920x1080 (cuadro 120), por si se quiere como imagen fija o carga |
+
+La balsa naranja con Alex, Marty, Gloria y Melman sentados (clip `Idle_Sit`) y Julien de pie sobre un barril de frijoles
+bailando (`Victory`), en una piscina redonda de zoológico de 10 m de radio con carril de flotadores, máquina de olas, tumbonas,
+palmeras y pelotas flotando; al fondo la puerta del zoo, la noria y una ciudad pastel. Animación: la balsa cabecea (3 veces),
+cada personaje repite su clip un número exacto de veces (Idle_Sit x6, Victory x8) para que el bucle no salte, tres nubes de
+pedo salen por la popa, la noria da una vuelta con las góndolas siempre derechas, las banderas ondean y la cámara se mece
+en un arco corto y se acerca y aleja. Objetos que Unity puede reemplazar o animar por su cuenta: `Water` (agua),
+`Wheel_Wheel` y `Wheel_Gondola_0..7`, `Flagpole<N>_Flag`, `Puff_0..2`, `Raft` y sus `Chamber_*`.
+Unos 100 mil triángulos en total (la tripulación ~35 mil; el resto es el escenario). Los clips se hornean cada 2 cuadros;
+el FBX hornea además una pista constante para los objetos estáticos (es normal que todos tengan curva de animación).
+
+## Otros archivos de este lote (fuera de `UI/`)
+
+- `Tools/Export/CharacterAnims/<Nombre>/<Nombre>@Celebrate_<Celebración>.fbx`: las 6 celebraciones de la tienda para los 5
+  personajes (30 clips), solo la animación con el mismo esqueleto del modelo. Clips `Celebrate_Aplauso`, `Celebrate_BaileRobot`,
+  `Celebrate_Reverencia`, `Celebrate_SaludoCapitan`, `Celebrate_Voltereta` y `Celebrate_PasoConga`; de pie, empiezan y terminan
+  en la postura neutra y no hacen bucle (66-84 cuadros). En Unity: rig Humanoid con "Copy From Other Avatar".
+- `Tools/Export/Environment/W6/W6_<Nombre>.fbx`: escenario del Mundo 6 (35 piezas): hitos `Stage`, `Throne`, `GiantCrown`,
+  `DiscoBall`, `LightTruss`; relleno `Searchlight`, `SpeakerStack`, `ConfettiCannon`, `TikiTorch`, `Banner`, `Buffet`,
+  `MangoStatue`, `FloatingLanterns`, `DanceFloor`; y con 3 variantes (A, B, C) `Balloons`, `Garland`, `Drum`, `GiftBox`,
+  `Buoy`, `Palm`, `Rock`.
+- `Tools/Export/Party/<Nombre>.fbx`: arenas y objetos de los minijuegos (20 piezas): `MiniRaft` y `MiniRaft_J1..J4` (radio 1 m,
+  4 cámaras separadas `Chamber_0_NE..3_SO`, marcador de forma por jugador), `BeachBall`, `Goal_A`, `Goal_B`, `GoalArena`,
+  `RoyalPool` (parte móvil `Rotor`), `CoconutBomb` (`Spark`) y la pista `Track_Straight`, `Track_Curve90`, `Track_Start`,
+  `Track_Finish`, `Track_Gates`, `Track_Ramp`, `Track_Spinner`, `Track_Slalom`, `Track_Booster`.
 
 ## Logo — `Logo/Logo_GasSafari.png`
 

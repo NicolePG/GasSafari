@@ -10,7 +10,11 @@ blender --background --python Tools/Blender/props.py     # balsa y power-ups (--
 blender --background --python Tools/Blender/char_anims.py  # clips que faltan de los 5 personajes (-- Alex ...)
 blender --background --python Tools/Blender/fauna.py       # fosa, cocodrilos, cangrejo, murciélago, tentáculo
 blender --background --python Tools/Blender/bosses.py      # grúa con gancho (jefe W1-5)
-blender --background --python Tools/Blender/env_w1.py      # escenario por mundo: env_w1 .. env_w5 (-- Ferry ...)
+blender --background --python Tools/Blender/env_w1.py      # escenario por mundo: env_w1 .. env_w6 (-- Ferry ...)
+blender --background --python Tools/Blender/celebrations.py  # 6 celebraciones de la tienda x 5 personajes (CharacterAnims/)
+blender --background --python Tools/Blender/party.py       # arenas y objetos de los minijuegos (Tools/Export/Party/)
+blender --background --python Tools/Blender/ui_icons.py    # iconos de tienda, logros, modos y dificultades
+blender --background --python Tools/Blender/menu_scene.py  # escena 3D del título (Tools/Export/Menu/)
 ```
 
 - `gs_common.py`: paleta, materiales planos, primitivas redondeadas, esqueleto Humanoid, animaciones
