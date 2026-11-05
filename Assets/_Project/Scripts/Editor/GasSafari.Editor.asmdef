@@ -3,6 +3,11 @@
     "rootNamespace": "GasSafari.Editor",
     "references": [
         "GasSafari.Runtime",
+        "Unity.InputSystem",
+        "Cinemachine",
+        "Unity.Splines",
+        "Unity.Mathematics",
+        "UnityEngine.UI",
         "Unity.RenderPipelines.Core.Runtime",
         "Unity.RenderPipelines.Universal.Runtime"
     ],
