@@ -22,13 +22,6 @@ namespace GasSafari.Editor
 
         private static readonly string[] Names = { "Alex", "Marty", "Melman", "Gloria", "Julien" };
 
-        // Habilidad de cada personaje (docs/03, docs/08 §4).
-        private static readonly Dictionary<string, SoundId> AbilityOf = new Dictionary<string, SoundId>
-        {
-            { "Alex", SoundId.AbilityRoar }, { "Marty", SoundId.AbilityGallop }, { "Melman", SoundId.AbilityNeck },
-            { "Gloria", SoundId.AbilityBellyflop }, { "Julien", SoundId.AbilityParty }
-        };
-
         // SoundId → prefijo de los archivos (sin _nn).
         private static readonly (SoundId id, string prefix)[] Globals =
         {
@@ -44,19 +37,17 @@ namespace GasSafari.Editor
         {
             ReimportAudio();
             var entries = new List<SoundLibrary.Entry>();
-            var globalDefs = new Dictionary<SoundId, SoundDef>();
 
             foreach (var (id, prefix) in Globals)
             {
                 var def = Def(SOUNDS + id + ".asset", Clips(prefix), 1f, false);
-                globalDefs[id] = def;
                 entries.Add(new SoundLibrary.Entry { id = id, sound = def });
             }
 
             SfxSet alex = null;
             foreach (var name in Names)
             {
-                var set = BuildSet(name, globalDefs[AbilityOf[name]]);
+                var set = BuildSet(name);
                 if (name == "Alex")
                     alex = set;
             }
@@ -84,7 +75,7 @@ namespace GasSafari.Editor
             entries.Add(new SoundLibrary.Entry { id = id, sound = def });
         }
 
-        private static SfxSet BuildSet(string name, SoundDef ability)
+        private static SfxSet BuildSet(string name)
         {
             string key = name.ToLowerInvariant();
             string folder = SOUNDS + "Characters/" + name + "/";
@@ -97,7 +88,6 @@ namespace GasSafari.Editor
             set.charge = Def(folder + "fart_charge_" + key + ".asset", Clips("fart_charge_" + key), FART_VOLUME, true);
             set.mega = Def(folder + "fart_mega_" + key + ".asset", Clips("fart_mega_" + key), FART_VOLUME, true);
             set.cough = Def(folder + "fart_cough_" + key + ".asset", Clips("fart_cough_" + key), FART_VOLUME, true);
-            set.ability = ability;
             set.voiceEffort = Def(folder + "voice_" + key + "_effort.asset", Clips("voice_" + key + "_effort"), VOICE_VOLUME, false);
             set.voiceFall = Def(folder + "voice_" + key + "_fall.asset", Clips("voice_" + key + "_fall"), VOICE_VOLUME, false);
             set.voiceLaugh = Def(folder + "voice_" + key + "_laugh.asset", Clips("voice_" + key + "_laugh"), VOICE_VOLUME, false);

@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 7599790379229467119}
   - component: {fileID: 3054797406381653642}
   - component: {fileID: 6320067878553879126}
-  - component: {fileID: 2107800405546696613}
   m_Layer: 9
   m_Name: Avatar_Alex
   m_TagString: Untagged
@@ -268,18 +267,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6275732685035698132}
---- !u!114 &2107800405546696613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 737119756747343465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4177a011766b4b4e96af90370a92859, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5416768210955574326
 GameObject:
   m_ObjectHideFlags: 0

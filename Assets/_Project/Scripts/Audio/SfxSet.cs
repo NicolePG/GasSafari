@@ -13,9 +13,6 @@ namespace GasSafari.Audio
         public SoundDef mega;
         public SoundDef cough;
 
-        [Header("Habilidad")]
-        public SoundDef ability;
-
         [Header("Voces (voice_<pj>_<tipo>). Aún sin disparadores: docs/08 no dice cuándo suena cada una")]
         public SoundDef voiceEffort;
         public SoundDef voiceFall;

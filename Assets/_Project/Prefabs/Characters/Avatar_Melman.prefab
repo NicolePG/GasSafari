@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 762549099540677297}
   - component: {fileID: 1096975188636663866}
   - component: {fileID: 375725874575269999}
-  - component: {fileID: 7432563826920763162}
   m_Layer: 9
   m_Name: Avatar_Melman
   m_TagString: Untagged
@@ -282,18 +281,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6548059270155766191}
---- !u!114 &7432563826920763162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572597161067542546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4177a011766b4b4e96af90370a92859, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5108411750544859725
 GameObject:
   m_ObjectHideFlags: 0

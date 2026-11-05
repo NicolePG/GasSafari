@@ -86,7 +86,6 @@ GameObject:
   - component: {fileID: 1048905574423084377}
   - component: {fileID: 9089459894310654139}
   - component: {fileID: 3917963641577424881}
-  - component: {fileID: 8099221120304549342}
   m_Layer: 9
   m_Name: Avatar_Gloria
   m_TagString: Untagged
@@ -330,18 +329,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3525886012873055074}
---- !u!114 &8099221120304549342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7909255010030217951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4177a011766b4b4e96af90370a92859, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7026990959956174579
 PrefabInstance:
   m_ObjectHideFlags: 0

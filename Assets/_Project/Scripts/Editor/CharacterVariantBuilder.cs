@@ -92,7 +92,6 @@ namespace GasSafari.Editor
 
             var characterAnimator = instance.AddComponent<CharacterAnimator>();
             SetReference(characterAnimator, "animator", animator);
-            instance.AddComponent<CharacterSfx>();
             var juice = instance.GetComponent<VFX.FartJuice>();
             SetReference(juice, "hips", hips);
             SetReference(juice, "head", head);

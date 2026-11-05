@@ -17,7 +17,6 @@ MonoBehaviour:
   charge: {fileID: 11400000, guid: 0ec3ebf48fb0afd4399d6b392569ddad, type: 2}
   mega: {fileID: 11400000, guid: 81884afe581249b4ba83c47fc2768483, type: 2}
   cough: {fileID: 11400000, guid: a8b2d9470bb76274ca67f0c2e7d5923a, type: 2}
-  ability: {fileID: 11400000, guid: e587b56215599724f833e8c78531b2e1, type: 2}
   voiceEffort: {fileID: 11400000, guid: cd33cbee62ed4c247b959bb353f8822e, type: 2}
   voiceFall: {fileID: 11400000, guid: 65cefb197cfd7ea4f98bb8612130940e, type: 2}
   voiceLaugh: {fileID: 11400000, guid: 7586a346f008bb14598362557a92bb55, type: 2}

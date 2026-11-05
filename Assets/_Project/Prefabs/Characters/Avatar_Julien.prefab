@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 583449960588608319}
   - component: {fileID: 276693541499726784}
   - component: {fileID: 6495397422476884263}
-  - component: {fileID: 6326225382673296776}
   m_Layer: 9
   m_Name: Avatar_Julien
   m_TagString: Untagged
@@ -344,18 +343,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 501366045339825844}
---- !u!114 &6326225382673296776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6618060406104082185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4177a011766b4b4e96af90370a92859, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6313941583769930533
 PrefabInstance:
   m_ObjectHideFlags: 0
