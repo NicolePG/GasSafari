@@ -6,7 +6,7 @@ Generado por `Tools/Audio/gen_docs.py`. Fuentes de modelos y sonidos producidos 
 
 | Archivos | Autor | Licencia |
 |---|---|---|
-| `Tools/Export/Characters/*`, `Tools/Export/CharacterAnims/*`, `Tools/Export/Props/*`, `Tools/Export/Fauna/*`, `Tools/Export/Bosses/*` | Propio: generados por script en Blender 4.5 (`Tools/Blender/*.py`), diseño original | Propio del proyecto |
+| `Tools/Export/Characters/*`, `Tools/Export/CharacterAnims/*`, `Tools/Export/Props/*`, `Tools/Export/Fauna/*`, `Tools/Export/Bosses/*`, `Tools/Export/Environment/*` | Propio: generados por script en Blender 4.5 (`Tools/Blender/*.py`), diseño original | Propio del proyecto |
 
 ## Sonidos propios
 

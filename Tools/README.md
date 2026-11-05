@@ -10,6 +10,7 @@ blender --background --python Tools/Blender/props.py     # balsa y power-ups (--
 blender --background --python Tools/Blender/char_anims.py  # clips que faltan de los 5 personajes (-- Alex ...)
 blender --background --python Tools/Blender/fauna.py       # fosa, cocodrilos, cangrejo, murciélago, tentáculo
 blender --background --python Tools/Blender/bosses.py      # grúa con gancho (jefe W1-5)
+blender --background --python Tools/Blender/env_w1.py      # escenario por mundo: env_w1 .. env_w5 (-- Ferry ...)
 ```
 
 - `gs_common.py`: paleta, materiales planos, primitivas redondeadas, esqueleto Humanoid, animaciones
@@ -23,6 +24,10 @@ blender --background --python Tools/Blender/bosses.py      # grúa con gancho (j
   Bite, Retreat.
 - Grúa (`Tools/Export/Bosses/Crane.fbx`): rig Generic, huesos Root, Wheel_1..8, Turret, Boom, Trolley y Hook;
   clips Idle, Move (en el sitio) y Lower_Hook (el gancho baja 4.5 m; el cable se estira entre Trolley y Hook).
+- Escenario (`env_kit.py` + `env_w<N>.py`): `Tools/Export/Environment/<Mundo>/<Mundo>_<Nombre>.fbx`, ≤ 3000
+  triángulos, pivote en la base (z = 0 = suelo o línea de agua). Los props con partes móviles exportan un vacío
+  raíz con `Static` y cada parte con su pivote (`Propeller`, `Flag`, `Wheel`, `Gondola_0..7`, `Door_L/R`, `Gate`...).
+  Piezas modulares: `Canal_*` (cauce de 10 m, paso de 5 m) y `Tunnel_*`; agua en z = 0.
 - Vistas previas en `Tools/Blender/previews/` (no se suben a Git).
 - Balsa: cámaras `Chamber_0_NE`, `Chamber_1_NO`, `Chamber_2_SE`, `Chamber_3_SO` (índices de `RaftChambers`), cada una con su pivote.
 
