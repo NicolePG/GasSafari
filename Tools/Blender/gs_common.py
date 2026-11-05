@@ -1046,7 +1046,7 @@ def finish_character(name, body, arm, spec, poses=None):
 # ---------------------------------------------------------------------------
 # Extremidades estándar (piezas rígidas de juguete, una por hueso)
 # ---------------------------------------------------------------------------
-def standard_limbs(j, arm_mat, leg_mat, r, hand_fn=None, foot_fn=None, arm_mat_fn=None, leg_mat_fn=None):
+def standard_limbs(j, arm_mat, leg_mat, r, hand_fn=None, foot_fn=None, arm_mat_fn=None, leg_mat_fn=None, sub=4):
     """Crea brazos y piernas a ambos lados a partir de los puntos del lado izquierdo.
     r: dict con ua (r0, r1), la (r0, r1), ul (r0, r1), ll (r0, r1).
     hand_fn(side, s, j) / foot_fn(side, s, j) devuelven listas de piezas (s = +1 izq, -1 der).
@@ -1055,13 +1055,13 @@ def standard_limbs(j, arm_mat, leg_mat, r, hand_fn=None, foot_fn=None, arm_mat_f
     for side, s in (("Left", 1), ("Right", -1)):
         f = (lambda p: Vector(p)) if s == 1 else mirror_x
         parts.append(capsule(f"{side}UpperArm_m", f(j["l_upperarm"]), f(j["l_lowerarm"]), r["ua"][0], arm_mat,
-                             r1=r["ua"][1], bone=f"{side}UpperArm", mat_fn=arm_mat_fn, sub=4))
+                             r1=r["ua"][1], bone=f"{side}UpperArm", mat_fn=arm_mat_fn, sub=sub))
         parts.append(capsule(f"{side}LowerArm_m", f(j["l_lowerarm"]), f(j["l_hand"]), r["la"][0], arm_mat,
-                             r1=r["la"][1], bone=f"{side}LowerArm", mat_fn=arm_mat_fn, sub=4))
+                             r1=r["la"][1], bone=f"{side}LowerArm", mat_fn=arm_mat_fn, sub=sub))
         parts.append(capsule(f"{side}UpperLeg_m", f(j["l_upperleg"]), f(j["l_lowerleg"]), r["ul"][0], leg_mat,
-                             r1=r["ul"][1], bone=f"{side}UpperLeg", mat_fn=leg_mat_fn, sub=4))
+                             r1=r["ul"][1], bone=f"{side}UpperLeg", mat_fn=leg_mat_fn, sub=sub))
         parts.append(capsule(f"{side}LowerLeg_m", f(j["l_lowerleg"]), f(j["l_foot"]), r["ll"][0], leg_mat,
-                             r1=r["ll"][1], bone=f"{side}LowerLeg", mat_fn=leg_mat_fn, sub=4))
+                             r1=r["ll"][1], bone=f"{side}LowerLeg", mat_fn=leg_mat_fn, sub=sub))
         if hand_fn:
             parts += hand_fn(side, s, j)
         if foot_fn:
