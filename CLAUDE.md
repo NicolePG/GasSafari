@@ -2,6 +2,8 @@
 
 Juego 3D cooperativo de físicas: de 1 a 4 animales (Alex, Marty, Melman, Gloria, Rey Julien) impulsan UNA balsa con pedos. Juego completo: 31 niveles, 8 modos, cooperativo local y online, bots para jugar solo.
 
+Entrega: 08/12/2026, juego completo.
+
 ## Dónde está cada cosa (lee SOLO la sección que necesites)
 
 | Necesito | Archivo |

@@ -3,7 +3,7 @@
 Formato: `- [ ] **ID** tarea · skill · ref`. La skill `next-task` toma la primera tarea sin marcar, en orden. Al terminar: `- [x]` + fecha. Si se bloquea: `BLOQUEADO: motivo` al final de la línea.
 Tareas marcadas **(TÚ)** las hace el usuario fuera de Claude Code (generar modelos, grabar sonidos, playtests).
 
-Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. Entrega: 10/11/2026. Si falta tiempo, posponer en este orden: M8 Online → M7-09/10/11 (Infinito, Diario, Carrera) → Mundo 6.
+Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. Entrega: 08/12/2026, con el juego completo (todas las tareas de M0 a M10). Las fechas de cada hito son las del plan original.
 
 ## M0 · Base del proyecto (29 oct)
 - [x] **M0-01** Estructura de carpetas y asmdefs · unity-csharp-2022 · 10 §2 · hecho 2026-11-02
@@ -152,3 +152,12 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [ ] **M9-06** Bugs bloqueantes y críticos en 0 · qa-check · 11 §5
 - [ ] **M9-07** `CREDITS.md` completo · audio-sfx · 08 §6
 - [ ] **M9-08** Build final de Windows · build-release · —
+
+## M10 · Extras
+- [ ] **M10-01** Localización al inglés: tabla de textos ES/EN y selector de idioma en Opciones · ui-hud · 07
+- [ ] **M10-02** Tres minijuegos nuevos de Fiesta: Balsa Chocona, Relevo de Pedos y Tiro al Coco (reglas documentadas en docs/06 antes de programarlos) · game-modes · 06 §1
+- [ ] **M10-03** Modo foto: pausa con cámara libre, filtros y captura · vfx-juice, ui-hud · 07
+- [ ] **M10-04** Vibración del mando por evento · unity-csharp-2022 · 02
+- [ ] **M10-05** Galería de extras en el menú (viñetas, modelos 3D giratorios y música), desbloqueables con mangos dorados · ui-hud, save-progression · 06 §2
+- [ ] **M10-06** Trailer de 60-90 s grabado con Unity Recorder · vfx-juice · —
+- [ ] **M10-07** Build de presentación · build-release · —
