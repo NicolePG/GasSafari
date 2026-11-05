@@ -1,0 +1,100 @@
+{
+ "mus_title": {
+  "seg": 117.4
+ },
+ "mus_select": {
+  "seg": 105.9
+ },
+ "mus_map": {
+  "seg": 59.6
+ },
+ "mus_tutorial": {
+  "seg": 200.0
+ },
+ "mus_w1": {
+  "bpm": 87.5,
+  "fase": 0.116,
+  "estilo": "funk",
+  "seg": 66.3
+ },
+ "mus_w1_boss": {
+  "bpm": 114.8,
+  "fase": 0.081,
+  "estilo": "funk",
+  "seg": 138.9
+ },
+ "mus_w2": {
+  "bpm": 128.0,
+  "fase": 0.0,
+  "estilo": "marine",
+  "seg": 67.5
+ },
+ "mus_w2_boss": {
+  "bpm": 97.5,
+  "fase": 0.453,
+  "estilo": "marine",
+  "seg": 95.9
+ },
+ "mus_w3": {
+  "bpm": 97.5,
+  "fase": 0.441,
+  "estilo": "tropical",
+  "seg": 94.0
+ },
+ "mus_w4": {
+  "bpm": 139.8,
+  "fase": 0.197,
+  "estilo": "drums",
+  "seg": 68.6
+ },
+ "mus_w4_boss": {
+  "bpm": 180.0,
+  "fase": 0.163,
+  "estilo": "drums",
+  "seg": 72.0
+ },
+ "mus_w5": {
+  "bpm": 120.2,
+  "fase": 0.186,
+  "estilo": "epic",
+  "seg": 104.0
+ },
+ "mus_w5_boss": {
+  "bpm": 172.2,
+  "fase": 0.07,
+  "estilo": "epic",
+  "seg": 123.4
+ },
+ "mus_w6": {
+  "bpm": 129.2,
+  "fase": 0.406,
+  "estilo": "electro",
+  "seg": 162.5
+ },
+ "mus_w6_boss": {
+  "bpm": 185.0,
+  "fase": 0.163,
+  "estilo": "electro",
+  "seg": 51.9
+ },
+ "mus_party": {
+  "seg": 200.0
+ },
+ "mus_results": {
+  "seg": 199.8
+ },
+ "mus_w3_boss": {
+  "bpm": "110→128",
+  "seg": 96
+ },
+ "stinger_victory": [
+  "jingles_HIT15.ogg",
+  "jingles_HIT11.ogg",
+  "jingles_PIZZA02.ogg"
+ ],
+ "stinger_fail": [
+  "jingles_STEEL06.ogg",
+  "jingles_STEEL01.ogg",
+  "jingles_STEEL05.ogg"
+ ]
+}

@@ -1,0 +1,704 @@
+{
+ "SFX/Abilities/ability_roar_01.wav": [
+  "OGA:80-cc0-creature-sfx/roar_01.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Abilities/ability_roar_02.wav": [
+  "OGA:80-cc0-creature-sfx/roar_02.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Abilities/ability_roar_03.wav": [
+  "OGA:80-cc0-creature-sfx/roar_03.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Abilities/ability_gallop_01.wav": [
+  "Impact Sounds (Kenney)/impactWood_light",
+  "OGA:swishes-sound-pack/swish-4.wav",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Abilities/ability_gallop_02.wav": [
+  "Impact Sounds (Kenney)/impactWood_light",
+  "OGA:swishes-sound-pack/swish-5.wav",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Abilities/ability_neck_01.wav": [
+  "OGA:100-cc0-sfx/spring_01.ogg"
+ ],
+ "SFX/Abilities/ability_neck_02.wav": [
+  "OGA:100-cc0-sfx/spring_04.ogg"
+ ],
+ "SFX/Abilities/ability_neck_03.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Abilities/ability_bellyflop_01.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/splash_12.ogg",
+  "Impact Sounds (Kenney)/impactSoft_heavy_001.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Abilities/ability_bellyflop_02.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/splash_14.ogg",
+  "Impact Sounds (Kenney)/impactSoft_heavy_002.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Abilities/ability_party_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Abilities/ability_party_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Abilities/ability_repair_01.wav": [
+  "OGA:100-cc0-sfx/paper_01.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Abilities/ability_repair_02.wav": [
+  "OGA:100-cc0-sfx/paper_02.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_hit_soft_01.wav": [
+  "Impact Sounds (Kenney)/impactSoft_medium_000.ogg"
+ ],
+ "SFX/Raft/raft_hit_soft_02.wav": [
+  "Impact Sounds (Kenney)/impactSoft_medium_002.ogg"
+ ],
+ "SFX/Raft/raft_hit_soft_03.wav": [
+  "Impact Sounds (Kenney)/impactSoft_medium_004.ogg"
+ ],
+ "SFX/Raft/raft_hit_hard_01.wav": [
+  "Impact Sounds (Kenney)/impactSoft_heavy_000.ogg",
+  "Impact Sounds (Kenney)/impactPunch_heavy_000.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_hit_hard_02.wav": [
+  "Impact Sounds (Kenney)/impactSoft_heavy_002.ogg",
+  "Impact Sounds (Kenney)/impactPunch_heavy_002.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_hit_hard_03.wav": [
+  "Impact Sounds (Kenney)/impactSoft_heavy_004.ogg",
+  "Impact Sounds (Kenney)/impactPunch_heavy_004.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_chamber_pop_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_chamber_pop_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_chamber_pop_03.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_chamber_repair_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_chamber_repair_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_sink_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_sink_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_land_water_01.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/splash_11.ogg",
+  "Impact Sounds (Kenney)/impactSoft_heavy_001.ogg"
+ ],
+ "SFX/Raft/raft_land_water_02.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/splash_13.ogg",
+  "Impact Sounds (Kenney)/impactSoft_heavy_002.ogg"
+ ],
+ "SFX/Raft/raft_land_water_03.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/splash_15.ogg",
+  "Impact Sounds (Kenney)/impactSoft_heavy_003.ogg"
+ ],
+ "SFX/Raft/raft_bounce_01.wav": [
+  "Impact Sounds (Kenney)/impactSoft_medium_001.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_bounce_02.wav": [
+  "Impact Sounds (Kenney)/impactSoft_medium_002.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_bounce_03.wav": [
+  "Impact Sounds (Kenney)/impactSoft_medium_003.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_creak_loop_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Raft/raft_creak_loop_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Water/water_splash_small_01.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/splash_09.ogg"
+ ],
+ "SFX/Water/water_splash_small_02.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/splash_10.ogg"
+ ],
+ "SFX/Water/water_splash_small_03.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/splash_06.ogg"
+ ],
+ "SFX/Water/water_splash_big_01.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/splash_05.ogg"
+ ],
+ "SFX/Water/water_splash_big_02.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/splash_11.ogg"
+ ],
+ "SFX/Water/water_splash_big_03.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/splash_07.ogg"
+ ],
+ "SFX/Water/water_flow_loop_01.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/loop_water_01.ogg",
+  "loop sin cortes por fundido (build_sfx.py)"
+ ],
+ "SFX/Water/water_flow_loop_02.wav": [
+  "OGA:30-cc0-sfx-loops/water_flowing.ogg",
+  "loop sin cortes por fundido (build_sfx.py)"
+ ],
+ "SFX/Water/water_flow_loop_03.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Water/water_rapids_loop_01.wav": [
+  "OGA:park-ambiences/park_ambience_river.wav",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Water/water_rapids_loop_02.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/loop_water_03.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Water/water_waterfall_loop_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Water/water_waterfall_loop_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Water/swim_stroke_01.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/splash_09.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Water/swim_stroke_02.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/splash_10.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Water/swim_stroke_03.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/splash_06.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Water/climb_aboard_01.wav": [
+  "OGA:100-cc0-sfx-2/sfx100v2_footstep_wet_01.ogg",
+  "Impact Sounds (Kenney)/impactSoft_medium_001.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Water/climb_aboard_02.wav": [
+  "OGA:100-cc0-sfx-2/sfx100v2_footstep_wet_02.ogg",
+  "Impact Sounds (Kenney)/impactSoft_medium_002.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/gate_open_01.wav": [
+  "OGA:100-cc0-sfx-2/sfx100v2_door_01.ogg"
+ ],
+ "SFX/Hazards/gate_open_02.wav": [
+  "OGA:100-cc0-sfx/door_open.ogg"
+ ],
+ "SFX/Hazards/gate_close_01.wav": [
+  "OGA:100-cc0-sfx/door_close_01.ogg"
+ ],
+ "SFX/Hazards/gate_close_02.wav": [
+  "OGA:100-cc0-sfx/slam_02.ogg"
+ ],
+ "SFX/Hazards/barrel_fuse_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/barrel_fuse_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/barrel_explode_01.wav": [
+  "OGA:100-cc0-sfx/explosion.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/barrel_explode_02.wav": [
+  "OGA:100-cc0-sfx/explosion.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/crate_break_01.wav": [
+  "OGA:75-cc0-breaking-falling-hit-sfx/bfh1_wood_breaking_01.ogg"
+ ],
+ "SFX/Hazards/crate_break_02.wav": [
+  "OGA:75-cc0-breaking-falling-hit-sfx/bfh1_wood_breaking_02.ogg"
+ ],
+ "SFX/Hazards/crate_break_03.wav": [
+  "OGA:75-cc0-breaking-falling-hit-sfx/bfh1_wood_breaking_03.ogg"
+ ],
+ "SFX/Hazards/wind_gust_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/wind_gust_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/wind_gust_03.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/whirlpool_loop_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/whirlpool_loop_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/spikes_hit_01.wav": [
+  "Impact Sounds (Kenney)/impactMetal_light_001.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/spikes_hit_02.wav": [
+  "OGA:75-cc0-breaking-falling-hit-sfx/bfh1_metal_hit_02.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/sand_stuck_01.wav": [
+  "Impact Sounds (Kenney)/footstep_snow_001.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/sand_stuck_02.wav": [
+  "Impact Sounds (Kenney)/footstep_snow_002.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/vine_burn_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/vine_burn_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/log_spin_loop_01.wav": [
+  "OGA:30-cc0-sfx-loops/rolling.ogg"
+ ],
+ "SFX/Hazards/log_spin_loop_02.wav": [
+  "OGA:100-cc0-sfx/machine_03.ogg"
+ ],
+ "SFX/Hazards/fossa_rustle_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/fossa_rustle_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/fossa_attack_01.wav": [
+  "OGA:80-cc0-creature-sfx/monster_02.ogg",
+  "OGA:swishes-sound-pack/swish-1.wav"
+ ],
+ "SFX/Hazards/fossa_attack_02.wav": [
+  "OGA:80-cc0-creature-sfx/grunt_03.ogg",
+  "OGA:swishes-sound-pack/swish-2.wav"
+ ],
+ "SFX/Hazards/croc_wake_01.wav": [
+  "OGA:80-cc0-creature-sfx/snore.ogg",
+  "OGA:40-cc0-water-splash-slime-sfx/splash_03.ogg"
+ ],
+ "SFX/Hazards/croc_wake_02.wav": [
+  "OGA:80-cc0-creature-sfx/monster_05.ogg",
+  "OGA:40-cc0-water-splash-slime-sfx/splash_03.ogg"
+ ],
+ "SFX/Hazards/croc_bite_01.wav": [
+  "OGA:80-cc0-creature-sfx/eat_01.ogg",
+  "Impact Sounds (Kenney)/impactPunch_heavy_001.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/croc_bite_02.wav": [
+  "OGA:80-cc0-creature-sfx/eat_03.ogg",
+  "Impact Sounds (Kenney)/impactPunch_heavy_001.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/beat_click_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/beat_click_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/geyser_warn_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/geyser_burst_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)",
+  "OGA:40-cc0-water-splash-slime-sfx"
+ ],
+ "SFX/Hazards/geyser_warn_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/geyser_burst_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)",
+  "OGA:40-cc0-water-splash-slime-sfx"
+ ],
+ "SFX/Hazards/rock_warn_01.wav": [
+  "OGA:75-cc0-breaking-falling-hit-sfx/bfh1_rock_falling_01.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/rock_impact_01.wav": [
+  "OGA:75-cc0-breaking-falling-hit-sfx/bfh1_rock_breaking_01.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/rock_warn_02.wav": [
+  "OGA:75-cc0-breaking-falling-hit-sfx/bfh1_rock_falling_02.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/rock_impact_02.wav": [
+  "OGA:75-cc0-breaking-falling-hit-sfx/bfh1_rock_breaking_02.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/bats_screech_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/bats_screech_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/crab_snip_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/crab_snip_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/coconut_whistle_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/coconut_whistle_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/crane_warn_01.wav": [
+  "OGA:30-cc0-sfx-loops/alarm_01.ogg"
+ ],
+ "SFX/Hazards/crane_warn_02.wav": [
+  "OGA:30-cc0-sfx-loops/alarm_02.ogg"
+ ],
+ "SFX/Hazards/crane_slam_01.wav": [
+  "Impact Sounds (Kenney)/impactMetal_heavy_001.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/crane_slam_02.wav": [
+  "OGA:100-cc0-sfx/slam_05.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/tentacle_warn_01.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/slime_03.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/tentacle_slam_01.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/slime_11.ogg",
+  "OGA:40-cc0-water-splash-slime-sfx/splash_15.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/tentacle_warn_02.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/slime_08.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/tentacle_slam_02.wav": [
+  "OGA:40-cc0-water-splash-slime-sfx/slime_12.ogg",
+  "OGA:40-cc0-water-splash-slime-sfx/splash_15.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/giant_croc_roar_01.wav": [
+  "OGA:80-cc0-creature-sfx/roar_02.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/giant_croc_roar_02.wav": [
+  "OGA:80-cc0-creature-sfx/monster_07.ogg",
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/net_tangle_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Hazards/net_tangle_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/PowerUps/pickup_beans_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/PowerUps/pickup_beans_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/PowerUps/pickup_locoto_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/PowerUps/pickup_locoto_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/PowerUps/pickup_mango_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/PowerUps/pickup_mango_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/PowerUps/pickup_coconut_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/PowerUps/pickup_coconut_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/PowerUps/pickup_soda_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/PowerUps/pickup_soda_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/PowerUps/pickup_onion_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/PowerUps/pickup_onion_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/PowerUps/pickup_golden_mango_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/PowerUps/pickup_golden_mango_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/sync_2_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/sync_2_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/sync_3_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/sync_3_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/sync_4_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/sync_4_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/superfart_ready_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/superfart_launch_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/superfart_ready_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/superfart_launch_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/checkpoint_01.wav": [
+  "Interface Sounds (Kenney)/confirmation_002.ogg"
+ ],
+ "SFX/Events/checkpoint_02.wav": [
+  "Interface Sounds (Kenney)/confirmation_004.ogg"
+ ],
+ "SFX/Events/checkpoint_03.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/countdown_beep_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/countdown_beep_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/countdown_go_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/countdown_go_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/finish_fanfare_01.wav": [
+  "Music Jingles (Kenney)/jingles_SAX02.ogg"
+ ],
+ "SFX/Events/finish_fanfare_02.wav": [
+  "Music Jingles (Kenney)/jingles_STEEL00.ogg"
+ ],
+ "SFX/Events/finish_fanfare_03.wav": [
+  "Music Jingles (Kenney)/jingles_NES00.ogg"
+ ],
+ "SFX/Events/star_earn_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/star_earn_02.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/star_earn_03.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/ping_now_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/ping_wait_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/ping_turn_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/Events/ping_nogas_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/UI/ui_move_01.wav": [
+  "Interface Sounds (Kenney)/tick_001.ogg"
+ ],
+ "SFX/UI/ui_move_02.wav": [
+  "Interface Sounds (Kenney)/scroll_002.ogg"
+ ],
+ "SFX/UI/ui_move_03.wav": [
+  "Interface Sounds (Kenney)/click_001.ogg"
+ ],
+ "SFX/UI/ui_select_01.wav": [
+  "Interface Sounds (Kenney)/select_002.ogg"
+ ],
+ "SFX/UI/ui_select_02.wav": [
+  "Interface Sounds (Kenney)/confirmation_001.ogg"
+ ],
+ "SFX/UI/ui_select_03.wav": [
+  "Interface Sounds (Kenney)/select_005.ogg"
+ ],
+ "SFX/UI/ui_back_01.wav": [
+  "Interface Sounds (Kenney)/back_001.ogg"
+ ],
+ "SFX/UI/ui_back_02.wav": [
+  "Interface Sounds (Kenney)/back_003.ogg"
+ ],
+ "SFX/UI/ui_locked_01.wav": [
+  "Interface Sounds (Kenney)/error_004.ogg"
+ ],
+ "SFX/UI/ui_locked_02.wav": [
+  "Interface Sounds (Kenney)/error_006.ogg"
+ ],
+ "SFX/UI/ui_buy_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/UI/ui_buy_02.wav": [
+  "Interface Sounds (Kenney)/confirmation_003.ogg"
+ ],
+ "SFX/UI/ui_achievement_01.wav": [
+  "síntesis propia (Tools/Audio/build_sfx.py)"
+ ],
+ "SFX/UI/ui_achievement_02.wav": [
+  "Music Jingles (Kenney)/jingles_NES03.ogg"
+ ],
+ "SFX/UI/ui_join_01.wav": [
+  "Interface Sounds (Kenney)/maximize_003.ogg"
+ ],
+ "SFX/UI/ui_join_02.wav": [
+  "Interface Sounds (Kenney)/open_002.ogg"
+ ],
+ "SFX/UI/ui_ready_01.wav": [
+  "Interface Sounds (Kenney)/toggle_002.ogg"
+ ],
+ "SFX/UI/ui_ready_02.wav": [
+  "Interface Sounds (Kenney)/switch_003.ogg"
+ ],
+ "SFX/UI/ui_ready_03.wav": [
+  "Interface Sounds (Kenney)/confirmation_001.ogg"
+ ],
+ "Music/mus_title.ogg": [
+  "OGA:enchanted-tiki-86 · Enchanted Tiki 86 · cynicmusic · CC0 · https://opengameart.org/content/enchanted-tiki-86"
+ ],
+ "Music/mus_select.ogg": [
+  "OGA:flowerbed-fields-loop · Flowerbed Fields [Loop] · zane-little-music · CC0 · https://opengameart.org/content/flowerbed-fields-loop"
+ ],
+ "Music/mus_map.ogg": [
+  "OGA:bossa-nova · Bossa Nova · joth · CC0 · https://opengameart.org/content/bossa-nova"
+ ],
+ "Music/mus_tutorial.ogg": [
+  "OGA:balance-0 · Balance · loyalty-freak-music · CC0 · https://opengameart.org/content/balance-0"
+ ],
+ "Music/mus_w1_base.ogg": [
+  "OGA:funked-up · Funked Up · joth · CC0 · https://opengameart.org/content/funked-up"
+ ],
+ "Music/mus_w1_intensity.ogg": [
+  "síntesis propia a 87.5 BPM (build_music.py)"
+ ],
+ "Music/mus_w1_boss_base.ogg": [
+  "OGA:action-track · Action Track · lushogames · CC0 · https://opengameart.org/content/action-track"
+ ],
+ "Music/mus_w1_boss_intensity.ogg": [
+  "síntesis propia a 114.8 BPM (build_music.py)"
+ ],
+ "Music/mus_w2_base.ogg": [
+  "OGA:beach-stage · Beach Stage · mintodog · CC0 · https://opengameart.org/content/beach-stage"
+ ],
+ "Music/mus_w2_intensity.ogg": [
+  "síntesis propia a 128.0 BPM (build_music.py)"
+ ],
+ "Music/mus_w2_boss_base.ogg": [
+  "OGA:battle-theme-a · Battle Theme A · cynicmusic · CC0 · https://opengameart.org/content/battle-theme-a"
+ ],
+ "Music/mus_w2_boss_intensity.ogg": [
+  "síntesis propia a 97.5 BPM (build_music.py)"
+ ],
+ "Music/mus_w3_base.ogg": [
+  "OGA:tropical-fantasy · Tropical Fantasy · spring-spring · CC0 · https://opengameart.org/content/tropical-fantasy"
+ ],
+ "Music/mus_w3_intensity.ogg": [
+  "síntesis propia a 97.5 BPM (build_music.py)"
+ ],
+ "Music/mus_w4_base.ogg": [
+  "OGA:8-bit-unknown-planet · 8-bit - Unknown Planet · hydrogene · CC0 · https://opengameart.org/content/8-bit-unknown-planet"
+ ],
+ "Music/mus_w4_intensity.ogg": [
+  "síntesis propia a 139.8 BPM (build_music.py)"
+ ],
+ "Music/mus_w4_boss_base.ogg": [
+  "OGA:castle-stage · Castle Stage · mintodog · CC0 · https://opengameart.org/content/castle-stage"
+ ],
+ "Music/mus_w4_boss_intensity.ogg": [
+  "síntesis propia a 180.0 BPM (build_music.py)"
+ ],
+ "Music/mus_w5_base.ogg": [
+  "OGA:green-hills · Green Hills · igor-gundarev · CC0 · https://opengameart.org/content/green-hills"
+ ],
+ "Music/mus_w5_intensity.ogg": [
+  "síntesis propia a 120.2 BPM (build_music.py)"
+ ],
+ "Music/mus_w5_boss_base.ogg": [
+  "OGA:boss-battle-music · Boss Battle Music · subspaceaudio · CC0 · https://opengameart.org/content/boss-battle-music"
+ ],
+ "Music/mus_w5_boss_intensity.ogg": [
+  "síntesis propia a 172.2 BPM (build_music.py)"
+ ],
+ "Music/mus_w6_base.ogg": [
+  "OGA:let-the-games-begin-0 · Let the Games Begin · section31 · CC0 · https://opengameart.org/content/let-the-games-begin-0"
+ ],
+ "Music/mus_w6_intensity.ogg": [
+  "síntesis propia a 129.2 BPM (build_music.py)"
+ ],
+ "Music/mus_w6_boss_base.ogg": [
+  "OGA:8bit-action-final-boss-battle · 8bit Action Final Boss Battle · mintodog · CC0 · https://opengameart.org/content/8bit-action-final-boss-battle"
+ ],
+ "Music/mus_w6_boss_intensity.ogg": [
+  "síntesis propia a 185.0 BPM (build_music.py)"
+ ],
+ "Music/mus_party.ogg": [
+  "OGA:danza-d-bots-ii · Danza D' Bots II · lushogames · CC0 · https://opengameart.org/content/danza-d-bots-ii"
+ ],
+ "Music/mus_results.ogg": [
+  "OGA:apple-cider · Apple Cider · zane-little-music · CC0 · https://opengameart.org/content/apple-cider"
+ ],
+ "Music/mus_w3_boss_base.ogg": [
+  "síntesis propia 110→128 BPM (build_music.py)"
+ ],
+ "Music/mus_w3_boss_intensity.ogg": [
+  "síntesis propia 110→128 BPM (build_music.py)"
+ ],
+ "Music/stinger_victory_01.ogg": [
+  "Music Jingles (Kenney)/jingles_HIT15.ogg"
+ ],
+ "Music/stinger_victory_02.ogg": [
+  "Music Jingles (Kenney)/jingles_HIT11.ogg"
+ ],
+ "Music/stinger_fail_01.ogg": [
+  "Music Jingles (Kenney)/jingles_STEEL06.ogg"
+ ],
+ "Music/stinger_fail_02.ogg": [
+  "Music Jingles (Kenney)/jingles_STEEL01.ogg"
+ ],
+ "Music/stinger_victory_03.ogg": [
+  "Music Jingles (Kenney)/jingles_PIZZA02.ogg"
+ ],
+ "Music/stinger_fail_03.ogg": [
+  "Music Jingles (Kenney)/jingles_STEEL05.ogg"
+ ],
+ "Voices/julien/voice_julien_laugh_05.wav": [
+  "OGA:monkey-sounds/monkey-1.wav"
+ ],
+ "Voices/julien/voice_julien_cheer_05.wav": [
+  "OGA:monkey-sounds/monkey-2.wav"
+ ],
+ "Voices/julien/voice_julien_fall_05.wav": [
+  "OGA:monkey-sounds/monkey-3.wav"
+ ]
+}

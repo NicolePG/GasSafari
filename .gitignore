@@ -117,3 +117,4 @@ InitTestScene*.unity*
 # Vistas previas de Blender (Tools)
 Tools/Blender/previews/
 __pycache__/
+Tools/Audio/_packs/
