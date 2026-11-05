@@ -1120,3 +1120,15 @@ def stickers(obj, count, size, material, rnd, keep_fn=None, min_dist=None, seg=7
 
 def gs_quat_z(a):
     return Quaternion((0, 0, 1), a)
+
+
+def on_front(center, radii, pts, offset=0.0):
+    """Proyecta puntos (x, z) sobre la cara frontal (-Y) de un elipsoide; offset hacia afuera."""
+    cx, cy, cz = center
+    rx, ry, rz = radii
+    out = []
+    for p in pts:
+        x, z = p[0], p[-1]
+        k = max(0.0, 1 - ((x - cx) / rx) ** 2 - ((z - cz) / rz) ** 2)
+        out.append(Vector((x, cy - ry * math.sqrt(k) - offset, z)))
+    return out
