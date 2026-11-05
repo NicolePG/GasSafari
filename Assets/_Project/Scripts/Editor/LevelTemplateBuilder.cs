@@ -156,7 +156,6 @@ namespace GasSafari.Editor
             volume.sharedProfile = profile;
         }
 
-        // Contenedor vacío: el HUD lo llena (M3-07).
         private static void CreateHud()
         {
             var go = new GameObject("HUD");
@@ -165,7 +164,10 @@ namespace GasSafari.Editor
             var scaler = go.AddComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1920f, 1080f);
+            scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
+            scaler.matchWidthOrHeight = 0.5f;
             go.AddComponent<GraphicRaycaster>();
+            HudBuilder.Populate(go);
         }
 
         private static void CreateEventSystem()

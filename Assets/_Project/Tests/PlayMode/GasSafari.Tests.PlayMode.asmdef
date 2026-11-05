@@ -8,6 +8,8 @@
         "Unity.Splines",
         "Unity.Mathematics",
         "Cinemachine",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI",
         "UnityEngine.TestRunner"
     ],
     "includePlatforms": [],

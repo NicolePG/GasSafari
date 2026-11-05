@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30f27d39ccb3ff64e9989c87c453e49c, type: 3}
+  m_Name: Strings_es
+  m_EditorClassIdentifier: 
+  entries:
+  - key: ui.press_any
+    text: "Pulsa cualquier bot\xF3n"
+  - key: ui.join
+    text: Pulsa A para unirte
+  - key: ui.ready
+    text: "\xA1Listo!"
+  - key: hud.sync2
+    text: "\xA1SYNC x2!"
+  - key: hud.sync3
+    text: "\xA1SYNC x3!"
+  - key: hud.sync4
+    text: "\xA1SYNC x4!"
+  - key: hud.superfart_ready
+    text: "\xA1S\xDAPER PEDO LISTO!"
+  - key: hud.go
+    text: "\xA1YA!"
+  - key: hud.checkpoint
+    text: CHECKPOINT
+  - key: hud.no_gas
+    text: Sin gas
+  - key: hud.mangos
+    text: Mangos {0}/{1}
+  - key: hud.checkpoint_progress
+    text: Checkpoint {0}/{1}
+  - key: ping.now
+    text: "\xA1Ahora!"
+  - key: ping.wait
+    text: Espera
+  - key: ping.left
+    text: Gira a la izquierda
+  - key: ping.right
+    text: Gira a la derecha
+  - key: results.who
+    text: "\xBFQui\xE9n fue?"
+  - key: assist.offer
+    text: "\xBFNecesitan una Ayuda Real?"
+  - key: synergy.honda_selva
+    text: Honda de la Selva
+  - key: synergy.terremoto
+    text: Terremoto
+  - key: synergy.fiesta_total
+    text: Fiesta Total
+  - key: synergy.duo_pesado
+    text: "D\xFAo Pesado"
+  - key: synergy.rescate_real
+    text: Rescate Real
