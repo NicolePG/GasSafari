@@ -113,3 +113,7 @@ InitTestScene*.unity*
 # Capturas de MCP for Unity (manage_camera screenshot)
 /[Aa]ssets/[Ss]creenshots/
 /[Aa]ssets/[Ss]creenshots.meta
+
+# Vistas previas de Blender (Tools)
+Tools/Blender/previews/
+__pycache__/
