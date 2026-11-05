@@ -9,6 +9,7 @@ blender --background --python Tools/Blender/alex.py      # también marty, melma
 blender --background --python Tools/Blender/props.py     # balsa y power-ups (--raft / --powerups)
 blender --background --python Tools/Blender/char_anims.py  # clips que faltan de los 5 personajes (-- Alex ...)
 blender --background --python Tools/Blender/fauna.py       # fosa, cocodrilos, cangrejo, murciélago, tentáculo
+blender --background --python Tools/Blender/bosses.py      # grúa con gancho (jefe W1-5)
 ```
 
 - `gs_common.py`: paleta, materiales planos, primitivas redondeadas, esqueleto Humanoid, animaciones
@@ -20,6 +21,8 @@ blender --background --python Tools/Blender/fauna.py       # fosa, cocodrilos, c
 - Fauna (rig Generic, hueso raíz `Root`, clips en el mismo FBX): `Tools/Export/Fauna/<Nombre>.fbx`. Fossa, Bat y
   Tentacle: Idle, Attack, Retreat. Crab: + Walk. Croc: Sleep, Wake, Idle, Swim, Bite, Retreat. GiantCroc: Idle, Swim,
   Bite, Retreat.
+- Grúa (`Tools/Export/Bosses/Crane.fbx`): rig Generic, huesos Root, Wheel_1..8, Turret, Boom, Trolley y Hook;
+  clips Idle, Move (en el sitio) y Lower_Hook (el gancho baja 4.5 m; el cable se estira entre Trolley y Hook).
 - Vistas previas en `Tools/Blender/previews/` (no se suben a Git).
 - Balsa: cámaras `Chamber_0_NE`, `Chamber_1_NO`, `Chamber_2_SE`, `Chamber_3_SO` (índices de `RaftChambers`), cada una con su pivote.
 

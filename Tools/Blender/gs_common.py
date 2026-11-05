@@ -327,6 +327,34 @@ def rounded_cylinder(name, loc, radius, height, bevel, material, axis=(0, 0, 1),
                  scale=scale)
 
 
+def rounded_box(name, loc, size, bevel, material, segments=2, bone=None, rot=None, taper=None, bulge=0.0):
+    """Caja con aristas redondeadas, centrada en loc. taper=(fx, fy) estrecha la cara superior;
+    bulge infla los lados (panza de caricatura)."""
+    bm = bmesh.new()
+    bmesh.ops.create_cube(bm, size=1.0)
+    sx, sy, sz = size
+    for v in bm.verts:
+        v.co = Vector((v.co.x * sx, v.co.y * sy, v.co.z * sz))
+    b = min(bevel, min(size) * 0.49)
+    bmesh.ops.bevel(bm, geom=bm.verts[:] + bm.edges[:], offset=b, segments=segments, profile=0.5, affect="EDGES",
+                    clamp_overlap=True)
+    if taper or bulge:
+        for v in bm.verts:
+            u = v.co.z / sz + 0.5
+            k = 1.0 + bulge * math.sin(u * math.pi)
+            if taper:
+                v.co.x *= k * (1 + (taper[0] - 1) * u)
+                v.co.y *= k * (1 + (taper[1] - 1) * u)
+            else:
+                v.co.x *= k
+                v.co.y *= k
+    m = Matrix.Translation(Vector(loc))
+    if rot is not None:
+        m = m @ _rot_matrix(rot)
+    bmesh.ops.transform(bm, matrix=m, verts=bm.verts)
+    return _obj_from_bm(name, bm, material, bone, sharp_angle=40)
+
+
 def torus(name, loc, major, minor, material, axis=(0, 0, 1), seg=32, mseg=12, bone=None, scale=None,
           arc=None):
     """Toro. arc=(desde_grados, hasta_grados) para un toro parcial (con tapas redondeadas)."""
@@ -640,6 +668,31 @@ def join_and_skin(name, parts, arm):
         if vg.name.startswith("RIGID__"):
             body.vertex_groups.remove(vg)
     print(f"[gs] skin {name}: rigid={fixed} sin_peso_corregidos={unweighted}")
+    return body
+
+
+def rigid_skin(name, parts, arm, split=None):
+    """Une piezas rígidas: cada una va al 100 % a su hueso (p['bone']). split = {nombre_pieza: fn(co) -> hueso}
+    para piezas que se estiran entre dos huesos (cables)."""
+    split = split or {}
+    for p in parts:
+        fn = split.get(p.name)
+        for i, v in enumerate(p.data.vertices):
+            b = fn(p.matrix_world @ v.co) if fn else p.get("bone", "auto")
+            vg = p.vertex_groups.get(b) or p.vertex_groups.new(name=b)
+            vg.add([i], 1.0, "REPLACE")
+    bpy.ops.object.select_all(action="DESELECT")
+    for p in parts:
+        p.select_set(True)
+    bpy.context.view_layer.objects.active = parts[0]
+    bpy.ops.object.join()
+    body = bpy.context.view_layer.objects.active
+    body.name = body.data.name = name + "_Body"
+    bad = [vg.name for vg in body.vertex_groups if vg.name not in arm.data.bones]
+    assert not bad, f"piezas sin hueso: {bad}"
+    body.parent = arm
+    mod = body.modifiers.new("Armature", "ARMATURE")
+    mod.object = arm
     return body
 
 
