@@ -36,7 +36,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M1-18** Pruebas T-GAS, T-SYNC, T-RAFT, T-FALL, T-CP · qa-check · 11 §2 · hecho 2026-11-03
 
 ## M2 · Personajes (31 oct-2 nov)
-- [ ] **M2-01** (TÚ) Generar los 5 personajes en Meshy y riggear · — · 09 §4
+- [x] **M2-01** (TÚ) Generar los 5 personajes en Meshy y riggear · — · 09 §4 · hecho 2026-11-04 con Blender por script (no Meshy): `Tools/Blender/*.py`, FBX en `Tools/Export/Characters/<Nombre>/`, rig Humanoid (+Neck1-3 en Melman, cadena Tail*), clips Idle_Sit, Swim, Fall, Climb, Celebrate, Hit; faltan Shuffle, Grab, Ability, Disappointed, Victory y Select_Pose (Fart_* por código)
 - [ ] **M2-02** (TÚ) Grabar pedos y voces de los 5 personajes · — · 08 §6
 - [x] **M2-03** `CharacterData` x5 · character-ability · 03 Resumen · hecho 2026-11-03 · `ability`/`passive` se asignan en M2-05..09 y `sfxSet` en M2-13; color de UI por personaje decidido 2026-11-04 (docs/03)
 - [x] **M2-04** `AbilityBase`, `AbilityRunner`, `AbilityContext`, `PassiveBase` · character-ability · 03 · hecho 2026-11-03
