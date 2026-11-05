@@ -75,58 +75,111 @@ namespace GasSafari.Tests
         }
 
         [UnityTest]
-        public IEnumerator Gamepad_SplitsBetweenTheTwoAnimals()
+        public IEnumerator Gamepad_SplitsInLeftAndRightHalves()
         {
             yield return JoinWithDualControl();
 
+            // A (izquierda): stick izquierdo, LT pedo, LB aguantar, X habilidad.
             yield return Send(new GamepadState
             {
                 leftStick = new Vector2(1f, 0f),
                 rightStick = new Vector2(-0.5f, 0f),
-                rightTrigger = 1f
+                leftTrigger = 1f
             }.WithButton(GamepadButton.LeftShoulder).WithButton(GamepadButton.West));
 
             var a = first.CommandSource.Current;
             var b = second.CommandSource.Current;
             Assert.AreEqual(1f, a.SeatMove, 0.05f);
             Assert.AreEqual(-0.5f, b.SeatMove, 0.05f);
-            Assert.IsTrue(a.FartHeld);
-            Assert.IsFalse(a.HoldHeld);
+            Assert.IsTrue(a.FartHeld, "LT es el pedo de A");
+            Assert.IsTrue(a.HoldHeld, "LB aguanta a A");
             Assert.IsFalse(b.FartHeld);
-            Assert.IsTrue(b.HoldHeld, "LB aguanta al segundo");
+            Assert.IsFalse(b.HoldHeld);
             Assert.AreEqual(1, a.FartPresses);
             Assert.AreEqual(0, b.FartPresses);
-            Assert.AreEqual(1, a.AbilityPresses, "X es del primero");
+            Assert.AreEqual(1, a.AbilityPresses, "X es de A");
             Assert.AreEqual(0, b.AbilityPresses);
 
-            yield return Send(new GamepadState().WithButton(GamepadButton.RightShoulder).WithButton(GamepadButton.North));
+            // B (derecha): RT pedo, RB aguantar, Y habilidad.
+            yield return Send(new GamepadState { rightTrigger = 1f }
+                .WithButton(GamepadButton.RightShoulder).WithButton(GamepadButton.North));
 
             a = first.CommandSource.Current;
             b = second.CommandSource.Current;
             Assert.IsFalse(a.FartHeld);
-            Assert.IsTrue(b.FartHeld, "RB es el pedo del segundo");
+            Assert.IsTrue(b.FartHeld, "RT es el pedo de B");
+            Assert.IsTrue(b.HoldHeld, "RB aguanta a B");
             Assert.AreEqual(1, a.FartPresses);
             Assert.AreEqual(1, b.FartPresses);
             Assert.AreEqual(1, a.AbilityPresses);
-            Assert.AreEqual(1, b.AbilityPresses, "Y es del segundo");
+            Assert.AreEqual(1, b.AbilityPresses, "Y es de B");
         }
 
         [UnityTest]
-        public IEnumerator SharedButtons_GrabJumpAndSuperFartReachBothAnimals()
+        public IEnumerator Aim_IsAlwaysZeroForBothAnimals()
         {
             yield return JoinWithDualControl();
 
-            yield return Send(new GamepadState()
-                .WithButton(GamepadButton.East).WithButton(GamepadButton.South)
-                .WithButton(GamepadButton.LeftStick).WithButton(GamepadButton.RightStick));
+            yield return Send(new GamepadState { leftStick = new Vector2(0.2f, 0f), rightStick = new Vector2(0.9f, 0.9f) });
+
+            Assert.AreEqual(0f, first.CommandSource.Current.Aim);
+            Assert.AreEqual(0f, second.CommandSource.Current.Aim);
+        }
+
+        [UnityTest]
+        public IEnumerator Grab_HoldsBothAnimals()
+        {
+            yield return JoinWithDualControl();
+
+            yield return Send(new GamepadState().WithButton(GamepadButton.East));
+
+            Assert.IsTrue(first.CommandSource.Current.GrabHeld);
+            Assert.IsTrue(second.CommandSource.Current.GrabHeld);
+        }
+
+        [UnityTest]
+        public IEnumerator SouthButton_IsSuperFartForBothWhenNobodySwims()
+        {
+            yield return JoinWithDualControl();
+
+            yield return Send(new GamepadState().WithButton(GamepadButton.South));
 
             foreach (var slot in new[] { first, second })
             {
                 var cmd = slot.CommandSource.Current;
-                Assert.IsTrue(cmd.GrabHeld);
-                Assert.IsTrue(cmd.SuperHeld);
-                Assert.AreEqual(1, cmd.JumpPresses);
+                Assert.IsTrue(cmd.SuperHeld, "cuenta como pulsado por los dos animales");
+                Assert.AreEqual(0, cmd.JumpPresses, "sin nadie en el agua no hay subida ni salto");
             }
+        }
+
+        [UnityTest]
+        public IEnumerator SouthButton_ClimbsTheSwimmerInsteadOfSuperFart()
+        {
+            yield return JoinWithDualControl();
+            first.Input.GetComponent<DualHumanCommandSource>().SetInWaterCheck(false, () => true);
+
+            yield return Send(new GamepadState().WithButton(GamepadButton.South));
+
+            var a = first.CommandSource.Current;
+            var b = second.CommandSource.Current;
+            Assert.AreEqual(0, a.JumpPresses, "A no está en el agua");
+            Assert.AreEqual(1, b.JumpPresses, "B sube");
+            Assert.IsFalse(a.SuperHeld);
+            Assert.IsFalse(b.SuperHeld, "con alguien nadando no es Súper Pedo");
+        }
+
+        [UnityTest]
+        public IEnumerator StickClicks_AreEachAnimalsJulienJump()
+        {
+            yield return JoinWithDualControl();
+
+            yield return Send(new GamepadState().WithButton(GamepadButton.LeftStick));
+            Assert.AreEqual(1, first.CommandSource.Current.JumpPresses, "L3 es el salto de A");
+            Assert.AreEqual(0, second.CommandSource.Current.JumpPresses);
+
+            yield return Send(new GamepadState().WithButton(GamepadButton.RightStick));
+            Assert.AreEqual(1, first.CommandSource.Current.JumpPresses);
+            Assert.AreEqual(1, second.CommandSource.Current.JumpPresses, "R3 es el salto de B");
         }
 
         [UnityTest]

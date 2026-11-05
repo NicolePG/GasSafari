@@ -16,6 +16,8 @@ namespace GasSafari.Editor
         public static void Build()
         {
             var config = ProvisionalFartFeedbackBuilder.LoadOrCreate<BotConfig>(CONFIG);
+            // Control doble: los bots compañeros usan la sincronía de Normal (docs/02 §13).
+            config.dualControlSyncChance = 0.75f;
             EditorUtility.SetDirty(config);
 
             var root = PrefabUtility.LoadPrefabContents(SERVICES);

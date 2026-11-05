@@ -121,8 +121,18 @@ Unidades: metros, segundos, kilogramos, newtons. Todos los valores viven en `Bal
 | Pausa | Start / Options | Esc |
 
 - Unirse a la partida: pulsar A/Cruz (o Espacio) en la pantalla de selección.
-- Modo solo con 2 animales: stick izquierdo + LT/RT para el primero; stick derecho + LB/RB para el segundo; habilidades con X y Y.
 - Remapeo completo desde Opciones (Input System rebinding).
+
+### Control doble (un mando, dos animales)
+Solo existe con mando, no con teclado. Para jugar solo con 2 animales o con otro jugador a mitad de mando.
+- **Animal A = mitad izquierda del mando:** stick izquierdo para moverse por el borde, LT pedo (toque o ráfaga), LB aguantar, X habilidad, L3 salto de Julien.
+- **Animal B = mitad derecha:** stick derecho, RT pedo, RB aguantar, Y habilidad, R3 salto de Julien.
+- **Puntería fija en 0 para los dos:** la balsa se gira disparando uno u otro animal.
+- **B / Círculo (mantener):** se agarran los dos.
+- **A / Cruz:** si alguno de los dos está en el agua, sube a la balsa; si no, es el Súper Pedo y cuenta como pulsado por los dos animales.
+- Los pedos de A y B sí forman grupo de sincronía entre sí.
+- **Cruceta:** pings, un solo ping para el jugador (valen para los dos animales). **Start:** pausa.
+- B ocupa el siguiente asiento trasero libre (se une como un jugador más, con su propio color). Los bots compañeros usan la dificultad Normal (`BotConfig.dualControlSyncChance` = 0.75).
 
 ## 14. Tabla maestra de balance (BalanceConfig)
 

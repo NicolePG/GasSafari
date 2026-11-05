@@ -22,12 +22,14 @@ namespace GasSafari.Characters
         private void Awake()
         {
             source = GetComponent<IPlayerCommandSource>();
+            (source as IAvatarBoundSource)?.Bind(this);
             Gas = GetComponent<GasTank>();
         }
 
         public void SetCommandSource(IPlayerCommandSource commandSource)
         {
             source = commandSource;
+            (source as IAvatarBoundSource)?.Bind(this);
         }
 
         private void Update()

@@ -118,6 +118,19 @@ namespace GasSafari.Bots
             cmd.GrabHeld = Time.time < grabUntil;
         }
 
+        private static bool DualControlActive()
+        {
+            if (!Services.IsReady || Services.Session == null)
+                return false;
+            var players = Services.Session.Players;
+            for (int i = 0; i < players.Count; i++)
+            {
+                if (players[i].Partner != null)
+                    return true;
+            }
+            return false;
+        }
+
         // ---------------------------------------------------------------- eventos
         private void OnFartHeard(PlayerAvatar who, FartType type, float impulse)
         {
@@ -130,6 +143,9 @@ namespace GasSafari.Bots
 
             var difficulty = Services.IsReady && Services.Session != null ? Services.Session.Difficulty : null;
             float chance = difficulty != null ? difficulty.botSyncChance : DEFAULT_SYNC_CHANCE;
+            // Con control doble (un mando para dos animales) los bots compañeros usan la dificultad Normal.
+            if (DualControlActive())
+                chance = config.dualControlSyncChance;
             if (Random.value > chance)
                 return;
 

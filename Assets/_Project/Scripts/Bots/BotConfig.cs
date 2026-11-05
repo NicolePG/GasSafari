@@ -39,6 +39,7 @@ namespace GasSafari.Bots
         public float syncDelayMin = 0.05f;
         public float syncDelayMax = 0.15f;
         [Tooltip("s sin disparar tras un ping Espera (docs: 1.5)")] public float waitPingTime = 1.5f;
+        [Tooltip("Con control doble los bots compañeros usan la dificultad Normal: su probabilidad de sincronía (docs/02 §13)")] public float dualControlSyncChance = 0.75f;
 
         [Header("Habilidades (docs/10 §15)")]
         [Tooltip("m por delante en que busca marcas de rampa o abismo (Marty)")] public float hintRange = 12f;

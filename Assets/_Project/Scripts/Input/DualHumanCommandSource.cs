@@ -1,21 +1,31 @@
+using System;
+using GasSafari.Characters;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace GasSafari.Input
 {
-    // Modo solo con 2 animales (docs/02 §13): un solo mando produce los comandos de dos animales.
-    //   Primero:  stick izquierdo (asiento y nado), LT (aguantar), RT (pedo), X (habilidad).
-    //   Segundo:  stick derecho (asiento y nado), LB (aguantar), RB (pedo), Y (habilidad).
-    // Provisional, no está en docs/02 §13: B agarra a los dos, A es el salto/subir de los dos, L3+R3 es el Súper Pedo
-    // de los dos (LB+RB ya son del segundo animal), la cruceta son los pings del primero y no hay puntería.
+    // Control doble (docs/02 §13): un mando produce los comandos de dos animales, solo con mando (no con teclado).
+    //   Animal A = mitad izquierda: stick izquierdo (asiento y nado), LT pedo, LB aguantar, X habilidad, L3 salto de Julien.
+    //   Animal B = mitad derecha:   stick derecho,   RT pedo, RB aguantar, Y habilidad, R3 salto de Julien.
+    //   Puntería fija en 0 para los dos (se gira disparando uno u otro).
+    //   B/Círculo (mantener): se agarran los dos. A/Cruz: si alguno está nadando, sube a la balsa; si no, es el
+    //   Súper Pedo y cuenta como pulsado por los dos animales. Cruceta: pings (un solo ping, con el color del jugador).
     public class DualHumanCommandSource : MonoBehaviour
     {
         private const float PING_THRESHOLD = 0.5f;
 
-        private sealed class Animal : IPlayerCommandSource
+        private sealed class Animal : IPlayerCommandSource, IAvatarBoundSource
         {
             public PlayerCommand Command;
+            public Func<bool> InWater = () => false;
             public PlayerCommand Current => Command;
+
+            public void Bind(PlayerAvatar avatar)
+            {
+                var states = avatar.GetComponent<AvatarStateMachine>();
+                InWater = () => states != null && states.State == AvatarState.Swimming;
+            }
         }
 
         private readonly Animal first = new Animal();
@@ -31,6 +41,12 @@ namespace GasSafari.Input
             pad = gamepad;
         }
 
+        // Pruebas: simula que un animal está nadando sin armar una balsa.
+        public void SetInWaterCheck(bool forFirst, Func<bool> inWater)
+        {
+            (forFirst ? first : second).InWater = inWater;
+        }
+
         private void Update()
         {
             if (pad == null || !pad.added)
@@ -44,14 +60,15 @@ namespace GasSafari.Input
             second.Command.SeatMove = right.x;
             first.Command.Swim = left;
             second.Command.Swim = right;
+            first.Command.Aim = second.Command.Aim = 0f;
 
-            first.Command.HoldHeld = pad.leftTrigger.isPressed;
-            first.Command.FartHeld = pad.rightTrigger.isPressed;
-            second.Command.HoldHeld = pad.leftShoulder.isPressed;
-            second.Command.FartHeld = pad.rightShoulder.isPressed;
-            if (pad.rightTrigger.wasPressedThisFrame)
+            first.Command.FartHeld = pad.leftTrigger.isPressed;
+            second.Command.FartHeld = pad.rightTrigger.isPressed;
+            first.Command.HoldHeld = pad.leftShoulder.isPressed;
+            second.Command.HoldHeld = pad.rightShoulder.isPressed;
+            if (pad.leftTrigger.wasPressedThisFrame)
                 first.Command.FartPresses++;
-            if (pad.rightShoulder.wasPressedThisFrame)
+            if (pad.rightTrigger.wasPressedThisFrame)
                 second.Command.FartPresses++;
 
             first.Command.AbilityHeld = pad.buttonWest.isPressed;
@@ -61,15 +78,26 @@ namespace GasSafari.Input
             if (pad.buttonNorth.wasPressedThisFrame)
                 second.Command.AbilityPresses++;
 
-            bool grab = pad.buttonEast.isPressed;
-            bool super = pad.leftStickButton.isPressed && pad.rightStickButton.isPressed;
-            first.Command.GrabHeld = second.Command.GrabHeld = grab;
-            first.Command.SuperHeld = second.Command.SuperHeld = super;
-            if (pad.buttonSouth.wasPressedThisFrame)
-            {
+            // Salto de Julien: L3 para A, R3 para B.
+            if (pad.leftStickButton.wasPressedThisFrame)
                 first.Command.JumpPresses++;
+            if (pad.rightStickButton.wasPressedThisFrame)
                 second.Command.JumpPresses++;
+
+            first.Command.GrabHeld = second.Command.GrabHeld = pad.buttonEast.isPressed;
+
+            // A/Cruz: sube al que está en el agua; si nadie nada, es el Súper Pedo de los dos.
+            bool firstSwims = first.InWater();
+            bool secondSwims = second.InWater();
+            bool anySwims = firstSwims || secondSwims;
+            if (pad.buttonSouth.wasPressedThisFrame && anySwims)
+            {
+                if (firstSwims)
+                    first.Command.JumpPresses++;
+                if (secondSwims)
+                    second.Command.JumpPresses++;
             }
+            first.Command.SuperHeld = second.Command.SuperHeld = pad.buttonSouth.isPressed && !anySwims;
 
             first.Command.Ping = ToPing(pad.dpad.ReadValue());
         }

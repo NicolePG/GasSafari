@@ -37,6 +37,7 @@ MonoBehaviour:
   syncDelayMin: 0.05
   syncDelayMax: 0.15
   waitPingTime: 1.5
+  dualControlSyncChance: 0.75
   hintRange: 12
   sharpCurveAngle: 45
   spinForBellyFlop: 90
