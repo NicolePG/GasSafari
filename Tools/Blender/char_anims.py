@@ -76,26 +76,11 @@ def mirror(p):
 
 
 def sample(r, name, base, fn, loop, step=2):
-    n = r.frames(base)
-    keys = [(i, fn(i / n)) for i in range(0, n, step)] + [(n, fn(0.0 if loop else 1.0))]
-    return gs.make_action(r.arm, name, keys, loop=loop)
+    return gs.sample_action(r.arm, name, r.frames(base), fn, loop, step)
 
 
 def keyed(r, name, base, phases, fn):
-    """phases: [(t, dict)], fn(t, dict) -> Pose. Interpola los valores del dict entre fases."""
-    n = r.frames(base)
-    keys = []
-    for i in range(0, n + 1, 2):
-        t = i / n
-        for k in range(len(phases) - 1):
-            t0, a = phases[k]
-            t1, b = phases[k + 1]
-            if t0 <= t <= t1:
-                u = (t - t0) / max(t1 - t0, 1e-6)
-                u = u * u * (3 - 2 * u)
-                keys.append((i, fn(t, {kk: a[kk] + (b[kk] - a[kk]) * u for kk in a})))
-                break
-    return gs.make_action(r.arm, name, keys, loop=False)
+    return gs.phase_action(r.arm, name, r.frames(base), phases, fn)
 
 
 # ---------------------------------------------------------------------------

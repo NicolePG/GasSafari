@@ -557,6 +557,27 @@ def build_armature(name, j, neck_chain=None, tail=None, extra=None):
     return arm
 
 
+def build_generic_armature(name, bones):
+    """Esqueleto Generic. bones: [(nombre, cabeza, cola, padre o None, conectado)], padres antes que hijos."""
+    arm_data = bpy.data.armatures.new(name + "_Armature")
+    arm = bpy.data.objects.new(name, arm_data)
+    _link(arm)
+    arm.show_in_front = True
+    bpy.context.view_layer.objects.active = arm
+    bpy.ops.object.mode_set(mode="EDIT")
+    eb = arm_data.edit_bones
+    for b in bones:
+        nm, h, t, par = b[:4]
+        e = eb.new(nm)
+        e.head, e.tail = Vector(h), Vector(t)
+        e.roll = 0.0
+        if par:
+            e.parent = eb[par]
+            e.use_connect = len(b) > 4 and b[4]
+    bpy.ops.object.mode_set(mode="OBJECT")
+    return arm
+
+
 def join_and_skin(name, parts, arm):
     """Une las piezas en una sola malla, aplica pesos automáticos (heat) y fija las piezas rígidas
     (ojos, accesorios, extremidades de juguete) al 100 % en su hueso."""
@@ -714,6 +735,30 @@ def make_action(arm, name, keys, loop=False, loc_bones=("Hips",)):
 
 def wave(t, freq=1.0, phase=0.0):
     return math.sin(2 * math.pi * (t * freq + phase))
+
+
+def sample_action(arm, name, n, fn, loop, step=2, loc_bones=("Hips",)):
+    """Clip muestreado: fn(t) -> Pose con t en [0, 1]; en bucle el último cuadro repite el primero."""
+    keys = [(i, fn(i / n)) for i in range(0, n, step)] + [(n, fn(0.0 if loop else 1.0))]
+    return make_action(arm, name, keys, loop=loop, loc_bones=loc_bones)
+
+
+def phase_action(arm, name, n, phases, fn, step=2, loc_bones=("Hips",)):
+    """Clip por fases: phases = [(t, dict)], fn(t, dict) -> Pose. Interpola el dict con suavizado."""
+    keys = []
+    for i in range(0, n + 1, step):
+        t = i / n
+        for k in range(len(phases) - 1):
+            t0, a = phases[k]
+            t1, b = phases[k + 1]
+            if t0 <= t <= t1:
+                u = (t - t0) / max(t1 - t0, 1e-6)
+                u = u * u * (3 - 2 * u)
+                keys.append((i, fn(t, {kk: a[kk] + (b[kk] - a[kk]) * u for kk in a})))
+                break
+    if keys[-1][0] != n:
+        keys.append((n, fn(1.0, phases[-1][1])))
+    return make_action(arm, name, keys, loop=False, loc_bones=loc_bones)
 
 
 def build_standard_actions(arm, spec):
