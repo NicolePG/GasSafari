@@ -23,6 +23,8 @@ namespace GasSafari.Core
         public IReadOnlyList<PlayerSlot> Players => players;
         // Opción de accesibilidad (docs/07). La cargará el guardado.
         public bool ScreenShake { get; set; } = true;
+        // En online la pausa no detiene el juego (docs/07 §4).
+        public bool IsOnline { get; set; }
 
         public event Action<PlayerSlot> PlayerAdded;
         public event Action<PlayerSlot> PlayerRemoved;

@@ -64,6 +64,10 @@ namespace GasSafari.Editor
                 E("hud.superfart_ready", "¡SÚPER PEDO LISTO!"), E("hud.go", "¡YA!"), E("hud.checkpoint", "CHECKPOINT"),
                 E("hud.no_gas", "Sin gas"), E("hud.mangos", "Mangos {0}/{1}"), E("hud.checkpoint_progress", "Checkpoint {0}/{1}"),
                 E("ping.now", "¡Ahora!"), E("ping.wait", "Espera"), E("ping.left", "Gira a la izquierda"), E("ping.right", "Gira a la derecha"),
+                E("pause.title", "Pausa"), E("pause.resume", "Continuar"), E("pause.restart_checkpoint", "Reiniciar desde checkpoint"),
+                E("pause.restart_level", "Reiniciar nivel"), E("pause.options", "Opciones"), E("pause.controls", "Controles"),
+                E("pause.quit", "Salir al mapa"), E("pause.yes", "Sí"), E("pause.no", "No"),
+                E("pause.vote", "¿Reiniciar desde el checkpoint? Sí {0} · No {1} (hacen falta {2})"),
                 E("results.who", "¿Quién fue?"), E("assist.offer", "¿Necesitan una Ayuda Real?"),
                 // Nombres de sinergias (docs/03).
                 E("synergy.honda_selva", "Honda de la Selva"), E("synergy.terremoto", "Terremoto"), E("synergy.fiesta_total", "Fiesta Total"),
@@ -298,7 +302,7 @@ namespace GasSafari.Editor
             return AssetDatabase.LoadAssetAtPath<Sprite>(RING_PATH);
         }
 
-        private static RectTransform Rect(string name, Transform parent)
+        internal static RectTransform Rect(string name, Transform parent)
         {
             var go = new GameObject(name, typeof(RectTransform));
             if (parent != null)
@@ -306,7 +310,7 @@ namespace GasSafari.Editor
             return (RectTransform)go.transform;
         }
 
-        private static Image Img(string name, Transform parent, string builtinSprite, Color color)
+        internal static Image Img(string name, Transform parent, string builtinSprite, Color color)
         {
             var image = Rect(name, parent).gameObject.AddComponent<Image>();
             image.sprite = AssetDatabase.GetBuiltinExtraResource<Sprite>(builtinSprite);
@@ -315,7 +319,7 @@ namespace GasSafari.Editor
             return image;
         }
 
-        private static TextMeshProUGUI Text(string name, Transform parent, float size, TextAlignmentOptions alignment)
+        internal static TextMeshProUGUI Text(string name, Transform parent, float size, TextAlignmentOptions alignment)
         {
             var text = Rect(name, parent).gameObject.AddComponent<TextMeshProUGUI>();
             text.fontSize = size;
@@ -326,12 +330,12 @@ namespace GasSafari.Editor
             return text;
         }
 
-        private static void Anchor(RectTransform rect, Vector2 anchor, Vector2 size, Vector2 position)
+        internal static void Anchor(RectTransform rect, Vector2 anchor, Vector2 size, Vector2 position)
         {
             Place(rect, anchor, size, position);
         }
 
-        private static void Place(RectTransform rect, Vector2 anchor, Vector2 size, Vector2 position)
+        internal static void Place(RectTransform rect, Vector2 anchor, Vector2 size, Vector2 position)
         {
             rect.anchorMin = anchor;
             rect.anchorMax = anchor;
@@ -340,7 +344,7 @@ namespace GasSafari.Editor
             rect.anchoredPosition = position;
         }
 
-        private static void Stretch(RectTransform rect, float inset = 0f)
+        internal static void Stretch(RectTransform rect, float inset = 0f)
         {
             rect.anchorMin = Vector2.zero;
             rect.anchorMax = Vector2.one;
@@ -348,14 +352,14 @@ namespace GasSafari.Editor
             rect.offsetMax = Vector2.one * -inset;
         }
 
-        private static void SetRef(Object target, string field, Object value)
+        internal static void SetRef(Object target, string field, Object value)
         {
             var so = new SerializedObject(target);
             so.FindProperty(field).objectReferenceValue = value;
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 
-        private static T LoadOrCreate<T>(string path) where T : ScriptableObject
+        internal static T LoadOrCreate<T>(string path) where T : ScriptableObject
         {
             var asset = AssetDatabase.LoadAssetAtPath<T>(path);
             if (asset != null)

@@ -61,12 +61,16 @@ namespace GasSafari.Editor
                 SetField(levelManager, "finishGate", finish);
                 SetField(levelManager, "checkpoints", checkpoints);
 
+                var pause = manager.AddComponent<PauseController>();
+                SetField(pause, "level", levelManager);
+                SetField(pause, "checkpoints", checkpoints);
                 CreateFlow();
                 CreateCamera();
                 CreateLight();
                 CreateVolume();
                 CreateHud();
                 CreateEventSystem();
+                PauseMenuBuilder.Populate(pause);
                 water.transform.SetAsLastSibling();
 
                 EnsureFolder("Assets/_Project/Scenes/Levels");

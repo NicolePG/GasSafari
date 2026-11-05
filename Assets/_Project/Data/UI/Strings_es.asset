@@ -45,6 +45,27 @@ MonoBehaviour:
     text: Gira a la izquierda
   - key: ping.right
     text: Gira a la derecha
+  - key: pause.title
+    text: Pausa
+  - key: pause.resume
+    text: Continuar
+  - key: pause.restart_checkpoint
+    text: Reiniciar desde checkpoint
+  - key: pause.restart_level
+    text: Reiniciar nivel
+  - key: pause.options
+    text: Opciones
+  - key: pause.controls
+    text: Controles
+  - key: pause.quit
+    text: Salir al mapa
+  - key: pause.yes
+    text: "S\xED"
+  - key: pause.no
+    text: No
+  - key: pause.vote
+    text: "\xBFReiniciar desde el checkpoint? S\xED {0} \xB7 No {1} (hacen falta
+      {2})"
   - key: results.who
     text: "\xBFQui\xE9n fue?"
   - key: assist.offer

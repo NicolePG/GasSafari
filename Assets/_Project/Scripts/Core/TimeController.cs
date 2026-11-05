@@ -7,8 +7,11 @@ namespace GasSafari.Core
     {
         private float baseFixedDeltaTime;
         private float slowTimer;
+        private float slowScale = 1f;
+        private bool paused;
 
         public bool IsSlowMotion => slowTimer > 0f;
+        public bool IsPaused => paused;
 
         private void Awake()
         {
@@ -18,7 +21,16 @@ namespace GasSafari.Core
         public void SlowMotion(float scale, float duration)
         {
             slowTimer = duration;
-            SetScale(scale);
+            slowScale = scale;
+            if (!paused)
+                SetScale(scale);
+        }
+
+        // Pausa del nivel (docs/07 §4): congela el tiempo y al reanudar vuelve a la cámara lenta si sigue activa.
+        public void SetPaused(bool value)
+        {
+            paused = value;
+            SetScale(paused ? 0f : IsSlowMotion ? slowScale : 1f);
         }
 
         private void Update()
@@ -27,7 +39,7 @@ namespace GasSafari.Core
                 return;
 
             slowTimer -= Time.unscaledDeltaTime;
-            if (slowTimer <= 0f)
+            if (slowTimer <= 0f && !paused)
                 SetScale(1f);
         }
 

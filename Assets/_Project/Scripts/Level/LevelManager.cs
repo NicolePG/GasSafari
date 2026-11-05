@@ -133,6 +133,7 @@ namespace GasSafari.Level
             if (IsPaused == paused)
                 return;
             IsPaused = paused;
+            spawner.SetInputLocked(paused || State != LevelState.Running && State != LevelState.Respawning);
             PausedChanged?.Invoke(paused);
         }
 
