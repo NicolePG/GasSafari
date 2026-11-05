@@ -50,6 +50,12 @@ blender --background --python Tools/Blender/cosmetics.py   # -- --hats | --rafts
 Render EEVEE con sombreado toon de 3 bandas y contorno de grosor constante, armado con los modelos que ya
 generan los demás scripts (los personajes se guardan en caché en `Tools/Blender/previews/_cache/`).
 
+```
+blender --background --python Tools/Blender/ui_art.py   # retratos, poses, iconos, logo y mapa → Tools/Export/UI/
+```
+
+Cada archivo de `Tools/Export/UI/` está explicado en `Tools/Export/UI/README.md`.
+
 ## Sonidos (Python 3 + numpy, scipy, soundfile)
 
 ```

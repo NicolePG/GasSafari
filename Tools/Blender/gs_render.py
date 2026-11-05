@@ -657,6 +657,25 @@ def camera(loc, target, lens=35.0, ortho=None, roll=0.0, shift=(0.0, 0.0), clip=
     return o
 
 
+def frame(objs, direction, lens=50.0, margin=1.1, aim=None, shift=(0.0, 0.0)):
+    """Cámara en perspectiva que encuadra 'objs' mirando desde 'direction'."""
+    lo, hi = gs._world_bbox(objs)
+    ctr = (lo + hi) / 2 if aim is None else Vector(aim)
+    d = Vector(direction).normalized()
+    m = (-d).to_track_quat("-Z", "Y").to_matrix()
+    right, up = m.col[0], m.col[1]
+    corners = [Vector((x, y, z)) for x in (lo.x, hi.x) for y in (lo.y, hi.y) for z in (lo.z, hi.z)]
+    er = max(abs((c - ctr).dot(right)) for c in corners)
+    eu = max(abs((c - ctr).dot(up)) for c in corners)
+    ed = max((c - ctr).dot(d) for c in corners)
+    sc = bpy.context.scene
+    ar = sc.render.resolution_x / sc.render.resolution_y
+    th = 18.0 / lens  # tan(fov/2) del lado mayor
+    tw, tv = (th, th / ar) if ar >= 1 else (th * ar, th)
+    dist = max(er / tw, eu / tv) * margin + ed
+    return camera(ctr + d * dist, ctr, lens, shift=shift)
+
+
 def render(path, outline=True, px=2.6, outline_col="#1C1A26"):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     toonify_all()
