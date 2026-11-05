@@ -52,8 +52,8 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M2-14** Prueba T-ABIL-01 · qa-check · 11 §2 · hecho 2026-11-03
 
 ## M3 · Sistema de niveles (2-3 nov)
-- [ ] **M3-01** `LevelData` x31 y `WorldData` x6 · level-builder · 04
-- [ ] **M3-02** `LevelManager`, `RaftSpawner`, `StartGate`, `FinishGate` · level-builder · 10 §5
+- [x] **M3-01** `LevelData` x31 y `WorldData` x6 · level-builder · 04 · hecho 2026-11-04 · T-0 sin mundo (los 6 WorldData son W1-W6); desbloqueos según docs/04 Mundos
+- [x] **M3-02** `LevelManager`, `RaftSpawner`, `StartGate`, `FinishGate` · level-builder · 10 §5 · hecho 2026-11-04 · provisional: cuenta 3-2-1 con pingCountdownStep (0.5 s), introDuration 0 y finishDelay 2 s no están en docs; PlayerAvatar.InputLocked
 - [ ] **M3-03** Escena `_LevelTemplate` · level-builder · 10 §3
 - [ ] **M3-04** Shaders `SG_Toon` y `SG_ToonWater` · level-builder · 09 §2
 - [ ] **M3-05** `HazardBase`, `HazardTag`, `HazardConfig` y aviso común · hazards-powerups · 05

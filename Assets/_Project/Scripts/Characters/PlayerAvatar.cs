@@ -14,6 +14,8 @@ namespace GasSafari.Characters
         public CharacterData Character => character;
         public PlayerCommand Command { get; private set; }
         public GasTank Gas { get; private set; }
+        // Intro, cuenta 3-2-1 y resultados: el avatar recibe un comando vacío (LevelManager).
+        public bool InputLocked { get; set; }
 
         private void Awake()
         {
@@ -29,7 +31,7 @@ namespace GasSafari.Characters
         private void Update()
         {
             if (source != null)
-                Command = source.Current;
+                Command = InputLocked ? default : source.Current;
         }
     }
 }
