@@ -25,6 +25,8 @@ namespace GasSafari.Core
         public static event Action<PlayerAvatar> OnPlayerFell;
         // rescuer es null cuando la balsa pasa por encima del caído.
         public static event Action<PlayerAvatar, PlayerAvatar> OnPlayerRescued;
+        // Un peligro empieza su aviso previo (docs/05): lo usan el HUD, Melman y los bots.
+        public static event Action<Hazards.HazardBase> OnHazardWarning;
 
         public static void RaiseFart(PlayerAvatar avatar, FartType type, float impulse) => OnFart?.Invoke(avatar, type, impulse);
         public static void RaiseSync(int players, float multiplier) => OnSync?.Invoke(players, multiplier);
@@ -37,6 +39,7 @@ namespace GasSafari.Core
         public static void RaiseRespawn() => OnRespawn?.Invoke();
         public static void RaisePlayerFell(PlayerAvatar avatar) => OnPlayerFell?.Invoke(avatar);
         public static void RaisePlayerRescued(PlayerAvatar rescued, PlayerAvatar rescuer) => OnPlayerRescued?.Invoke(rescued, rescuer);
+        public static void RaiseHazardWarning(Hazards.HazardBase hazard) => OnHazardWarning?.Invoke(hazard);
         public static void RaiseChamberPopped(int chamber) => OnChamberPopped?.Invoke(chamber);
         public static void RaiseChamberRepaired(int chamber) => OnChamberRepaired?.Invoke(chamber);
         public static void RaiseRaftSunk() => OnRaftSunk?.Invoke();
@@ -63,6 +66,7 @@ namespace GasSafari.Core
             OnRespawn = null;
             OnPlayerFell = null;
             OnPlayerRescued = null;
+            OnHazardWarning = null;
         }
     }
 }
