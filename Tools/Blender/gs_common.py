@@ -692,8 +692,9 @@ def apply_pose(arm, pose):
         pb.location = R.inverted() @ v
 
 
-def make_action(arm, name, keys, loop=False):
-    """keys: lista de (frame, Pose). Inserta claves en todos los huesos para clips limpios."""
+def make_action(arm, name, keys, loop=False, loc_bones=("Hips",)):
+    """keys: lista de (frame, Pose). Inserta claves en todos los huesos para clips limpios.
+    loc_bones: huesos que además llevan claves de posición."""
     arm.animation_data_create()
     act = bpy.data.actions.new(name)
     act.use_fake_user = True
@@ -702,7 +703,7 @@ def make_action(arm, name, keys, loop=False):
         apply_pose(arm, pose)
         for pb in arm.pose.bones:
             pb.keyframe_insert("rotation_quaternion", frame=frame, group=pb.name)
-            if pb.name == "Hips":
+            if pb.name in loc_bones:
                 pb.keyframe_insert("location", frame=frame, group=pb.name)
     act.use_cyclic = loop
     act["gs_loop"] = loop
