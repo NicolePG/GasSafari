@@ -37,7 +37,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 
 ## M2 · Personajes (31 oct-2 nov)
 - [x] **M2-01** (TÚ) Generar los 5 personajes en Meshy y riggear · — · 09 §4 · hecho 2026-11-04 con Blender por script (no Meshy): `Tools/Blender/*.py`, FBX en `Tools/Export/Characters/<Nombre>/`, rig Humanoid (+Neck1-3 en Melman, cadena Tail*), clips Idle_Sit, Swim, Fall, Climb, Celebrate, Hit; faltan Shuffle, Grab, Ability, Disappointed, Victory y Select_Pose (Fart_* por código)
-- [ ] **M2-02** (TÚ) Grabar pedos y voces de los 5 personajes · — · 08 §6
+- [x] **M2-02** (TÚ) Grabar pedos y voces de los 5 personajes · — · 08 §6 · hecho 2026-11-05 sin grabar: selección automática (`Tools/Audio/curate_audio.py`, motivos en `Tools/Export/Audio/ELEGIR.md`); 382 de 408 efectos aprobados, megapedos regenerados más cortos (0.8-1.4 s), voces de Windows; capas de intensidad que quedan: w2, w3_boss, w4_boss, w6_boss
 - [x] **M2-03** `CharacterData` x5 · character-ability · 03 Resumen · hecho 2026-11-03 · `ability`/`passive` se asignan en M2-05..09 y `sfxSet` en M2-13; color de UI por personaje decidido 2026-11-04 (docs/03)
 - [x] **M2-04** `AbilityBase`, `AbilityRunner`, `AbilityContext`, `PassiveBase` · character-ability · 03 · hecho 2026-11-03
 - [x] **M2-05** Alex: Rugido + Estrella del Show · character-ability · 03 Alex · hecho 2026-11-03

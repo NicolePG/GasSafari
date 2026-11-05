@@ -81,12 +81,6 @@
  "SFX/Raft/raft_chamber_pop_01.wav": [
   "síntesis propia (Tools/Audio/build_sfx.py)"
  ],
- "SFX/Raft/raft_chamber_pop_02.wav": [
-  "síntesis propia (Tools/Audio/build_sfx.py)"
- ],
- "SFX/Raft/raft_chamber_pop_03.wav": [
-  "síntesis propia (Tools/Audio/build_sfx.py)"
- ],
  "SFX/Raft/raft_chamber_repair_01.wav": [
   "síntesis propia (Tools/Audio/build_sfx.py)"
  ],
@@ -126,9 +120,6 @@
  "SFX/Raft/raft_creak_loop_01.wav": [
   "síntesis propia (Tools/Audio/build_sfx.py)"
  ],
- "SFX/Raft/raft_creak_loop_02.wav": [
-  "síntesis propia (Tools/Audio/build_sfx.py)"
- ],
  "SFX/Water/water_splash_small_01.wav": [
   "OGA:40-cc0-water-splash-slime-sfx/splash_09.ogg"
  ],
@@ -146,10 +137,6 @@
  ],
  "SFX/Water/water_splash_big_03.wav": [
   "OGA:40-cc0-water-splash-slime-sfx/splash_07.ogg"
- ],
- "SFX/Water/water_flow_loop_01.wav": [
-  "OGA:40-cc0-water-splash-slime-sfx/loop_water_01.ogg",
-  "loop sin cortes por fundido (build_sfx.py)"
  ],
  "SFX/Water/water_flow_loop_02.wav": [
   "OGA:30-cc0-sfx-loops/water_flowing.ogg",
@@ -235,9 +222,6 @@
  "SFX/Hazards/wind_gust_02.wav": [
   "síntesis propia (Tools/Audio/build_sfx.py)"
  ],
- "SFX/Hazards/wind_gust_03.wav": [
-  "síntesis propia (Tools/Audio/build_sfx.py)"
- ],
  "SFX/Hazards/whirlpool_loop_01.wav": [
   "síntesis propia (Tools/Audio/build_sfx.py)"
  ],
@@ -256,10 +240,6 @@
   "Impact Sounds (Kenney)/footstep_snow_001.ogg",
   "síntesis propia (Tools/Audio/build_sfx.py)"
  ],
- "SFX/Hazards/sand_stuck_02.wav": [
-  "Impact Sounds (Kenney)/footstep_snow_002.ogg",
-  "síntesis propia (Tools/Audio/build_sfx.py)"
- ],
  "SFX/Hazards/vine_burn_01.wav": [
   "síntesis propia (Tools/Audio/build_sfx.py)"
  ],
@@ -268,9 +248,6 @@
  ],
  "SFX/Hazards/log_spin_loop_01.wav": [
   "OGA:30-cc0-sfx-loops/rolling.ogg"
- ],
- "SFX/Hazards/log_spin_loop_02.wav": [
-  "OGA:100-cc0-sfx/machine_03.ogg"
  ],
  "SFX/Hazards/fossa_rustle_01.wav": [
   "síntesis propia (Tools/Audio/build_sfx.py)"
@@ -319,10 +296,6 @@
  ],
  "SFX/Hazards/geyser_warn_02.wav": [
   "síntesis propia (Tools/Audio/build_sfx.py)"
- ],
- "SFX/Hazards/geyser_burst_02.wav": [
-  "síntesis propia (Tools/Audio/build_sfx.py)",
-  "OGA:40-cc0-water-splash-slime-sfx"
  ],
  "SFX/Hazards/rock_warn_01.wav": [
   "OGA:75-cc0-breaking-falling-hit-sfx/bfh1_rock_falling_01.ogg",
@@ -437,9 +410,6 @@
  "SFX/PowerUps/pickup_onion_01.wav": [
   "síntesis propia (Tools/Audio/build_sfx.py)"
  ],
- "SFX/PowerUps/pickup_onion_02.wav": [
-  "síntesis propia (Tools/Audio/build_sfx.py)"
- ],
  "SFX/PowerUps/pickup_golden_mango_01.wav": [
   "síntesis propia (Tools/Audio/build_sfx.py)"
  ],
@@ -468,9 +438,6 @@
   "síntesis propia (Tools/Audio/build_sfx.py)"
  ],
  "SFX/Events/superfart_launch_01.wav": [
-  "síntesis propia (Tools/Audio/build_sfx.py)"
- ],
- "SFX/Events/superfart_ready_02.wav": [
   "síntesis propia (Tools/Audio/build_sfx.py)"
  ],
  "SFX/Events/superfart_launch_02.wav": [

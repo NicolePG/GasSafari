@@ -1,7 +1,7 @@
 """Pedos sintetizados por personaje (docs/08 §4, el doble de variantes para elegir).
 Por personaje: 12 toques, 4 ráfagas en loop, 2 cargas en loop, 4 megapedos, 4 toses.
 Globales: 6 fart_fire (capa de locoto) y 6 fart_bubble (capa de gaseosa).
-python fart_synth.py  →  Tools/Export/Audio/SFX/Farts/
+python fart_synth.py  →  Tools/Export/Audio/SFX/Farts/   (--mega-only: solo los megapedos)
 
 Modelo: tren de pulsos (vibración de "labios") con f0 variable, jitter, temblor (flaps),
 ruido de aire, resonancia del cuerpo, saturación suave y envolvente."""
@@ -135,7 +135,7 @@ def charge_loop(p, rng, i):
 
 
 def mega(p, rng, i):
-    dur = rng.uniform(1.5, 2.4) * (0.85 + 0.15 * p["tempo"])
+    dur = rng.uniform(0.5, 0.85) * (0.85 + 0.15 * p["tempo"])  # total 0.8-1.5 s con la cola (M2-02: antes 2-3 s)
     n = A.n_of(dur)
     u = np.linspace(0, 1, n)
     f0 = p["f0"] * (1.35 - 0.7 * u ** 0.8) * rng.uniform(0.9, 1.1)
@@ -146,11 +146,11 @@ def mega(p, rng, i):
     e *= 1 + 0.25 * np.exp(-u * 12)
     x = x * e
     tail = []
-    for k in range(2 + i % 3):
+    for k in range(1 + i % 3):
         sd = rng.uniform(0.05, 0.12)
         tail.append(np.zeros(A.n_of(rng.uniform(0.03, 0.08))))
         tail.append(puff_seg(sd, p["f0"] * rng.uniform(0.9, 1.4), "fall", p, rng) * (0.6 - 0.12 * k))
-    return np.concatenate([x] + tail + [air_tail(0.25, p, rng, 0.2)])
+    return np.concatenate([x] + tail + [air_tail(0.15, p, rng, 0.2)])
 
 
 def cough(p, rng, i):
@@ -198,11 +198,19 @@ def bubble(rng, i):
     return x + fizz
 
 
+MEGA_ONLY = "--mega-only" in sys.argv  # regenera solo los megapedos (el resto no cambia)
+
+
 def main():
     report = []
     for ci, (pj, p) in enumerate(CHARS.items()):
         d = os.path.join(OUT, pj)
         rng = np.random.default_rng(1000 + ci)
+        rng_m = np.random.default_rng(3000 + ci)  # los megapedos tienen su propio generador
+        if MEGA_ONLY:
+            for i in range(4):
+                A.save(os.path.join(d, f"fart_mega_{pj}_{i + 1:02d}.wav"), mega(p, rng_m, i))
+            continue
         for i in range(12):
             A.save(os.path.join(d, f"fart_puff_{pj}_{i + 1:02d}.wav"), puff(p, rng, i))
         for i in range(4):
@@ -214,7 +222,7 @@ def main():
             report.append((f"fart_charge_{pj}_{i + 1:02d}", A.loop_seam(x)))
             A.save(os.path.join(d, f"fart_charge_{pj}_{i + 1:02d}.wav"), x, loop=True)
         for i in range(4):
-            A.save(os.path.join(d, f"fart_mega_{pj}_{i + 1:02d}.wav"), mega(p, rng, i))
+            A.save(os.path.join(d, f"fart_mega_{pj}_{i + 1:02d}.wav"), mega(p, rng_m, i))
         for i in range(4):
             A.save(os.path.join(d, f"fart_cough_{pj}_{i + 1:02d}.wav"), cough(p, rng, i))
         print("ok", pj)
