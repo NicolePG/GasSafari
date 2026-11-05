@@ -83,6 +83,9 @@ namespace GasSafari.Editor
             water.layer = GameLayers.Water;
             water.transform.position = new Vector3(0f, 0f, CHANNEL_LENGTH * 0.5f);
             water.transform.localScale = new Vector3(WATER_SIZE, 1f, WATER_SIZE);
+            var material = AssetDatabase.LoadAssetAtPath<Material>(ToonMaterialBuilder.WATER_PATH);
+            if (material != null)
+                water.GetComponent<MeshRenderer>().sharedMaterial = material;
             return water;
         }
 

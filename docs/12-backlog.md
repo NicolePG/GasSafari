@@ -55,7 +55,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M3-01** `LevelData` x31 y `WorldData` x6 · level-builder · 04 · hecho 2026-11-04 · T-0 sin mundo (los 6 WorldData son W1-W6); desbloqueos según docs/04 Mundos
 - [x] **M3-02** `LevelManager`, `RaftSpawner`, `StartGate`, `FinishGate` · level-builder · 10 §5 · hecho 2026-11-04 · provisional: cuenta 3-2-1 con pingCountdownStep (0.5 s), introDuration 0 y finishDelay 2 s no están en docs; PlayerAvatar.InputLocked
 - [x] **M3-03** Escena `_LevelTemplate` · level-builder · 10 §3 · hecho 2026-11-04 · generada con Gas Safari/Setup/Crear plantilla de nivel; agua con material provisional hasta M3-04; HUD vacío hasta M3-07
-- [ ] **M3-04** Shaders `SG_Toon` y `SG_ToonWater` · level-builder · 09 §2
+- [x] **M3-04** Shaders `SG_Toon` y `SG_ToonWater` · level-builder · 09 §2 · hecho 2026-11-04 · escritos en HLSL URP (no Shader Graph) con materiales M_Toon_Default y M_ToonWater; verificado con captura
 - [ ] **M3-05** `HazardBase`, `HazardTag`, `HazardConfig` y aviso común · hazards-powerups · 05
 - [ ] **M3-06** `PowerUpBase` + P01-P07 · hazards-powerups · 05 Power-ups
 - [ ] **M3-07** HUD completo · ui-hud · 07 §3
