@@ -1,5 +1,5 @@
-"""Genera Tools/Export/Audio/ELEGIR.md y Tools/Export/CREDITS_pendiente.md a partir de lo exportado,
-de sources.json y de los manifiestos de OpenGameArt.
+"""Genera Tools/Export/Audio/ELEGIR.md a partir de lo exportado, de sources.json y de los manifiestos de OpenGameArt.
+No genera créditos: el oficial es Assets/_Project/CREDITS.md y se edita a mano.
 uso: python -I gen_docs.py <carpeta_packs>"""
 import collections
 import glob
@@ -99,60 +99,12 @@ def elegir():
                  + f" (Kenney Music Jingles: {', '.join(rep[sid])})")
     L += ["", "## 5. Pendiente de decidir", "",
           "- Voces: ¿se quedan las de la voz de Windows o grabamos voces propias (docs/08 §6)? Ver la nota de "
-          "licencia en `Tools/Export/CREDITS_pendiente.md`.",
+          "licencia en `Assets/_Project/CREDITS.md`.",
           "- `mus_tutorial`, `mus_party` y `mus_results` duran más de 200 s en el original: los corté a 200 s con "
           "fade (no loopean perfecto).", ""]
     open(os.path.join(OUT, "ELEGIR.md"), "w", encoding="utf-8").write("\n".join(L))
 
 
-def credits():
-    man = {}
-    for m in glob.glob(os.path.join(PACKS, "oga_*", "manifest.json")):
-        man.update(json.load(open(m, encoding="utf-8")))
-    src = json.load(open(os.path.join(OUT, "sources.json"), encoding="utf-8"))
-    uses = collections.defaultdict(set)
-    for out_file, sources in src.items():
-        for s in sources:
-            if s.startswith("OGA:"):
-                slug = s[4:].split("/")[0].split(" · ")[0]
-                uses[("oga", slug)].add(out_file)
-            elif "(Kenney)" in s:
-                uses[("kenney", s.split(" (Kenney)")[0])].add(out_file)
-    L = ["# CREDITS (pendiente de pasar a `Assets/_Project/CREDITS.md`)", "",
-         "Generado por `Tools/Audio/gen_docs.py`. Fuentes de modelos y sonidos producidos en `Tools/`. "
-         "Solo se usaron recursos CC0 o propios. CC0 no exige atribución, pero se anota igual (docs/08 §6).", "",
-         "## Modelos 3D", "",
-         "| Archivos | Autor | Licencia |", "|---|---|---|",
-         "| `Tools/Export/Characters/*`, `Tools/Export/Props/*` | Propio: generados por script en Blender 4.5 "
-         "(`Tools/Blender/*.py`), diseño original | Propio del proyecto |", "",
-         "## Sonidos propios", "",
-         "| Archivos | Origen | Licencia |", "|---|---|---|",
-         "| `SFX/Farts/**` | Síntesis propia (`Tools/Audio/fart_synth.py`) | Propio |",
-         "| Efectos marcados \"síntesis propia\" en `sources.json` | `Tools/Audio/build_sfx.py` | Propio |",
-         "| Capas `_intensity` y `mus_w3_boss_*` | `Tools/Audio/build_music.py` | Propio |",
-         "| `Voices/**` | Voz de Windows (System.Speech: Microsoft David / Zira) con tono y velocidad modificados "
-         "(`Tools/Audio/voices.py`) | **Revisar**: salida de las voces de Windows; aceptable en un proyecto no "
-         "comercial, reemplazar por grabaciones propias si se publica |", "",
-         "## Packs externos (CC0)", "",
-         "| Recurso | Autor | Licencia | URL | Usado en |", "|---|---|---|---|---|"]
-    kenney = {"Interface Sounds": "https://kenney.nl/assets/interface-sounds (copia en "
-                                  "https://opengameart.org/content/interface-sounds)",
-              "Impact Sounds": "https://kenney.nl/assets/impact-sounds",
-              "Music Jingles": "https://kenney.nl/assets/music-jingles (copia en "
-                               "https://opengameart.org/content/85-short-music-jingles)"}
-    for (kind, key), outs in sorted(uses.items()):
-        used = ", ".join(sorted({re.sub(r"_\d\d(\.\w+)$", r"\1", os.path.basename(o)) for o in outs}))
-        if kind == "kenney":
-            L.append(f"| {key} | Kenney (kenney.nl) | CC0 1.0 | {kenney.get(key, 'kenney.nl')} | {used} |")
-        else:
-            m = man.get(key, {})
-            L.append(f"| {m.get('title', key)} | {m.get('author', '?')} (OpenGameArt) | {', '.join(m.get('license', []))}"
-                     f" | {m.get('url', 'https://opengameart.org/content/' + key)} | {used} |")
-    L += ["", "No se usó nada de Mixkit, Freesound, ElevenLabs ni Meshy.", ""]
-    open(os.path.join(os.path.dirname(OUT), "CREDITS_pendiente.md"), "w", encoding="utf-8").write("\n".join(L))
-
-
 if __name__ == "__main__":
     elegir()
-    credits()
     print("ok")
