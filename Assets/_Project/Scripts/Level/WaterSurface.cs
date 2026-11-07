@@ -8,8 +8,9 @@ namespace GasSafari.Level
     // si el nivel lo fija con WaterBaseLevel (los niveles con abismos no lo fijan: debajo no hay agua).
     public static class WaterSurface
     {
-        // Distancia sobre el punto desde la que se busca la superficie: en una espiral se toma la vuelta más cercana.
-        private const float PROBE_UP = 10f;
+        // Distancia sobre el punto desde la que se busca la superficie: menor que el desnivel entre dos vueltas de una
+        // espiral (las vueltas de un tobogán bajan 4 m o más), para tomar siempre la del punto y no la de arriba.
+        private const float PROBE_UP = 3f;
         private const float PROBE_TOP = 1000f;
 
         public static bool HasBaseLevel { get; private set; }

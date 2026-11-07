@@ -76,6 +76,17 @@ namespace GasSafari.Editor
             Landmark = "W1_FerrisWheel",
         };
 
+        // Variante del mundo con otra lista de props (p. ej. alcantarillas: sin bancas ni macetas) y otra luz.
+        public static Theme With(Theme theme, string[] decor, float lightIntensity, Color fog)
+        {
+            var copy = (Theme)typeof(Theme).GetMethod("MemberwiseClone", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+                .Invoke(theme, null);
+            copy.Decor = decor;
+            copy.LightIntensity = lightIntensity;
+            copy.Fog = fog;
+            return copy;
+        }
+
         // landmark: posición y giro del hito (se ve desde la salida y enmarca el momento estrella).
         public static void Dress(GreyboxLevel level, Theme theme, int seed, Vector3 landmark, float landmarkYaw)
         {
@@ -220,7 +231,7 @@ namespace GasSafari.Editor
                     Object.DestroyImmediate(slab.GetComponent<Collider>());
                     slab.name = "Acera";
                     slab.transform.SetParent(parent, false);
-                    slab.transform.SetPositionAndRotation(new Vector3(center.x, GROUND_TOP - 0.4f, center.z), Quaternion.LookRotation(dir));
+                    slab.transform.SetPositionAndRotation(new Vector3(center.x, center.y + GROUND_TOP - 0.4f, center.z), Quaternion.LookRotation(dir));
                     slab.transform.localScale = new Vector3(GROUND_WIDTH, 0.8f, step + 0.6f);
                     slab.GetComponent<MeshRenderer>().sharedMaterial = material;
                 }

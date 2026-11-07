@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Levels/L_T0_PiscinaZoo.unity
     guid: 5b3952e5ae8703c43b8845bfe73deed1
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W1_2_Alcantarillas.unity
+    guid: fa1c0d080e16c7e4b836a9b44fd19605
   m_configObjects: {}

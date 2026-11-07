@@ -103,6 +103,136 @@ namespace GasSafari.Editor
             Debug.Log($"M5-03 W1-1 listo (greybox + arte): {level.Length:F0} m");
         }
 
+        // ---------------------------------------------------------------- W1-2 Alcantarillas
+        // El nivel empieza a 14 m y la espiral final baja hasta el agua base (y = 0): el agua de cada tramo es una cinta
+        // que sigue el cauce (WaterSurface). Sin corriente salvo en la espiral (provisional: 3 m/s², "a toda velocidad").
+        private const float W1_2_HEIGHT = 14f;
+        private static readonly Color NicheColor = new Color(0.15f, 0.17f, 0.22f);
+        private static readonly Color FallColor = new Color(0.55f, 0.75f, 0.9f);
+
+        [MenuItem("Gas Safari/Setup/Greybox W1-2 Alcantarillas (M5-04)")]
+        public static void BuildW1_2()
+        {
+            var level = GreyboxLevel.Create("W1-2", "L_W1_2_Alcantarillas");
+            level.StartPath(new Vector3(0f, W1_2_HEIGHT, 0f), 0f).Straight(60f, 8f);   // S1 túnel
+            float gates = level.Length;
+            level.Straight(90f, 8f);                                                     // S2 compuertas
+            float fork = level.Length;
+            level.Arc(20f, -45f, 8f).Straight(30f, 8f).Arc(20f, 90f, 8f).Straight(30f, 8f).Arc(20f, -45f, 8f); // S3 izquierda segura
+            float join = level.Length;
+            level.Straight(20f, 9f);
+            float spiral = level.Length;
+            level.Arc(14f, 540f, 9f, -12f);                                              // S4 espiral: 1.5 vueltas, 8 m por vuelta
+            float spiralEnd = level.Length;
+            level.Straight(40f, 10f, -2f).Straight(30f, 10f);                            // salida al agua base
+            level.Branch(fork, join, 8f);                                                // ruta derecha: recta y más corta
+            level.FlowZone(spiral, spiralEnd, 3f);                                       // "a toda velocidad" (provisional)
+            level.BuildChannel(0f); // docs/04 no pide corriente en W1-2 (la variable llega en W1-3)
+
+            level.Section(1, "Tunel", 0f);
+            level.Section(2, "Compuertas", gates);
+            level.Section(3, "Bifurcacion", fork);
+            level.Section(4, "Espiral", spiral);
+            level.AddCheckpoint(0f);
+            level.AddCheckpoint(gates);
+            level.AddCheckpoint(join + 2f);
+            level.AddCheckpoint(spiral);
+
+            // S1: nicho oscuro tras una cascada de desagüe (mango escondido), en la pared izquierda.
+            float niche = 40f;
+            level.WallGap(niche - 3f, niche + 3f);
+            var dir = level.DirectionAt(niche);
+            float yaw = Quaternion.LookRotation(dir).eulerAngles.y;
+            level.Block("Nicho_Fondo", level.PointAt(niche, -10.5f), new Vector3(1f, 3f, 7f), NicheColor, yaw);
+            level.Block("Nicho_Lado1", level.PointAt(niche - 3.5f, -7.5f), new Vector3(6f, 3f, 1f), NicheColor, yaw);
+            level.Block("Nicho_Lado2", level.PointAt(niche + 3.5f, -7.5f), new Vector3(6f, 3f, 1f), NicheColor, yaw);
+            var nicheWater = level.Block("Nicho_Agua", level.PointAt(niche, -7.5f) + Vector3.up * 0.3f, new Vector3(6f, 0.2f, 6f), Color.white, yaw, false);
+            nicheWater.layer = GameSafariWater;
+            nicheWater.GetComponent<BoxCollider>().isTrigger = true;
+            var fall = level.Block("Cascada", level.PointAt(niche, -4.6f), new Vector3(0.3f, 3.5f, 6f), FallColor, yaw);
+            Object.DestroyImmediate(fall.GetComponent<Collider>());
+            level.Mango(2, niche, -7.5f, 1f);
+
+            // S2: 3 compuertas en secuencia (ciclos 3, 2.5 y 2 s); mango entre la 2.ª y la 3.ª.
+            float[] cycles = { 3f, 2.5f, 2f };
+            for (int i = 0; i < 3; i++)
+                Gate(level, gates + 20f + i * 25f, cycles[i], "Compuerta_" + (i + 1));
+            level.Mango(0, gates + 57.5f, 0f, 1f);
+            level.PowerUp("P01", 30f, 0f);
+            level.PowerUp("P01", gates + 8f, 1.5f);
+
+            // S3: ruta derecha (ramal recto) con compuerta rápida (2 s, el mínimo de H03), P03 y mango.
+            var a = level.PointAt(fork);
+            var b = level.PointAt(join);
+            var chordDir = (b - a).normalized;
+            var mid = (a + b) * 0.5f;
+            var fast = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(HZ + "H03_TimedGate.prefab"), level.Scene);
+            fast.name = "Compuerta_Rapida";
+            fast.transform.SetPositionAndRotation(mid, Quaternion.LookRotation(chordDir));
+            SetGate(fast, 2f, 0.7f);
+            PlacePowerUpAt(level, "P03", a + chordDir * 15f);
+            MangoAt(level, 1, b - chordDir * 15f);
+            level.PowerUp("P01", join + 10f, 0f);
+
+            // S4: luces de neón en las paredes de la espiral (momento estrella).
+            Neon(level, spiral, spiralEnd);
+
+            LevelDresser.Dress(level, LevelDresser.With(LevelDresser.W1, new[] { "W1_Barrel_A", "W1_Barrel_B", "W1_Barrel_C", "W1_Crate_A", "W1_Crate_B", "W1_Crate_C", "W1_Sign_A", "W1_Sign_B" },
+                0.3f, new Color(0.07f, 0.1f, 0.16f)), 12, new Vector3(-60f, 0f, 150f), 90f);
+            level.Finish();
+            Debug.Log($"M5-04 W1-2 listo: {level.Length:F0} m, ramal derecho {Vector3.Distance(a, b):F0} m");
+        }
+
+        private static readonly int GameSafariWater = LayerMask.NameToLayer("Water");
+
+        private static void Gate(GreyboxLevel level, float distance, float cycle, string name)
+        {
+            var gate = level.Place(HZ + "H03_TimedGate.prefab", distance);
+            gate.name = name;
+            SetGate(gate, cycle, distance * 0.013f);
+        }
+
+        private static void SetGate(GameObject gate, float cycle, float phase)
+        {
+            var so = new SerializedObject(gate.GetComponent<GasSafari.Hazards.TimedGate>());
+            so.FindProperty("cycleOverride").floatValue = cycle;
+            so.FindProperty("phase").floatValue = phase;
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        private static void PlacePowerUpAt(GreyboxLevel level, string id, Vector3 position)
+        {
+            var p = level.PowerUp(id, 0f);
+            p.transform.position = position + Vector3.up;
+        }
+
+        private static void MangoAt(GreyboxLevel level, int slot, Vector3 position)
+        {
+            var m = level.Mango(slot, 0f, 0f, 1f);
+            m.transform.position = position + Vector3.up;
+        }
+
+        private static void Neon(GreyboxLevel level, float from, float to)
+        {
+            var pink = AssetDatabase.LoadAssetAtPath<Material>(ENV + "Materials/E_FF4FA3.mat");
+            var cyan = AssetDatabase.LoadAssetAtPath<Material>(ENV + "Materials/E_3AE1FF.mat");
+            int n = 0;
+            for (float d = from; d < to; d += 3f, n++)
+            {
+                for (int side = -1; side <= 1; side += 2)
+                {
+                    var strip = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    Object.DestroyImmediate(strip.GetComponent<Collider>());
+                    strip.name = "Neon";
+                    UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(strip, level.Scene);
+                    strip.transform.SetPositionAndRotation(level.PointAt(d, side * (level.WidthAt(d) * 0.5f + 0.2f), 1.6f),
+                        Quaternion.LookRotation(level.DirectionAt(d)));
+                    strip.transform.localScale = new Vector3(0.15f, 0.15f, 2f);
+                    strip.GetComponent<MeshRenderer>().sharedMaterial = (n + (side > 0 ? 1 : 0)) % 2 == 0 ? pink : cyan;
+                }
+            }
+        }
+
         // Modelos sobre las piezas del greybox de W1-1 (el collider del greybox se queda; su caja deja de verse).
         private static void DressW1_1(GreyboxLevel level)
         {
