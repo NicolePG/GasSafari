@@ -80,6 +80,8 @@ Arranque desde cualquier escena en el editor: `[RuntimeInitializeOnLoadMethod(Be
 | `LevelTimer` | Cronómetro y penalizaciones |
 | `FlowSpline` | `SplineContainer` del cauce: ancho, curva de intensidad de corriente, consulta `GetFlow(pos) → (dir, accel)` con caché por tramo |
 | `GasWindZone` | Viento por ráfagas con aviso |
+| `WaterSurface` | `GetHeight(x, z)`: raycast hacia abajo contra la capa Water (mallas de agua de cada tramo, solo para consultas). En toboganes, espirales y cascadas la malla de agua sigue la rampa y `FlowSpline` da la dirección. Fuera de un tramo devuelve el nivel base del nivel. La usan `RaftBuoyancy` y el nado |
+| `TutorialStep` / `TutorialDirector` | T-0: lecciones con condición, cartel y barrera de burbujas (docs/07 §8) |
 | `Anchor` | Punto enganchable por Melman |
 | `StartGate`, `FinishGate`, `MangoSpot`, `TeamRaceSpawn` | Marcadores del nivel |
 | `LevelMirror` | Aplica espejo (modo Espejo) |
@@ -204,6 +206,7 @@ Las etiquetas Fragile, Heavy, Fauna, Burnable y Anchor se implementan con un `[F
 
 - Percepción cada 0.1 s: punto objetivo en la `FlowSpline` 2 s adelante, SphereCast de 8 m hacia adelante para peligros, gas propio, estado del equipo.
 - Navegación: calcula el rumbo deseado; los bots ocupan asientos traseros y usan toques para corregir el ángulo y ráfagas en rectas.
+- Gas: en recta solo ráfagas (de `blastStartGas` a `blastStopGas`); los toques de corrección van espaciados más que `regenDelay` para que el gas recargue (con toques cada 0.5 s los bots vivían sin gas). No disparan si la balsa pasa de `maxTilt` y la inclinación sigue subiendo (`tiltRiseRate`); una inclinación quieta, como dos cámaras reventadas de un lado, no los bloquea.
 - Sincronía: cuando un humano inicia un pedo y el bot tiene 20 de gas o más, dispara tras 0.05-0.15 s con probabilidad 0.9 / 0.75 / 0.6 (Familiar / Normal / Amistades Rotas).
 - Habilidades: Alex ruge si hay `Fragile` o `Fauna` en el cono; Marty galopa antes de rampas y abismos; Melman engancha si hay ancla y curva cerrada, o rescata a un caído; Gloria hace Panzazo si el giro supera 90°/s o está en un remolino; Julien activa la Fiesta con 2 o más jugadores y el medidor por debajo de 80.
 - Se agarran ante avisos de fosas, murciélagos o golpes. Pulsan el Súper Pedo apenas se abre la ventana. Responden a los pings "¡Ahora!" y "Espera".

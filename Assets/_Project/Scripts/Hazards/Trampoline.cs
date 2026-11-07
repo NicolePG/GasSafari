@@ -12,6 +12,9 @@ namespace GasSafari.Hazards
         [SerializeField] private Transform squash;
         [Tooltip("m/s extra hacia transform.forward (0 = solo vertical)")] [SerializeField] private float forwardSpeed;
 
+        // s tras un rebote a partir de los que la balsa en el agua dentro de la zona cuenta como nueva llegada.
+        private const float REARM_ON_WATER = 1f;
+
         private float lastLaunch = -10f;
         private bool armed = true;
         private float squashTime;
@@ -34,7 +37,12 @@ namespace GasSafari.Hazards
 
         private void TryLaunch(RaftController raft)
         {
-            if (!armed || Time.time - lastLaunch < Config.Get("cooldown", 0.5f))
+            if (Time.time - lastLaunch < Config.Get("cooldown", 0.5f))
+                return;
+            // Si la balsa vuelve a caer al agua sin salir de la zona (salto fallido), rebota otra vez.
+            if (!armed && !raft.Buoyancy.IsAirborne && Time.time - lastLaunch > REARM_ON_WATER)
+                armed = true;
+            if (!armed)
                 return;
             armed = false;
             lastLaunch = Time.time;

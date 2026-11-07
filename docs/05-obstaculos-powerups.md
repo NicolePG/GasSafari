@@ -42,6 +42,9 @@ Reglas comunes:
 | H30 | Coco que cae | Golpe desde arriba con sombra 0.8 s | empuje 20, sin daño | Esquivar | — | W6-4 |
 | H31 | Corriente cruzada | Dos corrientes perpendiculares que chocan | 4 m/s² cada una | Puntería y Gloria | — | W4-4 |
 | H32 | Red de pesca | Frena (`waterDrag` x3) mientras la balsa está dentro | — | Rugido la rompe; rodearla | Fragile | W2-1 |
+| H33 | Pared de globos | Muro que bloquea el paso; revienta con un impulso mayor a 30 o con un grupo de sync cerca | impulso 30; "cerca" = la balsa dentro de su zona de aviso | Sync o golpe fuerte; Rugido | Fragile | T-0 |
+| H34 | Chorro de manguera o fuente | Empuje lateral constante en un tramo de 4 m de ancho; tira al agua a quien no esté agarrado tras 1.5 s dentro | 6 m/s² de aceleración lateral, 1.5 s | Agarrarse y cruzar rápido | — | T-0 |
+| H35 | Plataforma que se hunde | Plataforma flotante: empieza a hundirse 1 s después de que la balsa la toca y desaparece bajo el agua en 6 s; reaparece al reiniciar el checkpoint | 1 s de aviso, 6 s de hundimiento | Salir antes de 6 s | — | W1-5 |
 
 Parámetros provisionales de los obstáculos de W1 (no están en la tabla; se afinan con QA, viven en `Data/Hazards/H<id>_*.asset`):
 - H03: empuje hacia atrás de la compuerta cerrada `pushBack` 12; abre y cierra en 0.25 s; avisa 0.5 s antes de cerrar.
@@ -50,6 +53,7 @@ Parámetros provisionales de los obstáculos de W1 (no están en la tabla; se af
 - H24: radio del golpe 3 m, empuje 35, la grúa sigue a la balsa a 14 m/s; intervalos 3, 2, 4, 2.5, 2, 3.5 s en bucle (el sprint final fija 2 s); se reinicia al reaparecer.
 - H28: velocidad 3 m/s, parada de 2.5 s en cada orilla (aviso), golpe 30; su estela es una cresta de H04 que baja por el cauce.
 - H07: el impacto es el impulso del choque en N·s (misma unidad que los golpes de la tabla).
+- H27: si la balsa vuelve a caer al agua dentro de la zona más de 1 s después del rebote (salto fallido), rebota otra vez. La fuente central de W1-1 tiene delante una resaca suave (chorro hacia atrás) que devuelve a la fuente una balsa que no pasó la reja.
 
 ## Power-ups
 

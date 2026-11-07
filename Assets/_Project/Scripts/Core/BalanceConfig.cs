@@ -27,6 +27,9 @@ namespace GasSafari.Core
         public float seatTiltFactor;
         [Tooltip("Grados")] public float capsizeAngle;
         public float capsizeTime;
+        [Tooltip("Grados: desde aquí actúa el par de enderezado (solo en el agua)")] public float rightingStartAngle;
+        [Tooltip("rad/s² por radián de inclinación sobre rightingStartAngle")] public float rightingStrength;
+        [Tooltip("m/s: velocidad horizontal máxima en el agua")] public float maxWaterSpeed;
 
         [Header("Pedos y gas")]
         public float puffMaxPressTime;

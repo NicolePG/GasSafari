@@ -1,6 +1,7 @@
 using GasSafari.Core;
 using GasSafari.Input;
 using GasSafari.Raft;
+using GasSafari.Level;
 using UnityEngine;
 
 namespace GasSafari.Characters
@@ -51,7 +52,7 @@ namespace GasSafari.Characters
             var state = states.State;
             if (state != AvatarState.Falling && state != AvatarState.Swimming)
                 return;
-            if (!RaftBuoyancy.TryGetWaterHeight(rb.position, out float waterHeight))
+            if (!WaterSurface.TryGetHeight(rb.position, out float waterHeight))
                 return;
 
             if (state == AvatarState.Falling)

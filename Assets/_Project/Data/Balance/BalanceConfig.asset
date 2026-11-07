@@ -25,6 +25,9 @@ MonoBehaviour:
   seatTiltFactor: 0.3
   capsizeAngle: 70
   capsizeTime: 1.5
+  rightingStartAngle: 25
+  rightingStrength: 8
+  maxWaterSpeed: 12
   puffMaxPressTime: 0.15
   puffCost: 5
   blastCostPerSecond: 25

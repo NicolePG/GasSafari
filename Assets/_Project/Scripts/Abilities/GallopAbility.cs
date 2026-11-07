@@ -16,7 +16,7 @@ namespace GasSafari.Abilities
         public override void Activate(AbilityContext context)
         {
             var push = context.Thruster.ThrustDirection * impulse;
-            context.Raft.ApplyThrust(push, context.Seat.WorldPoint, ForceMode.Impulse);
+            context.Raft.ApplyThrust(push, context.Raft.SeatThrustPoint(context.Seat.WorldPoint), ForceMode.Impulse);
             context.Effects.ScaleWaterDrag(waterDragMultiplier, duration);
         }
     }

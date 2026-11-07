@@ -37,7 +37,7 @@ namespace GasSafari.Characters
             float factor = Multiplier * (raft.Buoyancy.IsAirborne ? balance.airControlFactor : 1f);
             if (effects != null)
                 factor *= effects.FartForceMultiplier;
-            raft.ApplyThrust(direction * (magnitude * factor), seat.WorldPoint, mode);
+            raft.ApplyThrust(direction * (magnitude * factor), raft.SeatThrustPoint(seat.WorldPoint), mode);
         }
 
         private void Refresh()

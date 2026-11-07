@@ -27,11 +27,12 @@ MonoBehaviour:
   seatTolerance: 25
   yawDamping: 0.6
   maxTilt: 20
+  tiltRiseRate: 15
   minGasToFire: 20
-  blastStartGas: 0.5
-  blastStopGas: 0.25
-  puffCadenceMin: 0.5
-  puffCadenceMax: 0.8
+  blastStartGas: 0.8
+  blastStopGas: 0.15
+  puffCadenceMin: 1
+  puffCadenceMax: 1.4
   idleLimit: 4
   stoppedSpeed: 1
   syncDelayMin: 0.05

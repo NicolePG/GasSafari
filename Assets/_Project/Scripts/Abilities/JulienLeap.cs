@@ -3,6 +3,7 @@ using GasSafari.Core;
 using GasSafari.Input;
 using GasSafari.PowerUps;
 using GasSafari.Raft;
+using GasSafari.Level;
 using UnityEngine;
 
 namespace GasSafari.Abilities
@@ -58,7 +59,7 @@ namespace GasSafari.Abilities
             ApplyPowerUpSnap(transform.position, ref direction, ref distance);
 
             float height = 0f;
-            if (RaftBuoyancy.TryGetWaterHeight(transform.position, out float water))
+            if (WaterSurface.TryGetHeight(transform.position, out float water))
                 height = Mathf.Max(0f, transform.position.y - water);
 
             fall.Leap(LaunchVelocity(direction, distance, height), balance.julienJumpReturnDistance);

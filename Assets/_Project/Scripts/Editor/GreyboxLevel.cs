@@ -40,6 +40,7 @@ namespace GasSafari.Editor
         private readonly Dictionary<string, Transform> groups = new Dictionary<string, Transform>();
         private readonly List<(float from, float to)> wallGaps = new List<(float, float)>();
         private float heading;
+        private bool useBaseWater = true;
 
         public Scene Scene { get; private set; }
         public float Length => cumulative.Count > 0 ? cumulative[cumulative.Count - 1] : 0f;
@@ -147,6 +148,9 @@ namespace GasSafari.Editor
             width = Mathf.Lerp(widths[i - 1], widths[i], t);
         }
 
+        // Niveles con abismos (H22): sin nivel base, debajo del hueco no hay agua.
+        public void NoBaseWater() => useBaseWater = false;
+
         // Tramo sin paredes (por ejemplo, una abertura a una rotonda ancha).
         public void WallGap(float from, float to) => wallGaps.Add((from, to));
 
@@ -242,6 +246,14 @@ namespace GasSafari.Editor
             water.position = new Vector3(center.x, 0f, center.z);
             // El plano de Unity mide 10 x 10.
             water.localScale = new Vector3((max.x - min.x + margin * 2f) / 10f, 1f, (max.z - min.z + margin * 2f) / 10f);
+            // Nivel base del agua fuera de los tramos (docs/02 §1); los niveles con abismos lo quitan con NoBaseWater.
+            if (useBaseWater)
+            {
+                var baseLevel = water.GetComponent<WaterBaseLevel>();
+                if (baseLevel == null)
+                    baseLevel = water.gameObject.AddComponent<WaterBaseLevel>();
+                baseLevel.Configure(0f);
+            }
         }
 
         // ---------------------------------------------------------------- contenido

@@ -107,6 +107,12 @@ namespace GasSafari.Characters
         {
             if (!IsBlasting)
                 return;
+            // Cayó al agua entre el último Update y este paso físico.
+            if (!seat.IsSeated)
+            {
+                CancelPress();
+                return;
+            }
 
             float needed = balance.blastCostPerSecond * Time.fixedDeltaTime;
             float used = gas.Drain(needed);

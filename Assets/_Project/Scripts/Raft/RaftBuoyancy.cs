@@ -1,5 +1,6 @@
 using System;
 using GasSafari.Core;
+using GasSafari.Level;
 using UnityEngine;
 
 namespace GasSafari.Raft
@@ -8,14 +9,12 @@ namespace GasSafari.Raft
     [RequireComponent(typeof(Rigidbody))]
     public class RaftBuoyancy : MonoBehaviour
     {
-        // Distancia sobre cada punto desde la que se busca la superficie del agua.
-        private const float WATER_PROBE_HEIGHT = 10f;
-
         [SerializeField] private BalanceConfig balance;
         [Tooltip("Posiciones locales de los puntos de flotación, una por cámara")]
         [SerializeField] private Vector3[] floatPoints = new Vector3[4];
 
         private float[] chamberFactors;
+        private float[] depths;
         private Rigidbody rb;
         private bool hasState;
 
@@ -34,6 +33,7 @@ namespace GasSafari.Raft
         {
             rb = GetComponent<Rigidbody>();
             chamberFactors = new float[floatPoints.Length];
+            depths = new float[floatPoints.Length];
             for (int i = 0; i < chamberFactors.Length; i++)
                 chamberFactors[i] = 1f;
         }
@@ -43,22 +43,12 @@ namespace GasSafari.Raft
             chamberFactors[index] = factor;
         }
 
+        // Profundidad del punto en el último paso físico (negativa = fuera del agua; NaN = sin agua debajo).
+        public float GetDepth(int index) => depths[index];
+
         public Vector3 GetFloatPoint(int index)
         {
             return transform.TransformPoint(floatPoints[index]);
-        }
-
-        public static bool TryGetWaterHeight(Vector3 point, out float height)
-        {
-            var origin = point + Vector3.up * WATER_PROBE_HEIGHT;
-            if (Physics.Raycast(origin, Vector3.down, out var hit, WATER_PROBE_HEIGHT * 2f,
-                    GameLayers.WaterMask, QueryTriggerInteraction.Collide))
-            {
-                height = hit.point.y;
-                return true;
-            }
-            height = 0f;
-            return false;
         }
 
         private void FixedUpdate()
@@ -67,10 +57,14 @@ namespace GasSafari.Raft
             for (int i = 0; i < floatPoints.Length; i++)
             {
                 var point = GetFloatPoint(i);
-                if (!TryGetWaterHeight(point, out float waterHeight))
+                if (!WaterSurface.TryGetHeight(point, out float waterHeight))
+                {
+                    depths[i] = float.NaN;
                     continue;
+                }
 
                 float depth = waterHeight + HoverOffset - point.y;
+                depths[i] = depth;
                 if (depth <= 0f)
                     continue;
 

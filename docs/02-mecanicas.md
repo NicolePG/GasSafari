@@ -10,9 +10,12 @@ Unidades: metros, segundos, kilogramos, newtons. Todos los valores viven en `Bal
 - Cámara reventada: `factorCámara = poppedFactor` (0.4). La balsa se inclina hacia ese lado.
 - En el agua: `drag = waterDrag`, `angularDrag = waterAngularDrag`. En el aire: `airDrag`.
 - Centro de masa bajado a `(0, -0.3, 0)` para que no vuelque fácil.
-- Inclinación por peso: cada animal aplica `weight * 9.81 * seatTiltFactor` hacia abajo en su asiento. Un animal pesado hunde su lado.
+- Inclinación por peso: cada animal aplica `weight * 9.81 * seatTiltFactor` hacia abajo en su asiento. Un animal pesado hunde su lado. Solo en el agua: en el aire no se aplica (giraba la balsa en cada salto).
+- Altura del agua: no es fija. La flotación y el nado consultan `WaterSurface.GetHeight(x, z)` (raycast contra la capa Water); en toboganes, espirales y cascadas el agua sigue la rampa. Fuera de un tramo se usa el nivel base del nivel.
 - Corriente: `FlowSpline` devuelve dirección (tangente de la spline) e intensidad del tramo; se aplica con `ForceMode.Acceleration` (no depende de la masa).
 - Volcar: si la balsa supera 70° de inclinación durante 1.5 s, el equipo reaparece en el checkpoint.
+- Punto de empuje de los pedos (toque, ráfaga, cargado y Galope): el asiento proyectado en el plano horizontal del centro de masa. Así el pedo gira la balsa (par en Y) pero no la hace cabecear; empujar a la altura del asiento volcaba la balsa por la proa con 4 ráfagas en sync (medido: 830 N → 1140 N·m de cabeceo, vuelta completa en 0.3 s a 10 m/s).
+- Estabilidad en el agua (`RaftStabilizer`, nunca en el aire): par de enderezado suave cuando la inclinación supera `rightingStartAngle`, proporcional a lo que la supera (`rightingStrength` rad/s² por radián, `ForceMode.Acceleration`), y velocidad horizontal limitada a `maxWaterSpeed`.
 
 ## 2. Asientos y puntería
 
@@ -148,6 +151,9 @@ Solo existe con mando, no con teclado. Para jugar solo con 2 animales o con otro
 | centerOfMassOffset | (0, -0.3, 0) | |
 | seatTiltFactor | 0.3 | |
 | capsizeAngle / capsizeTime | 70° / 1.5 s | |
+| rightingStartAngle | 25° | desde aquí actúa el enderezado (solo en el agua) |
+| rightingStrength | 8 | rad/s² por radián de inclinación sobre 25° |
+| maxWaterSpeed | 12 m/s | velocidad horizontal máxima en el agua (en el aire no se limita) |
 | puffMaxPressTime | 0.15 s | |
 | puffCost / blastCostPerSecond / chargedCost | 5 / 25 / 35 | |
 | chargedImpulseMin / Max | 50 / 100 | |

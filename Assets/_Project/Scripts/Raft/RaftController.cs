@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using GasSafari.Core;
 using UnityEngine;
@@ -26,6 +27,9 @@ namespace GasSafari.Raft
         // 0 anula la inclinación por peso (Dúo Pesado).
         public float WeightTiltScale { get; set; } = 1f;
 
+        // Solo telemetría y pruebas: cada fuerza que entra por ApplyThrust.
+        public event Action<Vector3, Vector3, ForceMode> ThrustApplied;
+
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
@@ -39,6 +43,15 @@ namespace GasSafari.Raft
         public void ApplyThrust(Vector3 force, Vector3 point, ForceMode mode)
         {
             rb.AddForceAtPosition(force, point, mode);
+            ThrustApplied?.Invoke(force, point, mode);
+        }
+
+        // Punto de empuje de un pedo: el asiento proyectado en el plano horizontal del centro de masa.
+        // Empujar a la altura del asiento creaba un par de cabeceo que volcaba la balsa por la proa a velocidad.
+        public Vector3 SeatThrustPoint(Vector3 seatPoint)
+        {
+            seatPoint.y = rb.worldCenterOfMass.y;
+            return seatPoint;
         }
 
         // Panzazo de Gloria: anula el giro de golpe.
@@ -69,8 +82,10 @@ namespace GasSafari.Raft
 
         private void FixedUpdate()
         {
+            // En el aire el peso de los animales cae junto con la balsa: no hay par que inclinarla
+            // (si no, una balsa con todos en la popa giraba en cada salto y caía de proa).
             float tilt = Physics.gravity.magnitude * balance.seatTiltFactor * WeightTiltScale;
-            if (tilt <= 0f)
+            if (tilt <= 0f || (Buoyancy != null && Buoyancy.IsAirborne))
                 return;
             for (int i = 0; i < weights.Count; i++)
             {

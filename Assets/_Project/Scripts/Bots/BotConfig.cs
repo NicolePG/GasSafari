@@ -27,6 +27,7 @@ namespace GasSafari.Bots
 
         [Header("Pedos y gas")]
         [Tooltip("Grados de inclinación de la balsa a partir de los que nadie dispara (vuelco); vuelve a disparar bajo la mitad")] public float maxTilt = 20f;
+        [Tooltip("Grados por segundo: el bloqueo por inclinación solo actúa si la inclinación sube más rápido que esto")] public float tiltRiseRate = 15f;
         [Tooltip("Gas mínimo para empezar a disparar (docs: 20)")] public float minGasToFire = 20f;
         [Tooltip("Fracción de gas que pide para iniciar una ráfaga en recta")] public float blastStartGas = 0.5f;
         [Tooltip("Fracción de gas a la que suelta la ráfaga")] public float blastStopGas = 0.25f;

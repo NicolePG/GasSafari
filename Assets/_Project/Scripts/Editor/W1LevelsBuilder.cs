@@ -77,7 +77,11 @@ namespace GasSafari.Editor
             level.Hint(BotHintType.Ramp, fuente + 44f, 0f, 4f);
             var fountain = level.Place(HZ + "H27_Fountain.prefab", fuente + 50f, 0f, 0f, 0f, "Obstacles");
             fountain.name = "H27_FuenteCentral";
-            float fence = fuente + 62f;
+            // Reja a 8 m de la fuente: queda dentro del arco de vuelo llegue la balsa lenta o rápida (a 12 m la balsa caía encima).
+            float fence = fuente + 58f;
+            // Resaca entre la fuente y la reja: si el salto falla, devuelve la balsa al chorro (que rebota de nuevo).
+            var undertow = level.Place(HZ + "Jet_Lateral.prefab", fence - 1.5f, 0f, 90f, 0f, "Obstacles"); // yaw 90: empuja hacia atrás
+            undertow.name = "Fountain_Undertow";
             level.Block("Reja", level.PointAt(fence), new Vector3(level.WidthAt(fence) + 3f, 3f, 2f), FenceColor, Quaternion.LookRotation(level.DirectionAt(fence)).eulerAngles.y);
 
             // Mango escondido tras un arbusto en el canal de salida.

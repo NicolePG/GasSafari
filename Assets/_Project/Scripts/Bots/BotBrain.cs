@@ -40,11 +40,14 @@ namespace GasSafari.Bots
         private float lastFartTime;
         private bool blasting;
         private bool tiltLocked;
+        private float lastTilt;
 
         public BotConfig Config => config;
         public BotCommandSource Source => source;
         public bool IsBlasting => blasting;
         public bool IsTiltLocked => tiltLocked;
+        // Diagnóstico (pruebas de nivel): cuántas decisiones de pedo hubo y por qué no disparó.
+        public BotFireStats FireStats;
 
         private void Awake()
         {
@@ -258,15 +261,19 @@ namespace GasSafari.Bots
             var current = speed > 1.5f ? velocity : Flatten(seat.Raft.transform.forward);
             bool needsCorrection = Mathf.Abs(Vector3.SignedAngle(current, heading, Vector3.up)) > config.bigHeadingError;
             bool straight = IsStraight(position, speed);
-            // Una balsa muy inclinada está a punto de volcar: nadie dispara hasta que se estabilice.
+            // Una balsa muy inclinada que sigue inclinándose está a punto de volcar: nadie dispara hasta que se estabilice.
+            // Una inclinación quieta (cámaras reventadas de un lado) no bloquea: si no, el equipo quedaba parado para siempre.
             float tilt = Vector3.Angle(seat.Raft.transform.up, Vector3.up);
-            if (tilt > config.maxTilt)
+            float tiltRate = (tilt - lastTilt) / config.decideInterval;
+            lastTilt = tilt;
+            if (tilt > config.maxTilt && tiltRate > config.tiltRiseRate)
                 tiltLocked = true;
-            else if (tilt < config.maxTilt * 0.5f)
+            else if (tilt < config.maxTilt * 0.5f || tiltRate <= 0f)
                 tiltLocked = false;
             bool canFire = gas.Gas >= config.minGasToFire && !thruster.IsCoughing && !tiltLocked;
 
             puffTimer -= config.decideInterval;
+            FireStats.Count(aligned, canFire, straight, deficit, frac);
             bool wantBlast = false;
             if (aligned && canFire)
             {
@@ -285,13 +292,16 @@ namespace GasSafari.Bots
                 wantBlast = true;
             blasting = wantBlast;
             cmd.FartHeld = wantBlast;
+            if (wantBlast)
+                FireStats.Blasts++;
 
             bool force = forceFire;
             forceFire = false;
             if (wantBlast)
                 return;
 
-            bool puff = aligned && canFire && deficit > 0f && puffTimer <= 0f;
+            // En recta solo ráfagas (docs/10 §15): los toques seguidos impiden la recarga (regenDelay) y dejaban al bot sin gas.
+            bool puff = aligned && canFire && deficit > 0f && puffTimer <= 0f && (!straight || needsCorrection);
             // "¡Ahora!" y la cuenta 3-2-1 piden disparar ya, bien alineado o no.
             if (force && canFire)
                 puff = true;
@@ -301,6 +311,7 @@ namespace GasSafari.Bots
                 puff = stopped = false;
             if (puff || stopped)
             {
+                FireStats.Puffs++;
                 source.PressFart();
                 puffTimer = Random.Range(config.puffCadenceMin, config.puffCadenceMax);
             }

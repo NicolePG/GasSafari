@@ -3,6 +3,7 @@ using GasSafari.Bots;
 using GasSafari.Characters;
 using GasSafari.Core;
 using GasSafari.Level;
+using GasSafari.Raft;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,7 +17,7 @@ namespace GasSafari.Tests
     {
         private static readonly string[] Crew = { "Alex", "Marty", "Melman", "Gloria" };
 
-        [UnityTest, Timeout(600000), Explicit("M4-04: 4 bots se vuelcan a velocidad en agua recta (ver backlog); correr a mano")]
+        [UnityTest, Timeout(600000)]
         public IEnumerator W1_1_FourBots_FinishUnderSilverTimes1Point3()
         {
             yield return RunLevel("L_W1_1_FuentesZoo", "W1-1", 255f * 1.3f);
@@ -38,6 +39,7 @@ namespace GasSafari.Tests
             yield return null;
 
             var manager = LevelManager.Current;
+            var telemetry = manager.Raft.gameObject.AddComponent<RaftTelemetry>();
             float finishedAt = -1f;
             manager.Finished += time => finishedAt = time;
             int falls = 0;
@@ -54,6 +56,8 @@ namespace GasSafari.Tests
             GameEvents.OnRaftCapsized += capsized;
             GameEvents.OnChamberPopped += popped;
 
+            // Tiempo de juego x3: la física por paso no cambia y el límite se mide en tiempo de juego.
+            Time.timeScale = 3f;
             float elapsed = 0f;
             while (finishedAt < 0f && elapsed < limit)
             {
@@ -65,12 +69,22 @@ namespace GasSafari.Tests
                     Debug.Log($"W1BOT {id} t={elapsed:F0}s raft=({p.x:F0},{p.z:F0}) v={manager.Raft.Body.velocity.magnitude:F1} caídas={falls} reapariciones={respawns}");
                 }
             }
+            Time.timeScale = 1f;
             GameEvents.OnPlayerFell -= onFall;
             GameEvents.OnRespawn -= onRespawn;
             GameEvents.OnRaftSunk -= sunk;
             GameEvents.OnRaftCapsized -= capsized;
             GameEvents.OnChamberPopped -= popped;
 
+            string csv = System.IO.Path.Combine(RaftHighSpeedTests.TelemetryFolder, $"bots_{id}.csv");
+            telemetry.WriteCsv(csv);
+            Debug.Log($"W1BOT {id} telemetría vMax={telemetry.MaxSpeed:F1} inclMax={telemetry.MaxTilt:F0} csv={csv}");
+            foreach (var avatar in manager.Avatars)
+            {
+                var brain = avatar.GetComponent<BotBrain>();
+                if (brain != null)
+                    Debug.Log($"W1BOT {id} bot {avatar.Character.name} {brain.FireStats}");
+            }
             Debug.Log($"W1BOT {id} terminó={finishedAt >= 0f} tiempo={finishedAt:F1}s espera={elapsed:F0}s caídas={falls} reapariciones={respawns}");
             Assert.GreaterOrEqual(finishedAt, 0f, $"{id}: los bots llegan a la meta en menos de {limit:F0} s");
 
