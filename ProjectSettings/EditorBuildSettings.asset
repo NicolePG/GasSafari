@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Levels/L_W1_1_FuentesZoo.unity
     guid: d369dceb51d67234d865519f8227e45c
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_T0_PiscinaZoo.unity
+    guid: 5b3952e5ae8703c43b8845bfe73deed1
   m_configObjects: {}

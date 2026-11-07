@@ -53,6 +53,7 @@ Parámetros provisionales de los obstáculos de W1 (no están en la tabla; se af
 - H24: radio del golpe 3 m, empuje 35, la grúa sigue a la balsa a 14 m/s; intervalos 3, 2, 4, 2.5, 2, 3.5 s en bucle (el sprint final fija 2 s); se reinicia al reaparecer.
 - H28: velocidad 3 m/s, parada de 2.5 s en cada orilla (aviso), golpe 30; su estela es una cresta de H04 que baja por el cauce.
 - H07: el impacto es el impulso del choque en N·s (misma unidad que los golpes de la tabla).
+- H33: "cerca" = la balsa a 6 m o menos de la pared (`nearDistance`); suena como la caja (docs/08 no tiene sonido de globos). H34: el empuje es `accel` 6 m/s² hacia el costado del prefab. H35: la posición de reposo se toma al primer toque.
 - H27: si la balsa vuelve a caer al agua dentro de la zona más de 1 s después del rebote (salto fallido), rebota otra vez. La fuente central de W1-1 tiene delante una resaca suave (chorro hacia atrás) que devuelve a la fuente una balsa que no pasó la reja.
 
 ## Power-ups

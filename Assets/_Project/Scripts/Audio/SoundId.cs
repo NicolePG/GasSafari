@@ -30,6 +30,8 @@ namespace GasSafari.Audio
         CraneSlam,
         RaftBounce,
         RaftHitHard,
-        WaterSplashBig
+        WaterSplashBig,
+        // Interfaz (docs/08 §4)
+        Checkpoint
     }
 }
