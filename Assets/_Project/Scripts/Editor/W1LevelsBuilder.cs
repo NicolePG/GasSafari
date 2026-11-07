@@ -233,6 +233,122 @@ namespace GasSafari.Editor
             }
         }
 
+        // ---------------------------------------------------------------- W1-3 Río de la Ciudad
+        // Río ancho con corriente variable (base 0.5 m/s², fuerte junto al muelle), oleaje H04, lanchas y ferry H28.
+        private static readonly Color BuoyColor = new Color(1f, 0.5f, 0.15f);
+        private static readonly Color PilingColor = new Color(0.35f, 0.27f, 0.2f);
+        private static readonly Color PierColor = new Color(0.45f, 0.45f, 0.52f);
+
+        [MenuItem("Gas Safari/Setup/Greybox W1-3 Rio de la Ciudad (M5-05)")]
+        public static void BuildW1_3()
+        {
+            var level = GreyboxLevel.Create("W1-3", "L_W1_3_RioCiudad");
+            level.StartPath(Vector3.zero, 0f).Straight(140f, 16f);      // S1 slalom
+            float boats = level.Length;
+            level.Straight(160f, 16f);                                 // S2 lanchas
+            float dock = level.Length;
+            level.Arc(40f, 60f, 14f).Straight(130f, 14f);               // S3 muelle (curva a la derecha: la orilla exterior es la izquierda)
+            float bridges = level.Length;
+            level.Straight(200f, 14f).Straight(60f, 14f);              // S4 puentes y ferry, salida
+            level.FlowZone(dock, bridges, 2f);                         // corriente fuerte junto al muelle (provisional)
+            level.BuildChannel(0.5f);                                  // "corriente variable" (provisional)
+
+            level.Section(1, "Slalom", 0f);
+            level.Section(2, "Lanchas", boats);
+            level.Section(3, "Muelle", dock);
+            level.Section(4, "Puentes", bridges);
+            level.AddCheckpoint(0f);
+            level.AddCheckpoint(boats);
+            level.AddCheckpoint(dock);
+            level.AddCheckpoint(bridges);
+
+            // S1: slalom de boyas alternadas y una ola H04 que se repite al final del tramo.
+            for (int i = 0; i < 10; i++)
+            {
+                var buoy = level.Cylinder("Boya_" + i, level.PointAt(18f + i * 12f, i % 2 == 0 ? 3.5f : -3.5f), 0.8f, 1.6f, BuoyColor);
+                buoy.layer = GasSafari.Core.GameLayers.Hazard;
+            }
+            level.Mango(0, 78f, 0f, 1f);                               // centro del slalom
+            level.PowerUp("P01", 40f, -5f);
+            var wave = level.Place(HZ + "H04_Wave.prefab", boats - 12f, 0f, 180f, 0f);
+            wave.name = "Oleaje";
+            SetWave(wave, 16f, 6f);
+
+            // S2: dos lanchas que cruzan y dejan una estela que baja por el río; mango sobre la primera estela.
+            Boat(level, "H28_Speedboat.prefab", boats + 25f, 0f, "Lancha_1");
+            Boat(level, "H28_Speedboat.prefab", boats + 70f, 2.5f, "Lancha_2");
+            level.Mango(1, boats + 33f, 0f, 1.7f);                     // solo se alcanza subido a la estela
+            Boat(level, "H28_Speedboat.prefab", boats + 120f, 1.2f, "Lancha_3");
+            level.PowerUp("P01", boats + 50f, 4f);
+
+            // S3: muelle con pilotes en la orilla exterior (izquierda) y chorros de corriente que empujan hacia ellos.
+            for (float d = dock + 6f; d < bridges - 4f; d += 6f)
+            {
+                var pile = level.Cylinder("Pilote", level.PointAt(d, -5.6f), 0.35f, 2.6f, PilingColor);
+                pile.layer = GasSafari.Core.GameLayers.Hazard;
+            }
+            level.Block("Muelle", level.PointAt((dock + bridges) * 0.5f, -9.5f), new Vector3(5f, 1.6f, 4f), PierColor,
+                Quaternion.LookRotation(level.DirectionAt((dock + bridges) * 0.5f)).eulerAngles.y);
+            for (float d = dock + 20f; d < bridges - 10f; d += 25f)
+            {
+                var jet = level.Place(HZ + "Jet_Lateral.prefab", d, 3.5f, 180f);
+                jet.name = "Corriente_Muelle";
+                foreach (var r in jet.GetComponentsInChildren<Renderer>())
+                    r.enabled = false;                               // es corriente, no una fuente
+            }
+            level.PowerUp("P03", dock + 60f, 2f);
+
+            // S4: tres puentes (pilares en las orillas) y el cruce del ferry; mango escondido bajo el último puente.
+            float[] spans = { bridges + 30f, bridges + 100f, bridges + 170f };
+            for (int i = 0; i < spans.Length; i++)
+                Bridge(level, spans[i], "Puente_" + (i + 1));
+            Boat(level, "H28_Ferry.prefab", bridges + 65f, 0f, "Ferry");
+            level.Mango(2, spans[2], 5.6f, 1f);                        // entre los pilares del último puente
+            level.PowerUp("P01", bridges + 130f, 0f);
+
+            LevelDresser.Dress(level, LevelDresser.W1, 13, level.PointAt(bridges + 65f, 45f), -90f);
+            level.Finish();
+            Debug.Log($"M5-05 W1-3 listo: {level.Length:F0} m");
+        }
+
+        private static void Boat(GreyboxLevel level, string prefab, float distance, float phase, string name)
+        {
+            float width = level.WidthAt(distance);
+            var boat = level.Place(HZ + prefab, distance, -(width * 0.5f + 4f), 90f);
+            boat.name = name;
+            var so = new SerializedObject(boat.GetComponent<GasSafari.Hazards.CrossingBoat>());
+            so.FindProperty("travel").vector3Value = new Vector3(0f, 0f, width + 8f);
+            so.FindProperty("phase").floatValue = phase;
+            so.ApplyModifiedPropertiesWithoutUndo();
+            var wake = boat.GetComponentInChildren<GasSafari.Hazards.WaveHazard>();
+            if (wake != null)
+                SetWave(wake.gameObject, width, 0f);
+        }
+
+        private static void SetWave(GameObject go, float width, float interval)
+        {
+            var so = new SerializedObject(go.GetComponent<GasSafari.Hazards.WaveHazard>());
+            so.FindProperty("width").floatValue = width;
+            if (interval > 0f)
+                so.FindProperty("interval").floatValue = interval;
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        private static void Bridge(GreyboxLevel level, float distance, string name)
+        {
+            float width = level.WidthAt(distance);
+            float yaw = Quaternion.LookRotation(level.DirectionAt(distance)).eulerAngles.y;
+            var model = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(ENV + "W1_Bridge.fbx"), level.Scene);
+            model.name = name;
+            model.transform.SetPositionAndRotation(level.PointAt(distance) + Vector3.down * 0.5f, Quaternion.Euler(0f, yaw + 90f, 0f));
+            GameObjectUtility.SetStaticEditorFlags(model, StaticEditorFlags.BatchingStatic);
+            for (int side = -1; side <= 1; side += 2)
+            {
+                var pier = level.Block(name + "_Pilar", level.PointAt(distance, side * (width * 0.5f - 0.6f)), new Vector3(1.2f, 4f, 1.2f), PierColor, yaw);
+                pier.layer = GasSafari.Core.GameLayers.Environment;
+            }
+        }
+
         // Modelos sobre las piezas del greybox de W1-1 (el collider del greybox se queda; su caja deja de verse).
         private static void DressW1_1(GreyboxLevel level)
         {
