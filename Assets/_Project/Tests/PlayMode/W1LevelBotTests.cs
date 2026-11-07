@@ -87,6 +87,9 @@ namespace GasSafari.Tests
             }
             Debug.Log($"W1BOT {id} terminó={finishedAt >= 0f} tiempo={finishedAt:F1}s espera={elapsed:F0}s caídas={falls} reapariciones={respawns}");
             Assert.GreaterOrEqual(finishedAt, 0f, $"{id}: los bots llegan a la meta en menos de {limit:F0} s");
+            var star = Object.FindFirstObjectByType<StarMoment>();
+            if (star != null)
+                Assert.IsTrue(star.Played, $"{id}: el momento estrella se disparó");
 
             foreach (var avatar in manager.Avatars)
                 Object.Destroy(avatar.gameObject);

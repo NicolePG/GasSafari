@@ -88,8 +88,67 @@ namespace GasSafari.Editor
             level.Block("Arbusto", level.PointAt(fence + 28f, 4.6f), new Vector3(3f, 2.2f, 3f), BushColor);
             level.Mango(2, fence + 33f, 4.6f, 1f);
 
+            // Momento estrella: la fuente central lanza la balsa sobre la reja (cámara lenta + toma de 2 s).
+            var star = new GameObject("StarMoment");
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(star, level.Scene);
+            var shot = ShotBuilder.Create(star.transform, "FuenteCentral_Toma", "Assets/_Project/Data/Levels/W1-1_StarShot.playable", 2f,
+                new Vector3(-9f, 4f, 6f), out var vcam);
+            star.AddComponent<GasSafari.Level.StarMoment>().Configure(fountain.GetComponent<GasSafari.Hazards.Trampoline>(), shot, vcam);
+
+            // Arte (Dirección visual de W1): la noria, hito del mundo, enmarca la fuente central y se ve desde la salida.
+            LevelDresser.Dress(level, LevelDresser.W1, 11, new Vector3(-42f, 0f, 46f), 90f);
+            DressW1_1(level);
+
             level.Finish();
-            Debug.Log($"M5-03 W1-1 greybox listo: {level.Length:F0} m");
+            Debug.Log($"M5-03 W1-1 listo (greybox + arte): {level.Length:F0} m");
+        }
+
+        // Modelos sobre las piezas del greybox de W1-1 (el collider del greybox se queda; su caja deja de verse).
+        private static void DressW1_1(GreyboxLevel level)
+        {
+            Replace(level, "Estatua", "W1_Statue", 1f);
+            Replace(level, "Arbusto", "W1_Topiary_A", 1.4f);
+            var fence = Find(level, "Reja");
+            if (fence != null)
+            {
+                fence.GetComponent<MeshRenderer>().enabled = false;
+                float length = fence.transform.localScale.x;
+                var model = AssetDatabase.LoadAssetAtPath<GameObject>(ENV + "W1_Fence.fbx");
+                int pieces = Mathf.CeilToInt(length / 3f);
+                for (int i = 0; i < pieces; i++)
+                {
+                    var piece = (GameObject)PrefabUtility.InstantiatePrefab(model, fence.transform.parent);
+                    piece.transform.rotation = fence.transform.rotation;
+                    piece.transform.position = fence.transform.position + fence.transform.right * (-length * 0.5f + 1.5f + i * 3f)
+                                               + Vector3.down * (fence.transform.localScale.y * 0.5f - 0.5f);
+                    GameObjectUtility.SetStaticEditorFlags(piece, StaticEditorFlags.BatchingStatic);
+                }
+            }
+        }
+
+        private const string ENV = "Assets/_Project/Art/Environment/W1/";
+
+        private static GameObject Find(GreyboxLevel level, string name)
+        {
+            foreach (var root in level.Scene.GetRootGameObjects())
+                foreach (var t in root.GetComponentsInChildren<Transform>(true))
+                    if (t.name == name)
+                        return t.gameObject;
+            return null;
+        }
+
+        private static void Replace(GreyboxLevel level, string name, string model, float scale)
+        {
+            var block = Find(level, name);
+            if (block == null)
+                return;
+            var renderer = block.GetComponent<MeshRenderer>();
+            renderer.enabled = false;
+            var bounds = renderer.bounds;
+            var go = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(ENV + model + ".fbx"), block.transform.parent);
+            go.transform.position = new Vector3(bounds.center.x, bounds.min.y, bounds.center.z);
+            go.transform.localScale = Vector3.one * scale;
+            GameObjectUtility.SetStaticEditorFlags(go, StaticEditorFlags.BatchingStatic);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using GasSafari.Audio;
 using GasSafari.Core;
 using GasSafari.Raft;
@@ -18,6 +19,9 @@ namespace GasSafari.Hazards
         private float lastLaunch = -10f;
         private bool armed = true;
         private float squashTime;
+
+        // Momento estrella (StarMoment): la balsa acaba de salir lanzada.
+        public event Action<RaftController> Launched;
 
         public float LaunchSpeed => Config.Get("launchSpeed", 10f);
 
@@ -58,6 +62,7 @@ namespace GasSafari.Hazards
             }
             PushRaft(raft, delta * body.mass, body.worldCenterOfMass);
 
+            Launched?.Invoke(raft);
             squashTime = 0.3f;
             if (Services.IsReady)
                 Services.Audio.Play(SoundId.RaftBounce, transform.position);

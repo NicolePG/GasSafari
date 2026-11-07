@@ -129,6 +129,23 @@ namespace GasSafari.Editor
             return direction;
         }
 
+        // Distancia horizontal de un punto al borde de agua más cercano del cauce (negativa dentro del cauce).
+        public float ClearanceTo(Vector3 point)
+        {
+            float best = float.MaxValue;
+            for (int i = 0; i < points.Count - 1; i++)
+            {
+                var a = points[i];
+                var b = points[i + 1];
+                var ab = new Vector2(b.x - a.x, b.z - a.z);
+                var ap = new Vector2(point.x - a.x, point.z - a.z);
+                float t = Mathf.Clamp01(Vector2.Dot(ap, ab) / Mathf.Max(ab.sqrMagnitude, 1e-4f));
+                float d = (ap - ab * t).magnitude - Mathf.Lerp(widths[i], widths[i + 1], t) * 0.5f;
+                best = Mathf.Min(best, d);
+            }
+            return best;
+        }
+
         public float WidthAt(float distance)
         {
             Sample(distance, out _, out _, out float width);
