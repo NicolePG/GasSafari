@@ -32,8 +32,8 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## T-0 Piscina del Zoológico
 
-- Escena `L_T0_PiscinaZoo` · Oro 2:30 · Plata 3:30 · Checkpoints 7 (uno por lección) · Sin cronómetro visible
-- Mecánica nueva: todas las básicas. No se avanza hasta cumplir cada lección (cartel grande + icono del botón del dispositivo).
+- Escena `L_T0_PiscinaZoo` · Oro 2:30 · Plata 3:30 · Checkpoints 10 (uno por lección, al empezarla) · Sin cronómetro visible
+- Mecánica nueva: todas las básicas. No se avanza hasta cumplir cada lección (cartel grande + icono del botón del dispositivo de cada jugador). Sistema de tutorial: docs/07 §8 y docs/10 §5.
 - Lecciones:
   1. Tirarse un toque y ver moverse la balsa.
   2. Moverse por el borde.
@@ -45,6 +45,10 @@ Cada jefe usa la versión `_boss` de la música del mundo.
   8. Agarrarse mientras un chorro de manguera empuja.
   9. Pedo cargado para saltar un tobogán.
   10. Primer Súper Pedo (medidor regalado al 100 %) para saltar el muro del zoológico.
+- Condición que abre la barrera de burbujas de cada lección (en multijugador la cumple cualquier jugador, salvo la 5):
+  1. Un toque. 2. Mover el asiento 90°. 3. Rodear la boya: pasar por 3 triggers en orden. 4. Una ráfaga de 1 s. 5. Un grupo de sync (en solo, el bot te acompaña). 6. Recoger frijoles (P01). 7. Lanzar el ping "¡Ahora!" y que salga la cuenta 3-2-1 (en solo basta con el ping). 8. Aguantar agarrado 3 s mientras el chorro (H34) empuja. 9. Un pedo cargado de 1 s o más en la rampa. 10. Súper Pedo.
+- Obstáculos: H01 (bordes de la piscina), H33 pared de globos (lección 5), H34 chorro de manguera (lección 8). El tobogán (lección 9) es la pieza modular de rampa con H27 al final.
+- Lección 10: al entrar a su zona, el medidor de equipo se llena al 100 % con una animación de 1 s y el texto "¡SÚPER PEDO LISTO!". La cámara lenta del salto es la del Súper Pedo normal más una toma de Timeline de 2 s que sigue la balsa por encima del muro.
 - Mangos: sobre la boya (ruta), tras la pared de globos (sync), detrás del tobogán (escondido).
 - Momento estrella: saltar el muro con el Súper Pedo y caer al canal de la ciudad (cámara lenta).
 

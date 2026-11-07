@@ -13,7 +13,7 @@ namespace GasSafari.Editor
 
         internal static readonly Row[] Rows =
         {
-            new Row { Id = "T-0", Scene = "L_T0_PiscinaZoo", Gold = 150, Silver = 210, Checkpoints = 7, Boss = false,
+            new Row { Id = "T-0", Scene = "L_T0_PiscinaZoo", Gold = 150, Silver = 210, Checkpoints = 10, Boss = false,
                 Mechanic = "todas las básicas. No se avanza hasta cumplir cada lección (cartel grande + icono del botón del dispositivo)." },
             new Row { Id = "W1-1", Scene = "L_W1_1_FuentesZoo", Gold = 180, Silver = 255, Checkpoints = 3, Boss = false,
                 Mechanic = "giros con puntería en curvas cerradas." },

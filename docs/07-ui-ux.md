@@ -85,3 +85,10 @@ Se muestran según el último dispositivo usado por cada jugador: Xbox, PlayStat
 | assist.offer | ¿Necesitan una Ayuda Real? |
 
 Consejos de carga (rotativos): "Empujar juntos vale más que empujar fuerte." · "Un toque corrige; una ráfaga acelera." · "Agárrate cuando tiemble la orilla." · "Gloria a bordo, viento a raya." · "Si no hay micrófono, usa los pings." · "El Cuello Gancho de Melman también rescata." · "Los frijoles recargan todo tu gas."
+
+## 8. Tutorial (T-0)
+
+- Cada lección es un `TutorialStep` (ScriptableObject): título, texto corto, acción de entrada cuyo icono se muestra según el dispositivo de cada jugador (§6) y condición para cumplirla (docs/04 T-0).
+- `TutorialDirector` muestra el cartel grande de la lección actual (título + texto + un icono por jugador) al entrar en su zona; una barrera de burbujas cierra el paso hasta cumplir la condición. Al cumplirse: la barrera revienta, suena `checkpoint`, el cartel sale y empieza la siguiente lección.
+- En multijugador la condición la cumple cualquier jugador, salvo la de sincronía (lección 5).
+
