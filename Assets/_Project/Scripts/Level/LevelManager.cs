@@ -97,6 +97,9 @@ namespace GasSafari.Level
         {
             hasBegun = true;
             Subscribe();
+            // Música del nivel con sus capas (docs/08 §5).
+            if (data != null && Services.IsReady && Services.Music != null)
+                Services.Music.PlayLevel(data.musicId, data.isBoss);
             spawner.Spawn(slots);
             flow = spawner.Raft.GetComponent<RaftFlowReceiver>();
             timer.ResetTimer();

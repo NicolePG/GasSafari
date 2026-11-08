@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4bc9425eccbcd41b345bb4d5ca7cb1, type: 3}
+  m_Name: MusicLibrary
+  m_EditorClassIdentifier: 
+  tracks:
+  - id: mus_map
+    baseClip: {fileID: 8300000, guid: 1159766e00bf8ae4fa53ab9cf8c6ff6d, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: mus_party
+    baseClip: {fileID: 8300000, guid: c6d66290a11a37b4bb1d481a9f932193, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: mus_results
+    baseClip: {fileID: 8300000, guid: 0d7ad02fe02d2aa4c8644d27264d5be3, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: mus_select
+    baseClip: {fileID: 8300000, guid: 153a33e6e5b302a41ba021c308e4a34e, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: mus_title
+    baseClip: {fileID: 8300000, guid: c7d3034b8a97d384c89ac78dfebe099b, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: mus_tutorial
+    baseClip: {fileID: 8300000, guid: 6863fbc1d31e7ca47a5c3cfc00f49a02, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: mus_w1
+    baseClip: {fileID: 8300000, guid: 0f7b2ad8863f49940af81eb42de21908, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: mus_w1_boss
+    baseClip: {fileID: 8300000, guid: f237374e678102148835fdf2dfd70497, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: mus_w2
+    baseClip: {fileID: 8300000, guid: 076ce804e503a0d4797430de6ed09960, type: 3}
+    intensityClip: {fileID: 8300000, guid: bf51e6938ef1f6a4ba0c49251483754d, type: 3}
+    beats: {fileID: 0}
+  - id: mus_w2_boss
+    baseClip: {fileID: 8300000, guid: 7b26137122844ba499d237b89e3cab66, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: mus_w3
+    baseClip: {fileID: 8300000, guid: ce769ed7d9279ae49b74d4238519651f, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: mus_w3_boss
+    baseClip: {fileID: 8300000, guid: 6fb5e7da843e00d4483908b92b6ce5c4, type: 3}
+    intensityClip: {fileID: 8300000, guid: 2ee6cf94a366aaf4b84d2bddeb442c0f, type: 3}
+    beats: {fileID: 4900000, guid: 3f47b90f4c847a642b0e48c03fd33ad7, type: 3}
+  - id: mus_w4
+    baseClip: {fileID: 8300000, guid: ba680cbd53549b443ac5b5c8109a5ffc, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: mus_w4_boss
+    baseClip: {fileID: 8300000, guid: 035e1c5e718d2aa48860db5938787f95, type: 3}
+    intensityClip: {fileID: 8300000, guid: 26b2925a3d7c3c74185840d1f24c4a77, type: 3}
+    beats: {fileID: 0}
+  - id: mus_w5
+    baseClip: {fileID: 8300000, guid: 67a75fbe6940ad644a1f3684a72625b4, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: mus_w5_boss
+    baseClip: {fileID: 8300000, guid: eab4af05bece0dc4e822f90c0825fee7, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: mus_w6
+    baseClip: {fileID: 8300000, guid: f0c6a426652952c489772000a6185145, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: mus_w6_boss
+    baseClip: {fileID: 8300000, guid: 6779c735c223a7c4282238c2989df2c8, type: 3}
+    intensityClip: {fileID: 8300000, guid: 6dfba3ec8456a034e8b860b3892adacd, type: 3}
+    beats: {fileID: 0}
+  - id: stinger_fail_03
+    baseClip: {fileID: 8300000, guid: 8a1dc2d63f29a27479ce6b535945d289, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}
+  - id: stinger_victory_02
+    baseClip: {fileID: 8300000, guid: e874e7d1633d191498bdddb1ecda7a95, type: 3}
+    intensityClip: {fileID: 0}
+    beats: {fileID: 0}

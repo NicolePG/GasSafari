@@ -10,6 +10,7 @@ namespace GasSafari.Core
         public static TimeController TimeController { get; private set; }
         public static Input.InputHub InputHub { get; private set; }
         public static Audio.AudioDirector Audio { get; private set; }
+        public static Audio.MusicDirector Music { get; private set; }
         public static VFX.VfxPool Vfx { get; private set; }
         public static Progression.ProgressionService Progression { get; private set; }
         public static bool IsReady => Root != null;
@@ -21,6 +22,7 @@ namespace GasSafari.Core
             TimeController = root.GetComponentInChildren<TimeController>();
             InputHub = root.GetComponentInChildren<Input.InputHub>();
             Audio = root.GetComponentInChildren<Audio.AudioDirector>();
+            Music = root.GetComponentInChildren<Audio.MusicDirector>();
             Vfx = root.GetComponentInChildren<VFX.VfxPool>();
             Progression = root.GetComponentInChildren<Progression.ProgressionService>();
         }
@@ -40,6 +42,7 @@ namespace GasSafari.Core
             TimeController = null;
             InputHub = null;
             Audio = null;
+            Music = null;
             Vfx = null;
             Progression = null;
         }

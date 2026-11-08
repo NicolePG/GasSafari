@@ -91,6 +91,8 @@ ui_move, ui_select, ui_back, ui_locked, ui_buy, ui_achievement, ui_join, ui_read
 
 Música adaptativa simple: cada pista de mundo tiene 2 capas (base + intensidad). La capa de intensidad sube cuando la velocidad de la balsa supera 8 m/s o en jefes; transición de 1 s.
 
+Implementación (M5-40): `MusicLibrary` (`Data/Audio`, armada por `Gas Safari/Setup/Crear biblioteca de música (M5-40)` con `<id>_base.ogg`, `<id>_intensity.ogg` y `<id>_beats.json`), `MusicDirector` en `GameServices` (`Services.Music`) y `LevelManager.Begin` lo arranca con `LevelData.musicId`/`isBoss`. Las dos capas arrancan en el mismo instante del reloj de audio; sube la intensidad por encima de 8 m/s y baja por debajo de 7 m/s (histéresis); hoy solo W2, jefe de W3, jefe de W4 y jefe de W6 tienen capa de intensidad (las demás pistas pasan la prueba de sincronía solo con la base). Sonidos añadidos con clips provisionales: `LightsOut` (wind_gust), `LightsOn` (star_earn), `RockWarn` y `RockImpact`.
+
 ## 6. De dónde sale cada sonido (y licencias)
 
 | Fuente | Uso | Licencia / condición |
