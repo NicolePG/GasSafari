@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GasSafari.Hazards
 {
-    // H15 Cocodrilo (docs/05): duerme hasta que un pedo fuerte (ráfaga o cargado; los toques no) suena a menos de 8 m.
+    // H15 Cocodrilo (docs/05): duerme hasta que un pedo fuerte (ráfaga, cargado o Súper Pedo; los toques no) suena a menos de 8 m.
     // Despierto se acerca a la balsa, avisa 'warningTime' y muerde: revienta 1 cámara. Después se aleja 'retreatTime' y
     // vuelve a dormir. Se supera con toques suaves, el Rugido o la cebolla (IScareable: huye y no ataca).
     public class Crocodile : HazardBase, IScareable
@@ -33,12 +33,14 @@ namespace GasSafari.Hazards
         private void OnEnable()
         {
             GameEvents.OnFart += OnFart;
+            GameEvents.OnSuperFart += OnSuperFart;
             GameEvents.OnRespawn += Reset;
         }
 
         private void OnDisable()
         {
             GameEvents.OnFart -= OnFart;
+            GameEvents.OnSuperFart -= OnSuperFart;
             GameEvents.OnRespawn -= Reset;
         }
 
@@ -80,6 +82,18 @@ namespace GasSafari.Hazards
             Current = State.Chasing;
         }
 
+        // El Súper Pedo es el más fuerte de todos: también lo despierta si la balsa está a menos de 8 m.
+        private void OnSuperFart(float power)
+        {
+            if (Current != State.Sleeping || Time.time < scaredUntil)
+                return;
+            var target = FindFirstObjectByType<RaftController>();
+            if (target == null || (target.transform.position - transform.position).magnitude > WakeDistance)
+                return;
+            raft = target;
+            Current = State.Chasing;
+        }
+
         protected override void Update()
         {
             base.Update();
@@ -91,7 +105,7 @@ namespace GasSafari.Hazards
             switch (Current)
             {
                 case State.Chasing:
-                    if (flat.magnitude <= BiteDistance)
+                    if (DistanceToRaft() <= BiteDistance)
                     {
                         Current = State.Biting;
                         Warn();
@@ -101,7 +115,7 @@ namespace GasSafari.Hazards
                     break;
                 case State.Biting:
                     // Sigue a la balsa mientras avisa; el mordisco llega en OnWarningEnded.
-                    if (flat.magnitude > BiteDistance * 1.5f)
+                    if (DistanceToRaft() > BiteDistance * 1.5f)
                     {
                         CancelWarning();
                         Current = State.Chasing;
@@ -119,6 +133,15 @@ namespace GasSafari.Hazards
             }
         }
 
+        // Distancia horizontal al borde de la balsa (no a su centro): el collider del cocodrilo le impide acercarse más que
+        // la suma de los dos tamaños, y el mordisco tiene que alcanzar desde ahí.
+        private float DistanceToRaft()
+        {
+            var closest = raft.Body.ClosestPointOnBounds(transform.position);
+            closest.y = transform.position.y;
+            return Vector3.Distance(transform.position, closest);
+        }
+
         private void Move(Vector3 direction, float speed)
         {
             transform.position += direction * (speed * HazardSpeed * Time.deltaTime);
@@ -130,9 +153,7 @@ namespace GasSafari.Hazards
         {
             if (Current != State.Biting || raft == null || Time.time < scaredUntil)
                 return;
-            var flat = raft.transform.position - transform.position;
-            flat.y = 0f;
-            if (flat.magnitude <= BiteDistance * 1.5f)
+            if (DistanceToRaft() <= BiteDistance * 1.5f)
             {
                 var point = raft.Body.ClosestPointOnBounds(transform.position);
                 DamageRaft(raft, point);

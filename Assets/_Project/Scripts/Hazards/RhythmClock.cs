@@ -13,6 +13,8 @@ namespace GasSafari.Hazards
         private static RhythmClock current;
 
         [SerializeField] private float bpm = 110f;
+        [Tooltip("Sigue los pulsos de la música en reproducción (MusicDirector) en vez de contar por su cuenta")]
+        [SerializeField] private bool followMusic;
 
         public static RhythmClock Current => current;
         public float Bpm => bpm;
@@ -23,9 +25,21 @@ namespace GasSafari.Hazards
 
         private int lastBeat;
 
-        public void Configure(float startBpm) => bpm = startBpm;
+        // Con la música de la pista rítmica (W3-5), los pulsos salen de su tabla de tiempos y el BPM es el del tramo que suena.
+        public bool FollowsMusic => followMusic && Core.Services.IsReady && Core.Services.Music != null && Core.Services.Music.HasBeats;
 
-        public void SetBpm(float value) => bpm = Mathf.Max(30f, value);
+        public void Configure(float startBpm, bool followsMusic = false)
+        {
+            bpm = startBpm;
+            followMusic = followsMusic;
+        }
+
+        // Con la música mandando, el tempo lo da la pista: el cambio de canción lo hace RhythmTempoZone con SeekToTempoChange.
+        public void SetBpm(float value)
+        {
+            if (!FollowsMusic)
+                bpm = Mathf.Max(30f, value);
+        }
 
         private void OnEnable() => current = this;
 
@@ -37,7 +51,15 @@ namespace GasSafari.Hazards
 
         private void Update()
         {
-            Beats += Time.deltaTime * bpm / 60.0;
+            if (FollowsMusic && Core.Services.Music.TryGetBeatPosition(out double musicBeats))
+            {
+                Beats = musicBeats;
+                bpm = Core.Services.Music.CurrentBpm();
+            }
+            else
+            {
+                Beats += Time.deltaTime * bpm / 60.0;
+            }
             int beat = (int)Beats;
             if (beat != lastBeat)
             {

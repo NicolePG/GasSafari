@@ -295,17 +295,18 @@ namespace GasSafari.Editor
                 for (float lateral = -6.5f; lateral <= -4.4f; lateral += 2.1f)
                     level.Place(HZ + "H10_CrystalSpikes.prefab", d, lateral, d * 7f).name = "PinchosBajos";
             }
-            var topMango = level.Mango(1, 0f, 0f, 1f);
-            topMango.transform.position = level.PointAt(fieldStart + 25f, -5.4f, 2.4f);
+            // Mango escondido (slot 2) a lo alto sobre los pinchos, pegado a la pared: solo se alcanza flotando con la gaseosa (P05).
+            var topMango = level.Mango(2, 0f, 0f, 1f);
+            topMango.transform.position = level.PointAt(fieldStart + 25f, -6f, 2.4f);
             level.PowerUp("P05", fieldStart + 14f, -3f);
             level.PowerUp("P01", fieldEnd + 20f, 0f);
 
-            // S3: colonia de murciélagos (H26) en las dos orillas; mango escondido en el techo, a un costado.
+            // S3: colonia de murciélagos (H26) en las dos orillas; mango de riesgo en un nicho a un costado.
             for (int i = 0; i < 5; i++)
                 level.Place(HZ + "H26_Bats.prefab", bats + 20f + i * 25f, i % 2 == 0 ? 4.6f : -4.6f).name = "Murcielagos_" + i;
             level.WallGap(bats + 108f, bats + 118f);
             Alcove(level, bats + 113f, 1f);
-            level.Mango(2, bats + 113f, 8.4f, 2.4f);
+            level.Mango(1, bats + 113f, 8.4f, 2.4f);                                  // riesgo: nicho entre murciélagos
             level.PowerUp("P01", bats + 10f, 0f);
             level.PowerUp("P05", bats + 90f, 0f);
             level.PowerUp("P06", bats + 60f, 0f);
@@ -394,6 +395,19 @@ namespace GasSafari.Editor
             box.size = new Vector3(level.WidthAt(chase) + 2f, 4f, 2f);
             var chaser = zone.AddComponent<CollapseChaser>();
             chaser.Configure(rubble.transform, waypoints.ToArray(), 4.5f);
+            // Aviso del derrumbe (2.5 s): sacudida, estruendo, borde rojo y rocas que caen detrás de la balsa (sin daño).
+            var falling = new List<Transform>();
+            var rockModel = AssetDatabase.LoadAssetAtPath<GameObject>(ENV + "W4_CaveRock_B.fbx");
+            for (int i = 0; i < 8; i++)
+            {
+                var rock = (GameObject)PrefabUtility.InstantiatePrefab(rockModel, level.Scene);
+                rock.name = "RocaDerrumbe_" + i;
+                rock.transform.SetParent(zone.transform, true);
+                rock.transform.localScale = Vector3.one * (0.45f + (i % 3) * 0.12f);
+                rock.SetActive(false);
+                falling.Add(rock.transform);
+            }
+            chaser.ConfigureWarning(falling.ToArray(), 2.5f);
             EditorUtility.SetDirty(chaser);
             level.PowerUp("P01", chase + 20f, 0f);
             level.PowerUp("P04", chase + 110f, 0f);

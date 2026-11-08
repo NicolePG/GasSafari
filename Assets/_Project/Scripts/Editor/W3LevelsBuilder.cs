@@ -230,7 +230,9 @@ namespace GasSafari.Editor
             float ambush = level.Length;
             level.Straight(120f, 12f);                                                // S3 emboscada en grupo
             float falls = level.Length;
-            level.Straight(60f, 10f).Straight(30f, 10f);                         // S4 cascada de salida (cortina visual; sin desnivel: ver nota en docs/12)
+            level.Straight(40f, 10f);                                                 // S4 cascada de salida: acercamiento
+            float drop = level.Length;
+            level.Straight(30f, 10f, -6f).Straight(30f, 10f);                         // agua inclinada de 6 m de caída (como W4-1) y poza
             level.BuildChannel(0.3f);
 
             level.Section(1, "Orillas", 0f);
@@ -277,9 +279,12 @@ namespace GasSafari.Editor
             level.PowerUp("P01", ambush + 12f, 0f);
             Anchor(level, ambush + 51f, 0f);
 
-            // S4: bajo la cascada, el mango.
-            level.Mango(2, falls + 50f, 0f, 1f);
-            Waterfall(level, falls + 44f, 0f, 10f, Quaternion.LookRotation(level.DirectionAt(falls + 44f)).eulerAngles.y);
+            // S4: la cascada de salida (H17, caída de 6 m) y, bajo ella, el mango.
+            var edge = level.Place(HZ + "H17_Waterfall.prefab", drop - 10f, 0f);
+            edge.name = "BordeCascada";
+            EditorUtility.SetDirty(edge.GetComponent<WaterfallEdge>());
+            level.Mango(2, drop + 44f, 0f, 1f);
+            Waterfall(level, drop + 14f, 0f, 10f, Quaternion.LookRotation(level.DirectionAt(drop + 14f)).eulerAngles.y);
 
             LevelDresser.Dress(level, LevelDresser.W3, 33, level.PointAt(roots, 60f), -90f);
             W2StarShots.Apply(level.Scene, "W3-3");
@@ -403,10 +408,16 @@ namespace GasSafari.Editor
             // Reloj de compás (110 BPM) y bono de pedo en el pulso.
             var director = new GameObject("Ritmo");
             SceneManager.MoveGameObjectToScene(director, level.Scene);
-            director.AddComponent<RhythmClock>().Configure(110f);
+            director.AddComponent<RhythmClock>().Configure(110f, true); // los pulsos salen de la pista del jefe (mus_w3_boss)
             director.AddComponent<RhythmSyncBonus>();
 
-            // S1: tambores (decorado) y los primeros bloques que se mueven al compás.
+            // S1: tambores en las orillas que laten con la música y los primeros bloques que se mueven al compás.
+            for (int i = 0; i < 8; i++)
+            {
+                float d = 14f + i * 14f;
+                float side = i % 2 == 0 ? 1f : -1f;
+                level.Place(HZ + "H16_Drum.prefab", d, side * (level.WidthAt(d) * 0.5f + 2.2f), 0f, 0f, "Props").name = "Tambor_" + i;
+            }
             for (int i = 0; i < 3; i++)
                 RhythmBar(level, 40f + i * 28f, i % 2 == 0, 8f, 4.5f, 8f);
             level.PowerUp("P01", 20f, 0f);
@@ -414,6 +425,13 @@ namespace GasSafari.Editor
             // S2: barras y una plataforma que solo baja en el compás 4 (con el mango encima).
             for (int i = 0; i < 4; i++)
                 RhythmBar(level, beats + 20f + i * 26f, i % 2 == 0, 8f, 4.5f, 8f);
+            // Chorros que brotan en los pulsos 1 y 3 del compás y empujan hacia el centro, alternando orillas.
+            for (int i = 0; i < 4; i++)
+            {
+                float side = i % 2 == 0 ? 1f : -1f;                                     // +1 = derecha
+                var jet = level.Place(HZ + "H16_Jet.prefab", beats + 35f + i * 26f, side * 5.2f, side > 0f ? 180f : 0f);
+                jet.name = "ChorroRitmo_" + i;
+            }
             var gate = level.Place(HZ + "H16_Rhythm.prefab", beats + 128f, 4.2f);
             gate.name = "PlataformaCompas4";
             gate.transform.localScale = new Vector3(2f, 1f, 1f);

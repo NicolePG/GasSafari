@@ -231,7 +231,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 - Mecánica nueva: corrientes cruzadas (H31) y gaseosa (P05) para flotar sobre pinchos bajos; murciélagos (H26).
 - Secciones: 1) canales con dos corrientes que chocan; 2) campo de pinchos bajos (gaseosa o rodeo largo); 3) colonia de murciélagos; 4) salida por una grieta iluminada.
 - Power-ups: P01 x3, P05 x3, P06 x1.
-- Mangos: en el cruce de corrientes; sobre el campo de pinchos (gaseosa); en el techo de murciélagos (escondido).
+- Mangos: en el cruce de corrientes; en un nicho entre los murciélagos (riesgo); escondido a lo alto sobre el campo de pinchos, que solo está en un lado del cauce (solo se alcanza flotando con la gaseosa).
 - Momento estrella: flotar en burbuja sobre el campo de pinchos.
 
 ## W4-5 Corazón del Volcán (JEFE)

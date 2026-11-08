@@ -24,7 +24,7 @@ namespace GasSafari.Hazards
         private void Rearm()
         {
             // Si el checkpoint de reaparición queda antes de la zona, se vuelve al tempo anterior.
-            if (changed && RhythmClock.Current != null)
+            if (changed && RhythmClock.Current != null && !RhythmClock.Current.FollowsMusic)
                 RhythmClock.Current.SetBpm(previousBpm);
             changed = false;
         }
@@ -34,6 +34,12 @@ namespace GasSafari.Hazards
             if (changed || other.GetComponentInParent<RaftController>() == null || RhythmClock.Current == null)
                 return;
             changed = true;
+            // Con la música mandando, el cambio de canción es saltar la pista al tramo de 128 BPM.
+            if (RhythmClock.Current.FollowsMusic)
+            {
+                Core.Services.Music.SeekToTempoChange();
+                return;
+            }
             previousBpm = RhythmClock.Current.Bpm;
             RhythmClock.Current.SetBpm(newBpm);
         }

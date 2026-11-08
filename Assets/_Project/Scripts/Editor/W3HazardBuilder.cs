@@ -26,6 +26,7 @@ namespace GasSafari.Editor
             var h14 = Config("H14_Pit", "H14", "Fosa", 1f, false, ("kick", 3f));
             var h15 = Config("H15_Crocodile", "H15", "Cocodrilo", 1f, true, ("wakeDistance", 8f), ("speed", 3f), ("biteDistance", 2.5f), ("retreatTime", 4f));
             var h16 = Config("H16_Rhythm", "H16", "Obstáculo rítmico", 0.5f, false, ("hit", 20f), ("bpmA", 110f), ("bpmB", 128f));
+            var h16jet = Config("H16_Jet", "H16", "Chorro rítmico", 0f, false, ("accel", 4f));
             var h29 = Config("H29_Crab", "H29", "Cangrejo", 0.5f, false, ("drain", 20f), ("stayTime", 3f));
             AssetDatabase.SaveAssets();
 
@@ -108,6 +109,55 @@ namespace GasSafari.Editor
                 box.isTrigger = true;
                 root.AddComponent<Rigidbody>().isKinematic = true;
                 root.AddComponent<RhythmObstacle>().Configure(h16);
+                return root;
+            });
+
+            // W3-5: tambor que late con la música (decorado) y chorro que brota en los pulsos marcados.
+            Prefab("H16_Drum", () =>
+            {
+                var root = new GameObject("H16_Drum");
+                var body = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                Object.DestroyImmediate(body.GetComponent<Collider>());
+                body.name = "Cuerpo";
+                body.transform.SetParent(root.transform, false);
+                body.transform.localPosition = new Vector3(0f, 0.9f, 0f);
+                body.transform.localScale = new Vector3(1.8f, 0.9f, 1.8f);
+                body.GetComponent<MeshRenderer>().sharedMaterial = Toon("M_H16_Drum", new Color(0.78f, 0.35f, 0.1f));
+                var skin = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                Object.DestroyImmediate(skin.GetComponent<Collider>());
+                skin.name = "Parche";
+                skin.transform.SetParent(body.transform, false);
+                skin.transform.localPosition = new Vector3(0f, 0.52f, 0f);
+                skin.transform.localScale = new Vector3(0.92f, 0.05f, 0.92f);
+                skin.GetComponent<MeshRenderer>().sharedMaterial = Toon("M_H16_DrumSkin", new Color(0.98f, 0.9f, 0.7f));
+                root.AddComponent<RhythmDrum>().Configure(body.transform);
+                return root;
+            });
+
+            Prefab("H16_Jet", () =>
+            {
+                var root = new GameObject("H16_Jet");
+                var basin = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                Object.DestroyImmediate(basin.GetComponent<Collider>());
+                basin.name = "Base";
+                basin.transform.SetParent(root.transform, false);
+                basin.transform.localScale = new Vector3(2.4f, 0.4f, 2.4f);
+                basin.transform.localPosition = new Vector3(0f, 0.2f, 0f);
+                basin.GetComponent<MeshRenderer>().sharedMaterial = Toon("M_H16_Beat", new Color(0.97f, 0.5f, 0f));
+                var column = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                Object.DestroyImmediate(column.GetComponent<Collider>());
+                column.name = "Chorro";
+                column.transform.SetParent(root.transform, false);
+                column.transform.localPosition = new Vector3(0f, 1.6f, 0f);
+                column.transform.localScale = new Vector3(1.6f, 1.2f, 1.6f);
+                column.GetComponent<MeshRenderer>().sharedMaterial = Toon("M_H16_JetColumn", new Color(0.97f, 0.35f, 0.7f));
+                var trigger = root.AddComponent<BoxCollider>();
+                trigger.isTrigger = true;
+                trigger.center = new Vector3(3.5f, 1f, 0f);
+                trigger.size = new Vector3(6f, 3f, 6f);
+                var jet = root.AddComponent<RhythmJet>();
+                jet.Configure(h16jet);
+                jet.Configure(column.transform, 4, 5);
                 return root;
             });
 

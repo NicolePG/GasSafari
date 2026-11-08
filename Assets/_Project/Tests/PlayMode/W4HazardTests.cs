@@ -145,6 +145,98 @@ namespace GasSafari.Tests
         }
 
         [UnityTest]
+        public IEnumerator H18_Blackout_FadesTheFirefliesAndDarkensMoreThenTheyReturn()
+        {
+            var lights = new Light[3];
+            for (int i = 0; i < lights.Length; i++)
+            {
+                var go = new GameObject("Luciernaga_" + i);
+                created.Add(go);
+                var light = go.AddComponent<Light>();
+                light.type = LightType.Point;
+                light.intensity = 2f;
+                lights[i] = light;
+            }
+            var zoneGo = new GameObject("ZonaApagon", typeof(BoxCollider));
+            created.Add(zoneGo);
+            zoneGo.transform.position = rig.Raft.transform.position;
+            zoneGo.GetComponent<BoxCollider>().isTrigger = true;
+            zoneGo.GetComponent<BoxCollider>().size = new Vector3(20f, 10f, 20f);
+            zoneGo.SetActive(false);
+            var dark = zoneGo.AddComponent<DarkZone>();
+            dark.Configure(6f, lights, 4f);
+            bool started = false, ended = false;
+            System.Action onStart = () => started = true;
+            System.Action onEnd = () => ended = true;
+            DarkZone.BlackoutStarted += onStart;
+            DarkZone.BlackoutEnded += onEnd;
+            zoneGo.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            try
+            {
+                Assert.IsTrue(started, "el apagón se anuncia");
+                Assert.IsTrue(dark.LightsOut);
+                Assert.Greater(dark.Darkness, 0f, "el apagón es gradual, no un corte");
+                Assert.Less(dark.Darkness, 1f);
+                Assert.Less(lights[0].intensity, 2f, "las luciérnagas ya se están apagando");
+
+                yield return new WaitForSeconds(1.6f);
+                Assert.AreEqual(1f, dark.Darkness, 0.01f);
+                Assert.IsFalse(lights[0].enabled && lights[2].enabled, "al final del fundido están apagadas");
+                Assert.AreEqual(dark.BlackoutVisibility, RenderSettings.fogEndDistance, 0.1f, "más oscuro que los 6 m normales");
+
+                yield return new WaitForSeconds(3.6f);
+                Assert.IsTrue(ended, "pasado el apagón vuelven");
+                Assert.IsFalse(dark.LightsOut);
+                Assert.AreEqual(2f, lights[0].intensity, 0.05f);
+                Assert.IsTrue(lights[0].enabled);
+            }
+            finally
+            {
+                DarkZone.BlackoutStarted -= onStart;
+                DarkZone.BlackoutEnded -= onEnd;
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator W4_5_CollapseWarnsBeforeItAdvances_RocksFallBehindAndTheScreenEdgeTurnsRed()
+        {
+            var rubble = new GameObject("Derrumbe").transform;
+            rubble.position = rig.Raft.transform.position - Vector3.forward * 20f;
+            created.Add(rubble.gameObject);
+            var rocks = new Transform[4];
+            for (int i = 0; i < rocks.Length; i++)
+            {
+                rocks[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
+                Object.Destroy(rocks[i].GetComponent<Collider>());
+                rocks[i].SetParent(rubble, true);
+                created.Add(rocks[i].gameObject);
+            }
+            var zoneGo = new GameObject("ZonaDerrumbe", typeof(BoxCollider));
+            created.Add(zoneGo);
+            zoneGo.transform.position = rig.Raft.transform.position;
+            zoneGo.GetComponent<BoxCollider>().isTrigger = true;
+            zoneGo.GetComponent<BoxCollider>().size = new Vector3(20f, 10f, 20f);
+            zoneGo.SetActive(false);
+            var chaser = zoneGo.AddComponent<CollapseChaser>();
+            chaser.Configure(rubble, new[] { rubble.position, rubble.position + Vector3.forward * 40f }, 4.5f);
+            chaser.ConfigureWarning(rocks, 1.5f);
+            zoneGo.SetActive(true);
+            yield return new WaitForSeconds(0.6f);
+
+            Assert.IsTrue(chaser.Warning, "primero avisa");
+            Assert.IsFalse(chaser.Running, "el techo aún no avanza durante el aviso");
+            Assert.IsTrue(GasSafari.UI.ScreenEdgeWarning.IsShowing, "borde rojo en la pantalla");
+            Assert.Greater(GasSafari.UI.ScreenEdgeWarning.Current.Alpha, 0f);
+            Assert.AreEqual(rig.Raft.transform.position.z - 20f, rubble.position.z, 0.1f, "no avanza durante el aviso");
+
+            yield return new WaitForSeconds(1.4f);
+            Assert.IsTrue(chaser.Running, "tras el aviso el derrumbe avanza");
+            yield return new WaitForSeconds(0.6f);
+            Assert.AreEqual(rocks.Length, chaser.DebrisLanded, "las rocas cayeron detrás de la balsa");
+        }
+
+        [UnityTest]
         public IEnumerator H26_Bats_ThrowALooseAnimalAfterTheScreech()
         {
             var loose = rig.AddAvatar(90f);

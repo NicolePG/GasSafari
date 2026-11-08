@@ -141,6 +141,52 @@ namespace GasSafari.Tests
         }
 
         [UnityTest]
+        public IEnumerator H16_DrumPulsesOnTheBeat_AndTheJetPushesOnlyOnItsBeats()
+        {
+            var clockObject = new GameObject("Clock");
+            created.Add(clockObject);
+            var clock = clockObject.AddComponent<RhythmClock>();
+            clock.Configure(110f);
+            var drum = Make<RhythmDrum>("H16_Drum", new Vector3(30f, 0f, 30f));
+            var jet = Make<RhythmJet>("H16_Jet", new Vector3(-3.5f, 0f, 0f));
+            yield return null;
+
+            float minDrum = 1f, maxDrum = 0f;
+            bool sawActive = false, sawIdle = false;
+            float pushedWhileIdle = 0f;
+            var body = rig.Get<Rigidbody>();
+            float end = Time.time + 2.4f;
+            while (Time.time < end)
+            {
+                minDrum = Mathf.Min(minDrum, drum.PulseLevel);
+                maxDrum = Mathf.Max(maxDrum, drum.PulseLevel);
+                sawActive |= jet.IsActive;
+                sawIdle |= !jet.IsActive;
+                if (!jet.IsActive)
+                    pushedWhileIdle = Mathf.Max(pushedWhileIdle, body.velocity.x);
+                yield return null;
+            }
+            Assert.Greater(maxDrum, 0.8f, "el tambor late en cada pulso");
+            Assert.Less(minDrum, 0.3f, "y se aquieta entre pulsos");
+            Assert.IsTrue(sawActive && sawIdle, "el chorro brota en los pulsos 1 y 3 y descansa en el 2 y el 4");
+            Assert.Greater(body.velocity.x, 0.05f, "mientras brota empuja la balsa hacia +X");
+        }
+
+        [UnityTest]
+        public IEnumerator H15_Croc_WakesWithASuperFartOnlyWithin8Meters()
+        {
+            yield return new WaitForSeconds(0.2f);
+            var far = Make<Crocodile>("H15_Crocodile", new Vector3(20f, 0f, 0f));
+            var near = Make<Crocodile>("H15_Crocodile", new Vector3(6f, 0f, 0f));
+            yield return null;
+
+            GameEvents.RaiseSuperFart(1f);
+            yield return null;
+            Assert.AreEqual(Crocodile.State.Sleeping, far.Current, "el Súper Pedo no llega a 20 m");
+            Assert.AreEqual(Crocodile.State.Chasing, near.Current, "docs/05 H15: el Súper Pedo a menos de 8 m lo despierta");
+        }
+
+        [UnityTest]
         public IEnumerator H15_Croc_FarAwayStaysAsleep_ScaredRetreats()
         {
             var shooter = rig.AddAvatar(180f);

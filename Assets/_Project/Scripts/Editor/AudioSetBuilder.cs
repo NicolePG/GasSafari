@@ -32,7 +32,9 @@ namespace GasSafari.Editor
             (SoundId.PickupGoldenMango, "pickup_golden_mango"),
             (SoundId.GateOpen, "gate_open"), (SoundId.GateClose, "gate_close"), (SoundId.CrateBreak, "crate_break"),
             (SoundId.CraneWarn, "crane_warn"), (SoundId.CraneSlam, "crane_slam"), (SoundId.RaftBounce, "raft_bounce"),
-            (SoundId.RaftHitHard, "raft_hit_hard"), (SoundId.WaterSplashBig, "water_splash_big")
+            (SoundId.RaftHitHard, "raft_hit_hard"), (SoundId.WaterSplashBig, "water_splash_big"),
+            (SoundId.RockWarn, "rock_warn"), (SoundId.RockImpact, "rock_impact"),
+            (SoundId.LightsOut, "wind_gust"), (SoundId.LightsOn, "star_earn")
         };
 
         [MenuItem("Gas Safari/Setup/Crear sonidos y SfxSet (M2-13)")]
