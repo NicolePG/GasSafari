@@ -39,6 +39,7 @@ namespace GasSafari.Editor
         private readonly List<Checkpoint> checkpoints = new List<Checkpoint>();
         private readonly Dictionary<string, Transform> groups = new Dictionary<string, Transform>();
         private readonly List<(float from, float to)> wallGaps = new List<(float, float)>();
+        private readonly List<(float from, float to)> waterGaps = new List<(float, float)>();
         private readonly List<(float from, float to, float accel)> flowZones = new List<(float, float, float)>();
         private readonly List<(List<Vector3> points, float width)> branches = new List<(List<Vector3>, float)>();
         private float heading;
@@ -195,6 +196,9 @@ namespace GasSafari.Editor
         public bool IsOpenWater => openWater;
 
         // Niveles con abismos (H22): sin nivel base, debajo del hueco no hay agua.
+        // Abismo (H22): tramo del cauce sin agua; la balsa cae. Hace falta una cinta de agua (se fuerza) y NoBaseWater.
+        public void WaterGap(float from, float to) => waterGaps.Add((from, to));
+
         public void NoBaseWater() => useBaseWater = false;
 
         // Tramo sin paredes (por ejemplo, una abertura a una rotonda ancha).
@@ -359,10 +363,10 @@ namespace GasSafari.Editor
             // El plano de Unity mide 10 x 10.
             water.localScale = new Vector3((max.x - min.x + margin * 2f) / 10f, 1f, (max.z - min.z + margin * 2f) / 10f);
             // Con desnivel, el agua de cada tramo es una cinta que sigue el cauce (docs/02 §1); el plano queda como nivel base.
-            if (points.Any(p => Mathf.Abs(p.y) > 0.01f))
+            if (points.Any(p => Mathf.Abs(p.y) > 0.01f) || waterGaps.Count > 0)
             {
                 var material = water.GetComponent<Renderer>().sharedMaterial;
-                Ribbon("AguaCauce", points, widths, material);
+                Ribbon("AguaCauce", points, widths, material, true);
                 foreach (var (branch, width) in branches)
                     Ribbon("AguaRamal", branch, branch.Select(_ => width).ToList(), material);
             }
@@ -376,7 +380,7 @@ namespace GasSafari.Editor
             }
         }
 
-        private void Ribbon(string name, List<Vector3> line, List<float> lineWidths, Material material)
+        private void Ribbon(string name, List<Vector3> line, List<float> lineWidths, Material material, bool main = false)
         {
             var vertices = new List<Vector3>();
             var triangles = new List<int>();
@@ -389,6 +393,9 @@ namespace GasSafari.Editor
                 vertices.Add(line[i] - right * half);
                 vertices.Add(line[i] + right * half);
                 if (i == 0)
+                    continue;
+                // Abismo: sin agua entre las muestras cuyo punto medio cae en un hueco.
+                if (main && waterGaps.Any(g => (cumulative[i - 1] + cumulative[i]) * 0.5f >= g.from && (cumulative[i - 1] + cumulative[i]) * 0.5f <= g.to))
                     continue;
                 int v = i * 2;
                 triangles.AddRange(new[] { v - 2, v, v - 1, v - 1, v, v + 1 });
