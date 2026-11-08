@@ -15,6 +15,7 @@ namespace GasSafari.Hazards
 
         private RaftController raft;
         private PlayerAvatar victim;
+        private PlayerAvatar pending;
         private GasTank victimGas;
         private Vector3 home;
         private Quaternion homeRotation;
@@ -48,6 +49,7 @@ namespace GasSafari.Hazards
         private void Reset()
         {
             victim = null;
+            pending = null;
             victimGas = null;
             spent = false;
             StolenGas = 0f;
@@ -57,7 +59,7 @@ namespace GasSafari.Hazards
 
         protected override void OnRaftEnter(RaftController enteringRaft)
         {
-            if (spent || Attached)
+            if (spent || Attached || IsWarning)
                 return;
             // El animal más cercano a la roca: el cangrejo sube por ese lado.
             var seats = enteringRaft.GetComponent<RaftSeats>().Seats;
@@ -74,8 +76,18 @@ namespace GasSafari.Hazards
             }
             if (nearest == null)
                 return;
+            // Aviso de 0.5 s (el cangrejo se alza) y luego sube al animal elegido.
             raft = enteringRaft;
-            victim = nearest.Avatar;
+            pending = nearest.Avatar;
+            Warn();
+        }
+
+        protected override void OnWarningEnded()
+        {
+            if (pending == null || spent || Attached || !pending.GetComponent<PlayerSeat>().IsSeated)
+                return;
+            victim = pending;
+            pending = null;
             victimGas = victim.GetComponent<GasTank>();
             attachedTime = 0f;
         }

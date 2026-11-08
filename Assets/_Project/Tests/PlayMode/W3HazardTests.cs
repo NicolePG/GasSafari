@@ -210,7 +210,7 @@ namespace GasSafari.Tests
             float start = gas.Gas;
             var crab = Make<CrabHazard>("H29_Crab", Vector3.zero);
             crab.transform.position = rig.Raft.transform.position + new Vector3(2.5f, 0f, 0f);
-            yield return new WaitForSeconds(1.4f);
+            yield return new WaitForSeconds(1.9f);
             Assert.IsTrue(crab.Attached, "sube a bordo");
             Assert.Greater(start - gas.Gas, 12f, "roba gas");
 
@@ -226,7 +226,7 @@ namespace GasSafari.Tests
             yield return new WaitForSeconds(0.3f);
             var crab = Make<CrabHazard>("H29_Crab", Vector3.zero);
             crab.transform.position = rig.Raft.transform.position + new Vector3(2.5f, 0f, 0f);
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(1.3f);
             Assert.IsTrue(crab.Attached);
             GameEvents.RaiseFart(victim.GetComponent<PlayerAvatar>(), FartType.Puff, 5f);
             Assert.IsFalse(crab.Attached, "un pedo se lo quita de encima");

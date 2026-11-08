@@ -1,5 +1,6 @@
 using GasSafari.Core;
 using GasSafari.Hazards;
+using GasSafari.Level;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,7 +42,7 @@ namespace GasSafari.Editor
                 level.Place(HZ + "H11_SandBar.prefab", bars[i], bar[i]).name = "BancoArena_" + i;
             var castle = Solid(level, "W3_Sandcastle_A", 80f, 4.8f, Quaternion.identity, 1f, -0.2f);
             castle.name = "CastilloArena";
-            level.Mango(0, 80f, 4.8f, 2.4f);
+            level.Mango(0, 80f, 3.4f, 1.8f);
             level.PowerUp("P01", 25f, 0f);
 
             // S2: rocas con cangrejos (H29) a los costados; mango sobre la tercera roca.
@@ -52,7 +53,7 @@ namespace GasSafari.Editor
                 Solid(level, "W3_Rock_A", d, lateral, Quaternion.Euler(0f, i * 70f, 0f), 1.3f, -0.4f).name = "RocaCangrejo_" + i;
                 level.Place(HZ + "H29_Crab.prefab", d, lateral, i * 90f, 1.1f).name = "Cangrejo_" + i;
                 if (i == 2)
-                    level.Mango(1, d, lateral, 2.6f);
+                    level.Mango(1, d, lateral > 0 ? 2.8f : -2.8f, 2.0f);
             }
             level.PowerUp("P01", crabs + 12f, 0f);
             level.PowerUp("P03", crabs + 135f, 0f);
@@ -62,8 +63,8 @@ namespace GasSafari.Editor
             var tideWave = level.Place(HZ + "H04_Wave.prefab", tide + 12f, 0f, 0f);
             tideWave.name = "OlaMarea";
             W2LevelsBuilder.SetWave(tideWave, wave, 12f, 90f, 12f, 0f);
-            Solid(level, "W3_Palm_C", tide + 100f, -4.8f, Quaternion.Euler(0f, 20f, 88f), 1f, 0.6f).name = "PalmeraCaida";
-            level.Mango(2, tide + 100f, -7.2f, 1f);
+            Solid(level, "W3_Palm_C", tide + 100f, -5.4f, Quaternion.Euler(0f, 20f, 88f), 1f, 0.6f).name = "PalmeraCaida";
+            level.Mango(2, tide + 100f, -4.4f, 1f);
             level.PowerUp("P01", tide + 60f, 0f);
             Anchor(level, tide + 25f, 0f);
 
@@ -80,7 +81,7 @@ namespace GasSafari.Editor
             var level = GreyboxLevel.Create("W3-2", "L_W3_2_RioLianas");
             level.StartPath(Vector3.zero, 0f).Straight(100f, 12f);                    // S1 río cubierto de vegetación
             float curtains = level.Length;
-            level.Arc(40f, -30f, 12f).Straight(100f, 12f);                            // S2 ruta normal, más larga
+            level.Arc(40f, 60f, 12f).Arc(40f, -120f, 12f).Arc(40f, 60f, 12f).Straight(20f, 12f); // S2 ruta normal: rodeo largo
             float logs = level.Length;
             level.Straight(150f, 12f);                                                // S3 troncos giratorios
             float tunnel = level.Length;
@@ -109,9 +110,9 @@ namespace GasSafari.Editor
             float chordLength = Vector3.Distance(a, b);
             for (int i = 0; i < 2; i++)
             {
-                var vine = level.PlaceAt(HZ + "H12_Vine.prefab", a + chord * (chordLength * (0.3f + 0.3f * i)), yaw + 90f);
+                var vine = level.PlaceAt(HZ + "H12_Vine.prefab", a + chord * (chordLength * (0.3f + 0.3f * i)), yaw);
                 vine.name = "Liana_" + i;
-                vine.transform.localScale = new Vector3(1.6f, 1.5f, 1.6f);
+                vine.transform.localScale = new Vector3(0.62f, 1.1f, 1f);
             }
             var shortcutMango = level.Mango(0, 0f, 0f, 1f);
             shortcutMango.transform.position = a + chord * (chordLength * 0.45f) + Vector3.up;
@@ -145,8 +146,9 @@ namespace GasSafari.Editor
             level.WallGap(cave - 3f, cave + 3f);
             float caveYaw = Quaternion.LookRotation(level.DirectionAt(cave)).eulerAngles.y;
             level.Block("Cueva_Fondo", level.PointAt(cave, -10.5f), new Vector3(1f, 3f, 7f), BrownColor, caveYaw);
-            level.Block("Cueva_Lado1", level.PointAt(cave - 3.5f, -7.5f), new Vector3(6f, 3f, 1f), BrownColor, caveYaw);
-            level.Block("Cueva_Lado2", level.PointAt(cave + 3.5f, -7.5f), new Vector3(6f, 3f, 1f), BrownColor, caveYaw);
+            level.Block("Cueva_Lado1", level.PointAt(cave - 3.5f, -8.25f), new Vector3(4.5f, 3f, 1f), BrownColor, caveYaw);
+            level.Block("Cueva_Lado2", level.PointAt(cave + 3.5f, -8.25f), new Vector3(4.5f, 3f, 1f), BrownColor, caveYaw);
+            Waterfall(level, cave, -6.2f, 6f, caveYaw);
             level.Mango(2, cave, -7.5f, 1f);
 
             // S4: túnel de lianas en llamas: arcos y fuego a los lados, luz naranja que parpadea.
@@ -228,7 +230,7 @@ namespace GasSafari.Editor
             float ambush = level.Length;
             level.Straight(120f, 12f);                                                // S3 emboscada en grupo
             float falls = level.Length;
-            level.Straight(40f, 10f, -6f).Straight(30f, 10f);                         // S4 cascada de salida
+            level.Straight(60f, 10f, -6f).Straight(30f, 10f);                         // S4 cascada de salida
             level.BuildChannel(0.3f);
 
             level.Section(1, "Orillas", 0f);
@@ -254,20 +256,21 @@ namespace GasSafari.Editor
             {
                 float d = roots + 20f + i * 34f;
                 float yaw = Quaternion.LookRotation(level.DirectionAt(d)).eulerAngles.y;
-                var bridge = level.Block("PuenteRaiz", level.PointAt(d, 0f, 3.7f), new Vector3(level.WidthAt(d) + 2f, 0.6f, 2.4f), BrownColor, yaw);
-                Object.DestroyImmediate(bridge.GetComponent<Collider>());
+                // Con collider (capa Environment): la cámara no atraviesa el puente.
+                var bridge = level.Block("PuenteRaiz", level.PointAt(d, 0f, 4.7f), new Vector3(level.WidthAt(d) + 2f, 0.6f, 2.4f), BrownColor, yaw);
+                bridge.layer = GameLayers.Environment;
             }
-            var nest = level.Block("Nido", level.PointAt(roots + 40f, 5f, 0.3f), new Vector3(2.2f, 1f, 2.2f), BrownColor,
-                Quaternion.LookRotation(level.DirectionAt(roots + 40f)).eulerAngles.y);
+            var nest = level.Block("Nido", level.PointAt(roots + 54f, 5f, 0.3f), new Vector3(2.2f, 1f, 2.2f), BrownColor,
+                Quaternion.LookRotation(level.DirectionAt(roots + 54f)).eulerAngles.y);
             nest.layer = GameLayers.Environment;
-            level.Mango(0, roots + 40f, 5f, 1.9f);
+            level.Mango(0, roots + 54f, 4.2f, 1.6f);
             level.PowerUp("P01", roots + 90f, 0f);
             level.PowerUp("P04", roots + 130f, 0f);
 
             // S3: emboscada: seis fosas a la vez, a los dos lados; aguantar sin caer (mango en medio).
             for (int i = 0; i < 6; i++)
             {
-                float d = ambush + 25f + (i / 2) * 26f;
+                float d = ambush + 25f + (i / 2) * 6f;
                 level.Place(HZ + "H14_Pit.prefab", d, i % 2 == 0 ? 4.8f : -4.8f, 0f).name = "Emboscada_" + i;
             }
             level.Mango(1, ambush + 51f, 0f, 1f);
@@ -276,6 +279,7 @@ namespace GasSafari.Editor
 
             // S4: bajo la cascada, el mango.
             level.Mango(2, falls + 50f, 0f, 1f);
+            Waterfall(level, falls + 44f, 0f, 10f, Quaternion.LookRotation(level.DirectionAt(falls + 44f)).eulerAngles.y);
 
             LevelDresser.Dress(level, LevelDresser.W3, 33, level.PointAt(roots, 60f), -90f);
             W2StarShots.Apply(level.Scene, "W3-3");
@@ -329,7 +333,7 @@ namespace GasSafari.Editor
                 var croc = level.Place(HZ + "H15_Crocodile.prefab", d, lateral, 90f);
                 croc.name = "CocodriloDormido_" + i;
                 if (i == 0)
-                    level.Mango(0, d, lateral, 1.3f);
+                    level.Mango(0, d, lateral > 0 ? 3.4f : -3.4f, 1.2f);
             }
             level.PowerUp("P04", sleepers + 75f, 0f);
             level.PowerUp("P01", sleepers + 130f, 0f);
@@ -341,11 +345,10 @@ namespace GasSafari.Editor
                 level.Place(HZ + "H15_Crocodile.prefab", d, i % 2 == 0 ? 4.2f : -4.2f, 90f).name = "CocodriloSilencio_" + i;
             }
             level.Mango(1, silent + 62f, 0f, 1f);
-            level.PowerUp("P06", silent + 100f, 0f);
-
+            
             // S4: estampida: seis cocodrilos que despiertan a la vez al cruzar la zona; tronco hueco con el mango detrás.
             var herd = new Crocodile[6];
-            float[] lat = { -5.5f, 5.5f, -3.5f, 3.5f, -6.5f, 6.5f };
+            float[] lat = { -5.5f, 5.5f, -4.4f, 4.4f, -6.5f, 6.5f };
             for (int i = 0; i < herd.Length; i++)
             {
                 var croc = level.Place(HZ + "H15_Crocodile.prefab", stampede + 40f + (i / 2) * 14f, lat[i], 90f);
@@ -361,7 +364,7 @@ namespace GasSafari.Editor
             box.size = new Vector3(level.WidthAt(stampede + 24f) + 2f, 4f, 3f);
             zone.AddComponent<CrocStampede>().Configure(herd);
             Solid(level, "W3_Log_B", stampede + 100f, -6.2f, Quaternion.Euler(0f, 90f, 0f), 1f, 0f).name = "TroncoHueco";
-            level.Mango(2, stampede + 100f, -7.6f, 1f);
+            level.Mango(2, stampede + 100f, -4.6f, 1.1f);
             level.PowerUp("P04", stampede + 10f, 0f);
             level.PowerUp("P06", stampede + 20f, -2f);
             level.PowerUp("P01", stampede + 110f, 0f);
@@ -437,10 +440,11 @@ namespace GasSafari.Editor
             level.PowerUp("P03", change + 120f, 0f);
 
             // S4: escenario de DJ con el mango sobre su plataforma lateral y otro escondido tras él; lluvia de confeti.
-            level.Mango(0, stage + 50f, 6.8f, 2f);
-            level.Mango(2, stage + 108f, -6.8f, 1f);
-            level.PowerUp("P01", stage + 10f, 0f);
-            Confetti(level);
+            Solid(level, "W3_DJStage", stage + 60f, 7.2f, Quaternion.Euler(0f, -90f, 0f), 1f, 0f).name = "EscenarioDJ";
+            level.Mango(0, stage + 60f, 3.6f, 1.6f);
+            Solid(level, "W3_Rock_B", stage + 98f, -6f, Quaternion.identity, 1.2f, -0.3f).name = "RocaTrasEscenario";
+            level.Mango(2, stage + 98f, -3.6f, 1f);
+            Confetti(level, stage + 8f);
 
             LevelDresser.Dress(level, LevelDresser.With(LevelDresser.W3, LevelDresser.W3.Decor, 1.0f, new Color(0.7f, 0.5f, 0.55f)), 35,
                 level.PointAt(stage + 60f, 40f), -90f);
@@ -458,7 +462,7 @@ namespace GasSafari.Editor
             go.GetComponent<RhythmObstacle>().Configure(fromLeft ? Vector3.right : Vector3.left, Mathf.Min(travel, half * 2f - 3f), cycle, 0);
         }
 
-        private static void Confetti(GreyboxLevel level)
+        private static void Confetti(GreyboxLevel level, float zoneDistance)
         {
             var go = new GameObject("Confeti");
             SceneManager.MoveGameObjectToScene(go, level.Scene);
@@ -479,6 +483,15 @@ namespace GasSafari.Editor
             shape.scale = new Vector3(30f, 1f, 30f);
             go.transform.position = Vector3.up * 14f;
             ps.GetComponent<ParticleSystemRenderer>().sharedMaterial = FireMaterial();
+            go.SetActive(false);
+            var zone = new GameObject("ZonaConfeti");
+            SceneManager.MoveGameObjectToScene(zone, level.Scene);
+            zone.layer = GameLayers.Trigger;
+            zone.transform.SetPositionAndRotation(level.PointAt(zoneDistance, 0f, 1f), Quaternion.LookRotation(level.DirectionAt(zoneDistance)));
+            var box = zone.AddComponent<BoxCollider>();
+            box.isTrigger = true;
+            box.size = new Vector3(level.WidthAt(zoneDistance) + 2f, 4f, 2f);
+            zone.AddComponent<ActivateOnRaft>().Configure(go);
         }
 
         // ---------------------------------------------------------------- utilidades
@@ -490,6 +503,13 @@ namespace GasSafari.Editor
             go.transform.localScale = Vector3.one * scale;
             PropColliders.AddSolidBox(go);
             return go;
+        }
+
+        // Cortina de cascada (visual, sin collider) de 'width' m de ancho en el lateral dado.
+        private static void Waterfall(GreyboxLevel level, float d, float lateral, float width, float yaw)
+        {
+            var curtain = level.Block("CortinaCascada", level.PointAt(d, lateral, 1.6f), new Vector3(0.15f, 3.2f, width), new Color(0.7f, 0.9f, 1f), yaw);
+            Object.DestroyImmediate(curtain.GetComponent<Collider>());
         }
 
         // Punto del momento estrella: W2StarShots pone la zona y la toma de cámara aquí.

@@ -170,7 +170,7 @@ namespace GasSafari.Editor
                 string n = p.name;
                 // Puente_N es el tablero (alto, sobre el cauce); sus pilares son bloques sólidos aparte. Neon son tiras
                 // de luz pegadas a la pared del túnel.
-                if (n.StartsWith("Puente_") && !n.EndsWith("_Pilar") || n == "Neon")
+                if (n.StartsWith("Puente_") && !n.EndsWith("_Pilar") || n == "Neon" || n == "CortinaCascada")
                     return true;
                 if (n == "Ground" || n == "Banks" || n == "Acera" || n.StartsWith("Water") || n == "Sky" || n == "Art"
                     || n == "Decor" || n == "Mangos" || n == "PowerUps" || n.StartsWith("Cloud") || n.StartsWith("Fog") || n.StartsWith("Rain") || n == "Backdrop")
