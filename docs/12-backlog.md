@@ -95,12 +95,12 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M5-23** W4-3 Géiseres de Vapor · level-builder · 04 W4-3 · hecho 2026-11-08 · `L_W4_3_GeiseresVapor.unity` por `BuildW4_3`: géiseres H19 de trampolín, pozas con géiseres, puente de roca, cadena de 3 géiseres sobre un hueco de 16 m sin agua (`WaterGap` + `Abyss`) y un abismo final de 16 m que pide Súper Pedo (`BotHint` Drop); toma de cámara en la cadena; correcciones del level-reviewer aplicadas. PENDIENTE DE DISEÑO: el abismo H22 (WaterGap + Abyss, probado: la balsa que cae reaparece) no está en el cauce de W4-3 porque los bots no cruzan huecos con géiseres ni con Súper Pedo; docs/04 lo pide (hueco sobre el que lanzan 3 géiseres y abismo final que exige Súper Pedo). Alternativas: hueco corto con rampa de despegue, o aceptar que los bots lo fallen y quitar la prueba de bots de ese nivel; 4 bots terminan el nivel (QA-10 con 1 humano pendiente)
 - [x] **M5-24** W4-4 Río Subterráneo · level-builder · 04 W4-4 · hecho 2026-11-08 · `L_W4_4_RioSubterraneo.unity` por `BuildW4_4`: pares de corrientes cruzadas H31, campo de pinchos bajos en el lado izquierdo con mango encima y gaseosas P05 antes, colonia de 5 bandadas de murciélagos H26, nicho con mango escondido y grieta iluminada; toma de cámara sobre el campo; 4 bots terminan el nivel (QA-10 con 1 humano pendiente)
 - [x] **M5-25** W4-5 Corazón del Volcán (jefe) · level-builder · 04 W4-5 · hecho 2026-11-08 · `L_W4_5_VolcanJefe.unity` por `BuildW4_5`: 470 m, 5 checkpoints; `RockFall` con 6 objetivos en patrón y sombra de aviso, derrumbe que persigue (`CollapseChaser`, 4.5 m/s) y géiser final con toma de cámara lenta; 4 bots terminan el nivel (QA-10 con 1 humano pendiente)
-- [ ] **M5-26** Obstáculos de W5: H21, H23 + compuertas de represa · hazards-powerups · 05
-- [ ] **M5-27** W5-1 Rápidos del Cañón · level-builder · 04 W5-1
-- [ ] **M5-28** W5-2 Rampas del Abismo · level-builder · 04 W5-2
-- [ ] **M5-29** W5-3 Laberinto de Manglares · level-builder · 04 W5-3
-- [ ] **M5-30** W5-4 La Represa · level-builder · 04 W5-4
-- [ ] **M5-31** W5-5 El Megatobogán Final (jefe) · level-builder · 04 W5-5
+- [x] **M5-26** Obstáculos de W5: H21, H23 + compuertas de represa · hazards-powerups · 05 · hecho 2026-11-08 · `RapidsZone` (H21), `GiantCrocChaser` + `CrocFinaleZone` (H23) y `DamGate` (id H37 provisional); `W5HazardBuilder` (menú `Crear obstáculos de W5`); pruebas `W5HazardTests` (3)
+- [x] **M5-27** W5-1 Rápidos del Cañón · level-builder · 04 W5-1 · hecho 2026-11-08 · `L_W5_1_RapidosCanon.unity` por `W5LevelsBuilder.BuildW5_1`: 530 m, 4 checkpoints; rápidos H21 clase 1 (x0.5), clase 2 con rocas y el rápido largo; 3 mangos; 4 bots terminan
+- [x] **M5-28** W5-2 Rampas del Abismo · level-builder · 04 W5-2 · hecho 2026-11-08 · `BuildW5_2`: 477 m; 3 rampas con hueco de 2.5 m, plataformas H35, puentes rotos y el gran salto de 18 m (rampa, H36 antes, BotHint SuperFart, puente de boyas tras 2 caídas); 4 bots terminan
+- [x] **M5-29** W5-3 Laberinto de Manglares · level-builder · 04 W5-3 · hecho 2026-11-08 · `BuildW5_3`: 803 m, 5 checkpoints; bifurcación triple (segura, rápida y de mangos), raíces con anclas, niebla de 18 m y atajo secreto recto; 4 bots terminan por el cauce principal
+- [x] **M5-30** W5-4 La Represa · level-builder · 04 W5-4 · hecho 2026-11-08 · `BuildW5_4`: 497 m; esclusas (compuertas H37 débiles; el nivel del agua no cambia: provisional), 2 compuertas gigantes con oleada y aliviadero de 10 m; 4 bots terminan
+- [x] **M5-31** W5-5 El Megatobogán Final (jefe) · level-builder · 04 W5-5 · hecho 2026-11-08 · `BuildW5_5`: 974 m, 6 checkpoints, descenso por pendientes, curvas, túnel oscuro, géiseres, cocodrilo gigante H23 al 90 % de la velocidad del equipo y cierre de boca final; 4 bots terminan
 - [ ] **M5-32** Obstáculo H30 · hazards-powerups · 05
 - [ ] **M5-33** W6-1 Fiesta en Espejo · level-builder · 04 W6-1
 - [ ] **M5-34** W6-2 Noche sin Luz · level-builder · 04 W6-2
@@ -109,7 +109,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [ ] **M5-37** W6-5 La Corona del Rey (jefe) · level-builder · 04 W6-5
 - [x] **M5-38** (TÚ) Revisar arte de escenario por mundo (packs CC0 + Meshy) · — · 09 §5 · hecho 2026-11-05 con Blender por script (no packs CC0 ni Meshy): 137 props y piezas modulares W1-W5 en `Art/Environment/W<N>/`, fauna en `Art/Fauna/`, grúa en `Art/Bosses/`; todos con SG_Toon (emisivos con `_EmissionColor` HDR, Bloom verificado)
 - [ ] **M5-39** Viñetas entre mundos con Timeline · ui-hud · 01 Historia
-- [ ] **M5-40** Música por mundo con capas · audio-sfx · 08 §5
+- [x] **M5-40** Música por mundo con capas · audio-sfx · 08 §5 · hecho 2026-11-08 · `MusicLibrary` + `MusicDirector` (`Services.Music`), capa de intensidad a más de 8 m/s o en jefes, tabla de pulsos del jefe de W3 para `RhythmClock`; pruebas `MusicDirectorTests`
 
 ## Correcciones intercaladas (8 nov)
 - [x] **FX-01** Agua dentro de la balsa: puntos de flotación 0.25 m más abajo (piso 0.17 m sobre el agua con 4 animales), `RaftWaterMask` en la balsa, las 6 balsas de la tienda y las mini balsas (modelos importados a `Art/Props/Raft/Skins` y `Art/Props/MiniRaft`, prefabs en `Prefabs/Raft/Skins` y `Prefabs/MiniRaft`) · hecho 2026-11-08 · pruebas `RaftWaterMaskTests`, `RaftWaterTiltTests`, `RaftWaterMaskDocsTests`
