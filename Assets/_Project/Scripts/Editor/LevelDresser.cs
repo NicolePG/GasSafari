@@ -117,6 +117,68 @@ namespace GasSafari.Editor
             OpenSea = true,
         };
 
+        // W3 (docs/04 Mundos): playa y selva al atardecer, verde #2D6A4F, naranja #F77F00, amarillo; antorchas tiki.
+        public static readonly Theme W3 = new Theme
+        {
+            World = 3,
+            LightColor = new Color(1f, 0.78f, 0.5f),
+            LightIntensity = 1.05f,
+            LightEuler = new Vector3(35f, -50f, 0f),
+            AmbientSky = new Color(0.55f, 0.72f, 0.6f),
+            AmbientEquator = new Color(0.36f, 0.5f, 0.38f),
+            AmbientGround = new Color(0.16f, 0.22f, 0.15f),
+            Fog = new Color(0.62f, 0.78f, 0.6f),
+            FogStart = 45f,
+            FogEnd = 260f,
+            SkyTint = new Color(0.95f, 0.62f, 0.35f),
+            SkyGround = new Color(0.2f, 0.3f, 0.2f),
+            SkyExposure = 1.0f,
+            WaterShallow = new Color(0.36f, 0.72f, 0.45f, 0.8f),
+            WaterDeep = new Color(0.1f, 0.33f, 0.25f, 0.95f),
+            WaterFoam = new Color(0.95f, 1f, 0.85f, 1f),
+            WallColor = new Color(0.26f, 0.42f, 0.28f),
+            GroundColor = new Color(0.45f, 0.36f, 0.22f),
+            Decor = new[]
+            {
+                "W3_Palm_A", "W3_Palm_B", "W3_Palm_C", "W3_Baobab_A", "W3_Bamboo", "W3_Fern", "W3_TropicalFlower", "W3_Rock_A", "W3_Rock_B",
+                "W3_Rock_C", "W3_FruitCrate_A", "W3_FruitCrate_B", "W3_Roots", "W3_Sandcastle_B",
+            },
+            Lamps = new[] { "W3_TikiTorch" },
+            LampLight = new Color(1f, 0.55f, 0.12f),
+            Landmark = "W3_Baobab_B",
+        };
+
+        // W4 (docs/04 Mundos): cuevas y volcán, morado #3C1642, cian #4CC9F0, rojo magma #D00000; faroles de cristal.
+        public static readonly Theme W4 = new Theme
+        {
+            World = 4,
+            LightColor = new Color(0.55f, 0.7f, 1f),
+            LightIntensity = 0.5f,
+            LightEuler = new Vector3(60f, 20f, 0f),
+            AmbientSky = new Color(0.24f, 0.12f, 0.3f),
+            AmbientEquator = new Color(0.17f, 0.09f, 0.22f),
+            AmbientGround = new Color(0.12f, 0.03f, 0.04f),
+            Fog = new Color(0.14f, 0.07f, 0.19f),
+            FogStart = 25f,
+            FogEnd = 150f,
+            SkyTint = new Color(0.16f, 0.08f, 0.22f),
+            SkyGround = new Color(0.08f, 0.03f, 0.1f),
+            SkyExposure = 0.3f,
+            WaterShallow = new Color(0.3f, 0.79f, 0.94f, 0.78f),
+            WaterDeep = new Color(0.14f, 0.1f, 0.35f, 0.95f),
+            WaterFoam = new Color(0.8f, 0.95f, 1f, 1f),
+            WallColor = new Color(0.24f, 0.16f, 0.3f),
+            GroundColor = new Color(0.17f, 0.1f, 0.2f),
+            Decor = new[]
+            {
+                "W4_CaveRock_A", "W4_CaveRock_B", "W4_CaveRock_C", "W4_Crystal_A", "W4_Crystal_B", "W4_Crystal_C", "W4_GlowMushrooms",
+                "W4_Stalagmite_A", "W4_Stalagmite_B", "W4_LavaRock",
+            },
+            Lamps = new[] { "W4_Lantern" },
+            LampLight = new Color(0.3f, 0.8f, 0.95f),
+            Landmark = "W4_GiantCrystal",
+        };
+
         // landmark: posición y giro del hito (se ve desde la salida y enmarca el momento estrella).
         public static void Dress(GreyboxLevel level, Theme theme, int seed, Vector3 landmark, float landmarkYaw)
         {
