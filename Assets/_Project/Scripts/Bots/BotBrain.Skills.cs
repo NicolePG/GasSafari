@@ -107,7 +107,7 @@ namespace GasSafari.Bots
         {
             FindTeam();
             cmd.GrabHeld = Time.time < grabUntil;
-            cmd.SuperHeld = WantsSuperFart();
+            cmd.SuperHeld = WantsSuperFart(position, heading);
             TryAbility(position, velocity, heading);
         }
 
@@ -195,11 +195,23 @@ namespace GasSafari.Bots
         }
 
         // ---------------------------------------------------------------- Súper Pedo
-        // Pulsa apenas se abre la ventana, es decir, cuando alguien más ya pulsó (docs/10 §15). Nunca la abre solo:
-        // lanzarse sin un humano que lo decida volcaba la balsa en las pruebas.
-        private bool WantsSuperFart()
+        // Pulsa apenas se abre la ventana, es decir, cuando alguien más ya pulsó (docs/10 §15). Nunca la abre solo: lanzarse
+        // sin un humano que lo decida volcaba la balsa en las pruebas. Única excepción: el despegue de un abismo marcado con
+        // BotHint SuperFart (W4-3, W5-2, W6-5), donde sin Súper Pedo no se llega al otro lado.
+        private bool WantsSuperFart(Vector3 position, Vector3 heading)
         {
-            return superFart != null && superFart.IsReady && superFart.IsWindowOpen;
+            if (superFart == null || !superFart.IsReady)
+                return false;
+            if (superFart.IsWindowOpen)
+                return true;
+            // Se mide desde la balsa (no desde el asiento) para que los 4 bots decidan igual y la ventana se llene.
+            var hint = BotHint.FindAheadOrInside(seat.Raft.transform.position, heading, config.superFartHintRange, BotHintType.SuperFart);
+            if (hint == null)
+                return false;
+            // El Súper Pedo sale hacia donde mira la balsa: solo se lanza alineada con el sentido de la marca (el del cauce).
+            var raftForward = Flatten(seat.Raft.transform.forward);
+            var hintForward = Flatten(hint.transform.forward);
+            return Vector3.Angle(raftForward, hintForward) <= config.superFartAlignAngle;
         }
 
         // ---------------------------------------------------------------- habilidades

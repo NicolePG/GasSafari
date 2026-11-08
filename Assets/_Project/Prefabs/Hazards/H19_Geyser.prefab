@@ -71,6 +71,7 @@ MonoBehaviour:
   config: {fileID: 11400000, guid: 02b3b463ebba392438de68ea36434d1f, type: 2}
   steam: {fileID: 3651539491162777720}
   phase: 0
+  armOnEnter: 0
 --- !u!1 &3364832569253504685
 GameObject:
   m_ObjectHideFlags: 0

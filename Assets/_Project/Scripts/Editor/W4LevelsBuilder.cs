@@ -175,13 +175,15 @@ namespace GasSafari.Editor
             float gap1 = level.Length;
             level.Straight(6f, 14f);
             float gap1End = level.Length;
-            level.Straight(70f, 14f);
+            level.Straight(46f, 14f);
+            level.Straight(14f, 14f, 1.5f);                                           // rampa de despegue (el agua sube 1.5 m)
             float abyss = level.Length;
-            level.Straight(9f, 14f);                                                  // S4 abismo: Súper Pedo
+            level.Straight(10f, 14f);                                                 // S4 abismo de 10 m: Súper Pedo
             float abyssEnd = level.Length;
             level.Straight(60f, 14f);
             // La cadena de géiseres queda sobre agua (los bots no la cruzan con precisión sobre un hueco); el abismo es el del final.
-            // El abismo final (H22 + WaterGap) está desactivado: los bots no lo cruzan con el Súper Pedo (pendiente de diseño).
+            level.WaterGap(abyss, abyssEnd);
+            level.NoBaseWater();
             level.BuildChannel(0.2f);
 
             level.Section(1, "Geiseres", 0f);
@@ -230,9 +232,15 @@ namespace GasSafari.Editor
             level.Mango(1, gap1 + 8f, 0f, 3.8f);
             Anchor(level, chain + 20f, 0f);
 
-            // S4: abismo (H22) que solo cruza el Súper Pedo.
-            level.PowerUp("P01", abyss - 20f, 0f);
+            // S4: abismo (H22) de 10 m que solo cruza el Súper Pedo. Antes de la rampa, un géiser de gas dorado (H36) llena el
+            // medidor de equipo; en el despegue los bots lanzan el Súper Pedo solos (BotHint SuperFart). Si el equipo cae 2 veces
+            // en el abismo aparece un puente de boyas.
+            level.PowerUp("P01", abyss - 40f, 0f);
             level.PowerUp("P03", gap1End + 12f, 0f);
+            var gold = level.Place(HZ + "H36_GoldGasGeyser.prefab", abyss - 30f, 0f);
+            gold.name = "H36_GeiserGasDorado";
+            Abyss(level, abyss, abyssEnd);
+            level.Hint(Bots.BotHintType.SuperFart, abyss - 1.5f, 0f, 6f);
 
             LevelDresser.Dress(level, LevelDresser.With(LevelDresser.W4, LevelDresser.W4.Decor, 0.6f, new Color(0.2f, 0.1f, 0.22f)), 43,
                 level.PointAt(chain, 55f), -90f);
@@ -475,6 +483,9 @@ namespace GasSafari.Editor
             go.name = "Abismo";
             // Alto (de -63 a -3 m): la balsa cae a gran velocidad y no debe atravesar el trigger entre dos pasos de física.
             go.GetComponent<BoxCollider>().size = new Vector3(level.WidthAt(d) + 40f, 60f, to - from + 20f);
+            var abyssBehaviour = go.GetComponent<Abyss>();
+            abyssBehaviour.Configure(level.BuoyBridge(from, to, 8f));
+            EditorUtility.SetDirty(abyssBehaviour);
         }
 
         private static GameObject Solid(GreyboxLevel level, string fbx, float d, float lateral, Quaternion rotation, float scale, float y)

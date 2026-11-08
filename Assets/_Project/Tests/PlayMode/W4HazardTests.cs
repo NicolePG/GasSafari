@@ -58,6 +58,38 @@ namespace GasSafari.Tests
         }
 
         [UnityTest]
+        public IEnumerator H36_GoldGasGeyser_FillsTheTeamMeter()
+        {
+            var meter = rig.Get<GasSafari.Team.TeamMeter>();
+            Assert.Less(meter.Value, meter.Max);
+            var geyser = Make<GoldGasGeyser>("H36_GoldGasGeyser", Vector3.zero);
+            yield return new WaitForSeconds(0.5f);
+            Assert.IsTrue(meter.IsFull, "docs/05 H36: al pasar por encima el medidor queda al 100 %");
+            Assert.AreEqual(1, geyser.Fills);
+        }
+
+        [UnityTest]
+        public IEnumerator H22_Abyss_ShowsTheBuoyBridgeAfterTwoFalls()
+        {
+            var go = new GameObject("Abismo", typeof(BoxCollider));
+            created.Add(go);
+            var bridge = new GameObject("PuenteBoyas");
+            created.Add(bridge);
+            bridge.SetActive(false);
+            var abyss = go.AddComponent<Abyss>();
+            abyss.Configure(bridge);
+
+            Assert.IsTrue(abyss.RegisterFall());
+            Assert.IsFalse(abyss.RegisterFall(), "los varios colliders de la balsa cuentan una sola caída");
+            Assert.IsFalse(bridge.activeSelf, "con 1 caída no hay ayuda");
+            yield return new WaitForSecondsRealtime(2.1f);
+            Assert.IsTrue(abyss.RegisterFall());
+            Assert.AreEqual(2, abyss.Falls);
+            Assert.IsTrue(bridge.activeSelf, "docs/05 H22: a la 2.ª caída aparece el puente de boyas");
+            Assert.IsTrue(abyss.HelpActive);
+        }
+
+        [UnityTest]
         public IEnumerator H19_Geyser_LaunchesTheRaftEveryThreeSeconds()
         {
             var geyser = Make<Geyser>("H19_Geyser", Vector3.zero);

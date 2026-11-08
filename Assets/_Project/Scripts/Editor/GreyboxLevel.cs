@@ -416,7 +416,17 @@ namespace GasSafari.Editor
             if (points.Any(p => Mathf.Abs(p.y) > 0.01f) || waterGaps.Count > 0)
             {
                 var material = water.GetComponent<Renderer>().sharedMaterial;
-                Ribbon("AguaCauce", points, widths, material, true);
+                // El agua se alarga 8 m antes de la salida y después de la meta: sin nivel base (abismos) la popa de la balsa
+                // recién nacida no tendría agua debajo.
+                var lead = (points[0] - (points[1] - points[0]).normalized * LEAD);
+                var tail = points[points.Count - 1] + (points[points.Count - 1] - points[points.Count - 2]).normalized * LEAD;
+                var extended = new List<Vector3> { lead };
+                extended.AddRange(points);
+                extended.Add(tail);
+                var extendedWidths = new List<float> { widths[0] };
+                extendedWidths.AddRange(widths);
+                extendedWidths.Add(widths[widths.Count - 1]);
+                Ribbon("AguaCauce", extended, extendedWidths, material, true);
                 foreach (var (branch, width) in branches)
                     Ribbon("AguaRamal", branch, branch.Select(_ => width).ToList(), material);
             }
@@ -438,8 +448,13 @@ namespace GasSafari.Editor
             }
         }
 
+        private const float LEAD = 8f;
+
         private void Ribbon(string name, List<Vector3> line, List<float> lineWidths, Material material, bool main = false)
         {
+            // En la cinta principal el primer punto está LEAD m antes de la salida: las distancias de los abismos se miden desde ahí.
+            float start = main ? -LEAD : 0f;
+            float run = start;
             var vertices = new List<Vector3>();
             var triangles = new List<int>();
             for (int i = 0; i < line.Count; i++)
@@ -450,10 +465,14 @@ namespace GasSafari.Editor
                 float half = lineWidths[i] * 0.5f + WALL_THICKNESS;
                 vertices.Add(line[i] - right * half);
                 vertices.Add(line[i] + right * half);
+                float previous = run;
+                if (i > 0)
+                    run += Vector3.Distance(line[i - 1], line[i]);
                 if (i == 0)
                     continue;
                 // Abismo: sin agua entre las muestras cuyo punto medio cae en un hueco.
-                if (main && waterGaps.Any(g => (cumulative[i - 1] + cumulative[i]) * 0.5f >= g.from && (cumulative[i - 1] + cumulative[i]) * 0.5f <= g.to))
+                float mid = (previous + run) * 0.5f;
+                if (main && waterGaps.Any(g => mid >= g.from && mid <= g.to))
                     continue;
                 int v = i * 2;
                 triangles.AddRange(new[] { v - 2, v, v - 1, v - 1, v, v + 1 });
@@ -556,6 +575,7 @@ namespace GasSafari.Editor
             var go = new GameObject("BotHint_" + type);
             go.transform.SetParent(Group("BotHints"), false);
             go.transform.position = PointAt(distance, lateral);
+            go.transform.rotation = Quaternion.LookRotation(DirectionAt(distance)); // sentido del cauce (la marca SuperFart lo usa)
             go.AddComponent<BotHint>().Configure(type, radius);
         }
 
@@ -589,6 +609,47 @@ namespace GasSafari.Editor
             material.SetColor("_BaseColor", color);
             cyl.GetComponent<MeshRenderer>().sharedMaterial = SaveMaterial(material, $"{levelId}_{name}");
             return cyl;
+        }
+
+        // Puente de boyas sobre un abismo (ayuda de H22): una franja de agua (capa Water: la balsa flota en ella) entre dos
+        // hileras de boyas. Devuelve la raíz DESACTIVADA; el Abyss la activa al caer el equipo 2 veces.
+        public GameObject BuoyBridge(float from, float to, float width, string group = "Obstacles")
+        {
+            float length = to - from;
+            float middle = (from + to) * 0.5f;
+            var root = new GameObject("PuenteBoyas");
+            root.transform.SetParent(Group(group), false);
+            root.transform.position = PointAt(middle);
+            root.transform.rotation = Quaternion.LookRotation(DirectionAt(middle));
+
+            // Franja de agua: el collider (Water) fija la superficie, y la malla la dibuja.
+            var strip = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            strip.name = "Agua";
+            strip.layer = GameLayers.Water;
+            strip.transform.SetParent(root.transform, false);
+            strip.transform.localPosition = new Vector3(0f, -0.1f, 0f);
+            strip.transform.localScale = new Vector3(width, 0.2f, length + 6f);
+            strip.GetComponent<MeshRenderer>().sharedMaterial = Find("Water").GetComponent<Renderer>().sharedMaterial;
+
+            var buoyMaterial = new Material(Shader.Find("GasSafari/SG_Toon"));
+            buoyMaterial.SetColor("_BaseColor", new Color(1f, 0.5f, 0.15f));
+            SaveMaterial(buoyMaterial, $"{levelId}_PuenteBoyas");
+            for (int side = -1; side <= 1; side += 2)
+            {
+                for (float z = -length * 0.5f - 2f; z <= length * 0.5f + 2f; z += 2.5f)
+                {
+                    var buoy = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                    buoy.name = "Boya";
+                    buoy.layer = GameLayers.Environment;
+                    buoy.transform.SetParent(root.transform, false);
+                    buoy.transform.localPosition = new Vector3(side * (width * 0.5f - 0.3f), 0.2f, z);
+                    buoy.transform.localScale = new Vector3(0.6f, 0.4f, 0.6f);
+                    Object.DestroyImmediate(buoy.GetComponent<Collider>());
+                    buoy.GetComponent<MeshRenderer>().sharedMaterial = buoyMaterial;
+                }
+            }
+            root.SetActive(false);
+            return root;
         }
 
         // ---------------------------------------------------------------- cierre

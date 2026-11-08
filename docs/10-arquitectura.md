@@ -209,7 +209,7 @@ Las etiquetas Fragile, Heavy, Fauna, Burnable y Anchor se implementan con un `[F
 - Gas: en recta solo ráfagas (de `blastStartGas` a `blastStopGas`); los toques de corrección van espaciados más que `regenDelay` para que el gas recargue (con toques cada 0.5 s los bots vivían sin gas). No disparan si la balsa pasa de `maxTilt` y la inclinación sigue subiendo (`tiltRiseRate`); una inclinación quieta, como dos cámaras reventadas de un lado, no los bloquea.
 - Sincronía: cuando un humano inicia un pedo y el bot tiene 20 de gas o más, dispara tras 0.05-0.15 s con probabilidad 0.9 / 0.75 / 0.6 (Familiar / Normal / Amistades Rotas).
 - Habilidades: Alex ruge si hay `Fragile` o `Fauna` en el cono; Marty galopa antes de rampas y abismos; Melman engancha si hay ancla y curva cerrada, o rescata a un caído; Gloria hace Panzazo si el giro supera 90°/s o está en un remolino; Julien activa la Fiesta con 2 o más jugadores y el medidor por debajo de 80.
-- Se agarran ante avisos de fosas, murciélagos o golpes. Pulsan el Súper Pedo apenas se abre la ventana. Responden a los pings "¡Ahora!" y "Espera".
+- Se agarran ante avisos de fosas, murciélagos o golpes. Pulsan el Súper Pedo apenas se abre la ventana (un humano la abre); única excepción: en una marca `BotHint` tipo `SuperFart` (despegue de un abismo que lo exige) lo pulsan solos con el medidor lleno. Responden a los pings "¡Ahora!" y "Espera".
 
 ## 16. Presupuestos de rendimiento
 

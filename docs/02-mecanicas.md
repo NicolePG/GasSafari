@@ -59,7 +59,8 @@ Unidades: metros, segundos, kilogramos, newtons. Todos los valores viven en `Bal
 - Con el medidor en 100 aparece "¡SÚPER PEDO LISTO!". Cada jugador pulsa el botón de equipo; la ventana se abre con el primero y dura `superFartWindow` (1 s).
 - Potencia = jugadores que pulsaron / jugadores a bordo (bots cuentan y pulsan solos).
 - Lanzamiento: velocidad hacia adelante `superFartForward` (14 m/s) y hacia arriba `superFartUp` (9 m/s), escaladas por la potencia. A potencia completa: arco de unos 25 m. Cámara lenta al 40 % durante 0.6 s al despegar.
-- Gasta el medidor completo. Algunos abismos (W4-3, W5-2, W6-5) lo exigen.
+- Gasta el medidor completo. Algunos abismos (W4-3, W5-2, W6-5) lo exigen: antes hay un géiser de gas dorado (H36) que llena el medidor, y los bots lo lanzan solos en el despegue de esos abismos (`BotHint` `SuperFart`); sin esa marca, los bots nunca abren la ventana.
+- Ayuda en abismos: si el equipo cae 2 veces en el mismo abismo aparece un puente de boyas que permite cruzar sin Súper Pedo.
 
 ## 7. Agarrarse
 

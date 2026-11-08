@@ -220,7 +220,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 - Escena `L_W4_3_GeiseresVapor` · Oro 4:30 · Plata 6:20 · Checkpoints 4
 - Mecánica nueva: géiseres (H19) y control en el aire.
-- Secciones: 1) géiseres como trampolín; 2) aterrizajes en pozas; 3) cadena de 3 géiseres sin tocar agua; 4) abismo que exige Súper Pedo.
+- Secciones: 1) géiseres como trampolín; 2) aterrizajes en pozas; 3) cadena de 3 géiseres sin tocar agua; 4) abismo de 10 m que exige Súper Pedo (rampa de despegue; géiser de gas dorado H36 justo antes que llena el medidor; puente de boyas si el equipo cae 2 veces).
 - Power-ups: P01 x3, P03 x2.
 - Mangos: en lo alto del primer géiser; entre la cadena (en el aire); bajo un puente de roca.
 - Momento estrella: cadena de 3 géiseres.

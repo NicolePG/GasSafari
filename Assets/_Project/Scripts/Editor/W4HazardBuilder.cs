@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace GasSafari.Editor
 {
-    // M5-20: HazardConfig y prefabs de los obstáculos de W4 (docs/05): H17, H18, H19, H20, H22, H26, H31 y los pinchos de cristal.
+    // M5-20: HazardConfig y prefabs de los obstáculos de W4 (docs/05): H17, H18, H19, H20, H22, H26, H31, H36 (géiser de gas dorado) y los pinchos de cristal.
     public static class W4HazardBuilder
     {
         private const string DATA = "Assets/_Project/Data/Hazards/";
@@ -25,6 +25,7 @@ namespace GasSafari.Editor
             var h19 = Config("H19_Geyser", "H19", "Géiser", 0.5f, false, ("cycle", 3f), ("launch", 12f));
             var h20 = Config("H20_RockFall", "H20", "Roca que cae", 1f, true, ("radius", 2.5f));
             var h22 = Config("H22_Abyss", "H22", "Abismo", 0.5f, false);
+            var h36 = Config("H36_GoldGasGeyser", "H36", "Géiser de gas dorado", 0f, false, ("cooldown", 4f));
             var h26 = Config("H26_Bats", "H26", "Murciélagos", 1f, false, ("kick", 3f));
             var h31 = Config("H31_Current", "H31", "Corriente cruzada", 0.5f, false, ("accel", 4f));
             var h10 = AssetDatabase.LoadAssetAtPath<HazardConfig>(DATA + "H10_Spikes.asset");
@@ -94,6 +95,36 @@ namespace GasSafari.Editor
                 box.isTrigger = true;
                 box.size = new Vector3(40f, 4f, 40f);
                 root.AddComponent<Abyss>();
+                return root;
+            });
+
+            // H36: pozo dorado con una columna de gas; llena el medidor de equipo. Con el modelo de Blender (H36_GoldGasGeyser)
+            // lo reemplaza la integración de modelos de obstáculos.
+            Prefab("H36_GoldGasGeyser", () =>
+            {
+                var root = new GameObject("H36_GoldGasGeyser");
+                var box = root.AddComponent<BoxCollider>();
+                box.isTrigger = true;
+                box.size = new Vector3(6f, 5f, 6f);
+                box.center = new Vector3(0f, 2f, 0f);
+                var gold = Toon("M_H36_Gold", new Color(1f, 0.78f, 0.15f));
+                gold.SetColor("_EmissionColor", new Color(1f, 0.78f, 0.15f) * 2.5f);
+                var well = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                Object.DestroyImmediate(well.GetComponent<Collider>());
+                well.name = "Pozo";
+                well.transform.SetParent(root.transform, false);
+                well.transform.localScale = new Vector3(4f, 0.15f, 4f);
+                well.GetComponent<MeshRenderer>().sharedMaterial = gold;
+                var jet = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                Object.DestroyImmediate(jet.GetComponent<Collider>());
+                jet.name = "Chorro";
+                jet.transform.SetParent(root.transform, false);
+                jet.transform.localPosition = new Vector3(0f, 2.5f, 0f);
+                jet.transform.localScale = new Vector3(1.4f, 2.5f, 1.4f);
+                jet.GetComponent<MeshRenderer>().sharedMaterial = gold;
+                var geyser = root.AddComponent<GoldGasGeyser>();
+                geyser.Configure(h36);
+                geyser.Configure(jet.transform);
                 return root;
             });
 

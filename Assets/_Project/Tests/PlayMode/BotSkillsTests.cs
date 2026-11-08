@@ -205,6 +205,43 @@ namespace GasSafari.Tests
             Assert.IsFalse(launched, "sin un humano que abra la ventana, los bots no se lanzan");
         }
 
+        [UnityTest]
+        public IEnumerator SuperFart_BotsAloneLaunchAtASuperFartHint()
+        {
+            AddBot(120f);
+            AddBot(240f);
+            float power = -1f;
+            GameEvents.OnSuperFart += p => power = p;
+            var hint = new GameObject("Hint_SuperFart");
+            spawned.Add(hint);
+            hint.transform.position = rig.Raft.transform.position + Vector3.forward * 2f; // delante de la balsa, mismo rumbo
+            hint.AddComponent<BotHint>().Configure(BotHintType.SuperFart, 6f);
+            yield return new WaitForSeconds(0.3f);
+
+            rig.Get<TeamMeter>().Set(rig.Get<TeamMeter>().Max);
+            yield return new WaitForSeconds(1.0f);
+            Assert.AreEqual(1f, power, 0.001f, "docs/10 §15: en una marca SuperFart los bots lanzan el Súper Pedo sin humanos");
+        }
+
+        [UnityTest]
+        public IEnumerator SuperFart_BotsDoNotLaunchWhenTheRaftIsNotAlignedWithTheHint()
+        {
+            AddBot(120f);
+            AddBot(240f);
+            bool launched = false;
+            GameEvents.OnSuperFart += p => launched = true;
+            var hint = new GameObject("Hint_SuperFart");
+            spawned.Add(hint);
+            hint.transform.position = rig.Raft.transform.position + Vector3.forward * 2f;
+            hint.transform.rotation = Quaternion.Euler(0f, 90f, 0f); // el cauce va hacia otro lado: lanzarse sería salirse
+            hint.AddComponent<BotHint>().Configure(BotHintType.SuperFart, 6f);
+            yield return new WaitForSeconds(0.3f);
+
+            rig.Get<TeamMeter>().Set(rig.Get<TeamMeter>().Max);
+            yield return new WaitForSeconds(1.0f);
+            Assert.IsFalse(launched, "la balsa no mira hacia donde va el cauce");
+        }
+
         // ---------------------------------------------------------------- habilidades
         private static IEnumerator WaitForActivation(BotBrain bot, float seconds, System.Action<bool> done)
         {
