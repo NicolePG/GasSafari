@@ -445,7 +445,7 @@ tutorial.l03.text,Apunta el pedo y rodea la boya por las tres marcas.,Aim your f
 tutorial.l04.title,Ráfaga,Blast,Lección 4 de T-0: título del cartel. En Unity: TutorialStep T0_L04 | Unity: TutorialStep T0_Lxx
 tutorial.l04.text,Mantén el pedo para una ráfaga larga y cruza la piscina.,Hold the fart for a long blast and cross the pool.,Lección 4 de T-0: texto del cartel. En Unity: TutorialStep T0_L04 | Unity: TutorialStep T0_Lxx
 tutorial.l05.title,¡Sincronía!,Sync!,Lección 5 de T-0: título del cartel. En Unity: TutorialStep T0_L05 | Unity: TutorialStep T0_Lxx
-tutorial.l05.text,Tiraos el pedo a la vez para romper la pared de globos.,Fart at the same time to pop the balloon wall.,Lección 5 de T-0: texto del cartel. En Unity: TutorialStep T0_L05 | Unity: TutorialStep T0_Lxx
+tutorial.l05.text,Tírense un pedo a la vez para romper la pared de globos.,Fart at the same time to pop the balloon wall.,Lección 5 de T-0: texto del cartel. En Unity: TutorialStep T0_L05 | Unity: TutorialStep T0_Lxx
 tutorial.l06.title,Frijoles,Beans,Lección 6 de T-0: título del cartel. En Unity: TutorialStep T0_L06 | Unity: TutorialStep T0_Lxx
 tutorial.l06.text,Recoge frijoles para recargar el gas.,Grab beans to refill your gas.,Lección 6 de T-0: texto del cartel. En Unity: TutorialStep T0_L06 | Unity: TutorialStep T0_Lxx
 tutorial.l07.title,Pings,Pings,Lección 7 de T-0: título del cartel. En Unity: TutorialStep T0_L07 | Unity: TutorialStep T0_Lxx
@@ -614,6 +614,8 @@ ach.kilometer.name,Kilómetro,Kilometer,Logro 24 de 25 (docs/06 §5)
 ach.kilometer.desc,Recorre 1000 m en Infinito.,Travel 1000 m in Endless.,Logro 24 de 25: condición
 ach.consistent.name,Constante,Consistent,Logro 25 de 25 (docs/06 §5)
 ach.consistent.desc,Juega el Desafío Diario 7 días seguidos.,Play the Daily Challenge 7 days running.,Logro 25 de 25: condición
+ach.raft_king.name,Rey de la Balsa,Raft King,Logro 26 (secreto; docs/06 §5). Mismo nombre que el minijuego party.king
+ach.raft_king.desc,Termina La Corona del Rey.,Finish The King's Crown.,Logro 26: condición. Mientras está bloqueado se muestra como secreto
 stats.title,Estadísticas,Stats,Pestaña de estadísticas (docs/06 §6)
 stats.farts,Pedos totales,Total farts,
 stats.sync2,Grupos de sync x2,Sync groups x2,
@@ -630,3 +632,29 @@ credits.title,Créditos,Credits,Texto del cuerpo viene de CREDITS.md
 credits.team,Equipo,Team,Sección
 credits.tools,Herramientas,Tools,Sección
 credits.assets,Assets y licencias,Assets & licenses,Sección
+story.intro.1,Medianoche. Los cinco se escapan del zoológico en puntitas.,Midnight. All five tiptoe out of the zoo.,"Pie de la viñeta 1 de 5 (Tools/Export/Story/Intro/Intro_01.png): Los cinco esquivan un reflector frente a la reja del zoológico, de noche"
+story.intro.2,"En el muelle: una balsa inflable, ningún remo y un barril de frijoles.","At the dock: one inflatable raft, no oars, and a barrel of beans.","Pie de la viñeta 2 de 5 (Tools/Export/Story/Intro/Intro_02.png): Muelle con la ciudad de fondo, el barril de frijoles, una lata y la balsa en el agua"
+story.intro.3,"Un frijol, un pedo y ¡descubren el método!","One bean, one fart, and the method is born!",Pie de la viñeta 3 de 5 (Tools/Export/Story/Intro/Intro_03.png): Gloria con los brazos arriba junto a una nube verde; la lata de frijoles sale volando
+story.intro.4,La balsa sale disparada. Nadie sabe cómo frenar.,The raft shoots off. Nobody knows how to brake.,Pie de la viñeta 4 de 5 (Tools/Export/Story/Intro/Intro_04.png): La balsa arranca con salpicadura y líneas de velocidad frente a la ciudad nocturna
+story.intro.5,¡Funciona! Ahora solo falta hacerlo todos a la vez.,It works! Now to do it all at the same time.,"Pie de la viñeta 5 de 5 (Tools/Export/Story/Intro/Intro_05.png): Los cinco celebran en la balsa con la noria, el puente y la luna al fondo"
+story.w1_end.1,Se esconden tras un barco de carga. Melman no ayuda mucho.,Hiding behind a cargo ship. Melman is not helping.,Pie de la viñeta 1 de 3 (Tools/Export/Story/W1_End/W1_End_01.png): La balsa junto al casco de un barco de carga; Melman asoma por encima con los brazos en alto
+story.w1_end.2,Silencio total. Ni un pedo hasta que pase el barco.,Total silence. Not one fart until the ship passes.,"Pie de la viñeta 2 de 3 (Tools/Export/Story/W1_End/W1_End_02.png): Primer plano de la balsa pegada al casco, con caras de aguantar"
+story.w1_end.3,Mar abierto. Por fin nadie los persigue.,"Open sea. Finally, nobody is chasing them.",Pie de la viñeta 3 de 3 (Tools/Export/Story/W1_End/W1_End_03.png): Atardecer sobre el mar abierto; los animales miran el horizonte desde la balsa
+story.w2_end.1,La tormenta los zarandea. Hasta los pedos salen mojados.,The storm tosses them around. Even the farts come out wet.,"Pie de la viñeta 1 de 3 (Tools/Export/Story/W2_End/W2_End_01.png): Balsa en una ola gigante bajo lluvia y relámpago, con chorros de gas"
+story.w2_end.2,La tormenta los deja en una isla. Marty sigue mareado.,The storm leaves them on an island. Marty is still dizzy.,"Pie de la viñeta 2 de 3 (Tools/Export/Story/W2_End/W2_End_02.png): Playa con la balsa varada, Gloria sentada dentro y Marty doblado, mareado"
+story.w2_end.3,Un árbol gigante con casita. El lémur saluda como en su casa.,A giant tree with a hut. The lemur waves like it's home.,Pie de la viñeta 3 de 3 (Tools/Export/Story/W2_End/W2_End_03.png): Los cinco de espaldas ante un baobab con casita y bandera; el lémur con corona saluda
+story.w3_end.1,¡Fiesta de lémures! Música a todo volumen y confeti.,Lemur party! Loud music and confetti.,"Pie de la viñeta 1 de 4 (Tools/Export/Story/W3_End/W3_End_01.png): Escenario con parlantes, bola disco y confeti; los cinco bailan"
+story.w3_end.2,¡Ganan la fiesta! Y el Rey Julien se lleva los aplausos.,They win the party! Rey Julien takes the applause.,Pie de la viñeta 2 de 4 (Tools/Export/Story/W3_End/W3_End_02.png): Julien sobre el podio morado con rayos rosa y verde; Marty y Melman aplauden en los bordes
+story.w3_end.3,Ya es tripulante oficial y señala el volcán: ¡atajo a casa!,"Now official crew, Rey Julien points at the volcano: shortcut home!","Pie de la viñeta 3 de 4 (Tools/Export/Story/W3_End/W3_End_03.png): Julien sobre una roca con corona, de espaldas, señala un volcán humeante; Alex y Melman miran"
+story.w3_end.4,¿Un volcán de atajo? Qué idea tan de Julien.,A volcano as a shortcut? Such a Julien idea.,Pie de la viñeta 4 de 4 (Tools/Export/Story/W3_End/W3_End_04.png): La balsa navega por un río entre nenúfares rumbo al volcán
+story.w4_end.1,"Dentro del volcán, solo un chorro de gas los separa de la lava.","Inside the volcano, only a jet of gas separates them from the lava.","Pie de la viñeta 1 de 3 (Tools/Export/Story/W4_End/W4_End_01.png): La balsa sobre una columna de gas, sobre ríos de lava y cristales"
+story.w4_end.2,"¡Erupción! Salen volando por el cráter, balsa incluida.","Eruption! They blast out of the crater, raft and all.","Pie de la viñeta 2 de 3 (Tools/Export/Story/W4_End/W4_End_02.png): La balsa sale lanzada sobre la columna de humo del volcán, con líneas de velocidad"
+story.w4_end.3,Aterrizan en un cañón al atardecer. Alex celebra por todos.,They land in a canyon at sunset. Alex cheers for everyone.,Pie de la viñeta 3 de 3 (Tools/Export/Story/W4_End/W4_End_03.png): La balsa cae junto a un arco de roca; Alex con los brazos arriba
+story.w5_end.1,Último obstáculo: un megatobogán. ¿Qué podría salir mal?,Last obstacle: a mega slide. What could go wrong?,Pie de la viñeta 1 de 5 (Tools/Export/Story/W5_End/W5_End_01.png): La balsa baja por el megatobogán con una gran salpicadura
+story.w5_end.2,¡Ahí está el barco que los lleva de vuelta a casa!,There's the ship that takes them back home!,Pie de la viñeta 2 de 5 (Tools/Export/Story/W5_End/W5_End_02.png): La balsa en mar abierto frente al barco de carga; Melman saluda
+story.w5_end.3,"Desde el barco ya se ve la noria. Casi, casi en casa.","The ferris wheel is in sight. Almost, almost home.","Pie de la viñeta 3 de 5 (Tools/Export/Story/W5_End/W5_End_03.png): Sobre los contenedores del barco, al atardecer, miran la ciudad y la noria"
+story.w5_end.4,"De vuelta en el zoológico, ahora con piscina de olas.","Back at the zoo, now with a wave pool.","Pie de la viñeta 4 de 5 (Tools/Export/Story/W5_End/W5_End_04.png): La balsa aterriza en una piscina junto a la reja del zoológico, de día"
+story.w5_end.5,"Hogar, dulce hogar. Los cinco juntos y con gas de sobra.","Home sweet home. All five together, with gas to spare.",Pie de la viñeta 5 de 5 (Tools/Export/Story/W5_End/W5_End_05.png): Los cinco posan ante la reja del zoológico con confeti y rayos dorados
+story.w6_secret.1,El Rey Julien tiene un anuncio: ¡nace el Reino de Julien!,Rey Julien has an announcement: Julien's Kingdom is born!,Pie de la viñeta 1 de 3 (Tools/Export/Story/W6_Secret/W6_Secret_01.png): Julien con los brazos arriba en un trono dorado bajo una corona gigante
+story.w6_secret.2,"Desafíos remix: cocodrilos, tentáculos y una grúa muy dramática.","Remix challenges: crocodiles, tentacles and a very dramatic crane.","Pie de la viñeta 2 de 3 (Tools/Export/Story/W6_Secret/W6_Secret_02.png): La balsa entre un cocodrilo, un tentáculo y una grúa portuaria, en un mar morado"
+story.w6_secret.3,Se corona al mejor equipo. Alex se prueba la corona primero.,The best team gets crowned. Alex tries the crown on first.,Pie de la viñeta 3 de 3 (Tools/Export/Story/W6_Secret/W6_Secret_03.png): Fiesta final en tarima morada con confeti; Alex lleva una corona y Julien una más pequeña

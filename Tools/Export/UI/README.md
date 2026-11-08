@@ -106,6 +106,7 @@ el centro del disco (radio útil ≈ 70 % del disco).
 | 23 | `23_Fiestero` | Fiestero | Pelota de playa con chispas (magenta) |
 | 24 | `24_Kilometro` | Kilómetro | Infinito sobre una regla de marcas (morado) |
 | 25 | `25_Constante` | Constante | Calendario con una llama (verde) |
+| 26 | `26_ReyDeLaBalsa` | Rey de la Balsa (secreto, terminar W6-5) | Corona dorada sobre una balsa naranja, con una nube de gas y chispas (turquesa). Se genera con `Kit/make_raft_king_icon.py` (Blender, sin tocar `ui_icons.py`) |
 
 ### Modos (docs/06 §1) — `Modes/Icon_Mode_<N>_<Nombre>.png`
 

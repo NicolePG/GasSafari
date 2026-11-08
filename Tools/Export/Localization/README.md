@@ -1,6 +1,6 @@
 # Textos en español e inglés (preparación de M10-01)
 
-`strings.csv` reúne **631 textos** del juego en español (`es`) e inglés (`en`). Nada se importa solo: es la fuente
+`strings.csv` reúne **659 textos** del juego en español (`es`) e inglés (`en`). Nada se importa solo: es la fuente
 para construir `Strings_en.asset` y completar `Strings_es.asset` cuando se haga M10-01 (docs/12). Esta carpeta no toca
 Unity.
 
@@ -48,9 +48,10 @@ python Tools/Export/Localization/check_strings.py     # revisa el CSV (claves, {
 | `tutorial` | 10 lecciones de T-0 (título y texto) y 2 textos de apoyo | 22 | 2 |
 | `ctrl`, `options` | Acciones de control y todas las pestañas de Opciones | 51 | 51 |
 | `shop`, `reward` | Tienda (30 artículos: 9 sombreros, 7 gases, 8 balsas, 6 celebraciones; 3 son premios de mangos, 1 de W6-5) y hitos | 51 | 51 |
-| `ach`, `stats` | 25 logros (nombre y condición) y 11 estadísticas | 66 | 66 |
+| `ach`, `stats` | 26 logros (nombre y condición; el 26, Rey de la Balsa, es secreto) y 11 estadísticas | 68 | 68 |
+| `story` | Pie de texto de las 26 viñetas de `Tools/Export/Story` (Intro 5, W1 3, W2 3, W3 4, W4 3, W5 5, W6 secreto 3); clave `story.<momento>.<n>` con el mismo orden que los PNG | 26 | 26 |
 | `credits` | Encabezados de los créditos | 4 | 4 |
-| **Total** | | **631** | **552** |
+| **Total** | | **659** | **580** |
 
 ## Ya existe en Unity (110 filas: 79 sirven y 31 no)
 
@@ -80,18 +81,18 @@ Todo lo demás: no hay pantalla ni dato que los use. En concreto faltan:
 
 ## Decisiones pendientes y huecos de los docs
 
-- **Logro "Rey de la Balsa":** docs/04 (W6-5) dice que dar la vuelta a W6-5 desbloquea un logro con ese nombre, pero docs/06 §5 tiene
-  25 logros y ese no está. No lo añadí. Si se decide, serían `ach.raft_king.name/desc` ("Rey de la Balsa" / "Raft King").
-  Además "Rey de la Balsa" es el nombre de un minijuego (`party.king.name`).
-- **Viñetas de historia** (`Tools/Export/Story`, docs/01): están dibujadas pero no tienen pie de texto definido. No inventé ninguno.
+- **Logro 26 "Rey de la Balsa"** (secreto, terminar W6-5): textos en `ach.raft_king.name/desc` y medalla en
+  `UI/Icons/Achievements/Icon_Ach_26_ReyDeLaBalsa.png` (se regenera con `blender --background --python Tools/Export/UI/Kit/make_raft_king_icon.py`).
+  Comparte nombre con el minijuego `party.king.name`.
+- **Pies de las viñetas** (`story.*`): escritos por mí a partir de docs/01 y de lo que muestra cada imagen; son propuesta de texto
+  (una frase corta y de humor por imagen), sin nombres de marca ni frases de las películas. Se pueden retocar sin cambiar las claves.
 - **Minijuegos nuevos de M10-02** (Balsa Chocona, Relevo de Pedos, Tiro al Coco): sus reglas no existen todavía; no están en el CSV.
 - **"Logros" → `Trophies`** en inglés (menú y pantalla): "Achievements" mide el doble que "Logros" y no cabe en el botón. Si se prefiere
   `Achievements`, hay que ensanchar el botón del menú.
 - **"Rey Julien" sigue igual en inglés** (instrucción). En inglés se lee mejor "King Julien": cambiar `char.julien.name` y, si
   se quiere, "Reino de Julien" ya está como "Julien's Kingdom".
 - **Familiar → `Family`** y **Amistades Rotas → `Broken Friendships`** (18 letras frente a 15: justo en el 20 %).
-- **Voseo/tuteo en español:** el tutorial dice "Tiraos el pedo a la vez" (vosotros) y el resto del juego tutea ("Pulsa", "Agárrate").
-  El CSV mantiene la cadena que hay en Unity; conviene unificar a "Tírense/Tírate" antes de importar.
+- **Español latino neutro (resuelto 2026-11-08):** "tú" para un jugador y "ustedes" para el equipo, nunca "vosotros". El tutorial ya dice "Tírense un pedo a la vez".
 - **Plurales:** `daily.streak` y `lock.mangos` no usan plurales porque la tabla no los maneja; con "1 estrellas" habría que decidir.
 - **Mensajes de red, de pausa y de apoyo** (`net.err.*`, `pause.confirm_quit`, `pause.online_note`, `tutorial.step_done`...) son
   propuestas mías: no salen de los docs; confirmar antes de programarlos.
