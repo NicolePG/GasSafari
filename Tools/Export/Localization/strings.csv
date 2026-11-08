@@ -1,0 +1,632 @@
+key,es,en,contexto
+game.title,GAS SAFARI: ¡Todos a la Balsa!,GAS SAFARI: All Aboard the Raft!,"Título completo del juego (docs/01), pantalla de título"
+game.title_short,GAS SAFARI,GAS SAFARI,Logo / ventana. No se traduce
+ui.press_any,Pulsa cualquier botón,Press any button,Pantalla de título | Unity: Strings_es
+ui.join,Pulsa A para unirte,Press A to join,"Selección de personajes, columna libre | Unity: Strings_es"
+ui.ready,¡Listo!,Ready!,Botón de la selección de personajes | Unity: Strings_es
+ui.back,Atrás,Back,Botón de volver
+ui.accept,Aceptar,OK,Botón de aceptar en diálogos
+ui.cancel,Cancelar,Cancel,Botón de cancelar
+ui.confirm,Confirmar,Confirm,Botón de confirmar
+ui.apply,Aplicar,Apply,Opciones
+ui.yes,Sí,Yes,Diálogos
+ui.no,No,No,Diálogos
+ui.on,Activado,On,Interruptores de Opciones
+ui.off,Desactivado,Off,Interruptores de Opciones
+ui.continue,Continuar,Continue,"Botón genérico (viñetas, créditos)"
+ui.skip,Saltar,Skip,Viñetas y splash (saltables)
+ui.select,Elegir,Select,Botón de la tarjeta enfocada
+ui.random,Aleatorio,Random,Botón de la selección de personajes (docs/03)
+ui.locked,Bloqueado,Locked,Tarjeta con candado
+ui.new,¡Nuevo!,New!,Etiqueta en artículos y logros recién ganados
+ui.loading,Cargando...,Loading...,Pantalla de carga
+ui.copy,Copiar,Copy,Botón de copiar
+ui.mode_prompt,Elige cómo jugar,Choose how to play,Subtítulo de Jugar
+lock.title,Bloqueado,Locked,Etiqueta junto al requisito de desbloqueo
+lock.stars,{0} estrellas,{0} stars,Requisito: estrellas totales
+lock.mangos,{0} mangos dorados,{0} golden mangos,Requisito: mangos dorados
+lock.level,Termina {0},Finish {0},"Requisito: terminar un nivel ({0} = id del nivel, p. ej. W5-5)"
+lock.any_level,Termina un nivel,Finish a level,Requisito del Contrarreloj
+lang.es,Español,Español,"Nombre del idioma, siempre en su propio idioma"
+lang.en,English,English,"Nombre del idioma, siempre en su propio idioma"
+menu.play,Jugar,Play,Menú principal
+menu.shop,Tienda,Shop,Menú principal
+menu.achievements,Logros,Trophies,Menú principal
+menu.options,Opciones,Options,Menú principal
+menu.credits,Créditos,Credits,Menú principal
+menu.quit,Salir,Quit,Menú principal
+menu.quit_confirm,¿Salir del juego?,Quit the game?,Diálogo de confirmación
+mode.select.title,Elegir modo,Choose a mode,Pantalla Elegir modo (docs/07 §2)
+mode.select.local,Local,Local,Tras elegir modo
+mode.select.create_room,Crear sala online,Create online room,Tras elegir modo
+mode.select.join_room,Unirse con código,Join with code,Tras elegir modo
+mode.players,{0} jugadores,{0} players,"Rango en la tarjeta del modo, p. ej. 1-4"
+mode.story.name,Historia,Story,Modo 1 (docs/06 §1)
+mode.story.desc,"Los 31 niveles en orden, con estrellas y mangos.","All 31 levels in order, with stars and mangos.",Tarjeta del modo
+mode.timetrial.name,Contrarreloj,Time Trial,Modo 2
+mode.timetrial.desc,Vence al fantasma de tu mejor intento.,Beat the ghost of your best run.,Tarjeta del modo
+mode.mirror.name,Espejo,Mirror,Modo 3
+mode.mirror.desc,Todos los niveles al revés. Normal o más difícil.,Every level flipped. Normal or harder.,Tarjeta del modo
+mode.modifiers.name,Modificadores,Modifiers,Modo 4 (llamado Caos en docs/06)
+mode.modifiers.tag,Caos,Chaos,Subtítulo del modo Modificadores
+mode.modifiers.desc,Reglas locas combinables. No dan estrellas.,Wacky rules you can mix. No stars earned.,Tarjeta del modo
+mode.party.name,Fiesta,Party,Modo 5
+mode.party.desc,5 minijuegos para 2-4 jugadores. Los bots completan.,5 minigames for 2-4 players. Bots fill in.,Tarjeta del modo
+mode.endless.name,Infinito,Endless,Modo 6
+mode.endless.desc,Un río sin fin que se complica cada vez más.,A river with no end that keeps getting harder.,Tarjeta del modo
+mode.daily.name,Desafío Diario,Daily Challenge,Modo 7
+mode.daily.desc,Un río nuevo cada día con un modificador.,A new river every day with one modifier.,Tarjeta del modo
+mode.teamrace.name,Carrera por Equipos,Team Race,Modo 8
+mode.teamrace.desc,Dos balsas en la misma pista. ¡Gana la primera!,"Two rafts, one track. First to the finish wins!",Tarjeta del modo
+tt.ghost,Fantasma,Ghost,Contrarreloj: etiqueta del fantasma
+tt.top5,Mejores tiempos,Best times,Contrarreloj: tabla local de 5
+tt.team,Equipo,Team,Contrarreloj: columna de la tabla
+tt.new_best,¡Nuevo mejor tiempo!,New best time!,Contrarreloj y resultados
+mirror.bonus,Frijolitos x1.5,Beans x1.5,Espejo: recompensa aumentada
+endless.distance,{0} m,{0} m,Infinito: distancia recorrida
+endless.record,Récord: {0} m,Record: {0} m,Infinito: récord local
+endless.sinks,Hundimientos {0}/3,Sinkings {0}/3,Infinito: termina al hundirse 3 veces
+endless.over,Fin del recorrido,Run over,Infinito: pantalla final
+daily.today,Desafío de hoy,Today's run,Desafío Diario: título
+daily.best,Mejor tiempo de hoy,Best time today,Desafío Diario
+daily.streak,Racha: {0},Streak: {0},Desafío Diario: días seguidos (número sin plural)
+daily.modifier,Modificador del día,Modifier of the day,Desafío Diario
+race.track,Pista {0}/3,Track {0}/3,Carrera por Equipos: mejor de 3 pistas
+race.team_a,Equipo A,Team A,Carrera por Equipos
+race.team_b,Equipo B,Team B,Carrera por Equipos
+race.win_track,¡Ganaron la pista!,You won the track!,Carrera por Equipos
+race.lose_track,La otra balsa llegó antes.,The other raft got there first.,Carrera por Equipos
+race.win_match,¡Ganaron la carrera!,You won the race!,Carrera por Equipos: final del mejor de 3
+mod.title,Modificadores,Modifiers,Menú previo al nivel (docs/06 §1)
+mod.warning,Con modificadores no hay estrellas.,No stars with modifiers on.,Aviso en el menú
+mod.soapy.name,Balsa jabonosa,Soapy Raft,Modificador
+mod.soapy.desc,El agua frena la mitad.,Water drag is halved.,waterDrag x0.5
+mod.infinite_gas.name,Gas infinito,Infinite Gas,Modificador
+mod.infinite_gas.desc,El gas no se gasta.,Gas never runs out.,
+mod.moon.name,Gravedad lunar,Moon Gravity,Modificador
+mod.moon.desc,Gravedad muy baja.,Gravity way down.,Gravedad x0.4
+mod.reverse.name,Pedos al revés,Backwards Farts,Modificador
+mod.reverse.desc,La fuerza se invierte.,Thrust is reversed.,
+mod.bigheads.name,Cabezones,Big Heads,Modificador (cosmético)
+mod.bigheads.desc,Cabezas dobles de grandes.,Heads twice as big.,
+mod.turbo.name,Turbo corriente,Turbo Current,Modificador
+mod.turbo.desc,Las corrientes van más fuertes.,Currents run stronger.,Corrientes x1.5
+mod.dizzy.name,Cámara mareada,Dizzy Camera,Modificador
+mod.dizzy.desc,La cámara se balancea.,The camera sways.,
+mod.single.name,Cámara única,Single Chamber,Modificador
+mod.single.desc,Un golpe y la balsa se hunde.,One hit sinks the raft.,
+party.title,Fiesta,Party,Pantalla de minijuegos
+party.goal.name,Balsa-Gol,Raft Goal,Minijuego 1
+party.goal.desc,Empuja la pelota gigante a la portería rival.,Push the giant ball into the rival goal.,3 min o 5 goles; 1v1 o 2v2
+party.king.name,Rey de la Balsa,Raft King,Minijuego 2
+party.king.desc,Tira a todos al agua. Gana el último a bordo.,Knock everyone off. Last one aboard wins.,Mejor de 3 rondas
+party.fishing.name,Pesca de Mangos,Mango Fishing,Minijuego 3
+party.fishing.desc,Recoge más mangos en tu mini balsa. 90 s.,Grab the most mangos on your mini raft. 90 s.,
+party.bubble.name,Carrera de Burbujas,Bubble Race,Minijuego 4
+party.bubble.desc,Gaseosa infinita y 3 vueltas a la pista.,Infinite soda and 3 laps of the track.,
+party.coconut.name,Coco Caliente,Hot Coconut,Minijuego 5
+party.coconut.desc,Pásalo con un pedo antes de que explote.,Fart it away before it blows up.,
+party.round,Ronda {0},Round {0},Minijuegos por rondas
+party.goal_shout,¡GOL!,GOAL!,Balsa-Gol
+party.time_up,¡Se acabó el tiempo!,Time's up!,Minijuegos con tiempo
+party.lap,Vuelta {0}/{1},Lap {0}/{1},Carrera de Burbujas
+party.winner,¡Gana {0}!,{0} wins!,Ganador del minijuego ({0} = nombre del jugador o equipo)
+party.mangos_count,Mangos: {0},Mangos: {0},Pesca de Mangos
+party.hot_potato,¡Tienes el coco!,You've got it!,Coco Caliente: aviso al que lo tiene
+select.title,Elige tu animal,Pick your animal,Selección de personajes (docs/07 §2)
+select.add_bot,Añadir bot,Add bot,Solo anfitrión
+select.remove_bot,Quitar bot,Remove bot,Solo anfitrión
+select.bot,Bot,Bot,Etiqueta en la columna de un bot
+select.difficulty,Dificultad,Difficulty,Selector de dificultad (partida)
+select.hat,Sombrero,Hat,Selector de la columna
+select.gas,Color de gas,Gas color,Selector de la columna
+select.taken,Ya elegido,Taken,Personaje elegido por otro jugador
+select.all_ready,¡Todos listos!,All ready!,Cuenta para empezar
+select.waiting,Esperando a los demás...,Waiting for the others...,
+stat.gas,Gas,Gas,Barra de stats
+stat.puff,Toque,Tap,Barra de stats (impulso del toque)
+stat.blast,Ráfaga,Blast,Barra de stats
+stat.recharge,Recarga,Refill,Barra de stats (recarga de gas)
+stat.weight,Peso,Weight,Barra de stats
+stat.difficulty,Dificultad,Difficulty,Dificultad del personaje
+char.diff.easy,Fácil,Easy,Dificultad del personaje (docs/03)
+char.diff.medium,Media,Medium,Dificultad del personaje
+char.diff.hard,Difícil,Hard,Dificultad del personaje
+char.passive,Pasiva,Passive,Etiqueta del bloque de pasiva
+char.ability,Habilidad,Ability,Etiqueta del bloque de habilidad
+char.cooldown,Recarga {0} s,Cooldown {0} s,Habilidad: tiempo de recarga
+char.ability_ready,Habilidad lista,Ability ready,Aviso opcional de HUD
+lobby.title,Sala online,Online room,Sala online (docs/07 §2)
+lobby.code,Código de sala,Room code,"Código de 6 letras, grande"
+lobby.copy_code,Copiar código,Copy code,Botón de copiar
+lobby.copied,¡Código copiado!,Code copied!,Aviso tras copiar
+lobby.enter_code,Escribe el código de 6 letras,Enter the 6-letter code,Unirse con código
+lobby.join_button,Unirse,Join,Botón de unirse
+lobby.players,Jugadores,Players,Lista de jugadores
+lobby.host,Anfitrión,Host,Etiqueta del anfitrión
+lobby.ping,{0} ms,{0} ms,Latencia de cada jugador
+lobby.waiting,Esperando jugadores...,Waiting for players...,
+lobby.start,Empezar,Start,Botón del anfitrión
+lobby.leave,Salir de la sala,Leave room,
+lobby.team_pick,Elige tu equipo,Pick your team,Carrera por Equipos online
+net.connecting,Conectando...,Connecting...,Mensaje de espera
+net.reconnecting,Reconectando...,Reconnecting...,
+net.retry,Reintentar,Retry,Botón de los errores
+net.err.code_invalid,Ese código no existe.,That code doesn't exist.,Unirse con un código malo
+net.err.room_full,La sala está llena.,The room is full.,
+net.err.connect_failed,No se pudo conectar. Revisa tu internet.,Couldn't connect. Check your internet.,
+net.err.timeout,La conexión tardó demasiado.,The connection took too long.,
+net.err.lost,Se perdió la conexión.,Connection lost.,
+net.err.host_left,El anfitrión se fue. La sala se cierra.,The host left. The room is closing.,
+net.err.kicked,Te sacaron de la sala.,You were removed.,
+net.err.version,Tu versión del juego es distinta.,Your game version is different.,
+net.err.auth,No se pudo iniciar la sesión online.,Couldn't sign in online.,Authentication anónima de UGS
+net.err.relay,No se pudo crear la sala.,Couldn't create the room.,Fallo de Relay / Lobby
+net.player_joined,{0} se unió,{0} joined,Aviso en sala ({0} = nombre del jugador)
+net.player_left,{0} se fue,{0} left,Aviso en sala
+map.title,Mapa de mundos,World map,Pantalla del mapa (docs/07 §2)
+map.stars,Estrellas {0}/{1},Stars {0}/{1},Contador del mapa
+map.golden_mangos,Mangos dorados {0}/{1},Golden mangos {0}/{1},Contador del mapa
+map.locked_stars,Necesitas {0} estrellas,Needs {0} stars,Candado de mundo
+map.locked_mangos,Necesitas {0} mangos dorados,Needs {0} golden mangos,Candado del Mundo 6
+sheet.new_mechanic,Mecánica nueva,New mechanic,Ficha del nivel (docs/07 §2)
+sheet.gold,Oro,Gold,Tiempo objetivo
+sheet.silver,Plata,Silver,Tiempo objetivo
+sheet.best_time,Mejor tiempo,Best time,Ficha del nivel
+sheet.no_time,--:--,--:--,Sin récord todavía
+sheet.mangos,Mangos {0}/3,Mangos {0}/3,Mangos dorados del nivel
+sheet.play,Jugar,Play,Ficha del nivel
+sheet.time_trial,Contrarreloj,Time Trial,Botón de la ficha (si está desbloqueado)
+sheet.modifiers,Modificadores,Modifiers,Botón de la ficha
+sheet.star1,Termina el nivel,Finish the level,Condición de la 1.ª estrella
+sheet.star2,Tiempo de plata o mejor,Silver time or better,Condición de la 2.ª estrella
+sheet.star3,Tiempo de oro y sin hundirte,"Gold time, no sinking",Condición de la 3.ª estrella (sin hundir la balsa)
+level.boss_tag,JEFE,BOSS,Etiqueta de los niveles 5 de cada mundo
+level.secret_boss_tag,JEFE FINAL SECRETO,SECRET FINAL BOSS,Etiqueta de W6-5
+hud.sync2,¡SYNC x2!,SYNC x2!,"Texto de evento, centro | Unity: Strings_es"
+hud.sync3,¡SYNC x3!,SYNC x3!,"Texto de evento, centro | Unity: Strings_es"
+hud.sync4,¡SYNC x4!,SYNC x4!,"Texto de evento, centro | Unity: Strings_es"
+hud.superfart_ready,¡SÚPER PEDO LISTO!,SUPER FART READY!,Medidor de equipo al 100 % | Unity: Strings_es
+hud.go,¡YA!,GO!,Fin de la cuenta 3-2-1 | Unity: Strings_es
+hud.checkpoint,CHECKPOINT,CHECKPOINT,Texto de evento al activar un checkpoint | Unity: Strings_es
+hud.no_gas,Sin gas,No gas,Ping automático con gas menor a 10 % | Unity: Strings_es
+hud.mangos,Mangos {0}/{1},Mangos {0}/{1},HUD arriba a la derecha | Unity: Strings_es
+hud.checkpoint_progress,Checkpoint {0}/{1},Checkpoint {0}/{1},HUD arriba a la derecha | Unity: Strings_es
+hud.player_tag,J{0},P{0},Etiqueta de jugador en la esquina (J1..J4 / P1..P4)
+hud.medkit,Botiquín,Medkit,Uso del Botiquín de Melman
+hud.medkit_used,Botiquín usado,Medkit used,Ya se usó en este checkpoint
+hud.team_meter,Equipo,Team,Etiqueta opcional del medidor de equipo
+hud.rescue,¡Rescate!,Rescue!,Aviso opcional al rescatar a un compañero
+hud.sunk,¡Balsa hundida!,Raft sunk!,Aviso antes del fundido de reaparición
+hud.countdown,{0},{0},Cuenta 3-2-1
+hud.golden_mango,¡Mango dorado!,Golden mango!,Aviso opcional al recogerlo
+hud.new_best,¡Récord!,Record!,
+synergy.banner,¡Sinergia!,Synergy!,Texto sobre el nombre de la sinergia
+synergy.honda_selva,Honda de la Selva,Jungle Slingshot,Nombre de la sinergia (docs/03) | Unity: Strings_es
+synergy.terremoto,Terremoto,Earthquake,Unity: Strings_es
+synergy.fiesta_total,Fiesta Total,Total Party,Unity: Strings_es
+synergy.duo_pesado,Dúo Pesado,Heavy Duo,Unity: Strings_es
+synergy.rescate_real,Rescate Real,Royal Rescue,Unity: Strings_es
+synergy.honda_selva.desc,Marty galopa durante el Cuello Gancho: salida x1.5.,Marty gallops during the Neck Hook: x1.5 exit speed.,
+synergy.terremoto.desc,Panzazo y Rugido en 1 s: rompe lo pesado a 10 m.,Bellyflop + Roar in 1 s: heavy stuff breaks in 10 m.,
+synergy.fiesta_total.desc,Súper Pedo en plena Fiesta Real: potencia al 150 %.,Super Fart during Royal Party: 150% power.,
+synergy.duo_pesado.desc,Alex y Gloria en el mismo sync: +20 % de fuerza.,Alex and Gloria in the same sync: +20% force.,
+synergy.rescate_real.desc,Melman rescata a Julien: vuelve con el gas al 100 %.,Melman rescues Julien: he returns with full gas.,
+ping.now,¡Ahora!,Now!,Ping Cruceta arriba (icono: exclamación) | Unity: Strings_es
+ping.wait,Espera,Wait,Ping Cruceta abajo (icono: mano) | Unity: Strings_es
+ping.left,Gira a la izquierda,Turn left,Ping Cruceta izquierda | Unity: Strings_es
+ping.right,Gira a la derecha,Turn right,Ping Cruceta derecha | Unity: Strings_es
+pause.title,Pausa,Paused,Menú de pausa (docs/07 §4) | Unity: Strings_es
+pause.resume,Continuar,Resume,Unity: Strings_es
+pause.restart_checkpoint,Reiniciar desde checkpoint,Restart from checkpoint,En multijugador abre votación | Unity: Strings_es
+pause.restart_level,Reiniciar nivel,Restart level,Unity: Strings_es
+pause.options,Opciones,Options,Unity: Strings_es
+pause.controls,Controles,Controls,Unity: Strings_es
+pause.quit,Salir al mapa,Back to map,Unity: Strings_es
+pause.yes,Sí,Yes,Votación | Unity: Strings_es
+pause.no,No,No,Votación | Unity: Strings_es
+pause.vote,¿Reiniciar desde el checkpoint? Sí {0} · No {1} (hacen falta {2}),Restart from the checkpoint? Yes {0} · No {1} ({2} needed),Votación en multijugador | Unity: Strings_es
+pause.online_note,El juego sigue en marcha para los demás.,The game keeps running for everyone else.,Aviso en la pausa online
+pause.confirm_quit,¿Salir al mapa? Se pierde el avance del nivel.,Back to the map? Level progress is lost.,Confirmación
+results.title,Resultados,Results,Pantalla de resultados (docs/07 §2)
+results.time,Tiempo,Time,
+results.stars,Estrellas,Stars,
+results.mangos,Mangos {0}/3,Mangos {0}/3,
+results.beans,Frijolitos +{0},Beans +{0},Moneda de la tienda | Unity: Strings_es
+results.awards,Premios,Awards,Encabezado de los 3 premios
+results.who,¿Quién fue?,Whose fault?,Repetición de 3 s del peor choque | Unity: Strings_es
+results.new_record,¡Nuevo récord!,New record!,
+results.next,Siguiente,Next,Unity: Strings_es
+results.retry,Repetir,Retry,Unity: Strings_es
+results.map,Mapa,Map,Unity: Strings_es
+results.sunk_note,Balsa hundida: sin 3.ª estrella,Raft sank: no 3rd star,Aviso opcional si se hundió
+results.skipped_note,Sección saltada: máximo 1 estrella,Section skipped: 1 star max,Si usaron la Ayuda Real 3
+award.sync_master,Maestro de la Sincronía,Sync Master,Positivo | Unity: Strings_es
+award.sync_master.desc,Más grupos de sync,Most sync groups,
+award.lifeguard,Salvavidas,Lifeguard,Positivo | Unity: Strings_es
+award.lifeguard.desc,Más rescates,Most rescues,
+award.show_king,Rey del Show,Show King,Positivo | Unity: Strings_es
+award.show_king.desc,Más habilidades usadas,Most abilities used,
+award.glutton,Tragón,Glutton,Positivo | Unity: Strings_es
+award.glutton.desc,Más power-ups recogidos,Most power-ups taken,
+award.untimely_fart,Pedo más inoportuno,Worst-Timed Fart,Vergüenza | Unity: Strings_es
+award.untimely_fart.desc,Pedos justo antes de un choque,Farts right before a crash,
+award.captain_titanic,Capitán Titanic,Captain Titanic,Vergüenza | Unity: Strings_es
+award.captain_titanic.desc,Más caídas al agua,Most water falls,
+award.wasted_gas,Gas Desperdiciado,Wasted Gas,Vergüenza | Unity: Strings_es
+award.wasted_gas.desc,Más veces sin gas,Most empty tanks,
+award.sleeping_beauty,Bello Durmiente,Sleeping Beauty,Vergüenza | Unity: Strings_es
+award.sleeping_beauty.desc,Menos pedos en total,Fewest farts overall,
+award.winner,{0}: {1},{0}: {1},"Premio y ganador ({0} = premio, {1} = jugador)"
+assist.offer,¿Necesitan una Ayuda Real?,Need some Royal Help?,Oferta tras 3 reapariciones (docs/06 §3) | Unity: Strings_es
+assist.opt1,Más tiempo para sincronizar,More time to sync,Ventana de sync +0.1 s hasta el siguiente checkpoint
+assist.opt2,Checkpoint extra más adelante,Extra checkpoint ahead,
+assist.opt3,Saltar la sección (máx. 1 estrella),Skip the section (max 1 star),
+assist.decline,"No, gracias",No thanks,
+diff.familiar.name,Familiar,Family,Dificultad 1 (docs/06 §3) | Unity: DifficultyConfig.displayName
+diff.familiar.desc,Más margen para sincronizar. Con ayudas extra.,More room to sync. With extra help.,
+diff.normal.name,Normal,Normal,Dificultad 2 | Unity: DifficultyConfig.displayName
+diff.normal.desc,La experiencia pensada para el juego.,The experience the game was built around.,
+diff.broken.name,Amistades Rotas,Broken Friendships,Dificultad 3 | Unity: DifficultyConfig.displayName
+diff.broken.desc,Casi sin margen. Pon a prueba tu amistad.,Barely any slack. A test of friendship.,
+loading.tip_label,Consejo,Tip,Etiqueta sobre el consejo rotativo
+loading.tip.together,Empujar juntos vale más que empujar fuerte.,Pushing together beats pushing hard.,Consejo de carga 1 (docs/07 §7)
+loading.tip.tap_blast,Un toque corrige; una ráfaga acelera.,A tap steers; a blast speeds you up.,Consejo de carga 2
+loading.tip.hold_on,Agárrate cuando tiemble la orilla.,Grab on when the shore starts to shake.,Consejo de carga 3
+loading.tip.gloria,"Gloria a bordo, viento a raya.","Gloria aboard, wind kept at bay.",Consejo de carga 4
+loading.tip.pings,"Si no hay micrófono, usa los pings.",No mic? Use the pings.,Consejo de carga 5
+loading.tip.neck_hook,El Cuello Gancho de Melman también rescata.,"Melman's Neck Hook can rescue, too.",Consejo de carga 6
+loading.tip.beans,Los frijoles recargan todo tu gas.,Beans refill all your gas.,Consejo de carga 7
+char.alex.name,Alex,Alex,Nombre del personaje. No se traduce | Unity: CharacterData.displayName
+char.alex.species,León,Lion,
+char.alex.role,Líder todoterreno,All-round leader,Rol en la selección
+char.alex.passive_name,Estrella del Show,Star of the Show,Pasiva
+char.alex.passive_desc,"En un grupo de sync, da +0.08 s de ventana a todo el equipo durante 3 s.","In a sync group, gives the whole team +0.08 s of window for 3 s.",
+char.alex.ability_name,Rugido de la Selva,Jungle Roar,Habilidad activa (recarga 18 s)
+char.alex.ability_desc,"Cono hacia la proa: rompe lo frágil, espanta a la fauna 4 s y frena la balsa.","Cone toward the bow: breaks fragile things, scares fauna for 4 s, slows the raft.",
+char.marty.name,Marty,Marty,Nombre del personaje. No se traduce | Unity: CharacterData.displayName
+char.marty.species,Cebra,Zebra,
+char.marty.role,Velocista,Sprinter,
+char.marty.passive_name,Pulmones de Cebra,Zebra Lungs,Pasiva
+char.marty.passive_desc,Recarga de gas rápida (17/s) y poco retardo (0.3 s).,Fast gas refill (17/s) and short delay (0.3 s).,
+char.marty.ability_name,Galope Turbo,Turbo Gallop,Habilidad activa (recarga 12 s)
+char.marty.ability_desc,Impulso instantáneo y mitad de fricción del agua 2 s. No gasta gas.,Instant boost and half the water drag for 2 s. Costs no gas.,
+char.melman.name,Melman,Melman,Nombre del personaje. No se traduce | Unity: CharacterData.displayName
+char.melman.species,Jirafa,Giraffe,
+char.melman.role,Soporte y navegante,Support & navigator,
+char.melman.trait_name,Vista Alta,High Lookout,Rasgo
+char.melman.trait_desc,Los avisos de peligro del HUD salen 3 s antes.,HUD hazard warnings appear 3 s earlier.,
+char.melman.passive_name,Botiquín Hipocondríaco,Hypochondriac Medkit,Pasiva
+char.melman.passive_desc,Mantén la habilidad 1.5 s para reparar 1 cámara. 1 vez por checkpoint.,Hold the ability 1.5 s to repair 1 chamber. Once per checkpoint.,
+char.melman.ability_name,Cuello Gancho,Neck Hook,Habilidad activa (recarga 15 s)
+char.melman.ability_desc,Sube a un amigo caído al agua o se engancha a un ancla y gira la balsa.,"Pulls a swimmer aboard, or hooks an anchor and swings the raft.",
+char.gloria.name,Gloria,Gloria,Nombre del personaje. No se traduce | Unity: CharacterData.displayName
+char.gloria.species,Hipopótama,Hippo,
+char.gloria.role,Motor y ancla,Engine & anchor,
+char.gloria.passive_name,Peso Pesado,Heavyweight,Pasiva
+char.gloria.passive_desc,Viento y corrientes laterales al 70 % mientras está a bordo.,Side wind and currents drop to 70% while she's aboard.,
+char.gloria.ability_name,Panzazo,Bellyflop,Habilidad activa (recarga 20 s)
+char.gloria.ability_desc,"Cae de panza: estabiliza la balsa, empuja y anula los remolinos 2 s.","Lands belly-first: steadies the raft, pushes, cancels whirlpools for 2 s.",
+char.julien.name,Rey Julien,Rey Julien,Nombre del personaje. No se traduce (cambiar en 'en' solo si se decide lo contrario) | Unity: CharacterData.displayName
+char.julien.species,Lémur,Lemur,
+char.julien.role,Caos y coordinador,Chaos & coordinator,
+char.julien.passive_name,Corona Magnética,Magnetic Crown,Pasiva
+char.julien.passive_desc,Atrae power-ups desde 6 m.,Pulls power-ups from 6 m away.,
+char.julien.jump_name,Salto,Jump,Acción propia (recarga 3 s)
+char.julien.jump_desc,Salta hasta 4 m fuera de la balsa para atrapar power-ups.,Leaps up to 4 m off the raft to grab power-ups.,
+char.julien.ability_name,Fiesta Real,Royal Party,Habilidad activa (recarga 30 s)
+char.julien.ability_desc,4 s de fiesta: cada pedo cuenta como sync completo y el medidor sube x2.,4 s of party: every fart counts as a full sync and the meter fills x2.,
+powerup.p01.name,Frijoles,Beans,P01
+powerup.p01.desc,Recarga todo tu gas.,Refills all your gas.,
+powerup.p02.name,Locoto,Locoto,P02. Es un ají boliviano: se mantiene el nombre
+powerup.p02.desc,Pedos de fuego x1.5 que queman lianas. 6 s.,Fire farts x1.5 that burn vines. 6 s.,
+powerup.p03.name,Mango,Mango,P03
+powerup.p03.desc,+50 % de gas para todo el equipo.,+50% gas for the whole team.,
+powerup.p04.name,Coco escudo,Coconut Guard,P04
+powerup.p04.desc,Absorbe el próximo daño a una cámara.,Absorbs the next chamber hit.,
+powerup.p05.name,Gaseosa,Soda,P05
+powerup.p05.desc,Pedos de burbuja: la balsa flota sobre el agua 3 s.,Bubble farts: the raft floats above the water for 3 s.,
+powerup.p06.name,Cebolla,Onion,P06
+powerup.p06.desc,Nube apestosa de 8 m: la fauna huye 6 s.,Stink cloud of 8 m: fauna flees for 6 s.,
+powerup.p07.name,Mango dorado,Golden Mango,P07
+powerup.p07.desc,Coleccionable: 3 por nivel. Suma 15 al medidor.,Collectible: 3 per level. Adds 15 to the meter.,
+hazard.h01.name,Pared / orilla,Wall / shore,Obstáculo H01 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h03.name,Compuerta temporizada,Timed gate,Obstáculo H03 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h04.name,Oleaje,Waves,Obstáculo H04 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h05.name,Bloqueador móvil,Moving blocker,Obstáculo H05 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h06.name,Barril explosivo,Explosive barrel,Obstáculo H06 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h07.name,Caja rompible,Breakable crate,Obstáculo H07 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h08.name,Viento,Wind,Obstáculo H08 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h09.name,Remolino,Whirlpool,Obstáculo H09 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h10.name,Pinchos,Spikes,Obstáculo H10 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h11.name,Banco de arena,Sandbar,Obstáculo H11 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h12.name,Liana,Vine,Obstáculo H12 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h13.name,Tronco giratorio,Spinning log,Obstáculo H13 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h14.name,Fosa,Fossa,Obstáculo H14 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h15.name,Cocodrilo,Crocodile,Obstáculo H15 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h16.name,Obstáculo rítmico,Rhythm obstacle,Obstáculo H16 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h17.name,Cascada / caída,Waterfall / drop,Obstáculo H17 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h18.name,Zona oscura,Dark zone,Obstáculo H18 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h19.name,Géiser,Geyser,Obstáculo H19 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h20.name,Roca que cae,Falling rock,Obstáculo H20 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h21.name,Rápidos,Rapids,Obstáculo H21 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h22.name,Abismo,Abyss,Obstáculo H22 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h23.name,Cocodrilo gigante,Giant crocodile,Obstáculo H23 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h24.name,Grúa con gancho,Crane hook,Obstáculo H24 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h25.name,Tentáculos,Tentacles,Obstáculo H25 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h26.name,Murciélagos,Bats,Obstáculo H26 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h27.name,Trampolín / toldo / fuente,Trampoline / awning / fountain,Obstáculo H27 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h28.name,Barco que cruza,Crossing boat,Obstáculo H28 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h29.name,Cangrejo,Crab,Obstáculo H29 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h30.name,Coco que cae,Coconut drop,Obstáculo H30 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h31.name,Corriente cruzada,Crosscurrent,Obstáculo H31 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h32.name,Red de pesca,Fishing net,Obstáculo H32 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h33.name,Pared de globos,Balloon wall,Obstáculo H33 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h34.name,Chorro de manguera,Hose jet,Obstáculo H34 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h35.name,Plataforma que se hunde,Sinking platform,Obstáculo H35 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h36.name,Géiser de gas dorado,Golden gas geyser,Obstáculo H36 (docs/05). Para códice o avisos; no aparece en docs/07
+hazard.h37.name,Compuerta de represa,Dam gate,Obstáculo H37 (docs/05). Para códice o avisos; no aparece en docs/07
+world.t.name,Tutorial,Tutorial,Mapa de mundos
+world.w1.name,Fuga del Zoológico,Zoo Escape,Mundo 1. En Unity: WorldData.displayName | Unity: WorldData.displayName
+world.w2.name,Mar Abierto,Open Sea,Mundo 2. En Unity: WorldData.displayName | Unity: WorldData.displayName
+world.w3.name,Selva de Madagascar,Madagascar Jungle,Mundo 3. En Unity: WorldData.displayName | Unity: WorldData.displayName
+world.w4.name,Cuevas y Volcán,Caves & Volcano,Mundo 4. En Unity: WorldData.displayName | Unity: WorldData.displayName
+world.w5.name,El Gran Regreso,The Great Return,Mundo 5. En Unity: WorldData.displayName | Unity: WorldData.displayName
+world.w6.name,Reino de Julien,Julien's Kingdom,Mundo 6 (secreto). En Unity: WorldData.displayName | Unity: WorldData.displayName
+world.secret_tag,Secreto,Secret,Etiqueta del Mundo 6
+level.t0.name,Piscina del Zoológico,Zoo Pool,Nombre del nivel (docs/04)
+level.t0.mechanic,"Aprende todos los controles, paso a paso.","Learn every control, step by step.","Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w1_1.name,Fuentes del Zoo,Zoo Fountains,Nombre del nivel (docs/04)
+level.w1_1.mechanic,Giros con puntería en curvas cerradas.,Aim your farts to take tight turns.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w1_2.name,Alcantarillas,Sewers,Nombre del nivel (docs/04)
+level.w1_2.mechanic,Compuertas que abren y cierran por turnos.,Gates that open and shut on a timer.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w1_3.name,Río de la Ciudad,City River,Nombre del nivel (docs/04)
+level.w1_3.mechanic,Oleaje y corriente cambiante.,Waves and a shifting current.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w1_4.name,Mercado Flotante,Floating Market,Nombre del nivel (docs/04)
+level.w1_4.mechanic,"Locoto, coco escudo y toldos trampolín.","Locoto, coconut shield and bouncy awnings.","Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w1_5.name,Persecución en el Puerto,Harbor Chase,Nombre del nivel (docs/04)
+level.w1_5.mechanic,Huye de la grúa y esquiva contenedores.,Flee the crane and dodge containers.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w2_1.name,Cajas a la Deriva,Drifting Crates,Nombre del nivel (docs/04)
+level.w2_1.mechanic,Cajas que romper y barriles que explotan.,Crates to smash and barrels that blow.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w2_2.name,La Tormenta,The Storm,Nombre del nivel (docs/04)
+level.w2_2.mechanic,Ráfagas de viento lateral con aviso.,"Sideways wind gusts, with a warning.","Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w2_3.name,Cementerio de Barcos,Ship Graveyard,Nombre del nivel (docs/04)
+level.w2_3.mechanic,Anclas para el Cuello Gancho de Melman.,Anchors for Melman's Neck Hook.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w2_4.name,El Gran Remolino,The Great Whirlpool,Nombre del nivel (docs/04)
+level.w2_4.mechanic,Remolinos que arrastran la balsa.,Whirlpools that drag the raft.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w2_5.name,Arrecife de Coral,Coral Reef,Nombre del nivel (docs/04)
+level.w2_5.mechanic,Pinchos y tentáculos que golpean en patrón.,Spikes and tentacles that strike in patterns.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w3_1.name,Playa de Llegada,Arrival Beach,Nombre del nivel (docs/04)
+level.w3_1.mechanic,Bancos de arena: frenas y encallas.,Sandbars: slow down and you run aground.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w3_2.name,Río de Lianas,Vine River,Nombre del nivel (docs/04)
+level.w3_2.mechanic,Lianas que se queman y troncos giratorios.,Vines to burn and spinning logs.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w3_3.name,Territorio de las Fosas,Fossa Territory,Nombre del nivel (docs/04)
+level.w3_3.mechanic,Fosas que te tiran al agua: rescata.,Fossas knock you in: rescue your pals.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w3_4.name,Pantano de los Cocodrilos,Crocodile Swamp,Nombre del nivel (docs/04)
+level.w3_4.mechanic,Cocodrilos que muerden; la cebolla los espanta.,Biting crocs; onions scare them off.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w3_5.name,La Gran Fiesta Lémur,The Great Lemur Party,Nombre del nivel (docs/04)
+level.w3_5.mechanic,Obstáculos al ritmo de la música.,Obstacles that move to the beat.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w4_1.name,Cascadas Escalonadas,Stepped Waterfalls,Nombre del nivel (docs/04)
+level.w4_1.mechanic,Caídas: alinea la balsa antes del borde.,Drops: line up before the edge.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w4_2.name,Cueva de Cristal,Crystal Cave,Nombre del nivel (docs/04)
+level.w4_2.mechanic,Oscuridad: guíate con las luciérnagas.,Darkness: follow the fireflies.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w4_3.name,Géiseres de Vapor,Steam Geysers,Nombre del nivel (docs/04)
+level.w4_3.mechanic,Géiseres que lanzan la balsa por el aire.,Geysers that launch the raft skyward.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w4_4.name,Río Subterráneo,Underground River,Nombre del nivel (docs/04)
+level.w4_4.mechanic,"Corrientes cruzadas, murciélagos y gaseosa.","Crosscurrents, bats and soda.","Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w4_5.name,Corazón del Volcán,Heart of the Volcano,Nombre del nivel (docs/04)
+level.w4_5.mechanic,Rocas que caen y un techo que se derrumba.,Falling rocks and a collapsing ceiling.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w5_1.name,Rápidos del Cañón,Canyon Rapids,Nombre del nivel (docs/04)
+level.w5_1.mechanic,Rápidos: corriente fuerte entre rocas.,Rapids: strong current among rocks.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w5_2.name,Rampas del Abismo,Abyss Ramps,Nombre del nivel (docs/04)
+level.w5_2.mechanic,Abismos que exigen un Súper Pedo.,Chasms that demand a Super Fart.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w5_3.name,Laberinto de Manglares,Mangrove Maze,Nombre del nivel (docs/04)
+level.w5_3.mechanic,Rutas alternativas y un atajo secreto.,Alternate routes and a secret shortcut.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w5_4.name,La Represa,The Dam,Nombre del nivel (docs/04)
+level.w5_4.mechanic,Compuertas gigantes: sube con la ola o espera.,Giant gates: ride the wave or wait.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w5_5.name,El Megatobogán Final,The Final Mega Slide,Nombre del nivel (docs/04)
+level.w5_5.mechanic,"Todo junto, con un cocodrilo gigante.","Everything at once, plus a giant croc.","Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w6_1.name,Fiesta en Espejo,Mirror Party,Nombre del nivel (docs/04)
+level.w6_1.mechanic,Remix: tramos en espejo con ritmo.,Remix: mirrored stretches with rhythm.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w6_2.name,Noche sin Luz,Lightless Night,Nombre del nivel (docs/04)
+level.w6_2.mechanic,"Remix: oscuridad total, fosas y remolinos.","Remix: pitch dark, fossas and whirlpools.","Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w6_3.name,Todo a Contracorriente,Against the Current,Nombre del nivel (docs/04)
+level.w6_3.mechanic,Remix: la corriente va en contra todo el nivel.,Remix: the current fights you all level.,"Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w6_4.name,Lluvia de Cocos,Coconut Rain,Nombre del nivel (docs/04)
+level.w6_4.mechanic,"Remix: cocos del cielo, cocodrilos y pinchos.","Remix: sky coconuts, crocs and spikes.","Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+level.w6_5.name,La Corona del Rey,The King's Crown,Nombre del nivel (docs/04)
+level.w6_5.mechanic,Remix: un tramo de cada mundo y 2 Súper Pedos.,"Remix: a stretch of every world, 2 Super Farts.","Mecánica nueva en una frase para la ficha del nivel. Reescrita para el jugador; los docs la dan con ids de obstáculos | Unity: LevelData.mechanicText (texto de diseño, no apto para el jugador)"
+tutorial.l01.title,Tírate un pedo,Let one rip,Lección 1 de T-0: título del cartel. En Unity: TutorialStep T0_L01 | Unity: TutorialStep T0_Lxx
+tutorial.l01.text,Un toque mueve la balsa hacia el lado contrario.,A tap pushes the raft the opposite way.,Lección 1 de T-0: texto del cartel. En Unity: TutorialStep T0_L01 | Unity: TutorialStep T0_Lxx
+tutorial.l02.title,Muévete por el borde,Move around the edge,Lección 2 de T-0: título del cartel. En Unity: TutorialStep T0_L02 | Unity: TutorialStep T0_Lxx
+tutorial.l02.text,Rodea la balsa: el pedo empuja desde donde estás sentado.,Shuffle around: the fart pushes from where you sit.,Lección 2 de T-0: texto del cartel. En Unity: TutorialStep T0_L02 | Unity: TutorialStep T0_Lxx
+tutorial.l03.title,Apunta para girar,Aim to turn,Lección 3 de T-0: título del cartel. En Unity: TutorialStep T0_L03 | Unity: TutorialStep T0_Lxx
+tutorial.l03.text,Apunta el pedo y rodea la boya por las tres marcas.,Aim your fart and circle the buoy through the three marks.,Lección 3 de T-0: texto del cartel. En Unity: TutorialStep T0_L03 | Unity: TutorialStep T0_Lxx
+tutorial.l04.title,Ráfaga,Blast,Lección 4 de T-0: título del cartel. En Unity: TutorialStep T0_L04 | Unity: TutorialStep T0_Lxx
+tutorial.l04.text,Mantén el pedo para una ráfaga larga y cruza la piscina.,Hold the fart for a long blast and cross the pool.,Lección 4 de T-0: texto del cartel. En Unity: TutorialStep T0_L04 | Unity: TutorialStep T0_Lxx
+tutorial.l05.title,¡Sincronía!,Sync!,Lección 5 de T-0: título del cartel. En Unity: TutorialStep T0_L05 | Unity: TutorialStep T0_Lxx
+tutorial.l05.text,Tiraos el pedo a la vez para romper la pared de globos.,Fart at the same time to pop the balloon wall.,Lección 5 de T-0: texto del cartel. En Unity: TutorialStep T0_L05 | Unity: TutorialStep T0_Lxx
+tutorial.l06.title,Frijoles,Beans,Lección 6 de T-0: título del cartel. En Unity: TutorialStep T0_L06 | Unity: TutorialStep T0_Lxx
+tutorial.l06.text,Recoge frijoles para recargar el gas.,Grab beans to refill your gas.,Lección 6 de T-0: texto del cartel. En Unity: TutorialStep T0_L06 | Unity: TutorialStep T0_Lxx
+tutorial.l07.title,Pings,Pings,Lección 7 de T-0: título del cartel. En Unity: TutorialStep T0_L07 | Unity: TutorialStep T0_Lxx
+tutorial.l07.text,"Marca ""¡Ahora!"" para avisar a tu equipo.","Ping ""Now!"" to alert your team.",Lección 7 de T-0: texto del cartel. En Unity: TutorialStep T0_L07 | Unity: TutorialStep T0_Lxx
+tutorial.l08.title,Agárrate,Grab on,Lección 8 de T-0: título del cartel. En Unity: TutorialStep T0_L08 | Unity: TutorialStep T0_Lxx
+tutorial.l08.text,Agárrate fuerte mientras el chorro empuja.,Hold tight while the jet pushes you.,Lección 8 de T-0: texto del cartel. En Unity: TutorialStep T0_L08 | Unity: TutorialStep T0_Lxx
+tutorial.l09.title,Pedo cargado,Charged fart,Lección 9 de T-0: título del cartel. En Unity: TutorialStep T0_L09 | Unity: TutorialStep T0_Lxx
+tutorial.l09.text,Aguanta y suelta un pedo cargado para subir el tobogán.,Charge up and release a big fart to climb the slide.,Lección 9 de T-0: texto del cartel. En Unity: TutorialStep T0_L09 | Unity: TutorialStep T0_Lxx
+tutorial.l10.title,¡SÚPER PEDO!,SUPER FART!,Lección 10 de T-0: título del cartel. En Unity: TutorialStep T0_L10 | Unity: TutorialStep T0_Lxx
+tutorial.l10.text,El medidor está lleno: ¡todos a la vez para saltar el muro!,The meter is full: all together to jump the wall!,Lección 10 de T-0: texto del cartel. En Unity: TutorialStep T0_L10 | Unity: TutorialStep T0_Lxx
+tutorial.step_done,¡Bien hecho!,Nice one!,Opcional: aviso al cumplir una lección (suena 'checkpoint')
+tutorial.press,Pulsa {0},Press {0},Opcional: texto junto al icono del botón ({0} = nombre si no hay icono)
+ctrl.title,Controles,Controls,Pantalla de controles / Opciones
+ctrl.move,Moverse por el borde,Move along the edge,Stick izq. / A D
+ctrl.aim,Apuntar,Aim,Stick der. / Q E
+ctrl.fart,Pedo,Fart,RT / R2 / Espacio (toque o ráfaga)
+ctrl.charge,Aguantar,Charge,LT / L2 / Shift izq. (cargar el pedo)
+ctrl.ability,Habilidad,Ability,Y / Triángulo / F
+ctrl.grab,Agarrarse,Grab,B / Círculo / Ctrl izq. (mantener)
+ctrl.superfart,Súper Pedo,Super Fart,LB + RB / L1 + R1 / R
+ctrl.pings,Pings,Pings,Cruceta / 1 2 3 4
+ctrl.swim,Nadar / subir / saltar,Swim / climb / jump,Stick izq. + A / Cruz; salto de Julien
+ctrl.pause,Pausa,Pause,Start / Options / Esc
+ctrl.dual_title,Control doble,Dual control,"Un mando, dos animales (docs/02 §13)"
+ctrl.dual_desc,Un mando para dos animales: mitad izquierda y mitad derecha.,"One gamepad, two animals: left half and right half.",
+options.title,Opciones,Options,
+options.tab.audio,Audio,Audio,Pestaña
+options.tab.video,Video,Video,Pestaña
+options.tab.controls,Controles,Controls,Pestaña
+options.tab.access,Accesibilidad,Accessibility,Pestaña
+options.tab.game,Juego,Game,Pestaña
+options.audio.master,Volumen general,Master volume,
+options.audio.music,Música,Music,
+options.audio.sfx,Efectos,Effects,
+options.audio.voices,Voces,Voices,
+options.audio.ui,Interfaz,Interface,
+options.video.resolution,Resolución,Resolution,
+options.video.fullscreen,Pantalla completa,Fullscreen,
+options.video.windowed,Ventana,Windowed,
+options.video.vsync,VSync,VSync,
+options.video.quality,Calidad,Quality,
+options.video.quality_low,Baja,Low,
+options.video.quality_medium,Media,Medium,
+options.video.quality_high,Alta,High,
+options.video.fps_limit,Límite de FPS,FPS limit,30 / 60 / 120 / sin límite
+options.video.fps_unlimited,Sin límite,Unlimited,
+options.controls.rebind,Cambiar botones,Rebind buttons,Remapeo por dispositivo
+options.controls.rebind_prompt,Pulsa un botón...,Press a button...,Mientras se espera la nueva tecla
+options.controls.reset,Restablecer,Reset,
+options.controls.vibration,Vibración,Vibration,
+options.controls.aim_sens,Sensibilidad de puntería,Aim sensitivity,
+options.controls.aim_invert,Invertir puntería,Invert aim,
+options.access.shake,Sacudida de cámara,Camera shake,
+options.access.slowmo,Cámara lenta,Slow motion,
+options.access.colorblind,Paleta para daltonismo,Colorblind palette,Colores y formas por jugador
+options.access.text_size,Tamaño de textos,Text size,100 / 125 / 150 %
+options.access.contrast,Pings de alto contraste,High-contrast pings,
+options.access.hold_mode,Aguantar y Agarrarse,Charge and Grab,Selector mantener / pulsar
+options.access.hold,Mantener,Hold,Valor del selector
+options.access.toggle,Pulsar,Toggle,Valor del selector
+options.game.default_difficulty,Dificultad por defecto,Default difficulty,
+options.game.tips,Mostrar consejos,Show tips,Consejos de la pantalla de carga
+options.game.language,Idioma,Language,M10-01: selector de idioma
+shop.title,Tienda,Shop,
+shop.tab.hats,Sombreros,Hats,Pestaña
+shop.tab.gas,Gas,Gas,Pestaña (colores de gas)
+shop.tab.rafts,Balsas,Rafts,Pestaña
+shop.tab.celebrations,Celebraciones,Celebrations,Pestaña
+shop.balance,Frijolitos: {0},Beans: {0},Saldo
+shop.price,{0},{0},Precio en frijolitos
+shop.buy,Comprar,Buy,
+shop.owned,Tuyo,Owned,Artículo ya comprado
+shop.equip,Equipar,Equip,
+shop.equipped,Puesto,Equipped,
+shop.starter,Inicial,Starter,Artículo que ya se tiene al empezar
+shop.not_enough,Te faltan frijolitos.,Not enough beans.,
+shop.team_item,Lo elige el anfitrión,Chosen by the host,Las balsas son del equipo
+shop.reward_w65,Premio de W6-5,W6-5 reward,Corona dorada
+shop.reward_mangos,Hito: {0} mangos dorados,Milestone: {0} golden mangos,Cosméticos de mangos dorados
+shop.preview_hint,Gira la vista previa,Rotate the preview,Opcional: pista de la vista previa 3D
+shop.hat.zoo_cap,Gorra del zoológico,Zoo Cap,Artículo de la tienda (docs/06 §2)
+shop.hat.diving_goggles,Gafas de buceo,Diving Goggles,Artículo de la tienda (docs/06 §2)
+shop.hat.pirate_hat,Sombrero pirata,Pirate Hat,Artículo de la tienda (docs/06 §2)
+shop.hat.explorer_helmet,Casco de explorador,Explorer Helmet,Artículo de la tienda (docs/06 §2)
+shop.hat.flower_crown,Corona de flores,Flower Crown,Artículo de la tienda (docs/06 §2)
+shop.hat.chef_hat,Gorro de chef,Chef Hat,Artículo de la tienda (docs/06 §2)
+shop.hat.cowboy_hat,Sombrero vaquero,Cowboy Hat,Artículo de la tienda (docs/06 §2)
+shop.hat.golden_crown,Corona dorada,Golden Crown,"Premio de W6-5, no se vende (docs/06 §2)"
+shop.hat.mango_peel,Cáscara de mango,Mango Peel,"Premio de mangos dorados, no se vende (docs/06 §2): sin icono"
+shop.gas.classic,Verde clásico,Classic Green,Artículo de la tienda (docs/06 §2)
+shop.gas.black_smoke,Humo negro,Black Smoke,Artículo de la tienda (docs/06 §2)
+shop.gas.neon_pink,Neón rosa,Neon Pink,Artículo de la tienda (docs/06 §2)
+shop.gas.bubbles,Burbujas,Bubbles,Artículo de la tienda (docs/06 §2)
+shop.gas.rainbow,Arcoíris,Rainbow,Artículo de la tienda (docs/06 §2)
+shop.gas.gold_glitter,Brillantina dorada,Gold Glitter,Artículo de la tienda (docs/06 §2)
+shop.gas.mango,Mango,Mango,"Premio de mangos dorados, no se vende (docs/06 §2): sin icono"
+shop.raft.orange,Balsa naranja,Orange Raft,Artículo de la tienda (docs/06 §2)
+shop.raft.lily_pad,Hoja de nenúfar,Lily Pad,Artículo de la tienda (docs/06 §2)
+shop.raft.zoo_crate,Caja del zoológico,Zoo Crate,Artículo de la tienda (docs/06 §2)
+shop.raft.hollow_log,Tronco hueco,Hollow Log,Artículo de la tienda (docs/06 §2)
+shop.raft.coconut_float,Flotador de coco,Coconut Float,Artículo de la tienda (docs/06 §2)
+shop.raft.lifeboat,Bote salvavidas,Lifeboat,Artículo de la tienda (docs/06 §2)
+shop.raft.watermelon_rind,Cáscara de sandía,Watermelon Rind,Artículo de la tienda (docs/06 §2)
+shop.raft.giant_mango,Mango gigante,Giant Mango,"Premio de mangos dorados, no se vende (docs/06 §2): sin icono"
+shop.celebrate.applause,Aplauso,Applause,Artículo de la tienda (docs/06 §2)
+shop.celebrate.robot_dance,Baile robot,Robot Dance,Artículo de la tienda (docs/06 §2)
+shop.celebrate.bow,Reverencia,Bow,Artículo de la tienda (docs/06 §2)
+shop.celebrate.captain_salute,Saludo de capitán,Captain's Salute,Artículo de la tienda (docs/06 §2)
+shop.celebrate.somersault,Voltereta,Somersault,Artículo de la tienda (docs/06 §2)
+shop.celebrate.conga_step,Paso de conga,Conga Step,Artículo de la tienda (docs/06 §2)
+reward.mango_trail,Estela de mangos,Mango Trail,Hito de 80 mangos dorados
+reward.mango_title,Coleccionista Real,Royal Collector,Título del hito de 93 mangos dorados
+reward.unlocked,¡Desbloqueado!,Unlocked!,Aviso al ganar un premio
+reward.world6,¡Mundo 6 desbloqueado!,World 6 unlocked!,Hito de 60 mangos dorados
+ach.title,Logros,Trophies,Pantalla de logros
+ach.progress,{0}/{1},{0}/{1},Progreso del logro o del total
+ach.tab_stats,Estadísticas,Stats,Pestaña
+ach.unlocked,¡Logro desbloqueado!,Trophy unlocked!,Aviso emergente
+ach.first_fart.name,Primer Pedo,First Fart,Logro 1 de 25 (docs/06 §5)
+ach.first_fart.desc,Tírate el primer pedo.,Let your first fart go.,Logro 1 de 25: condición
+ach.duet.name,Dueto,Duet,Logro 2 de 25 (docs/06 §5)
+ach.duet.desc,Logra un grupo de sync x2.,Land a x2 sync group.,Logro 2 de 25: condición
+ach.orchestra.name,Orquesta,Orchestra,Logro 3 de 25 (docs/06 §5)
+ach.orchestra.desc,Logra un grupo de sync x4.,Land a x4 sync group.,Logro 3 de 25: condición
+ach.super_fart.name,¡Súper Pedo!,Super Fart!,Logro 4 de 25 (docs/06 §5)
+ach.super_fart.desc,Lanza tu primer Súper Pedo.,Launch your first Super Fart.,Logro 4 de 25: condición
+ach.jungle_slingshot.name,Honda de la Selva,Jungle Slingshot,Logro 5 de 25 (docs/06 §5)
+ach.jungle_slingshot.desc,Logra la sinergia Honda de la Selva.,Pull off the Jungle Slingshot synergy.,Logro 5 de 25: condición
+ach.earthquake.name,Terremoto,Earthquake,Logro 6 de 25 (docs/06 §5)
+ach.earthquake.desc,Logra la sinergia Terremoto.,Pull off the Earthquake synergy.,Logro 6 de 25: condición
+ach.total_party.name,Fiesta Total,Total Party,Logro 7 de 25 (docs/06 §5)
+ach.total_party.desc,Logra la sinergia Fiesta Total.,Pull off the Total Party synergy.,Logro 7 de 25: condición
+ach.heavy_duo.name,Dúo Pesado,Heavy Duo,Logro 8 de 25 (docs/06 §5)
+ach.heavy_duo.desc,Logra la sinergia Dúo Pesado.,Pull off the Heavy Duo synergy.,Logro 8 de 25: condición
+ach.royal_rescue.name,Rescate Real,Royal Rescue,Logro 9 de 25 (docs/06 §5)
+ach.royal_rescue.desc,Logra la sinergia Rescate Real.,Pull off the Royal Rescue synergy.,Logro 9 de 25: condición
+ach.captain_titanic.name,Capitán Titanic,Captain Titanic,Logro 10 de 25 (docs/06 §5)
+ach.captain_titanic.desc,Hunde la balsa 10 veces.,Sink the raft 10 times.,Logro 10 de 25: condición
+ach.not_a_scratch.name,Sin un Rasguño,Not a Scratch,Logro 11 de 25 (docs/06 §5)
+ach.not_a_scratch.desc,Termina un nivel sin perder cámaras.,Finish a level without losing a chamber.,Logro 11 de 25: condición
+ach.world1.name,Mundo 1,World 1,Logro 12 de 25 (docs/06 §5)
+ach.world1.desc,Termina el Mundo 1.,Finish World 1.,Logro 12 de 25: condición
+ach.world2.name,Mundo 2,World 2,Logro 13 de 25 (docs/06 §5)
+ach.world2.desc,Termina el Mundo 2.,Finish World 2.,Logro 13 de 25: condición
+ach.world3.name,Mundo 3,World 3,Logro 14 de 25 (docs/06 §5)
+ach.world3.desc,Termina el Mundo 3.,Finish World 3.,Logro 14 de 25: condición
+ach.world4.name,Mundo 4,World 4,Logro 15 de 25 (docs/06 §5)
+ach.world4.desc,Termina el Mundo 4.,Finish World 4.,Logro 15 de 25: condición
+ach.world5.name,Mundo 5,World 5,Logro 16 de 25 (docs/06 §5)
+ach.world5.desc,Termina el Mundo 5.,Finish World 5.,Logro 16 de 25: condición
+ach.world6.name,Mundo 6,World 6,Logro 17 de 25 (docs/06 §5)
+ach.world6.desc,Termina el Mundo 6.,Finish World 6.,Logro 17 de 25: condición
+ach.perfectionist.name,Perfeccionista,Perfectionist,Logro 18 de 25 (docs/06 §5)
+ach.perfectionist.desc,Consigue todas las estrellas de un mundo.,Earn every star in one world.,Logro 18 de 25: condición
+ach.constellation.name,Constelación,Constellation,Logro 19 de 25 (docs/06 §5)
+ach.constellation.desc,Consigue las 93 estrellas.,Earn all 93 stars.,Logro 19 de 25: condición
+ach.royal_collector.name,Coleccionista Real,Royal Collector,Logro 20 de 25 (docs/06 §5)
+ach.royal_collector.desc,Consigue los 93 mangos dorados.,Collect all 93 golden mangos.,Logro 20 de 25: condición
+ach.speedster.name,Velocista,Speedster,Logro 21 de 25 (docs/06 §5)
+ach.speedster.desc,Saca 3 estrellas en 10 niveles.,Earn 3 stars on 10 levels.,Logro 21 de 25: condición
+ach.broken_friendships.name,Amistades Rotas,Broken Friendships,Logro 22 de 25 (docs/06 §5)
+ach.broken_friendships.desc,Termina la historia en Amistades Rotas.,Finish the story on Broken Friendships.,Logro 22 de 25: condición
+ach.party_animal.name,Fiestero,Partygoer,Logro 23 de 25 (docs/06 §5)
+ach.party_animal.desc,Juega los 5 minijuegos de Fiesta.,Play all 5 Party minigames.,Logro 23 de 25: condición
+ach.kilometer.name,Kilómetro,Kilometer,Logro 24 de 25 (docs/06 §5)
+ach.kilometer.desc,Recorre 1000 m en Infinito.,Travel 1000 m in Endless.,Logro 24 de 25: condición
+ach.consistent.name,Constante,Consistent,Logro 25 de 25 (docs/06 §5)
+ach.consistent.desc,Juega el Desafío Diario 7 días seguidos.,Play the Daily Challenge 7 days running.,Logro 25 de 25: condición
+stats.title,Estadísticas,Stats,Pestaña de estadísticas (docs/06 §6)
+stats.farts,Pedos totales,Total farts,
+stats.sync2,Grupos de sync x2,Sync groups x2,
+stats.sync3,Grupos de sync x3,Sync groups x3,
+stats.sync4,Grupos de sync x4,Sync groups x4,
+stats.super_farts,Súper Pedos,Super Farts,
+stats.falls,Caídas al agua,Falls into water,
+stats.rescues,Rescates,Rescues,
+stats.sinkings,Hundimientos,Sinkings,
+stats.distance,Distancia recorrida,Distance traveled,
+stats.play_time,Tiempo de juego,Play time,
+stats.fav_character,Personaje más usado,Most used animal,
+credits.title,Créditos,Credits,Texto del cuerpo viene de CREDITS.md
+credits.team,Equipo,Team,Sección
+credits.tools,Herramientas,Tools,Sección
+credits.assets,Assets y licencias,Assets & licenses,Sección

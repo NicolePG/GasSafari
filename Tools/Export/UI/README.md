@@ -283,12 +283,13 @@ de la mitad (la base ocupa los 13 px de abajo), y 8 px más abajo en `Pressed`.
 | Archivo | Qué es |
 |---|---|
 | `Icon_Chamber_Healthy` | Cámara de aire sana: flotador verde con anillos y válvula |
-| `Icon_Chamber_Popped` | Cámara reventada: gris deshinchada con rasgadura, aire que se escapa y estallido |
+| `Icon_Chamber_Popped` | Cámara reventada (rehecha): tubo verde pálido flácido y arrugado, válvula caída, desgarro y aire que se escapa (antes parecía una roca gris) |
 | `Icon_Chamber_Shield` | Escudo azul con un coco (hay coco escudo, P04); detrás asoma la cámara verde |
 | `Icon_Star_Empty` / `Icon_Star_Full` | Estrella hundida azul gris / dorada con brillo (resultados y ficha del nivel) |
 | `Icon_GoldenMango_Empty` / `Icon_GoldenMango_Full` | Mango dorado pendiente (silueta oscura) / conseguido |
 | `Icon_Lock` | Candado dorado con ojo de cerradura (niveles, modos y artículos bloqueados) |
 | `Icon_Bean` | Frijolito: moneda dorada con un frijol rojizo |
+| `Icon_Gas_Empty` | Lata abierta y vacía con una nube de gas a rayas: aviso "Sin gas" cuando el gas baja de 10 % (docs/02 §11) |
 
 ### Marcos de retrato y marcas de jugador (`Frames/`)
 
@@ -309,8 +310,16 @@ o detrás del retrato, centrado. Tres bandas: contorno, color con degradado y l�
 | `Ping_Arrow_Left` / `Ping_Arrow_Right` | Flecha curva blanca "Gira a la izquierda/derecha" (docs/02 §11). Teñir con el color del jugador |
 | `Arrow_Hazard` | Flecha roja con exclamación, apunta arriba: aviso de peligro fuera de cámara en el borde de pantalla (rotarla hacia el peligro) |
 | `Arrow_Current` | Doble chevrón cian, apunta arriba: flecha de corriente en zonas confusas |
+| `Ping_Now_Exclamation` | Exclamación naranja con destellos: ping "¡Ahora!" (Cruceta arriba). Ya es naranja: no teñir |
+| `Ping_Wait_Hand` | Mano abierta blanca: ping "Espera" (Cruceta abajo). Teñir con el color del jugador |
 
-Los otros pings (exclamación naranja "¡Ahora!", mano "Espera", lata vacía "Sin gas") no se hicieron: no estaban en el pedido.
+Los tres iconos que faltaban (exclamación, mano y lata vacía) y la nueva cámara reventada salen de `Kit/make_extra_icons.py`, que importa `Tools/Blender/ui_kit.py` sin tocarlo:
+
+```
+python Tools/Export/UI/Kit/make_extra_icons.py
+```
+
+`python Tools/Blender/ui_kit.py icons` vuelve a escribir la cámara reventada vieja: si se regenera el kit, correr este script después.
 
 ### Fondos de texto de evento (`Events/`)
 
