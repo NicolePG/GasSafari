@@ -56,6 +56,10 @@ namespace GasSafari.Tests
             grabber.Command.GrabHeld = true;
             bool crookedLanding = false;
             rig.Get<RaftStateMonitor>().Landed += crooked => crookedLanding |= crooked;
+            // Un golpe suave puede devolver al caído a la cubierta de la balsa inclinada: se comprueba que cayó.
+            var fell = new System.Collections.Generic.List<PlayerAvatar>();
+            System.Action<PlayerAvatar> onFell = a => fell.Add(a);
+            GameEvents.OnPlayerFell += onFell;
 
             rig.Raft.transform.SetPositionAndRotation(new Vector3(0f, 4f, 0f), Quaternion.Euler(50f, 0f, 0f));
             var body = rig.Get<Rigidbody>();
@@ -65,8 +69,11 @@ namespace GasSafari.Tests
             body.angularVelocity = Vector3.zero;
             yield return new WaitForSeconds(1f);
 
+            GameEvents.OnPlayerFell -= onFell;
+
             Assert.IsTrue(crookedLanding);
-            Assert.IsFalse(loose.GetComponent<PlayerSeat>().IsSeated);
+            Assert.IsTrue(fell.Contains(loose.GetComponent<PlayerAvatar>()), "el suelto cae");
+            Assert.IsFalse(fell.Contains(grabber.GetComponent<PlayerAvatar>()), "el agarrado no cae");
             Assert.IsTrue(grabber.GetComponent<PlayerSeat>().IsSeated);
         }
 

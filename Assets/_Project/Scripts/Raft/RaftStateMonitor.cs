@@ -108,15 +108,11 @@ namespace GasSafari.Raft
             if (balance.landingBounceImpulse > 0f)
                 raft.ApplyThrust(Vector3.up * balance.landingBounceImpulse, raft.Body.worldCenterOfMass, ForceMode.Impulse);
 
-            // Cada animal no agarrado recibe el golpe del impacto vertical.
+            // Cada animal no agarrado recibe el golpe del impacto vertical (misma regla de velocidad que los choques).
             float fallSpeed = Mathf.Max(0f, -airVelocity.y);
             Collect();
             for (int i = 0; i < buffer.Count; i++)
-            {
-                var avatar = buffer[i].Avatar;
-                float impulse = avatar.Character.weight * fallSpeed;
-                buffer[i].GetComponent<AvatarFall>().Knockoff(impulse, fallSpeed);
-            }
+                buffer[i].GetComponent<AvatarFall>().Knockoff(fallSpeed, fallSpeed);
         }
 
         private void Collect()

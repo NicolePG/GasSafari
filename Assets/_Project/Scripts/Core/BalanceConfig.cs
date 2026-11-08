@@ -65,7 +65,9 @@ namespace GasSafari.Core
         [Header("Daño, caídas y reaparición")]
         public float chamberDamageImpulse;
         [Tooltip("Segundos que tarda en hundirse sin cámaras (docs/02 §8)")] public float sinkDuration;
-        public float knockoffImpulse;
+        [Tooltip("Velocidad de impacto (m/s, componente contra la superficie) sobre la que cae quien no está agarrado (docs/02 §9). " +
+                 "Antes knockoffImpulse = 12 N·s, que con una balsa de 21 kg equivalía a solo 0.6 m/s")]
+        public float knockoffSpeed;
         public float swimSpeed;
         [Tooltip("Distancia máxima al borde para subir (docs/02 §9)")] public float climbReach;
         public float autoRespawnTime;

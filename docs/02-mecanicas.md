@@ -10,7 +10,7 @@ Unidades: metros, segundos, kilogramos, newtons. Todos los valores viven en `Bal
 - Cámara reventada: `factorCámara = poppedFactor` (0.4). La balsa se inclina hacia ese lado.
 - En el agua: `drag = waterDrag`, `angularDrag = waterAngularDrag`. En el aire: `airDrag`.
 - Centro de masa bajado a `(0, -0.3, 0)` para que no vuelque fácil.
-- Inclinación por peso: cada animal aplica `weight * 9.81 * seatTiltFactor` hacia abajo en su asiento. Un animal pesado hunde su lado. Solo en el agua: en el aire no se aplica (giraba la balsa en cada salto).
+- Inclinación por peso: cada animal aplica `weight * 9.81 * seatTiltFactor` hacia abajo en su asiento. Un animal pesado hunde su lado. Solo en el agua: en el aire no se aplica (giraba la balsa en cada salto). Es intencional pero sutil: objetivo de 1-3° por animal y máximo 6° de cabeceo con 4 animales empujando a fondo; la proa nunca se mete bajo el agua (valores medidos en §14).
 - Altura del agua: no es fija. La flotación y el nado consultan `WaterSurface.GetHeight(x, z)` (raycast contra la capa Water); en toboganes, espirales y cascadas el agua sigue la rampa. Fuera de un tramo se usa el nivel base del nivel.
 - Corriente: `FlowSpline` devuelve dirección (tangente de la spline) e intensidad del tramo; se aplica con `ForceMode.Acceleration` (no depende de la masa).
 - Volcar: si la balsa supera 70° de inclinación durante 1.5 s, el equipo reaparece en el checkpoint.
@@ -75,10 +75,11 @@ Unidades: metros, segundos, kilogramos, newtons. Todos los valores viven en `Bal
 
 ## 9. Caída, nado y rescate
 
-- Un animal que no está agarrado cae al agua si recibe un impulso mayor a `knockoffImpulse` (12) o si la balsa vuelca de su lado.
+- Un animal que no está agarrado cae al agua solo si la balsa golpea una pared, orilla o prop a más de `knockoffSpeed` (6 m/s, componente de la velocidad contra la superficie) o si la balsa vuelca de su lado. Un roce a lo largo de una pared o un choque a velocidad normal no tira a nadie. Sale con una patada corta (máx. 3 m/s hacia afuera) y cae junto a la balsa.
 - En el agua: nada con el stick izquierdo a `swimSpeed` (3 m/s); a menos de 1 m del borde pulsa A/Cruz para subir (animación `Climb`).
+- El caído nunca desaparece: se ve nadando junto a la balsa (si cae fuera del agua, se le pone pegado a la balsa), la cámara lo encuadra (se abre hasta +6 m según su distancia) y, si sale de cámara, aparece su icono (color del jugador y retrato) en el borde de la pantalla apuntando hacia él.
 - Rescate: Cuello Gancho de Melman, o la balsa pasa por encima del caído (se sube solo).
-- Si en `autoRespawnTime` (6 s) no volvió, reaparece rebotando sobre la balsa con el 50 % de gas.
+- Si en `autoRespawnTime` (6 s) no volvió, reaparece sobre la balsa al instante, con un rebote (cae desde 1.2 m y rebota 0.35 m, 0.55 s en total) y el 50 % de gas, sin fundido ni carga. Solo el hundimiento o el vuelco de la balsa usan el fundido de 0.4 s (§10), y tampoco recargan la escena.
 - Estadística: cada caída suma para el premio "Capitán Titanic".
 
 ## 10. Checkpoints, reaparición y cronómetro
@@ -149,7 +150,9 @@ Solo existe con mando, no con teclado. Para jugar solo con 2 animales o con otro
 | waterDrag / waterAngularDrag | 1.2 / 1.5 | |
 | airDrag / airAngularDrag | 0.05 / 0.3 | |
 | centerOfMassOffset | (0, -0.3, 0) | |
-| seatTiltFactor | 0.3 | |
+| seatTiltFactor | 0.3 | medido 2026-11-08: un animal inclina la balsa 0.7° (Marty) a 1.4° (Gloria); 4 animales 2.8° quietos; empujando a fondo desde la popa el cabeceo llega a 3.4° y la proa no se hunde (máx. permitido 6°). Con 0.4 los bots de W1-1 y W2-2 dejaron de terminar el nivel, así que se queda en 0.3 |
+| floatPoints (y local) | -0.6 | puntos de flotación 0.6 m bajo el origen de la balsa (antes -0.3): con 4 animales el borde más bajo del piso queda a 0.17 m sobre el agua (las olas visuales llegan a 0.12 m); antes quedaba bajo el agua |
+| waterMask (altura / radio) | 0.35 m / 0.95 | `RaftWaterMask`: la malla interior escribe profundidad sin color y se dibuja antes que el agua; también en las 6 balsas de la tienda y las mini balsas |
 | capsizeAngle / capsizeTime | 70° / 1.5 s | |
 | rightingStartAngle | 25° | desde aquí actúa el enderezado (solo en el agua) |
 | rightingStrength | 8 | rad/s² por radián de inclinación sobre 25° |
@@ -170,7 +173,7 @@ Solo existe con mando, no con teclado. Para jugar solo con 2 animales o con otro
 | superFartForward / Up | 14 / 9 m/s | a potencia completa |
 | superFartSlowMo | 0.4 de escala durante 0.6 s | |
 | chamberDamageImpulse | 25 | |
-| knockoffImpulse | 12 | |
+| knockoffSpeed | 6 m/s | velocidad de impacto contra la superficie (antes `knockoffImpulse` 12 N·s, que con una balsa de 21 kg equivalía a 0.6 m/s y tiraba a todos en cada roce). 6 m/s ≈ 129 N·s con 4 animales (21.5 kg); se mide en velocidad para que no dependa de cuántos van a bordo |
 | swimSpeed | 3 m/s | |
 | autoRespawnTime | 6 s | |
 | respawnFade | 0.4 s | |

@@ -12,6 +12,10 @@ namespace GasSafari.VFX
     [RequireComponent(typeof(CinemachineTargetGroup), typeof(CinemachineImpulseSource))]
     public class RaftCameraRig : MonoBehaviour
     {
+        // Distancia caído-balsa hasta la que no se abre la cámara y tramo siguiente que sí la abre (m).
+        private const float SWIMMER_SPREAD_FREE = 6f;
+        private const float SWIMMER_SPREAD_MAX = 12f;
+
         [SerializeField] private BalanceConfig balance;
         [SerializeField] private CinemachineVirtualCamera vcam;
         [SerializeField] private RaftController raft;
@@ -42,6 +46,10 @@ namespace GasSafari.VFX
             vcam.transform.rotation = Quaternion.Euler(balance.cameraTilt, transform.eulerAngles.y, 0f);
             Distance = balance.cameraDistanceMin;
             body.m_CameraDistance = Distance;
+
+            // Icono en el borde de pantalla de los caídos que salgan de cámara.
+            if (GetComponent<UI.SwimmerEdgeMarkers>() == null)
+                gameObject.AddComponent<UI.SwimmerEdgeMarkers>();
         }
 
         private void Start()
@@ -100,6 +108,15 @@ namespace GasSafari.VFX
             }
 
             float target = swimmers.Count > 0 ? balance.cameraDistanceMax : balance.cameraDistanceMin;
+            // Cuanto más lejos queda el caído de la balsa, más se abre la cámara para encuadrarlo (hasta +6 m).
+            float spread = 0f;
+            for (int i = 0; i < swimmers.Count; i++)
+            {
+                var offset = swimmers[i].transform.position - raft.transform.position;
+                offset.y = 0f;
+                spread = Mathf.Max(spread, offset.magnitude);
+            }
+            target += Mathf.Clamp(spread - SWIMMER_SPREAD_FREE, 0f, SWIMMER_SPREAD_MAX) * 0.5f;
             var velocity = raft.Body.velocity;
             velocity.y = 0f;
             target += Mathf.Clamp01(velocity.magnitude / balance.cameraZoomSpeedReference) * balance.cameraSpeedZoom;

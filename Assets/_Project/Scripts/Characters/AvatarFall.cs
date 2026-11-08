@@ -1,4 +1,5 @@
 using GasSafari.Core;
+using GasSafari.Level;
 using GasSafari.Raft;
 using UnityEngine;
 
@@ -9,6 +10,18 @@ namespace GasSafari.Characters
     [RequireComponent(typeof(Rigidbody), typeof(GasTank))]
     public class AvatarFall : MonoBehaviour
     {
+        // Un golpe contra una pared solo lo deja caer junto a la balsa: salida suave, no un lanzamiento.
+        private const float MAX_KNOCK_KICK = 3f;
+        private const float KNOCK_LIFT = 1.5f;
+        // Si sigue en el aire tanto tiempo, cayó fuera del agua (acera, pared, abismo): se le pone junto a la balsa.
+        private const float MAX_AIR_TIME = 1.5f;
+        private const float BESIDE_RAFT_GAP = 1.2f;
+        // Rebote al reaparecer en la balsa.
+        private const float RESPAWN_DROP_HEIGHT = 1.2f;
+        private const float RESPAWN_DROP_TIME = 0.25f;
+        private const float RESPAWN_BOUNCE_HEIGHT = 0.35f;
+        private const float RESPAWN_BOUNCE_TIME = 0.3f;
+
         [SerializeField] private BalanceConfig balance;
 
         private PlayerAvatar avatar;
@@ -17,6 +30,8 @@ namespace GasSafari.Characters
         private Rigidbody rb;
         private GasTank gas;
         private float lastAngle;
+        private float airTime;
+        private float bounceTime = -1f;
 
         public RaftSeats HomeRaft { get; private set; }
         public bool IsOverboard { get; private set; }
@@ -38,15 +53,16 @@ namespace GasSafari.Characters
             SetOnRaftPhysics();
         }
 
-        // Golpe recibido sentado: sale despedido hacia afuera de la balsa a 'speed' m/s.
-        public bool Knockoff(float impulse, float speed)
+        // Golpe recibido sentado: solo cae quien no se agarra y solo si el impacto supera knockoffSpeed (m/s).
+        // Sale hacia afuera de la balsa a 'speed' m/s, como mucho MAX_KNOCK_KICK.
+        public bool Knockoff(float impactSpeed, float speed)
         {
-            if (!seat.IsSeated || states.IsGrabbing || impulse <= balance.knockoffImpulse)
+            if (!seat.IsSeated || states.IsGrabbing || impactSpeed <= balance.knockoffSpeed)
                 return false;
 
             var outward = transform.position - seat.Raft.transform.position;
             outward.y = 0f;
-            Fall(outward.normalized * speed);
+            Fall(outward.normalized * Mathf.Min(speed, MAX_KNOCK_KICK) + Vector3.up * KNOCK_LIFT);
             return true;
         }
 
@@ -65,6 +81,8 @@ namespace GasSafari.Characters
 
             IsOverboard = true;
             TimeOverboard = 0f;
+            airTime = 0f;
+            CancelBounce();
             states.Enter(AvatarState.Falling);
             GameEvents.RaisePlayerFell(avatar);
         }
@@ -89,6 +107,7 @@ namespace GasSafari.Characters
             IsLeaping = true;
             leapReturnDistance = returnDistance;
             TimeOverboard = 0f;
+            airTime = 0f;
             states.Enter(AvatarState.Falling);
         }
 
@@ -120,10 +139,18 @@ namespace GasSafari.Characters
 
         private void Update()
         {
+            UpdateRespawnBounce();
+
             if (!IsOverboard)
                 return;
 
             TimeOverboard += Time.deltaTime;
+            if (states.State == AvatarState.Falling && !IsLeaping)
+            {
+                airTime += Time.deltaTime;
+                if (airTime > MAX_AIR_TIME)
+                    PlaceBesideRaft();
+            }
             if (TimeOverboard >= Services.Session.Difficulty.autoRespawnTime)
                 AutoRespawn();
         }
@@ -137,10 +164,62 @@ namespace GasSafari.Characters
             Board(lastAngle);
         }
 
+        // Reaparición solo tras caer (6 s): instantánea, con un rebote sobre la balsa y sin fundido ni carga de escena.
         private void AutoRespawn()
         {
             gas.SetFraction(balance.respawnGasFraction);
             ReturnToRaft();
+            if (seat.IsSeated)
+                bounceTime = 0f;
+        }
+
+        private void CancelBounce()
+        {
+            bounceTime = -1f;
+            seat.HopOffset = 0f;
+        }
+
+        // Altura extra del asiento durante el rebote: cae desde arriba y rebota una vez antes de quedarse quieto.
+        private void UpdateRespawnBounce()
+        {
+            if (bounceTime < 0f)
+                return;
+
+            bounceTime += Time.deltaTime;
+            float height = 0f;
+            if (bounceTime < RESPAWN_DROP_TIME)
+            {
+                float k = 1f - bounceTime / RESPAWN_DROP_TIME;
+                height = RESPAWN_DROP_HEIGHT * k * k;
+            }
+            else if (bounceTime < RESPAWN_DROP_TIME + RESPAWN_BOUNCE_TIME)
+            {
+                float u = (bounceTime - RESPAWN_DROP_TIME) / RESPAWN_BOUNCE_TIME;
+                height = RESPAWN_BOUNCE_HEIGHT * 4f * u * (1f - u);
+            }
+            else
+            {
+                bounceTime = -1f;
+            }
+            seat.HopOffset = height;
+        }
+
+        // Cayó fuera del agua: lo deja nadando pegado a la balsa, del lado de su asiento, para que nunca desaparezca.
+        private void PlaceBesideRaft()
+        {
+            var raftTransform = HomeRaft.transform;
+            var side = raftTransform.TransformDirection(HomeRaft.LocalSeatPosition(lastAngle));
+            side.y = 0f;
+            if (side.sqrMagnitude < 1e-4f)
+                side = raftTransform.right;
+            var position = raftTransform.position + side.normalized * (balance.raftRadius + BESIDE_RAFT_GAP);
+            float height = WaterSurface.TryGetHeight(position + Vector3.up * 2f, out float water) ? water : raftTransform.position.y;
+            position.y = height - 0.05f;
+
+            rb.position = position;
+            transform.position = position;
+            rb.velocity = Vector3.zero;
+            airTime = 0f;
         }
 
         private void SetInWaterPhysics()

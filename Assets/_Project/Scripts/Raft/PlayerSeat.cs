@@ -24,6 +24,8 @@ namespace GasSafari.Raft
         // Giro de puntería en grados respecto de mirar al centro (lo fija FartThruster).
         public float AimOffset { get; set; }
         public Vector3 WorldPoint => transform.position;
+        // Altura extra sobre el asiento (m): el rebote al reaparecer tras caer (AvatarFall).
+        public float HopOffset { get; set; }
 
         public event Action<RaftSeats> SatDown;
         public event Action<RaftSeats> StoodUp;
@@ -86,7 +88,7 @@ namespace GasSafari.Raft
 
         private void ApplyPose()
         {
-            transform.localPosition = Raft.LocalSeatPosition(Angle);
+            transform.localPosition = Raft.LocalSeatPosition(Angle) + Vector3.up * HopOffset;
             transform.localRotation = Quaternion.Euler(0f, Angle + 180f + AimOffset, 0f);
         }
     }
