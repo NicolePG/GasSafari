@@ -89,6 +89,7 @@ namespace GasSafari.Editor
             mango.transform.position = mid + chord * 8f + Vector3.up;
 
             LevelDresser.Dress(level, LevelDresser.W2, 21, level.PointAt(nets, 70f), -90f);
+            W2StarShots.Apply(level.Scene, "W2-1");
             level.Finish();
             Debug.Log($"M5-09 W2-1 listo: {level.Length:F0} m, atajo {Vector3.Distance(a, b):F0} m");
         }
@@ -190,6 +191,7 @@ namespace GasSafari.Editor
             theme.WaterDeep = new Color(0.1f, 0.18f, 0.22f, 0.95f);
             LevelDresser.Dress(level, theme, 22, level.PointAt(level.Length + 20f, 8f), 0f);
             Storm(level, hidden.ToArray());
+            W2StarShots.Apply(level.Scene, "W2-2");
             level.Finish();
             Debug.Log($"M5-10 W2-2 listo: {level.Length:F0} m");
         }
@@ -361,6 +363,7 @@ namespace GasSafari.Editor
 
             LevelDresser.Dress(level, LevelDresser.With(LevelDresser.W2, new[] { "W2_Rock_A", "W2_Rock_C", "W2_Barrel_A", "W2_Crate_A", "W2_Crate_B", "W2_LifeRing", "W2_Bottle", "W2_Rowboat" },
                 0.9f, new Color(0.55f, 0.68f, 0.72f)), 23, level.PointAt(exit + 60f, 70f), -90f);
+            W2StarShots.Apply(level.Scene, "W2-3");
             level.Finish();
             Debug.Log($"M5-11 W2-3 listo: {level.Length:F0} m");
         }
@@ -455,6 +458,7 @@ namespace GasSafari.Editor
             level.PowerUp("P01", great + 20f, -4f);
 
             LevelDresser.Dress(level, LevelDresser.W2, 24, level.PointAt(great + 70f, 80f), -90f);
+            W2StarShots.Apply(level.Scene, "W2-4");
             level.Finish();
             Debug.Log($"M5-12 W2-4 listo: {level.Length:F0} m");
         }
@@ -538,6 +542,7 @@ namespace GasSafari.Editor
             var reef = LevelDresser.With(LevelDresser.W2, new[] { "W2_Coral_A", "W2_Coral_B", "W2_Coral_C", "W2_Starfish", "W2_Kelp", "W2_Rock_B" },
                 1.15f, LevelDresser.W2.Fog);
             LevelDresser.Dress(level, reef, 25, level.PointAt(phase3 + 80f, -70f), 90f);
+            W2StarShots.Apply(level.Scene, "W2-5");
             level.Finish();
             Debug.Log($"M5-13 W2-5 listo: {level.Length:F0} m");
         }

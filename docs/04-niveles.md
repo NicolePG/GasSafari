@@ -109,7 +109,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 - Secciones: 1) campo de cajas flotantes; 2) barriles con mecha (explotan 1.5 s después de tocarlos); 3) pasillo entre redes de pesca (atrapan y frenan); 4) montaña de cajas que se derrumba.
 - Power-ups: P01 x3, P02 x1, P04 x1.
 - Mangos: dentro de una caja (romper con Rugido o golpe fuerte); entre dos barriles; tras la montaña de cajas si se derrumba a tiempo (atajo).
-- Momento estrella: romper la montaña de cajas (Rugido o Terremoto) abre un atajo.
+- Momento estrella: romper la montaña de cajas (Rugido o Terremoto) abre un atajo. Toma de cámara (3 s, cámara lenta) al cruzar la zona tras la montaña (`StarMomentZone`, `W2StarShots`).
 
 ## W2-2 La Tormenta
 
@@ -118,7 +118,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 - Secciones: 1) lluvia y olas grandes; 2) ráfagas alternas izquierda/derecha; 3) rayos que iluminan rocas ocultas; 4) faro como guía final; ola gigante surfeable.
 - Power-ups: P01 x3, P03 x2.
 - Mangos: en el ojo de un remolino pequeño; detrás de una roca que solo se ve con el rayo; en la cresta de la ola gigante.
-- Momento estrella: surfear la ola gigante en sincronía hasta la playa del faro.
+- Momento estrella: surfear la ola gigante en sincronía hasta la playa del faro. Toma de cámara de 3 s al llegar a la cresta del mango (`StarMomentZone`).
 
 ## W2-3 Cementerio de Barcos
 
@@ -127,7 +127,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 - Secciones: 1) pasillos entre cascos hundidos; 2) mástiles con ancla en curvas de 180°; 3) bodega inundada (techo bajo, oscuro parcial); 4) salida entre dos barcos que se juntan lentamente.
 - Power-ups: P01 x3, P04 x1.
 - Mangos: en la cofa de un mástil (Cuello Gancho o salto de Julien); en la bodega; tras el timón de un barco (escondido).
-- Momento estrella: Honda de la Selva alrededor del gran mástil para escapar de los barcos que se cierran.
+- Momento estrella: Honda de la Selva alrededor del gran mástil para escapar de los barcos que se cierran. Toma de cámara de 3 s al rodear el gran mástil (`StarMomentZone`).
 
 ## W2-4 El Gran Remolino
 
@@ -136,7 +136,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 - Secciones: 1) remolino pequeño de práctica; 2) slalom entre dos remolinos; 3) cadena de 3 remolinos con corrientes cruzadas; 4) el gran remolino central (radio 15 m).
 - Power-ups: P01 x3, P03 x1.
 - Mangos: en el borde del primer remolino; entre los dos del slalom; en el centro del gran remolino (entrar y salir con Panzazo o sync x4).
-- Momento estrella: escapar del gran remolino.
+- Momento estrella: escapar del gran remolino. Toma de cámara de 3 s al bordear el gran remolino (`StarMomentZone`).
 
 ## W2-5 Arrecife de Coral (JEFE)
 
@@ -145,7 +145,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 - Secciones: 1) pasillos de coral con pinchos; 2) fase 1 del jefe: 2 tentáculos, golpes cada 3 s; 3) fase 2: 4 tentáculos, cada 2 s; 4) fase 3: pasillo final, cada 1.5 s.
 - Power-ups: P01 x3, P04 x3.
 - Mangos: en una cueva de coral; entre tentáculos de la fase 2; en la salida tras un coral rompible.
-- Momento estrella: cruzar el pasillo final mientras los tentáculos golpean detrás.
+- Momento estrella: cruzar el pasillo final mientras los tentáculos golpean detrás. Toma de cámara de 3 s, desde delante mirando hacia atrás, al entrar al pasillo final (`StarMomentZone`).
 - Fin de mundo: viñeta "La isla".
 
 ---

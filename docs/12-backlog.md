@@ -111,6 +111,13 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [ ] **M5-39** Viñetas entre mundos con Timeline · ui-hud · 01 Historia
 - [ ] **M5-40** Música por mundo con capas · audio-sfx · 08 §5
 
+## Correcciones intercaladas (8 nov)
+- [x] **FX-01** Agua dentro de la balsa: puntos de flotación 0.25 m más abajo (piso 0.17 m sobre el agua con 4 animales), `RaftWaterMask` en la balsa, las 6 balsas de la tienda y las mini balsas (modelos importados a `Art/Props/Raft/Skins` y `Art/Props/MiniRaft`, prefabs en `Prefabs/Raft/Skins` y `Prefabs/MiniRaft`) · hecho 2026-11-08 · pruebas `RaftWaterMaskTests`, `RaftWaterTiltTests`, `RaftWaterMaskDocsTests`
+- [x] **FX-02** Caídas por choque: `knockoffSpeed` 6 m/s (antes 12 N·s ≈ 0.6 m/s), caído nadando junto a la balsa, cámara que lo encuadra, icono en el borde de pantalla (`SwimmerEdgeMarkers`), reaparición instantánea con rebote · hecho 2026-11-08 · pruebas `AvatarFallTests`
+- [x] **FX-03** Auditoría de colisiones T-0/W1/W2 (`CollisionAudit`, menú `Gas Safari/QA`), `CinemachineCollider` en la cámara del nivel, pruebas de no atravesar (`CollisionClippingTests`) · hecho 2026-11-08
+- [x] **FX-04** Iconos de botones de Xbox, PlayStation y teclado (Kenney Input Prompts, CC0) en el cartel del tutorial · hecho 2026-11-08
+- [x] **FX-05** Tomas de cámara en los momentos estrella de W2 (`StarMomentZone`, `W2StarShots`); W1-2 con 4 bots termina en 181 s (límite 357.5 s) tras corregir las caídas · hecho 2026-11-08
+
 ## M6 · Menús y meta (7-8 nov)
 - [ ] **M6-01** Título y menú principal · ui-hud · 07 §1-2
 - [ ] **M6-02** Selección de personajes (lobby local, bots, dificultad) · ui-hud · 07 §2

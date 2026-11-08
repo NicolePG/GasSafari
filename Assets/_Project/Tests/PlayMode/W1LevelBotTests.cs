@@ -145,6 +145,11 @@ namespace GasSafari.Tests
             var star = Object.FindFirstObjectByType<StarMoment>();
             if (star != null)
                 Assert.IsTrue(star.Played, $"{id}: el momento estrella se disparó");
+            foreach (var zone in Object.FindObjectsByType<StarMomentZone>(FindObjectsSortMode.None))
+            {
+                if (zone.OnMainPath)
+                    Assert.IsTrue(zone.Played, $"{id}: el momento estrella ({zone.name}) lanzó su toma de cámara");
+            }
             var finale = Object.FindFirstObjectByType<CraneFinale>();
             if (finale != null)
                 Assert.IsTrue(finale.Played, $"{id}: el gancho cae tras la balsa en la rampa");
