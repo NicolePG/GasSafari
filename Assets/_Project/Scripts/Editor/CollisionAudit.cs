@@ -32,9 +32,10 @@ namespace GasSafari.Editor
             "L_W1_5_PuertoJefe", "L_W2_1_CajasDeriva", "L_W2_2_Tormenta", "L_W2_3_CementerioBarcos", "L_W2_4_GranRemolino",
             "L_W2_5_ArrecifeJefe",
             "L_W3_1_PlayaLlegada", "L_W3_2_RioLianas", "L_W3_3_TerritorioFosas", "L_W3_4_PantanoCocodrilos", "L_W3_5_FiestaLemurJefe",
+            "L_W4_1_CascadasEscalonadas", "L_W4_2_CuevaCristal", "L_W4_3_GeiseresVapor", "L_W4_4_RioSubterraneo", "L_W4_5_VolcanJefe",
         };
 
-        [MenuItem("Gas Safari/QA/Auditar colisiones (T-0, W1, W2, W3)")]
+        [MenuItem("Gas Safari/QA/Auditar colisiones (T-0, W1-W4)")]
         public static void RunAllMenu()
         {
             var report = RunAll();
@@ -51,7 +52,7 @@ namespace GasSafari.Editor
             return report;
         }
 
-        [MenuItem("Gas Safari/QA/Corregir props sin collider (T-0, W1, W2, W3)")]
+        [MenuItem("Gas Safari/QA/Corregir props sin collider (T-0, W1-W4)")]
         public static void FixAllMenu()
         {
             foreach (var name in Scenes)
@@ -170,7 +171,7 @@ namespace GasSafari.Editor
                 string n = p.name;
                 // Puente_N es el tablero (alto, sobre el cauce); sus pilares son bloques sólidos aparte. Neon son tiras
                 // de luz pegadas a la pared del túnel.
-                if (n.StartsWith("Puente_") && !n.EndsWith("_Pilar") || n == "Neon" || n == "CortinaCascada")
+                if (n.StartsWith("Puente_") && !n.EndsWith("_Pilar") || n == "Neon" || n == "CortinaCascada" || n == "Derrumbe")
                     return true;
                 if (n == "Ground" || n == "Banks" || n == "Acera" || n.StartsWith("Water") || n == "Sky" || n == "Art"
                     || n == "Decor" || n == "Mangos" || n == "PowerUps" || n.StartsWith("Cloud") || n.StartsWith("Fog") || n.StartsWith("Rain") || n == "Backdrop")

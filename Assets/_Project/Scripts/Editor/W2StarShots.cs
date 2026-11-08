@@ -55,6 +55,17 @@ namespace GasSafari.Editor
                 CameraOffset = new Vector3(10f, 8f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
             new Shot { Scene = "L_W3_5_FiestaLemurJefe", Id = "W3-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 6f, 12f),
                 CameraOffset = new Vector3(-10f, 7f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
+            // W4
+            new Shot { Scene = "L_W4_1_CascadasEscalonadas", Id = "W4-1", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 6f, 12f),
+                CameraOffset = new Vector3(-12f, 9f, -10f), Seconds = 3f, SlowMotion = true, MainPath = true },
+            new Shot { Scene = "L_W4_2_CuevaCristal", Id = "W4-2", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 6f, 30f),
+                CameraOffset = new Vector3(9f, 6f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
+            new Shot { Scene = "L_W4_3_GeiseresVapor", Id = "W4-3", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 8f, 20f),
+                CameraOffset = new Vector3(-12f, 7f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
+            new Shot { Scene = "L_W4_4_RioSubterraneo", Id = "W4-4", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 6f, 40f),
+                CameraOffset = new Vector3(10f, 8f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
+            new Shot { Scene = "L_W4_5_VolcanJefe", Id = "W4-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 14f),
+                CameraOffset = new Vector3(-10f, 8f, -12f), Seconds = 3f, SlowMotion = true, MainPath = true },
         };
 
         [MenuItem("Gas Safari/Setup/Tomas de cámara de los momentos estrella de W2")]
