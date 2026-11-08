@@ -11,6 +11,7 @@ blender --background --python Tools/Blender/story.py -- --loading   # fondos de 
 blender --background --python Tools/Blender/ui_icons.py      # iconos de tienda, logros, modos y dificultades
 blender --background --python Tools/Blender/ui_icons.py -- achievements modes   # solo esos grupos
 blender --background --python Tools/Blender/menu_scene.py    # escena 3D del título (Tools/Export/Menu/)
+python Tools/Blender/ui_kit.py                               # kit de menús y HUD (Kit/), con Pillow, sin Blender
 ```
 
 Hojas de revisión (no se suben a Git): `Tools/Blender/previews/UI_*_sheet.png`.
@@ -233,3 +234,92 @@ los globos o subtítulos los pone la UI (Timeline de M5-39).
 | W6_Secret | `W6_Secret_01` | El Rey Julien en su trono organiza "El Reino de Julien" |
 | | `W6_Secret_02` | Desafíos remix: tentáculo, cocodrilo gigante y grúa con luces de fiesta |
 | | `W6_Secret_03` | Coronan al mejor equipo (Alex con la Corona dorada) |
+
+## Kit de menús y HUD — `Kit/<Grupo>/`
+
+Dibujado en 2D con Python + Pillow (`Tools/Blender/ui_kit.py`, a 4x y reducido; no usa Blender): estilo caricatura con
+contorno grueso casi negro (`#1C1A26`, el de los demás iconos), relleno con degradado suave, brillo blanco arriba y borde
+interior claro. Todo a tamaño 1x para el Canvas de 1920x1080 (se importa con **Pixels Per Unit 100**, Mesh Type *Full Rect*,
+sin compresión con pérdida). Sin textos. Hojas de revisión (no se suben a Git): `Tools/Blender/previews/UI_Kit_<grupo>_sheet.png`
+y `UI_Kit_9slice_sheet.png` (paneles, botones, barras y carteles estirados con sus bordes).
+
+```
+python Tools/Blender/ui_kit.py                  # todo
+python Tools/Blender/ui_kit.py panels buttons   # panels buttons meter ring icons frames pings events
+```
+
+**Bordes 9-slice** = px del archivo en el Sprite Editor, orden **L / T / R / B** (Left, Top, Right, Bottom). En el `Image` usar
+*Image Type = Sliced* y *Fill Center*. Las esquinas (radio grueso incluido) y el contorno quedan dentro del borde, por eso
+no se deforman al estirar; probado de 160x60 hasta 640x360.
+
+### Paneles y botones (`Panels/`, `Buttons/`)
+
+| Archivo | Tamaño | Borde L/T/R/B | Qué es |
+|---|---|---|---|
+| `Panels/Panel_Light` | 192x192 | 58/58/58/58 | Panel crema con doble borde y base más oscura: menús, fichas, tienda, resultados |
+| `Panels/Panel_Dark` | 192x192 | 58/58/58/58 | Panel azul noche: HUD, esquinas de jugador, pausa |
+| `Panels/Panel_Inset` | 160x160 | 50/50/50/50 | Hueco hundido azul claro: casillas, rejillas de logros, campo del código de sala |
+| `Buttons/Button_<Color>_<Estado>` | 192x112 | 52/52/52/52 | Botón chato con base de color. Colores: `Green` (principal), `Blue` (secundario), `Red` (salir, borrar). Estados: `Normal`, `Highlighted` (más claro con aro blanco interior), `Pressed` (la cara baja 8 px y la base se achica) y `Disabled` (gris con contorno suave). 12 archivos |
+
+Los 4 estados tienen el mismo lienzo: en `Pressed` los 8 px de arriba son transparentes (cabe en el borde superior).
+Asignarlos al `Button` con *Transition = Sprite Swap* (Highlighted y Selected = `Highlighted`). Texto centrado un poco arriba
+de la mitad (la base ocupa los 13 px de abajo), y 8 px más abajo en `Pressed`.
+
+### Medidor de equipo y anillo de gas (`Meter/`, `Ring/`)
+
+| Archivo | Tamaño | Borde L/T/R/B | Qué es |
+|---|---|---|---|
+| `Meter/Meter_Back` | 512x72 | 40/8/40/8 | Fondo de la barra: cápsula azul noche con sombra interior |
+| `Meter/Meter_Fill` | 512x72 | 40/8/40/8 | Relleno verde gas con rayas diagonales y brillo blanco arriba. Mismo lienzo que el fondo (ya trae el margen de 10 px): poner ambos con el mismo RectTransform; *Image Type = Filled, Horizontal* |
+| `Meter/Meter_Fill_Ready` | 512x72 | 40/8/40/8 | Igual en dorado con más brillo: se cambia al llegar a 100 ("¡SÚPER PEDO LISTO!") |
+| `Meter/Meter_Shine` | 128x72 | — | Destello blanco inclinado con borde suave; se desliza por la barra (máscara del relleno) |
+| `Meter/Meter_Glow` | 640x160 | 90/60/90/60 | Halo dorado difuso; poner detrás de la barra y pulsarlo cuando está lista |
+| `Ring/Ring_Gas_Back` | 256x256 | — | Pista del anillo sobre cada animal: aro azul noche con contorno |
+| `Ring/Ring_Gas_Fill` | 256x256 | — | Aro blanco que cabe dentro de la pista; *Image Type = Filled, Radial 360* y teñir con el color del jugador (J1-J4, normal o daltonismo) |
+| `Ring/Ring_Gas_Glow` | 256x256 | — | Halo blanco; teñir y pulsar al cargar la ráfaga |
+
+### Iconos (`Icons/`, 256x256, sin bordes 9-slice)
+
+| Archivo | Qué es |
+|---|---|
+| `Icon_Chamber_Healthy` | Cámara de aire sana: flotador verde con anillos y válvula |
+| `Icon_Chamber_Popped` | Cámara reventada: gris deshinchada con rasgadura, aire que se escapa y estallido |
+| `Icon_Chamber_Shield` | Escudo azul con un coco (hay coco escudo, P04); detrás asoma la cámara verde |
+| `Icon_Star_Empty` / `Icon_Star_Full` | Estrella hundida azul gris / dorada con brillo (resultados y ficha del nivel) |
+| `Icon_GoldenMango_Empty` / `Icon_GoldenMango_Full` | Mango dorado pendiente (silueta oscura) / conseguido |
+| `Icon_Lock` | Candado dorado con ojo de cerradura (niveles, modos y artículos bloqueados) |
+| `Icon_Bean` | Frijolito: moneda dorada con un frijol rojizo |
+
+### Marcos de retrato y marcas de jugador (`Frames/`)
+
+Marco 512x512, aro de 31 px que **empieza en r = 216** (el círculo del retrato mide r = 220, ver Retratos): ponerlo encima
+o detrás del retrato, centrado. Tres bandas: contorno, color con degradado y línea blanca interior.
+
+| Archivo | Color | Notas |
+|---|---|---|
+| `Frame_J1` `Frame_J2` `Frame_J3` `Frame_J4` | Naranja `#F28C28`, azul `#3A86FF`, verde `#2DC653`, morado `#9B5DE5` (docs/03) | Aro liso |
+| `Frame_CB_J1` … `Frame_CB_J4` | Daltonismo (docs/07 §5): `#E69F00`, `#56B4E9`, `#F0E442`, `#CC79A7` | Con la forma del jugador en la esquina inferior derecha: J1 círculo, J2 triángulo, J3 cuadrado, J4 rombo |
+| `Badge_J1_Circle` `Badge_J2_Triangle` `Badge_J3_Square` `Badge_J4_Diamond` | Colores normales | 128x128, la misma forma suelta (para anillos de gas y pings sobre el animal) |
+| `Badge_CB_J1_Circle` … `Badge_CB_J4_Diamond` | Colores de daltonismo | Ídem |
+
+### Pings y avisos (`Pings/`, 256x256)
+
+| Archivo | Qué es |
+|---|---|
+| `Ping_Arrow_Left` / `Ping_Arrow_Right` | Flecha curva blanca "Gira a la izquierda/derecha" (docs/02 §11). Teñir con el color del jugador |
+| `Arrow_Hazard` | Flecha roja con exclamación, apunta arriba: aviso de peligro fuera de cámara en el borde de pantalla (rotarla hacia el peligro) |
+| `Arrow_Current` | Doble chevrón cian, apunta arriba: flecha de corriente en zonas confusas |
+
+Los otros pings (exclamación naranja "¡Ahora!", mano "Espera", lata vacía "Sin gas") no se hicieron: no estaban en el pedido.
+
+### Fondos de texto de evento (`Events/`)
+
+| Archivo | Tamaño | Borde L/T/R/B | Qué es |
+|---|---|---|---|
+| `Event_Banner_Sync` | 384x128 | 72/40/72/40 | Cápsula amarillo naranja para "¡SYNC x2!", "¡SYNC x3!", "¡SYNC x4!" |
+| `Event_Banner_Super` | 384x128 | 72/40/72/40 | Rosa neón: "¡SÚPER PEDO LISTO!" y nombres de sinergia |
+| `Event_Banner_Info` | 384x128 | 72/40/72/40 | Azul: "CHECKPOINT" y "¡YA!" |
+| `Event_Burst` | 512x512 | — | Estallido de cómic amarillo para la cuenta 3-2-1 o un SYNC grande (no se estira) |
+
+Texto blanco con contorno oscuro, centrado; la animación (escala 0 → 1.2 → 1 en 0.25 s) la pone la UI (docs/07 §3).
+

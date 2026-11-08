@@ -15,6 +15,7 @@ blender --background --python Tools/Blender/celebrations.py  # 6 celebraciones d
 blender --background --python Tools/Blender/party.py       # arenas y objetos de los minijuegos (Tools/Export/Party/)
 blender --background --python Tools/Blender/ui_icons.py    # iconos de tienda, logros, modos y dificultades
 blender --background --python Tools/Blender/menu_scene.py  # escena 3D del título (Tools/Export/Menu/)
+python Tools/Blender/ui_kit.py                             # kit de menús y HUD en PNG, con Pillow (Tools/Export/UI/Kit/)
 blender --background --python Tools/Blender/hazards.py     # modelos de obstáculos H01-H35 que faltaban (Tools/Export/Hazards/)
 blender --background --python Tools/Blender/tutorial.py    # señalética del tutorial T-0 sin texto (Tools/Export/Tutorial/)
 ```

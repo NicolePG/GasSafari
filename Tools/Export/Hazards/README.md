@@ -19,7 +19,7 @@ objeto aparte con su pivote. Hoja de revisión: `Tools/Blender/previews/Hazards_
 |---|---|---|---|
 | H01 | Pared / orilla | Prefab con 1 `Cube` | **NUEVO** `H01_Wall` |
 | H03 | Compuerta temporizada | Prefab con modelo | ya existe `W1_SluiceGate` (hoja `Gate` móvil); no se rehízo |
-| H04 | Oleaje | Prefab sin malla (agua + script) | **NUEVO** `H04_WaveCrest` (cresta visual, opcional) |
+| H04 | Oleaje | Prefab sin malla (agua + script) | **NUEVO** `H04_WaveCrest` (cresta visual en media luna con rizo hueco; rehecha: ya no parece un casco) |
 | H05 | Bloqueador móvil | Prefab con modelo | ya existe (contenedores W1) |
 | H06 | Barril explosivo | Prefab con modelo | ya existe (`W*_Barrel`) |
 | H07 | Caja rompible | Prefab con modelo | ya existe (`W*_Crate`) |
@@ -35,6 +35,7 @@ objeto aparte con su pivote. Hoja de revisión: `Tools/Blender/previews/Hazards_
 | H17 | Cascada / caída | Sin prefab ni modelo del borde | **NUEVO** `H17_WaterfallEdge` (`Sheet` y `Mist`) |
 | H18 | Zona oscura | Sin prefab | sin malla: es un volumen de niebla/luz (en Unity) |
 | H19 | Géiser | Sin prefab; `W4_GeyserVent` es un cráter fijo | **NUEVO** `H19_Geyser` (cráter + `Plume` + `ShockRing`) |
+| H36 | Géiser de gas dorado | No está en `docs/05` (lo pidió el equipo de arte) | **NUEVO** `H36_GoldGasGeyser` (cráter con pozo dorado + `Jet` + `GasRing` + `Bubble_00..11`) |
 | H20 | Roca que cae | Sin prefab ni modelo | **NUEVO** `H20_FallingRock` (`Rock` + marca de sombra `ShadowDisc`/`ShadowRing` fija) |
 | H21 | Rápidos | Sin prefab | ya existen rocas (`W5_CanyonRock_*`, `W3_Rock_*`) |
 | H22 | Abismo | Sin prefab | ya existen `W4_Crack`, `W5_BrokenBridge` y las rampas `W5_Ramp_A/B`, `W1_Canal_Ramp`, `W5_Slide_Ramp` |
@@ -61,7 +62,7 @@ objeto aparte con su pivote. Hoja de revisión: `Tools/Blender/previews/Hazards_
 | Archivo | Triángulos | Tamaño | Partes móviles |
 |---|---|---|---|
 | H01_Wall.fbx | 624 | 4.1 x 1.0 x 1.2 m | — |
-| H04_WaveCrest.fbx | 752 | 8.0 x 5.1 x 1.9 m | — |
+| H04_WaveCrest.fbx | 2922 | 8.1 x 5.6 x 2.0 m | — (la cresta mira hacia -Y; el rizo se abre al frente) |
 | H08_WindSock.fbx | 516 | 2.1 x 1.0 x 3.5 m | `Sock` (pivote en el aro, gira con el viento) |
 | H08_GustStreak.fbx | 1044 | 3.6 x 0.1 x 2.1 m | — |
 | H09_Whirlpool.fbx | 1922 | 6.7 x 6.7 x 2.2 m | `Spin` (girar sobre Z) |
@@ -70,6 +71,7 @@ objeto aparte con su pivote. Hoja de revisión: `Tools/Blender/previews/Hazards_
 | H16_BeatPillar.fbx | 1576 | 3.2 x 3.2 x 2.5 m | `Pulse` (escala en el pulso), `BeatRing` |
 | H17_WaterfallEdge.fbx | 948 | 17.5 x 5.9 x 6.2 m | `Sheet`, `Mist` |
 | H19_Geyser.fbx | 1156 | 4.8 x 4.8 x 6.5 m | `Plume` (escala en Z), `ShockRing` |
+| H36_GoldGasGeyser.fbx | 2812 | 5.8 x 5.7 x 6.7 m | `Jet` (escala en Z desde la boca, pivote en z = 1.0), `GasRing` (se expande, pivote en la boca), `Bubble_00..11` (pivote en su centro; suben y revientan) |
 | H20_FallingRock.fbx | 628 | 2.8 x 2.8 x 2.4 m | `Rock` |
 | H27_Jet.fbx | 1140 | 2.1 x 2.1 x 5.4 m | `Jet` (escala en Z), `Splash` |
 | H27_Trampoline.fbx | 1478 | 4.8 x 4.8 x 0.8 m | `Mat` |
@@ -85,4 +87,4 @@ objeto aparte con su pivote. Hoja de revisión: `Tools/Blender/previews/Hazards_
 - `H20_FallingRock` y `H30_Coconut` traen un disco de sombra de aviso fijo (`ShadowDisc` + `ShadowRing`); si se prefiere
   proyectarla con un decal de Unity, se puede borrar de la jerarquía.
 - Los modelos no llevan texto ni animación: el movimiento lo hacen los scripts sobre las partes móviles.
-- Pendiente de revisión visual en Unity: `H04_WaveCrest` (la cresta aún se parece a un casco visto de lado).
+- `H04_WaveCrest` se rehizo (antes parecía un casco): ahora es una media luna que se aplana hacia las puntas, sin tapas planas. Revisada en 8 ángulos en Blender; falta verla en Unity con el agua.

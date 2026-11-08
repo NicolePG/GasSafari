@@ -89,22 +89,72 @@ def h01_wall(S, name):
 
 
 # ---------------------------------------------------------------------------
-# H04 · oleaje: cresta de ola con rizo de espuma (8 m de ancho)
+# H04 · oleaje: cresta de ola en media luna (8 m de ancho) con rizo hueco y espuma
+# Se barre un perfil que cambia a lo largo de la cresta: en el centro rompe con un rizo que deja un hueco abierto
+# hacia el frente; hacia las puntas se aplana y baja hasta el agua, y la línea se curva hacia atrás. Así no hay
+# tapas planas ni una masa maciza: se ve como ola desde cualquier lado.
 # ---------------------------------------------------------------------------
+_WAVE_CURL = [(-3.2, 0.0), (-2.2, 0.18), (-1.2, 0.55), (-0.4, 1.05), (0.2, 1.5), (0.8, 1.82), (1.35, 1.82), (1.85, 1.55),
+              (2.1, 1.25), (1.9, 1.0), (1.35, 0.9), (0.85, 0.65), (0.6, 0.35), (0.8, 0.1), (1.7, 0.0)]
+_WAVE_FLAT = [(-3.2, 0.0), (-2.2, 0.15), (-1.2, 0.45), (-0.4, 0.85), (0.2, 1.15), (0.8, 1.3), (1.15, 1.3), (1.3, 1.1),
+              (1.35, 0.9), (1.3, 0.7), (1.2, 0.5), (1.1, 0.35), (1.1, 0.2), (1.2, 0.08), (1.7, 0.0)]
+
+
+def _wave_blend(u):
+    c = math.sin(math.pi * u) ** 0.8
+    c = c * c * (3 - 2 * c)
+    return c
+
+
+def _wave_profile(u):
+    c = _wave_blend(u)
+    return [(a[0] + (b[0] - a[0]) * c, a[1] + (b[1] - a[1]) * c) for a, b in zip(_WAVE_FLAT, _WAVE_CURL)]
+
+
+def _blob(cx, cz, rx, rz, n=8):
+    return [(cx + rx * math.cos(2 * math.pi * i / n), cz + rz * math.sin(2 * math.pi * i / n)) for i in range(n)]
+
+
 def h04_wave(S, name):
     C = pal()
-    prof = [(-3.0, 0.0), (-1.8, 0.35), (-0.8, 0.95), (0.0, 1.55), (0.7, 1.85), (1.35, 1.65), (1.55, 1.25), (1.2, 1.0),
-            (0.75, 1.0), (0.55, 0.6), (0.75, 0.25), (1.8, 0.0)]
-    taper = lambda u: 0.6 + 0.4 * math.sin(math.pi * u) ** 0.5
-    body = k.sweep("Swell", prof, [(-4.0, 0, 0), (-2.0, 0, 0), (0, 0, 0), (2.0, 0, 0), (4.0, 0, 0)], [C["water"]],
-                   scale_fn=taper, sub=3)
-    lip = [(0.45, 1.62), (0.9, 1.9), (1.45, 1.72), (1.65, 1.25), (1.2, 1.02), (1.35, 1.3), (1.05, 1.58), (0.6, 1.5)]
-    foam = k.sweep("Foam", lip, [(-3.7, 0, 0), (-1.8, 0, 0), (0, 0, 0), (1.8, 0, 0), (3.7, 0, 0)], [C["foam"]],
-                   scale_fn=taper, sub=3)
-    P = [body, foam]
-    for i, x in enumerate((-2.6, -1.1, 0.4, 2.0, 3.1)):
-        P.append(gs.ellipsoid(f"Spray{i}", (x, -1.7 - 0.2 * (i % 2), 0.2), (0.34, 0.22, 0.15), C["foam"], seg=8, rings=4))
-    finish(S, name, P, view=(0.55, -1.0, 0.2))
+    deep = M("#2A9DD6", 0.2)
+    taper = lambda u: 0.05 + 0.95 * math.sin(math.pi * u) ** 0.5
+    path = [(x, 0.95 * (x / 4.0) ** 2, 0) for x in (-4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0)]
+    body = k.sweep("Swell", _wave_profile, path, [C["water"], deep], scale_fn=taper, sub=3,
+                   mat_fn=lambda j: 1 if 9 <= j <= 12 else 0)
+
+    def lip(u):
+        c = _wave_blend(u)
+        return _blob(1.5 + 0.55 * c, 1.62 - 0.2 * c, 0.3 * (0.6 + 0.4 * c), 0.2)
+
+    def crest(u):
+        c = _wave_blend(u)
+        return _blob(0.95 + 0.2 * c, 1.28 + 0.52 * c, 0.34, 0.14)
+
+    def toe(u):
+        return _blob(1.75, 0.07, 0.3, 0.09)
+    def streak(i, rx):
+        def pr(u):
+            c = _wave_blend(u)
+            a, b = _WAVE_FLAT[i], _WAVE_CURL[i]
+            return _blob(a[0] + (b[0] - a[0]) * c, a[1] + (b[1] - a[1]) * c + 0.04, rx, 0.07, 6)
+        return pr
+    foam_s = lambda u: 0.05 + 0.95 * math.sin(math.pi * u) ** 0.5
+    P = [body]
+    for nm, pr, sc in (("FoamLip", lip, foam_s), ("FoamCrest", crest, foam_s), ("FoamToe", toe, foam_s),
+                       ("StreakA", streak(2, 0.26), lambda u: 0.05 + 0.85 * math.sin(math.pi * u) ** 0.9),
+                       ("StreakB", streak(3, 0.2), lambda u: 0.05 + 0.9 * math.sin(math.pi * u) ** 0.7)):
+        P.append(k.sweep(nm, pr, path, [C["foam"]], scale_fn=sc, sub=3, smooth=False))
+    rnd = random.Random(4)
+    for i, x in enumerate((-2.9, -1.7, -0.5, 0.7, 1.9, 3.0)):
+        y = 0.95 * (x / 4.0) ** 2
+        r = 0.2 + 0.1 * (rnd.random())
+        P.append(gs.ellipsoid(f"Spray{i}", (x, y - 2.0 - 0.25 * (i % 2), 0.18), (r, r * 0.8, r * 0.6), C["foam"],
+                              seg=8, rings=4))
+    for i, x in enumerate((-1.6, 0.2, 1.7)):
+        y = 0.95 * (x / 4.0) ** 2
+        P.append(gs.ellipsoid(f"Drop{i}", (x, y - 2.3, 1.15 + 0.2 * (i % 2)), 0.1, C["water"], seg=6, rings=4))
+    finish(S, name, P, view=(0.55, -1.0, 0.3))
 
 
 # ---------------------------------------------------------------------------
@@ -290,6 +340,61 @@ def h19_geyser(S, name):
 
 
 # ---------------------------------------------------------------------------
+# H36 · géiser de gas dorado: cráter con pozo de gas, burbujas doradas sueltas y un chorro brillante.
+# Mismo tamaño y pivotes que H19 (boca del cráter en z = 1.0): `Jet` escala en Z desde la boca, `GasRing` se expande,
+# `Bubble_00..11` suben y revientan (pivote en su centro).
+# ---------------------------------------------------------------------------
+def h36_gold_geyser(S, name):
+    C = pal()
+    gold = E("#FFCF2E", 2.5)
+    gold_lt = E("#FFEE90", 3.5)
+    glint = E("#FFFBE0", 5.0)
+    amber = M("#E39A22", 0.5)
+    crust = M("#9A6A3C")
+    crust2 = M("#C79A60")
+    mound = gs.lathe("Mound", [(0.0, -0.3), (2.6, -0.3), (2.2, 0.4), (1.7, 0.85), (1.35, 1.0), (1.1, 0.8), (0.0, 0.62)],
+                     [crust, gold], seg=16)
+    gs.paint_faces(mound, lambda c: c.z > 0.6 and math.hypot(c.x, c.y) < 1.3, 1)
+    P = [mound, gs.torus("Rim", (0, 0, 1.0), 1.28, 0.16, amber, seg=18, mseg=4),
+         gs.torus("RimGlow", (0, 0, 1.09), 1.2, 0.05, gold_lt, seg=18, mseg=4)]
+    for i in range(7):
+        a = i / 7 * 2 * math.pi + 0.25
+        P.append(gs.ellipsoid(f"Rock{i}", (2.55 * math.cos(a), 2.55 * math.sin(a), 0.05), (0.5, 0.42, 0.3), crust2,
+                              seg=6, rings=4))
+    for i in range(6):  # burbujas medio hundidas en el pozo
+        a = i / 6 * 2 * math.pi + 0.9
+        P.append(gs.ellipsoid(f"Pool{i}", (1.0 * math.cos(a), 1.0 * math.sin(a), 0.82), 0.18 + 0.05 * (i % 3),
+                              glint if i % 2 else gold_lt, seg=8, rings=4))
+    # chorro: columna con bandas, destellos verticales y gotas en la punta
+    col = gs.lathe("Column", [(0.0, 0.0), (0.62, 0.0), (0.46, 1.3), (0.42, 2.7), (0.52, 4.1), (0.58, 4.9), (0.46, 5.5), (0.0, 5.75)],
+                   [gold, gold_lt], seg=12, mat_fn=lambda i: i % 2)
+    jet = [col]
+    for i in range(4):
+        a = i / 4 * 2 * math.pi + 0.4
+        r = 0.43
+        jet.append(gs.capsule(f"Glint{i}", (r * math.cos(a), r * math.sin(a), 0.6),
+                              (r * 0.8 * math.cos(a), r * 0.8 * math.sin(a), 4.4), 0.07, glint, seg=6, sub=1, cap=1))
+    for i in range(7):
+        a = i / 7 * 2 * math.pi
+        up = 5.1 + 0.5 * (i % 3)
+        jet.append(gs.ellipsoid(f"Drop{i}", (0.95 * math.cos(a), 0.95 * math.sin(a), up), (0.2, 0.2, 0.32), gold_lt,
+                                seg=8, rings=4))
+    ring = [gs.torus("GasRing", (0, 0, 0.0), 1.5, 0.1, gold_lt, seg=24, mseg=4)]
+    rnd = random.Random(36)
+    mov = [("Jet", (0, 0, 1.0), jet), ("GasRing", (0, 0, 1.0), ring)]
+    for i in range(12):
+        a = rnd.uniform(0, 2 * math.pi)
+        rad = 0.7 + 1.0 * (i / 11)
+        z = 1.3 + 3.4 * ((i * 7) % 12) / 11
+        r = 0.18 + 0.26 * rnd.random()
+        c = Vector((rad * math.cos(a), rad * math.sin(a), z))
+        mov.append((f"Bubble_{i:02d}", c, [
+            gs.ellipsoid(f"B{i}", c, r, gold, seg=8, rings=5),
+            gs.ellipsoid(f"Hi{i}", c + Vector((-0.35 * r, -0.45 * r, 0.45 * r)), r * 0.28, glint, seg=6, rings=3)]))
+    finish(S, name, P, moving=mov, view=(0.55, -0.85, 0.3), margin=1.0)
+
+
+# ---------------------------------------------------------------------------
 # H20 · roca que cae: roca + marca de sombra de aviso (disco plano)
 # ---------------------------------------------------------------------------
 def shadow_mark(C, r=1.3, mat=None):
@@ -469,7 +574,7 @@ def h35_platform(S, name):
 PROPS = [("H01_Wall", h01_wall), ("H04_WaveCrest", h04_wave), ("H08_WindSock", h08_windsock), ("H08_GustStreak", h08_gust),
          ("H09_Whirlpool", h09_whirlpool), ("H11_Sandbar", h11_sandbar), ("H13_SpinningLog", lambda S, n: h13_log(S, n)),
          ("H13_SpinningLog_Rotten", lambda S, n: h13_log(S, n, True)), ("H16_BeatPillar", h16_beat),
-         ("H17_WaterfallEdge", h17_waterfall), ("H19_Geyser", h19_geyser), ("H20_FallingRock", h20_rock),
+         ("H17_WaterfallEdge", h17_waterfall), ("H19_Geyser", h19_geyser), ("H36_GoldGasGeyser", h36_gold_geyser), ("H20_FallingRock", h20_rock),
          ("H27_Jet", h27_jet), ("H27_Trampoline", h27_trampoline), ("H30_Coconut", h30_coconut),
          ("H33_BalloonWall", h33_balloon_wall), ("H34_HoseJet", h34_hose), ("H35_SinkingPlatform", h35_platform)]
 
