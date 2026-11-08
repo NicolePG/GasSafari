@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Levels/L_W2_2_Tormenta.unity
     guid: f1036d22ef432b949b047033532971de
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W2_3_CementerioBarcos.unity
+    guid: 2054cef0ea786b544a36d0df52d58e9d
   m_configObjects: {}

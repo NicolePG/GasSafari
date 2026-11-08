@@ -264,5 +264,142 @@ namespace GasSafari.Editor
             so.FindProperty("phase").floatValue = phase;
             so.ApplyModifiedPropertiesWithoutUndo();
         }
+
+        // ---------------------------------------------------------------- W2-3 Cementerio de Barcos
+        private const string ENV2 = "Assets/_Project/Art/Environment/W2/";
+        private static readonly Color HullColor = new Color(0.3f, 0.26f, 0.22f);
+
+        [MenuItem("Gas Safari/Setup/Greybox W2-3 Cementerio de Barcos (M5-11)")]
+        public static void BuildW2_3()
+        {
+            var level = GreyboxLevel.Create("W2-3", "L_W2_3_CementerioBarcos");
+            level.OpenWater();
+            level.StartPath(Vector3.zero, 0f).Straight(170f, 12f);                  // S1 pasillos entre cascos
+            float masts = level.Length;
+            float[] turns = new float[3];
+            turns[0] = level.Length; level.Arc(14f, 180f, 10f).Straight(30f, 10f);   // S2 mástiles con ancla en curvas de 180°
+            turns[1] = level.Length; level.Arc(14f, -180f, 10f).Straight(30f, 10f);
+            turns[2] = level.Length; level.Arc(14f, 180f, 10f).Straight(40f, 10f);
+            float hold = level.Length;
+            level.Straight(100f, 10f);                                               // S3 bodega inundada
+            float exit = level.Length;
+            level.Straight(150f, 12f);                                               // S4 salida entre dos barcos que se juntan
+            level.BuildChannel(0.4f);
+
+            level.Section(1, "Cascos", 0f);
+            level.Section(2, "Mastiles", masts);
+            level.Section(3, "Bodega", hold);
+            level.Section(4, "Salida", exit);
+            level.AddCheckpoint(0f);
+            level.AddCheckpoint(masts);
+            level.AddCheckpoint(hold);
+            level.AddCheckpoint(exit);
+
+            // S1: cascos hundidos a los dos lados, escalonados (hacen de paredes del pasillo).
+            for (int i = 0; i < 9; i++)
+            {
+                float d = 15f + i * 18f;
+                int side = i % 2 == 0 ? 1 : -1;
+                Hull(level, "Casco_" + i, d, side, side > 0 ? 0f : 180f);
+            }
+            level.PowerUp("P01", 60f, 0f);
+            level.PowerUp("P04", 120f, 0f);
+
+            // S2: un mástil con ancla en el centro de cada curva de 180°; mango en la cofa del primero.
+            float[] sides = { 1f, -1f, 1f };
+            for (int i = 0; i < 3; i++)
+            {
+                var center = level.PointAt(turns[i], sides[i] * 14f);
+                Mast(level, "Mastil_" + (i + 1), center, 1f);
+            }
+            var nest = level.Mango(0, 0f, 0f, 1f);
+            nest.transform.position = level.PointAt(turns[0], 14f) + Vector3.up * 6f + level.DirectionAt(turns[0]) * 0f;
+            level.PowerUp("P01", turns[1] + 20f, 0f);
+
+            // S3: bodega inundada: paredes de casco, techo de vigas bajas (penumbra) y luz tenue; mango dentro.
+            for (float d = hold + 4f; d < exit - 2f; d += 5f)
+            {
+                var beam = level.Block("Viga", level.PointAt(d, 0f, 3.6f), new Vector3(13f, 0.5f, 1.4f), HullColor,
+                    Quaternion.LookRotation(level.DirectionAt(d)).eulerAngles.y);
+                Object.DestroyImmediate(beam.GetComponent<Collider>());
+            }
+            for (int side = -1; side <= 1; side += 2)
+                level.Block("ParedBodega", level.PointAt((hold + exit) * 0.5f, side * 6.3f), new Vector3(1f, 3.5f, exit - hold), HullColor,
+                    Quaternion.LookRotation(level.DirectionAt(hold)).eulerAngles.y);
+            for (float d = hold + 15f; d < exit; d += 30f)
+            {
+                var lamp = new GameObject("FarolBodega");
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(lamp, level.Scene);
+                lamp.transform.position = level.PointAt(d, 0f, 3f);
+                var light = lamp.AddComponent<Light>();
+                light.type = LightType.Point;
+                light.color = new Color(1f, 0.75f, 0.4f);
+                light.range = 10f;
+                light.intensity = 1.6f;
+                light.shadows = LightShadows.None;
+            }
+            level.Mango(1, hold + 55f, -3.5f, 1f);
+            level.PowerUp("P01", hold + 30f, 2f);
+
+            // S4: el gran mástil (ancla para la Honda de la Selva) y dos barcos que se juntan lentamente sobre la salida.
+            Mast(level, "GranMastil", level.PointAt(exit + 40f, 9f), 1.6f);
+            for (int side = -1; side <= 1; side += 2)
+            {
+                float d = exit + 80f;
+                var ship = level.Place(HZ + "H05_MovingBlocker.prefab", d, side * 11f, side > 0 ? -90f : 90f);
+                ship.name = "BarcoQueSeCierra_" + (side > 0 ? "D" : "I");
+                ship.transform.localScale = new Vector3(2f, 1.5f, 3f);
+                var so = new SerializedObject(ship.GetComponent<GasSafari.Hazards.MovingBlocker>());
+                so.FindProperty("travel").vector3Value = new Vector3(0f, 0f, 4.5f);
+                so.ApplyModifiedPropertiesWithoutUndo();
+            }
+            // Mango escondido tras el timón de un barco (orilla izquierda de la salida).
+            var wheel = level.Block("Timon", level.PointAt(exit + 110f, -8.5f), new Vector3(2.5f, 2.5f, 1f), HullColor,
+                Quaternion.LookRotation(level.DirectionAt(exit + 110f)).eulerAngles.y);
+            wheel.layer = GameLayers.Environment;
+            level.Mango(2, exit + 112f, -8.5f, 1f);
+
+            LevelDresser.Dress(level, LevelDresser.With(LevelDresser.W2, new[] { "W2_Rock_A", "W2_Rock_C", "W2_Barrel_A", "W2_Crate_A", "W2_Crate_B", "W2_LifeRing", "W2_Bottle", "W2_Rowboat" },
+                0.9f, new Color(0.55f, 0.68f, 0.72f)), 23, level.PointAt(exit + 60f, 70f), -90f);
+            level.Finish();
+            Debug.Log($"M5-11 W2-3 listo: {level.Length:F0} m");
+        }
+
+        // Casco a lo largo del cauce, con su cara interior a 6.5 m del centro (side = +1 derecha, -1 izquierda).
+        private static void Hull(GreyboxLevel level, string name, float d, int side, float yaw)
+        {
+            var model = AssetDatabase.LoadAssetAtPath<GameObject>(ENV2 + "W2_Shipwreck.fbx");
+            var hull = (GameObject)PrefabUtility.InstantiatePrefab(model, level.Scene);
+            hull.name = name;
+            hull.transform.SetPositionAndRotation(level.PointAt(d, side * 6.5f, -0.6f), Quaternion.LookRotation(level.DirectionAt(d)) * Quaternion.Euler(0f, yaw, 0f));
+            var first = hull.GetComponentsInChildren<Renderer>();
+            var span = first[0].bounds;
+            foreach (var r in first)
+                span.Encapsulate(r.bounds);
+            var right = Vector3.Cross(Vector3.up, level.DirectionAt(d));
+            float inner = Vector3.Dot(span.center - hull.transform.position, right * side) - Mathf.Abs(Vector3.Dot(span.extents, new Vector3(Mathf.Abs(right.x), 0f, Mathf.Abs(right.z))));
+            hull.transform.position += right * side * (-inner);
+            hull.layer = GameLayers.Environment;
+            var renderers = hull.GetComponentsInChildren<Renderer>();
+            var bounds = renderers[0].bounds;
+            foreach (var r in renderers)
+                bounds.Encapsulate(r.bounds);
+            var box = hull.AddComponent<BoxCollider>();
+            box.center = hull.transform.InverseTransformPoint(bounds.center);
+            var local = hull.transform.InverseTransformVector(bounds.size);
+            box.size = new Vector3(Mathf.Abs(local.x), Mathf.Abs(local.y), Mathf.Abs(local.z));
+        }
+
+        private static void Mast(GreyboxLevel level, string name, Vector3 position, float scale)
+        {
+            var model = AssetDatabase.LoadAssetAtPath<GameObject>(ENV2 + "W2_Mast.fbx");
+            var mast = (GameObject)PrefabUtility.InstantiatePrefab(model, level.Scene);
+            mast.name = name;
+            mast.transform.position = position + Vector3.down * 0.5f;
+            mast.transform.localScale = Vector3.one * scale;
+            var anchor = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(HZ + "Anchor_Post.prefab"), level.Scene);
+            anchor.name = name + "_Ancla";
+            anchor.transform.position = position + Vector3.down * 0.4f;
+        }
     }
 }
