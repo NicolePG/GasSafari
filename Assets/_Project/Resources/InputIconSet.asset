@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74fdf161a8d0183458daf79ad4b323c1, type: 3}
+  m_Name: InputIconSet
+  m_EditorClassIdentifier: 
+  entries:
+  - id: keyboard_1
+    sprite: {fileID: 21300000, guid: f93cacba48f29a04d8650df447c4fa75, type: 3}
+  - id: keyboard_a
+    sprite: {fileID: 21300000, guid: 042c6ab6206bf97459a948492ae36908, type: 3}
+  - id: keyboard_ctrl
+    sprite: {fileID: 21300000, guid: 364063f5fbde3304a888ecd7b7c0a4e2, type: 3}
+  - id: keyboard_d
+    sprite: {fileID: 21300000, guid: 936268847e4e96042a908c7883e8b18a, type: 3}
+  - id: keyboard_e
+    sprite: {fileID: 21300000, guid: c1298dd05b67e57468a41cb6ef3cc438, type: 3}
+  - id: keyboard_q
+    sprite: {fileID: 21300000, guid: aa88f0a858727c54f8046730d4ea66b3, type: 3}
+  - id: keyboard_r
+    sprite: {fileID: 21300000, guid: 6f229b9b0261a574f8c5304101becab3, type: 3}
+  - id: keyboard_shift
+    sprite: {fileID: 21300000, guid: cea6678dbabac51438b9f4dd23f7708b, type: 3}
+  - id: keyboard_space
+    sprite: {fileID: 21300000, guid: 53a91727050df5f4fb120255127c7448, type: 3}
+  - id: playstation_button_circle
+    sprite: {fileID: 21300000, guid: 285b1c15ce3091543be09777d76e5d5d, type: 3}
+  - id: playstation_dpad_up
+    sprite: {fileID: 21300000, guid: 3e86a0e065f30ea4aba57da0467a7a70, type: 3}
+  - id: playstation_stick_l
+    sprite: {fileID: 21300000, guid: 25232fb472b9fa8459f978e4c6734b4a, type: 3}
+  - id: playstation_stick_r
+    sprite: {fileID: 21300000, guid: 139dae3501ca72d4d9a7175a2f166a52, type: 3}
+  - id: playstation_trigger_l1
+    sprite: {fileID: 21300000, guid: 24d562f1b43630348b9d07f6e25635cb, type: 3}
+  - id: playstation_trigger_l2
+    sprite: {fileID: 21300000, guid: 2bc1e2e3e45eb5446b696a7413df4f3a, type: 3}
+  - id: playstation_trigger_r1
+    sprite: {fileID: 21300000, guid: b6d6c5c29fbf88a4abfe41d605eee797, type: 3}
+  - id: playstation_trigger_r2
+    sprite: {fileID: 21300000, guid: d703a94a259376a44913d2df8fea02cc, type: 3}
+  - id: xbox_button_b
+    sprite: {fileID: 21300000, guid: ecf1424711aedb448878aeb703d712c8, type: 3}
+  - id: xbox_dpad_up
+    sprite: {fileID: 21300000, guid: bc84087da603a6b40b0451ef361711c8, type: 3}
+  - id: xbox_lb
+    sprite: {fileID: 21300000, guid: 728fa185abc8d6e4bb4647fcea2f2bf6, type: 3}
+  - id: xbox_lt
+    sprite: {fileID: 21300000, guid: d9b6e69b33ad4284686ff36a7c24c49e, type: 3}
+  - id: xbox_rb
+    sprite: {fileID: 21300000, guid: a96fa8e295ce983498fe5cc4a0c2d2f6, type: 3}
+  - id: xbox_rt
+    sprite: {fileID: 21300000, guid: a1f4a1f8afbe8b1439a7966eda0b75ad, type: 3}
+  - id: xbox_stick_l
+    sprite: {fileID: 21300000, guid: 4ec277c00a5cae641ab290e54fd89e56, type: 3}
+  - id: xbox_stick_r
+    sprite: {fileID: 21300000, guid: 93e5adfc6e3b0c746ab92aafdf3eb88c, type: 3}

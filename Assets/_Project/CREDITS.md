@@ -22,6 +22,7 @@ Los efectos y pistas descartados en la selección (`Tools/Export/Audio/ELEGIR.md
 
 | Recurso | Autor | Licencia | URL | Usado en |
 |---|---|---|---|---|
+| Input Prompts (v1.5, 25 iconos de Xbox Series, PlayStation Series y teclado; la licencia del pack está en `Art/UI/InputIcons/KENNEY_LICENSE.txt`) | Kenney (kenney.nl) | CC0 1.0 | https://kenney.nl/assets/input-prompts | `Art/UI/InputIcons/{Xbox,PlayStation,Keyboard}/*.png`, `Resources/InputIconSet.asset`: botones del cartel del tutorial (`TutorialCard`, `InputGlyphs.Icons`) |
 | Impact Sounds | Kenney (kenney.nl) | CC0 1.0 | https://kenney.nl/assets/impact-sounds | ability_bellyflop.wav, ability_gallop.wav, climb_aboard.wav, crane_slam.wav, croc_bite.wav, raft_bounce.wav, raft_hit_hard.wav, raft_hit_soft.wav, raft_land_water.wav, sand_stuck.wav, spikes_hit.wav |
 | Interface Sounds | Kenney (kenney.nl) | CC0 1.0 | https://kenney.nl/assets/interface-sounds (copia en https://opengameart.org/content/interface-sounds) | checkpoint.wav, ui_back.wav, ui_buy.wav, ui_join.wav, ui_locked.wav, ui_move.wav, ui_ready.wav, ui_select.wav |
 | Music Jingles | Kenney (kenney.nl) | CC0 1.0 | https://kenney.nl/assets/music-jingles (copia en https://opengameart.org/content/85-short-music-jingles) | finish_fanfare.wav, stinger_fail.ogg, stinger_victory.ogg, ui_achievement.wav |

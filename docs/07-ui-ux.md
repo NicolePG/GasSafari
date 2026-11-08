@@ -66,7 +66,7 @@ Continuar · Reiniciar desde checkpoint (votación en multijugador) · Reiniciar
 Paleta de jugadores para daltonismo: J1 `#E69F00`, J2 `#56B4E9`, J3 `#F0E442`, J4 `#CC79A7` y además una forma distinta por jugador (círculo, triángulo, cuadrado, rombo).
 
 ## 6. Iconos de botones
-Se muestran según el último dispositivo usado por cada jugador: Xbox, PlayStation o teclado. Sprites en `Art/UI/InputIcons/`.
+Se muestran según el último dispositivo usado por cada jugador: Xbox, PlayStation o teclado. Sprites en `Art/UI/InputIcons/{Xbox,PlayStation,Keyboard}` (pack CC0 "Input Prompts" de Kenney, registrado en `CREDITS.md`); `Resources/InputIconSet.asset` los reúne (menú `Gas Safari/Setup/Importar iconos de botones (Kenney)`) y `InputGlyphs.Icons` elige los de cada acción. El cartel del tutorial los muestra en lugar del texto.
 
 ## 7. Textos clave (español)
 
