@@ -96,10 +96,14 @@ namespace GasSafari.Editor
 
         private static void Build(Scene scene, Shot shot)
         {
+            // La zona puede estar suelta en la raíz o dentro de _Generated: se borran todas las que haya.
             foreach (var root in scene.GetRootGameObjects())
             {
-                if (root.name == ZONE_NAME)
-                    Object.DestroyImmediate(root);
+                foreach (var t in root.GetComponentsInChildren<Transform>(true))
+                {
+                    if (t != null && t.name == ZONE_NAME)
+                        Object.DestroyImmediate(t.gameObject);
+                }
             }
 
             var anchor = FindByName(scene, shot.Anchor);

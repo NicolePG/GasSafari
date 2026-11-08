@@ -57,16 +57,63 @@ namespace GasSafari.Editor
             sceneName = scene;
         }
 
-        // Copia la plantilla (si no existe ya la escena del nivel) y la abre de forma aditiva.
+        // Todo lo que arma el constructor cuelga de este objeto raíz (se crea en Finish). Volver a correr el constructor lo
+        // borra y lo rehace: nunca suma encima, y lo que se puso a mano fuera de él se conserva.
+        public const string GENERATED_ROOT = "_Generated";
+        // Objetos raíz que existen al abrir la escena (plantilla y lo hecho a mano): no se mueven a _Generated.
+        private readonly HashSet<GameObject> keptRoots = new HashSet<GameObject>();
+
+        // Abre la escena del nivel de forma aditiva. Si ya existe y tiene _Generated, borra ese objeto y deja la plantilla en su
+        // estado inicial (se conserva lo hecho a mano); si no existe, o es una escena anterior a _Generated, parte de la plantilla.
         public static GreyboxLevel Create(string id, string scene)
         {
             string path = SCENES + scene + ".unity";
-            AssetDatabase.DeleteAsset(path); // se rehace entera: el nivel es una función de este script
-            AssetDatabase.CopyAsset(TEMPLATE, path);
             var level = new GreyboxLevel(id, scene);
-            level.Scene = EditorSceneManager.OpenScene(path, OpenSceneMode.Additive);
+            bool reused = false;
+            if (File.Exists(path))
+            {
+                var open = EditorSceneManager.OpenScene(path, OpenSceneMode.Additive);
+                var generated = open.GetRootGameObjects().FirstOrDefault(g => g.name == GENERATED_ROOT);
+                if (generated != null)
+                {
+                    Object.DestroyImmediate(generated);
+                    level.Scene = open;
+                    level.ResetTemplate();
+                    reused = true;
+                }
+                else
+                {
+                    EditorSceneManager.CloseScene(open, true);
+                }
+            }
+            if (!reused)
+            {
+                AssetDatabase.DeleteAsset(path);
+                AssetDatabase.CopyAsset(TEMPLATE, path);
+                level.Scene = EditorSceneManager.OpenScene(path, OpenSceneMode.Additive);
+            }
             SceneManager.SetActiveScene(level.Scene);
+            foreach (var root in level.Scene.GetRootGameObjects())
+                level.keptRoots.Add(root);
             return level;
+        }
+
+        // Deja los objetos de la plantilla que el constructor modifica como estaban al copiarla.
+        private void ResetTemplate()
+        {
+            var water = Find("Water");
+            var renderer = water.GetComponent<Renderer>();
+            if (renderer != null)
+                renderer.enabled = true;
+            var collider = water.GetComponent<Collider>();
+            if (collider != null)
+                collider.enabled = true;
+            var baseLevel = water.GetComponent<WaterBaseLevel>();
+            if (baseLevel != null)
+                Object.DestroyImmediate(baseLevel);
+            var bounds = Find("Flow").GetComponent<CourseBounds>();
+            if (bounds != null)
+                Object.DestroyImmediate(bounds);
         }
 
         // ---------------------------------------------------------------- trayecto
@@ -293,7 +340,8 @@ namespace GasSafari.Editor
 
             if (openWater)
             {
-                var bounds = Find("Flow").AddComponent<CourseBounds>();
+                var flowObject = Find("Flow");
+                var bounds = flowObject.GetComponent<CourseBounds>() ?? flowObject.AddComponent<CourseBounds>();
                 bounds.Configure(widths.Max() * 0.5f, 0.6f, 4f);
             }
 
@@ -560,6 +608,15 @@ namespace GasSafari.Editor
             var manage = new SerializedObject(manager.GetComponent<LevelManager>());
             manage.FindProperty("data").objectReferenceValue = data;
             manage.ApplyModifiedPropertiesWithoutUndo();
+
+            // Todo lo creado durante la construcción (grupos, arte, momentos estrella...) pasa a _Generated.
+            var generated = new GameObject(GENERATED_ROOT);
+            SceneManager.MoveGameObjectToScene(generated, Scene);
+            foreach (var root in Scene.GetRootGameObjects())
+            {
+                if (root != generated && !keptRoots.Contains(root))
+                    root.transform.SetParent(generated.transform, true);
+            }
 
             string path = SCENES + sceneName + ".unity";
             EditorSceneManager.MarkSceneDirty(Scene);

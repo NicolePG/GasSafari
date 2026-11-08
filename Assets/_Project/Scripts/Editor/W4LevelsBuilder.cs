@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 namespace GasSafari.Editor
 {
     // Greybox + arte de los niveles del Mundo 4 (docs/04): cuevas y volcán, morado/cian/magma, poca luz y niebla cercana.
-    // Cada nivel es una función de este script. OJO: GreyboxLevel.Create reutiliza la escena si ya existe y le añade el
-    // contenido encima; para rehacer un nivel hay que borrar antes su escena.
+    // Cada nivel es una función de este script: todo lo que arma cuelga de _Generated y correrlo de nuevo lo rehace
+    // (GreyboxLevel.Create), sin sumar encima y respetando lo puesto a mano fuera de _Generated.
     public static class W4LevelsBuilder
     {
         private const string HZ = "Assets/_Project/Prefabs/Hazards/";

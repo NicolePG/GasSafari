@@ -20,9 +20,11 @@ namespace GasSafari.Tests
             {
                 var scene = EditorSceneManager.OpenScene($"Assets/_Project/Scenes/Levels/{name}.unity", OpenSceneMode.Single);
                 var roots = scene.GetRootGameObjects();
+                // Los grupos cuelgan de _Generated (o están sueltos en escenas anteriores a esa raíz).
+                var all = roots.SelectMany(r => r.GetComponentsInChildren<Transform>(true)).ToArray();
                 foreach (var group in Groups)
                 {
-                    int count = roots.Count(r => r.name == group);
+                    int count = all.Count(t => t.name == group && t.parent == null || t.name == group && t.parent != null && t.parent.name == GasSafari.Editor.GreyboxLevel.GENERATED_ROOT);
                     if (count > 1)
                         problems.Add($"{name}: {count} copias de {group}");
                 }
