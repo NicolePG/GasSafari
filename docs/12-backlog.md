@@ -152,6 +152,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [ ] **M9-06** Bugs bloqueantes y críticos en 0 · qa-check · 11 §5
 - [ ] **M9-07** `CREDITS.md` completo · audio-sfx · 08 §6
 - [ ] **M9-08** Build final de Windows · build-release · —
+- [ ] **M9-09** Auditoría final de colisiones y clipping (los 31 niveles + tienda): balsa vs paredes/props a todas las velocidades, animales vs balsa y entre ellos en todas las animaciones (incluidas celebraciones), sombreros, fauna, cámara contra paredes y techos, agua dentro de la balsa · qa-check · 11
 
 ## M10 · Extras
 - [ ] **M10-01** Localización al inglés: tabla de textos ES/EN y selector de idioma en Opciones · ui-hud · 07

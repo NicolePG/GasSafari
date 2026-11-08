@@ -19,6 +19,13 @@ Proceso:
    - Momento estrella construido.
    - Música, Volume y paleta del mundo correctos.
    - `LevelData` con tiempos Oro y Plata del doc.
+   - Colisiones y clipping (nada se traspasa):
+     - La balsa no atraviesa paredes, orillas ni props a ninguna velocidad (`ContinuousDynamic`, colliders de 0.3 m o más de grosor).
+     - Los animales no se meten dentro de la balsa ni entre ellos en ninguna animación (incluidas las celebraciones); los sombreros no atraviesan cabezas ni orejas; la fauna no atraviesa la balsa.
+     - Todo prop con el que pueda chocar la balsa tiene un collider simple ajustado a su forma.
+     - La cámara no atraviesa paredes ni techos (`CinemachineCollider` o equivalente).
+   - Agua: nunca se ve agua dentro de la balsa (piso por encima del agua con 4 animales; máscara de agua activa).
+   - Inclinación: 1-3° por el peso de un animal y máximo 6° de cabeceo con 4 empujando; la proa nunca se hunde.
 4. No modifiques la escena.
 
 Responde SOLO con:
