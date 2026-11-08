@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 454343287587180337}
   - component: {fileID: 1130495102132711569}
   - component: {fileID: 7933381816217969764}
+  - component: {fileID: 6236169667525799268}
   m_Layer: 8
   m_Name: Raft
   m_TagString: Untagged
@@ -102,10 +103,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balance: {fileID: 11400000, guid: ddedf7f726d1c024cb7a3535a02c9ab5, type: 2}
   floatPoints:
-  - {x: 0.9, y: -0.3, z: 0.9}
-  - {x: -0.9, y: -0.3, z: 0.9}
-  - {x: 0.9, y: -0.3, z: -0.9}
-  - {x: -0.9, y: -0.3, z: -0.9}
+  - {x: 0.9, y: -0.6, z: 0.9}
+  - {x: -0.9, y: -0.6, z: 0.9}
+  - {x: 0.9, y: -0.6, z: -0.9}
+  - {x: -0.9, y: -0.6, z: -0.9}
 --- !u!114 &2610477614659658846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +262,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balance: {fileID: 11400000, guid: ddedf7f726d1c024cb7a3535a02c9ab5, type: 2}
+--- !u!114 &6236169667525799268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173049110701024019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed58d0fe065b00f48987dadfd388806b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floor: {fileID: 0}
+  maskMaterial: {fileID: 0}
+  height: 0.35
+  radiusScale: 0.95
+  segments: 24
 --- !u!1 &4641403110951379498
 GameObject:
   m_ObjectHideFlags: 0

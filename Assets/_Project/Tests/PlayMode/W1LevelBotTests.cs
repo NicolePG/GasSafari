@@ -132,7 +132,8 @@ namespace GasSafari.Tests
 
             string csv = System.IO.Path.Combine(RaftHighSpeedTests.TelemetryFolder, $"bots_{id}.csv");
             telemetry.WriteCsv(csv);
-            Debug.Log($"W1BOT {id} telemetría vMax={telemetry.MaxSpeed:F1} inclMax={telemetry.MaxTilt:F0} csv={csv}");
+            telemetry.PitchStats(out float pitchMax, out float pitchP95);
+            Debug.Log($"W1BOT {id} telemetría vMax={telemetry.MaxSpeed:F1} inclMax={telemetry.MaxTilt:F0} cabeceoMax={pitchMax:F1} cabeceoP95={pitchP95:F1} csv={csv}");
             foreach (var avatar in manager.Avatars)
             {
                 var brain = avatar.GetComponent<BotBrain>();

@@ -104,6 +104,9 @@ Shader "GasSafari/SG_ToonWater"
             half4 frag(Varyings IN) : SV_Target
             {
                 float2 screenUV = IN.screenPos.xy / IN.screenPos.w;
+                // Agua casi blanca = poco profundo + espuma: pasa cuando bajo la superficie hay algo a menos de _FoamWidth
+                // (p. ej. el piso de la balsa cuando el agua lo cubre) o cuando la cámara no tiene su propia textura de
+                // profundidad (capturas con cámara temporal). Dentro de la balsa lo resuelve RaftWaterMask.
                 float sceneDepth = LinearEyeDepth(SampleSceneDepth(screenUV), _ZBufferParams);
                 float surfaceDepth = IN.screenPos.w;
                 float depthDiff = max(sceneDepth - surfaceDepth, 0.0);

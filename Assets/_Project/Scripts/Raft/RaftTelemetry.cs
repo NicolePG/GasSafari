@@ -131,6 +131,26 @@ namespace GasSafari.Raft
             });
         }
 
+        // Cabeceo en el agua (sin las muestras en el aire): máximo y percentil 95 del valor absoluto, en grados.
+        public void PitchStats(out float max, out float p95)
+        {
+            var values = new List<float>(samples.Count);
+            for (int i = 0; i < samples.Count; i++)
+            {
+                if (!samples[i].Airborne)
+                    values.Add(Mathf.Abs(samples[i].Pitch));
+            }
+            if (values.Count == 0)
+            {
+                max = 0f;
+                p95 = 0f;
+                return;
+            }
+            values.Sort();
+            max = values[values.Count - 1];
+            p95 = values[Mathf.Min(values.Count - 1, (int)(values.Count * 0.95f))];
+        }
+
         public void Clear()
         {
             samples.Clear();
