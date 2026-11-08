@@ -179,6 +179,36 @@ namespace GasSafari.Editor
             Landmark = "W4_GiantCrystal",
         };
 
+        // W5 (docs/04 Mundos): cañón al atardecer, dorado #FFB703, rojo #9C3D1C y naranja #FB8500; faroles de papel cálidos.
+        public static readonly Theme W5 = new Theme
+        {
+            World = 5,
+            LightColor = new Color(1f, 0.72f, 0.4f),
+            LightIntensity = 1.1f,
+            LightEuler = new Vector3(24f, -55f, 0f),
+            AmbientSky = new Color(0.6f, 0.38f, 0.3f),
+            AmbientEquator = new Color(0.5f, 0.3f, 0.2f),
+            AmbientGround = new Color(0.28f, 0.14f, 0.09f),
+            Fog = new Color(0.82f, 0.48f, 0.27f),
+            FogStart = 70f,
+            FogEnd = 340f,
+            SkyTint = new Color(0.95f, 0.55f, 0.3f),
+            SkyGround = new Color(0.38f, 0.2f, 0.11f),
+            SkyExposure = 1.0f,
+            WaterShallow = new Color(0.98f, 0.64f, 0.18f, 0.8f),
+            WaterDeep = new Color(0.5f, 0.2f, 0.1f, 0.95f),
+            WaterFoam = new Color(1f, 0.92f, 0.75f, 1f),
+            WallColor = new Color(0.61f, 0.24f, 0.11f),
+            GroundColor = new Color(0.78f, 0.45f, 0.2f),
+            Decor = new[]
+            {
+                "W5_CanyonRock_A", "W5_CanyonRock_B", "W5_CanyonRock_C", "W5_Cactus_A", "W5_Cactus_B", "W5_DesertFlowers", "W5_Tumbleweed", "W5_Sign",
+            },
+            Lamps = new[] { "W5_Lanterns" },
+            LampLight = new Color(1f, 0.72f, 0.2f),
+            Landmark = "W5_NaturalArch",
+        };
+
         // landmark: posición y giro del hito (se ve desde la salida y enmarca el momento estrella).
         public static void Dress(GreyboxLevel level, Theme theme, int seed, Vector3 landmark, float landmarkYaw)
         {

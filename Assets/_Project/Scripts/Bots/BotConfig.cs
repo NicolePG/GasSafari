@@ -34,6 +34,8 @@ namespace GasSafari.Bots
         [Tooltip("s entre toques de corrección")] public float puffCadenceMin = 0.5f;
         public float puffCadenceMax = 0.8f;
         [Tooltip("s sin disparar con el equipo detenido (docs: 4)")] public float idleLimit = 4f;
+        [Tooltip("s con la balsa detenida en carrera tras los que una tripulación solo de bots pide reiniciar al checkpoint (docs/10 §15)")]
+        public float stuckRestartSeconds = 25f;
         [Tooltip("m/s por debajo de los que el equipo cuenta como detenido")] public float stoppedSpeed = 1f;
 
         [Header("Sincronía (docs)")]

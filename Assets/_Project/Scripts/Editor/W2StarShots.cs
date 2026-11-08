@@ -66,6 +66,17 @@ namespace GasSafari.Editor
                 CameraOffset = new Vector3(10f, 8f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
             new Shot { Scene = "L_W4_5_VolcanJefe", Id = "W4-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 24f),
                 CameraOffset = new Vector3(-10f, 8f, -12f), Seconds = 3f, SlowMotion = true, MainPath = true },
+            // W5: rápido largo sin frenar; cruzar el abismo con el Súper Pedo; descubrir el atajo secreto; bajar por el aliviadero; el cocodrilo cierra la boca.
+            new Shot { Scene = "L_W5_1_RapidosCanon", Id = "W5-1", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 6f, 40f),
+                CameraOffset = new Vector3(10f, 8f, -14f), Seconds = 3f, SlowMotion = false, MainPath = true },
+            new Shot { Scene = "L_W5_2_RampasAbismo", Id = "W5-2", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 20f),
+                CameraOffset = new Vector3(-12f, 8f, -14f), Seconds = 3f, SlowMotion = true, MainPath = true },
+            new Shot { Scene = "L_W5_3_LaberintoManglares", Id = "W5-3", Anchor = "EstrellaAncla", ZoneSize = new Vector3(10f, 6f, 10f),
+                CameraOffset = new Vector3(8f, 6f, -10f), Seconds = 3f, SlowMotion = false, MainPath = false },
+            new Shot { Scene = "L_W5_4_Represa", Id = "W5-4", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 20f),
+                CameraOffset = new Vector3(-12f, 9f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
+            new Shot { Scene = "L_W5_5_MegatoboganJefe", Id = "W5-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 16f),
+                CameraOffset = new Vector3(10f, 8f, -14f), Seconds = 3f, SlowMotion = true, MainPath = true },
         };
 
         [MenuItem("Gas Safari/Setup/Tomas de cámara de los momentos estrella de W2")]

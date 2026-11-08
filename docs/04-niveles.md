@@ -248,6 +248,8 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W5-1 Rápidos del Cañón
 
+> Mundo 5 (M5-26 a M5-31, 2026-11-08): decisiones provisionales de construcción. Esclusas de W5-4: compuertas pequeñas con oleada débil (el nivel del agua no sube ni baja). Peralte de W5-5: curvas en pendiente (sin inclinar el cauce). El atajo secreto de W5-3 es un ramal recto que corta las curvas desde las raíces hasta la reunión.
+
 - Escena `L_W5_1_RapidosCanon` · Oro 4:00 · Plata 5:40 · Checkpoints 4
 - Mecánica nueva: rápidos (H21): corriente fuerte con rocas en el cauce.
 - Secciones: 1) entrada tranquila; 2) rápidos clase 1; 3) rápidos clase 2 con rocas; 4) el rápido más largo del juego.

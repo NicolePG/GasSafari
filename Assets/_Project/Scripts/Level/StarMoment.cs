@@ -39,7 +39,26 @@ namespace GasSafari.Level
             GameEvents.OnRespawn -= Rearm;
         }
 
-        private void Rearm() => played = false;
+        // Una vez por intento: no se rearma si el checkpoint de reaparición queda después de la zona (no se vuelve a pasar por ella).
+        private void Rearm()
+        {
+            if (played && RespawnIsPast(launcher != null ? launcher.transform.position : transform.position))
+                return;
+            played = false;
+        }
+
+        private static bool RespawnIsPast(Vector3 position)
+        {
+            var level = LevelManager.Current;
+            var flow = FindFirstObjectByType<FlowSpline>();
+            if (level == null || level.Raft == null || flow == null)
+                return false;
+            int hint = 0;
+            float zone = flow.GetProgress(position, ref hint);
+            hint = 0;
+            float raft = flow.GetProgress(level.Raft.transform.position, ref hint);
+            return raft > zone + 0.005f;
+        }
 
         private void OnLaunched(RaftController raft)
         {

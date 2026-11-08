@@ -140,6 +140,36 @@ namespace GasSafari.Tests
             yield return RunLevel("L_W4_5_VolcanJefe", "W4-5", 420f * 1.3f);
         }
 
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W5_1_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W5_1_RapidosCanon", "W5-1", 340f * 1.3f);
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W5_2_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W5_2_RampasAbismo", "W5-2", 380f * 1.3f);
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W5_3_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W5_3_LaberintoManglares", "W5-3", 420f * 1.3f);
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W5_4_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W5_4_Represa", "W5-4", 400f * 1.3f);
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W5_5_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W5_5_MegatoboganJefe", "W5-5", 505f * 1.3f);
+        }
+
         private IEnumerator RunLevel(string scene, string id, float limit)
         {
 #if UNITY_EDITOR

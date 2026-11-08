@@ -194,6 +194,50 @@ namespace GasSafari.Bots
             grabUntil = Mathf.Max(grabUntil, Time.time + config.releaseAfter);
         }
 
+        // ---------------------------------------------------------------- atasco
+        private float stuckTimer;
+        private Vector3 stuckAnchor;
+
+        // Una tripulación solo de bots no tiene a nadie que abra la pausa: si la balsa lleva stuckRestartSeconds sin salir de un círculo
+        // de 4 m en carrera (encajada entre una pared y un obstáculo; los disparos la hacen temblar, no avanzar), piden el reinicio
+        // al checkpoint, como haría un jugador (docs/02 §10).
+        private void CheckStuckRestart(float speed)
+        {
+            var level = LevelManager.Current;
+            if (level == null || level.State != LevelState.Running || level.Raft == null || !OnlyBotsAboard())
+            {
+                stuckTimer = 0f;
+                return;
+            }
+            var position = level.Raft.transform.position;
+            if (stuckTimer <= 0f || (position - stuckAnchor).sqrMagnitude > 16f)
+            {
+                stuckAnchor = position;
+                stuckTimer = config.decideInterval;
+                return;
+            }
+            stuckTimer += config.decideInterval;
+            if (stuckTimer < config.stuckRestartSeconds)
+                return;
+            stuckTimer = 0f;
+            var checkpoints = FindFirstObjectByType<CheckpointSystem>();
+            if (checkpoints != null)
+                checkpoints.RequestRespawn();
+        }
+
+        private static bool OnlyBotsAboard()
+        {
+            if (!Services.IsReady || Services.Session == null)
+                return true;
+            var players = Services.Session.Players;
+            for (int i = 0; i < players.Count; i++)
+            {
+                if (!players[i].IsBot)
+                    return false;
+            }
+            return true;
+        }
+
         // ---------------------------------------------------------------- Súper Pedo
         // Pulsa apenas se abre la ventana, es decir, cuando alguien más ya pulsó (docs/10 §15). Nunca la abre solo: lanzarse
         // sin un humano que lo decida volcaba la balsa en las pruebas. Única excepción: el despegue de un abismo marcado con

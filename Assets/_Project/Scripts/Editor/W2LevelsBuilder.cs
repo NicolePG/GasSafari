@@ -348,11 +348,12 @@ namespace GasSafari.Editor
             for (int side = -1; side <= 1; side += 2)
             {
                 float d = exit + 80f;
-                var ship = level.Place(HZ + "H05_MovingBlocker.prefab", d, side * 11f, side > 0 ? -90f : 90f);
+                // Los barcos miden ~18 m a lo ancho del cauce: a 15 m del centro dejan 11 m de hueco y al juntarse 4.4 m (la balsa mide ~3).
+                var ship = level.Place(HZ + "H05_MovingBlocker.prefab", d, side * 15f, side > 0 ? -90f : 90f);
                 ship.name = "BarcoQueSeCierra_" + (side > 0 ? "D" : "I");
                 ship.transform.localScale = new Vector3(2f, 1.5f, 3f);
                 var so = new SerializedObject(ship.GetComponent<GasSafari.Hazards.MovingBlocker>());
-                so.FindProperty("travel").vector3Value = new Vector3(0f, 0f, 4.5f);
+                so.FindProperty("travel").vector3Value = new Vector3(0f, 0f, 3.5f);
                 so.ApplyModifiedPropertiesWithoutUndo();
             }
             // Mango escondido tras el timón de un barco (orilla izquierda de la salida).

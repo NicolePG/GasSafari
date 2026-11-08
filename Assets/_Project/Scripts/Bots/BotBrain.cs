@@ -305,6 +305,7 @@ namespace GasSafari.Bots
             // "¡Ahora!" y la cuenta 3-2-1 piden disparar ya, bien alineado o no.
             if (force && canFire)
                 puff = true;
+            CheckStuckRestart(speed);
             // Equipo detenido: nunca pasa más de idleLimit sin disparar, esté o no bien alineado (docs/10 §15).
             bool stopped = speed < config.stoppedSpeed && Time.time - lastFartTime >= config.idleLimit && gas.Gas >= 5f && !tiltLocked;
             if (hold)
