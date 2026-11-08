@@ -24,6 +24,8 @@ namespace GasSafari.Raft
         // Los fija RaftEffects (Galope Turbo, Panzazo).
         public float WaterDragMultiplier { get; set; } = 1f;
         public float AngularDragMultiplier { get; set; } = 1f;
+        // Zonas del nivel (red de pesca H32): se multiplica con el de RaftEffects, no lo reemplaza.
+        public float ZoneDragMultiplier { get; set; } = 1f;
         // Gaseosa: sube la superficie efectiva para que la balsa flote a esta altura sobre el agua (m).
         public float HoverOffset { get; set; }
 
@@ -75,7 +77,7 @@ namespace GasSafari.Raft
 
             SubmergedPoints = submerged;
             SetAirborne(submerged == 0);
-            rb.drag = IsAirborne ? balance.airDrag : balance.waterDrag * WaterDragMultiplier;
+            rb.drag = IsAirborne ? balance.airDrag : balance.waterDrag * WaterDragMultiplier * ZoneDragMultiplier;
             rb.angularDrag = (IsAirborne ? balance.airAngularDrag : balance.waterAngularDrag) * AngularDragMultiplier;
         }
 

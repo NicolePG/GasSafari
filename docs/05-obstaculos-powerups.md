@@ -54,6 +54,7 @@ Parámetros provisionales de los obstáculos de W1 (no están en la tabla; se af
 - H28: velocidad 3 m/s, parada de 2.5 s en cada orilla (aviso), golpe 30; su estela es una cresta de H04 que baja por el cauce.
 - H07: el impacto es el impulso del choque en N·s (misma unidad que los golpes de la tabla).
 - H33: "cerca" = la balsa a 6 m o menos de la pared (`nearDistance`); suena como la caja (docs/08 no tiene sonido de globos). H34: el empuje es `accel` 6 m/s² hacia el costado del prefab. H35: la posición de reposo se toma al primer toque.
+- W2 (M5-08): H06 la mecha es el aviso (warningTime 1.5 s) y la cámara que revienta es la más cercana; suena RaftHitHard (no hay sonido de explosión en docs/08). H08 calma de 3 s entre ráfagas y la fuerza sube de 3 a 5 m/s² y baja dentro de los 2 s (por `RaftFlowReceiver.Wind`). H09 el radio es el del trigger (8 m en el prefab; el nivel lo escala a 6-15) y el giro se acerca a 60°/s con ganancia 2/s. H25 radio del golpe 3 m, aviso 1 s (el tentáculo se alza); la fase la fija `BossPhaseZone`. H32 se suma al arrastre de las habilidades (`RaftBuoyancy.ZoneDragMultiplier`).
 - H27: si la balsa vuelve a caer al agua dentro de la zona más de 1 s después del rebote (salto fallido), rebota otra vez. La fuente central de W1-1 tiene delante una resaca suave (chorro hacia atrás) que devuelve a la fuente una balsa que no pasó la reja.
 
 ## Power-ups
