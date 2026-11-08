@@ -28,6 +28,7 @@ namespace GasSafari.Raft
             public Vector3 FlowForce;
             public Vector3 LocalRightingTorque;
             public bool Airborne;
+            public bool Damaged; // con alguna cámara reventada (la inclinación es esperada)
         }
 
         public struct Contact
@@ -44,6 +45,7 @@ namespace GasSafari.Raft
         private RaftController raft;
         private RaftBuoyancy buoyancy;
         private RaftStabilizer stabilizer;
+        private RaftChambers chambers;
         private Vector3 pendingForce;
         private Vector3 pendingTorque;
         private Vector3 pendingFlow;
@@ -58,6 +60,7 @@ namespace GasSafari.Raft
             raft = GetComponent<RaftController>();
             buoyancy = GetComponent<RaftBuoyancy>();
             stabilizer = GetComponent<RaftStabilizer>();
+            chambers = GetComponent<RaftChambers>();
         }
 
         private void OnEnable() => raft.ThrustApplied += OnThrust;
@@ -110,6 +113,7 @@ namespace GasSafari.Raft
                 FlowForce = pendingFlow,
                 LocalRightingTorque = stabilizer != null ? t.InverseTransformDirection(stabilizer.LastTorque) : Vector3.zero,
                 Airborne = buoyancy.IsAirborne,
+                Damaged = chambers != null && chambers.IntactCount < RaftChambers.CHAMBER_COUNT,
             };
             samples.Add(sample);
             MaxTilt = Mathf.Max(MaxTilt, sample.Tilt);
@@ -131,13 +135,14 @@ namespace GasSafari.Raft
             });
         }
 
-        // Cabeceo en el agua (sin las muestras en el aire): máximo y percentil 95 del valor absoluto, en grados.
+        // Cabeceo en el agua (sin las muestras en el aire ni con cámaras reventadas, donde la balsa se inclina a propósito):
+        // máximo y percentil 95 del valor absoluto, en grados.
         public void PitchStats(out float max, out float p95)
         {
             var values = new List<float>(samples.Count);
             for (int i = 0; i < samples.Count; i++)
             {
-                if (!samples[i].Airborne)
+                if (!samples[i].Airborne && !samples[i].Damaged)
                     values.Add(Mathf.Abs(samples[i].Pitch));
             }
             if (values.Count == 0)

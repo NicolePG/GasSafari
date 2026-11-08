@@ -16,6 +16,9 @@ namespace GasSafari.Tests
     public class W1LevelBotTests
     {
         private static readonly string[] Crew = { "Alex", "Marty", "Melman", "Gloria" };
+        // Niveles con el cabeceo vigilado (grados, percentil 95 en el agua y con cámaras sanas).
+        private static readonly System.Collections.Generic.Dictionary<string, float> MaxPitchP95 =
+            new System.Collections.Generic.Dictionary<string, float> { { "W1-1", 6f }, { "W2-2", 6f } };
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W1_1_FourBots_FinishUnderSilverTimes1Point3()
@@ -206,6 +209,9 @@ namespace GasSafari.Tests
             var problems = new System.Collections.Generic.List<string>();
             if (finishedAt < 0f)
                 problems.Add($"{id}: los bots llegan a la meta en menos de {limit:F0} s");
+            // Cabeceo en el agua con las cámaras sanas: la balsa va plana salvo en rampas y caídas (W2-2 da 3.7°).
+            if (MaxPitchP95.TryGetValue(id, out float maxP95) && pitchP95 > maxP95)
+                problems.Add($"{id}: la balsa va inclinada (cabeceo p95 {pitchP95:F1}° > {maxP95:F0}°)");
             var star = Object.FindFirstObjectByType<StarMoment>();
             if (star != null && !star.Played)
                 problems.Add($"{id}: el momento estrella se disparó");
