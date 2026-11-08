@@ -105,6 +105,7 @@ namespace GasSafari.Editor
                 block.GetComponent<MeshRenderer>().sharedMaterial = Toon("M_H16_Beat", new Color(0.97f, 0.5f, 0f));
                 var box = root.AddComponent<BoxCollider>();
                 box.size = new Vector3(3f, 1.4f, 1.2f);
+                box.isTrigger = true;
                 root.AddComponent<Rigidbody>().isKinematic = true;
                 root.AddComponent<RhythmObstacle>().Configure(h16);
                 return root;

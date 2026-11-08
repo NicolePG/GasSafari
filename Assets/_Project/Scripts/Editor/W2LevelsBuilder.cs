@@ -233,7 +233,7 @@ namespace GasSafari.Editor
             renderer.sharedMaterial = material;
         }
 
-        private static GasSafari.Hazards.HazardConfig Wave(string file, string displayName, float amplitude, float push, float speed)
+        internal static GasSafari.Hazards.HazardConfig Wave(string file, string displayName, float amplitude, float push, float speed)
         {
             string path = "Assets/_Project/Data/Hazards/" + file + ".asset";
             var config = AssetDatabase.LoadAssetAtPath<GasSafari.Hazards.HazardConfig>(path);
@@ -255,7 +255,7 @@ namespace GasSafari.Editor
             return config;
         }
 
-        private static void SetWave(GameObject go, GasSafari.Hazards.HazardConfig config, float width, float length, float interval, float phase)
+        internal static void SetWave(GameObject go, GasSafari.Hazards.HazardConfig config, float width, float length, float interval, float phase)
         {
             var wave = go.GetComponent<GasSafari.Hazards.WaveHazard>();
             wave.Configure(config);

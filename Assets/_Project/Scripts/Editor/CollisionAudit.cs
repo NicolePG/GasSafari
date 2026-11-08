@@ -31,9 +31,10 @@ namespace GasSafari.Editor
             "L_T0_PiscinaZoo", "L_W1_1_FuentesZoo", "L_W1_2_Alcantarillas", "L_W1_3_RioCiudad", "L_W1_4_MercadoFlotante",
             "L_W1_5_PuertoJefe", "L_W2_1_CajasDeriva", "L_W2_2_Tormenta", "L_W2_3_CementerioBarcos", "L_W2_4_GranRemolino",
             "L_W2_5_ArrecifeJefe",
+            "L_W3_1_PlayaLlegada", "L_W3_2_RioLianas", "L_W3_3_TerritorioFosas", "L_W3_4_PantanoCocodrilos", "L_W3_5_FiestaLemurJefe",
         };
 
-        [MenuItem("Gas Safari/QA/Auditar colisiones (T-0, W1, W2)")]
+        [MenuItem("Gas Safari/QA/Auditar colisiones (T-0, W1, W2, W3)")]
         public static void RunAllMenu()
         {
             var report = RunAll();
@@ -50,7 +51,7 @@ namespace GasSafari.Editor
             return report;
         }
 
-        [MenuItem("Gas Safari/QA/Corregir props sin collider (T-0, W1, W2)")]
+        [MenuItem("Gas Safari/QA/Corregir props sin collider (T-0, W1, W2, W3)")]
         public static void FixAllMenu()
         {
             foreach (var name in Scenes)

@@ -77,6 +77,36 @@ namespace GasSafari.Tests
             yield return RunLevel("L_W2_5_ArrecifeJefe", "W2-5", 380f * 1.3f);
         }
 
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W3_1_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W3_1_PlayaLlegada", "W3-1", 295f * 1.3f);
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W3_2_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W3_2_RioLianas", "W3-2", 315f * 1.3f);
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W3_3_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W3_3_TerritorioFosas", "W3-3", 340f * 1.3f);
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W3_4_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W3_4_PantanoCocodrilos", "W3-4", 360f * 1.3f);
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W3_5_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W3_5_FiestaLemurJefe", "W3-5", 380f * 1.3f);
+        }
+
         private IEnumerator RunLevel(string scene, string id, float limit)
         {
 #if UNITY_EDITOR
@@ -141,24 +171,29 @@ namespace GasSafari.Tests
                     Debug.Log($"W1BOT {id} bot {avatar.Character.name} {brain.FireStats}");
             }
             Debug.Log($"W1BOT {id} terminó={finishedAt >= 0f} tiempo={finishedAt:F1}s espera={elapsed:F0}s caídas={falls} reapariciones={respawns}");
-            Assert.GreaterOrEqual(finishedAt, 0f, $"{id}: los bots llegan a la meta en menos de {limit:F0} s");
+            // Se evalúa antes de limpiar y se afirma después: un fallo no debe dejar la escena ni la balsa cargadas
+            // (contaminaba las pruebas siguientes).
+            var problems = new System.Collections.Generic.List<string>();
+            if (finishedAt < 0f)
+                problems.Add($"{id}: los bots llegan a la meta en menos de {limit:F0} s");
             var star = Object.FindFirstObjectByType<StarMoment>();
-            if (star != null)
-                Assert.IsTrue(star.Played, $"{id}: el momento estrella se disparó");
+            if (star != null && !star.Played)
+                problems.Add($"{id}: el momento estrella se disparó");
             foreach (var zone in Object.FindObjectsByType<StarMomentZone>(FindObjectsSortMode.None))
             {
-                if (zone.OnMainPath)
-                    Assert.IsTrue(zone.Played, $"{id}: el momento estrella ({zone.name}) lanzó su toma de cámara");
+                if (zone.OnMainPath && !zone.Played)
+                    problems.Add($"{id}: el momento estrella ({zone.name}) lanzó su toma de cámara");
             }
             var finale = Object.FindFirstObjectByType<CraneFinale>();
-            if (finale != null)
-                Assert.IsTrue(finale.Played, $"{id}: el gancho cae tras la balsa en la rampa");
+            if (finale != null && !finale.Played)
+                problems.Add($"{id}: el gancho cae tras la balsa en la rampa");
 
             foreach (var avatar in manager.Avatars)
                 Object.Destroy(avatar.gameObject);
             Object.Destroy(manager.Raft.gameObject);
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(scene));
             Services.Session.ClearPlayers();
+            Assert.IsEmpty(problems, string.Join("; ", problems));
 #else
             yield break;
 #endif

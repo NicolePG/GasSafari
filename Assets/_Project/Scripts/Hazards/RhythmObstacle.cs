@@ -59,15 +59,19 @@ namespace GasSafari.Hazards
             body.MovePosition(origin + transform.TransformDirection(axis.normalized) * Displacement);
         }
 
-        // Golpe: empuja la balsa alejándola de la pieza.
-        protected override void OnRaftCollision(RaftController raft, Collision collision)
+        // Golpe (docs/05: "golpe 20"): la pieza es un trigger, así que no hay choque contra una pared móvil (que lanzaba a la
+        // balsa contra las orillas y reventaba cámaras): empuja a la balsa alejándola, una vez por segundo como mucho.
+        protected override void OnRaftEnter(RaftController raft)
         {
-            if (collision.contactCount == 0)
+            if (Time.time < nextHit)
                 return;
-            var point = collision.GetContact(0).point;
+            nextHit = Time.time + 1f;
+            var point = raft.Body.ClosestPointOnBounds(transform.position);
             var away = raft.Body.worldCenterOfMass - transform.position;
             away.y = 0f;
             PushRaft(raft, away.normalized * Hit, point);
         }
+
+        private float nextHit;
     }
 }

@@ -44,6 +44,17 @@ namespace GasSafari.Editor
             // W2-5: el pasillo final con los tentáculos golpeando detrás; la cámara va delante, mirando hacia atrás.
             new Shot { Scene = "L_W2_5_ArrecifeJefe", Id = "W2-5", Anchor = "ZonaJefe_Fase3", ZoneSize = new Vector3(30f, 6f, 14f),
                 CameraOffset = new Vector3(7f, 6f, 14f), Seconds = 3f, SlowMotion = false, MainPath = true },
+            // W3: los constructores ponen un objeto 'EstrellaAncla' en el punto del momento estrella.
+            new Shot { Scene = "L_W3_1_PlayaLlegada", Id = "W3-1", Anchor = "EstrellaAncla", ZoneSize = new Vector3(20f, 6f, 16f),
+                CameraOffset = new Vector3(-10f, 6f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
+            new Shot { Scene = "L_W3_2_RioLianas", Id = "W3-2", Anchor = "EstrellaAncla", ZoneSize = new Vector3(14f, 6f, 40f),
+                CameraOffset = new Vector3(9f, 5f, -14f), Seconds = 3f, SlowMotion = false, MainPath = true },
+            new Shot { Scene = "L_W3_3_TerritorioFosas", Id = "W3-3", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 6f, 30f),
+                CameraOffset = new Vector3(-12f, 8f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
+            new Shot { Scene = "L_W3_4_PantanoCocodrilos", Id = "W3-4", Anchor = "EstrellaAncla", ZoneSize = new Vector3(22f, 6f, 30f),
+                CameraOffset = new Vector3(10f, 8f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
+            new Shot { Scene = "L_W3_5_FiestaLemurJefe", Id = "W3-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 6f, 12f),
+                CameraOffset = new Vector3(-10f, 7f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
         };
 
         [MenuItem("Gas Safari/Setup/Tomas de cámara de los momentos estrella de W2")]
