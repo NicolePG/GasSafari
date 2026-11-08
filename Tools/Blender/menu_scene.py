@@ -5,6 +5,7 @@ Salida (Tools/Export/Menu/):
   TitleScene.blend         escena completa con materiales planos, luces y cámara (Z arriba, metros)
   TitleScene.fbx           mallas, esqueletos y cámara con una sola toma de 360 cuadros (0-360, 30 fps, en bucle)
   TitleScene_preview.png   fotograma de referencia 1920x1080 (toon, como las demás ilustraciones)
+Solo llevan curvas de animación los objetos que se mueven (balsa, personajes, nubes, noria, banderas, cámara).
 Animación: balsa que cabecea, 4 animales sentados (Idle_Sit) y Julien de pie bailando (Victory) con la misma
 duración de bucle, nubes de pedo que salen por la popa, noria y bandera del zoológico girando/ondeando y una cámara
 que se mece en un arco corto. Las piezas del escenario vienen de Tools/Export/Environment/W1 (aplanadas: sin raíces
@@ -401,7 +402,8 @@ def export(cam):
         use_mesh_modifiers=True, mesh_smooth_type="FACE", add_leaf_bones=False, use_armature_deform_only=False,
         primary_bone_axis="Y", secondary_bone_axis="X", bake_anim=True, bake_anim_use_all_actions=False,
         bake_anim_use_nla_strips=False, bake_anim_force_startend_keying=True, bake_anim_step=2.0,
-        bake_anim_simplify_factor=0.0, path_mode="AUTO", embed_textures=False)
+        # factor > 0: el exportador descarta las curvas constantes (objetos estáticos sin animación); los huesos las conservan
+        bake_anim_simplify_factor=0.5, path_mode="AUTO", embed_textures=False)
     print(f"[gs] exportado {path} ({os.path.getsize(path) // 1024} KB)")
     blend = os.path.join(OUT, "TitleScene.blend")
     bpy.ops.wm.save_as_mainfile(filepath=blend, check_existing=False, compress=True)

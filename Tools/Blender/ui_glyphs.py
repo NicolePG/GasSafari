@@ -135,15 +135,27 @@ def g_sling():
 
 
 def g_quake():
-    rock, dark = tm("#B07A4A"), tm("#2D1B1B")
-    P = [gs.rounded_box("GroundL", (-0.25, 0, -0.24), (0.56, 0.24, 0.3), 0.06, rock, rot=("Y", 14), segments=1),
-         gs.rounded_box("GroundR", (0.25, 0, -0.3), (0.56, 0.24, 0.3), 0.06, tm("#9C6838"), rot=("Y", -12), segments=1),
-         gs.rounded_box("Crack", (0, 0.06, -0.3), (0.16, 0.12, 0.3), 0.02, dark, segments=1)]
-    for i, (x, z, r) in enumerate(((-0.1, 0.0, 0.09), (0.15, 0.1, 0.11), (0.0, 0.3, 0.07))):
-        P.append(gs.ellipsoid(f"Chunk{i}", (x, -0.04, z), (r, r * 0.8, r * 0.9), rock, seg=6, rings=4))
-    o = tm("#FF9F1C", 0.5)
-    P += [arc("W1", (0, -0.3), 0.42, 35, 145, 0.04, o), arc("W2", (0, -0.3), 0.6, 45, 135, 0.04, o)]
-    return P
+    """Terremoto: el suelo se parte en dos losas oscuras con una grieta brillante, saltan rocas claras y
+    salen ondas blancas. Colores claros sobre oscuro para que se lea sobre el disco naranja."""
+    slab_l, slab_r, glow = tm("#4A2616"), tm("#5E301B"), tm("#FFE27A", 0.9)
+    P = [poly("Glow", [(-0.2, -0.52), (-0.12, -0.3), (-0.22, -0.18), (-0.06, -0.05), (0.06, -0.05), (0.2, -0.2),
+                       (0.1, -0.32), (0.2, -0.52)], glow, 0.06, (0, 0))]
+    P[0].location = Vector((0, 0.05, 0))
+    P.append(poly("SlabL", [(-0.66, -0.52), (-0.66, -0.12), (-0.38, -0.08), (-0.26, -0.2), (-0.16, -0.12), (-0.1, -0.3),
+                            (-0.2, -0.38), (-0.12, -0.52)], slab_l, 0.2))
+    P.append(poly("SlabR", [(0.66, -0.52), (0.66, -0.08), (0.36, -0.1), (0.28, -0.22), (0.14, -0.1), (0.07, -0.18),
+                            (0.14, -0.34), (0.1, -0.52)], slab_r, 0.2))
+    rock, rock2 = tm("#FFF0D2"), tm("#E7C99A")
+    for i, (pts, c, col) in enumerate((
+            ([(-0.12, -0.08), (0.1, -0.1), (0.14, 0.1), (0.0, 0.18), (-0.14, 0.08)], (-0.3, 0.14), rock),
+            ([(-0.1, -0.1), (0.12, -0.06), (0.1, 0.12), (-0.08, 0.14)], (0.28, 0.1), rock2),
+            ([(-0.09, -0.06), (0.08, -0.08), (0.1, 0.07), (-0.05, 0.1)], (0.02, 0.36), rock))):
+        P.append(poly(f"Chunk{i}", pts, col, 0.14, c))
+    w = tm("#FFFFFF", 0.6)
+    P += [arc("W1", (0, -0.12), 0.5, 20, 160, 0.045, w), arc("W2", (0, -0.12), 0.68, 35, 145, 0.045, w)]
+    for o in P[-2:]:
+        o.location = Vector((0, 0.1, 0))
+    return fit(P, 0.88, (0, 0, 0.1))
 
 
 def g_party():
@@ -249,12 +261,28 @@ def g_volcano():
 
 
 def g_arch():
-    rock, rock2 = tm("#B5562A"), tm("#9C3D1C")
-    P = [arc("Arch", (0, -0.1), 0.34, 0, 180, 0.12, rock, n=16)]
-    P += [gs.ellipsoid("RockL", (-0.34, 0, -0.32), (0.18, 0.12, 0.2), rock2, seg=8, rings=5),
-          gs.ellipsoid("RockR", (0.34, 0, -0.32), (0.18, 0.12, 0.2), rock2, seg=8, rings=5)]
-    P.append(gs.ellipsoid("Sun", (0.0, 0.1, 0.0), (0.18, 0.04, 0.18), tm("#FFF1B8", 0.8), seg=12, rings=6))
-    P.append(gs.ellipsoid("Ground", (0, 0, -0.45), (0.5, 0.15, 0.07), tm("#FB8500"), seg=10, rings=4))
+    """Mundo 5 (Cañón): arco de roca rojo contra un sol grande, con dos mesas al fondo y arena delante.
+    Sobre disco azul para que la roca roja y el sol cálido contrasten."""
+    rock, rock_hi, rock_dk = tm("#E4572E"), tm("#FF8A4C"), tm("#9E2F1A")
+
+    def ell(cx, cz, a, b, a0, a1, n):
+        return [(cx + a * math.cos(math.radians(a0 + (a1 - a0) * i / n)), cz + b * math.sin(math.radians(a0 + (a1 - a0) * i / n)))
+                for i in range(n + 1)]
+    outer = ell(0, -0.05, 0.5, 0.56, 180, 0, 14)     # izquierda -> derecha por arriba
+    inner = ell(0, -0.05, 0.22, 0.34, 0, 180, 10)    # derecha -> izquierda por arriba
+    pts = [(-0.5, -0.42)] + outer + [(0.5, -0.42), (0.22, -0.42)] + inner + [(-0.22, -0.42)]
+    P = [gs.ellipsoid("Sun", (0.0, 0.0, -0.1), (0.3, 0.04, 0.3), tm("#FFF0B0", 0.9), seg=14, rings=8)]
+    P.append(poly("MesaL", [(-0.5, -0.45), (-0.5, -0.12), (-0.36, -0.1), (-0.34, -0.45)], rock_dk, 0.1))
+    P.append(poly("MesaR", [(0.5, -0.45), (0.5, -0.2), (0.4, -0.18), (0.36, -0.1), (0.3, -0.45)], rock_dk, 0.1))
+    arch = poly("Arch", pts, rock, 0.2)
+    P.append(arch)
+    # franja clara (estrato) en la parte alta del arco y base de arena
+    top = ell(0, -0.05, 0.47, 0.53, 150, 30, 8) + ell(0, -0.05, 0.36, 0.44, 30, 150, 8)
+    band = poly("Band", top, rock_hi, 0.06)
+    band.location = Vector((0, -0.12, 0))
+    P.append(band)
+    ground = gs.ellipsoid("Ground", (0, -0.04, -0.46), (0.56, 0.16, 0.09), tm("#F6C86A"), seg=12, rings=5)
+    P.append(ground)
     return P
 
 

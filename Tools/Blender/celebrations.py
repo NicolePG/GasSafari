@@ -174,6 +174,8 @@ def reverencia(r):
 # ---------------------------------------------------------------------------
 def saludo_capitan(r):
     ad = r.arm_down
+    if len(r.neck) >= 4:  # cuello largo (Melman): el brazo mide 0.6 m y la frente queda a 1 m del hombro
+        return saludo_capitan_cuello_largo(r)
 
     def fn(t, v):
         p = Pose().move("Hips", (0, 0, 0.012 * r.h * v["tall"]))
@@ -200,6 +202,45 @@ def saludo_capitan(r):
           (0.76, dict(tall=1, sal=1)),
           (0.84, dict(tall=1, sal=0)),
           (0.94, dict(tall=1, sal=0)),
+          (1.0, z)]
+    return keyed(r, "Celebrate_SaludoCapitan", 66, ph, fn)
+
+
+def saludo_capitan_cuello_largo(r):
+    """Saludo de Melman: no hay brazo que llegue a la frente con el cuello recto, así que curva el cuello en
+    gancho hacia delante (cada hueso del cuello ~15-77°) y la cabeza baja hasta la mano. Pose obtenida con un
+    ajuste numérico (la punta de la mano queda a ~5 cm de la frente en la fase 'sal' = 1)."""
+    ad = r.arm_down
+    NECK = (15, 66, 77, 26)   # Neck, Neck1, Neck2, Neck3 (grados hacia delante)
+    HEAD = -134               # la cabeza se echa hacia atrás para seguir mirando al frente
+
+    def fn(t, v):
+        s, tall = v["sal"], v["tall"]
+        k = 1 - s
+        p = Pose().move("Hips", (0, 0, 0.012 * r.h * tall * k))
+        p.rot("Spine", ("X", -7 * tall * k + 10 * s), ("Y", -3 * s))
+        p.rot("Chest", ("X", -5 * tall * k))
+        # brazo derecho extendido hacia delante con el codo casi recto; la mano se encuentra con la frente
+        p.side("Right", "UpperArm", ("Y", lerp(ad, -2, s)), ("Z", -102 * s))
+        p.side("Right", "LowerArm", ("Y", 21 * s), ("Z", 5 * s))
+        p.side("Left", "UpperArm", ("Y", lerp(ad, ad + 12, tall)))
+        p.side("Left", "LowerArm", ("Z", -6 * tall))
+        p.sym("UpperLeg", ("Y", -7 * tall))
+        p.sym("Foot", ("Y", 7 * tall))
+        for b, a in zip(r.neck, NECK):
+            p.rot(b, ("X", a * s - 18 * tall * k / len(r.neck)))
+        p.rot("Head", ("X", HEAD * s - 18 * tall * k * 0.6))
+        r.tail_sway(p, t, 6 * (1 - tall) + 2, 2)
+        return p
+    z = dict(tall=0, sal=0)
+    ph = [(0.0, z),
+          (0.10, dict(tall=1, sal=0)),
+          (0.34, dict(tall=1, sal=1)),
+          (0.66, dict(tall=1, sal=1)),
+          (0.70, dict(tall=1, sal=0.97)),   # temblor del saludo
+          (0.74, dict(tall=1, sal=1)),
+          (0.90, dict(tall=1, sal=0)),
+          (0.95, dict(tall=1, sal=0)),
           (1.0, z)]
     return keyed(r, "Celebrate_SaludoCapitan", 66, ph, fn)
 
@@ -303,7 +344,8 @@ def run(names, debug=False):
     tiles, files = [], []
     only = next((a.split("=")[1] for a in sys.argv if a.startswith("--clip=")), None)
     view = next((a.split("=")[1] for a in sys.argv if a.startswith("--view=")), None)
-    dirs = {"front": (0, -1, 0.05), "side": (1, 0, 0.05), "3q": (0.55, -0.85, 0.3)}
+    dirs = {"front": (0, -1, 0.05), "side": (1, 0, 0.05), "3q": (0.55, -0.85, 0.3), "3qr": (-0.55, -0.85, 0.3),
+            "sider": (-1, 0, 0.05)}
     for name in names:
         mod = importlib.import_module(name.lower())
         cap = {}

@@ -167,12 +167,12 @@ def put_medal(inner, glyph, scale=1.0, off=(0.0, 0.0), name="x"):
 ACH = [
     ("01_PrimerPedo", "#6CC24A", G.g_first_fart, 1.0), ("02_Dueto", "#2EC4B6", G.g_duo, 1.0),
     ("03_Orquesta", "#3A86FF", G.g_orchestra, 1.0), ("04_SuperPedo", "#8A4FD6", G.g_super_fart, 1.0),
-    ("05_HondaSelva", "#FF7A1A", G.g_sling, 1.0), ("06_Terremoto", "#FF7A1A", G.g_quake, 1.0),
+    ("05_HondaSelva", "#FF7A1A", G.g_sling, 1.0), ("06_Terremoto", "#FF7A1A", G.g_quake, 0.82),
     ("07_FiestaTotal", "#FF7A1A", G.g_party, 1.0), ("08_DuoPesado", "#FF7A1A", G.g_dumbbell, 1.0),
     ("09_RescateReal", "#FF7A1A", G.g_rescue, 1.0), ("10_CapitanTitanic", "#3A86FF", G.g_titanic, 1.0),
     ("11_SinRasguno", "#2EC4B6", G.g_shield, 1.0), ("12_Mundo1", "#1B2A4A", G.g_zoo_gate, 1.0),
     ("13_Mundo2", "#2EC4B6", G.g_lighthouse, 1.0), ("14_Mundo3", "#F77F00", G.g_palm, 1.0),
-    ("15_Mundo4", "#4CC9F0", G.g_volcano, 1.0), ("16_Mundo5", "#FFB703", G.g_arch, 1.0),
+    ("15_Mundo4", "#4CC9F0", G.g_volcano, 1.0), ("16_Mundo5", "#2B7FD1", G.g_arch, 0.76),
     ("17_Mundo6", "#F72585", G.g_world6, 1.0), ("18_Perfeccionista", "#23306B", G.g_big_star, 1.0),
     ("19_Constelacion", "#23306B", G.g_constellation, 1.0), ("20_ColeccionistaReal", "#6C3BAA", G.g_collector, 1.0),
     ("21_Velocista", "#FF5A36", G.g_speedster, 1.0), ("22_AmistadesRotas", "#FFB3C1", G.g_broken_friends, 1.0),
@@ -247,7 +247,7 @@ if __name__ == "__main__":
     if "celebrations" in want:
         celebrations_icons()
     if "achievements" in want:
-        achievements()
+        achievements([a.split('=')[1] for a in R.args() if a.startswith('--only=')] or None)
     if "modes" in want:
         modes()
     if "difficulty" in want:

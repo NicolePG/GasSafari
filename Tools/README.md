@@ -15,6 +15,8 @@ blender --background --python Tools/Blender/celebrations.py  # 6 celebraciones d
 blender --background --python Tools/Blender/party.py       # arenas y objetos de los minijuegos (Tools/Export/Party/)
 blender --background --python Tools/Blender/ui_icons.py    # iconos de tienda, logros, modos y dificultades
 blender --background --python Tools/Blender/menu_scene.py  # escena 3D del título (Tools/Export/Menu/)
+blender --background --python Tools/Blender/hazards.py     # modelos de obstáculos H01-H35 que faltaban (Tools/Export/Hazards/)
+blender --background --python Tools/Blender/tutorial.py    # señalética del tutorial T-0 sin texto (Tools/Export/Tutorial/)
 ```
 
 - `gs_common.py`: paleta, materiales planos, primitivas redondeadas, esqueleto Humanoid, animaciones
@@ -32,6 +34,9 @@ blender --background --python Tools/Blender/menu_scene.py  # escena 3D del títu
   triángulos, pivote en la base (z = 0 = suelo o línea de agua). Los props con partes móviles exportan un vacío
   raíz con `Static` y cada parte con su pivote (`Propeller`, `Flag`, `Wheel`, `Gondola_0..7`, `Door_L/R`, `Gate`...).
   Piezas modulares: `Canal_*` (cauce de 10 m, paso de 5 m) y `Tunnel_*`; agua en z = 0.
+- Obstáculos (`Tools/Export/Hazards/`, lista H01-H35 en su README) y señalética del tutorial (`Tools/Export/Tutorial/`): mismo
+  formato que Environment (vacío raíz con `Static` y partes móviles aparte). `TitleScene.fbx` solo lleva curvas de animación en
+  los objetos que se mueven (el exportador descarta las constantes con `bake_anim_simplify_factor > 0`).
 - Vistas previas en `Tools/Blender/previews/` (no se suben a Git).
 - Balsa: cámaras `Chamber_0_NE`, `Chamber_1_NO`, `Chamber_2_SE`, `Chamber_3_SO` (índices de `RaftChambers`), cada una con su pivote.
 
