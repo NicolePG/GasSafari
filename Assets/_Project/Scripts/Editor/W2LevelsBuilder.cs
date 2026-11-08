@@ -401,5 +401,70 @@ namespace GasSafari.Editor
             anchor.name = name + "_Ancla";
             anchor.transform.position = position + Vector3.down * 0.4f;
         }
+
+        // ---------------------------------------------------------------- W2-4 El Gran Remolino
+        private const float WHIRL_PREFAB_RADIUS = 8f;
+
+        [MenuItem("Gas Safari/Setup/Greybox W2-4 El Gran Remolino (M5-12)")]
+        public static void BuildW2_4()
+        {
+            var level = GreyboxLevel.Create("W2-4", "L_W2_4_GranRemolino");
+            level.OpenWater();
+            level.StartPath(Vector3.zero, 0f).Straight(150f, 20f);                  // S1 remolino de práctica
+            float slalom = level.Length;
+            level.Straight(160f, 22f);                                               // S2 slalom entre dos remolinos
+            float chain = level.Length;
+            level.Arc(80f, 30f, 20f).Straight(130f, 20f);                           // S3 cadena de 3 con corrientes cruzadas
+            float great = level.Length;
+            level.Straight(150f, 34f).Straight(40f, 20f);                           // S4 el gran remolino (radio 15 m)
+            level.BuildChannel(0.4f);
+
+            level.Section(1, "Practica", 0f);
+            level.Section(2, "Slalom", slalom);
+            level.Section(3, "Cadena", chain);
+            level.Section(4, "GranRemolino", great);
+            level.AddCheckpoint(0f);
+            level.AddCheckpoint(slalom);
+            level.AddCheckpoint(chain);
+            level.AddCheckpoint(great);
+
+            Pool(level, "Practica", 70f, 6f, 6f);
+            level.Mango(0, 70f, 0.4f, 0.8f);                                         // en el borde del primer remolino
+            level.PowerUp("P01", 30f, 0f);
+
+            Pool(level, "Slalom_1", slalom + 45f, -8f, 6f);
+            Pool(level, "Slalom_2", slalom + 95f, 8f, 6f);
+            level.Mango(1, slalom + 70f, 0f, 1f);                                    // entre los dos
+            level.PowerUp("P01", slalom + 140f, 0f);
+
+            float[] chainAt = { 30f, 80f, 130f };
+            for (int i = 0; i < 3; i++)
+            {
+                float side = i % 2 == 0 ? 1f : -1f;
+                Pool(level, "Cadena_" + (i + 1), chain + chainAt[i], side * 7f, 6f);
+                // Corriente cruzada que empuja hacia el remolino siguiente.
+                var jet = level.Place(HZ + "Jet_Lateral.prefab", chain + chainAt[i] + 25f, side * 3f, side > 0 ? 180f : 0f);
+                jet.name = "CorrienteCruzada_" + (i + 1);
+                foreach (var r in jet.GetComponentsInChildren<Renderer>())
+                    r.enabled = false;
+            }
+            level.PowerUp("P03", chain + 105f, 0f);
+
+            Pool(level, "GranRemolino", great + 70f, 18f, 15f);                            // el carril lo bordea por fuera
+            level.Mango(2, great + 70f, 18f, 0.8f);                                  // en el centro: entrar y salir con Panzazo o sync x4
+            level.PowerUp("P01", great + 20f, -4f);
+
+            LevelDresser.Dress(level, LevelDresser.W2, 24, level.PointAt(great + 70f, 80f), -90f);
+            level.Finish();
+            Debug.Log($"M5-12 W2-4 listo: {level.Length:F0} m");
+        }
+
+        private static void Pool(GreyboxLevel level, string name, float d, float lateral, float radius)
+        {
+            var pool = level.Place(HZ + "H09_Whirlpool.prefab", d, lateral);
+            pool.name = "Remolino_" + name;
+            pool.transform.localScale = Vector3.one * (radius / WHIRL_PREFAB_RADIUS);
+            level.Hint(Bots.BotHintType.Whirlpool, d, lateral, radius);
+        }
     }
 }

@@ -65,6 +65,12 @@ namespace GasSafari.Tests
             yield return RunLevel("L_W2_3_CementerioBarcos", "W2-3", 340f * 1.3f);
         }
 
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W2_4_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W2_4_GranRemolino", "W2-4", 340f * 1.3f);
+        }
+
         private IEnumerator RunLevel(string scene, string id, float limit)
         {
 #if UNITY_EDITOR
