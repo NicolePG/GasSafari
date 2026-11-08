@@ -63,7 +63,8 @@ namespace GasSafari.Core
         public float superFartSlowMoDuration;
 
         [Header("Daño, caídas y reaparición")]
-        public float chamberDamageImpulse;
+        [Tooltip("Velocidad de impacto (m/s) sobre la que un golpe revienta una cámara (valor de Normal; cada dificultad tiene la suya, docs/06 §3)")]
+        public float chamberDamageSpeed;
         [Tooltip("Segundos que tarda en hundirse sin cámaras (docs/02 §8)")] public float sinkDuration;
         [Tooltip("Velocidad de impacto (m/s, componente contra la superficie) sobre la que cae quien no está agarrado (docs/02 §9). " +
                  "Antes knockoffImpulse = 12 N·s, que con una balsa de 21 kg equivalía a solo 0.6 m/s")]

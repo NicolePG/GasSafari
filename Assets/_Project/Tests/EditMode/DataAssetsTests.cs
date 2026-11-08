@@ -29,11 +29,11 @@ namespace GasSafari.Tests
             Assert.AreEqual(1f, b.pingCooldown);
         }
 
-        [TestCase("Difficulty_Familiar", 0.40f, 1.25f, false, 0f, 0.85f, 4f, CheckpointFilter.NormalPlusFamiliarOnly)]
-        [TestCase("Difficulty_Normal", 0.25f, 1f, true, 3f, 1f, 6f, CheckpointFilter.Normal)]
-        [TestCase("Difficulty_AmistadesRotas", 0.18f, 0.85f, true, 6f, 1.15f, 8f, CheckpointFilter.HardKeepOnly)]
+        [TestCase("Difficulty_Familiar", 0.40f, 1.25f, false, 0f, 0.85f, 4f, CheckpointFilter.NormalPlusFamiliarOnly, 7f)]
+        [TestCase("Difficulty_Normal", 0.25f, 1f, true, 3f, 1f, 6f, CheckpointFilter.Normal, 7f)]
+        [TestCase("Difficulty_AmistadesRotas", 0.18f, 0.85f, true, 6f, 1.15f, 8f, CheckpointFilter.HardKeepOnly, 5f)]
         public void Difficulty_MatchesDocs(string asset, float sync, float regen, bool impacts,
-            float penalty, float hazard, float autoRespawn, CheckpointFilter filter)
+            float penalty, float hazard, float autoRespawn, CheckpointFilter filter, float chamberSpeed)
         {
             var d = AssetDatabase.LoadAssetAtPath<DifficultyData>(DIFFICULTY_FOLDER + asset + ".asset");
             Assert.IsNotNull(d, asset);
@@ -44,6 +44,7 @@ namespace GasSafari.Tests
             Assert.AreEqual(hazard, d.hazardSpeed);
             Assert.AreEqual(autoRespawn, d.autoRespawnTime);
             Assert.AreEqual(filter, d.checkpointFilter);
+            Assert.AreEqual(chamberSpeed, d.chamberDamageSpeed, "docs/06 §3: golpes que revientan cámaras (m/s)");
         }
     }
 }

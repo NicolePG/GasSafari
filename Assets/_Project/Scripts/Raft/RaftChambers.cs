@@ -122,7 +122,13 @@ namespace GasSafari.Raft
                 return;
 
             var difficulty = Services.Session.Difficulty;
-            if (!difficulty.impactsDamageChambers || collision.impulse.magnitude <= difficulty.chamberDamageImpulse)
+            // Cuenta la velocidad con que la balsa golpea la superficie (como knockoffSpeed), no la fuerza del contacto:
+            // así no depende de la masa de la balsa ni de cuántos animales lleva.
+            if (!difficulty.impactsDamageChambers)
+                return;
+
+            float impact = RaftKnockoff.NormalImpactSpeed(collision);
+            if (impact <= difficulty.chamberDamageSpeed)
                 return;
 
             PopChamberAt(collision.GetContact(0).point);

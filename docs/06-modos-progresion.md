@@ -98,7 +98,7 @@ Los cosméticos de balsa son del equipo (los elige el anfitrión); sombreros, co
 |---|---|---|---|
 | `syncWindow` | 0.40 s | 0.25 s | 0.18 s |
 | Checkpoints | Normales + extra marcados `familiarOnly` | Normales | Solo los marcados `hardKeep` |
-| Daño a cámaras | Solo pinchos y mordidas | Pinchos, mordidas y golpes > 25 | Pinchos, mordidas y golpes > 15 |
+| Daño a cámaras (`chamberDamageSpeed`) | Solo pinchos y mordidas | Pinchos, mordidas y golpes a más de 7 m/s | Pinchos, mordidas y golpes a más de 5 m/s |
 | Recarga de gas | +25 % | Base | -15 % |
 | Penalización por reaparecer | 0 s | 3 s | 6 s |
 | Velocidad de peligros | x0.85 | x1 | x1.15 |

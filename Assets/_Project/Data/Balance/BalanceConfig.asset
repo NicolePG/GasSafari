@@ -75,7 +75,7 @@ MonoBehaviour:
   superFartUp: 9
   superFartSlowMoScale: 0.4
   superFartSlowMoDuration: 0.6
-  chamberDamageImpulse: 25
+  chamberDamageSpeed: 7
   sinkDuration: 1.5
   knockoffSpeed: 6
   swimSpeed: 3

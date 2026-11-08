@@ -137,7 +137,7 @@ public struct PlayerCommand : INetworkSerializable
 | SO | Campos principales |
 |---|---|
 | `BalanceConfig` | Toda la tabla de docs/02 §14 |
-| `DifficultyData` | syncWindow, regenMultiplier, chamberDamageImpulse, respawnPenalty, hazardSpeed, autoRespawnTime, checkpointFilter |
+| `DifficultyData` | syncWindow, regenMultiplier, chamberDamageSpeed, respawnPenalty, hazardSpeed, autoRespawnTime, checkpointFilter |
 | `CharacterData` | id, nombre, prefab, gasCapacity, puffImpulse, blastForce, regenPerSecond, regenDelay, weight, height, ability (AbilityBase), passive, sfxSet, overrideController, icono, color de UI |
 | `AbilityBase` (abstracto) | id, cooldown, icono, sonido, `Activate(AbilityContext)`, `CanActivate(AbilityContext)` |
 | `LevelData` | id (W2-3), sceneName, world, goldTime, silverTime, mangoCount=3, musicId, mechanicText, raceCompatible, ordenEnMundo |

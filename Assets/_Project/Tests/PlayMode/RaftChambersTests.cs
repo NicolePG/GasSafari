@@ -75,6 +75,32 @@ namespace GasSafari.Tests
         }
 
         [UnityTest]
+        public IEnumerator SlowImpactOnWall_DoesNotPopChamber()
+        {
+            var difficulty = Services.Session.Difficulty;
+            float original = difficulty.chamberDamageSpeed;
+            bool impacts = difficulty.impactsDamageChambers;
+            var wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            wall.layer = GameLayers.Environment;
+            wall.transform.position = new Vector3(4f, 0f, 0f);
+            wall.transform.localScale = new Vector3(1f, 3f, 10f);
+            try
+            {
+                difficulty.impactsDamageChambers = true;
+                difficulty.chamberDamageSpeed = 7f;
+                rig.Get<Rigidbody>().velocity = new Vector3(3f, 0f, 0f);
+                yield return new WaitForSeconds(0.8f);
+                Assert.AreEqual(0, poppedEvents, "docs/02 §8: un roce a 3 m/s no revienta cámaras (umbral 7 m/s)");
+            }
+            finally
+            {
+                Object.Destroy(wall);
+                difficulty.chamberDamageSpeed = original;
+                difficulty.impactsDamageChambers = impacts;
+            }
+        }
+
+        [UnityTest]
         public IEnumerator HardImpactOnWall_PopsChamberOnThatSide()
         {
             var wall = GameObject.CreatePrimitive(PrimitiveType.Cube);

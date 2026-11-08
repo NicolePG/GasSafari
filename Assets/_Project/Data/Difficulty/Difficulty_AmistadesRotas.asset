@@ -17,7 +17,7 @@ MonoBehaviour:
   syncWindow: 0.18
   regenMultiplier: 0.85
   impactsDamageChambers: 1
-  chamberDamageImpulse: 15
+  chamberDamageSpeed: 5
   respawnPenalty: 6
   hazardSpeed: 1.15
   autoRespawnTime: 8

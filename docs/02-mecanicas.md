@@ -68,7 +68,7 @@ Unidades: metros, segundos, kilogramos, newtons. Todos los valores viven en `Bal
 
 ## 8. Cámaras de aire
 
-- Daño: pinchos, mordidas, golpes con impulso mayor a `chamberDamageImpulse` (25) en un cuadrante. Revienta la cámara de ese cuadrante.
+- Daño: pinchos, mordidas, golpes con velocidad de impacto mayor a `chamberDamageSpeed` (7 m/s en Normal; componente de la velocidad contra la superficie, como `knockoffSpeed`) en un cuadrante. Revienta la cámara de ese cuadrante. Pinchos y mordidas revientan siempre; en Familiar los golpes no dañan.
 - Coco escudo: absorbe el siguiente daño.
 - Reparación: pasiva de Melman (1 por checkpoint) o al reaparecer.
 - 0 cámaras: la balsa se hunde en 1.5 s (animación) y el equipo reaparece en el checkpoint.
@@ -172,7 +172,7 @@ Solo existe con mando, no con teclado. Para jugar solo con 2 animales o con otro
 | superFartWindow | 1.0 s | |
 | superFartForward / Up | 14 / 9 m/s | a potencia completa |
 | superFartSlowMo | 0.4 de escala durante 0.6 s | |
-| chamberDamageImpulse | 25 | |
+| chamberDamageSpeed | 7 m/s | velocidad de impacto contra la superficie, por dificultad (docs/06 §3). Antes `chamberDamageImpulse` 25 N·s (≈1.2 m/s con una balsa de 21 kg: cualquier roce reventaba cámaras); se mide en velocidad para que no dependa de la masa |
 | knockoffSpeed | 6 m/s | velocidad de impacto contra la superficie (antes `knockoffImpulse` 12 N·s, que con una balsa de 21 kg equivalía a 0.6 m/s y tiraba a todos en cada roce). 6 m/s ≈ 129 N·s con 4 animales (21.5 kg); se mide en velocidad para que no dependa de cuántos van a bordo |
 | swimSpeed | 3 m/s | |
 | autoRespawnTime | 6 s | |
