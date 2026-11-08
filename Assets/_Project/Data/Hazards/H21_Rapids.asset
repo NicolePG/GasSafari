@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: H21
   displayName: "R\xE1pidos"
-  warningTime: 0
+  warningTime: 0.5
   warningSound: 0
   alwaysDamagesChambers: 0
   parameters:

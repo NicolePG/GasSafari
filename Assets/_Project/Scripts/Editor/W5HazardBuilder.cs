@@ -20,7 +20,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Crear obstáculos de W5 (M5-26)")]
         public static void Build()
         {
-            var h21 = Config("H21_Rapids", "H21", "Rápidos", 0f, false, ("accel", 8f));
+            var h21 = Config("H21_Rapids", "H21", "Rápidos", 0.5f, false, ("accel", 8f));
             var h23 = Config("H23_GiantCroc", "H23", "Cocodrilo gigante", 0f, true, ("speedFactor", 0.9f), ("scareSeconds", 2f));
             var h37 = Config("H37_DamGate", "H37", "Compuerta de represa", 1.5f, false,
                 ("closedSeconds", 6f), ("openSeconds", 4f), ("surge", 10f), ("surgeSeconds", 3f));

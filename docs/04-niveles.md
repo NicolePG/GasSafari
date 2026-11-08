@@ -261,7 +261,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 - Escena `L_W5_2_RampasAbismo` · Oro 4:30 · Plata 6:20 · Checkpoints 4
 - Mecánica nueva: abismos (H22) que exigen Súper Pedo; rampas de salto.
-- Secciones: 1) rampas pequeñas; 2) plataformas flotantes; 3) puentes rotos; 4) el gran salto (Súper Pedo obligatorio; mangos dorados del tramo cargan el medidor).
+- Secciones: 1) rampas pequeñas; 2) plataformas flotantes; 3) puentes rotos; 4) el gran salto de 18 m (Súper Pedo obligatorio; el géiser de gas dorado H36 justo antes carga el medidor; puente de boyas tras 2 caídas).
 - Power-ups: P01 x3, P03 x3.
 - Mangos: sobre la primera rampa; en una plataforma lateral; en el aire durante el gran salto.
 - Momento estrella: cruzar el abismo con el Súper Pedo.

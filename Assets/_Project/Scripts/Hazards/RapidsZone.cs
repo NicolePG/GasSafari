@@ -15,6 +15,9 @@ namespace GasSafari.Hazards
 
         public void Configure(float strength) => intensity = strength;
 
+        // Aviso al entrar (docs/05: todo peligro avisa): HUD, Melman y bots se enteran de que empiezan los rápidos.
+        protected override void OnRaftEnter(RaftController raft) => Warn();
+
         protected override void OnRaftStay(RaftController raft)
         {
             var direction = transform.forward;

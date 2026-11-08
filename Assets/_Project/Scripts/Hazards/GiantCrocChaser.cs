@@ -49,8 +49,38 @@ namespace GasSafari.Hazards
             ResetChase();
         }
 
-        private void OnEnable() => GameEvents.OnRespawn += ResetChase;
-        private void OnDisable() => GameEvents.OnRespawn -= ResetChase;
+        private void OnEnable() => GameEvents.OnRespawn += OnRespawned;
+        private void OnDisable() => GameEvents.OnRespawn -= OnRespawned;
+
+        // Al reaparecer en un checkpoint que ya está pasada la zona de salida, la persecución sigue desde ~28 m detrás de la balsa
+        // (no vuelve a cruzar la zona que la arranca).
+        private void OnRespawned()
+        {
+            var level = LevelManager.Current;
+            ResetChase();
+            if (level == null || level.Raft == null || path == null || path.Length == 0 || body == null)
+                return;
+            var position = level.Raft.transform.position;
+            int nearest = 0;
+            float best = float.MaxValue;
+            for (int i = 0; i < path.Length; i++)
+            {
+                float d = (path[i] - position).sqrMagnitude;
+                if (d < best)
+                {
+                    best = d;
+                    nearest = i;
+                }
+            }
+            if (nearest < 4 || best > 400f)
+                return;
+            raft = level.Raft;
+            index = Mathf.Max(0, nearest - 3);
+            body.position = path[index];
+            Chasing = true;
+            averageSpeed = FlatSpeed(raft);
+            Trigger("Swim");
+        }
 
         private void ResetChase()
         {
@@ -127,7 +157,9 @@ namespace GasSafari.Hazards
             Chasing = false;
             var behind = -target.transform.forward;
             behind.y = 0f;
-            body.position = target.transform.position + behind.normalized * (catchDistance + 3f);
+            var snapPosition = target.transform.position + behind.normalized * (catchDistance + 3f);
+            snapPosition.y = target.transform.position.y - 0.3f; // sobre el agua, no flotando
+            body.position = snapPosition;
             body.rotation = Quaternion.LookRotation(-behind.normalized);
             Trigger("Bite");
         }

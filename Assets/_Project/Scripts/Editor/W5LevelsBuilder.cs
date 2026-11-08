@@ -28,7 +28,7 @@ namespace GasSafari.Editor
             level.Straight(120f, 14f);                                                // S3 rápidos clase 2 con rocas
             float longRapid = level.Length;
             level.Straight(170f, 14f);                                                // S4 el rápido más largo del juego
-            level.Straight(30f, 14f);
+            level.Straight(20f, 14f);
             level.BuildChannel(0.3f);
 
             level.Section(1, "Entrada", 0f);
@@ -45,6 +45,9 @@ namespace GasSafari.Editor
             Rapids(level, class2 + 6f, longRapid - 6f, 1f);
             Rapids(level, longRapid + 6f, longRapid + 164f, 1f);
             level.PowerUp("P01", 24f, 0f);
+            // S1: dos rocas bajas de preaviso (algo nuevo cada ~30 s).
+            Rock(level, "W5_CanyonRock_A", 60f, 4.4f, 15f, 0.7f);
+            Rock(level, "W5_CanyonRock_B", 85f, -4.4f, 95f, 0.7f);
 
             // S2: unas pocas rocas bajas (el rápido de clase 1 solo avisa).
             Rock(level, "W5_CanyonRock_A", class1 + 45f, -4.6f, 0f, 0.9f);
@@ -60,13 +63,13 @@ namespace GasSafari.Editor
             // Cascada pequeña lateral con el mango de riesgo.
             level.WallGap(class2 + 70f, class2 + 80f);
             Alcove(level, class2 + 75f, 1f);
-            level.Mango(1, class2 + 75f, 8.4f, 1f);
+            level.Mango(2, class2 + 75f, 8.4f, 1f);                                  // escondido: cascada pequeña lateral
             level.PowerUp("P01", class2 + 8f, 0f);
 
             // S4: el rápido más largo: pocas rocas, mango al final sin frenar.
             for (int i = 0; i < 5; i++)
                 Rock(level, "W5_CanyonRock_C", longRapid + 30f + i * 30f, i % 2 == 0 ? 4.2f : -4.2f, i * 37f, 0.9f);
-            level.Mango(2, longRapid + 168f, 0f, 1f);
+            level.Mango(1, longRapid + 168f, 0f, 1f);                              // riesgo: al final del rápido largo sin frenar
             level.PowerUp("P04", longRapid + 12f, 0f);
             level.PowerUp("P01", longRapid + 100f, 0f);
             Anchor(level, longRapid + 90f, 0f);
@@ -137,17 +140,16 @@ namespace GasSafari.Editor
                 platform.transform.localScale = Vector3.one * 0.6f;
                 platform.name = "PlataformaFlotante_" + i;
             }
-            var side = level.Place(HZ + "H35_SinkingPlatform.prefab", platforms + 58f, 6.3f);
-            side.transform.localScale = Vector3.one * 0.5f;
+            var side = level.Place(HZ + "H35_SinkingPlatform.prefab", platforms + 64f, 5.2f);
+            side.transform.localScale = Vector3.one * 0.4f;
             side.name = "PlataformaLateral";
-            level.Mango(1, platforms + 58f, 6.3f, 1.6f);
+            level.Mango(1, platforms + 64f, 5.2f, 1.6f);
             level.PowerUp("P01", platforms + 8f, 0f);
 
             // S3: puentes rotos (vista) sobre el cauce, uno con la roca caída; sin daño.
             for (int i = 0; i < 3; i++)
                 Overpass(level, bridges + 20f + i * 34f);
             level.PowerUp("P03", bridges + 60f, 0f);
-            level.PowerUp("P01", bridges + 100f, 0f);
 
             // S4: gran salto. Antes de la rampa, un géiser de gas dorado (H36) llena el medidor; en el despegue los bots lanzan el
             // Súper Pedo solos (BotHint SuperFart); si el equipo cae 2 veces aparece el puente de boyas. Mango en el aire.
@@ -186,18 +188,18 @@ namespace GasSafari.Editor
             // que corta las curvas desde las raíces hasta la reunión.
             level.Branch(fork1, roots, 6f, -14f);
             level.Branch(fork1, roots, 6f, 14f);
-            level.Branch(roots + 10f, join - 10f, 5f, 0f);
+            level.Branch(roots + 10f, level.Length - 40f, 5f, 0f);   // atajo secreto: corta casi la mitad del recorrido
             level.BuildChannel(0.2f);
 
-            level.Section(1, "Bifurcacion", fork1);
+            level.Section(1, "Bifurcacion", 0f);
             level.Section(2, "Raices", roots);
             level.Section(3, "Niebla", fog);
             level.Section(4, "Reunion", join);
             level.AddCheckpoint(0f);
-            level.AddCheckpoint(fork1);
             level.AddCheckpoint(roots);
             level.AddCheckpoint(fog);
             level.AddCheckpoint(join);
+            level.AddCheckpoint(join + 140f);
 
             // Bifurcación: una ruta segura (el cauce, ancho y tranquilo), una rápida (a la izquierda, con corriente de rápidos) y la de
             // los mangos (a la derecha, con troncos). Los bots siguen el cauce principal.
@@ -217,7 +219,7 @@ namespace GasSafari.Editor
             for (int i = 0; i < 6; i++)
                 Rock(level, i % 2 == 0 ? "W5_Mangrove_A" : "W5_Mangrove_B", roots + 10f + i * 14f, i % 2 == 0 ? -5.2f : 5.2f, i * 47f, 0.75f);
             for (int i = 0; i < 3; i++)
-                Anchor(level, roots + 20f + i * 28f, i % 2 == 0 ? 2.5f : -2.5f);
+                level.Place(HZ + "Anchor_Post.prefab", roots + 20f + i * 28f, i % 2 == 0 ? 2.5f : -2.5f).name = "Ancla_" + i;
             level.PowerUp("P01", roots + 30f, 0f);
             level.PowerUp("P06", roots + 60f, 0f);
 
@@ -226,7 +228,7 @@ namespace GasSafari.Editor
             level.PowerUp("P01", fog + 40f, 0f);
 
             // S4: reunión; salida.
-            level.PowerUp("P01", join + 30f, 0f);
+            level.PowerUp("P02", fog - 20f, 0f);
             Anchor(level, roots + 14f, 0f);
 
             var theme = LevelDresser.With(LevelDresser.W5, new[] { "W5_Mangrove_A", "W5_Mangrove_B", "W5_DesertFlowers", "W5_Tumbleweed" }, 0.8f,
@@ -269,23 +271,22 @@ namespace GasSafari.Editor
             for (int i = 0; i < 3; i++)
                 DamGate(level, locks + 22f + i * 36f, 0.3f, i * 1.5f);
             // Mango en una esclusa alta: una plataforma sobre el muro.
-            var lockTop = level.Block("EsclusaAlta", level.PointAt(locks + 58f, 8.4f, 1.8f), new Vector3(5f, 0.6f, 5f), ConcreteColor,
-                Quaternion.LookRotation(level.DirectionAt(locks + 58f)).eulerAngles.y);
+            var lockTop = level.Block("EsclusaAlta", level.PointAt(locks + 76f, 8.4f, 1.8f), new Vector3(5f, 0.6f, 5f), ConcreteColor,
+                Quaternion.LookRotation(level.DirectionAt(locks + 76f)).eulerAngles.y);
             lockTop.layer = GameLayers.Environment;
-            level.WallGap(locks + 54f, locks + 62f);
-            level.Mango(0, locks + 58f, 8.4f, 2.6f);
+            level.WallGap(locks + 72f, locks + 80f);
+            level.Mango(1, locks + 76f, 8.4f, 2.6f);                                  // riesgo: esclusa alta, entre las compuertas 2 y 3
             level.PowerUp("P01", locks + 10f, 0f);
             level.PowerUp("P04", locks + 100f, 0f);
 
             // S3: compuertas gigantes: cada una libera una oleada fuerte (se sube con la ola o se espera).
-            DamGate(level, gates + 24f, 1f, 0f);
-            DamGate(level, gates + 84f, 1f, 3f);
-            level.Mango(1, gates + 52f, 0f, 1.4f);                                    // en la cresta de la primera oleada
-            level.PowerUp("P01", gates + 8f, 0f);
+            DamGate(level, gates + 24f, 1f, 0f, true);
+            DamGate(level, gates + 84f, 1f, 3f, true);
+            level.Mango(0, gates + 52f, 0f, 1.4f);                                    // ruta: en la cresta de la primera oleada
             level.PowerUp("P01", gates + 110f, 0f);
 
             // S4: aliviadero: borde (H17) y caída de 10 m; torre de control con el mango escondido.
-            var edge = level.Place(HZ + "H17_Waterfall.prefab", spill + 30f, 0f);
+            var edge = level.Place(HZ + "H17_Waterfall.prefab", spill + 40f, 0f);   // el modelo del borde va 10 m más adelante: justo donde empieza la bajada
             edge.name = "BordeAliviadero";
             EditorUtility.SetDirty(edge.GetComponent<WaterfallEdge>());
             DamGate(level, spill + 8f, 1f, 1f);
@@ -311,15 +312,15 @@ namespace GasSafari.Editor
             level.StartPath(Vector3.zero, 0f).Straight(70f, 14f);                     // S1 salida en la montaña
             level.Straight(40f, 14f, -4f);
             float bends = level.Length;
-            level.Arc(45f, 90f, 14f, -5f).Straight(30f, 14f, -2f);                    // S2 curvas peraltadas
-            level.Arc(45f, -90f, 14f, -5f).Straight(30f, 14f, -2f);
-            level.Arc(45f, 90f, 14f, -5f).Straight(20f, 14f, -2f);
+            level.Arc(28f, 90f, 14f, -5f).Straight(15f, 14f, -2f);                    // S2 curvas (en pendiente, sin peralte: provisional)
+            level.Arc(28f, -90f, 14f, -5f).Straight(15f, 14f, -2f);
+            level.Arc(28f, 90f, 14f, -5f).Straight(10f, 14f, -2f);
             float tunnel = level.Length;
             level.Straight(30f, 14f, -3f).Straight(110f, 14f, -4f);                   // S3 túnel oscuro
             float geysers = level.Length;
-            level.Straight(60f, 14f, -3f).Straight(60f, 14f);                         // S4 géiseres y rampa
+            level.Straight(60f, 14f, -3f).Straight(40f, 14f).Straight(20f, 14f, 3f);  // S4 géiseres y rampa de despegue (sube 3 m)
             float chase = level.Length;
-            level.Straight(80f, 14f, -4f).Straight(110f, 14f, -4f);                   // S5 el cocodrilo muerde la cola
+            level.Straight(80f, 14f, -4f).Straight(106f, 14f, -4f);                   // S5 el cocodrilo muerde la cola
             float sea = level.Length;
             level.Straight(60f, 14f, -3f).Straight(60f, 14f);                         // S6 llegada al mar y al barco
             level.BuildChannel(0.4f);
@@ -344,11 +345,10 @@ namespace GasSafari.Editor
             // S2: curvas peraltadas: el mango de la curva exterior (a un costado, riesgo con la velocidad).
             var outer = level.Mango(0, 0f, 0f, 1f);
             outer.transform.position = level.PointAt(bends + 52f, -6.2f, 1f);
-            level.PowerUp("P01", bends + 20f, 0f);
             level.PowerUp("P04", bends + 100f, 0f);
 
             // S3: túnel oscuro (visibilidad de 8 m) con el mango dentro.
-            DarkTunnel(level, tunnel, geysers, 8f);
+            DarkTunnel(level, tunnel, geysers + 20f, 8f);
             level.Mango(1, tunnel + 90f, 3.5f, 1f);
             level.PowerUp("P01", tunnel + 10f, 0f);
             level.PowerUp("P03", tunnel + 70f, 0f);
@@ -377,19 +377,17 @@ namespace GasSafari.Editor
             EditorUtility.SetDirty(chaser);
             level.PowerUp("P01", chase + 30f, 0f);
             level.PowerUp("P04", chase + 120f, 0f);
-            level.PowerUp("P01", chase + 170f, 0f);
 
             // S6: llegada al mar: rampa final con el trampolín (H27) y el barco al que saltan; el cocodrilo cierra la boca detrás.
             level.Place(HZ + "H27_Jet.prefab", sea + 50f, 0f);
             level.Mango(2, sea + 62f, 0f, 3.2f);                                       // en la rampa final
             level.PowerUp("P01", sea + 8f, 0f);
-            level.PowerUp("P03", sea + 30f, 0f);
             // El barco queda en la orilla derecha, junto a la llegada (no en el cauce: la meta está en el agua).
             var ship = level.Block("Barco", level.PointAt(level.Length - 12f, 13f, 0.8f), new Vector3(10f, 3f, 16f), ConcreteColor,
                 Quaternion.LookRotation(level.DirectionAt(level.Length - 12f)).eulerAngles.y);
             ship.layer = GameLayers.Environment;
             Anchor(level, sea + 56f, 0f);
-            CrocFinale(level, sea + 40f, chaser);
+            CrocFinale(level, sea + 52f, chaser); // justo tras el trampolín (sea+50), cerca del ancla de la toma
 
             var theme = LevelDresser.With(LevelDresser.W5, LevelDresser.W5.Decor, 0.9f, new Color(0.72f, 0.4f, 0.22f));
             theme.Landmark = "W5_SlideTower";
@@ -433,7 +431,7 @@ namespace GasSafari.Editor
         }
 
         // Compuerta de represa (H37) con su zona de oleada aguas abajo.
-        private static void DamGate(GreyboxLevel level, float d, float surge, float phase)
+        private static void DamGate(GreyboxLevel level, float d, float surge, float phase, bool giant = false)
         {
             var gate = level.Place(HZ + "H37_DamGate.prefab", d, 0f);
             gate.name = "Compuerta";
@@ -442,7 +440,14 @@ namespace GasSafari.Editor
             so.FindProperty("phase").floatValue = phase;
             so.FindProperty("surgeScale").floatValue = surge;
             so.ApplyModifiedPropertiesWithoutUndo();
-            gate.transform.localScale = new Vector3(level.WidthAt(d) / 14f, 1f, 1f);
+            // Las compuertas gigantes tienen la puerta 1.6 veces más alta que las de las esclusas.
+            gate.transform.localScale = new Vector3(level.WidthAt(d) / 14f, giant ? 1.6f : 1f, 1f);
+            if (giant)
+            {
+                var giantSo = new SerializedObject(script);
+                giantSo.FindProperty("doorLift").floatValue = 8.5f;
+                giantSo.ApplyModifiedPropertiesWithoutUndo();
+            }
         }
 
         // Abismo (H22): trigger bajo el hueco con el puente de boyas de ayuda.
