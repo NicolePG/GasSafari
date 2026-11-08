@@ -94,6 +94,18 @@ namespace GasSafari.Hazards
             EnterIdle();
         }
 
+        // Un golpe dirigido a un punto (momento estrella de W1-5: el gancho cae detrás de la balsa sobre un contenedor).
+        public void StrikeAt(Vector3 point)
+        {
+            active = true;
+            strikesLeft = 1;
+            intervalOverride = 0f;
+            shadow.gameObject.SetActive(false);
+            target = ClampTarget(point, true);
+            phaseTimer = Config.warningTime + 0.2f;
+            phase = Phase.Tracking;
+        }
+
         public void StopAttacks()
         {
             active = false;

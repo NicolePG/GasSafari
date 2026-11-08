@@ -499,6 +499,132 @@ namespace GasSafari.Editor
             return config;
         }
 
+        // ---------------------------------------------------------------- W1-5 Persecución en el Puerto (jefe)
+        private static readonly Color ContainerColor = new Color(0.8f, 0.3f, 0.2f);
+
+        [MenuItem("Gas Safari/Setup/Greybox W1-5 Persecucion en el Puerto (M5-07)")]
+        public static void BuildW1_5()
+        {
+            var level = GreyboxLevel.Create("W1-5", "L_W1_5_PuertoJefe");
+            level.StartPath(Vector3.zero, 0f).Straight(200f, 12f);          // S1 la grúa aparece: 3 ganchos
+            float slide = level.Length;
+            level.Straight(180f, 12f);                                      // S2 contenedores que se deslizan
+            float sink = level.Length;
+            level.Arc(30f, -50f, 12f).Straight(90f, 12f);                  // S3 plataforma que se hunde
+            float sprint = level.Length;
+            level.Straight(200f, 12f);                                      // S4 sprint final (gancho cada 2 s)
+            float ramp = level.Length;
+            level.Straight(16f, 10f, 3f).Straight(12f, 10f);                // rampa del barco de carga y cubierta
+            level.BuildChannel(0f);
+
+            level.Section(1, "Grua", 0f);
+            level.Section(2, "Contenedores", slide);
+            level.Section(3, "Plataforma", sink);
+            level.Section(4, "Sprint", sprint);
+            level.AddCheckpoint(0f);
+            level.AddCheckpoint(slide);
+            level.AddCheckpoint(sink);
+            level.AddCheckpoint(sprint);
+
+            // La grúa (H24) espera en la orilla y sigue a la balsa por todo el puerto.
+            var crane = level.Place(HZ + "H24_Crane.prefab", 25f, -14f, 90f).GetComponent<GasSafari.Hazards.CraneBoss>();
+            Zone(level, "Grua_3Golpes", 20f, crane, 3, 0f, false);
+            Zone(level, "Grua_Para", slide - 5f, crane, 0, 0f, true);
+            Zone(level, "Grua_Sprint", sprint + 5f, crane, 0, 2f, false);       // docs/04: cada 2 s
+            Zone(level, "Grua_Fin", ramp + 20f, crane, 0, 0f, true);
+            level.PowerUp("P04", 8f, 0f);
+            level.PowerUp("P01", 100f, 3f);
+
+            // S2: contenedores que cruzan el cauce (H05) y uno abierto con el mango.
+            for (int i = 0; i < 4; i++)
+            {
+                float d = slide + 30f + i * 35f;
+                var block = level.Place(HZ + "H05_MovingBlocker.prefab", d, -(level.WidthAt(d) * 0.5f + 1f), 90f);
+                block.name = "Contenedor_" + (i + 1);
+                var so = new SerializedObject(block.GetComponent<GasSafari.Hazards.MovingBlocker>());
+                so.FindProperty("travel").vector3Value = new Vector3(0f, 0f, level.WidthAt(d) - 2f);
+                so.FindProperty("phase").floatValue = i * 1.3f;
+                so.ApplyModifiedPropertiesWithoutUndo();
+            }
+            Container(level, "ContenedorAbierto", slide + 150f, 4.5f, false);
+            level.Mango(0, slide + 150f, 4.5f, 1f);
+            level.PowerUp("P01", slide + 90f, 0f);
+
+            // S3: plataforma H35 que tapa el cauce (sumergida apenas): empieza a hundirse al tocarla; mango en su borde.
+            float platform = sink + 60f;
+            var deck = level.Place(HZ + "H35_SinkingPlatform.prefab", platform, 0f, 0f, -0.5f);
+            deck.name = "Plataforma";
+            deck.transform.localScale = new Vector3(level.WidthAt(platform) / 8f, 1f, 2f);
+            var touch = new GameObject("Toque");
+            touch.transform.SetParent(deck.transform, false);
+            touch.layer = GasSafari.Core.GameLayers.Hazard;
+            var touchBox = touch.AddComponent<BoxCollider>();
+            touchBox.isTrigger = true;
+            touchBox.center = new Vector3(0f, 1.2f, 0f);
+            touchBox.size = new Vector3(8f, 2f, 8f);
+            level.Mango(1, platform + 6f, 4f, 0.8f);                        // riesgo: quedarse sobre la plataforma
+
+            // S4: sprint; contenedor junto a la rampa que el gancho destroza detrás de la balsa (momento estrella).
+            level.PowerUp("P04", sprint + 4f, 0f);
+            level.PowerUp("P01", sprint + 110f, -3f);
+            var target = Container(level, "ContenedorFinal", ramp - 6f, -(level.WidthAt(ramp) * 0.5f - 1.5f), true);
+            var finale = new GameObject("StarMoment");
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(finale, level.Scene);
+            finale.layer = GasSafari.Core.GameLayers.Trigger;
+            finale.transform.SetPositionAndRotation(level.PointAt(ramp + 2f, 0f, 1f), Quaternion.LookRotation(level.DirectionAt(ramp)));
+            var box = finale.AddComponent<BoxCollider>();
+            box.isTrigger = true;
+            box.size = new Vector3(12f, 4f, 3f);
+            var shot = ShotBuilder.Create(finale.transform, "Rampa_Toma", "Assets/_Project/Data/Levels/W1-5_StarShot.playable", 2.5f,
+                new Vector3(-10f, 6f, -8f), out var vcam);
+            finale.AddComponent<GasSafari.Level.CraneFinale>().Configure(crane, target.transform, shot, vcam);
+            level.Mango(2, ramp + 16f, 0f, 2.6f);                           // punta de la rampa: hace falta sync para llegar alto
+            var ship = AssetDatabase.LoadAssetAtPath<GameObject>(ENV + "W1_CargoShip.fbx");
+            if (ship != null)
+            {
+                var hull = (GameObject)PrefabUtility.InstantiatePrefab(ship, level.Scene);
+                hull.transform.SetPositionAndRotation(level.PointAt(ramp + 22f, 0f, -0.5f), Quaternion.LookRotation(level.DirectionAt(ramp)));
+                GameObjectUtility.SetStaticEditorFlags(hull, StaticEditorFlags.BatchingStatic);
+            }
+
+            LevelDresser.Dress(level, LevelDresser.With(LevelDresser.W1, new[] { "W1_Container_A", "W1_Container_B", "W1_Container_C", "W1_Barrel_A",
+                "W1_Barrel_B", "W1_Crate_A", "W1_Crate_B", "W1_Crate_C", "W1_Dock" }, 0.45f, LevelDresser.W1.Fog), 16, level.PointAt(ramp, -50f), 90f);
+            level.Finish();
+            Debug.Log($"M5-07 W1-5 listo: {level.Length:F0} m");
+        }
+
+        private static void Zone(GreyboxLevel level, string name, float d, GasSafari.Hazards.CraneBoss crane, int strikes, float interval, bool stop)
+        {
+            var go = new GameObject(name);
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(go, level.Scene);
+            go.layer = GasSafari.Core.GameLayers.Trigger;
+            go.transform.SetPositionAndRotation(level.PointAt(d, 0f, 1f), Quaternion.LookRotation(level.DirectionAt(d)));
+            var box = go.AddComponent<BoxCollider>();
+            box.isTrigger = true;
+            box.size = new Vector3(level.WidthAt(d) + 2f, 4f, 2f);
+            go.AddComponent<GasSafari.Level.CraneZone>().Configure(crane, strikes, interval, stop);
+        }
+
+        // Contenedor del puerto (modelo W1_Container); 'breakable' = se rompe con el gancho (H07, IBreakable).
+        private static GameObject Container(GreyboxLevel level, string name, float d, float lateral, bool breakable)
+        {
+            var model = AssetDatabase.LoadAssetAtPath<GameObject>(ENV + "W1_Container_A.fbx");
+            var go = (GameObject)PrefabUtility.InstantiatePrefab(model, level.Scene);
+            go.name = name;
+            go.layer = GasSafari.Core.GameLayers.Hazard;
+            go.transform.SetPositionAndRotation(level.PointAt(d, lateral, -0.4f), Quaternion.LookRotation(level.DirectionAt(d)));
+            var renderers = go.GetComponentsInChildren<Renderer>();
+            var bounds = renderers[0].bounds;
+            foreach (var r in renderers)
+                bounds.Encapsulate(r.bounds);
+            var box = go.AddComponent<BoxCollider>();
+            box.center = go.transform.InverseTransformPoint(bounds.center);
+            box.size = bounds.size;
+            if (breakable)
+                go.AddComponent<GasSafari.Hazards.BreakableCrate>().Configure(AssetDatabase.LoadAssetAtPath<GasSafari.Hazards.HazardConfig>("Assets/_Project/Data/Hazards/H07_Crate.asset"));
+            return go;
+        }
+
         // Modelos sobre las piezas del greybox de W1-1 (el collider del greybox se queda; su caja deja de verse).
         private static void DressW1_1(GreyboxLevel level)
         {
