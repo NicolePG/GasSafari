@@ -83,6 +83,11 @@ namespace GasSafari.Editor
             var hatSocket = new GameObject("HatSocket").transform;
             hatSocket.SetParent(instance.transform, false);
             hatSocket.position = head.position + Vector3.up * (HAT_RISE * data.height);
+            // Con el ancla de Blender (hat_anchors.json) el socket queda en la parte superior de la cabeza; la fórmula anterior
+            // dejaba los sombreros hundidos de 13 a 26 cm en la cabeza (auditoría HatClippingTests).
+            var anchors = AssetDatabase.LoadAssetAtPath<HatAnchorSet>("Assets/_Project/Data/Cosmetics/HatAnchors.asset");
+            if (anchors != null && anchors.TryGet(data.name, out var anchor))
+                hatSocket.position = visual.transform.TransformPoint(anchor.headTop);
             hatSocket.SetParent(head, true);
 
             var capsule = instance.GetComponent<CapsuleCollider>();

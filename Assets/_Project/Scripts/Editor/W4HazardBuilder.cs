@@ -220,6 +220,7 @@ namespace GasSafari.Editor
             PrefabUtility.SaveAsPrefabAsset(root, PREFABS + name + ".prefab");
             Object.DestroyImmediate(root);
             EditorSceneManager.ClosePreviewScene(scene);
+            HazardModelBuilder.ApplyIfMapped(name); // modelo de Blender (README de Tools/Export/Hazards)
         }
 
         private static Material Toon(string name, Color color)

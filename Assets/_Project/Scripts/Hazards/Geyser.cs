@@ -28,6 +28,9 @@ namespace GasSafari.Hazards
             phase = startPhase;
         }
 
+        // Cambia solo la fase del ciclo (la columna de vapor ya viene del prefab, con el modelo de Blender).
+        public void SetPhase(float startPhase) => phase = startPhase;
+
         private void Awake() => timer = phase;
 
         protected override void OnRaftEnter(RaftController raft)

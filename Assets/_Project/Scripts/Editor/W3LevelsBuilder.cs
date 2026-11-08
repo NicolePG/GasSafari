@@ -284,7 +284,6 @@ namespace GasSafari.Editor
             edge.name = "BordeCascada";
             EditorUtility.SetDirty(edge.GetComponent<WaterfallEdge>());
             level.Mango(2, drop + 44f, 0f, 1f);
-            Waterfall(level, drop + 14f, 0f, 10f, Quaternion.LookRotation(level.DirectionAt(drop + 14f)).eulerAngles.y);
 
             LevelDresser.Dress(level, LevelDresser.W3, 33, level.PointAt(roots, 60f), -90f);
             W2StarShots.Apply(level.Scene, "W3-3");

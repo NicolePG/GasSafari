@@ -14,6 +14,8 @@ namespace GasSafari.Hazards
         [SerializeField] private float interval = 3f;
         [SerializeField] private float range = 45f;
         [SerializeField] private Transform shadow;
+        [Tooltip("Modelo de la roca que cae (desactivado); si falta, una esfera")]
+        [SerializeField] private GameObject rockTemplate;
 
         private const float DROP_HEIGHT = 12f;
         private const float DROP_TIME = 0.3f;
@@ -84,10 +86,19 @@ namespace GasSafari.Hazards
             }
             if (fallingRock == null)
             {
-                var rock = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                Destroy(rock.GetComponent<Collider>());
+                GameObject rock;
+                if (rockTemplate != null)
+                {
+                    rock = Instantiate(rockTemplate);
+                    rock.SetActive(true);
+                }
+                else
+                {
+                    rock = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    Destroy(rock.GetComponent<Collider>());
+                    rock.transform.localScale = Vector3.one * 2f;
+                }
                 rock.name = "Roca";
-                rock.transform.localScale = Vector3.one * 2f;
                 fallingRock = rock.transform;
                 fallingRock.SetParent(transform, true);
             }

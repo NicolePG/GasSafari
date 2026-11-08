@@ -200,7 +200,7 @@ namespace GasSafari.Editor
             {
                 var geyser = level.Place(HZ + "H19_Geyser.prefab", 30f + i * 32f, 0f);
                 geyser.name = "Geiser_" + i;
-                geyser.GetComponent<Geyser>().Configure(geyser.transform.Find("Vapor"), i * 1f);
+                geyser.GetComponent<Geyser>().SetPhase(i * 1f);
                 EditorUtility.SetDirty(geyser.GetComponent<Geyser>());
             }
             level.Mango(0, 30f, 0f, 5.5f);
@@ -211,7 +211,7 @@ namespace GasSafari.Editor
             {
                 var geyser = level.Place(HZ + "H19_Geyser.prefab", pools + 25f + i * 35f, i % 2 == 0 ? 4f : -4f);
                 geyser.name = "GeiserPoza_" + i;
-                geyser.GetComponent<Geyser>().Configure(geyser.transform.Find("Vapor"), i * 0.7f);
+                geyser.GetComponent<Geyser>().SetPhase(i * 0.7f);
                 EditorUtility.SetDirty(geyser.GetComponent<Geyser>());
             }
             var bridge = level.Block("PuenteRoca", level.PointAt(pools + 95f, 0f, 7f), new Vector3(18f, 0.7f, 3f), RockColor,
@@ -226,7 +226,7 @@ namespace GasSafari.Editor
             {
                 var geyser = level.Place(HZ + "H19_Geyser.prefab", chain + 6f + i * 9f, 0f);
                 geyser.name = "GeiserCadena_" + i;
-                geyser.GetComponent<Geyser>().Configure(geyser.transform.Find("Vapor"), i * 0.9f);
+                geyser.GetComponent<Geyser>().SetPhase(i * 0.9f);
                 EditorUtility.SetDirty(geyser.GetComponent<Geyser>());
             }
             level.Mango(1, gap1 + 8f, 0f, 3.8f);
@@ -416,7 +416,7 @@ namespace GasSafari.Editor
             var geyser = level.Place(HZ + "H19_Geyser.prefab", exit + 60f, 0f);
             geyser.name = "GeiserFinal";
             geyser.transform.localScale = Vector3.one * 1.4f;
-            geyser.GetComponent<Geyser>().Configure(geyser.transform.Find("Vapor"), 0f);
+            geyser.GetComponent<Geyser>().SetPhase(0f);
             var finalSo = new SerializedObject(geyser.GetComponent<Geyser>());
             finalSo.FindProperty("armOnEnter").boolValue = true;
             finalSo.ApplyModifiedPropertiesWithoutUndo();
@@ -436,9 +436,8 @@ namespace GasSafari.Editor
         {
             var edge = level.Place(HZ + "H17_Waterfall.prefab", d, 0f);
             edge.name = "BordeCascada";
-            var config = edge.GetComponent<WaterfallEdge>();
-            Curtain(level, d + 10f, 0f, level.WidthAt(d));
-            EditorUtility.SetDirty(config);
+            // El modelo de H17 trae su cortina de agua en el borde (10 m más adelante del aviso).
+            EditorUtility.SetDirty(edge.GetComponent<WaterfallEdge>());
         }
 
         // Cortina de agua visual (sin collider).

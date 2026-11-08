@@ -205,9 +205,39 @@ namespace GasSafari.Editor
                 lessons.Add(Lesson(level, steps[i], starts[i], zoneEnds[i], barrier));
             }
 
+            // Señalética de Blender: arco con tablón al empezar, un cartel grande por lección (con su título) y una boya de zona
+            // en la orilla donde empieza cada una (al lado del checkpoint).
+            float hangingWidth = WIDTH / 6.1f;
+            TutorialModel(level, "Tutorial_HangingSign", level.PointAt(3f), Quaternion.LookRotation(level.DirectionAt(3f)).eulerAngles.y,
+                new Vector3(hangingWidth, 1f, 1f));
+            for (int i = 0; i < 10; i++)
+            {
+                float at = starts[i] + 4f;
+                float half = level.WidthAt(at) * 0.5f;
+                float yaw = Quaternion.LookRotation(level.DirectionAt(at)).eulerAngles.y;
+                var sign = TutorialModel(level, "Tutorial_BigSign", level.PointAt(at, -(half + 3.5f)), yaw + 90f, Vector3.one * 0.7f);
+                sign.name = $"Cartel_{i + 1:00}";
+                var panel = sign.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.name == "Panel");
+                if (panel != null)
+                {
+                    var text = new GameObject("Titulo").AddComponent<TMPro.TextMeshPro>();
+                    text.transform.SetParent(panel, false);
+                    text.transform.localPosition = new Vector3(0f, 0f, 0.1f);
+                    text.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                    text.rectTransform.sizeDelta = new Vector2(4.4f, 1.8f);
+                    text.text = $"{i + 1}. {steps[i].title}";
+                    text.fontSize = 3.2f;
+                    text.alignment = TMPro.TextAlignmentOptions.Center;
+                    text.color = new Color(0.15f, 0.12f, 0.3f);
+                }
+                TutorialModel(level, "Tutorial_LessonBuoy_Zone", level.PointAt(starts[i] + 1f, half - 0.9f), 0f, Vector3.one);
+            }
+
             // L3: boya y 3 marcas en orden (derecha, detrás, izquierda): obliga a rodearla.
             float buoy = 50f;
-            level.Cylinder("Boya", level.PointAt(buoy), 1.2f, 2.2f, BuoyColor);
+            var buoyBlock = level.Cylinder("Boya", level.PointAt(buoy), 1.2f, 2.2f, BuoyColor);
+            buoyBlock.GetComponent<MeshRenderer>().enabled = false; // collider; se ve la boya del modelo
+            TutorialModel(level, "Tutorial_LessonBuoy_Turn", level.PointAt(buoy, 0f, -0.5f), 0f, Vector3.one);
             level.Mango(0, buoy, 0f, 2.3f); // ruta: sobre la boya
             var gates = new[]
             {
@@ -260,12 +290,29 @@ namespace GasSafari.Editor
             Debug.Log($"M5-01 T-0 greybox listo: {level.Length:F0} m, 10 lecciones");
         }
 
+        private const string TUTORIAL_ART = "Assets/_Project/Art/Tutorial/";
+
+        // Modelo de Blender de Art/Tutorial colocado en la escena del nivel (sin collider: es señalética).
+        private static GameObject TutorialModel(GreyboxLevel level, string fbx, Vector3 position, float yaw, Vector3 scale)
+        {
+            var asset = AssetDatabase.LoadAssetAtPath<GameObject>(TUTORIAL_ART + fbx + ".fbx");
+            var go = (GameObject)PrefabUtility.InstantiatePrefab(asset, level.Scene);
+            go.transform.SetPositionAndRotation(position, Quaternion.Euler(0f, yaw, 0f));
+            go.transform.localScale = scale;
+            return go;
+        }
+
         private static BubbleBarrier Barrier(GreyboxLevel level, int lesson, float at)
         {
             var go = level.Block($"Barrera_{lesson:00}", level.PointAt(at), new Vector3(level.WidthAt(at) + 1f, 2.5f, 0.6f), BarrierColor,
                 Quaternion.LookRotation(level.DirectionAt(at)).eulerAngles.y);
             var barrier = go.AddComponent<BubbleBarrier>();
-            barrier.Configure(go.GetComponent<Collider>(), new[] { go.GetComponent<Renderer>() });
+            // El bloque queda como collider invisible; lo que se ve son las burbujas del modelo (revientan al abrirse).
+            go.GetComponent<MeshRenderer>().enabled = false;
+            float width = level.WidthAt(at) + 1f;
+            var model = TutorialModel(level, "Tutorial_BubbleBarrier", level.PointAt(at), Quaternion.LookRotation(level.DirectionAt(at)).eulerAngles.y,
+                new Vector3(width / 8.4f, 1f, 1f));
+            barrier.Configure(go.GetComponent<Collider>(), model.GetComponentsInChildren<Renderer>());
             return barrier;
         }
 
@@ -290,8 +337,8 @@ namespace GasSafari.Editor
             go.layer = GameLayers.Trigger;
             go.GetComponent<BoxCollider>().isTrigger = true;
             // Marca visible flotando sobre el agua, por encima de la cabeza de cualquier animal (3.1 m) para no atravesarlos.
-            var flag = level.Cylinder(name + "_Bandera", level.PointAt(at, lateral) + Vector3.up * 3.4f, 0.15f, 0.6f, Color.yellow, "Tutorial");
-            Object.DestroyImmediate(flag.GetComponent<Collider>());
+            string marker = "Tutorial_LessonBuoy_Marker" + name.Substring(name.Length - 1);
+            TutorialModel(level, marker, level.PointAt(at, lateral) + Vector3.up * 3.2f, 0f, Vector3.one).name = name + "_Boya";
             return go.AddComponent<TutorialGate>();
         }
 
@@ -422,6 +469,7 @@ namespace GasSafari.Editor
             PrefabUtility.SaveAsPrefabAsset(root, HZ_PREFABS + name + ".prefab");
             Object.DestroyImmediate(root);
             EditorSceneManager.ClosePreviewScene(scene);
+            HazardModelBuilder.ApplyIfMapped(name); // modelo de Blender (README de Tools/Export/Hazards)
         }
 
         private static Material Toon(string name, Color color)

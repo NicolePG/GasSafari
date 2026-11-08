@@ -293,6 +293,7 @@ namespace GasSafari.Editor
             PrefabUtility.SaveAsPrefabAsset(root, PREFABS + name + ".prefab");
             Object.DestroyImmediate(root);
             EditorSceneManager.ClosePreviewScene(scene);
+            HazardModelBuilder.ApplyIfMapped(name); // modelo de Blender (README de Tools/Export/Hazards)
         }
 
         private static GameObject Model(string fbx, string name)

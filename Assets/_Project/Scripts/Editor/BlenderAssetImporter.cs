@@ -184,6 +184,56 @@ namespace GasSafari.Editor
             return controller;
         }
 
+        // ---------------------------------------------------------------- obstáculos, tutorial y sombreros (M5-xx)
+        // Copia los FBX de Tools/Export/<source> a Art/<target> (si cambiaron) y los importa estáticos con materiales SG_Toon.
+        // Devuelve las rutas de los FBX. 'shadow' es el color de sombra del toon.
+        public static string[] ImportStaticModels(string source, string target, Color shadow)
+        {
+            string toonFolder = ART + target + "/Materials";
+            EnsureFolder(toonFolder);
+            var paths = new List<string>();
+            foreach (var file in Directory.GetFiles("Tools/Export/" + source, "*.fbx"))
+            {
+                string path = ART + target + "/" + Path.GetFileName(file);
+                var from = new FileInfo(file);
+                var to = new FileInfo(path);
+                if (!to.Exists || to.Length != from.Length || to.LastWriteTimeUtc < from.LastWriteTimeUtc)
+                    File.Copy(file, path, true);
+                paths.Add(path);
+            }
+            AssetDatabase.Refresh();
+            foreach (var path in paths)
+            {
+                var importer = (ModelImporter)AssetImporter.GetAtPath(path);
+                importer.isReadable = false;
+                importer.meshCompression = ModelImporterMeshCompression.Low;
+                importer.importAnimation = false;
+                importer.animationType = ModelImporterAnimationType.None;
+                importer.optimizeGameObjects = false; // las partes móviles se buscan por nombre
+                importer.generateSecondaryUV = false;
+                importer.SaveAndReimport();
+                RemapToonMaterials(path, toonFolder + "/", shadow);
+                var model = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+                if (Triangles(model) > 3000)
+                    Debug.LogWarning($"{Path.GetFileName(path)} pasa el presupuesto de 3000 tris: {Triangles(model)}");
+            }
+            AssetDatabase.SaveAssets();
+            return paths.ToArray();
+        }
+
+        [MenuItem("Gas Safari/Setup/Importar obstáculos, tutorial y sombreros de Blender")]
+        public static void ImportHazardTutorialHats()
+        {
+            var hazards = ImportStaticModels("Hazards", "Hazards", new Color(0.4f, 0.38f, 0.55f));
+            var tutorial = ImportStaticModels("Tutorial", "Tutorial", new Color(0.4f, 0.38f, 0.55f));
+            var hats = ImportStaticModels("Cosmetics/Hats", "Cosmetics/Hats", new Color(0.4f, 0.38f, 0.55f));
+            var anchors = "Tools/Export/Cosmetics/Hats/hat_anchors.json";
+            if (File.Exists(anchors))
+                File.Copy(anchors, ART + "Cosmetics/Hats/hat_anchors.json", true);
+            AssetDatabase.Refresh();
+            Debug.Log($"BLENDER obstáculos {hazards.Length}, tutorial {tutorial.Length}, sombreros {hats.Length} importados");
+        }
+
         // ---------------------------------------------------------------- escenario
         private static void ImportEnvironment(string world)
         {
@@ -222,7 +272,7 @@ namespace GasSafari.Editor
         // ---------------------------------------------------------------- materiales
         // Un material SG_Toon por nombre en la carpeta del grupo; cada FBX apunta a ellos con un remap
         // (así 40 props del mismo mundo comparten materiales y el static batching los junta).
-        private static void RemapToonMaterials(string modelPath, string folder, Color shadow)
+        internal static void RemapToonMaterials(string modelPath, string folder, Color shadow)
         {
             var importer = AssetImporter.GetAtPath(modelPath);
             var shader = Shader.Find(TOON);
@@ -261,7 +311,7 @@ namespace GasSafari.Editor
                 importer.SaveAndReimport();
         }
 
-        private static int Triangles(GameObject model)
+        internal static int Triangles(GameObject model)
         {
             int count = 0;
             foreach (var filter in model.GetComponentsInChildren<MeshFilter>())
@@ -275,7 +325,7 @@ namespace GasSafari.Editor
             return count;
         }
 
-        private static void EnsureFolder(string path)
+        internal static void EnsureFolder(string path)
         {
             if (AssetDatabase.IsValidFolder(path))
                 return;
