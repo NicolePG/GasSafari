@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Levels/L_W1_3_RioCiudad.unity
     guid: b063fbd0bd1691948bc7e9ab71472aed
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W1_4_MercadoFlotante.unity
+    guid: 5dd0634748aaa5946924ba22f9b0da45
   m_configObjects: {}

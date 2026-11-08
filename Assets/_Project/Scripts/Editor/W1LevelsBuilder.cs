@@ -349,6 +349,156 @@ namespace GasSafari.Editor
             }
         }
 
+        // ---------------------------------------------------------------- W1-4 Mercado Flotante
+        private static readonly Color StallColor = new Color(0.75f, 0.35f, 0.3f);
+        private static readonly Color CardboardColor = new Color(0.72f, 0.55f, 0.32f);
+
+        [MenuItem("Gas Safari/Setup/Greybox W1-4 Mercado Flotante (M5-06)")]
+        public static void BuildW1_4()
+        {
+            var level = GreyboxLevel.Create("W1-4", "L_W1_4_MercadoFlotante");
+            level.StartPath(Vector3.zero, 0f).Straight(220f, 10f);                       // S1 pasillo de puestos
+            float fork = level.Length;
+            level.Arc(18f, -40f, 10f).Straight(25f, 10f).Arc(18f, 80f, 10f).Straight(25f, 10f).Arc(18f, -40f, 10f); // S2 vuelta segura
+            float join = level.Length;
+            level.Straight(10f, 14f);
+            float awnings = level.Length;
+            level.Straight(150f, 14f);                                                   // S3 toldos
+            float tips = level.Length;
+            level.Straight(200f, 10f).Straight(40f, 10f);                                // S4 puestos que se vuelcan, salida
+            level.Branch(fork, join, 8f);                                                // atajo derecho, tapado por cajas
+            level.BuildChannel(0f);
+
+            level.Section(1, "Pasillo", 0f);
+            level.Section(2, "Cajas", fork);
+            level.Section(3, "Toldos", awnings);
+            level.Section(4, "Vuelcos", tips);
+            level.AddCheckpoint(0f);
+            level.AddCheckpoint(fork - 30f);
+            level.AddCheckpoint(awnings);
+            level.AddCheckpoint(tips);
+
+            // S1: puestos en las dos orillas y comida flotando (decorado).
+            var market = AssetDatabase.LoadAssetAtPath<GameObject>(ENV + "W1_MarketStall.fbx");
+            var basket = AssetDatabase.LoadAssetAtPath<GameObject>(ENV + "W1_FruitBasket.fbx");
+            var random = new System.Random(14);
+            for (float d = 10f; d < fork - 10f; d += 12f)
+            {
+                for (int side = -1; side <= 1; side += 2)
+                    Prop(level, market, level.PointAt(d + side * 3f, side * 7.5f, -0.2f), side);
+                Prop(level, basket, level.PointAt(d + 6f, (float)(random.NextDouble() * 6.0 - 3.0), -0.35f), 1);
+            }
+            level.PowerUp("P01", 60f, 0f);
+            level.PowerUp("P03", 140f, 2f);
+
+            // S2: locoto antes de la bifurcación; cajas de cartón (Burnable) a mitad del atajo; mango detrás.
+            level.PowerUp("P02", fork - 25f, -2f);
+            level.PowerUp("P02", fork - 12f, 2f);
+            var a = level.PointAt(fork);
+            var b = level.PointAt(join);
+            var chord = (b - a).normalized;
+            var boxes = level.Block("CajasCarton", (a + b) * 0.5f, new Vector3(9f, 2.6f, 2f), CardboardColor, Quaternion.LookRotation(chord).eulerAngles.y);
+            boxes.layer = GasSafari.Core.GameLayers.Hazard;
+            boxes.AddComponent<GasSafari.Hazards.BurnableWall>().Configure(HazardData("W1_CardboardBoxes", "Cajas de cartón", 0.5f, ("burnTime", 0.5f)));
+            boxes.AddComponent<GasSafari.Hazards.HazardTags>().Configure(GasSafari.Hazards.HazardTag.Burnable);
+            MangoAt(level, 1, (a + b) * 0.5f + chord * 6f);
+
+            // S3: cadena de 3 toldos trampolín, cada uno delante de un puesto que tapa el centro (laterales estrechos).
+            GasSafari.Hazards.Trampoline first = null;
+            for (int i = 0; i < 3; i++)
+            {
+                float d = awnings + 20f + i * 14f;
+                var awning = level.Place(HZ + "H27_Awning.prefab", d);
+                awning.name = "Toldo_" + (i + 1);
+                var trampoline = awning.GetComponent<GasSafari.Hazards.Trampoline>();
+                var so = new SerializedObject(trampoline);
+                so.FindProperty("forwardSpeed").floatValue = 6f; // provisional: el salto cae en el toldo siguiente (14 m)
+                so.ApplyModifiedPropertiesWithoutUndo();
+                if (first == null)
+                    first = trampoline;
+                // Techo a dos aguas (caja girada 45°): si la balsa cae encima, resbala al agua en vez de quedarse varada.
+                var stall = level.Block("Puesto_" + (i + 1), level.PointAt(d + 5f, 0f, -0.7f), new Vector3(3f, 3f, 3f), StallColor);
+                stall.transform.rotation = Quaternion.LookRotation(level.DirectionAt(d)) * Quaternion.Euler(0f, 0f, 45f);
+                // Entorno, no peligro: los bots no lo esquivan por los laterales y entran al toldo (que los salta por encima).
+                stall.layer = GasSafari.Core.GameLayers.Environment;
+            }
+            level.Mango(0, awnings + 34f, 0f, 4.5f);                                     // sobre el 2.º toldo (rebote)
+            level.Mango(2, awnings + 52f, 5.5f, 4f);                                     // puesto colgante: toldo doble o Julien
+            level.PowerUp("P03", awnings + 90f, 0f);
+            level.PowerUp("P01", awnings + 120f, -2f);
+
+            // Momento estrella: la cadena de toldos (cámara lenta + toma al primer rebote).
+            var star = new GameObject("StarMoment");
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(star, level.Scene);
+            var shot = ShotBuilder.Create(star.transform, "Toldos_Toma", "Assets/_Project/Data/Levels/W1-4_StarShot.playable", 3f,
+                new Vector3(8f, 5f, -4f), out var vcam);
+            star.AddComponent<GasSafari.Level.StarMoment>().Configure(first, shot, vcam);
+
+            // S4: puestos que vuelcan su caja H07 al agua cuando pasa la balsa.
+            level.PowerUp("P04", tips + 6f, 0f);
+            var tipConfig = HazardData("W1_TipOverStall", "Puesto que se vuelca", 0.5f);
+            for (int i = 0; i < 6; i++)
+            {
+                float d = tips + 25f + i * 28f;
+                int side = i % 2 == 0 ? 1 : -1;
+                TipOver(level, tipConfig, market, d, side);
+            }
+
+            LevelDresser.Dress(level, LevelDresser.W1, 15, level.PointAt(awnings + 40f, -45f), 90f);
+            level.Finish();
+            Debug.Log($"M5-06 W1-4 listo: {level.Length:F0} m, atajo {Vector3.Distance(a, b):F0} m");
+        }
+
+        private static void Prop(GreyboxLevel level, GameObject model, Vector3 position, int side)
+        {
+            var go = (GameObject)PrefabUtility.InstantiatePrefab(model, level.Scene);
+            go.transform.SetPositionAndRotation(position, Quaternion.Euler(0f, side > 0 ? -90f : 90f, 0f));
+            GameObjectUtility.SetStaticEditorFlags(go, StaticEditorFlags.BatchingStatic);
+        }
+
+        private static void TipOver(GreyboxLevel level, GasSafari.Hazards.HazardConfig config, GameObject stallModel, float d, int side)
+        {
+            float width = level.WidthAt(d);
+            var right = Vector3.Cross(Vector3.up, level.DirectionAt(d));
+            Prop(level, stallModel, level.PointAt(d, side * (width * 0.5f + 2.5f), 0.3f), side);
+
+            var crate = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(HZ + "H07_Crate.prefab"), level.Scene);
+            crate.name = "Caja_Puesto";
+            crate.transform.position = level.PointAt(d, side * (width * 0.5f + 0.8f), 2.6f);
+            var body = crate.AddComponent<Rigidbody>();
+            body.isKinematic = true;
+            body.mass = 8f;
+            crate.AddComponent<GasSafari.Hazards.FloatingBody>();
+
+            var zone = new GameObject("Vuelco");
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(zone, level.Scene);
+            zone.layer = GasSafari.Core.GameLayers.Hazard;
+            zone.transform.SetPositionAndRotation(level.PointAt(d - 9f, 0f, 1f), Quaternion.LookRotation(-right * side));
+            var box = zone.AddComponent<BoxCollider>();
+            box.isTrigger = true;
+            box.size = new Vector3(width, 3f, 3f);
+            var tip = zone.AddComponent<GasSafari.Hazards.TipOverObstacle>();
+            tip.Configure(config);
+            tip.Configure(body, 3.5f);
+        }
+
+        private static GasSafari.Hazards.HazardConfig HazardData(string file, string displayName, float warning, params (string key, float value)[] parameters)
+        {
+            string path = "Assets/_Project/Data/Hazards/" + file + ".asset";
+            var config = AssetDatabase.LoadAssetAtPath<GasSafari.Hazards.HazardConfig>(path);
+            if (config == null)
+            {
+                config = ScriptableObject.CreateInstance<GasSafari.Hazards.HazardConfig>();
+                AssetDatabase.CreateAsset(config, path);
+            }
+            config.id = file;
+            config.displayName = displayName;
+            config.warningTime = warning;
+            config.parameters = System.Array.ConvertAll(parameters, x => new GasSafari.Hazards.HazardConfig.Parameter { key = x.key, value = x.value });
+            EditorUtility.SetDirty(config);
+            return config;
+        }
+
         // Modelos sobre las piezas del greybox de W1-1 (el collider del greybox se queda; su caja deja de verse).
         private static void DressW1_1(GreyboxLevel level)
         {
