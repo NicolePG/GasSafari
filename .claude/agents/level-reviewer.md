@@ -13,7 +13,7 @@ Proceso:
 2. Inspecciona la escena con MCP for Unity (`find_gameobjects`, capturas de cámara): `Section_*`, `Checkpoint`, `MangoSpot`, obstáculos, power-ups, `StartGate`, `FinishGate`, `FlowSpline`, `TeamRaceSpawn` si es `raceCompatible`.
 3. Comprueba:
    - Cada sección del doc existe y en orden.
-   - Número de checkpoints igual al doc; distancia entre ellos equivalente a 45-60 s (estimar con largo de spline / velocidad media de 6 m/s).
+   - Número de checkpoints igual al doc; distancia entre ellos de 70-190 m (unos 20-40 s; excepción confirmada el 2026-11-08).
    - 3 `MangoSpot`: ruta, habilidad o riesgo, escondido; al menos uno sin personaje obligatorio.
    - Obstáculos y power-ups del doc presentes; todos los peligros con `Warn()` configurado.
    - Momento estrella construido.

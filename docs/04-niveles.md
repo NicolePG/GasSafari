@@ -6,7 +6,7 @@ Busca un nivel con Grep (por ejemplo `## W3-2`) y lee solo esa sección. IDs de 
 
 - Estructura: Tutorial T-0 + 6 mundos x 5 niveles. El nivel 5 de cada mundo es **jefe** (persecución o evento).
 - Cada nivel introduce **1 mecánica nueva** y la combina con una anterior.
-- Ritmo 30/60/180: algo nuevo cada 30 s, checkpoint o cambio de zona cada 45-60 s, un **momento estrella** por nivel.
+- Ritmo 30/60/180: algo nuevo cada 30 s, checkpoint cada 70-190 m de recorrido (unos 20-40 s) o cambio de zona cada 45-60 s, un **momento estrella** por nivel.
 - 3 mangos dorados (P07) por nivel: 1 en la ruta, 1 que exige habilidad o riesgo, 1 escondido (atajo o rincón).
 - Estrellas: 1 por terminar; 2 con tiempo igual o menor a **Plata**; 3 con tiempo igual o menor a **Oro** y sin hundir la balsa.
 - Plata = Oro x 1.4, redondeado hacia arriba a múltiplo de 5 s.

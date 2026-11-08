@@ -13,7 +13,7 @@ Diseño del nivel: docs/04 (Grep `## <ID>`, por ejemplo `## W3-2`). Obstáculos 
 3. **Cauce:** `SplineContainer` con `FlowSpline`. Ancho normal 8-12 m, pasos estrechos 5 m. Curva de intensidad de corriente por tramo según las secciones del doc.
 4. **Greybox primero** con ProBuilder (canales, rampas, paredes). Probar el recorrido completo con 1 jugador antes de poner arte. Nunca greybox y arte en la misma tarea.
 5. **Secciones:** una por cada punto de la lista del doc, en orden. Marcar cada sección con un objeto vacío `Section_<n>` para depurar.
-6. **Checkpoints:** prefab `Prefabs/Level/Checkpoint` en la salida y cada 45-60 s de recorrido (número del doc). Marcar `familiarOnly` en los extra y `hardKeep` en los que quedan en Amistades Rotas.
+6. **Checkpoints:** prefab `Prefabs/Level/Checkpoint` en la salida y cada 70-190 m de recorrido (unos 20-40 s; número del doc). Marcar `familiarOnly` en los extra y `hardKeep` en los que quedan en Amistades Rotas.
 7. **Obstáculos y power-ups:** solo desde `Prefabs/Hazards` y `Prefabs/PowerUps`. Si falta un tipo, crearlo antes con la skill `hazards-powerups`.
 8. **Mangos dorados:** 3 `MangoSpot` según el doc (ruta, habilidad o riesgo, escondido).
 9. **Momento estrella:** construirlo con cuidado (Timeline si tiene cámara o evento guionado).
@@ -38,7 +38,7 @@ Aplica a todo nivel con arte (no al greybox). Perfiles de Bloom por mundo en `Se
 - Captura de cámara para revisar el resultado en lugar de describirlo.
 
 ## Ritmo (validar al final)
-- Algo nuevo cada ~30 s, checkpoint cada 45-60 s, 1 momento estrella.
+- Algo nuevo cada ~30 s, checkpoint cada 70-190 m, 1 momento estrella.
 - Todo peligro con aviso de 0.5 s o más.
 - Revisión completa con el subagente `level-reviewer`.
 

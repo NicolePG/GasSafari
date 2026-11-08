@@ -84,7 +84,7 @@ Unidades: metros, segundos, kilogramos, newtons. Todos los valores viven en `Bal
 
 ## 10. Checkpoints, reaparición y cronómetro
 
-- Checkpoint cada 45-60 s de recorrido (definido por nivel en docs/04). Guarda posición, rotación y estado de cámaras.
+- Checkpoint cada 70-190 m de recorrido (unos 20-40 s; definido por nivel en docs/04). Antes decía 45-60 s: con las balsas a 3-6 m/s esa cadencia no cabe en niveles de 4-5 checkpoints; se confirmó la excepción el 2026-11-08. Guarda posición, rotación y estado de cámaras.
 - Reaparición: fundido a negro 0.4 s, balsa en el checkpoint, velocidad 0, gas de todos al 100 %.
 - Penalización por reinicio: +3 s en Normal (ver dificultad en docs/06). No impide terminar.
 - Reinicio manual al checkpoint: lo pide un jugador desde pausa y se aplica si la mayoría acepta (en solo, inmediato).
