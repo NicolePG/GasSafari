@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Levels/L_W2_4_GranRemolino.unity
     guid: 116b143a6baa01f43a14c1a4632cb14e
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W2_5_ArrecifeJefe.unity
+    guid: ecce01a399a531d4cbbe89362e014c33
   m_configObjects: {}

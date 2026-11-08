@@ -466,5 +466,117 @@ namespace GasSafari.Editor
             pool.transform.localScale = Vector3.one * (radius / WHIRL_PREFAB_RADIUS);
             level.Hint(Bots.BotHintType.Whirlpool, d, lateral, radius);
         }
+
+        // ---------------------------------------------------------------- W2-5 Arrecife de Coral (jefe)
+        private static readonly Color CaveColor = new Color(0.45f, 0.38f, 0.42f);
+
+        [MenuItem("Gas Safari/Setup/Greybox W2-5 Arrecife de Coral (M5-13)")]
+        public static void BuildW2_5()
+        {
+            var level = GreyboxLevel.Create("W2-5", "L_W2_5_ArrecifeJefe");
+            level.OpenWater();
+            level.StartPath(Vector3.zero, 0f).Straight(180f, 12f);                  // S1 pasillos de coral con pinchos
+            float phase1 = level.Length;
+            level.Straight(150f, 16f);                                               // S2 fase 1: 2 tentáculos, cada 3 s
+            float phase2 = level.Length;
+            level.Arc(60f, 40f, 16f).Straight(120f, 16f);                           // S3 fase 2: 4 tentáculos, cada 2 s
+            float phase3 = level.Length;
+            level.Straight(160f, 12f);                                               // S4 fase 3: pasillo final, cada 1.5 s
+            float exit = level.Length;
+            level.Straight(45f, 14f);
+            level.BuildChannel(0.4f);
+
+            level.Section(1, "Coral", 0f);
+            level.Section(2, "Fase1", phase1);
+            level.Section(3, "Fase2", phase2);
+            level.Section(4, "Fase3", phase3);
+            level.AddCheckpoint(0f);
+            level.AddCheckpoint(phase1);
+            level.AddCheckpoint(phase2);
+            level.AddCheckpoint(phase3);
+
+            // S1: pinchos de coral que marcan el pasillo, y una cueva de coral con un mango.
+            for (float d = 12f; d < phase1 - 4f; d += 9f)
+            {
+                int i = Mathf.RoundToInt(d / 9f);
+                float jitter = i % 3 == 0 ? 1.2f : 0f;
+                level.Place(HZ + "H10_Spikes.prefab", d, 5.2f - jitter, i * 37f).name = "Pinchos";
+                level.Place(HZ + "H10_Spikes.prefab", d + 4.5f, -5.2f + jitter, i * 53f).name = "Pinchos";
+            }
+            float cave = 95f;
+            var yaw = Quaternion.LookRotation(level.DirectionAt(cave)).eulerAngles.y;
+            level.Block("Cueva_Techo", level.PointAt(cave, -9f, 2.6f), new Vector3(6f, 0.8f, 7f), CaveColor, yaw);
+            level.Block("Cueva_Fondo", level.PointAt(cave, -12.2f), new Vector3(0.8f, 3.5f, 7f), CaveColor, yaw);
+            level.Block("Cueva_Lado", level.PointAt(cave + 3.6f, -9f), new Vector3(6f, 3.5f, 0.8f), CaveColor, yaw);
+            level.Mango(0, cave, -9.5f, 1f);
+            level.PowerUp("P01", 40f, 0f);
+            level.PowerUp("P04", 150f, 0f);
+
+            // Jefe: tres grupos de tentáculos, uno por fase; las zonas los encienden y apagan al pasar.
+            var boss1 = Tentacles(level, "Tentaculos_F1", phase1, new[] { (40f, 4f), (95f, -4f) });
+            var boss2 = Tentacles(level, "Tentaculos_F2", phase2, new[] { (20f, 4f), (50f, -4f), (80f, 4f), (110f, -4f) });
+            var boss3 = Tentacles(level, "Tentaculos_F3", phase3, new[] { (30f, 3.5f), (60f, -3.5f), (90f, 3.5f), (120f, -3.5f) });
+            Phase(level, "Fase1", phase1 + 2f, boss1, 0);
+            Phase(level, "Fase1_Fin", phase2 + 2f, boss1, -1);
+            Phase(level, "Fase2", phase2 + 4f, boss2, 1);
+            Phase(level, "Fase2_Fin", phase3 + 2f, boss2, -1);
+            Phase(level, "Fase3", phase3 + 4f, boss3, 2);
+            Phase(level, "Fase3_Fin", exit + 5f, boss3, -1);
+            level.PowerUp("P04", phase1 + 70f, 0f);
+            level.Mango(1, phase2 + 65f, 0f, 1f);                                     // entre los tentáculos de la fase 2
+            level.PowerUp("P01", phase2 + 100f, 0f);
+            level.PowerUp("P04", phase3 + 10f, 0f);
+            level.PowerUp("P01", phase3 + 140f, 0f);
+
+            // Salida: coral rompible (Rugido o golpe fuerte) con el mango detrás.
+            var coral = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(HZ + "H07_Crate.prefab"), level.Scene);
+            coral.name = "CoralRompible";
+            coral.transform.position = level.PointAt(exit + 15f, 5f);
+            coral.transform.localScale = new Vector3(1.6f, 1.4f, 1.6f);
+            level.Mango(2, exit + 15f, 7.5f, 1f);
+
+            var reef = LevelDresser.With(LevelDresser.W2, new[] { "W2_Coral_A", "W2_Coral_B", "W2_Coral_C", "W2_Starfish", "W2_Kelp", "W2_Rock_B" },
+                1.15f, LevelDresser.W2.Fog);
+            LevelDresser.Dress(level, reef, 25, level.PointAt(phase3 + 80f, -70f), 90f);
+            level.Finish();
+            Debug.Log($"M5-13 W2-5 listo: {level.Length:F0} m");
+        }
+
+        private static GasSafari.Hazards.TentacleBoss Tentacles(GreyboxLevel level, string name, float from, (float d, float lateral)[] spots)
+        {
+            var go = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(HZ + "H25_Tentacles.prefab"), level.Scene);
+            PrefabUtility.UnpackPrefabInstance(go, PrefabUnpackMode.OutermostRoot, InteractionMode.AutomatedAction);
+            go.name = name;
+            go.transform.position = level.PointAt(from);
+            var boss = go.GetComponent<GasSafari.Hazards.TentacleBoss>();
+            var all = new System.Collections.Generic.List<Transform>();
+            foreach (Transform child in go.transform)
+                all.Add(child);
+            var used = new Transform[spots.Length];
+            for (int i = 0; i < all.Count; i++)
+            {
+                if (i >= spots.Length)
+                {
+                    Object.DestroyImmediate(all[i].gameObject);
+                    continue;
+                }
+                all[i].position = level.PointAt(from + spots[i].d, spots[i].lateral, -1.5f);
+                used[i] = all[i];
+            }
+            boss.Configure(used);
+            return boss;
+        }
+
+        private static void Phase(GreyboxLevel level, string name, float d, GasSafari.Hazards.TentacleBoss boss, int phase)
+        {
+            var go = new GameObject("ZonaJefe_" + name);
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(go, level.Scene);
+            go.layer = GameLayers.Trigger;
+            go.transform.SetPositionAndRotation(level.PointAt(d, 0f, 1f), Quaternion.LookRotation(level.DirectionAt(d)));
+            var box = go.AddComponent<BoxCollider>();
+            box.isTrigger = true;
+            box.size = new Vector3(level.WidthAt(d) + 24f, 4f, 2f);
+            go.AddComponent<GasSafari.Level.BossPhaseZone>().Configure(boss, phase);
+        }
     }
 }
