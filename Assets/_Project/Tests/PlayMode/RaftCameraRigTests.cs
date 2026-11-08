@@ -32,6 +32,32 @@ namespace GasSafari.Tests
             rig.Destroy();
         }
 
+        // La cámara no atraviesa techos: con una losa (capa Environment) entre ella y la balsa se adelanta por debajo.
+        [UnityTest]
+        public IEnumerator Camera_DoesNotPassThroughCeiling()
+        {
+            var brainObject = new GameObject("TestBrainCamera", typeof(Camera));
+            brainObject.tag = "MainCamera";
+            brainObject.AddComponent<Cinemachine.CinemachineBrain>();
+            yield return new WaitForSeconds(1.5f);
+
+            var vcam = cameraRig.GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>();
+            Assert.IsNotNull(vcam.GetComponent<Cinemachine.CinemachineCollider>(), "la cámara lleva un collider de Cinemachine");
+            float freeHeight = brainObject.transform.position.y;
+            Assert.Greater(freeHeight, 6f, "sin techo la cámara va alta");
+
+            var ceiling = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            ceiling.layer = GasSafari.Core.GameLayers.Environment;
+            ceiling.transform.position = new Vector3(0f, 5f, -4f);
+            ceiling.transform.localScale = new Vector3(40f, 0.5f, 30f);
+            yield return new WaitForSeconds(2f);
+
+            float underHeight = brainObject.transform.position.y;
+            Object.Destroy(ceiling);
+            Object.Destroy(brainObject);
+            Assert.Less(underHeight, 5f, $"la cámara baja del techo ({underHeight:F1} m; libre {freeHeight:F1} m)");
+        }
+
         [UnityTest]
         public IEnumerator Swimmer_JoinsGroupAndZoomsOut_ThenReturns()
         {

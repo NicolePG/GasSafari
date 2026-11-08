@@ -289,8 +289,8 @@ namespace GasSafari.Editor
                 Quaternion.LookRotation(level.DirectionAt(at)).eulerAngles.y, false, "Tutorial");
             go.layer = GameLayers.Trigger;
             go.GetComponent<BoxCollider>().isTrigger = true;
-            // Marca visible flotando sobre el agua.
-            var flag = level.Cylinder(name + "_Bandera", level.PointAt(at, lateral) + Vector3.up * 2.5f, 0.15f, 0.6f, Color.yellow, "Tutorial");
+            // Marca visible flotando sobre el agua, por encima de la cabeza de cualquier animal (3.1 m) para no atravesarlos.
+            var flag = level.Cylinder(name + "_Bandera", level.PointAt(at, lateral) + Vector3.up * 3.4f, 0.15f, 0.6f, Color.yellow, "Tutorial");
             Object.DestroyImmediate(flag.GetComponent<Collider>());
             return go.AddComponent<TutorialGate>();
         }

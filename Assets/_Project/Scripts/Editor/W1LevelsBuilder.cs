@@ -386,7 +386,7 @@ namespace GasSafari.Editor
             {
                 for (int side = -1; side <= 1; side += 2)
                     Prop(level, market, level.PointAt(d + side * 3f, side * 7.5f, -0.2f), side);
-                Prop(level, basket, level.PointAt(d + 6f, (float)(random.NextDouble() * 6.0 - 3.0), -0.35f), 1);
+                Prop(level, basket, level.PointAt(d + 6f, (float)(random.NextDouble() * 6.0 - 3.0), -0.35f), 1, true);
             }
             level.PowerUp("P01", 60f, 0f);
             level.PowerUp("P03", 140f, 2f);
@@ -449,10 +449,18 @@ namespace GasSafari.Editor
             Debug.Log($"M5-06 W1-4 listo: {level.Length:F0} m, atajo {Vector3.Distance(a, b):F0} m");
         }
 
-        private static void Prop(GreyboxLevel level, GameObject model, Vector3 position, int side)
+        // Puestos y cestas dentro del cauce: la balsa choca con ellos, así que llevan collider simple (docs/11, "nada se traspasa").
+        // Los puestos son sólidos fijos; las cestas flotan livianas y se apartan al empujarlas.
+        private static void Prop(GreyboxLevel level, GameObject model, Vector3 position, int side, bool floater = false)
         {
             var go = (GameObject)PrefabUtility.InstantiatePrefab(model, level.Scene);
             go.transform.SetPositionAndRotation(position, Quaternion.Euler(0f, side > 0 ? -90f : 90f, 0f));
+            if (floater)
+            {
+                PropColliders.MakeLightFloater(go, 0.6f);
+                return;
+            }
+            PropColliders.AddSolidBox(go);
             GameObjectUtility.SetStaticEditorFlags(go, StaticEditorFlags.BatchingStatic);
         }
 

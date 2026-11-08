@@ -15,6 +15,8 @@ namespace GasSafari.VFX
         // Distancia caído-balsa hasta la que no se abre la cámara y tramo siguiente que sí la abre (m).
         private const float SWIMMER_SPREAD_FREE = 6f;
         private const float SWIMMER_SPREAD_MAX = 12f;
+        private const float COLLIDER_MIN_DISTANCE = 2.5f;
+        private const float COLLIDER_RADIUS = 0.3f;
 
         [SerializeField] private BalanceConfig balance;
         [SerializeField] private CinemachineVirtualCamera vcam;
@@ -43,6 +45,7 @@ namespace GasSafari.VFX
             body.m_LookaheadTime = balance.cameraLookahead;
 
             vcam.Follow = group.transform;
+            ConfigureCollision();
             vcam.transform.rotation = Quaternion.Euler(balance.cameraTilt, transform.eulerAngles.y, 0f);
             Distance = balance.cameraDistanceMin;
             body.m_CameraDistance = Distance;
@@ -50,6 +53,27 @@ namespace GasSafari.VFX
             // Icono en el borde de pantalla de los caídos que salgan de cámara.
             if (GetComponent<UI.SwimmerEdgeMarkers>() == null)
                 gameObject.AddComponent<UI.SwimmerEdgeMarkers>();
+        }
+
+        // La cámara no atraviesa paredes ni techos (docs/11, "nada se traspasa"): si una pared o un techo (capa Environment)
+        // queda entre ella y la balsa, se adelanta hasta quedar libre, sin acercarse a menos de COLLIDER_MIN_DISTANCE.
+        private void ConfigureCollision()
+        {
+            if (vcam.LookAt == null)
+                vcam.LookAt = group.transform; // sin Aim no gira la cámara: solo le da al Collider el punto que protege
+            var collider = vcam.GetComponent<CinemachineCollider>();
+            if (collider == null)
+                collider = vcam.gameObject.AddComponent<CinemachineCollider>();
+            collider.m_AvoidObstacles = true;
+            collider.m_CollideAgainst = 1 << GameLayers.Environment;
+            collider.m_TransparentLayers = 0;
+            collider.m_MinimumDistanceFromTarget = COLLIDER_MIN_DISTANCE;
+            collider.m_CameraRadius = COLLIDER_RADIUS;
+            collider.m_Strategy = CinemachineCollider.ResolutionStrategy.PullCameraForward;
+            collider.m_MaximumEffort = 4;
+            collider.m_Damping = 0.4f;
+            collider.m_DampingWhenOccluded = 0.05f;
+            collider.m_DistanceLimit = 0f;
         }
 
         private void Start()

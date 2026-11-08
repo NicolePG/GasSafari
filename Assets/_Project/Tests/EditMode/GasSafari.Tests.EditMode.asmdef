@@ -3,6 +3,7 @@
     "rootNamespace": "GasSafari.Tests",
     "references": [
         "GasSafari.Runtime",
+        "GasSafari.Editor",
         "Unity.InputSystem",
         "Unity.Netcode.Runtime",
         "Unity.Collections",
