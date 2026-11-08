@@ -23,8 +23,7 @@ namespace GasSafari.Editor
         {
             var level = GreyboxLevel.Create("W4-1", "L_W4_1_CascadasEscalonadas");
             var falls = new float[3];
-            // El plano de agua base está en y = 0: el cauce empieza arriba (3 x 3 + 6 + 20 m de caídas) para terminar a nivel del agua.
-            level.StartPath(new Vector3(0f, 35f, 0f), 0f).Straight(60f, 12f);          // S1 tres cascadas pequeñas
+            level.StartPath(Vector3.zero, 0f).Straight(60f, 12f);          // S1 tres cascadas pequeñas
             for (int i = 0; i < 3; i++)
             {
                 falls[i] = level.Length;

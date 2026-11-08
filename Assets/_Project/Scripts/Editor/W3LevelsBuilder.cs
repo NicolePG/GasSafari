@@ -224,13 +224,13 @@ namespace GasSafari.Editor
         public static void BuildW3_3()
         {
             var level = GreyboxLevel.Create("W3-3", "L_W3_3_TerritorioFosas");
-            level.StartPath(new Vector3(0f, 6f, 0f), 0f).Straight(180f, 12f);                    // S1 orillas altas con fosas
+            level.StartPath(Vector3.zero, 0f).Straight(180f, 12f);                    // S1 orillas altas con fosas
             float roots = level.Length;
             level.Straight(150f, 12f);                                                // S2 puentes de raíces
             float ambush = level.Length;
             level.Straight(120f, 12f);                                                // S3 emboscada en grupo
             float falls = level.Length;
-            level.Straight(60f, 10f, -6f).Straight(30f, 10f);                         // S4 cascada de salida
+            level.Straight(60f, 10f).Straight(30f, 10f);                         // S4 cascada de salida (cortina visual; sin desnivel: ver nota en docs/12)
             level.BuildChannel(0.3f);
 
             level.Section(1, "Orillas", 0f);

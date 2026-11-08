@@ -359,7 +359,9 @@ namespace GasSafari.Editor
             }
             float margin = openWater ? 400f : 40f; // mar abierto: el agua llega al horizonte
             var center = (min + max) * 0.5f;
-            water.position = new Vector3(center.x, 0f, center.z);
+            // Cauce que baja por debajo de y = 0: el plano y el nivel base se ponen en el punto más bajo (la cinta de agua es el agua real).
+            float baseY = Mathf.Min(0f, points.Min(p => p.y));
+            water.position = new Vector3(center.x, baseY, center.z);
             // El plano de Unity mide 10 x 10.
             water.localScale = new Vector3((max.x - min.x + margin * 2f) / 10f, 1f, (max.z - min.z + margin * 2f) / 10f);
             // Con desnivel, el agua de cada tramo es una cinta que sigue el cauce (docs/02 §1); el plano queda como nivel base.
@@ -384,7 +386,7 @@ namespace GasSafari.Editor
                 var baseLevel = water.GetComponent<WaterBaseLevel>();
                 if (baseLevel == null)
                     baseLevel = water.gameObject.AddComponent<WaterBaseLevel>();
-                baseLevel.Configure(0f);
+                baseLevel.Configure(baseY);
             }
         }
 

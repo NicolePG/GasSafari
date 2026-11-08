@@ -33,6 +33,10 @@ namespace GasSafari.Tests
 #if UNITY_EDITOR
             var prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(RAFT_PREFAB);
             Balance = UnityEditor.AssetDatabase.LoadAssetAtPath<BalanceConfig>(BALANCE_PATH);
+            // La balsa flota 0.3 m más alta que cuando las pruebas se escribieron (puntos de flotación a -0.6, no -0.3):
+            // se coloca ya a su altura de equilibrio para no medir el asentamiento. Las pruebas en el aire no cambian.
+            if (raftPosition.y < 1f)
+                raftPosition.y += 0.3f;
             Raft = Object.Instantiate(prefab, raftPosition, Quaternion.identity);
 #endif
         }
