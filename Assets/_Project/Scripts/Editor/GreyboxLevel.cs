@@ -43,6 +43,9 @@ namespace GasSafari.Editor
         private readonly List<(List<Vector3> points, float width)> branches = new List<(List<Vector3>, float)>();
         private float heading;
         private bool useBaseWater = true;
+        private bool openWater;
+        // Agua abierta (W2): límite invisible a esta distancia del borde del carril.
+        private const float OPEN_MARGIN = 12f;
 
         public Scene Scene { get; private set; }
         public float Length => cumulative.Count > 0 ? cumulative[cumulative.Count - 1] : 0f;
@@ -187,6 +190,10 @@ namespace GasSafari.Editor
             wallGaps.Add((to - open, to + open));
         }
 
+        // Agua abierta sin paredes (docs/04 W2): límite invisible lejos del carril y corriente que devuelve (CourseBounds).
+        public void OpenWater() => openWater = true;
+        public bool IsOpenWater => openWater;
+
         // Niveles con abismos (H22): sin nivel base, debajo del hueco no hay agua.
         public void NoBaseWater() => useBaseWater = false;
 
@@ -263,7 +270,8 @@ namespace GasSafari.Editor
                 {
                     var dir = (points[Mathf.Min(i + 1, points.Count - 1)] - points[Mathf.Max(i - 1, 0)]).normalized;
                     var right = Vector3.Cross(Vector3.up, dir);
-                    edge.Add(points[i] + right * side * (widths[i] * 0.5f + WALL_THICKNESS * 0.5f));
+                    float margin = openWater ? OPEN_MARGIN : 0f;
+                    edge.Add(points[i] + right * side * (widths[i] * 0.5f + margin + WALL_THICKNESS * 0.5f));
                 }
                 for (int i = 0; i < edge.Count - 1; i++)
                 {
@@ -273,8 +281,16 @@ namespace GasSafari.Editor
                     // Junto a un ramal, la pared que caería dentro de su agua no se pone.
                     if (InsideBranch((edge[i] + edge[i + 1]) * 0.5f))
                         continue;
-                    Segment(wallParent.transform, edge[i], edge[i + 1], material);
+                    var wall = Segment(wallParent.transform, edge[i], edge[i + 1], material);
+                    if (openWater)
+                        wall.GetComponent<MeshRenderer>().enabled = false;
                 }
+            }
+
+            if (openWater)
+            {
+                var bounds = Find("Flow").AddComponent<CourseBounds>();
+                bounds.Configure(widths.Max() * 0.5f, 0.6f, 4f);
             }
 
             foreach (var (branch, width) in branches)
@@ -312,7 +328,7 @@ namespace GasSafari.Editor
             return false;
         }
 
-        private static void Segment(Transform parent, Vector3 a, Vector3 b, Material material)
+        private static GameObject Segment(Transform parent, Vector3 a, Vector3 b, Material material)
         {
             var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             cube.name = "Wall";
@@ -324,6 +340,7 @@ namespace GasSafari.Editor
             cube.transform.localScale = new Vector3(WALL_THICKNESS, WALL_HEIGHT, delta.magnitude + 0.3f);
             cube.GetComponent<MeshRenderer>().sharedMaterial = material;
             GameObjectUtility.SetStaticEditorFlags(cube, StaticEditorFlags.BatchingStatic);
+            return cube;
         }
 
         private void BuildWater()
@@ -336,7 +353,7 @@ namespace GasSafari.Editor
                 min = Vector3.Min(min, p);
                 max = Vector3.Max(max, p);
             }
-            const float margin = 40f;
+            float margin = openWater ? 400f : 40f; // mar abierto: el agua llega al horizonte
             var center = (min + max) * 0.5f;
             water.position = new Vector3(center.x, 0f, center.z);
             // El plano de Unity mide 10 x 10.

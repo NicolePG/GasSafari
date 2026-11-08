@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Levels/L_W1_5_PuertoJefe.unity
     guid: 71655d15482f5de4c88cb8b7d1c67bc2
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W2_1_CajasDeriva.unity
+    guid: 54545f150d02d6a4ca09ab1a7d00f28d
   m_configObjects: {}

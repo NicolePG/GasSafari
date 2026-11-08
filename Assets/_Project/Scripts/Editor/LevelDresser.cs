@@ -32,6 +32,8 @@ namespace GasSafari.Editor
             public string[] Lamps;
             public Color LampLight;
             public string Landmark;
+            // Mar abierto: sin aceras; los props de la orilla flotan en el agua marcando el carril.
+            public bool OpenSea;
         }
 
         private const string ENV = "Assets/_Project/Art/Environment/";
@@ -87,6 +89,34 @@ namespace GasSafari.Editor
             return copy;
         }
 
+        // W2 (docs/04 Mundos): mar y tormenta, turquesa #2EC4B6, gris #5C6B73, espuma; día soleado.
+        public static readonly Theme W2 = new Theme
+        {
+            World = 2,
+            LightColor = new Color(1f, 0.96f, 0.86f),
+            LightIntensity = 1.25f,
+            LightEuler = new Vector3(50f, -30f, 0f),
+            AmbientSky = new Color(0.62f, 0.8f, 0.95f),
+            AmbientEquator = new Color(0.5f, 0.7f, 0.75f),
+            AmbientGround = new Color(0.25f, 0.35f, 0.38f),
+            Fog = new Color(0.68f, 0.86f, 0.92f),
+            FogStart = 70f,
+            FogEnd = 320f,
+            SkyTint = new Color(0.45f, 0.7f, 0.95f),
+            SkyGround = new Color(0.35f, 0.5f, 0.55f),
+            SkyExposure = 1.2f,
+            WaterShallow = new Color(0.18f, 0.77f, 0.71f, 0.8f),
+            WaterDeep = new Color(0.05f, 0.33f, 0.45f, 0.95f),
+            WaterFoam = new Color(1f, 1f, 1f, 1f),
+            WallColor = new Color(0.36f, 0.42f, 0.45f),
+            GroundColor = new Color(0.36f, 0.42f, 0.45f),
+            Decor = new[] { "W2_Buoy_A", "W2_Buoy_B", "W2_Buoy_C", "W2_Rock_A", "W2_Rock_B", "W2_Rock_C", "W2_LifeRing", "W2_Barrel_B", "W2_Kelp" },
+            Lamps = new[] { "W2_Buoy_A", "W2_Buoy_C" },
+            LampLight = new Color(1f, 0.9f, 0.6f),
+            Landmark = "W2_Lighthouse",
+            OpenSea = true,
+        };
+
         // landmark: posición y giro del hito (se ve desde la salida y enmarca el momento estrella).
         public static void Dress(GreyboxLevel level, Theme theme, int seed, Vector3 landmark, float landmarkYaw)
         {
@@ -96,7 +126,8 @@ namespace GasSafari.Editor
             Lighting(level.Scene, theme);
             Water(level.Scene, theme);
             Walls(level.Scene, theme);
-            Ground(level, theme, root.transform);
+            if (!theme.OpenSea)
+                Ground(level, theme, root.transform);
             Banks(level, theme, seed, root.transform);
             Landmark(theme, landmark, landmarkYaw, root.transform);
             foreach (var t in root.GetComponentsInChildren<Transform>(true))
@@ -194,10 +225,10 @@ namespace GasSafari.Editor
                         {
                             var toChannel = Quaternion.LookRotation(Vector3.Cross(Vector3.up, level.DirectionAt(d)) * -side); // de cara al agua
                             float yaw = lamp ? 0f : (float)(random.NextDouble() * 30.0 - 15.0);
-                            prop.transform.SetPositionAndRotation(position + Vector3.up * GROUND_TOP, toChannel * Quaternion.Euler(0f, yaw, 0f));
+                            prop.transform.SetPositionAndRotation(position + Vector3.up * (theme.OpenSea ? -0.2f : GROUND_TOP), toChannel * Quaternion.Euler(0f, yaw, 0f));
                             float scale = 0.9f + (float)random.NextDouble() * 0.2f;
                             prop.transform.localScale = Vector3.one * scale;
-                            if (lamp && (count / LAMP_EVERY) % LIGHT_EVERY == 0)
+                            if (lamp && !theme.OpenSea && (count / LAMP_EVERY) % LIGHT_EVERY == 0)
                                 AddLampLight(prop, lampMaterialLight);
                             placed++;
                         }
