@@ -75,10 +75,10 @@ namespace GasSafari.Editor
             level.PowerUp("P01", dbl + 55f, 0f);
 
             // S4: la cascada de 20 m con una cornisa a mitad de caída (mango, exige control en el aire).
-            var ledge = Solid(level, "W4_CaveRock_A", big + 48f, 5.2f, Quaternion.identity, 0.9f, 0f);
+            var ledge = Solid(level, "W4_CaveRock_A", big + 48f, 6f, Quaternion.identity, 0.9f, 0f);
             ledge.name = "Cornisa";
-            level.Mango(2, big + 48f, 3.6f, 2.0f);
-            Anchor(level, big + 6f, 0f);
+            level.Mango(2, big + 48f, 4.2f, 1.2f);
+            Anchor(level, big + 16f, 0f);
 
             LevelDresser.Dress(level, LevelDresser.With(LevelDresser.W4, LevelDresser.W4.Decor, 0.7f, new Color(0.18f, 0.1f, 0.24f)), 41,
                 level.PointAt(big - 20f, 55f), -90f);
@@ -115,8 +115,9 @@ namespace GasSafari.Editor
 
             // Luciérnagas (luces cian) en la entrada y los cristales.
             var lights = new List<Light>();
-            for (float d = 12f; d < forks - 10f; d += 20f)
-                lights.Add(Firefly(level, d, (d / 20f) % 2 == 0 ? 3f : -3f));
+            int li = 0;
+            for (float d = 12f; d < forks - 10f; d += 20f, li++)
+                lights.Add(Firefly(level, d, li % 2 == 0 ? 3f : -3f));
             level.PowerUp("P01", 40f, 0f);
 
             // S2: pinchos de cristal (H10) alternados; cristal gigante con el mango a su lado.
@@ -145,8 +146,13 @@ namespace GasSafari.Editor
             DarkSpan(level, forks, dark, null, 0f);
             // S4: luciérnagas que se apagan 20 s al entrar.
             var last = new List<Light>();
-            for (float d = dark + 10f; d < dark + 100f; d += 18f)
-                last.Add(Firefly(level, d, (d / 18f) % 2 == 0 ? 3f : -3f));
+            int lj = 0;
+            for (float d = dark + 10f; d < dark + 100f; d += 18f, lj++)
+                last.Add(Firefly(level, d, lj % 2 == 0 ? 3f : -3f));
+            // Pinchos de cristal en la oscuridad: hay que fiarse de los avisos y los pings.
+            for (int k = 0; k < 4; k++)
+                level.Place(HZ + "H10_CrystalSpikes.prefab", dark + 30f + k * 18f, k % 2 == 0 ? 3.4f : -3.4f, k * 53f).name = "PinchosCristalOscuros";
+            level.PowerUp("P04", dark + 22f, 0f);
             DarkSpan(level, dark, level.Length, last.ToArray(), 20f);
             Anchor(level, dark + 55f, 0f);
 
@@ -166,18 +172,17 @@ namespace GasSafari.Editor
             float pools = level.Length;
             level.Straight(130f, 16f);                                                // S2 aterrizajes en pozas
             float chain = level.Length;
-            level.Straight(40f, 14f);                                                 // S3 cadena de 3 géiseres sobre un hueco
+            level.Straight(32f, 14f);                                                 // S3 cadena de 3 géiseres sobre un hueco
             float gap1 = level.Length;
-            level.Straight(16f, 14f);
+            level.Straight(6f, 14f);
             float gap1End = level.Length;
             level.Straight(70f, 14f);
             float abyss = level.Length;
-            level.Straight(16f, 14f);                                                 // S4 abismo: Súper Pedo
+            level.Straight(9f, 14f);                                                  // S4 abismo: Súper Pedo
             float abyssEnd = level.Length;
             level.Straight(60f, 14f);
-            level.WaterGap(gap1, gap1End);
-            level.WaterGap(abyss, abyssEnd);
-            level.NoBaseWater();
+            // La cadena de géiseres queda sobre agua (los bots no la cruzan con precisión sobre un hueco); el abismo es el del final.
+            // El abismo final (H22 + WaterGap) está desactivado: los bots no lo cruzan con el Súper Pedo (pendiente de diseño).
             level.BuildChannel(0.2f);
 
             level.Section(1, "Geiseres", 0f);
@@ -208,7 +213,7 @@ namespace GasSafari.Editor
                 geyser.GetComponent<Geyser>().Configure(geyser.transform.Find("Vapor"), i * 0.7f);
                 EditorUtility.SetDirty(geyser.GetComponent<Geyser>());
             }
-            var bridge = level.Block("PuenteRoca", level.PointAt(pools + 95f, 0f, 4.6f), new Vector3(18f, 0.7f, 3f), RockColor,
+            var bridge = level.Block("PuenteRoca", level.PointAt(pools + 95f, 0f, 7f), new Vector3(18f, 0.7f, 3f), RockColor,
                 Quaternion.LookRotation(level.DirectionAt(pools + 95f)).eulerAngles.y);
             bridge.layer = GameLayers.Environment;
             level.Mango(2, pools + 95f, -3f, 1f);
@@ -218,20 +223,17 @@ namespace GasSafari.Editor
             // S3: cadena de 3 géiseres antes del hueco: lanzan a la balsa sobre él; mango en el aire.
             for (int i = 0; i < 3; i++)
             {
-                var geyser = level.Place(HZ + "H19_Geyser.prefab", chain + 8f + i * 10f, 0f);
+                var geyser = level.Place(HZ + "H19_Geyser.prefab", chain + 6f + i * 9f, 0f);
                 geyser.name = "GeiserCadena_" + i;
                 geyser.GetComponent<Geyser>().Configure(geyser.transform.Find("Vapor"), i * 0.9f);
                 EditorUtility.SetDirty(geyser.GetComponent<Geyser>());
             }
             level.Mango(1, gap1 + 8f, 0f, 3.8f);
-            Abyss(level, gap1, gap1End);
-            level.Hint(Bots.BotHintType.Drop, gap1 - 6f, 0f, 6f);
             Anchor(level, chain + 20f, 0f);
 
             // S4: abismo (H22) que solo cruza el Súper Pedo.
-            Abyss(level, abyss, abyssEnd);
-            level.Hint(Bots.BotHintType.Drop, abyss - 8f, 0f, 6f);
             level.PowerUp("P01", abyss - 20f, 0f);
+            level.PowerUp("P03", gap1End + 12f, 0f);
 
             LevelDresser.Dress(level, LevelDresser.With(LevelDresser.W4, LevelDresser.W4.Decor, 0.6f, new Color(0.2f, 0.1f, 0.22f)), 43,
                 level.PointAt(chain, 55f), -90f);
@@ -274,12 +276,11 @@ namespace GasSafari.Editor
                 float d = 35f + i * 45f;
                 float yaw = Quaternion.LookRotation(level.DirectionAt(d)).eulerAngles.y;
                 level.PlaceAt(HZ + "H31_Current.prefab", level.PointAt(d, 0f), yaw + (i % 2 == 0 ? 0f : 180f)).name = "CorrienteLateral_" + i;
-                level.PlaceAt(HZ + "H31_Current.prefab", level.PointAt(d, 0f), yaw + 90f).name = "CorrienteAdelante_" + i;
+                level.PlaceAt(HZ + "H31_Current.prefab", level.PointAt(d, 0f), yaw + 270f).name = "CorrienteAdelante_" + i;
             }
             level.Mango(0, 80f, 0f, 1f);
             level.PowerUp("P01", 20f, 0f);
-            level.PowerUp("P05", field - 12f, 3f);
-            level.PowerUp("P05", field - 12f, -3f);
+            level.PowerUp("P05", fieldStart - 6f, 0f);
 
             // S2: campo de pinchos bajos en el lado izquierdo (el resto del cauce queda libre para rodearlo; la gaseosa pasa por encima); mango encima.
             for (float d = fieldStart + 6f; d < fieldEnd - 4f; d += 6f)
@@ -289,7 +290,7 @@ namespace GasSafari.Editor
             }
             var topMango = level.Mango(1, 0f, 0f, 1f);
             topMango.transform.position = level.PointAt(fieldStart + 25f, -5.4f, 2.4f);
-            level.PowerUp("P05", fieldEnd + 6f, 0f);
+            level.PowerUp("P05", fieldStart + 14f, -3f);
             level.PowerUp("P01", fieldEnd + 20f, 0f);
 
             // S3: colonia de murciélagos (H26) en las dos orillas; mango escondido en el techo, a un costado.
@@ -340,6 +341,14 @@ namespace GasSafari.Editor
             // S1: temblores (cámara) y un desvío lateral con el mango (riesgo con el derrumbe).
             level.PowerUp("P01", 30f, 0f);
             level.PowerUp("P04", 70f, 0f);
+            var quake = new GameObject("Temblores");
+            SceneManager.MoveGameObjectToScene(quake, level.Scene);
+            quake.layer = GameLayers.Trigger;
+            quake.transform.SetPositionAndRotation(level.PointAt(60f, 0f, 1f), Quaternion.LookRotation(level.DirectionAt(60f)));
+            var quakeBox = quake.AddComponent<BoxCollider>();
+            quakeBox.isTrigger = true;
+            quakeBox.size = new Vector3(level.WidthAt(60f) + 2f, 4f, 100f);
+            quake.AddComponent<CameraQuake>().Configure(6f, 0.5f);
             level.WallGap(chase + 60f, chase + 70f);
             Alcove(level, chase + 65f, 1f);
             level.Mango(0, chase + 65f, 8.4f, 1f);
@@ -358,7 +367,7 @@ namespace GasSafari.Editor
             var rf = rockFall.GetComponent<RockFall>();
             rf.Configure(targets.ToArray(), 2.5f, rockFall.transform.Find("Sombra"));
             EditorUtility.SetDirty(rf);
-            level.Mango(1, rocks + 65f, 0f, 1f);
+            level.Mango(1, rocks + 55f, 2.4f, 1f);
             level.PowerUp("P01", rocks + 8f, 0f);
             level.PowerUp("P04", rocks + 100f, 0f);
 
@@ -387,9 +396,12 @@ namespace GasSafari.Editor
             geyser.name = "GeiserFinal";
             geyser.transform.localScale = Vector3.one * 1.4f;
             geyser.GetComponent<Geyser>().Configure(geyser.transform.Find("Vapor"), 0f);
+            var finalSo = new SerializedObject(geyser.GetComponent<Geyser>());
+            finalSo.FindProperty("armOnEnter").boolValue = true;
+            finalSo.ApplyModifiedPropertiesWithoutUndo();
             level.Mango(2, exit + 62f, 0f, 5.5f);
             level.PowerUp("P01", exit + 20f, 0f);
-            Anchor(level, exit + 50f, 0f);
+            Anchor(level, exit + 38f, 0f);
 
             LevelDresser.Dress(level, LevelDresser.With(LevelDresser.W4, LevelDresser.W4.Decor, 0.55f, new Color(0.25f, 0.08f, 0.1f)), 45,
                 level.PointAt(exit, 55f), -90f);
@@ -446,7 +458,7 @@ namespace GasSafari.Editor
             bool first = true;
             for (float d = from + 20f; d < to; d += 40f)
             {
-                var zone = level.Place(HZ + "H18_Dark.prefab", d, 0f, Quaternion.LookRotation(level.DirectionAt(d)).eulerAngles.y);
+                var zone = level.Place(HZ + "H18_Dark.prefab", d, 0f, 0f);
                 zone.name = "ZonaOscura";
                 var box = zone.GetComponent<BoxCollider>();
                 box.size = new Vector3(level.WidthAt(d) + 6f, 12f, 40f);
@@ -460,9 +472,10 @@ namespace GasSafari.Editor
         private static void Abyss(GreyboxLevel level, float from, float to)
         {
             float d = (from + to) * 0.5f;
-            var go = level.Place(HZ + "H22_Abyss.prefab", d, 0f, Quaternion.LookRotation(level.DirectionAt(d)).eulerAngles.y, -12f);
+            var go = level.Place(HZ + "H22_Abyss.prefab", d, 0f, 0f, -33f);
             go.name = "Abismo";
-            go.GetComponent<BoxCollider>().size = new Vector3(level.WidthAt(d) + 40f, 4f, to - from + 20f);
+            // Alto (de -63 a -3 m): la balsa cae a gran velocidad y no debe atravesar el trigger entre dos pasos de física.
+            go.GetComponent<BoxCollider>().size = new Vector3(level.WidthAt(d) + 40f, 60f, to - from + 20f);
         }
 
         private static GameObject Solid(GreyboxLevel level, string fbx, float d, float lateral, Quaternion rotation, float scale, float y)

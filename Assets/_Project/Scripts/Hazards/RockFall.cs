@@ -15,7 +15,11 @@ namespace GasSafari.Hazards
         [SerializeField] private float range = 45f;
         [SerializeField] private Transform shadow;
 
+        private const float DROP_HEIGHT = 12f;
+        private const float DROP_TIME = 0.3f;
+
         private RaftController raft;
+        private Transform fallingRock;
         private float timer;
         private int next;
         private int current = -1;
@@ -46,6 +50,7 @@ namespace GasSafari.Hazards
         protected override void Update()
         {
             base.Update();
+            AnimateRock();
             if (raft == null)
                 raft = FindFirstObjectByType<RaftController>();
             if (raft == null || targets == null || targets.Length == 0)
@@ -68,8 +73,34 @@ namespace GasSafari.Hazards
             }
         }
 
+        // La roca baja desde 12 m sobre el punto durante el último 0.3 s del aviso.
+        private void AnimateRock()
+        {
+            if (!IsWarning || current < 0)
+            {
+                if (fallingRock != null)
+                    fallingRock.gameObject.SetActive(false);
+                return;
+            }
+            if (fallingRock == null)
+            {
+                var rock = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                Destroy(rock.GetComponent<Collider>());
+                rock.name = "Roca";
+                rock.transform.localScale = Vector3.one * 2f;
+                fallingRock = rock.transform;
+                fallingRock.SetParent(transform, true);
+            }
+            float remaining = Config.warningTime * (1f - WarningProgress);
+            fallingRock.gameObject.SetActive(remaining <= DROP_TIME);
+            float k = Mathf.Clamp01(remaining / DROP_TIME);
+            fallingRock.position = targets[current].position + Vector3.up * (1f + DROP_HEIGHT * k);
+        }
+
         protected override void OnWarningEnded()
         {
+            if (fallingRock != null)
+                fallingRock.gameObject.SetActive(false);
             if (shadow != null)
                 shadow.gameObject.SetActive(false);
             if (current < 0 || raft == null)

@@ -12,6 +12,8 @@ namespace GasSafari.Hazards
     {
         [SerializeField] private Transform steam;
         [SerializeField] private float phase;
+        [Tooltip("Géiser final: avisa en cuanto entra la balsa en vez de seguir el ciclo")]
+        [SerializeField] private bool armOnEnter;
 
         private float timer;
         private RaftController inside;
@@ -28,7 +30,12 @@ namespace GasSafari.Hazards
 
         private void Awake() => timer = phase;
 
-        protected override void OnRaftEnter(RaftController raft) => inside = raft;
+        protected override void OnRaftEnter(RaftController raft)
+        {
+            inside = raft;
+            if (armOnEnter && !IsWarning)
+                Warn();
+        }
         protected override void OnRaftExit(RaftController raft)
         {
             if (raft == inside)
@@ -39,7 +46,7 @@ namespace GasSafari.Hazards
         {
             base.Update();
             timer += Time.deltaTime * HazardSpeed;
-            if (timer >= Cycle)
+            if (!armOnEnter && timer >= Cycle)
             {
                 timer = 0f;
                 Warn();

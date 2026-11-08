@@ -46,6 +46,10 @@ namespace GasSafari.Hazards
                 return;
             raft = hit;
             running = true;
+            // Aviso: sacudida fuerte de cámara al arrancar el derrumbe.
+            var rig = FindFirstObjectByType<GasSafari.VFX.RaftCameraRig>();
+            if (rig != null)
+                rig.Shake(1f);
         }
 
         private void Update()

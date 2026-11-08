@@ -14,12 +14,15 @@ namespace GasSafari.Hazards
         [SerializeField] private Light[] fireflies;
         [SerializeField] private float blackoutSeconds;
 
+        // Zonas contiguas: la niebla original se guarda al entrar en la primera y se restaura al salir de la última.
+        private static int occupied;
+        private static bool savedFog;
+        private static FogMode savedMode;
+        private static float savedStart, savedEnd;
+        private static Color savedColor;
+
         private bool inside;
         private float blackoutUntil = -1f;
-        private float fogStart, fogEnd;
-        private Color fogColor;
-        private bool fogWas;
-        private FogMode fogMode;
 
         public bool Inside => inside;
         public bool LightsOut => Time.time < blackoutUntil;
@@ -52,11 +55,14 @@ namespace GasSafari.Hazards
             if (inside || other.GetComponentInParent<RaftController>() == null)
                 return;
             inside = true;
-            fogWas = RenderSettings.fog;
-            fogMode = RenderSettings.fogMode;
-            fogStart = RenderSettings.fogStartDistance;
-            fogEnd = RenderSettings.fogEndDistance;
-            fogColor = RenderSettings.fogColor;
+            if (occupied++ == 0)
+            {
+                savedFog = RenderSettings.fog;
+                savedMode = RenderSettings.fogMode;
+                savedStart = RenderSettings.fogStartDistance;
+                savedEnd = RenderSettings.fogEndDistance;
+                savedColor = RenderSettings.fogColor;
+            }
             RenderSettings.fog = true;
             RenderSettings.fogMode = FogMode.Linear;
             RenderSettings.fogColor = Color.black;
@@ -87,11 +93,14 @@ namespace GasSafari.Hazards
         private void Restore()
         {
             inside = false;
-            RenderSettings.fog = fogWas;
-            RenderSettings.fogMode = fogMode;
-            RenderSettings.fogColor = fogColor;
-            RenderSettings.fogStartDistance = fogStart;
-            RenderSettings.fogEndDistance = fogEnd;
+            if (--occupied > 0)
+                return;
+            occupied = 0;
+            RenderSettings.fog = savedFog;
+            RenderSettings.fogMode = savedMode;
+            RenderSettings.fogColor = savedColor;
+            RenderSettings.fogStartDistance = savedStart;
+            RenderSettings.fogEndDistance = savedEnd;
         }
 
         private void SetLights(bool on)

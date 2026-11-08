@@ -370,6 +370,14 @@ namespace GasSafari.Editor
                 foreach (var (branch, width) in branches)
                     Ribbon("AguaRamal", branch, branch.Select(_ => width).ToList(), material);
             }
+            // Con abismos el plano de agua base no puede estar: taparía los huecos.
+            if (!useBaseWater)
+            {
+                var planeCollider = water.GetComponent<Collider>();
+                if (planeCollider != null)
+                    planeCollider.enabled = false;
+                water.GetComponent<Renderer>().enabled = false;
+            }
             // Nivel base del agua fuera de los tramos (docs/02 §1); los niveles con abismos lo quitan con NoBaseWater.
             if (useBaseWater)
             {
