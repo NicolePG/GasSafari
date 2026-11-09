@@ -45,7 +45,7 @@ Cinco animales escapados del zoológico, una balsa inflable y ningún remo. La �
 - 5 personajes con pasiva y habilidad activa; sinergias entre habilidades.
 - 31 niveles (docs/04), 20+ tipos de obstáculo, 7 power-ups (docs/05).
 - Modos (docs/06): Historia, Contrarreloj con fantasma, Espejo, Modificadores (Caos), Fiesta (5 minijuegos), Infinito, Desafío Diario, Carrera por Equipos.
-- Progresión: estrellas, mangos dorados, tienda de cosméticos, 25 logros, estadísticas, 3 dificultades + ayuda opcional.
+- Progresión: estrellas, mangos dorados, tienda de cosméticos, 26 logros, estadísticas, 3 dificultades + ayuda opcional.
 - Cooperativo local (PlayerInputManager), online (NGO 1.x + Relay + Lobby) y bots.
 - Guardado local, opciones completas, accesibilidad básica.
 

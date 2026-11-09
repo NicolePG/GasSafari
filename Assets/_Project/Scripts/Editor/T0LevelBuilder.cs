@@ -119,7 +119,7 @@ namespace GasSafari.Editor
                 Step(2, "Muévete por el borde", "Rodea la balsa: el pedo empuja desde donde estás sentado.", TutorialAction.SeatMove, TutorialCondition.MoveSeat, 90f),
                 Step(3, "Apunta para girar", "Apunta el pedo y rodea la boya por las tres marcas.", TutorialAction.Aim, TutorialCondition.RoundBuoy, 0f),
                 Step(4, "Ráfaga", "Mantén el pedo para una ráfaga larga y cruza la piscina.", TutorialAction.Blast, TutorialCondition.Blast, 1f),
-                Step(5, "¡Sincronía!", "Tiraos el pedo a la vez para romper la pared de globos.", TutorialAction.Fart, TutorialCondition.Sync, 0f),
+                Step(5, "¡Sincronía!", "Tírense un pedo a la vez para romper la pared de globos.", TutorialAction.Fart, TutorialCondition.Sync, 0f),
                 Step(6, "Frijoles", "Recoge frijoles para recargar el gas.", TutorialAction.Fart, TutorialCondition.PickupBeans, 0f),
                 Step(7, "Pings", "Marca \"¡Ahora!\" para avisar a tu equipo.", TutorialAction.Ping, TutorialCondition.PingNow, 0f),
                 Step(8, "Agárrate", "Agárrate fuerte mientras el chorro empuja.", TutorialAction.Grab, TutorialCondition.GrabInJet, 3f),

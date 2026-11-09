@@ -129,7 +129,7 @@ Se muestran 3 al azar entre los que tengan ganador (al menos 1 positivo y 1 de v
 
 Además: repetición "¿Quién fue?" de 3 s del peor choque, con flecha al jugador cuyo pedo lo causó.
 
-## 5. Logros (25)
+## 5. Logros (26)
 
 | # | Logro | Condición |
 |---|---|---|
@@ -153,6 +153,7 @@ Además: repetición "¿Quién fue?" de 3 s del peor choque, con flecha al jugad
 | 23 | Fiestero | Jugar los 5 minijuegos |
 | 24 | Kilómetro | 1000 m en Infinito |
 | 25 | Constante | Desafío Diario 7 días seguidos |
+| 26 | Rey de la Balsa (secreto) | Terminar W6-5 La Corona del Rey. Se muestra como "???" hasta desbloquearlo; da la corona dorada (cosmético) |
 
 ## 6. Estadísticas guardadas
 Pedos totales, grupos de sync por tamaño, Súper Pedos, caídas, rescates, hundimientos, distancia recorrida, tiempo de juego, personaje más usado.
