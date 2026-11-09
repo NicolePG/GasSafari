@@ -33,9 +33,11 @@ namespace GasSafari.Editor
             "L_W2_5_ArrecifeJefe",
             "L_W3_1_PlayaLlegada", "L_W3_2_RioLianas", "L_W3_3_TerritorioFosas", "L_W3_4_PantanoCocodrilos", "L_W3_5_FiestaLemurJefe",
             "L_W4_1_CascadasEscalonadas", "L_W4_2_CuevaCristal", "L_W4_3_GeiseresVapor", "L_W4_4_RioSubterraneo", "L_W4_5_VolcanJefe",
+            "L_W5_1_RapidosCanon", "L_W5_2_RampasAbismo", "L_W5_3_LaberintoManglares", "L_W5_4_Represa", "L_W5_5_MegatoboganJefe",
+            "L_W6_1_FiestaEspejo", "L_W6_2_NocheSinLuz", "L_W6_3_Contracorriente", "L_W6_4_LluviaCocos", "L_W6_5_CoronaReyJefe",
         };
 
-        [MenuItem("Gas Safari/QA/Auditar colisiones (T-0, W1-W4)")]
+        [MenuItem("Gas Safari/QA/Auditar colisiones (T-0, W1-W6)")]
         public static void RunAllMenu()
         {
             var report = RunAll();
@@ -172,6 +174,9 @@ namespace GasSafari.Editor
                 // Puente_N es el tablero (alto, sobre el cauce); sus pilares son bloques sólidos aparte. Neon son tiras
                 // de luz pegadas a la pared del túnel.
                 if (n.StartsWith("Puente_") && !n.EndsWith("_Pilar") || n == "Neon" || n == "CortinaCascada" || n == "Derrumbe")
+                    return true;
+                // Boyas rojas del aviso de abismo (marca visual que no frena a la balsa) y luciérnagas (luces que flotan).
+                if (n == "BoyaRoja" || n.StartsWith("Luciernaga"))
                     return true;
                 if (n == "Ground" || n == "Banks" || n == "Acera" || n.StartsWith("Water") || n == "Sky" || n == "Art"
                     || n == "Decor" || n == "Mangos" || n == "PowerUps" || n.StartsWith("Cloud") || n.StartsWith("Fog") || n.StartsWith("Rain") || n == "Backdrop")

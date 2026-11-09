@@ -33,6 +33,8 @@ MonoBehaviour:
     text: CHECKPOINT
   - key: hud.no_gas
     text: Sin gas
+  - key: hud.abyss
+    text: "\xA1Abismo adelante!"
   - key: hud.mangos
     text: Mangos {0}/{1}
   - key: hud.checkpoint_progress

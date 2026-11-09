@@ -579,6 +579,25 @@ namespace GasSafari.Editor
             go.AddComponent<BotHint>().Configure(type, radius);
         }
 
+        // Ruta alternativa para los bots (BotHint Route): puntos (distancia del cauce, lateral) en orden; el primero es la entrada,
+        // sobre el cauce principal, y el último vuelve a él. Los bots la siguen solo si la prueba fuerza esa ruta
+        // (BotHint.ForcedRoute); en el juego siguen el cauce principal.
+        public void RouteHint(string routeId, params (float distance, float lateral)[] route)
+        {
+            RoutePoints(routeId, route.Select(r => PointAt(r.distance, r.lateral, 0.4f)).ToArray());
+        }
+
+        // Igual con puntos del mundo (el atajo es una recta entre dos puntos del cauce).
+        public void RoutePoints(string routeId, Vector3[] points)
+        {
+            var go = new GameObject("BotHint_Route_" + routeId);
+            go.transform.SetParent(Group("BotHints"), false);
+            go.transform.position = points[0];
+            var hint = go.AddComponent<BotHint>();
+            hint.Configure(BotHintType.Route, 6f);
+            hint.ConfigureRoute(routeId, points);
+        }
+
         // Caja de apoyo del greybox (estatuas, vallas, arbustos): sin arte.
         public GameObject Block(string name, Vector3 position, Vector3 size, Color color, float yaw = 0f, bool mesh = true, string group = "Props")
         {
@@ -650,6 +669,19 @@ namespace GasSafari.Editor
             }
             root.SetActive(false);
             return root;
+        }
+
+        // Grupo de la escena del nivel (se crea al pedirlo): para props con arte propio.
+        public Transform GroupOf(string name) => Group(name);
+
+        // Material SG_Toon guardado en Art/Materials/Greybox con color base y, si no es negro, emisivo HDR (Bloom).
+        public Material ToonMaterial(string name, Color color, Color emission = default)
+        {
+            var material = new Material(Shader.Find("GasSafari/SG_Toon"));
+            material.SetColor("_BaseColor", color);
+            if (emission.maxColorComponent > 0f)
+                material.SetColor("_EmissionColor", emission);
+            return SaveMaterial(material, $"{levelId}_{name}");
         }
 
         // ---------------------------------------------------------------- cierre

@@ -80,9 +80,11 @@ Se muestran según el último dispositivo usado por cada jugador: Xbox, PlayStat
 | hud.go | ¡YA! |
 | hud.checkpoint | CHECKPOINT |
 | hud.no_gas | Sin gas |
+| hud.abyss | ¡Abismo adelante! (30 m antes de cada abismo, con borde rojo de pantalla) |
 | ping.now / wait / left / right | ¡Ahora! / Espera / Gira a la izquierda / Gira a la derecha |
 | results.who | ¿Quién fue? |
 | assist.offer | ¿Necesitan una Ayuda Real? |
+| story.skip | Pulsa cualquier botón para saltar (ayuda de las viñetas de historia; los pies de cada imagen son story.<momento>.<n>) |
 
 Consejos de carga (rotativos): "Empujar juntos vale más que empujar fuerte." · "Un toque corrige; una ráfaga acelera." · "Agárrate cuando tiemble la orilla." · "Gloria a bordo, viento a raya." · "Si no hay micrófono, usa los pings." · "El Cuello Gancho de Melman también rescata." · "Los frijoles recargan todo tu gas."
 

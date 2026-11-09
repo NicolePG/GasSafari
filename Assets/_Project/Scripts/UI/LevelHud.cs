@@ -46,6 +46,7 @@ namespace GasSafari.UI
             GameEvents.OnSync -= OnSync;
             GameEvents.OnSynergy -= OnSynergy;
             GameEvents.OnCheckpoint -= OnCheckpoint;
+            GameEvents.OnHazardWarning -= OnHazardWarning;
             if (level != null)
                 level.CountdownTick -= OnCountdownTick;
         }
@@ -63,6 +64,7 @@ namespace GasSafari.UI
             GameEvents.OnSync += OnSync;
             GameEvents.OnSynergy += OnSynergy;
             GameEvents.OnCheckpoint += OnCheckpoint;
+            GameEvents.OnHazardWarning += OnHazardWarning;
         }
 
         private void BuildPlayers(LevelManager manager)
@@ -110,5 +112,12 @@ namespace GasSafari.UI
         }
 
         private void OnCheckpoint(int index) => eventText.Show(strings.Get("hud.checkpoint"));
+
+        // Aviso de peligro del abismo H22, 30 m antes del hueco (el borde rojo lo pone el propio aviso).
+        private void OnHazardWarning(Hazards.HazardBase hazard)
+        {
+            if (hazard is Hazards.AbyssWarning)
+                eventText.Show(strings.Get("hud.abyss"));
+        }
     }
 }

@@ -170,9 +170,60 @@ namespace GasSafari.Tests
             yield return RunLevel("L_W5_5_MegatoboganJefe", "W5-5", 505f * 1.3f);
         }
 
-        private IEnumerator RunLevel(string scene, string id, float limit)
+        // W5-3: cada ruta alternativa y el atajo se pueden terminar. Las rutas se fuerzan con una marca BotHint Route (decisión 2026-11-08);
+        // sin forzar, los bots siguen el cauce principal (la ruta segura, probada arriba).
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W5_3_FourBots_FinishTheFastRoute()
+        {
+            yield return RunLevel("L_W5_3_LaberintoManglares", "W5-3-rapida", 420f * 1.3f, "rapida");
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W5_3_FourBots_FinishTheMangoRoute()
+        {
+            yield return RunLevel("L_W5_3_LaberintoManglares", "W5-3-mangos", 420f * 1.3f, "mangos");
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W5_3_FourBots_FinishTheSecretShortcut()
+        {
+            yield return RunLevel("L_W5_3_LaberintoManglares", "W5-3-atajo", 420f * 1.3f, "atajo");
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W6_1_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W6_1_FiestaEspejo", "W6-1", 380f * 1.3f);
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W6_2_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W6_2_NocheSinLuz", "W6-2", 400f * 1.3f);
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W6_3_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W6_3_Contracorriente", "W6-3", 420f * 1.3f);
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W6_4_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W6_4_LluviaCocos", "W6-4", 420f * 1.3f);
+        }
+
+        [UnityTest, Timeout(600000)]
+        public IEnumerator W6_5_FourBots_FinishUnderSilverTimes1Point3()
+        {
+            yield return RunLevel("L_W6_5_CoronaReyJefe", "W6-5", 550f * 1.3f);
+        }
+
+        private IEnumerator RunLevel(string scene, string id, float limit, string route = null)
         {
 #if UNITY_EDITOR
+            BotHint.ForcedRoute = route;
             Services.Session.ClearPlayers();
             for (int i = 0; i < Crew.Length; i++)
             {
@@ -254,6 +305,7 @@ namespace GasSafari.Tests
             if (finale != null && !finale.Played)
                 problems.Add($"{id}: el gancho cae tras la balsa en la rampa");
 
+            BotHint.ForcedRoute = null;
             foreach (var avatar in manager.Avatars)
                 Object.Destroy(avatar.gameObject);
             Object.Destroy(manager.Raft.gameObject);

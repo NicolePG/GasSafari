@@ -499,6 +499,7 @@ namespace GasSafari.Editor
             var abyssBehaviour = go.GetComponent<Abyss>();
             abyssBehaviour.Configure(level.BuoyBridge(from, to, 8f));
             EditorUtility.SetDirty(abyssBehaviour);
+            AbyssSignage.Add(level, from, Mathf.RoundToInt(from).ToString());
         }
 
         private static GameObject Solid(GreyboxLevel level, string fbx, float d, float lateral, Quaternion rotation, float scale, float y)

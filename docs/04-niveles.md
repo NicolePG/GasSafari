@@ -248,8 +248,6 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W5-1 Rápidos del Cañón
 
-> Mundo 5 (M5-26 a M5-31, 2026-11-08): decisiones provisionales de construcción. Esclusas de W5-4: compuertas pequeñas con oleada débil (el nivel del agua no sube ni baja). Peralte de W5-5: curvas en pendiente (sin inclinar el cauce). El atajo secreto de W5-3 es un ramal recto que corta las curvas desde las raíces hasta la reunión.
-
 - Escena `L_W5_1_RapidosCanon` · Oro 4:00 · Plata 5:40 · Checkpoints 4
 - Mecánica nueva: rápidos (H21): corriente fuerte con rocas en el cauce.
 - Secciones: 1) entrada tranquila; 2) rápidos clase 1; 3) rápidos clase 2 con rocas; 4) el rápido más largo del juego.
@@ -257,11 +255,13 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 - Mangos: en un remanso tras una roca; en una cascada pequeña lateral; al final del rápido largo sin frenar.
 - Momento estrella: el rápido más largo sin frenar.
 
+> Mundo 5 (M5-26 a M5-31, 2026-11-08): decisiones de construcción. Esclusas de W5-4: compuertas pequeñas con oleada débil (el nivel del agua no sube ni baja). Peralte de W5-5: se queda como curvas en pendiente (sin inclinar el cauce). El atajo secreto de W5-3 es un ramal recto que corta las curvas desde las raíces hasta la reunión. Decisiones del 2026-11-08: los puentes rotos de W5-2 son parte del recorrido (dos huecos cortos de 4.5 m, rampa y velocidad, sin Súper Pedo); en W5-5 la rampa lanza la balsa a la cubierta del barco y ahí está la meta; las pruebas de bots de W5-3 fuerzan cada ruta y el atajo con marcas `BotHint` tipo Route.
+
 ## W5-2 Rampas del Abismo
 
 - Escena `L_W5_2_RampasAbismo` · Oro 4:30 · Plata 6:20 · Checkpoints 4
 - Mecánica nueva: abismos (H22) que exigen Súper Pedo; rampas de salto.
-- Secciones: 1) rampas pequeñas; 2) plataformas flotantes; 3) puentes rotos; 4) el gran salto de 18 m (Súper Pedo obligatorio; el géiser de gas dorado H36 justo antes carga el medidor; puente de boyas tras 2 caídas).
+- Secciones: 1) rampas pequeñas; 2) plataformas flotantes; 3) puentes rotos: dos huecos cortos de 4.5 m que se saltan con la rampa (sube 1.5 m en 8 m) y velocidad, sin Súper Pedo, con el tablero roto colgando encima; 4) el gran salto de 18 m (Súper Pedo obligatorio; el géiser de gas dorado H36 justo antes carga el medidor; puente de boyas tras 2 caídas).
 - Power-ups: P01 x3, P03 x3.
 - Mangos: sobre la primera rampa; en una plataforma lateral; en el aire durante el gran salto.
 - Momento estrella: cruzar el abismo con el Súper Pedo.
@@ -291,6 +291,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 - Secciones: 1) salida en la montaña; 2) curvas peraltadas; 3) túnel oscuro; 4) géiseres y rampa; 5) el cocodrilo muerde la cola del tobogán; 6) llegada al mar y al barco.
 - Power-ups: P01 x5, P04 x3, P03 x2.
 - Mangos: en una curva peraltada exterior; en el túnel; en la rampa final.
+- Final: la rampa (con el trampolín H27 al final) lanza la balsa por encima de un hueco de 9 m hasta la cubierta del barco; la meta está al final de la cubierta. Caer al hueco = reaparición en el checkpoint (puente de boyas tras 2 caídas).
 - Momento estrella: el cocodrilo cierra la boca justo detrás de la balsa al saltar al barco.
 - Fin: viñeta final y créditos.
 
@@ -299,30 +300,47 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 ## W6-1 Fiesta en Espejo
 
 - Escena `L_W6_1_FiestaEspejo` · Oro 4:30 · Plata 6:20 · Checkpoints 4
-- Remix: tramos de W1 y W3 en espejo, con obstáculos rítmicos.
-- Mangos: en el tramo espejo del puerto; en el escenario de DJ; atajo oculto.
+- Remix: tramos de W1 y W3 en espejo (el puerto gira a la izquierda y la selva a la derecha), con obstáculos rítmicos (120 BPM).
+- Secciones: 1) puerto en espejo (compuertas H03, tambores); 2) selva en espejo (fosas H14, barras rítmicas); 3) ritmo (barras H16, chorros, tambores); 4) escenario del DJ.
+- Power-ups: P01 x6, P04 x2, P03 x1.
+- Mangos: en el tramo espejo del puerto; en la plataforma lateral del escenario del DJ; atajo oculto (la recta que corta la curva de la selva).
+- Momento estrella: entrar al escenario del DJ.
+
+> Mundo 6 (M5-32 a M5-37, 2026-11-08): fiesta nocturna en el Reino de Julien, magenta #F72585 y lima #B5E48C (props de `Tools/Export/Environment/W6`, Bloom fuerte). Todo lo que sigue más allá de la lista original de cada nivel (secciones, power-ups, momento estrella) es decisión provisional de construcción.
 
 ## W6-2 Noche sin Luz
 
 - Escena `L_W6_2_NocheSinLuz` · Oro 4:45 · Plata 6:40 · Checkpoints 4
-- Remix: oscuridad total con luciérnagas móviles + fosas + remolinos.
-- Mangos: sobre una luciérnaga gigante; en un remolino; en una cueva.
+- Remix: oscuridad casi total (visibilidad de 6 m en todo el nivel) con luciérnagas móviles (`FireflyDrift`) + fosas + remolinos.
+- Secciones: 1) entrada a oscuras con la luciérnaga gigante; 2) fosas H14; 3) tres remolinos H09; 4) cueva y salida.
+- Power-ups: P01 x7, P04 x2, P05 x1, P06 x1.
+- Mangos: sobre una luciérnaga gigante (el mango viaja con ella); en el ojo de un remolino; en una cueva.
+- Momento estrella: el segundo remolino, iluminado por las luciérnagas.
 
 ## W6-3 Todo a Contracorriente
 
 - Escena `L_W6_3_Contracorriente` · Oro 5:00 · Plata 7:00 · Checkpoints 5
-- Remix: la corriente va en contra todo el nivel; exige ráfagas sincronizadas y gestión de gas.
+- Remix: la corriente va en contra todo el nivel (-0.7 m/s²; los remansos la anulan); exige ráfagas sincronizadas y gestión de gas (frijoles frecuentes).
+- Secciones: 1) contra la corriente con un remanso; 2) rápidos H21 en contra; 3) tres compuertas temporizadas; 4) cascada; 5) final.
+- Power-ups: P01 x9, P04 x3, P03 x1.
 - Mangos: en un remanso; tras una compuerta; en la cima de una cascada (subir con Súper Pedo).
+- Momento estrella: la cascada.
 
 ## W6-4 Lluvia de Cocos
 
 - Escena `L_W6_4_LluviaCocos` · Oro 5:00 · Plata 7:00 · Checkpoints 4
 - Remix: cocos caen del cielo (H30) con sombra; cocodrilos y pinchos.
+- Secciones: 1) palmeral con cocos aislados; 2) el centro de la lluvia (dos lluvias que se cruzan); 3) cocodrilos dormidos, pinchos y lluvia suave; 4) aguacero final.
+- Power-ups: P01 x6, P04 x4.
 - Mangos: en el centro de la lluvia; sobre un cocodrilo; tras una palmera.
+- Momento estrella: el aguacero final.
 
 ## W6-5 La Corona del Rey (JEFE FINAL SECRETO)
 
 - Escena `L_W6_5_CoronaReyJefe` · Oro 6:30 · Plata 9:10 · Checkpoints 6
-- Remix: recorrido con un tramo de cada mundo, 2 Súper Pedos obligatorios y final rítmico.
-- Mangos: uno por cada tercio del recorrido.
-- Recompensa: corona dorada (cosmético) y logro "Rey de la Balsa".
+- Remix: recorrido con un tramo de cada mundo, 2 Súper Pedos obligatorios (receta de abismo de W4-3: géiser dorado H36 30 m antes, rampa de despegue, marca SuperFart, puente de boyas tras 2 caídas) y final rítmico.
+- Secciones: 1) puerto (W1: compuertas); 2) tormenta (W2: remolinos); 3) selva (W3: fosas y cocodrilos); 4) cueva (W4: abismo de 15 m); 5) cañón (W5: rápidos y abismo de 18 m); 6) final rítmico (barras, chorros y tambores a 120 BPM) hasta el trono y la corona gigante.
+- Power-ups: P01 x11, P03 x4, P04 x3, P05 x1.
+- Mangos: uno por cada tercio del recorrido (entre los remolinos; en el aire sobre el primer abismo; sobre la plataforma del trono).
+- Momento estrella: el primer Súper Pedo sobre el abismo.
+- Recompensa: corona dorada (cosmético) y logro 26 "Rey de la Balsa" (secreto, docs/06 §5).

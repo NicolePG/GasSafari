@@ -9,7 +9,9 @@ namespace GasSafari.Bots
         Drop,
         Whirlpool,
         // Despegue de un abismo que exige el Súper Pedo (H22 con H36 antes): los bots lo lanzan aquí aunque no haya humanos.
-        SuperFart
+        SuperFart,
+        // Ruta alternativa (W5-3): una lista de puntos que los bots siguen solo si la ruta forzada (BotHint.ForcedRoute) es la suya.
+        Route
     }
 
     // Marca que el nivel coloca delante de rampas y abismos (Marty galopa antes de ellos) y sobre remolinos (Gloria
@@ -22,13 +24,29 @@ namespace GasSafari.Bots
         [Tooltip("m: tamaño de la zona (remolino) o tolerancia lateral (rampa, abismo)")]
         [SerializeField] private float radius = 3f;
 
+        [SerializeField] private string routeId;
+        [Tooltip("Route: puntos del mundo, en orden, que recorre el bot (el primero es la entrada)")]
+        [SerializeField] private Vector3[] waypoints;
+
+        // Ruta que los bots toman donde haya una marca Route con ese id; null = siguen el cauce principal (lo normal en el juego).
+        // Las pruebas de nivel la usan para forzar cada ruta alternativa y comprobar que todas se pueden terminar.
+        public static string ForcedRoute;
+
         public BotHintType Type => type;
         public float Radius => radius;
+        public string RouteId => routeId;
+        public Vector3[] Waypoints => waypoints;
 
         public void Configure(BotHintType hintType, float hintRadius)
         {
             type = hintType;
             radius = hintRadius;
+        }
+
+        public void ConfigureRoute(string id, Vector3[] points)
+        {
+            routeId = id;
+            waypoints = points;
         }
 
         private void OnEnable() => All.Add(this);
@@ -90,7 +108,64 @@ namespace GasSafari.Bots
             return false;
         }
 
+        // Sigue la ruta forzada: si 'current' es null busca una marca Route de la ruta cuya entrada esté a 'enterRange' m;
+        // devuelve true con el punto al que apuntar. Al pasar el último punto (o si la balsa reaparece lejos) la suelta.
+        public static bool FollowRoute(Vector3 position, float enterRange, ref BotHint current, ref int index, out Vector3 target)
+        {
+            target = default;
+            if (ForcedRoute == null)
+            {
+                current = null;
+                return false;
+            }
+            if (current == null)
+            {
+                for (int i = 0; i < All.Count; i++)
+                {
+                    var hint = All[i];
+                    if (hint.type != BotHintType.Route || hint.routeId != ForcedRoute || hint.waypoints == null || hint.waypoints.Length == 0)
+                        continue;
+                    var to = hint.waypoints[0] - position;
+                    to.y = 0f;
+                    if (to.magnitude > enterRange)
+                        continue;
+                    current = hint;
+                    index = 0;
+                    break;
+                }
+                if (current == null)
+                    return false;
+            }
+
+            var points = current.waypoints;
+            while (index < points.Length)
+            {
+                var to = points[index] - position;
+                to.y = 0f;
+                if (to.magnitude > 60f)
+                {
+                    current = null;       // reapareció en otro sitio
+                    return false;
+                }
+                bool last = index == points.Length - 1;
+                if (to.magnitude > (last ? 5f : 4f))
+                    break;
+                index++;
+            }
+            if (index >= points.Length)
+            {
+                current = null;
+                return false;
+            }
+            target = points[index];
+            return true;
+        }
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ResetStatics() => All.Clear();
+        private static void ResetStatics()
+        {
+            All.Clear();
+            ForcedRoute = null;
+        }
     }
 }

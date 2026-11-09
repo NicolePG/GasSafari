@@ -190,6 +190,7 @@ hud.superfart_ready,¡SÚPER PEDO LISTO!,SUPER FART READY!,Medidor de equipo al 
 hud.go,¡YA!,GO!,Fin de la cuenta 3-2-1 | Unity: Strings_es
 hud.checkpoint,CHECKPOINT,CHECKPOINT,Texto de evento al activar un checkpoint | Unity: Strings_es
 hud.no_gas,Sin gas,No gas,Ping automático con gas menor a 10 % | Unity: Strings_es
+hud.abyss,¡Abismo adelante!,Abyss ahead!,Texto de evento 30 m antes de cada abismo (H22) | Unity: Strings_es
 hud.mangos,Mangos {0}/{1},Mangos {0}/{1},HUD arriba a la derecha | Unity: Strings_es
 hud.checkpoint_progress,Checkpoint {0}/{1},Checkpoint {0}/{1},HUD arriba a la derecha | Unity: Strings_es
 hud.player_tag,J{0},P{0},Etiqueta de jugador en la esquina (J1..J4 / P1..P4)
@@ -658,3 +659,4 @@ story.w5_end.5,"Hogar, dulce hogar. Los cinco juntos y con gas de sobra.","Home 
 story.w6_secret.1,El Rey Julien tiene un anuncio: ¡nace el Reino de Julien!,Rey Julien has an announcement: Julien's Kingdom is born!,Pie de la viñeta 1 de 3 (Tools/Export/Story/W6_Secret/W6_Secret_01.png): Julien con los brazos arriba en un trono dorado bajo una corona gigante
 story.w6_secret.2,"Desafíos remix: cocodrilos, tentáculos y una grúa muy dramática.","Remix challenges: crocodiles, tentacles and a very dramatic crane.","Pie de la viñeta 2 de 3 (Tools/Export/Story/W6_Secret/W6_Secret_02.png): La balsa entre un cocodrilo, un tentáculo y una grúa portuaria, en un mar morado"
 story.w6_secret.3,Se corona al mejor equipo. Alex se prueba la corona primero.,The best team gets crowned. Alex tries the crown on first.,Pie de la viñeta 3 de 3 (Tools/Export/Story/W6_Secret/W6_Secret_03.png): Fiesta final en tarima morada con confeti; Alex lleva una corona y Julien una más pequeña
+story.skip,Pulsa cualquier botón para saltar,Press any button to skip,Ayuda arriba a la derecha durante una viñeta de historia | Unity: Strings_story_es

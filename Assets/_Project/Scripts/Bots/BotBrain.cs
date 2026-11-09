@@ -34,6 +34,8 @@ namespace GasSafari.Bots
         private FartThruster thruster;
         private FlowSpline flow;
         private int flowHint;
+        private BotHint routeHint;
+        private int routeIndex;
         private Vector3 fallbackHeading;
         private float decideTimer;
         private float puffTimer;
@@ -179,6 +181,17 @@ namespace GasSafari.Bots
 
         private Vector3 DesiredHeading(Vector3 position, float speed)
         {
+            // Ruta alternativa forzada (BotHint Route): los puntos de la ruta mandan hasta soltarla.
+            if (BotHint.ForcedRoute != null || routeHint != null)
+            {
+                bool following = BotHint.FollowRoute(position, config.routeEnterRange, ref routeHint, ref routeIndex, out var routeTarget);
+                if (following)
+                {
+                    var toRoute = Flatten(routeTarget - position, false);
+                    if (toRoute.sqrMagnitude > 0.25f)
+                        return toRoute.normalized;
+                }
+            }
             if (flow != null)
             {
                 float look = Mathf.Clamp(speed * config.lookaheadSeconds, config.lookaheadMin, config.lookaheadMax);

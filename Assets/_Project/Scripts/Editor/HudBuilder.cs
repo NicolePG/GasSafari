@@ -62,7 +62,7 @@ namespace GasSafari.Editor
                 E("ui.press_any", "Pulsa cualquier botón"), E("ui.join", "Pulsa A para unirte"), E("ui.ready", "¡Listo!"),
                 E("hud.sync2", "¡SYNC x2!"), E("hud.sync3", "¡SYNC x3!"), E("hud.sync4", "¡SYNC x4!"),
                 E("hud.superfart_ready", "¡SÚPER PEDO LISTO!"), E("hud.go", "¡YA!"), E("hud.checkpoint", "CHECKPOINT"),
-                E("hud.no_gas", "Sin gas"), E("hud.mangos", "Mangos {0}/{1}"), E("hud.checkpoint_progress", "Checkpoint {0}/{1}"),
+                E("hud.no_gas", "Sin gas"), E("hud.abyss", "¡Abismo adelante!"), E("hud.mangos", "Mangos {0}/{1}"), E("hud.checkpoint_progress", "Checkpoint {0}/{1}"),
                 E("ping.now", "¡Ahora!"), E("ping.wait", "Espera"), E("ping.left", "Gira a la izquierda"), E("ping.right", "Gira a la derecha"),
                 E("pause.title", "Pausa"), E("pause.resume", "Continuar"), E("pause.restart_checkpoint", "Reiniciar desde checkpoint"),
                 E("pause.restart_level", "Reiniciar nivel"), E("pause.options", "Opciones"), E("pause.controls", "Controles"),

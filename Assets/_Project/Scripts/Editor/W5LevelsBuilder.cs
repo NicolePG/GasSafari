@@ -100,7 +100,19 @@ namespace GasSafari.Editor
             float platforms = level.Length;
             level.Straight(100f, 14f);                                                // S2 plataformas flotantes
             float bridges = level.Length;
-            level.Straight(110f, 14f);                                                // S3 puentes rotos
+            // S3: puentes rotos que son parte del recorrido: dos huecos cortos de 4.5 m con rampa (sube 1.5 m en 8 m), que se saltan
+            // con velocidad, sin Súper Pedo.
+            var brokenFrom = new float[2];
+            var brokenTo = new float[2];
+            level.Straight(30f, 14f);
+            for (int i = 0; i < 2; i++)
+            {
+                level.Straight(8f, 14f, 1.5f);
+                brokenFrom[i] = level.Length;
+                level.Straight(4.5f, 14f, -1.5f);
+                brokenTo[i] = level.Length;
+                level.Straight(i == 0 ? 30f : 25f, 14f);
+            }
             float jump = level.Length;
             level.Straight(40f, 14f);                                                 // S4 el gran salto
             level.Straight(14f, 14f, 2f);                                             // rampa de despegue (el agua sube 2 m)
@@ -111,6 +123,8 @@ namespace GasSafari.Editor
             for (int i = 0; i < 3; i++)
                 level.WaterGap(gapsFrom[i], gapsTo[i]);
             level.WaterGap(abyss, abyssEnd);
+            for (int i = 0; i < 2; i++)
+                level.WaterGap(brokenFrom[i], brokenTo[i]);
             level.NoBaseWater();
             level.BuildChannel(0.2f);
 
@@ -146,10 +160,17 @@ namespace GasSafari.Editor
             level.Mango(1, platforms + 64f, 5.2f, 1.6f);
             level.PowerUp("P01", platforms + 8f, 0f);
 
-            // S3: puentes rotos (vista) sobre el cauce, uno con la roca caída; sin daño.
-            for (int i = 0; i < 3; i++)
-                Overpass(level, bridges + 20f + i * 34f);
-            level.PowerUp("P03", bridges + 60f, 0f);
+            // S3: los dos huecos son puentes rotos: el tablero roto cuelga sobre cada uno, con su rampa marcada para Marty y el aviso
+            // de abismo. Un tercer puente roto entero, de vista, entre los dos.
+            for (int i = 0; i < 2; i++)
+            {
+                Abyss(level, brokenFrom[i], brokenTo[i], 5f);
+                level.Hint(Bots.BotHintType.Ramp, brokenFrom[i] - 6f, 0f, 5f);
+                Overpass(level, (brokenFrom[i] + brokenTo[i]) * 0.5f);
+            }
+            Overpass(level, (brokenTo[0] + brokenFrom[1]) * 0.5f);
+            level.PowerUp("P03", brokenTo[0] + 12f, 0f);
+            level.PowerUp("P01", bridges + 8f, 0f);
 
             // S4: gran salto. Antes de la rampa, un géiser de gas dorado (H36) llena el medidor; en el despegue los bots lanzan el
             // Súper Pedo solos (BotHint SuperFart); si el equipo cae 2 veces aparece el puente de boyas. Mango en el aire.
@@ -186,8 +207,12 @@ namespace GasSafari.Editor
             level.Arc(45f, 90f, 14f).Straight(60f, 14f);
             // Ruta rápida (estrecha, recta) y ruta de los mangos (un poco más larga) en la primera bifurcación; atajo secreto
             // que corta las curvas desde las raíces hasta la reunión.
-            level.Branch(fork1, roots, 6f, -14f);
-            level.Branch(fork1, roots, 6f, 14f);
+            // Las dos rutas laterales empiezan 16 m antes y terminan 22 m antes de las raíces, con las paredes del cauce abiertas a lo largo
+            // de la entrada y de la salida: así se entra y se sale en diagonal suave (de lo contrario el giro de 14 m en 5 m no se hace).
+            level.Branch(fork1 - 16f, roots - 22f, 6f, -14f);
+            level.Branch(fork1 - 16f, roots - 22f, 6f, 14f);
+            level.WallGap(fork1 - 36f, fork1 - 8f);
+            level.WallGap(roots - 40f, roots - 6f);
             level.Branch(roots + 10f, level.Length - 40f, 5f, 0f);   // atajo secreto: corta casi la mitad del recorrido
             level.BuildChannel(0.2f);
 
@@ -203,14 +228,36 @@ namespace GasSafari.Editor
 
             // Bifurcación: una ruta segura (el cauce, ancho y tranquilo), una rápida (a la izquierda, con corriente de rápidos) y la de
             // los mangos (a la derecha, con troncos). Los bots siguen el cauce principal.
-            Rapids(level, fork1 + 6f, roots - 6f, 0.6f, -14f, 6f);
+            Rapids(level, fork1 - 10f, roots - 28f, 0.6f, -14f, 6f);
             for (int i = 0; i < 4; i++)
-                Rock(level, "W5_Mangrove_B", fork1 + 25f + i * 24f, 14f + (i % 2 == 0 ? 1.4f : -1.4f), i * 71f, 0.7f);
+                Rock(level, "W5_Mangrove_B", fork1 + 20f + i * 20f, 14f + (i % 2 == 0 ? 2.4f : -2.4f), i * 71f, 0.2f);
             level.Mango(0, fork1 + 55f, 0f, 1f);                                      // ruta segura
             var fast = level.Mango(1, 0f, 0f, 1f);                                    // ruta rápida
             fast.transform.position = level.PointAt(fork1 + 82f, -14f, 1f);
             var rich = level.Mango(2, 0f, 0f, 1f);                                    // ruta de mangos
             rich.transform.position = level.PointAt(fork1 + 60f, 14f, 1f);
+            // Rutas para los bots: en el juego siguen el cauce principal (la segura); las pruebas fuerzan cada alternativa con
+            // BotHint.ForcedRoute para comprobar que todas se pueden terminar.
+            foreach (var (id, side) in new[] { ("rapida", -1f), ("mangos", 1f) })
+            {
+                level.RouteHint(id, (fork1 - 40f, 0f), (fork1 - 32f, side * 2.5f), (fork1 - 25f, side * 6f), (fork1 - 20f, side * 10f),
+                    (fork1 - 17f, side * 12.7f), (fork1 - 9f, side * 14f), (fork1 + 10f, side * 14f), (fork1 + 30f, side * 14f), (fork1 + 50f, side * 14f),
+                    (fork1 + 68f, side * 14f), (fork1 + 82f, side * 14f), (fork1 + 90f, side * 12f), (fork1 + 96f, side * 8.5f), (fork1 + 102f, side * 4f),
+                    (roots + 2f, 0f));
+            }
+            {
+                // Atajo secreto: la recta entre los dos extremos del ramal (se entra desde el cauce unos metros antes).
+                float shortFrom = roots + 10f;
+                float shortTo = level.Length - 40f;
+                var a = level.PointAt(shortFrom, 0f, 0.4f);
+                var b = level.PointAt(shortTo, 0f, 0.4f);
+                var pts = new List<Vector3> { level.PointAt(shortFrom - 6f, 0f, 0.4f) };
+                int steps = Mathf.CeilToInt(Vector3.Distance(a, b) / 10f);
+                for (int i = 0; i <= steps; i++)
+                    pts.Add(Vector3.Lerp(a, b, i / (float)steps));
+                pts.Add(level.PointAt(shortTo + 8f, 0f, 0.4f));
+                level.RoutePoints("atajo", pts.ToArray());
+            }
             level.PowerUp("P01", 30f, 0f);
             level.PowerUp("P02", fork1 + 20f, 0f);
             level.PowerUp("P01", fork1 + 80f, 0f);
@@ -322,7 +369,14 @@ namespace GasSafari.Editor
             float chase = level.Length;
             level.Straight(80f, 14f, -4f).Straight(106f, 14f, -4f);                   // S5 el cocodrilo muerde la cola
             float sea = level.Length;
-            level.Straight(60f, 14f, -3f).Straight(60f, 14f);                         // S6 llegada al mar y al barco
+            level.Straight(46f, 14f, -3f);                                            // S6 llegada al mar...
+            level.Straight(14f, 14f, 2.5f);                                           // ...rampa final (sube 2.5 m)
+            float shipJump = level.Length;
+            level.Straight(9f, 14f, -3.5f);                                           // hueco de 9 m: la cubierta queda 1 m más abajo
+            float deck = level.Length;
+            level.Straight(30f, 14f);                                                 // cubierta del barco: la meta está al final
+            level.WaterGap(shipJump, deck);
+            level.NoBaseWater();
             level.BuildChannel(0.4f);
 
             level.Section(1, "Montana", 0f);
@@ -369,7 +423,7 @@ namespace GasSafari.Editor
             croc.name = "CocodriloGigante";
             var chaser = croc.GetComponent<GiantCrocChaser>();
             var waypoints = new List<Vector3>();
-            for (float d = chase - 28f; d <= level.Length - 6f; d += 10f)
+            for (float d = chase - 28f; d <= shipJump - 4f; d += 10f)
                 waypoints.Add(level.PointAt(d, 0f, 0.4f));
             var body = croc.transform.Find("Cocodrilo");
             body.position = waypoints[0];
@@ -378,16 +432,16 @@ namespace GasSafari.Editor
             level.PowerUp("P01", chase + 30f, 0f);
             level.PowerUp("P04", chase + 120f, 0f);
 
-            // S6: llegada al mar: rampa final con el trampolín (H27) y el barco al que saltan; el cocodrilo cierra la boca detrás.
-            level.Place(HZ + "H27_Jet.prefab", sea + 50f, 0f);
-            level.Mango(2, sea + 62f, 0f, 3.2f);                                       // en la rampa final
+            // S6: llegada al mar. La rampa lanza la balsa (con el trampolín H27 al final) por encima de un hueco de 9 m hasta la cubierta
+            // del barco, donde está la meta; el cocodrilo cierra la boca justo detrás al saltar.
+            level.Place(HZ + "H27_Jet.prefab", shipJump - 5f, 0f);
+            level.Mango(2, shipJump - 6f, 0f, 3.2f);                                  // en la rampa final
             level.PowerUp("P01", sea + 8f, 0f);
-            // El barco queda en la orilla derecha, junto a la llegada (no en el cauce: la meta está en el agua).
-            var ship = level.Block("Barco", level.PointAt(level.Length - 12f, 13f, 0.8f), new Vector3(10f, 3f, 16f), ConcreteColor,
-                Quaternion.LookRotation(level.DirectionAt(level.Length - 12f)).eulerAngles.y);
-            ship.layer = GameLayers.Environment;
-            Anchor(level, sea + 56f, 0f);
-            CrocFinale(level, sea + 52f, chaser); // justo tras el trampolín (sea+50), cerca del ancla de la toma
+            Abyss(level, shipJump, deck, 8f);
+            level.Hint(Bots.BotHintType.Ramp, shipJump - 10f, 0f, 5f);
+            Ship(level, deck, level.Length);
+            Anchor(level, shipJump - 4f, 0f);
+            CrocFinale(level, shipJump - 3f, chaser); // justo tras el trampolín, antes del salto
 
             var theme = LevelDresser.With(LevelDresser.W5, LevelDresser.W5.Decor, 0.9f, new Color(0.72f, 0.4f, 0.22f));
             theme.Landmark = "W5_SlideTower";
@@ -460,6 +514,7 @@ namespace GasSafari.Editor
             var abyss = go.GetComponent<GasSafari.Hazards.Abyss>();
             abyss.Configure(level.BuoyBridge(from, to, bridgeWidth));
             EditorUtility.SetDirty(abyss);
+            AbyssSignage.Add(level, from, Mathf.RoundToInt(from).ToString());
         }
 
         // Zonas de niebla (visibilidad 'visibility' m, sin apagón) a lo largo de un tramo.
@@ -505,6 +560,30 @@ namespace GasSafari.Editor
             level.Block("Nicho_Fondo", level.PointAt(d, side * 10.6f), new Vector3(1f, 3f, 7f), RockColor, yaw);
             level.Block("Nicho_Lado1", level.PointAt(d - 3.5f, side * 8.4f), new Vector3(4.5f, 3f, 1f), RockColor, yaw);
             level.Block("Nicho_Lado2", level.PointAt(d + 3.5f, side * 8.4f), new Vector3(4.5f, 3f, 1f), RockColor, yaw);
+        }
+
+        // Barco de la meta: cubierta (tablones sobre el agua), cascos a los lados, proa y camarote al fondo. La balsa se desliza por la cubierta.
+        private static void Ship(GreyboxLevel level, float from, float to)
+        {
+            var wood = new Color(0.46f, 0.28f, 0.15f);
+            var darkWood = new Color(0.3f, 0.18f, 0.1f);
+            float mid = (from + to) * 0.5f;
+            float length = to - from;
+            float width = level.WidthAt(mid);
+            float yaw = Quaternion.LookRotation(level.DirectionAt(mid)).eulerAngles.y;
+
+            var planks = level.Block("Cubierta", level.PointAt(mid, 0f, 0.5f), new Vector3(width + 1f, 0.06f, length + 2f), wood, yaw);
+            Object.DestroyImmediate(planks.GetComponent<Collider>());   // solo se ve: la balsa flota en el agua de debajo
+            for (int side = -1; side <= 1; side += 2)
+            {
+                var hull = level.Block("Casco", level.PointAt(mid, side * (width * 0.5f + 1f), 3.2f), new Vector3(1.4f, 4f, length + 6f), darkWood, yaw);
+                hull.layer = GameLayers.Environment;
+            }
+            // Camarote y mástil al fondo, pasada la meta.
+            level.Block("Camarote", level.PointAt(to + 4f, 0f, 3.5f), new Vector3(width + 4f, 5f, 3f), wood, yaw).layer = GameLayers.Environment;
+            level.Cylinder("Mastil", level.PointAt(from + length * 0.5f, 0f), 0.35f, 14f, darkWood).layer = GameLayers.Environment;
+            level.Block("Vela", level.PointAt(from + length * 0.5f, 0f, 10f), new Vector3(0.5f, 5f, 6f), new Color(0.95f, 0.9f, 0.8f), yaw + 90f, true)
+                .layer = GameLayers.Environment;
         }
 
         // Punto del momento estrella (W2StarShots pone la zona y la toma aquí).

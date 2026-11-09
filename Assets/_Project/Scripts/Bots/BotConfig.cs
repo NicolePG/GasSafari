@@ -46,6 +46,7 @@ namespace GasSafari.Bots
 
         [Header("Habilidades (docs/10 §15)")]
         [Tooltip("m por delante en que busca marcas de rampa o abismo (Marty)")] public float hintRange = 12f;
+        [Tooltip("m a la que debe estar la entrada de una ruta alternativa (BotHint Route forzada) para tomarla")] public float routeEnterRange = 12f;
         [Tooltip("m por delante de una marca SuperFart en que los bots pulsan el Súper Pedo (docs/10 §15)")] public float superFartHintRange = 5f;
         [Tooltip("Grados máximos entre el rumbo de la balsa y el de la marca SuperFart para lanzar el Súper Pedo")] public float superFartAlignAngle = 25f;
         [Tooltip("Grados entre el rumbo cercano y el lejano a partir de los que la curva es cerrada (Melman)")] public float sharpCurveAngle = 45f;
