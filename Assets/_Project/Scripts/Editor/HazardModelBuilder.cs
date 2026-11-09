@@ -30,6 +30,7 @@ namespace GasSafari.Editor
             { "H19_Geyser", Geyser },
             { "H20_RockFall", RockFall },
             { "H27_Jet", Jet },
+            { "H30_Coconut", Coconut },
             { "Jet_Lateral", SideJet },
             { "H33_BalloonWall", BalloonWall },
             { "H34_HoseJet", HoseJet },
@@ -160,6 +161,22 @@ namespace GasSafari.Editor
             var so = new SerializedObject(rockFall);
             so.FindProperty("rockTemplate").objectReferenceValue = model;
             so.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        private static void Coconut(GameObject root)
+        {
+            RemoveAll(root, "CocoPlantilla");
+            // Plantilla del coco que cae: el modelo sin su disco de sombra (la sombra la dibuja el disco rojo del aviso).
+            var model = AddModel(root, "H30_Coconut", "CocoPlantilla", Vector3.zero, Vector3.one * 0.7f);
+            foreach (var child in model.GetComponentsInChildren<Transform>(true).Where(t => t.name.StartsWith("Shadow")).ToList())
+            {
+                if (child != null)
+                    UnityEngine.Object.DestroyImmediate(child.gameObject);
+            }
+            model.SetActive(false);
+            var fall = root.GetComponent<GasSafari.Hazards.CoconutFall>();
+            fall.SetTemplate(model);
+            EditorUtility.SetDirty(fall);
         }
 
         private static void Jet(GameObject root)
