@@ -134,6 +134,7 @@ namespace GasSafari.Editor
         private static TutorialStep Step(int n, string title, string text, TutorialAction action, TutorialCondition condition, float amount)
         {
             var step = LoadOrCreate<TutorialStep>($"{TUTORIAL}T0_L{n:00}.asset");
+            step.textKey = $"tutorial.l{n:00}";
             step.title = title;
             step.text = text;
             step.action = action;

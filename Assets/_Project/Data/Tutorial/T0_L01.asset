@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d052ac53ce4cc0e46885d245f09680c1, type: 3}
   m_Name: T0_L01
   m_EditorClassIdentifier: 
+  textKey: tutorial.l01
   title: "T\xEDrate un pedo"
   text: Un toque mueve la balsa hacia el lado contrario.
   action: 0

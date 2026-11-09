@@ -44,8 +44,10 @@ namespace GasSafari.UI
 
         public void Show(TutorialStep step, IReadOnlyList<PlayerSlot> players)
         {
-            title.text = step.title;
-            body.text = step.text;
+            var table = LocalizedText.Table;
+            bool keyed = !string.IsNullOrEmpty(step.textKey) && table != null;
+            title.text = keyed ? table.Get(step.textKey + ".title") : step.title;
+            body.text = keyed ? table.Get(step.textKey + ".text") : step.text;
             builder.Clear();
             int shown = 0;
             for (int i = 0; players != null && i < players.Count; i++)

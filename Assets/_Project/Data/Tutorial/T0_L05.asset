@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d052ac53ce4cc0e46885d245f09680c1, type: 3}
   m_Name: T0_L05
   m_EditorClassIdentifier: 
+  textKey: tutorial.l05
   title: "\xA1Sincron\xEDa!"
   text: "Tírense un pedo a la vez para romper la pared de globos."
   action: 0

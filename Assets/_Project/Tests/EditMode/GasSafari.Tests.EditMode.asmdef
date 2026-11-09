@@ -5,6 +5,8 @@
         "GasSafari.Runtime",
         "GasSafari.Editor",
         "Unity.InputSystem",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI",
         "Unity.Netcode.Runtime",
         "Unity.Collections",
         "Unity.Timeline",

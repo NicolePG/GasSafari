@@ -660,3 +660,8 @@ story.w6_secret.1,El Rey Julien tiene un anuncio: ¡nace el Reino de Julien!,Rey
 story.w6_secret.2,"Desafíos remix: cocodrilos, tentáculos y una grúa muy dramática.","Remix challenges: crocodiles, tentacles and a very dramatic crane.","Pie de la viñeta 2 de 3 (Tools/Export/Story/W6_Secret/W6_Secret_02.png): La balsa entre un cocodrilo, un tentáculo y una grúa portuaria, en un mar morado"
 story.w6_secret.3,Se corona al mejor equipo. Alex se prueba la corona primero.,The best team gets crowned. Alex tries the crown on first.,Pie de la viñeta 3 de 3 (Tools/Export/Story/W6_Secret/W6_Secret_03.png): Fiesta final en tarima morada con confeti; Alex lleva una corona y Julien una más pequeña
 story.skip,Pulsa cualquier botón para saltar,Press any button to skip,Ayuda arriba a la derecha durante una viñeta de historia | Unity: Strings_story_es
+ui.soon,Próximamente,Coming soon,"Aviso al elegir algo que todavía no está disponible (modos de M7, salas online de M8)"
+select.none,Ninguno,None,Fila de sombrero o celebración sin nada puesto
+select.difficulty_format,Dificultad: {0},Difficulty: {0},Botón de dificultad de la selección de personajes ({0} = nombre)
+options.controls.keyboard,Teclado,Keyboard,Opción de dispositivo al cambiar botones
+options.controls.gamepad,Mando,Gamepad,Opción de dispositivo al cambiar botones

@@ -21,5 +21,5 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: 3e8363dbc927d4f428da14f91e1caa95, type: 3}
     captionKey: story.w2_end.3
   secondsPerPanel: 5
-  strings: {fileID: 11400000, guid: fab426d67b2d25e4e99454d68fac0364, type: 2}
+  strings: {fileID: 11400000, guid: b9e269c36a307934eb92415b1cf83477, type: 2}
   prefab: {fileID: 7511226032231666441, guid: d4d80e32adafd4e4a9e53f9d93455b04, type: 3}

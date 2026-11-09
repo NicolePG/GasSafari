@@ -19,5 +19,11 @@ namespace GasSafari.Level
         [Tooltip("Pista de Carrera por Equipos: tiene 2 puntos de salida (docs/06)")] public bool raceCompatible;
         public string musicId;
         [TextArea] public string mechanicText;
+
+        // Claves de la tabla de textos (strings.csv): level.w1_1.name / level.w1_1.mechanic. Los campos de texto de arriba
+        // quedan solo como nota de diseño; la interfaz lee siempre por clave.
+        public string KeyBase => "level." + (id != null && id.StartsWith("T") ? "t0" : (id ?? string.Empty).ToLowerInvariant().Replace('-', '_'));
+        public string NameKey => KeyBase + ".name";
+        public string MechanicKey => KeyBase + ".mechanic";
     }
 }

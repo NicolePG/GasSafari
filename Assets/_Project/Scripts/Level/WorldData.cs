@@ -23,5 +23,8 @@ namespace GasSafari.Level
         [Tooltip("En orden: el quinto es el jefe")] public List<LevelData> levels = new List<LevelData>();
 
         public string BossMusicId => musicId + "_boss";
+
+        // world.w1.name en la tabla de textos.
+        public string NameKey => "world." + (id ?? string.Empty).ToLowerInvariant() + ".name";
     }
 }

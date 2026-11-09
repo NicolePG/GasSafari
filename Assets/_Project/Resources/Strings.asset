@@ -1,0 +1,2017 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30f27d39ccb3ff64e9989c87c453e49c, type: 3}
+  m_Name: Strings
+  m_EditorClassIdentifier: 
+  entries:
+  - key: game.title
+    text: "GAS SAFARI: \xA1Todos a la Balsa!"
+    en: 'GAS SAFARI: All Aboard the Raft!'
+  - key: game.title_short
+    text: GAS SAFARI
+    en: GAS SAFARI
+  - key: ui.press_any
+    text: "Pulsa cualquier bot\xF3n"
+    en: Press any button
+  - key: ui.join
+    text: Pulsa A para unirte
+    en: Press A to join
+  - key: ui.ready
+    text: "\xA1Listo!"
+    en: Ready!
+  - key: ui.back
+    text: "Atr\xE1s"
+    en: Back
+  - key: ui.accept
+    text: Aceptar
+    en: OK
+  - key: ui.cancel
+    text: Cancelar
+    en: Cancel
+  - key: ui.confirm
+    text: Confirmar
+    en: Confirm
+  - key: ui.apply
+    text: Aplicar
+    en: Apply
+  - key: ui.yes
+    text: "S\xED"
+    en: Yes
+  - key: ui.no
+    text: No
+    en: No
+  - key: ui.on
+    text: Activado
+    en: On
+  - key: ui.off
+    text: Desactivado
+    en: Off
+  - key: ui.continue
+    text: Continuar
+    en: Continue
+  - key: ui.skip
+    text: Saltar
+    en: Skip
+  - key: ui.select
+    text: Elegir
+    en: Select
+  - key: ui.random
+    text: Aleatorio
+    en: Random
+  - key: ui.locked
+    text: Bloqueado
+    en: Locked
+  - key: ui.new
+    text: "\xA1Nuevo!"
+    en: New!
+  - key: ui.loading
+    text: Cargando...
+    en: Loading...
+  - key: ui.copy
+    text: Copiar
+    en: Copy
+  - key: ui.mode_prompt
+    text: "Elige c\xF3mo jugar"
+    en: Choose how to play
+  - key: lock.title
+    text: Bloqueado
+    en: Locked
+  - key: lock.stars
+    text: '{0} estrellas'
+    en: '{0} stars'
+  - key: lock.mangos
+    text: '{0} mangos dorados'
+    en: '{0} golden mangos'
+  - key: lock.level
+    text: Termina {0}
+    en: Finish {0}
+  - key: lock.any_level
+    text: Termina un nivel
+    en: Finish a level
+  - key: lang.es
+    text: "Espa\xF1ol"
+    en: "Espa\xF1ol"
+  - key: lang.en
+    text: English
+    en: English
+  - key: menu.play
+    text: Jugar
+    en: Play
+  - key: menu.shop
+    text: Tienda
+    en: Shop
+  - key: menu.achievements
+    text: Logros
+    en: Trophies
+  - key: menu.options
+    text: Opciones
+    en: Options
+  - key: menu.credits
+    text: "Cr\xE9ditos"
+    en: Credits
+  - key: menu.quit
+    text: Salir
+    en: Quit
+  - key: menu.quit_confirm
+    text: "\xBFSalir del juego?"
+    en: Quit the game?
+  - key: mode.select.title
+    text: Elegir modo
+    en: Choose a mode
+  - key: mode.select.local
+    text: Local
+    en: Local
+  - key: mode.select.create_room
+    text: Crear sala online
+    en: Create online room
+  - key: mode.select.join_room
+    text: "Unirse con c\xF3digo"
+    en: Join with code
+  - key: mode.players
+    text: '{0} jugadores'
+    en: '{0} players'
+  - key: mode.story.name
+    text: Historia
+    en: Story
+  - key: mode.story.desc
+    text: Los 31 niveles en orden, con estrellas y mangos.
+    en: All 31 levels in order, with stars and mangos.
+  - key: mode.timetrial.name
+    text: Contrarreloj
+    en: Time Trial
+  - key: mode.timetrial.desc
+    text: Vence al fantasma de tu mejor intento.
+    en: Beat the ghost of your best run.
+  - key: mode.mirror.name
+    text: Espejo
+    en: Mirror
+  - key: mode.mirror.desc
+    text: "Todos los niveles al rev\xE9s. Normal o m\xE1s dif\xEDcil."
+    en: Every level flipped. Normal or harder.
+  - key: mode.modifiers.name
+    text: Modificadores
+    en: Modifiers
+  - key: mode.modifiers.tag
+    text: Caos
+    en: Chaos
+  - key: mode.modifiers.desc
+    text: Reglas locas combinables. No dan estrellas.
+    en: Wacky rules you can mix. No stars earned.
+  - key: mode.party.name
+    text: Fiesta
+    en: Party
+  - key: mode.party.desc
+    text: 5 minijuegos para 2-4 jugadores. Los bots completan.
+    en: 5 minigames for 2-4 players. Bots fill in.
+  - key: mode.endless.name
+    text: Infinito
+    en: Endless
+  - key: mode.endless.desc
+    text: "Un r\xEDo sin fin que se complica cada vez m\xE1s."
+    en: A river with no end that keeps getting harder.
+  - key: mode.daily.name
+    text: "Desaf\xEDo Diario"
+    en: Daily Challenge
+  - key: mode.daily.desc
+    text: "Un r\xEDo nuevo cada d\xEDa con un modificador."
+    en: A new river every day with one modifier.
+  - key: mode.teamrace.name
+    text: Carrera por Equipos
+    en: Team Race
+  - key: mode.teamrace.desc
+    text: "Dos balsas en la misma pista. \xA1Gana la primera!"
+    en: Two rafts, one track. First to the finish wins!
+  - key: tt.ghost
+    text: Fantasma
+    en: Ghost
+  - key: tt.top5
+    text: Mejores tiempos
+    en: Best times
+  - key: tt.team
+    text: Equipo
+    en: Team
+  - key: tt.new_best
+    text: "\xA1Nuevo mejor tiempo!"
+    en: New best time!
+  - key: mirror.bonus
+    text: Frijolitos x1.5
+    en: Beans x1.5
+  - key: endless.distance
+    text: '{0} m'
+    en: '{0} m'
+  - key: endless.record
+    text: "R\xE9cord: {0} m"
+    en: 'Record: {0} m'
+  - key: endless.sinks
+    text: Hundimientos {0}/3
+    en: Sinkings {0}/3
+  - key: endless.over
+    text: Fin del recorrido
+    en: Run over
+  - key: daily.today
+    text: "Desaf\xEDo de hoy"
+    en: Today's run
+  - key: daily.best
+    text: Mejor tiempo de hoy
+    en: Best time today
+  - key: daily.streak
+    text: 'Racha: {0}'
+    en: 'Streak: {0}'
+  - key: daily.modifier
+    text: "Modificador del d\xEDa"
+    en: Modifier of the day
+  - key: race.track
+    text: Pista {0}/3
+    en: Track {0}/3
+  - key: race.team_a
+    text: Equipo A
+    en: Team A
+  - key: race.team_b
+    text: Equipo B
+    en: Team B
+  - key: race.win_track
+    text: "\xA1Ganaron la pista!"
+    en: You won the track!
+  - key: race.lose_track
+    text: "La otra balsa lleg\xF3 antes."
+    en: The other raft got there first.
+  - key: race.win_match
+    text: "\xA1Ganaron la carrera!"
+    en: You won the race!
+  - key: mod.title
+    text: Modificadores
+    en: Modifiers
+  - key: mod.warning
+    text: Con modificadores no hay estrellas.
+    en: No stars with modifiers on.
+  - key: mod.soapy.name
+    text: Balsa jabonosa
+    en: Soapy Raft
+  - key: mod.soapy.desc
+    text: El agua frena la mitad.
+    en: Water drag is halved.
+  - key: mod.infinite_gas.name
+    text: Gas infinito
+    en: Infinite Gas
+  - key: mod.infinite_gas.desc
+    text: El gas no se gasta.
+    en: Gas never runs out.
+  - key: mod.moon.name
+    text: Gravedad lunar
+    en: Moon Gravity
+  - key: mod.moon.desc
+    text: Gravedad muy baja.
+    en: Gravity way down.
+  - key: mod.reverse.name
+    text: "Pedos al rev\xE9s"
+    en: Backwards Farts
+  - key: mod.reverse.desc
+    text: La fuerza se invierte.
+    en: Thrust is reversed.
+  - key: mod.bigheads.name
+    text: Cabezones
+    en: Big Heads
+  - key: mod.bigheads.desc
+    text: Cabezas dobles de grandes.
+    en: Heads twice as big.
+  - key: mod.turbo.name
+    text: Turbo corriente
+    en: Turbo Current
+  - key: mod.turbo.desc
+    text: "Las corrientes van m\xE1s fuertes."
+    en: Currents run stronger.
+  - key: mod.dizzy.name
+    text: "C\xE1mara mareada"
+    en: Dizzy Camera
+  - key: mod.dizzy.desc
+    text: "La c\xE1mara se balancea."
+    en: The camera sways.
+  - key: mod.single.name
+    text: "C\xE1mara \xFAnica"
+    en: Single Chamber
+  - key: mod.single.desc
+    text: Un golpe y la balsa se hunde.
+    en: One hit sinks the raft.
+  - key: party.title
+    text: Fiesta
+    en: Party
+  - key: party.goal.name
+    text: Balsa-Gol
+    en: Raft Goal
+  - key: party.goal.desc
+    text: "Empuja la pelota gigante a la porter\xEDa rival."
+    en: Push the giant ball into the rival goal.
+  - key: party.king.name
+    text: Rey de la Balsa
+    en: Raft King
+  - key: party.king.desc
+    text: "Tira a todos al agua. Gana el \xFAltimo a bordo."
+    en: Knock everyone off. Last one aboard wins.
+  - key: party.fishing.name
+    text: Pesca de Mangos
+    en: Mango Fishing
+  - key: party.fishing.desc
+    text: "Recoge m\xE1s mangos en tu mini balsa. 90 s."
+    en: Grab the most mangos on your mini raft. 90 s.
+  - key: party.bubble.name
+    text: Carrera de Burbujas
+    en: Bubble Race
+  - key: party.bubble.desc
+    text: Gaseosa infinita y 3 vueltas a la pista.
+    en: Infinite soda and 3 laps of the track.
+  - key: party.coconut.name
+    text: Coco Caliente
+    en: Hot Coconut
+  - key: party.coconut.desc
+    text: "P\xE1salo con un pedo antes de que explote."
+    en: Fart it away before it blows up.
+  - key: party.round
+    text: Ronda {0}
+    en: Round {0}
+  - key: party.goal_shout
+    text: "\xA1GOL!"
+    en: GOAL!
+  - key: party.time_up
+    text: "\xA1Se acab\xF3 el tiempo!"
+    en: Time's up!
+  - key: party.lap
+    text: Vuelta {0}/{1}
+    en: Lap {0}/{1}
+  - key: party.winner
+    text: "\xA1Gana {0}!"
+    en: '{0} wins!'
+  - key: party.mangos_count
+    text: 'Mangos: {0}'
+    en: 'Mangos: {0}'
+  - key: party.hot_potato
+    text: "\xA1Tienes el coco!"
+    en: You've got it!
+  - key: select.title
+    text: Elige tu animal
+    en: Pick your animal
+  - key: select.add_bot
+    text: "A\xF1adir bot"
+    en: Add bot
+  - key: select.remove_bot
+    text: Quitar bot
+    en: Remove bot
+  - key: select.bot
+    text: Bot
+    en: Bot
+  - key: select.difficulty
+    text: Dificultad
+    en: Difficulty
+  - key: select.hat
+    text: Sombrero
+    en: Hat
+  - key: select.gas
+    text: Color de gas
+    en: Gas color
+  - key: select.taken
+    text: Ya elegido
+    en: Taken
+  - key: select.all_ready
+    text: "\xA1Todos listos!"
+    en: All ready!
+  - key: select.waiting
+    text: "Esperando a los dem\xE1s..."
+    en: Waiting for the others...
+  - key: stat.gas
+    text: Gas
+    en: Gas
+  - key: stat.puff
+    text: Toque
+    en: Tap
+  - key: stat.blast
+    text: "R\xE1faga"
+    en: Blast
+  - key: stat.recharge
+    text: Recarga
+    en: Refill
+  - key: stat.weight
+    text: Peso
+    en: Weight
+  - key: stat.difficulty
+    text: Dificultad
+    en: Difficulty
+  - key: char.diff.easy
+    text: "F\xE1cil"
+    en: Easy
+  - key: char.diff.medium
+    text: Media
+    en: Medium
+  - key: char.diff.hard
+    text: "Dif\xEDcil"
+    en: Hard
+  - key: char.passive
+    text: Pasiva
+    en: Passive
+  - key: char.ability
+    text: Habilidad
+    en: Ability
+  - key: char.cooldown
+    text: Recarga {0} s
+    en: Cooldown {0} s
+  - key: char.ability_ready
+    text: Habilidad lista
+    en: Ability ready
+  - key: lobby.title
+    text: Sala online
+    en: Online room
+  - key: lobby.code
+    text: "C\xF3digo de sala"
+    en: Room code
+  - key: lobby.copy_code
+    text: "Copiar c\xF3digo"
+    en: Copy code
+  - key: lobby.copied
+    text: "\xA1C\xF3digo copiado!"
+    en: Code copied!
+  - key: lobby.enter_code
+    text: "Escribe el c\xF3digo de 6 letras"
+    en: Enter the 6-letter code
+  - key: lobby.join_button
+    text: Unirse
+    en: Join
+  - key: lobby.players
+    text: Jugadores
+    en: Players
+  - key: lobby.host
+    text: "Anfitri\xF3n"
+    en: Host
+  - key: lobby.ping
+    text: '{0} ms'
+    en: '{0} ms'
+  - key: lobby.waiting
+    text: Esperando jugadores...
+    en: Waiting for players...
+  - key: lobby.start
+    text: Empezar
+    en: Start
+  - key: lobby.leave
+    text: Salir de la sala
+    en: Leave room
+  - key: lobby.team_pick
+    text: Elige tu equipo
+    en: Pick your team
+  - key: net.connecting
+    text: Conectando...
+    en: Connecting...
+  - key: net.reconnecting
+    text: Reconectando...
+    en: Reconnecting...
+  - key: net.retry
+    text: Reintentar
+    en: Retry
+  - key: net.err.code_invalid
+    text: "Ese c\xF3digo no existe."
+    en: That code doesn't exist.
+  - key: net.err.room_full
+    text: "La sala est\xE1 llena."
+    en: The room is full.
+  - key: net.err.connect_failed
+    text: No se pudo conectar. Revisa tu internet.
+    en: Couldn't connect. Check your internet.
+  - key: net.err.timeout
+    text: "La conexi\xF3n tard\xF3 demasiado."
+    en: The connection took too long.
+  - key: net.err.lost
+    text: "Se perdi\xF3 la conexi\xF3n."
+    en: Connection lost.
+  - key: net.err.host_left
+    text: "El anfitri\xF3n se fue. La sala se cierra."
+    en: The host left. The room is closing.
+  - key: net.err.kicked
+    text: Te sacaron de la sala.
+    en: You were removed.
+  - key: net.err.version
+    text: "Tu versi\xF3n del juego es distinta."
+    en: Your game version is different.
+  - key: net.err.auth
+    text: "No se pudo iniciar la sesi\xF3n online."
+    en: Couldn't sign in online.
+  - key: net.err.relay
+    text: No se pudo crear la sala.
+    en: Couldn't create the room.
+  - key: net.player_joined
+    text: "{0} se uni\xF3"
+    en: '{0} joined'
+  - key: net.player_left
+    text: '{0} se fue'
+    en: '{0} left'
+  - key: map.title
+    text: Mapa de mundos
+    en: World map
+  - key: map.stars
+    text: Estrellas {0}/{1}
+    en: Stars {0}/{1}
+  - key: map.golden_mangos
+    text: Mangos dorados {0}/{1}
+    en: Golden mangos {0}/{1}
+  - key: map.locked_stars
+    text: Necesitas {0} estrellas
+    en: Needs {0} stars
+  - key: map.locked_mangos
+    text: Necesitas {0} mangos dorados
+    en: Needs {0} golden mangos
+  - key: sheet.new_mechanic
+    text: "Mec\xE1nica nueva"
+    en: New mechanic
+  - key: sheet.gold
+    text: Oro
+    en: Gold
+  - key: sheet.silver
+    text: Plata
+    en: Silver
+  - key: sheet.best_time
+    text: Mejor tiempo
+    en: Best time
+  - key: sheet.no_time
+    text: --:--
+    en: --:--
+  - key: sheet.mangos
+    text: Mangos {0}/3
+    en: Mangos {0}/3
+  - key: sheet.play
+    text: Jugar
+    en: Play
+  - key: sheet.time_trial
+    text: Contrarreloj
+    en: Time Trial
+  - key: sheet.modifiers
+    text: Modificadores
+    en: Modifiers
+  - key: sheet.star1
+    text: Termina el nivel
+    en: Finish the level
+  - key: sheet.star2
+    text: Tiempo de plata o mejor
+    en: Silver time or better
+  - key: sheet.star3
+    text: Tiempo de oro y sin hundirte
+    en: Gold time, no sinking
+  - key: level.boss_tag
+    text: JEFE
+    en: BOSS
+  - key: level.secret_boss_tag
+    text: JEFE FINAL SECRETO
+    en: SECRET FINAL BOSS
+  - key: hud.sync2
+    text: "\xA1SYNC x2!"
+    en: SYNC x2!
+  - key: hud.sync3
+    text: "\xA1SYNC x3!"
+    en: SYNC x3!
+  - key: hud.sync4
+    text: "\xA1SYNC x4!"
+    en: SYNC x4!
+  - key: hud.superfart_ready
+    text: "\xA1S\xDAPER PEDO LISTO!"
+    en: SUPER FART READY!
+  - key: hud.go
+    text: "\xA1YA!"
+    en: GO!
+  - key: hud.checkpoint
+    text: CHECKPOINT
+    en: CHECKPOINT
+  - key: hud.no_gas
+    text: Sin gas
+    en: No gas
+  - key: hud.abyss
+    text: "\xA1Abismo adelante!"
+    en: Abyss ahead!
+  - key: hud.mangos
+    text: Mangos {0}/{1}
+    en: Mangos {0}/{1}
+  - key: hud.checkpoint_progress
+    text: Checkpoint {0}/{1}
+    en: Checkpoint {0}/{1}
+  - key: hud.player_tag
+    text: J{0}
+    en: P{0}
+  - key: hud.medkit
+    text: "Botiqu\xEDn"
+    en: Medkit
+  - key: hud.medkit_used
+    text: "Botiqu\xEDn usado"
+    en: Medkit used
+  - key: hud.team_meter
+    text: Equipo
+    en: Team
+  - key: hud.rescue
+    text: "\xA1Rescate!"
+    en: Rescue!
+  - key: hud.sunk
+    text: "\xA1Balsa hundida!"
+    en: Raft sunk!
+  - key: hud.countdown
+    text: '{0}'
+    en: '{0}'
+  - key: hud.golden_mango
+    text: "\xA1Mango dorado!"
+    en: Golden mango!
+  - key: hud.new_best
+    text: "\xA1R\xE9cord!"
+    en: Record!
+  - key: synergy.banner
+    text: "\xA1Sinergia!"
+    en: Synergy!
+  - key: synergy.honda_selva
+    text: Honda de la Selva
+    en: Jungle Slingshot
+  - key: synergy.terremoto
+    text: Terremoto
+    en: Earthquake
+  - key: synergy.fiesta_total
+    text: Fiesta Total
+    en: Total Party
+  - key: synergy.duo_pesado
+    text: "D\xFAo Pesado"
+    en: Heavy Duo
+  - key: synergy.rescate_real
+    text: Rescate Real
+    en: Royal Rescue
+  - key: synergy.honda_selva.desc
+    text: 'Marty galopa durante el Cuello Gancho: salida x1.5.'
+    en: 'Marty gallops during the Neck Hook: x1.5 exit speed.'
+  - key: synergy.terremoto.desc
+    text: 'Panzazo y Rugido en 1 s: rompe lo pesado a 10 m.'
+    en: 'Bellyflop + Roar in 1 s: heavy stuff breaks in 10 m.'
+  - key: synergy.fiesta_total.desc
+    text: "S\xFAper Pedo en plena Fiesta Real: potencia al 150 %."
+    en: 'Super Fart during Royal Party: 150% power.'
+  - key: synergy.duo_pesado.desc
+    text: 'Alex y Gloria en el mismo sync: +20 % de fuerza.'
+    en: 'Alex and Gloria in the same sync: +20% force.'
+  - key: synergy.rescate_real.desc
+    text: 'Melman rescata a Julien: vuelve con el gas al 100 %.'
+    en: 'Melman rescues Julien: he returns with full gas.'
+  - key: ping.now
+    text: "\xA1Ahora!"
+    en: Now!
+  - key: ping.wait
+    text: Espera
+    en: Wait
+  - key: ping.left
+    text: Gira a la izquierda
+    en: Turn left
+  - key: ping.right
+    text: Gira a la derecha
+    en: Turn right
+  - key: pause.title
+    text: Pausa
+    en: Paused
+  - key: pause.resume
+    text: Continuar
+    en: Resume
+  - key: pause.restart_checkpoint
+    text: Reiniciar desde checkpoint
+    en: Restart from checkpoint
+  - key: pause.restart_level
+    text: Reiniciar nivel
+    en: Restart level
+  - key: pause.options
+    text: Opciones
+    en: Options
+  - key: pause.controls
+    text: Controles
+    en: Controls
+  - key: pause.quit
+    text: Salir al mapa
+    en: Back to map
+  - key: pause.yes
+    text: "S\xED"
+    en: Yes
+  - key: pause.no
+    text: No
+    en: No
+  - key: pause.vote
+    text: "\xBFReiniciar desde el checkpoint? S\xED {0} \xB7 No {1} (hacen falta
+      {2})"
+    en: "Restart from the checkpoint? Yes {0} \xB7 No {1} ({2} needed)"
+  - key: pause.online_note
+    text: "El juego sigue en marcha para los dem\xE1s."
+    en: The game keeps running for everyone else.
+  - key: pause.confirm_quit
+    text: "\xBFSalir al mapa? Se pierde el avance del nivel."
+    en: Back to the map? Level progress is lost.
+  - key: results.title
+    text: Resultados
+    en: Results
+  - key: results.time
+    text: Tiempo
+    en: Time
+  - key: results.stars
+    text: Estrellas
+    en: Stars
+  - key: results.mangos
+    text: Mangos {0}/3
+    en: Mangos {0}/3
+  - key: results.beans
+    text: Frijolitos +{0}
+    en: Beans +{0}
+  - key: results.awards
+    text: Premios
+    en: Awards
+  - key: results.who
+    text: "\xBFQui\xE9n fue?"
+    en: Whose fault?
+  - key: results.new_record
+    text: "\xA1Nuevo r\xE9cord!"
+    en: New record!
+  - key: results.next
+    text: Siguiente
+    en: Next
+  - key: results.retry
+    text: Repetir
+    en: Retry
+  - key: results.map
+    text: Mapa
+    en: Map
+  - key: results.sunk_note
+    text: "Balsa hundida: sin 3.\xAA estrella"
+    en: 'Raft sank: no 3rd star'
+  - key: results.skipped_note
+    text: "Secci\xF3n saltada: m\xE1ximo 1 estrella"
+    en: 'Section skipped: 1 star max'
+  - key: award.sync_master
+    text: "Maestro de la Sincron\xEDa"
+    en: Sync Master
+  - key: award.sync_master.desc
+    text: "M\xE1s grupos de sync"
+    en: Most sync groups
+  - key: award.lifeguard
+    text: Salvavidas
+    en: Lifeguard
+  - key: award.lifeguard.desc
+    text: "M\xE1s rescates"
+    en: Most rescues
+  - key: award.show_king
+    text: Rey del Show
+    en: Show King
+  - key: award.show_king.desc
+    text: "M\xE1s habilidades usadas"
+    en: Most abilities used
+  - key: award.glutton
+    text: "Trag\xF3n"
+    en: Glutton
+  - key: award.glutton.desc
+    text: "M\xE1s power-ups recogidos"
+    en: Most power-ups taken
+  - key: award.untimely_fart
+    text: "Pedo m\xE1s inoportuno"
+    en: Worst-Timed Fart
+  - key: award.untimely_fart.desc
+    text: Pedos justo antes de un choque
+    en: Farts right before a crash
+  - key: award.captain_titanic
+    text: "Capit\xE1n Titanic"
+    en: Captain Titanic
+  - key: award.captain_titanic.desc
+    text: "M\xE1s ca\xEDdas al agua"
+    en: Most water falls
+  - key: award.wasted_gas
+    text: Gas Desperdiciado
+    en: Wasted Gas
+  - key: award.wasted_gas.desc
+    text: "M\xE1s veces sin gas"
+    en: Most empty tanks
+  - key: award.sleeping_beauty
+    text: Bello Durmiente
+    en: Sleeping Beauty
+  - key: award.sleeping_beauty.desc
+    text: Menos pedos en total
+    en: Fewest farts overall
+  - key: award.winner
+    text: '{0}: {1}'
+    en: '{0}: {1}'
+  - key: assist.offer
+    text: "\xBFNecesitan una Ayuda Real?"
+    en: Need some Royal Help?
+  - key: assist.opt1
+    text: "M\xE1s tiempo para sincronizar"
+    en: More time to sync
+  - key: assist.opt2
+    text: "Checkpoint extra m\xE1s adelante"
+    en: Extra checkpoint ahead
+  - key: assist.opt3
+    text: "Saltar la secci\xF3n (m\xE1x. 1 estrella)"
+    en: Skip the section (max 1 star)
+  - key: assist.decline
+    text: No, gracias
+    en: No thanks
+  - key: diff.familiar.name
+    text: Familiar
+    en: Family
+  - key: diff.familiar.desc
+    text: "M\xE1s margen para sincronizar. Con ayudas extra."
+    en: More room to sync. With extra help.
+  - key: diff.normal.name
+    text: Normal
+    en: Normal
+  - key: diff.normal.desc
+    text: La experiencia pensada para el juego.
+    en: The experience the game was built around.
+  - key: diff.broken.name
+    text: Amistades Rotas
+    en: Broken Friendships
+  - key: diff.broken.desc
+    text: Casi sin margen. Pon a prueba tu amistad.
+    en: Barely any slack. A test of friendship.
+  - key: loading.tip_label
+    text: Consejo
+    en: Tip
+  - key: loading.tip.together
+    text: "Empujar juntos vale m\xE1s que empujar fuerte."
+    en: Pushing together beats pushing hard.
+  - key: loading.tip.tap_blast
+    text: "Un toque corrige; una r\xE1faga acelera."
+    en: A tap steers; a blast speeds you up.
+  - key: loading.tip.hold_on
+    text: "Ag\xE1rrate cuando tiemble la orilla."
+    en: Grab on when the shore starts to shake.
+  - key: loading.tip.gloria
+    text: Gloria a bordo, viento a raya.
+    en: Gloria aboard, wind kept at bay.
+  - key: loading.tip.pings
+    text: "Si no hay micr\xF3fono, usa los pings."
+    en: No mic? Use the pings.
+  - key: loading.tip.neck_hook
+    text: "El Cuello Gancho de Melman tambi\xE9n rescata."
+    en: Melman's Neck Hook can rescue, too.
+  - key: loading.tip.beans
+    text: Los frijoles recargan todo tu gas.
+    en: Beans refill all your gas.
+  - key: char.alex.name
+    text: Alex
+    en: Alex
+  - key: char.alex.species
+    text: "Le\xF3n"
+    en: Lion
+  - key: char.alex.role
+    text: "L\xEDder todoterreno"
+    en: All-round leader
+  - key: char.alex.passive_name
+    text: Estrella del Show
+    en: Star of the Show
+  - key: char.alex.passive_desc
+    text: En un grupo de sync, da +0.08 s de ventana a todo el equipo durante 3 s.
+    en: In a sync group, gives the whole team +0.08 s of window for 3 s.
+  - key: char.alex.ability_name
+    text: Rugido de la Selva
+    en: Jungle Roar
+  - key: char.alex.ability_desc
+    text: "Cono hacia la proa: rompe lo fr\xE1gil, espanta a la fauna 4 s y frena
+      la balsa."
+    en: 'Cone toward the bow: breaks fragile things, scares fauna for 4 s, slows
+      the raft.'
+  - key: char.marty.name
+    text: Marty
+    en: Marty
+  - key: char.marty.species
+    text: Cebra
+    en: Zebra
+  - key: char.marty.role
+    text: Velocista
+    en: Sprinter
+  - key: char.marty.passive_name
+    text: Pulmones de Cebra
+    en: Zebra Lungs
+  - key: char.marty.passive_desc
+    text: "Recarga de gas r\xE1pida (17/s) y poco retardo (0.3 s)."
+    en: Fast gas refill (17/s) and short delay (0.3 s).
+  - key: char.marty.ability_name
+    text: Galope Turbo
+    en: Turbo Gallop
+  - key: char.marty.ability_desc
+    text: "Impulso instant\xE1neo y mitad de fricci\xF3n del agua 2 s. No gasta gas."
+    en: Instant boost and half the water drag for 2 s. Costs no gas.
+  - key: char.melman.name
+    text: Melman
+    en: Melman
+  - key: char.melman.species
+    text: Jirafa
+    en: Giraffe
+  - key: char.melman.role
+    text: Soporte y navegante
+    en: Support & navigator
+  - key: char.melman.trait_name
+    text: Vista Alta
+    en: High Lookout
+  - key: char.melman.trait_desc
+    text: Los avisos de peligro del HUD salen 3 s antes.
+    en: HUD hazard warnings appear 3 s earlier.
+  - key: char.melman.passive_name
+    text: "Botiqu\xEDn Hipocondr\xEDaco"
+    en: Hypochondriac Medkit
+  - key: char.melman.passive_desc
+    text: "Mant\xE9n la habilidad 1.5 s para reparar 1 c\xE1mara. 1 vez por checkpoint."
+    en: Hold the ability 1.5 s to repair 1 chamber. Once per checkpoint.
+  - key: char.melman.ability_name
+    text: Cuello Gancho
+    en: Neck Hook
+  - key: char.melman.ability_desc
+    text: "Sube a un amigo ca\xEDdo al agua o se engancha a un ancla y gira la balsa."
+    en: Pulls a swimmer aboard, or hooks an anchor and swings the raft.
+  - key: char.gloria.name
+    text: Gloria
+    en: Gloria
+  - key: char.gloria.species
+    text: "Hipop\xF3tama"
+    en: Hippo
+  - key: char.gloria.role
+    text: Motor y ancla
+    en: Engine & anchor
+  - key: char.gloria.passive_name
+    text: Peso Pesado
+    en: Heavyweight
+  - key: char.gloria.passive_desc
+    text: "Viento y corrientes laterales al 70 % mientras est\xE1 a bordo."
+    en: Side wind and currents drop to 70% while she's aboard.
+  - key: char.gloria.ability_name
+    text: Panzazo
+    en: Bellyflop
+  - key: char.gloria.ability_desc
+    text: 'Cae de panza: estabiliza la balsa, empuja y anula los remolinos 2 s.'
+    en: 'Lands belly-first: steadies the raft, pushes, cancels whirlpools for 2 s.'
+  - key: char.julien.name
+    text: Rey Julien
+    en: Rey Julien
+  - key: char.julien.species
+    text: "L\xE9mur"
+    en: Lemur
+  - key: char.julien.role
+    text: Caos y coordinador
+    en: Chaos & coordinator
+  - key: char.julien.passive_name
+    text: "Corona Magn\xE9tica"
+    en: Magnetic Crown
+  - key: char.julien.passive_desc
+    text: Atrae power-ups desde 6 m.
+    en: Pulls power-ups from 6 m away.
+  - key: char.julien.jump_name
+    text: Salto
+    en: Jump
+  - key: char.julien.jump_desc
+    text: Salta hasta 4 m fuera de la balsa para atrapar power-ups.
+    en: Leaps up to 4 m off the raft to grab power-ups.
+  - key: char.julien.ability_name
+    text: Fiesta Real
+    en: Royal Party
+  - key: char.julien.ability_desc
+    text: '4 s de fiesta: cada pedo cuenta como sync completo y el medidor sube x2.'
+    en: '4 s of party: every fart counts as a full sync and the meter fills x2.'
+  - key: powerup.p01.name
+    text: Frijoles
+    en: Beans
+  - key: powerup.p01.desc
+    text: Recarga todo tu gas.
+    en: Refills all your gas.
+  - key: powerup.p02.name
+    text: Locoto
+    en: Locoto
+  - key: powerup.p02.desc
+    text: Pedos de fuego x1.5 que queman lianas. 6 s.
+    en: Fire farts x1.5 that burn vines. 6 s.
+  - key: powerup.p03.name
+    text: Mango
+    en: Mango
+  - key: powerup.p03.desc
+    text: +50 % de gas para todo el equipo.
+    en: +50% gas for the whole team.
+  - key: powerup.p04.name
+    text: Coco escudo
+    en: Coconut Guard
+  - key: powerup.p04.desc
+    text: "Absorbe el pr\xF3ximo da\xF1o a una c\xE1mara."
+    en: Absorbs the next chamber hit.
+  - key: powerup.p05.name
+    text: Gaseosa
+    en: Soda
+  - key: powerup.p05.desc
+    text: 'Pedos de burbuja: la balsa flota sobre el agua 3 s.'
+    en: 'Bubble farts: the raft floats above the water for 3 s.'
+  - key: powerup.p06.name
+    text: Cebolla
+    en: Onion
+  - key: powerup.p06.desc
+    text: 'Nube apestosa de 8 m: la fauna huye 6 s.'
+    en: 'Stink cloud of 8 m: fauna flees for 6 s.'
+  - key: powerup.p07.name
+    text: Mango dorado
+    en: Golden Mango
+  - key: powerup.p07.desc
+    text: 'Coleccionable: 3 por nivel. Suma 15 al medidor.'
+    en: 'Collectible: 3 per level. Adds 15 to the meter.'
+  - key: hazard.h01.name
+    text: Pared / orilla
+    en: Wall / shore
+  - key: hazard.h03.name
+    text: Compuerta temporizada
+    en: Timed gate
+  - key: hazard.h04.name
+    text: Oleaje
+    en: Waves
+  - key: hazard.h05.name
+    text: "Bloqueador m\xF3vil"
+    en: Moving blocker
+  - key: hazard.h06.name
+    text: Barril explosivo
+    en: Explosive barrel
+  - key: hazard.h07.name
+    text: Caja rompible
+    en: Breakable crate
+  - key: hazard.h08.name
+    text: Viento
+    en: Wind
+  - key: hazard.h09.name
+    text: Remolino
+    en: Whirlpool
+  - key: hazard.h10.name
+    text: Pinchos
+    en: Spikes
+  - key: hazard.h11.name
+    text: Banco de arena
+    en: Sandbar
+  - key: hazard.h12.name
+    text: Liana
+    en: Vine
+  - key: hazard.h13.name
+    text: Tronco giratorio
+    en: Spinning log
+  - key: hazard.h14.name
+    text: Fosa
+    en: Fossa
+  - key: hazard.h15.name
+    text: Cocodrilo
+    en: Crocodile
+  - key: hazard.h16.name
+    text: "Obst\xE1culo r\xEDtmico"
+    en: Rhythm obstacle
+  - key: hazard.h17.name
+    text: "Cascada / ca\xEDda"
+    en: Waterfall / drop
+  - key: hazard.h18.name
+    text: Zona oscura
+    en: Dark zone
+  - key: hazard.h19.name
+    text: "G\xE9iser"
+    en: Geyser
+  - key: hazard.h20.name
+    text: Roca que cae
+    en: Falling rock
+  - key: hazard.h21.name
+    text: "R\xE1pidos"
+    en: Rapids
+  - key: hazard.h22.name
+    text: Abismo
+    en: Abyss
+  - key: hazard.h23.name
+    text: Cocodrilo gigante
+    en: Giant crocodile
+  - key: hazard.h24.name
+    text: "Gr\xFAa con gancho"
+    en: Crane hook
+  - key: hazard.h25.name
+    text: "Tent\xE1culos"
+    en: Tentacles
+  - key: hazard.h26.name
+    text: "Murci\xE9lagos"
+    en: Bats
+  - key: hazard.h27.name
+    text: "Trampol\xEDn / toldo / fuente"
+    en: Trampoline / awning / fountain
+  - key: hazard.h28.name
+    text: Barco que cruza
+    en: Crossing boat
+  - key: hazard.h29.name
+    text: Cangrejo
+    en: Crab
+  - key: hazard.h30.name
+    text: Coco que cae
+    en: Coconut drop
+  - key: hazard.h31.name
+    text: Corriente cruzada
+    en: Crosscurrent
+  - key: hazard.h32.name
+    text: Red de pesca
+    en: Fishing net
+  - key: hazard.h33.name
+    text: Pared de globos
+    en: Balloon wall
+  - key: hazard.h34.name
+    text: Chorro de manguera
+    en: Hose jet
+  - key: hazard.h35.name
+    text: Plataforma que se hunde
+    en: Sinking platform
+  - key: hazard.h36.name
+    text: "G\xE9iser de gas dorado"
+    en: Golden gas geyser
+  - key: hazard.h37.name
+    text: Compuerta de represa
+    en: Dam gate
+  - key: world.t.name
+    text: Tutorial
+    en: Tutorial
+  - key: world.w1.name
+    text: "Fuga del Zool\xF3gico"
+    en: Zoo Escape
+  - key: world.w2.name
+    text: Mar Abierto
+    en: Open Sea
+  - key: world.w3.name
+    text: Selva de Madagascar
+    en: Madagascar Jungle
+  - key: world.w4.name
+    text: "Cuevas y Volc\xE1n"
+    en: Caves & Volcano
+  - key: world.w5.name
+    text: El Gran Regreso
+    en: The Great Return
+  - key: world.w6.name
+    text: Reino de Julien
+    en: Julien's Kingdom
+  - key: world.secret_tag
+    text: Secreto
+    en: Secret
+  - key: level.t0.name
+    text: "Piscina del Zool\xF3gico"
+    en: Zoo Pool
+  - key: level.t0.mechanic
+    text: Aprende todos los controles, paso a paso.
+    en: Learn every control, step by step.
+  - key: level.w1_1.name
+    text: Fuentes del Zoo
+    en: Zoo Fountains
+  - key: level.w1_1.mechanic
+    text: "Giros con punter\xEDa en curvas cerradas."
+    en: Aim your farts to take tight turns.
+  - key: level.w1_2.name
+    text: Alcantarillas
+    en: Sewers
+  - key: level.w1_2.mechanic
+    text: Compuertas que abren y cierran por turnos.
+    en: Gates that open and shut on a timer.
+  - key: level.w1_3.name
+    text: "R\xEDo de la Ciudad"
+    en: City River
+  - key: level.w1_3.mechanic
+    text: Oleaje y corriente cambiante.
+    en: Waves and a shifting current.
+  - key: level.w1_4.name
+    text: Mercado Flotante
+    en: Floating Market
+  - key: level.w1_4.mechanic
+    text: "Locoto, coco escudo y toldos trampol\xEDn."
+    en: Locoto, coconut shield and bouncy awnings.
+  - key: level.w1_5.name
+    text: "Persecuci\xF3n en el Puerto"
+    en: Harbor Chase
+  - key: level.w1_5.mechanic
+    text: "Huye de la gr\xFAa y esquiva contenedores."
+    en: Flee the crane and dodge containers.
+  - key: level.w2_1.name
+    text: Cajas a la Deriva
+    en: Drifting Crates
+  - key: level.w2_1.mechanic
+    text: Cajas que romper y barriles que explotan.
+    en: Crates to smash and barrels that blow.
+  - key: level.w2_2.name
+    text: La Tormenta
+    en: The Storm
+  - key: level.w2_2.mechanic
+    text: "R\xE1fagas de viento lateral con aviso."
+    en: Sideways wind gusts, with a warning.
+  - key: level.w2_3.name
+    text: Cementerio de Barcos
+    en: Ship Graveyard
+  - key: level.w2_3.mechanic
+    text: Anclas para el Cuello Gancho de Melman.
+    en: Anchors for Melman's Neck Hook.
+  - key: level.w2_4.name
+    text: El Gran Remolino
+    en: The Great Whirlpool
+  - key: level.w2_4.mechanic
+    text: Remolinos que arrastran la balsa.
+    en: Whirlpools that drag the raft.
+  - key: level.w2_5.name
+    text: Arrecife de Coral
+    en: Coral Reef
+  - key: level.w2_5.mechanic
+    text: "Pinchos y tent\xE1culos que golpean en patr\xF3n."
+    en: Spikes and tentacles that strike in patterns.
+  - key: level.w3_1.name
+    text: Playa de Llegada
+    en: Arrival Beach
+  - key: level.w3_1.mechanic
+    text: 'Bancos de arena: frenas y encallas.'
+    en: 'Sandbars: slow down and you run aground.'
+  - key: level.w3_2.name
+    text: "R\xEDo de Lianas"
+    en: Vine River
+  - key: level.w3_2.mechanic
+    text: Lianas que se queman y troncos giratorios.
+    en: Vines to burn and spinning logs.
+  - key: level.w3_3.name
+    text: Territorio de las Fosas
+    en: Fossa Territory
+  - key: level.w3_3.mechanic
+    text: 'Fosas que te tiran al agua: rescata.'
+    en: 'Fossas knock you in: rescue your pals.'
+  - key: level.w3_4.name
+    text: Pantano de los Cocodrilos
+    en: Crocodile Swamp
+  - key: level.w3_4.mechanic
+    text: Cocodrilos que muerden; la cebolla los espanta.
+    en: Biting crocs; onions scare them off.
+  - key: level.w3_5.name
+    text: "La Gran Fiesta L\xE9mur"
+    en: The Great Lemur Party
+  - key: level.w3_5.mechanic
+    text: "Obst\xE1culos al ritmo de la m\xFAsica."
+    en: Obstacles that move to the beat.
+  - key: level.w4_1.name
+    text: Cascadas Escalonadas
+    en: Stepped Waterfalls
+  - key: level.w4_1.mechanic
+    text: "Ca\xEDdas: alinea la balsa antes del borde."
+    en: 'Drops: line up before the edge.'
+  - key: level.w4_2.name
+    text: Cueva de Cristal
+    en: Crystal Cave
+  - key: level.w4_2.mechanic
+    text: "Oscuridad: gu\xEDate con las luci\xE9rnagas."
+    en: 'Darkness: follow the fireflies.'
+  - key: level.w4_3.name
+    text: "G\xE9iseres de Vapor"
+    en: Steam Geysers
+  - key: level.w4_3.mechanic
+    text: "G\xE9iseres que lanzan la balsa por el aire."
+    en: Geysers that launch the raft skyward.
+  - key: level.w4_4.name
+    text: "R\xEDo Subterr\xE1neo"
+    en: Underground River
+  - key: level.w4_4.mechanic
+    text: "Corrientes cruzadas, murci\xE9lagos y gaseosa."
+    en: Crosscurrents, bats and soda.
+  - key: level.w4_5.name
+    text: "Coraz\xF3n del Volc\xE1n"
+    en: Heart of the Volcano
+  - key: level.w4_5.mechanic
+    text: Rocas que caen y un techo que se derrumba.
+    en: Falling rocks and a collapsing ceiling.
+  - key: level.w5_1.name
+    text: "R\xE1pidos del Ca\xF1\xF3n"
+    en: Canyon Rapids
+  - key: level.w5_1.mechanic
+    text: "R\xE1pidos: corriente fuerte entre rocas."
+    en: 'Rapids: strong current among rocks.'
+  - key: level.w5_2.name
+    text: Rampas del Abismo
+    en: Abyss Ramps
+  - key: level.w5_2.mechanic
+    text: "Abismos que exigen un S\xFAper Pedo."
+    en: Chasms that demand a Super Fart.
+  - key: level.w5_3.name
+    text: Laberinto de Manglares
+    en: Mangrove Maze
+  - key: level.w5_3.mechanic
+    text: Rutas alternativas y un atajo secreto.
+    en: Alternate routes and a secret shortcut.
+  - key: level.w5_4.name
+    text: La Represa
+    en: The Dam
+  - key: level.w5_4.mechanic
+    text: 'Compuertas gigantes: sube con la ola o espera.'
+    en: 'Giant gates: ride the wave or wait.'
+  - key: level.w5_5.name
+    text: "El Megatobog\xE1n Final"
+    en: The Final Mega Slide
+  - key: level.w5_5.mechanic
+    text: Todo junto, con un cocodrilo gigante.
+    en: Everything at once, plus a giant croc.
+  - key: level.w6_1.name
+    text: Fiesta en Espejo
+    en: Mirror Party
+  - key: level.w6_1.mechanic
+    text: 'Remix: tramos en espejo con ritmo.'
+    en: 'Remix: mirrored stretches with rhythm.'
+  - key: level.w6_2.name
+    text: Noche sin Luz
+    en: Lightless Night
+  - key: level.w6_2.mechanic
+    text: 'Remix: oscuridad total, fosas y remolinos.'
+    en: 'Remix: pitch dark, fossas and whirlpools.'
+  - key: level.w6_3.name
+    text: Todo a Contracorriente
+    en: Against the Current
+  - key: level.w6_3.mechanic
+    text: 'Remix: la corriente va en contra todo el nivel.'
+    en: 'Remix: the current fights you all level.'
+  - key: level.w6_4.name
+    text: Lluvia de Cocos
+    en: Coconut Rain
+  - key: level.w6_4.mechanic
+    text: 'Remix: cocos del cielo, cocodrilos y pinchos.'
+    en: 'Remix: sky coconuts, crocs and spikes.'
+  - key: level.w6_5.name
+    text: La Corona del Rey
+    en: The King's Crown
+  - key: level.w6_5.mechanic
+    text: "Remix: un tramo de cada mundo y 2 S\xFAper Pedos."
+    en: 'Remix: a stretch of every world, 2 Super Farts.'
+  - key: tutorial.l01.title
+    text: "T\xEDrate un pedo"
+    en: Let one rip
+  - key: tutorial.l01.text
+    text: Un toque mueve la balsa hacia el lado contrario.
+    en: A tap pushes the raft the opposite way.
+  - key: tutorial.l02.title
+    text: "Mu\xE9vete por el borde"
+    en: Move around the edge
+  - key: tutorial.l02.text
+    text: "Rodea la balsa: el pedo empuja desde donde est\xE1s sentado."
+    en: 'Shuffle around: the fart pushes from where you sit.'
+  - key: tutorial.l03.title
+    text: Apunta para girar
+    en: Aim to turn
+  - key: tutorial.l03.text
+    text: Apunta el pedo y rodea la boya por las tres marcas.
+    en: Aim your fart and circle the buoy through the three marks.
+  - key: tutorial.l04.title
+    text: "R\xE1faga"
+    en: Blast
+  - key: tutorial.l04.text
+    text: "Mant\xE9n el pedo para una r\xE1faga larga y cruza la piscina."
+    en: Hold the fart for a long blast and cross the pool.
+  - key: tutorial.l05.title
+    text: "\xA1Sincron\xEDa!"
+    en: Sync!
+  - key: tutorial.l05.text
+    text: "T\xEDrense un pedo a la vez para romper la pared de globos."
+    en: Fart at the same time to pop the balloon wall.
+  - key: tutorial.l06.title
+    text: Frijoles
+    en: Beans
+  - key: tutorial.l06.text
+    text: Recoge frijoles para recargar el gas.
+    en: Grab beans to refill your gas.
+  - key: tutorial.l07.title
+    text: Pings
+    en: Pings
+  - key: tutorial.l07.text
+    text: "Marca \"\xA1Ahora!\" para avisar a tu equipo."
+    en: Ping "Now!" to alert your team.
+  - key: tutorial.l08.title
+    text: "Ag\xE1rrate"
+    en: Grab on
+  - key: tutorial.l08.text
+    text: "Ag\xE1rrate fuerte mientras el chorro empuja."
+    en: Hold tight while the jet pushes you.
+  - key: tutorial.l09.title
+    text: Pedo cargado
+    en: Charged fart
+  - key: tutorial.l09.text
+    text: "Aguanta y suelta un pedo cargado para subir el tobog\xE1n."
+    en: Charge up and release a big fart to climb the slide.
+  - key: tutorial.l10.title
+    text: "\xA1S\xDAPER PEDO!"
+    en: SUPER FART!
+  - key: tutorial.l10.text
+    text: "El medidor est\xE1 lleno: \xA1todos a la vez para saltar el muro!"
+    en: 'The meter is full: all together to jump the wall!'
+  - key: tutorial.step_done
+    text: "\xA1Bien hecho!"
+    en: Nice one!
+  - key: tutorial.press
+    text: Pulsa {0}
+    en: Press {0}
+  - key: ctrl.title
+    text: Controles
+    en: Controls
+  - key: ctrl.move
+    text: Moverse por el borde
+    en: Move along the edge
+  - key: ctrl.aim
+    text: Apuntar
+    en: Aim
+  - key: ctrl.fart
+    text: Pedo
+    en: Fart
+  - key: ctrl.charge
+    text: Aguantar
+    en: Charge
+  - key: ctrl.ability
+    text: Habilidad
+    en: Ability
+  - key: ctrl.grab
+    text: Agarrarse
+    en: Grab
+  - key: ctrl.superfart
+    text: "S\xFAper Pedo"
+    en: Super Fart
+  - key: ctrl.pings
+    text: Pings
+    en: Pings
+  - key: ctrl.swim
+    text: Nadar / subir / saltar
+    en: Swim / climb / jump
+  - key: ctrl.pause
+    text: Pausa
+    en: Pause
+  - key: ctrl.dual_title
+    text: Control doble
+    en: Dual control
+  - key: ctrl.dual_desc
+    text: 'Un mando para dos animales: mitad izquierda y mitad derecha.'
+    en: 'One gamepad, two animals: left half and right half.'
+  - key: options.title
+    text: Opciones
+    en: Options
+  - key: options.tab.audio
+    text: Audio
+    en: Audio
+  - key: options.tab.video
+    text: Video
+    en: Video
+  - key: options.tab.controls
+    text: Controles
+    en: Controls
+  - key: options.tab.access
+    text: Accesibilidad
+    en: Accessibility
+  - key: options.tab.game
+    text: Juego
+    en: Game
+  - key: options.audio.master
+    text: Volumen general
+    en: Master volume
+  - key: options.audio.music
+    text: "M\xFAsica"
+    en: Music
+  - key: options.audio.sfx
+    text: Efectos
+    en: Effects
+  - key: options.audio.voices
+    text: Voces
+    en: Voices
+  - key: options.audio.ui
+    text: Interfaz
+    en: Interface
+  - key: options.video.resolution
+    text: "Resoluci\xF3n"
+    en: Resolution
+  - key: options.video.fullscreen
+    text: Pantalla completa
+    en: Fullscreen
+  - key: options.video.windowed
+    text: Ventana
+    en: Windowed
+  - key: options.video.vsync
+    text: VSync
+    en: VSync
+  - key: options.video.quality
+    text: Calidad
+    en: Quality
+  - key: options.video.quality_low
+    text: Baja
+    en: Low
+  - key: options.video.quality_medium
+    text: Media
+    en: Medium
+  - key: options.video.quality_high
+    text: Alta
+    en: High
+  - key: options.video.fps_limit
+    text: "L\xEDmite de FPS"
+    en: FPS limit
+  - key: options.video.fps_unlimited
+    text: "Sin l\xEDmite"
+    en: Unlimited
+  - key: options.controls.rebind
+    text: Cambiar botones
+    en: Rebind buttons
+  - key: options.controls.rebind_prompt
+    text: "Pulsa un bot\xF3n..."
+    en: Press a button...
+  - key: options.controls.reset
+    text: Restablecer
+    en: Reset
+  - key: options.controls.vibration
+    text: "Vibraci\xF3n"
+    en: Vibration
+  - key: options.controls.aim_sens
+    text: "Sensibilidad de punter\xEDa"
+    en: Aim sensitivity
+  - key: options.controls.aim_invert
+    text: "Invertir punter\xEDa"
+    en: Invert aim
+  - key: options.access.shake
+    text: "Sacudida de c\xE1mara"
+    en: Camera shake
+  - key: options.access.slowmo
+    text: "C\xE1mara lenta"
+    en: Slow motion
+  - key: options.access.colorblind
+    text: Paleta para daltonismo
+    en: Colorblind palette
+  - key: options.access.text_size
+    text: "Tama\xF1o de textos"
+    en: Text size
+  - key: options.access.contrast
+    text: Pings de alto contraste
+    en: High-contrast pings
+  - key: options.access.hold_mode
+    text: Aguantar y Agarrarse
+    en: Charge and Grab
+  - key: options.access.hold
+    text: Mantener
+    en: Hold
+  - key: options.access.toggle
+    text: Pulsar
+    en: Toggle
+  - key: options.game.default_difficulty
+    text: Dificultad por defecto
+    en: Default difficulty
+  - key: options.game.tips
+    text: Mostrar consejos
+    en: Show tips
+  - key: options.game.language
+    text: Idioma
+    en: Language
+  - key: shop.title
+    text: Tienda
+    en: Shop
+  - key: shop.tab.hats
+    text: Sombreros
+    en: Hats
+  - key: shop.tab.gas
+    text: Gas
+    en: Gas
+  - key: shop.tab.rafts
+    text: Balsas
+    en: Rafts
+  - key: shop.tab.celebrations
+    text: Celebraciones
+    en: Celebrations
+  - key: shop.balance
+    text: 'Frijolitos: {0}'
+    en: 'Beans: {0}'
+  - key: shop.price
+    text: '{0}'
+    en: '{0}'
+  - key: shop.buy
+    text: Comprar
+    en: Buy
+  - key: shop.owned
+    text: Tuyo
+    en: Owned
+  - key: shop.equip
+    text: Equipar
+    en: Equip
+  - key: shop.equipped
+    text: Puesto
+    en: Equipped
+  - key: shop.starter
+    text: Inicial
+    en: Starter
+  - key: shop.not_enough
+    text: Te faltan frijolitos.
+    en: Not enough beans.
+  - key: shop.team_item
+    text: "Lo elige el anfitri\xF3n"
+    en: Chosen by the host
+  - key: shop.reward_w65
+    text: Premio de W6-5
+    en: W6-5 reward
+  - key: shop.reward_mangos
+    text: 'Hito: {0} mangos dorados'
+    en: 'Milestone: {0} golden mangos'
+  - key: shop.preview_hint
+    text: Gira la vista previa
+    en: Rotate the preview
+  - key: shop.hat.zoo_cap
+    text: "Gorra del zool\xF3gico"
+    en: Zoo Cap
+  - key: shop.hat.diving_goggles
+    text: Gafas de buceo
+    en: Diving Goggles
+  - key: shop.hat.pirate_hat
+    text: Sombrero pirata
+    en: Pirate Hat
+  - key: shop.hat.explorer_helmet
+    text: Casco de explorador
+    en: Explorer Helmet
+  - key: shop.hat.flower_crown
+    text: Corona de flores
+    en: Flower Crown
+  - key: shop.hat.chef_hat
+    text: Gorro de chef
+    en: Chef Hat
+  - key: shop.hat.cowboy_hat
+    text: Sombrero vaquero
+    en: Cowboy Hat
+  - key: shop.hat.golden_crown
+    text: Corona dorada
+    en: Golden Crown
+  - key: shop.hat.mango_peel
+    text: "C\xE1scara de mango"
+    en: Mango Peel
+  - key: shop.gas.classic
+    text: "Verde cl\xE1sico"
+    en: Classic Green
+  - key: shop.gas.black_smoke
+    text: Humo negro
+    en: Black Smoke
+  - key: shop.gas.neon_pink
+    text: "Ne\xF3n rosa"
+    en: Neon Pink
+  - key: shop.gas.bubbles
+    text: Burbujas
+    en: Bubbles
+  - key: shop.gas.rainbow
+    text: "Arco\xEDris"
+    en: Rainbow
+  - key: shop.gas.gold_glitter
+    text: Brillantina dorada
+    en: Gold Glitter
+  - key: shop.gas.mango
+    text: Mango
+    en: Mango
+  - key: shop.raft.orange
+    text: Balsa naranja
+    en: Orange Raft
+  - key: shop.raft.lily_pad
+    text: "Hoja de nen\xFAfar"
+    en: Lily Pad
+  - key: shop.raft.zoo_crate
+    text: "Caja del zool\xF3gico"
+    en: Zoo Crate
+  - key: shop.raft.hollow_log
+    text: Tronco hueco
+    en: Hollow Log
+  - key: shop.raft.coconut_float
+    text: Flotador de coco
+    en: Coconut Float
+  - key: shop.raft.lifeboat
+    text: Bote salvavidas
+    en: Lifeboat
+  - key: shop.raft.watermelon_rind
+    text: "C\xE1scara de sand\xEDa"
+    en: Watermelon Rind
+  - key: shop.raft.giant_mango
+    text: Mango gigante
+    en: Giant Mango
+  - key: shop.celebrate.applause
+    text: Aplauso
+    en: Applause
+  - key: shop.celebrate.robot_dance
+    text: Baile robot
+    en: Robot Dance
+  - key: shop.celebrate.bow
+    text: Reverencia
+    en: Bow
+  - key: shop.celebrate.captain_salute
+    text: "Saludo de capit\xE1n"
+    en: Captain's Salute
+  - key: shop.celebrate.somersault
+    text: Voltereta
+    en: Somersault
+  - key: shop.celebrate.conga_step
+    text: Paso de conga
+    en: Conga Step
+  - key: reward.mango_trail
+    text: Estela de mangos
+    en: Mango Trail
+  - key: reward.mango_title
+    text: Coleccionista Real
+    en: Royal Collector
+  - key: reward.unlocked
+    text: "\xA1Desbloqueado!"
+    en: Unlocked!
+  - key: reward.world6
+    text: "\xA1Mundo 6 desbloqueado!"
+    en: World 6 unlocked!
+  - key: ach.title
+    text: Logros
+    en: Trophies
+  - key: ach.progress
+    text: '{0}/{1}'
+    en: '{0}/{1}'
+  - key: ach.tab_stats
+    text: "Estad\xEDsticas"
+    en: Stats
+  - key: ach.unlocked
+    text: "\xA1Logro desbloqueado!"
+    en: Trophy unlocked!
+  - key: ach.first_fart.name
+    text: Primer Pedo
+    en: First Fart
+  - key: ach.first_fart.desc
+    text: "T\xEDrate el primer pedo."
+    en: Let your first fart go.
+  - key: ach.duet.name
+    text: Dueto
+    en: Duet
+  - key: ach.duet.desc
+    text: Logra un grupo de sync x2.
+    en: Land a x2 sync group.
+  - key: ach.orchestra.name
+    text: Orquesta
+    en: Orchestra
+  - key: ach.orchestra.desc
+    text: Logra un grupo de sync x4.
+    en: Land a x4 sync group.
+  - key: ach.super_fart.name
+    text: "\xA1S\xFAper Pedo!"
+    en: Super Fart!
+  - key: ach.super_fart.desc
+    text: "Lanza tu primer S\xFAper Pedo."
+    en: Launch your first Super Fart.
+  - key: ach.jungle_slingshot.name
+    text: Honda de la Selva
+    en: Jungle Slingshot
+  - key: ach.jungle_slingshot.desc
+    text: Logra la sinergia Honda de la Selva.
+    en: Pull off the Jungle Slingshot synergy.
+  - key: ach.earthquake.name
+    text: Terremoto
+    en: Earthquake
+  - key: ach.earthquake.desc
+    text: Logra la sinergia Terremoto.
+    en: Pull off the Earthquake synergy.
+  - key: ach.total_party.name
+    text: Fiesta Total
+    en: Total Party
+  - key: ach.total_party.desc
+    text: Logra la sinergia Fiesta Total.
+    en: Pull off the Total Party synergy.
+  - key: ach.heavy_duo.name
+    text: "D\xFAo Pesado"
+    en: Heavy Duo
+  - key: ach.heavy_duo.desc
+    text: "Logra la sinergia D\xFAo Pesado."
+    en: Pull off the Heavy Duo synergy.
+  - key: ach.royal_rescue.name
+    text: Rescate Real
+    en: Royal Rescue
+  - key: ach.royal_rescue.desc
+    text: Logra la sinergia Rescate Real.
+    en: Pull off the Royal Rescue synergy.
+  - key: ach.captain_titanic.name
+    text: "Capit\xE1n Titanic"
+    en: Captain Titanic
+  - key: ach.captain_titanic.desc
+    text: Hunde la balsa 10 veces.
+    en: Sink the raft 10 times.
+  - key: ach.not_a_scratch.name
+    text: "Sin un Rasgu\xF1o"
+    en: Not a Scratch
+  - key: ach.not_a_scratch.desc
+    text: "Termina un nivel sin perder c\xE1maras."
+    en: Finish a level without losing a chamber.
+  - key: ach.world1.name
+    text: Mundo 1
+    en: World 1
+  - key: ach.world1.desc
+    text: Termina el Mundo 1.
+    en: Finish World 1.
+  - key: ach.world2.name
+    text: Mundo 2
+    en: World 2
+  - key: ach.world2.desc
+    text: Termina el Mundo 2.
+    en: Finish World 2.
+  - key: ach.world3.name
+    text: Mundo 3
+    en: World 3
+  - key: ach.world3.desc
+    text: Termina el Mundo 3.
+    en: Finish World 3.
+  - key: ach.world4.name
+    text: Mundo 4
+    en: World 4
+  - key: ach.world4.desc
+    text: Termina el Mundo 4.
+    en: Finish World 4.
+  - key: ach.world5.name
+    text: Mundo 5
+    en: World 5
+  - key: ach.world5.desc
+    text: Termina el Mundo 5.
+    en: Finish World 5.
+  - key: ach.world6.name
+    text: Mundo 6
+    en: World 6
+  - key: ach.world6.desc
+    text: Termina el Mundo 6.
+    en: Finish World 6.
+  - key: ach.perfectionist.name
+    text: Perfeccionista
+    en: Perfectionist
+  - key: ach.perfectionist.desc
+    text: Consigue todas las estrellas de un mundo.
+    en: Earn every star in one world.
+  - key: ach.constellation.name
+    text: "Constelaci\xF3n"
+    en: Constellation
+  - key: ach.constellation.desc
+    text: Consigue las 93 estrellas.
+    en: Earn all 93 stars.
+  - key: ach.royal_collector.name
+    text: Coleccionista Real
+    en: Royal Collector
+  - key: ach.royal_collector.desc
+    text: Consigue los 93 mangos dorados.
+    en: Collect all 93 golden mangos.
+  - key: ach.speedster.name
+    text: Velocista
+    en: Speedster
+  - key: ach.speedster.desc
+    text: Saca 3 estrellas en 10 niveles.
+    en: Earn 3 stars on 10 levels.
+  - key: ach.broken_friendships.name
+    text: Amistades Rotas
+    en: Broken Friendships
+  - key: ach.broken_friendships.desc
+    text: Termina la historia en Amistades Rotas.
+    en: Finish the story on Broken Friendships.
+  - key: ach.party_animal.name
+    text: Fiestero
+    en: Partygoer
+  - key: ach.party_animal.desc
+    text: Juega los 5 minijuegos de Fiesta.
+    en: Play all 5 Party minigames.
+  - key: ach.kilometer.name
+    text: "Kil\xF3metro"
+    en: Kilometer
+  - key: ach.kilometer.desc
+    text: Recorre 1000 m en Infinito.
+    en: Travel 1000 m in Endless.
+  - key: ach.consistent.name
+    text: Constante
+    en: Consistent
+  - key: ach.consistent.desc
+    text: "Juega el Desaf\xEDo Diario 7 d\xEDas seguidos."
+    en: Play the Daily Challenge 7 days running.
+  - key: ach.raft_king.name
+    text: Rey de la Balsa
+    en: Raft King
+  - key: ach.raft_king.desc
+    text: Termina La Corona del Rey.
+    en: Finish The King's Crown.
+  - key: stats.title
+    text: "Estad\xEDsticas"
+    en: Stats
+  - key: stats.farts
+    text: Pedos totales
+    en: Total farts
+  - key: stats.sync2
+    text: Grupos de sync x2
+    en: Sync groups x2
+  - key: stats.sync3
+    text: Grupos de sync x3
+    en: Sync groups x3
+  - key: stats.sync4
+    text: Grupos de sync x4
+    en: Sync groups x4
+  - key: stats.super_farts
+    text: "S\xFAper Pedos"
+    en: Super Farts
+  - key: stats.falls
+    text: "Ca\xEDdas al agua"
+    en: Falls into water
+  - key: stats.rescues
+    text: Rescates
+    en: Rescues
+  - key: stats.sinkings
+    text: Hundimientos
+    en: Sinkings
+  - key: stats.distance
+    text: Distancia recorrida
+    en: Distance traveled
+  - key: stats.play_time
+    text: Tiempo de juego
+    en: Play time
+  - key: stats.fav_character
+    text: "Personaje m\xE1s usado"
+    en: Most used animal
+  - key: credits.title
+    text: "Cr\xE9ditos"
+    en: Credits
+  - key: credits.team
+    text: Equipo
+    en: Team
+  - key: credits.tools
+    text: Herramientas
+    en: Tools
+  - key: credits.assets
+    text: Assets y licencias
+    en: Assets & licenses
+  - key: story.intro.1
+    text: "Medianoche. Los cinco se escapan del zool\xF3gico en puntitas."
+    en: Midnight. All five tiptoe out of the zoo.
+  - key: story.intro.2
+    text: "En el muelle: una balsa inflable, ning\xFAn remo y un barril de frijoles."
+    en: 'At the dock: one inflatable raft, no oars, and a barrel of beans.'
+  - key: story.intro.3
+    text: "Un frijol, un pedo y \xA1descubren el m\xE9todo!"
+    en: One bean, one fart, and the method is born!
+  - key: story.intro.4
+    text: "La balsa sale disparada. Nadie sabe c\xF3mo frenar."
+    en: The raft shoots off. Nobody knows how to brake.
+  - key: story.intro.5
+    text: "\xA1Funciona! Ahora solo falta hacerlo todos a la vez."
+    en: It works! Now to do it all at the same time.
+  - key: story.w1_end.1
+    text: Se esconden tras un barco de carga. Melman no ayuda mucho.
+    en: Hiding behind a cargo ship. Melman is not helping.
+  - key: story.w1_end.2
+    text: Silencio total. Ni un pedo hasta que pase el barco.
+    en: Total silence. Not one fart until the ship passes.
+  - key: story.w1_end.3
+    text: Mar abierto. Por fin nadie los persigue.
+    en: Open sea. Finally, nobody is chasing them.
+  - key: story.w2_end.1
+    text: La tormenta los zarandea. Hasta los pedos salen mojados.
+    en: The storm tosses them around. Even the farts come out wet.
+  - key: story.w2_end.2
+    text: La tormenta los deja en una isla. Marty sigue mareado.
+    en: The storm leaves them on an island. Marty is still dizzy.
+  - key: story.w2_end.3
+    text: "Un \xE1rbol gigante con casita. El l\xE9mur saluda como en su casa."
+    en: A giant tree with a hut. The lemur waves like it's home.
+  - key: story.w3_end.1
+    text: "\xA1Fiesta de l\xE9mures! M\xFAsica a todo volumen y confeti."
+    en: Lemur party! Loud music and confetti.
+  - key: story.w3_end.2
+    text: "\xA1Ganan la fiesta! Y el Rey Julien se lleva los aplausos."
+    en: They win the party! Rey Julien takes the applause.
+  - key: story.w3_end.3
+    text: "Ya es tripulante oficial y se\xF1ala el volc\xE1n: \xA1atajo a casa!"
+    en: 'Now official crew, Rey Julien points at the volcano: shortcut home!'
+  - key: story.w3_end.4
+    text: "\xBFUn volc\xE1n de atajo? Qu\xE9 idea tan de Julien."
+    en: A volcano as a shortcut? Such a Julien idea.
+  - key: story.w4_end.1
+    text: "Dentro del volc\xE1n, solo un chorro de gas los separa de la lava."
+    en: Inside the volcano, only a jet of gas separates them from the lava.
+  - key: story.w4_end.2
+    text: "\xA1Erupci\xF3n! Salen volando por el cr\xE1ter, balsa incluida."
+    en: Eruption! They blast out of the crater, raft and all.
+  - key: story.w4_end.3
+    text: "Aterrizan en un ca\xF1\xF3n al atardecer. Alex celebra por todos."
+    en: They land in a canyon at sunset. Alex cheers for everyone.
+  - key: story.w5_end.1
+    text: "\xDAltimo obst\xE1culo: un megatobog\xE1n. \xBFQu\xE9 podr\xEDa salir
+      mal?"
+    en: 'Last obstacle: a mega slide. What could go wrong?'
+  - key: story.w5_end.2
+    text: "\xA1Ah\xED est\xE1 el barco que los lleva de vuelta a casa!"
+    en: There's the ship that takes them back home!
+  - key: story.w5_end.3
+    text: Desde el barco ya se ve la noria. Casi, casi en casa.
+    en: The ferris wheel is in sight. Almost, almost home.
+  - key: story.w5_end.4
+    text: "De vuelta en el zool\xF3gico, ahora con piscina de olas."
+    en: Back at the zoo, now with a wave pool.
+  - key: story.w5_end.5
+    text: Hogar, dulce hogar. Los cinco juntos y con gas de sobra.
+    en: Home sweet home. All five together, with gas to spare.
+  - key: story.w6_secret.1
+    text: "El Rey Julien tiene un anuncio: \xA1nace el Reino de Julien!"
+    en: 'Rey Julien has an announcement: Julien''s Kingdom is born!'
+  - key: story.w6_secret.2
+    text: "Desaf\xEDos remix: cocodrilos, tent\xE1culos y una gr\xFAa muy dram\xE1tica."
+    en: 'Remix challenges: crocodiles, tentacles and a very dramatic crane.'
+  - key: story.w6_secret.3
+    text: Se corona al mejor equipo. Alex se prueba la corona primero.
+    en: The best team gets crowned. Alex tries the crown on first.
+  - key: story.skip
+    text: "Pulsa cualquier bot\xF3n para saltar"
+    en: Press any button to skip
+  - key: ui.soon
+    text: "Pr\xF3ximamente"
+    en: Coming soon
+  - key: select.none
+    text: Ninguno
+    en: None
+  - key: select.difficulty_format
+    text: 'Dificultad: {0}'
+    en: 'Difficulty: {0}'
+  - key: options.controls.keyboard
+    text: Teclado
+    en: Keyboard
+  - key: options.controls.gamepad
+    text: Mando
+    en: Gamepad

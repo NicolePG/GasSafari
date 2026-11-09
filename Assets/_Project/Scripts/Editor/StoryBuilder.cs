@@ -22,7 +22,7 @@ namespace GasSafari.Editor
         private const string DATA = "Assets/_Project/Data/Story/";
         private const string PREFABS = "Assets/_Project/Prefabs/UI/Story/";
         private const string CSV = "Tools/Export/Localization/strings.csv";
-        public const string STRINGS_PATH = DATA + "Strings_story_es.asset";
+        public const string STRINGS_PATH = StringsImporter.TABLE_PATH;
         public const string LIBRARY_PATH = DATA + "StoryLibrary.asset";
         private const float SECONDS_PER_PANEL = 5f;
 
@@ -99,24 +99,9 @@ namespace GasSafari.Editor
             var strings = AssetDatabase.LoadAssetAtPath<UIStrings>(STRINGS_PATH);
             if (strings == null)
             {
-                strings = ScriptableObject.CreateInstance<UIStrings>();
-                AssetDatabase.CreateAsset(strings, STRINGS_PATH);
+                StringsImporter.Import();
+                strings = AssetDatabase.LoadAssetAtPath<UIStrings>(STRINGS_PATH);
             }
-            var entries = new List<UIStrings.Entry>();
-            if (File.Exists(CSV))
-            {
-                foreach (var row in ParseCsv(File.ReadAllText(CSV, Encoding.UTF8)))
-                {
-                    if (row.Count >= 2 && row[0].StartsWith("story."))
-                        entries.Add(new UIStrings.Entry { key = row[0], text = row[1] });
-                }
-            }
-            else
-            {
-                Debug.LogWarning($"M5-39 no encuentro {CSV}: las viñetas salen sin pie de texto");
-            }
-            strings.entries = entries.ToArray();
-            EditorUtility.SetDirty(strings);
             return strings;
         }
 

@@ -8,6 +8,10 @@ namespace GasSafari.Core
     {
         public string id;
         public string displayName;
+        // diff.familiar.name / diff.normal.name / diff.broken.name en la tabla de textos.
+        public string NameKey => "diff." + KeyId + ".name";
+        public string DescKey => "diff." + KeyId + ".desc";
+        private string KeyId => id == "AmistadesRotas" ? "broken" : (id ?? string.Empty).ToLowerInvariant();
         public float syncWindow;
         [Tooltip("Multiplica la recarga de gas del personaje")] public float regenMultiplier;
         [Tooltip("Si es falso, solo pinchos y mordidas revientan cámaras")] public bool impactsDamageChambers;

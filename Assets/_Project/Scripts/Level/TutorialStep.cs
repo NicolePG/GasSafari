@@ -34,6 +34,8 @@ namespace GasSafari.Level
     [CreateAssetMenu(menuName = "Gas Safari/Tutorial Step", fileName = "TutorialStep")]
     public class TutorialStep : ScriptableObject
     {
+        [Tooltip("Base de las claves de la tabla de textos (tutorial.l01 → .title y .text); vacío = usa title y text")]
+        public string textKey;
         public string title;
         [TextArea] public string text;
         public TutorialAction action;

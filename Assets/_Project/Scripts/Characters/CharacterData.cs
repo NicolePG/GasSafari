@@ -8,6 +8,9 @@ namespace GasSafari.Characters
     {
         public string id;
         public string displayName;
+        // char.alex.name, char.alex.role, char.alex.ability_name... en la tabla de textos.
+        public string KeyBase => "char." + (id ?? string.Empty).ToLowerInvariant();
+        public string NameKey => KeyBase + ".name";
 
         [Header("Stats")]
         public float gasCapacity;

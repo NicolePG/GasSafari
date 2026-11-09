@@ -11,7 +11,7 @@ namespace GasSafari.Editor
     // LevelTemplateBuilder lo coloca dentro del canvas HUD; los prefabs de panel y anillo viven en Prefabs/UI.
     public static class HudBuilder
     {
-        public const string STRINGS_PATH = "Assets/_Project/Data/UI/Strings_es.asset";
+        public const string STRINGS_PATH = StringsImporter.TABLE_PATH;
         private const string PANEL_PREFAB = "Assets/_Project/Prefabs/UI/HudPlayerPanel.prefab";
         private const string OVERLAY_PREFAB = "Assets/_Project/Prefabs/UI/AvatarOverlay.prefab";
         private const string RING_PATH = "Assets/_Project/Art/UI/ring.png";
@@ -54,31 +54,11 @@ namespace GasSafari.Editor
             SetRef(root, "overlayPrefab", AssetDatabase.LoadAssetAtPath<GameObject>(OVERLAY_PREFAB).GetComponent<AvatarOverlay>());
         }
 
+        // La tabla de textos sale del CSV (Gas Safari/Setup/Importar textos (CSV)); aquí solo se asegura que exista.
         private static void BuildStrings()
         {
-            var strings = LoadOrCreate<UIStrings>(STRINGS_PATH);
-            strings.entries = new[]
-            {
-                E("ui.press_any", "Pulsa cualquier botón"), E("ui.join", "Pulsa A para unirte"), E("ui.ready", "¡Listo!"),
-                E("hud.sync2", "¡SYNC x2!"), E("hud.sync3", "¡SYNC x3!"), E("hud.sync4", "¡SYNC x4!"),
-                E("hud.superfart_ready", "¡SÚPER PEDO LISTO!"), E("hud.go", "¡YA!"), E("hud.checkpoint", "CHECKPOINT"),
-                E("hud.no_gas", "Sin gas"), E("hud.abyss", "¡Abismo adelante!"), E("hud.mangos", "Mangos {0}/{1}"), E("hud.checkpoint_progress", "Checkpoint {0}/{1}"),
-                E("ping.now", "¡Ahora!"), E("ping.wait", "Espera"), E("ping.left", "Gira a la izquierda"), E("ping.right", "Gira a la derecha"),
-                E("pause.title", "Pausa"), E("pause.resume", "Continuar"), E("pause.restart_checkpoint", "Reiniciar desde checkpoint"),
-                E("pause.restart_level", "Reiniciar nivel"), E("pause.options", "Opciones"), E("pause.controls", "Controles"),
-                E("pause.quit", "Salir al mapa"), E("pause.yes", "Sí"), E("pause.no", "No"),
-                E("pause.vote", "¿Reiniciar desde el checkpoint? Sí {0} · No {1} (hacen falta {2})"),
-                E("results.who", "¿Quién fue?"), E("results.beans", "Frijolitos +{0}"), E("results.next", "Siguiente"),
-                E("results.retry", "Repetir"), E("results.map", "Mapa"),
-                // Premios de docs/06 §4.
-                E("award.sync_master", "Maestro de la Sincronía"), E("award.lifeguard", "Salvavidas"), E("award.show_king", "Rey del Show"),
-                E("award.glutton", "Tragón"), E("award.untimely_fart", "Pedo más inoportuno"), E("award.captain_titanic", "Capitán Titanic"),
-                E("award.wasted_gas", "Gas Desperdiciado"), E("award.sleeping_beauty", "Bello Durmiente"), E("assist.offer", "¿Necesitan una Ayuda Real?"),
-                // Nombres de sinergias (docs/03).
-                E("synergy.honda_selva", "Honda de la Selva"), E("synergy.terremoto", "Terremoto"), E("synergy.fiesta_total", "Fiesta Total"),
-                E("synergy.duo_pesado", "Dúo Pesado"), E("synergy.rescate_real", "Rescate Real")
-            };
-            EditorUtility.SetDirty(strings);
+            if (AssetDatabase.LoadAssetAtPath<UIStrings>(STRINGS_PATH) == null)
+                StringsImporter.Import();
         }
 
         private static UIStrings.Entry E(string key, string text) => new UIStrings.Entry { key = key, text = text };
