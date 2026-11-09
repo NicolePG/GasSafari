@@ -209,6 +209,37 @@ namespace GasSafari.Editor
             Landmark = "W5_NaturalArch",
         };
 
+        // W6 (docs/04 Mundos): fiesta nocturna en el Reino de Julien, magenta #F72585 y lima #B5E48C; antorchas tiki magenta y Bloom fuerte.
+        public static readonly Theme W6 = new Theme
+        {
+            World = 6,
+            LightColor = new Color(0.85f, 0.5f, 0.95f),
+            LightIntensity = 0.55f,
+            LightEuler = new Vector3(50f, 30f, 0f),
+            AmbientSky = new Color(0.3f, 0.11f, 0.36f),
+            AmbientEquator = new Color(0.21f, 0.07f, 0.27f),
+            AmbientGround = new Color(0.06f, 0.02f, 0.08f),
+            Fog = new Color(0.17f, 0.05f, 0.22f),
+            FogStart = 30f,
+            FogEnd = 190f,
+            SkyTint = new Color(0.22f, 0.06f, 0.28f),
+            SkyGround = new Color(0.05f, 0.02f, 0.07f),
+            SkyExposure = 0.3f,
+            WaterShallow = new Color(0.71f, 0.89f, 0.55f, 0.8f),
+            WaterDeep = new Color(0.45f, 0.07f, 0.3f, 0.95f),
+            WaterFoam = new Color(0.95f, 1f, 0.8f, 1f),
+            WallColor = new Color(0.46f, 0.1f, 0.32f),
+            GroundColor = new Color(0.2f, 0.06f, 0.26f),
+            Decor = new[]
+            {
+                "W6_Balloons_A", "W6_Balloons_B", "W6_Balloons_C", "W6_Garland_A", "W6_Garland_B", "W6_Garland_C", "W6_GiftBox_A", "W6_GiftBox_B",
+                "W6_GiftBox_C", "W6_Palm_A", "W6_Palm_B", "W6_Palm_C", "W6_Rock_A", "W6_Rock_B", "W6_Rock_C", "W6_SpeakerStack", "W6_Buffet",
+            },
+            Lamps = new[] { "W6_TikiTorch" },
+            LampLight = new Color(0.97f, 0.15f, 0.52f),
+            Landmark = "W6_Stage",
+        };
+
         // landmark: posición y giro del hito (se ve desde la salida y enmarca el momento estrella).
         public static void Dress(GreyboxLevel level, Theme theme, int seed, Vector3 landmark, float landmarkYaw)
         {

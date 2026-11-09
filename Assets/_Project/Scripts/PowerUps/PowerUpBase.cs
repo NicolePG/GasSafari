@@ -23,6 +23,8 @@ namespace GasSafari.PowerUps
         [SerializeField] private PowerUpData data;
 
         private Vector3 basePosition;
+        // Si cuelga de otro objeto (el mango sobre la luciérnaga gigante de W6-2), viaja con él: la base se guarda en su espacio local.
+        private Vector3 localBase;
         private float phase;
 
         public PowerUpData Data => data;
@@ -41,6 +43,8 @@ namespace GasSafari.PowerUps
         {
             All.Add(this);
             basePosition = transform.position;
+            if (transform.parent != null)
+                localBase = transform.localPosition;
             phase = Random.value * Mathf.PI * 2f;
         }
 
@@ -73,13 +77,15 @@ namespace GasSafari.PowerUps
         {
             IsCollected = false;
             basePosition = position;
+            if (transform.parent != null)
+                localBase = transform.parent.InverseTransformPoint(position);
             transform.position = position;
             gameObject.SetActive(true);
         }
 
         private void Update()
         {
-            var position = basePosition;
+            var position = transform.parent != null ? transform.parent.TransformPoint(localBase) : basePosition;
             position.y += Mathf.Sin(phase + Time.time * BOB_FREQUENCY * Mathf.PI * 2f) * BOB_AMPLITUDE;
             transform.SetPositionAndRotation(position,
                 transform.rotation * Quaternion.Euler(0f, SPIN_DEGREES_PER_SECOND * Time.deltaTime, 0f));

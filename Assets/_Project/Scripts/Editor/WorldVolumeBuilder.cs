@@ -20,7 +20,8 @@ namespace GasSafari.Editor
             ("W2", 0.5f, 1.0f, 0.60f, 0.15f), // día soleado
             ("W3", 0.9f, 0.9f, 0.70f, 0.22f), // atardecer tropical
             ("W4", 1.8f, 0.8f, 0.75f, 0.32f), // cuevas: cristales cian y lava
-            ("W5", 1.0f, 0.9f, 0.70f, 0.20f)  // atardecer dorado
+            ("W5", 1.0f, 0.9f, 0.70f, 0.20f), // atardecer dorado
+            ("W6", 2.2f, 0.8f, 0.75f, 0.30f)  // fiesta nocturna: Bloom fuerte (docs/09)
         };
 
         [MenuItem("Gas Safari/Setup/Crear perfiles de volumen por mundo")]

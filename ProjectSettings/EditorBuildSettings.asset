@@ -68,4 +68,34 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Levels/L_W4_5_VolcanJefe.unity
     guid: d666bfd62283e4b42862f3a8fa435fb3
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W5_1_RapidosCanon.unity
+    guid: 2fbca8f2556f31a4aa52c8202629f746
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W5_2_RampasAbismo.unity
+    guid: 29142791d74011e419ed6fb259f76f0c
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W5_3_LaberintoManglares.unity
+    guid: 35995a1441a6b734c96cb30ba5da3260
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W5_4_Represa.unity
+    guid: 7fcf7cd1e7f5dec48813bc8d75d1b8c4
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W5_5_MegatoboganJefe.unity
+    guid: ceec30e130b720144b5ef88f5fc2f211
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W6_1_FiestaEspejo.unity
+    guid: 74cbecce62601d546b3827b1e0df44c1
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W6_2_NocheSinLuz.unity
+    guid: 78ebe655003509640a652c5374637263
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W6_3_Contracorriente.unity
+    guid: 6c41fe1b6081b6f4f95c1a57d46a44b8
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W6_4_LluviaCocos.unity
+    guid: 93619effca388fe4aa58cb69967bb95b
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/L_W6_5_CoronaReyJefe.unity
+    guid: 2d14053e1d8e3294b87ef039070fbb1b
   m_configObjects: {}

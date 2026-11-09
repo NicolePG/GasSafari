@@ -101,14 +101,14 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M5-29** W5-3 Laberinto de Manglares · level-builder · 04 W5-3 · hecho 2026-11-08 · `BuildW5_3`: 803 m, 5 checkpoints; bifurcación triple (segura, rápida y de mangos), raíces con anclas, niebla de 18 m y atajo secreto recto; 4 bots terminan por el cauce principal
 - [x] **M5-30** W5-4 La Represa · level-builder · 04 W5-4 · hecho 2026-11-08 · `BuildW5_4`: 497 m; esclusas (compuertas H37 débiles; el nivel del agua no cambia: provisional), 2 compuertas gigantes con oleada y aliviadero de 10 m; 4 bots terminan
 - [x] **M5-31** W5-5 El Megatobogán Final (jefe) · level-builder · 04 W5-5 · hecho 2026-11-08 · `BuildW5_5`: 974 m, 6 checkpoints, descenso por pendientes, curvas, túnel oscuro, géiseres, cocodrilo gigante H23 al 90 % de la velocidad del equipo y cierre de boca final; 4 bots terminan
-- [ ] **M5-32** Obstáculo H30 · hazards-powerups · 05
-- [ ] **M5-33** W6-1 Fiesta en Espejo · level-builder · 04 W6-1
-- [ ] **M5-34** W6-2 Noche sin Luz · level-builder · 04 W6-2
-- [ ] **M5-35** W6-3 Todo a Contracorriente · level-builder · 04 W6-3
-- [ ] **M5-36** W6-4 Lluvia de Cocos · level-builder · 04 W6-4
-- [ ] **M5-37** W6-5 La Corona del Rey (jefe) · level-builder · 04 W6-5
+- [x] **M5-32** Obstáculo H30 · hazards-powerups · 05 · hecho 2026-11-08 · `CoconutFall` (sombra 0.8 s, empuje 20 sin daño; puntos fijos o lluvia sobre la balsa), `W6HazardBuilder` (menú `Crear obstáculos de W6`, también el prefab `H22_AbyssWarning`); pruebas `W6HazardTests`
+- [x] **M5-33** W6-1 Fiesta en Espejo · level-builder · 04 W6-1 · hecho 2026-11-08 · `L_W6_1_FiestaEspejo` por `W6LevelsBuilder.BuildW6_1`: 596 m, 4 checkpoints; puerto y selva en espejo, compuertas, fosas, barras rítmicas a 120 BPM, escenario del DJ y atajo oculto; escenario de W6 importado (`Importar escenario de W6`), tema nocturno magenta/lima (`LevelDresser.W6`) y Volume_W6
+- [x] **M5-34** W6-2 Noche sin Luz · level-builder · 04 W6-2 · hecho 2026-11-08 · `BuildW6_2`: 586 m, 4 checkpoints; oscuridad (H18 en todo el nivel), luciérnagas móviles (`FireflyDrift`) con una gigante que lleva el mango, fosas, remolinos y cueva
+- [x] **M5-35** W6-3 Todo a Contracorriente · level-builder · 04 W6-3 · hecho 2026-11-08 · `BuildW6_3`: 640 m, 5 checkpoints; corriente -0.7 m/s² con remansos, rápidos H21 en contra, compuertas, cascada con mango en la cima
+- [x] **M5-36** W6-4 Lluvia de Cocos · level-builder · 04 W6-4 · hecho 2026-11-08 · `BuildW6_4`: 601 m, 4 checkpoints; 5 lluvias de cocos H30, cocodrilos dormidos, pinchos y mango tras una palmera
+- [x] **M5-37** W6-5 La Corona del Rey (jefe) · level-builder · 04 W6-5 · hecho 2026-11-08 · `BuildW6_5`: 922 m, 6 checkpoints; un tramo de cada mundo, 2 Súper Pedos obligatorios (abismos de 15 y 18 m con la receta de W4-3) y final rítmico hasta el trono; la corona dorada (cosmético) y el logro 26 quedan para M6-07/tienda
 - [x] **M5-38** (TÚ) Revisar arte de escenario por mundo (packs CC0 + Meshy) · — · 09 §5 · hecho 2026-11-05 con Blender por script (no packs CC0 ni Meshy): 137 props y piezas modulares W1-W5 en `Art/Environment/W<N>/`, fauna en `Art/Fauna/`, grúa en `Art/Bosses/`; todos con SG_Toon (emisivos con `_EmissionColor` HDR, Bloom verificado)
-- [ ] **M5-39** Viñetas entre mundos con Timeline · ui-hud · 01 Historia
+- [x] **M5-39** Viñetas entre mundos con Timeline · ui-hud · 01 Historia · hecho 2026-11-08 · `StoryBuilder` (menú `Crear viñetas de historia`): 7 momentos y 26 imágenes de `Tools/Export/Story` como sprites, un Timeline por viñeta (una pista de activación por imagen, 5 s cada una), `StoryPlayer` (saltable con cualquier botón), `StoryLibrary` y `StoryMoments` (qué viñeta toca tras cada jefe y al desbloquear W6); los 26 pies salen de las claves `story.*` del CSV. Falta engancharlas al mapa de mundos y al inicio de la Historia (M6)
 - [x] **M5-40** Música por mundo con capas · audio-sfx · 08 §5 · hecho 2026-11-08 · `MusicLibrary` + `MusicDirector` (`Services.Music`), capa de intensidad a más de 8 m/s o en jefes, tabla de pulsos del jefe de W3 para `RhythmClock`; pruebas `MusicDirectorTests`
 
 ## Correcciones intercaladas (8 nov)
@@ -125,7 +125,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [ ] **M6-04** Opciones completas con remapeo y accesibilidad · ui-hud · 07 §5
 - [ ] **M6-05** Dificultad aplicada + Ayuda Real · game-modes · 06 §3
 - [ ] **M6-06** Tienda, `CosmeticsService` y cosméticos visibles en juego · save-progression · 06 §2
-- [ ] **M6-07** Logros y estadísticas · save-progression · 06 §5-6
+- [ ] **M6-07** Logros y estadísticas · save-progression · 06 §5-6 · ahora son 26 logros: el 26 "Rey de la Balsa" (secreto, terminar W6-5, docs/06 §5) da también la corona dorada; strings `ach.raft_king.*` ya están en el CSV
 - [ ] **M6-08** Créditos desde `CREDITS.md` · ui-hud · 07 §2
 
 ## M7 · Modos (8-9 nov)

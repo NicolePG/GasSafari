@@ -77,6 +77,18 @@ namespace GasSafari.Editor
                 CameraOffset = new Vector3(-12f, 9f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
             new Shot { Scene = "L_W5_5_MegatoboganJefe", Id = "W5-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 16f),
                 CameraOffset = new Vector3(10f, 8f, -14f), Seconds = 3f, SlowMotion = true, MainPath = true },
+            // W6 (provisional, docs/04 no define el momento estrella): entrar al escenario del DJ; seguir a la luciérnaga gigante por el
+            // remolino; cruzar el remanso a contracorriente; el aguacero final; el último salto antes del trono.
+            new Shot { Scene = "L_W6_1_FiestaEspejo", Id = "W6-1", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 8f, 24f),
+                CameraOffset = new Vector3(-12f, 8f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
+            new Shot { Scene = "L_W6_2_NocheSinLuz", Id = "W6-2", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 20f),
+                CameraOffset = new Vector3(10f, 8f, -12f), Seconds = 3f, SlowMotion = true, MainPath = true },
+            new Shot { Scene = "L_W6_3_Contracorriente", Id = "W6-3", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 20f),
+                CameraOffset = new Vector3(-12f, 8f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
+            new Shot { Scene = "L_W6_4_LluviaCocos", Id = "W6-4", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 24f),
+                CameraOffset = new Vector3(10f, 8f, -14f), Seconds = 3f, SlowMotion = false, MainPath = true },
+            new Shot { Scene = "L_W6_5_CoronaReyJefe", Id = "W6-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 16f),
+                CameraOffset = new Vector3(10f, 8f, -14f), Seconds = 3f, SlowMotion = true, MainPath = true },
         };
 
         [MenuItem("Gas Safari/Setup/Tomas de cámara de los momentos estrella de W2")]

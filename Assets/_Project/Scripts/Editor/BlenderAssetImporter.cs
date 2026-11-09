@@ -8,7 +8,7 @@ using UnityEngine;
 namespace GasSafari.Editor
 {
     // M2-01 / M5-38: importa lo que sale de Blender (Tools/Export): clips de personaje, fauna (Generic + controller),
-    // jefe grúa y escenario W1-W5 con materiales SG_Toon (los emisivos "E_*" llevan _EmissionColor HDR para el Bloom).
+    // jefe grúa y escenario W1-W6 con materiales SG_Toon (los emisivos "E_*" llevan _EmissionColor HDR para el Bloom).
     // Los FBX ya están copiados en Art/. Se puede repetir sin efectos secundarios.
     public static class BlenderAssetImporter
     {
@@ -27,7 +27,8 @@ namespace GasSafari.Editor
             { "W2", new Color(0.45f, 0.48f, 0.65f) }, // día soleado
             { "W3", new Color(0.55f, 0.36f, 0.45f) }, // atardecer tropical
             { "W4", new Color(0.28f, 0.24f, 0.46f) }, // cuevas
-            { "W5", new Color(0.55f, 0.40f, 0.38f) }  // atardecer dorado
+            { "W5", new Color(0.55f, 0.40f, 0.38f) }, // atardecer dorado
+            { "W6", new Color(0.34f, 0.14f, 0.42f) }  // fiesta nocturna magenta y lima
         };
 
         [MenuItem("Gas Safari/Setup/Importar Blender: clips, fauna, jefe y escenario (M2-01)")]
@@ -36,7 +37,7 @@ namespace GasSafari.Editor
             ImportCharacterAnims();
             ImportCreatures("Fauna", ART + "Fauna/");
             ImportCreatures("Bosses", ART + "Bosses/");
-            foreach (var world in new[] { "W1", "W2", "W3", "W4", "W5" })
+            foreach (var world in new[] { "W1", "W2", "W3", "W4", "W5", "W6" })
                 ImportEnvironment(world);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
@@ -235,6 +236,21 @@ namespace GasSafari.Editor
         }
 
         // ---------------------------------------------------------------- escenario
+        [MenuItem("Gas Safari/Setup/Importar escenario de W6 (M5-33)")]
+        public static void ImportW6Environment()
+        {
+            foreach (var file in Directory.GetFiles("Tools/Export/Environment/W6", "*.fbx"))
+            {
+                string path = ART + "Environment/W6/" + Path.GetFileName(file);
+                EnsureFolder(ART + "Environment/W6");
+                if (!File.Exists(path) || new FileInfo(path).Length != new FileInfo(file).Length)
+                    File.Copy(file, path, true);
+            }
+            AssetDatabase.Refresh();
+            ImportEnvironment("W6");
+            AssetDatabase.SaveAssets();
+        }
+
         private static void ImportEnvironment(string world)
         {
             string folder = ART + "Environment/" + world + "/";
