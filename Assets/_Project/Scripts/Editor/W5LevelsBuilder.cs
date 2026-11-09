@@ -255,7 +255,10 @@ namespace GasSafari.Editor
                 int steps = Mathf.CeilToInt(Vector3.Distance(a, b) / 10f);
                 for (int i = 0; i <= steps; i++)
                     pts.Add(Vector3.Lerp(a, b, i / (float)steps));
-                pts.Add(level.PointAt(shortTo + 8f, 0f, 0.4f));
+                // La ruta sigue hasta la meta: al salir de la recta oculta los bots se quedaban pegados a la pared exterior de la última curva.
+                for (float d = shortTo + 8f; d < level.Length - 4f; d += 10f)
+                    pts.Add(level.PointAt(d, 0f, 0.4f));
+                pts.Add(level.PointAt(level.Length - 3f, 0f, 0.4f));
                 level.RoutePoints("atajo", pts.ToArray());
             }
             level.PowerUp("P01", 30f, 0f);
