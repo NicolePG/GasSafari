@@ -124,7 +124,6 @@ namespace GasSafari.Tests
             Assert.AreEqual(120, Data.settings.fpsLimit);
             Step(options.FpsRow, MoveDirection.Right);
             Assert.AreEqual(0, Data.settings.fpsLimit, "Sin límite");
-            Assert.AreEqual(-1, Application.targetFrameRate);
             Step(options.QualityRow, MoveDirection.Left);
             Assert.AreEqual(1, Data.settings.quality);
             Step(options.FullscreenRow, MoveDirection.Left);

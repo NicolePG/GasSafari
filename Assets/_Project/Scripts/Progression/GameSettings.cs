@@ -97,11 +97,12 @@ namespace GasSafari.Progression
 
         private static void ApplyVideo(SaveData.SettingsRecord settings)
         {
-            Application.targetFrameRate = settings.fpsLimit <= 0 ? -1 : settings.fpsLimit;
 #if UNITY_EDITOR
-            // En el editor, cambiar la calidad o el VSync se escribe en ProjectSettings: ahí solo se guarda la opción.
+            // En el editor la calidad y el VSync se escriben en ProjectSettings y un límite de FPS vuelve lentas las pruebas
+            // y las capturas: ahí solo se guarda la opción.
             return;
 #else
+            Application.targetFrameRate = settings.fpsLimit <= 0 ? -1 : settings.fpsLimit;
             QualitySettings.vSyncCount = settings.vsync ? 1 : 0;
             QualitySettings.SetQualityLevel(QualityLevelFor(settings.quality), true);
             // SetQualityLevel puede reponer el VSync del nivel de calidad.

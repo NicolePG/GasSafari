@@ -116,7 +116,9 @@ namespace GasSafari.Level
             var to = active[CurrentIndex + 1].transform;
             var go = new GameObject("Checkpoint_Extra");
             go.transform.SetPositionAndRotation(Vector3.Lerp(from.position, to.position, fraction), Quaternion.Slerp(from.rotation, to.rotation, fraction));
-            go.transform.SetParent(from.parent, true);
+            // Queda en la escena del nivel (si no, sobrevive a descargarla), colgado de este sistema.
+            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(go, gameObject.scene);
+            go.transform.SetParent(transform, true);
             // Solo marca la pose de reaparición: no hace falta que nadie lo "toque" (Checkpoint pide un colisionador).
             var box = go.AddComponent<BoxCollider>();
             box.isTrigger = true;
