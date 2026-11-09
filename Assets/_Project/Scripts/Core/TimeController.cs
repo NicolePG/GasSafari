@@ -20,6 +20,9 @@ namespace GasSafari.Core
 
         public void SlowMotion(float scale, float duration)
         {
+            // Accesibilidad: la cámara lenta se puede apagar.
+            if (!Progression.GameSettings.SlowMotion)
+                return;
             slowTimer = duration;
             slowScale = scale;
             if (!paused)

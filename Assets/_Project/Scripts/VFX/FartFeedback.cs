@@ -27,6 +27,9 @@ namespace GasSafari.VFX
 
         // Lo fija el cosmético del jugador.
         public Color GasColor { get; set; } = Color.white;
+        // El gas Arcoíris pide un color distinto en cada pedo.
+        public System.Func<Color> GasColorSource { get; set; }
+        private Color CurrentGasColor => GasColorSource != null ? GasColorSource() : GasColor;
 
         private void Awake()
         {
@@ -79,17 +82,17 @@ namespace GasSafari.VFX
             switch (type)
             {
                 case FartType.Puff:
-                    Services.Vfx.Play(VfxId.FartPuff, position, Exhaust, GasColor);
+                    Services.Vfx.Play(VfxId.FartPuff, position, Exhaust, CurrentGasColor);
                     PlayFart(sfx != null ? sfx.puff : null, SoundId.FartPuff, position, gain);
                     break;
                 case FartType.Charged:
                     StopCharge();
-                    Services.Vfx.Play(VfxId.FartMega, position, Exhaust, GasColor);
+                    Services.Vfx.Play(VfxId.FartMega, position, Exhaust, CurrentGasColor);
                     PlayFart(sfx != null ? sfx.mega : null, SoundId.FartMega, position, gain);
                     break;
                 case FartType.Blast:
                     StopBlast();
-                    blastFx = Services.Vfx.Play(VfxId.FartBlast, position, Exhaust, GasColor, emitPoint);
+                    blastFx = Services.Vfx.Play(VfxId.FartBlast, position, Exhaust, CurrentGasColor, emitPoint);
                     blastLoop = PlayFartLoop(sfx != null ? sfx.blast : null, SoundId.FartBlast);
                     break;
             }

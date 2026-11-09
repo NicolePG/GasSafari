@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7269402276c6774a8109ac7134fce27, type: 3}
+  m_Name: celebrate_applause
+  m_EditorClassIdentifier: 
+  id: celebrate_applause
+  category: 3
+  source: 1
+  price: 50
+  mangosRequired: 0
+  nameKey: shop.celebrate.applause
+  icon: {fileID: 21300000, guid: c198e956f0d7f054fb624eb374a509f0, type: 3}
+  prefab: {fileID: 0}
+  previewPrefab: {fileID: 0}
+  gasColor: {r: 0, g: 0, b: 0, a: 0}
+  rainbow: 0
+  clipName: Celebrate_Aplauso
+  clips:
+  - character: Alex
+    clip: {fileID: -1289248985052727604, guid: f29ee02936f7a3847bf6a02ea0e192c6, type: 3}
+  - character: Marty
+    clip: {fileID: -1289248985052727604, guid: 36f59bfa3950f9843b0cf55721980d6e, type: 3}
+  - character: Melman
+    clip: {fileID: -1289248985052727604, guid: 63e65e89c0b69324987387151b9d1866, type: 3}
+  - character: Gloria
+    clip: {fileID: -1289248985052727604, guid: ceef38fa733581e448f7eccc325c8c90, type: 3}
+  - character: Julien
+    clip: {fileID: -1289248985052727604, guid: 37328dc3e0b41a647b0373dce7b0511c, type: 3}
+  teamItem: 0
+  provisional: 0
+  tint: {r: 1, g: 1, b: 1, a: 1}

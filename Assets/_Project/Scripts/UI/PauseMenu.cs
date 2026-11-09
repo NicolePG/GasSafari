@@ -29,6 +29,7 @@ namespace GasSafari.UI
         {
             panel.SetActive(false);
             votePanel.SetActive(false);
+            BindLabels();
             resume.onClick.AddListener(controller.Close);
             restartCheckpoint.onClick.AddListener(() => controller.RequestCheckpointRestart(controller.Owner));
             restartLevel.onClick.AddListener(controller.RestartLevel);
@@ -38,6 +39,25 @@ namespace GasSafari.UI
             voteYes.onClick.AddListener(() => controller.CastVote(controller.NextVoter(), true));
             voteNo.onClick.AddListener(() => controller.CastVote(controller.NextVoter(), false));
         }
+
+        // Los rótulos de la escena construida se leen por clave: cambian con el idioma y el tamaño de texto.
+        private void BindLabels()
+        {
+            var title = panel.transform.Find("Box/Title");
+            if (title != null)
+                LocalizedText.Bind(title.GetComponent<TMP_Text>(), "pause.title");
+            BindButton(resume, "pause.resume");
+            BindButton(restartCheckpoint, "pause.restart_checkpoint");
+            BindButton(restartLevel, "pause.restart_level");
+            BindButton(options, "pause.options");
+            BindButton(controls, "pause.controls");
+            BindButton(quit, "pause.quit");
+            BindButton(voteYes, "pause.yes");
+            BindButton(voteNo, "pause.no");
+        }
+
+        private static void BindButton(Button button, string key) =>
+            LocalizedText.Bind(button.GetComponentInChildren<TMP_Text>(true), key);
 
         private void OnEnable()
         {

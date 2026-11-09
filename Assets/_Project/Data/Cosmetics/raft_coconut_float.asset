@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7269402276c6774a8109ac7134fce27, type: 3}
+  m_Name: raft_coconut_float
+  m_EditorClassIdentifier: 
+  id: raft_coconut_float
+  category: 2
+  source: 1
+  price: 200
+  mangosRequired: 0
+  nameKey: shop.raft.coconut_float
+  icon: {fileID: 21300000, guid: 50dd60c9fcccc174eb1b3694c0d23e92, type: 3}
+  prefab: {fileID: 5902358227643183202, guid: 1f70232ba0c96e04f9c783f4a45cf4f8, type: 3}
+  previewPrefab: {fileID: 0}
+  gasColor: {r: 0, g: 0, b: 0, a: 0}
+  rainbow: 0
+  clipName: 
+  clips: []
+  teamItem: 1
+  provisional: 0
+  tint: {r: 1, g: 1, b: 1, a: 1}

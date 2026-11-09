@@ -22,6 +22,9 @@ namespace GasSafari.Core
         }
 
         public Bots.BotConfig BotConfig => botConfig;
+        // Modo elegido en los menús (ProgressionRules.MODE_*) y nivel que se está jugando o se va a jugar.
+        public string ModeId { get; set; } = "story";
+        public Level.LevelData CurrentLevel { get; set; }
         public IReadOnlyList<PlayerSlot> Players => players;
         // Opción de accesibilidad (docs/07). La cargará el guardado.
         public bool ScreenShake { get; set; } = true;

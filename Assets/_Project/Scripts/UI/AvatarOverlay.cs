@@ -40,6 +40,11 @@ namespace GasSafari.UI
             if (who != avatar)
                 return;
             pingText.SetText(strings.Get(KeyFor(type)));
+            // Accesibilidad: pings de alto contraste (borde oscuro y negrita).
+            bool contrast = Progression.GameSettings.HighContrastPings;
+            pingText.outlineWidth = contrast ? 0.4f : 0f;
+            pingText.outlineColor = Color.black;
+            pingText.fontStyle = contrast ? TMPro.FontStyles.Bold : TMPro.FontStyles.Normal;
             pingText.gameObject.SetActive(true);
             pingTimer = PING_SECONDS;
         }

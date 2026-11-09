@@ -37,6 +37,7 @@ namespace GasSafari.Progression
         {
             system = saveSystem;
             Data = system.Load();
+            GameSettings.Apply(Data.settings);
         }
 
         public void Save() => system.Save(Data);

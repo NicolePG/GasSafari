@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7269402276c6774a8109ac7134fce27, type: 3}
+  m_Name: celebrate_conga_step
+  m_EditorClassIdentifier: 
+  id: celebrate_conga_step
+  category: 3
+  source: 1
+  price: 120
+  mangosRequired: 0
+  nameKey: shop.celebrate.conga_step
+  icon: {fileID: 21300000, guid: d5bdd615cecb93f4687ae0b92c91fb70, type: 3}
+  prefab: {fileID: 0}
+  previewPrefab: {fileID: 0}
+  gasColor: {r: 0, g: 0, b: 0, a: 0}
+  rainbow: 0
+  clipName: Celebrate_PasoConga
+  clips:
+  - character: Alex
+    clip: {fileID: 5260054162406984597, guid: b560c4b2635b2d642b46d4349a3b05b2, type: 3}
+  - character: Marty
+    clip: {fileID: 5260054162406984597, guid: 7cae6d75ac2ee2e4595168572d9cf1b0, type: 3}
+  - character: Melman
+    clip: {fileID: 5260054162406984597, guid: 23563bce19d936748a33e0ee6331aa0f, type: 3}
+  - character: Gloria
+    clip: {fileID: 5260054162406984597, guid: c9fc20fdc44e2bd46bd2ab72e4fd4f8a, type: 3}
+  - character: Julien
+    clip: {fileID: 5260054162406984597, guid: 92640e35d384b914ca5303952599fa27, type: 3}
+  teamItem: 0
+  provisional: 0
+  tint: {r: 1, g: 1, b: 1, a: 1}

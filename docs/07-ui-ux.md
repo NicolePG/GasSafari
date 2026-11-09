@@ -1,6 +1,6 @@
 # 07 · Interfaz y experiencia
 
-Tecnología: UGUI + TextMeshPro. Canvas Scaler: Scale With Screen Size 1920x1080, match 0.5. Navegación completa con mando (`InputSystemUIInputModule`). Idioma: español. Una fuente de títulos redondeada y gruesa + una fuente de texto legible (ambas con licencia OFL).
+Tecnología: UGUI + TextMeshPro. Canvas Scaler: Scale With Screen Size 1920x1080, match 0.5. Navegación completa con mando (`InputSystemUIInputModule`). Idioma: español e inglés (tabla `Resources/Strings.asset`, de `Tools/Export/Localization/strings.csv`). Una fuente de títulos redondeada y gruesa + una fuente de texto legible (ambas con licencia OFL).
 
 ## 1. Flujo de pantallas
 
@@ -32,7 +32,7 @@ Boot ─▶ Splash (logo, 2 s, saltable) ─▶ Pantalla de título ("Pulsa cual
 | Carga | Consejo aleatorio + animación de la balsa |
 | Resultados | Tiempo, estrellas animadas, mangos, frijolitos ganados, 3 premios, repetición "¿Quién fue?", botones Siguiente / Repetir / Mapa |
 | Tienda | Pestañas Sombreros / Gas / Balsas / Celebraciones; vista previa 3D giratoria; saldo de frijolitos |
-| Logros | Rejilla de 25 con progreso; pestaña de estadísticas |
+| Logros | Rejilla de 26 con progreso (el 26, secreto, sale como "???" hasta desbloquearlo); pestaña de estadísticas |
 | Opciones | Ver sección 5 |
 | Créditos | Equipo, herramientas, assets y licencias (desde `CREDITS.md`) |
 
@@ -61,7 +61,7 @@ Continuar · Reiniciar desde checkpoint (votación en multijugador) · Reiniciar
 | Video | Resolución, pantalla completa/ventana, VSync, calidad (Baja/Media/Alta), límite de FPS (30/60/120/sin límite) |
 | Controles | Remapeo por dispositivo (Input System rebinding), vibración on/off, sensibilidad de puntería, invertir puntería |
 | Accesibilidad | Sacudida de cámara on/off, cámara lenta on/off, paleta para daltonismo (colores de jugador alternativos), tamaño de textos (100/125/150 %), alto contraste en pings, mantener vs pulsar para "Aguantar" y "Agarrarse" |
-| Juego | Dificultad por defecto, mostrar consejos, idioma (español) |
+| Juego | Dificultad por defecto, mostrar consejos, idioma (español o inglés; guarda en el save y cambia al instante) |
 
 Paleta de jugadores para daltonismo: J1 `#E69F00`, J2 `#56B4E9`, J3 `#F0E442`, J4 `#CC79A7` y además una forma distinta por jugador (círculo, triángulo, cuadrado, rombo).
 

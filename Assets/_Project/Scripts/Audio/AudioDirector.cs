@@ -119,7 +119,7 @@ namespace GasSafari.Audio
             source.Stop();
             source.clip = def.NextClip();
             source.outputAudioMixerGroup = def.mixerGroup;
-            source.volume = def.volume * Mathf.Pow(10f, gainDb / 20f);
+            source.volume = def.volume * Mathf.Pow(10f, gainDb / 20f) * Progression.GameVolumes.For(def.name);
             source.pitch = Random.Range(def.pitchMin, def.pitchMax);
             source.maxDistance = def.maxDistance;
             source.loop = loop;

@@ -46,7 +46,10 @@ namespace GasSafari.Level
                 FirstTime = previousBestStars < 0,
                 Replay = worstCrash
             };
+            results.Skipped = stats.SectionSkipped;
             results.Stars = StarsFor(level, time, results.RaftSunk);
+            if (results.Skipped)
+                results.Stars = Math.Min(results.Stars, 1);
             results.Beans = BeansFor(results.Stars, previousBestStars, stats.FullSyncGroups);
             PickAwards(stats, rng, results.Awards);
             return results;

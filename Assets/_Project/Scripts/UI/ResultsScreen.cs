@@ -31,6 +31,8 @@ namespace GasSafari.UI
         [SerializeField] private Color starOn = new Color(1f, 0.82f, 0.1f);
         [SerializeField] private Color starOff = new Color(0.3f, 0.3f, 0.3f);
 
+        private LocalizedText note;
+        public string NoteText => note != null && note.gameObject.activeSelf ? note.Label.text : string.Empty;
         private int starsToShow;
         private int starsShown;
         private float starTimer;
@@ -47,6 +49,9 @@ namespace GasSafari.UI
         private void Awake()
         {
             panel.SetActive(false);
+            LocalizedText.Bind(next.GetComponentInChildren<TMP_Text>(true), "results.next");
+            LocalizedText.Bind(retry.GetComponentInChildren<TMP_Text>(true), "results.retry");
+            LocalizedText.Bind(map.GetComponentInChildren<TMP_Text>(true), "results.map");
             next.onClick.AddListener(() => NextRequested?.Invoke());
             retry.onClick.AddListener(() => RetryRequested?.Invoke());
             map.onClick.AddListener(() => MapRequested?.Invoke());
@@ -78,10 +83,32 @@ namespace GasSafari.UI
                 stars[i].color = starOff;
                 stars[i].transform.localScale = Vector3.one;
             }
+            ShowNote(results);
             ShowAwards(results);
             ShowReplay(results);
             if (EventSystem.current != null)
                 EventSystem.current.SetSelectedGameObject(next.gameObject);
+        }
+
+        // Avisos bajo el tiempo: balsa hundida (sin 3.ª estrella) o sección saltada con la Ayuda Real (máximo 1 estrella).
+        private void ShowNote(LevelResults results)
+        {
+            if (note == null)
+            {
+                note = UiFactory.Label(timeText.transform.parent, "Note", null, 32f, TMPro.TextAlignmentOptions.Center, new Color(1f, 0.75f, 0.3f), TMPro.FontStyles.Bold);
+                var rect = note.Label.rectTransform;
+                rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);
+                rect.pivot = new Vector2(0f, 1f);
+                rect.sizeDelta = new Vector2(700f, 50f);
+                rect.anchoredPosition = new Vector2(30f, -470f);
+            }
+            bool skipped = results.Skipped;
+            bool sunk = results.RaftSunk && results.Stars < 3 && !skipped;
+            note.gameObject.SetActive(skipped || sunk);
+            if (skipped)
+                note.SetKey("results.skipped_note");
+            else if (sunk)
+                note.SetKey("results.sunk_note");
         }
 
         private void ShowAwards(LevelResults results)

@@ -107,6 +107,44 @@ namespace GasSafari.Level
             GameEvents.RaiseCheckpoint(index);
         }
 
+        // Ayuda Real: un checkpoint extra a 'fraction' del camino hacia el siguiente. Pasa a ser el actual y el equipo reaparece ahí.
+        public bool InsertExtraAhead(float fraction)
+        {
+            if (CurrentIndex + 1 >= active.Count)
+                return false;
+            var from = Current.transform;
+            var to = active[CurrentIndex + 1].transform;
+            var go = new GameObject("Checkpoint_Extra");
+            go.transform.SetPositionAndRotation(Vector3.Lerp(from.position, to.position, fraction), Quaternion.Slerp(from.rotation, to.rotation, fraction));
+            go.transform.SetParent(from.parent, true);
+            // Solo marca la pose de reaparición: no hace falta que nadie lo "toque" (Checkpoint pide un colisionador).
+            var box = go.AddComponent<BoxCollider>();
+            box.isTrigger = true;
+            box.enabled = false;
+            var extra = go.AddComponent<Checkpoint>();
+            active.Insert(CurrentIndex + 1, extra);
+            Advance(CurrentIndex + 1);
+            return true;
+        }
+
+        // Ayuda Real: saltar la sección, reaparecer en el siguiente checkpoint.
+        public bool SkipToNext()
+        {
+            if (CurrentIndex + 1 >= active.Count)
+                return false;
+            Advance(CurrentIndex + 1);
+            return true;
+        }
+
+        private void Advance(int index)
+        {
+            CurrentIndex = index;
+            RespawnsAtCurrent = 0;
+            savedChambers = chambers.IntactMask;
+            GameEvents.RaiseCheckpoint(index);
+            RequestRespawn();
+        }
+
         // Hundimiento, vuelco o reinicio pedido desde la pausa.
         public void RequestRespawn()
         {

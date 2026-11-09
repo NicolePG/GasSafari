@@ -136,7 +136,7 @@ namespace GasSafari.Audio
                 intensityWanted = false;
             IntensityLevel = Mathf.MoveTowards(IntensityLevel, HasIntensityLayer && intensityWanted ? 1f : 0f, dt / FADE_SECONDS);
 
-            float master = volume * fadeIn * fadeOut;
+            float master = volume * fadeIn * fadeOut * Progression.GameVolumes.Music;
             baseSource.volume = master;
             intensitySource.volume = master * IntensityLevel;
         }

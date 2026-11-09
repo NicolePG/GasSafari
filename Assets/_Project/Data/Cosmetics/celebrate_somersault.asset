@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7269402276c6774a8109ac7134fce27, type: 3}
+  m_Name: celebrate_somersault
+  m_EditorClassIdentifier: 
+  id: celebrate_somersault
+  category: 3
+  source: 1
+  price: 120
+  mangosRequired: 0
+  nameKey: shop.celebrate.somersault
+  icon: {fileID: 21300000, guid: 2210d5c78a3b13d42925e5d162eea2d9, type: 3}
+  prefab: {fileID: 0}
+  previewPrefab: {fileID: 0}
+  gasColor: {r: 0, g: 0, b: 0, a: 0}
+  rainbow: 0
+  clipName: Celebrate_Voltereta
+  clips:
+  - character: Alex
+    clip: {fileID: -8253021627334271807, guid: 6fdd0743a624351409bc2afa134274f3, type: 3}
+  - character: Marty
+    clip: {fileID: -8253021627334271807, guid: 06fe12dec5846ba42b8180504c701969, type: 3}
+  - character: Melman
+    clip: {fileID: -8253021627334271807, guid: b26f28c47cda2574db6e8c325921aa50, type: 3}
+  - character: Gloria
+    clip: {fileID: -8253021627334271807, guid: c6fdbbf3d113996438e2ba564fd1ca0d, type: 3}
+  - character: Julien
+    clip: {fileID: -8253021627334271807, guid: e445631747dee9b41a26a73e56072950, type: 3}
+  teamItem: 0
+  provisional: 0
+  tint: {r: 1, g: 1, b: 1, a: 1}

@@ -29,6 +29,7 @@ namespace GasSafari.Level
         public RaftController Spawn(IReadOnlyList<PlayerSlot> slots)
         {
             var raftObject = Instantiate(raftPrefab, startGate.Position, startGate.Rotation);
+            Progression.CosmeticsApplier.ApplyRaft(raftObject);
             Raft = raftObject.GetComponent<RaftController>();
             var seats = raftObject.GetComponent<RaftSeats>();
 
@@ -70,6 +71,7 @@ namespace GasSafari.Level
             avatar.GetComponent<PlayerSeat>().Sit(seats, angle);
             if (slot.IsBot)
                 AttachBot(avatar, slot);
+            Progression.CosmeticsApplier.ApplyAvatar(avatar, slot);
             return avatar;
         }
     }

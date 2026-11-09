@@ -22,6 +22,7 @@ namespace GasSafari.Level
         public int Beans;
         public bool FirstTime;
         public bool RaftSunk;
+        public bool Skipped;
         public readonly List<AwardResult> Awards = new List<AwardResult>();
         public ReplayClip Replay;
     }

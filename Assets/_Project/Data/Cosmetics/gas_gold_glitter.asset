@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7269402276c6774a8109ac7134fce27, type: 3}
+  m_Name: gas_gold_glitter
+  m_EditorClassIdentifier: 
+  id: gas_gold_glitter
+  category: 1
+  source: 1
+  price: 250
+  mangosRequired: 0
+  nameKey: shop.gas.gold_glitter
+  icon: {fileID: 21300000, guid: 17650276e8d1b3049b9cde0e8f629836, type: 3}
+  prefab: {fileID: 0}
+  previewPrefab: {fileID: 0}
+  gasColor: {r: 1, g: 0.82, b: 0.2, a: 1}
+  rainbow: 0
+  clipName: 
+  clips: []
+  teamItem: 0
+  provisional: 0
+  tint: {r: 1, g: 1, b: 1, a: 1}

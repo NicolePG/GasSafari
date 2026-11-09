@@ -10,6 +10,8 @@ namespace GasSafari.Input
 
         private InputAction move, aim, fart, hold, ability, grab, superLeft, superRight, ping, jump;
         private byte fartPresses, abilityPresses, jumpPresses;
+        // Opción "Pulsar" de Aguantar y Agarrarse: se alterna con cada pulsación.
+        private bool holdToggled, grabToggled;
 
         public PlayerCommand Current
         {
@@ -19,11 +21,11 @@ namespace GasSafari.Input
                 return new PlayerCommand
                 {
                     SeatMove = moveValue.x,
-                    Aim = aim.ReadValue<Vector2>().x,
+                    Aim = Mathf.Clamp(aim.ReadValue<Vector2>().x * Progression.GameSettings.AimFactor, -1f, 1f),
                     FartHeld = fart.IsPressed(),
-                    HoldHeld = hold.IsPressed(),
+                    HoldHeld = Progression.GameSettings.ToggleHold ? holdToggled : hold.IsPressed(),
                     AbilityHeld = ability.IsPressed(),
-                    GrabHeld = grab.IsPressed(),
+                    GrabHeld = Progression.GameSettings.ToggleHold ? grabToggled : grab.IsPressed(),
                     SuperHeld = superLeft.IsPressed() && superRight.IsPressed(),
                     FartPresses = fartPresses,
                     AbilityPresses = abilityPresses,
@@ -52,6 +54,8 @@ namespace GasSafari.Input
         private void OnEnable()
         {
             fart.performed += CountFart;
+            hold.performed += ToggleHoldAction;
+            grab.performed += ToggleGrabAction;
             ability.performed += CountAbility;
             jump.performed += CountJump;
         }
@@ -59,12 +63,16 @@ namespace GasSafari.Input
         private void OnDisable()
         {
             fart.performed -= CountFart;
+            hold.performed -= ToggleHoldAction;
+            grab.performed -= ToggleGrabAction;
             ability.performed -= CountAbility;
             jump.performed -= CountJump;
         }
 
         // No usar nombres On<Acción>: PlayerInput en modo SendMessages los llamaría con otra firma.
         private void CountFart(InputAction.CallbackContext context) => fartPresses++;
+        private void ToggleHoldAction(InputAction.CallbackContext context) => holdToggled = !holdToggled;
+        private void ToggleGrabAction(InputAction.CallbackContext context) => grabToggled = !grabToggled;
         private void CountAbility(InputAction.CallbackContext context) => abilityPresses++;
         private void CountJump(InputAction.CallbackContext context) => jumpPresses++;
 

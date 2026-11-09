@@ -21,5 +21,7 @@ namespace GasSafari.Level
         // Un bit por mango dorado recogido (ranura 0-2).
         public int MangoMask;
         public int SunkCount;
+        // Ayuda Real: se saltó una sección (el nivel queda con máximo 1 estrella).
+        public bool SectionSkipped;
     }
 }

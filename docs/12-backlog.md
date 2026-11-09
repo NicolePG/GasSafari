@@ -119,14 +119,14 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **FX-05** Tomas de cámara en los momentos estrella de W2 (`StarMomentZone`, `W2StarShots`); W1-2 con 4 bots termina en 181 s (límite 357.5 s) tras corregir las caídas · hecho 2026-11-08
 
 ## M6 · Menús y meta (7-8 nov)
-- [ ] **M6-01** Título y menú principal · ui-hud · 07 §1-2
-- [ ] **M6-02** Selección de personajes (lobby local, bots, dificultad) · ui-hud · 07 §2
-- [ ] **M6-03** Mapa de mundos y ficha del nivel · ui-hud · 07 §2
-- [ ] **M6-04** Opciones completas con remapeo y accesibilidad · ui-hud · 07 §5
-- [ ] **M6-05** Dificultad aplicada + Ayuda Real · game-modes · 06 §3
-- [ ] **M6-06** Tienda, `CosmeticsService` y cosméticos visibles en juego · save-progression · 06 §2
-- [ ] **M6-07** Logros y estadísticas · save-progression · 06 §5-6 · ahora son 26 logros: el 26 "Rey de la Balsa" (secreto, terminar W6-5, docs/06 §5) da también la corona dorada; strings `ach.raft_king.*` ya están en el CSV
-- [ ] **M6-08** Créditos desde `CREDITS.md` · ui-hud · 07 §2
+- [x] **M6-01** Título y menú principal · ui-hud · 07 §1-2 · hecho 2026-11-09 · escena `01_Title` con el fondo 3D animado de `TitleScene.fbx` (cámara y balsa del FBX), splash de 2 s saltable, "Pulsa cualquier botón" y menú principal (`TitleScreen`, `MainMenuScreen`, `MenuApp` con pila de pantallas, avisos y confirmación); `UiFactory` arma todo con el kit 9-slice; 00_Boot y 01_Title entran en Build Settings
+- [x] **M6-02** Selección de personajes (lobby local, bots, dificultad) · ui-hud · 07 §2 · hecho 2026-11-09 · `ModeSelectScreen` (8 tarjetas con candado y requisito) y `LobbyScreen`: 4 columnas con retrato, pose, stats en barras, sombrero y gas, Listo, bots y dificultad; cada jugador maneja su columna con su mando o el teclado; sin video de habilidad ni dual-control en la sala; las salas online y los modos de M7 muestran "Próximamente"
+- [x] **M6-03** Mapa de mundos y ficha del nivel · ui-hud · 07 §2 · hecho 2026-11-09 · `WorldMapScreen` (islas del README, 31 puntos con estrellas y candados por estrellas o mangos) y `LevelSheetScreen`; `SceneLoader` con fondos `Loading_W<N>`, consejos y barra; `LevelFlow` conecta Siguiente/Repetir/Mapa y la pausa; todos los niveles de un mundo abierto se pueden jugar (el docs solo bloquea mundos)
+- [x] **M6-04** Opciones completas con remapeo y accesibilidad · ui-hud · 07 §5 · hecho 2026-11-09 · `OptionsScreen` con las 5 pestañas de docs/07 §5 (volúmenes por categoría, video, remapeo de botones y teclas por dispositivo, accesibilidad, juego e idioma) guardadas en `SaveData.settings` y aplicadas por `GameSettings`; también como superposición desde la pausa (`OptionsOverlay`); sin mezclador de audio todavía (M9-02): `GameVolumes` multiplica por categoría
+- [x] **M6-05** Dificultad aplicada + Ayuda Real · game-modes · 06 §3 · hecho 2026-11-09 · la dificultad ya se aplicaba (ventana de sync, filtro de checkpoints, cámaras, gas, penalización, peligros, `autoRespawnTime`); nuevo `RoyalAssist` (oferta tras 3 reapariciones en el mismo checkpoint con las 3 ayudas de docs/06 §3, panel con mando/teclado, máximo 1 estrella al saltar, nota en resultados) y `CheckpointSystem.InsertExtraAhead/SkipToNext`; solo en niveles cargados desde los menús (`LevelFlow.InGameFlow`)
+- [x] **M6-06** Tienda, `CosmeticsService` y cosméticos visibles en juego · save-progression · 06 §2 · hecho 2026-11-09 · `CosmeticsService`, `CosmeticData` (30 artículos con precios de docs/06), `ShopScreen` con vista previa 3D giratoria, premios de mangos (10/25/40) y corona de W6-5; sombrero, color de gas (arcoíris por pedo), piel de balsa y celebración (`Celebrate_*`) se ven en el nivel (`CosmeticsApplier`); gas/balsa/sombrero "Mango" usan modelos provisionales
+- [x] **M6-07** Logros y estadísticas · save-progression · 06 §5-6 · ahora son 26 logros: el 26 "Rey de la Balsa" (secreto, terminar W6-5, docs/06 §5) da también la corona dorada; strings `ach.raft_king.*` ya están en el CSV · hecho 2026-11-09 · `AchievementService` con los 26 logros (emite `OnAchievementUnlocked`, aviso con medalla), `StatsService`, pantalla de logros con progreso, "???" para Rey de la Balsa y pestaña de estadísticas; "Amistades Rotas" = mundos 1 a 5 terminados en esa dificultad
+- [x] **M6-08** Créditos desde `CREDITS.md` · ui-hud · 07 §2 · hecho 2026-11-09 · `CreditsScreen` compone el texto de `Assets/_Project/CREDITS.md` (herramientas y packs externos con su licencia); falta la sección Equipo (nombres) y un aviso legal de proyecto no comercial: pendientes de decidir
 
 ## M7 · Modos (8-9 nov)
 - [ ] **M7-01** Contrarreloj con fantasma · game-modes · 06 §1
@@ -162,7 +162,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [ ] **M9-09** Auditoría final de colisiones y clipping (los 31 niveles + tienda): balsa vs paredes/props a todas las velocidades, animales vs balsa y entre ellos en todas las animaciones (incluidas celebraciones), sombreros, fauna, cámara contra paredes y techos, agua dentro de la balsa · qa-check · 11
 
 ## M10 · Extras
-- [ ] **M10-01** Localización al inglés: tabla de textos ES/EN y selector de idioma en Opciones · ui-hud · 07
+- [x] **M10-01** Localización al inglés: tabla de textos ES/EN y selector de idioma en Opciones · ui-hud · 07 · hecho 2026-11-09 · `Resources/Strings.asset` (666 textos es/en importados de `Tools/Export/Localization/strings.csv` con `Gas Safari/Setup/Importar textos (CSV)`) reemplaza a Strings_es.asset; `Localization` + `LocalizedText` + selector en Opciones guardado en el save; niveles, mundos, dificultades, personajes, tutorial y viñetas leen por clave
 - [ ] **M10-02** Tres minijuegos nuevos de Fiesta: Balsa Chocona, Relevo de Pedos y Tiro al Coco (reglas documentadas en docs/06 antes de programarlos) · game-modes · 06 §1
 - [ ] **M10-03** Modo foto: pausa con cámara libre, filtros y captura · vfx-juice, ui-hud · 07
 - [ ] **M10-04** Vibración del mando por evento · unity-csharp-2022 · 02

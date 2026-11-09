@@ -13,6 +13,9 @@ namespace GasSafari.Core
         public static Audio.MusicDirector Music { get; private set; }
         public static VFX.VfxPool Vfx { get; private set; }
         public static Progression.ProgressionService Progression { get; private set; }
+        public static Progression.CosmeticsService Cosmetics { get; private set; }
+        public static Progression.StatsService Stats { get; private set; }
+        public static Progression.AchievementService Achievements { get; private set; }
         public static bool IsReady => Root != null;
 
         internal static void Bind(GameServices root)
@@ -25,6 +28,9 @@ namespace GasSafari.Core
             Music = root.GetComponentInChildren<Audio.MusicDirector>();
             Vfx = root.GetComponentInChildren<VFX.VfxPool>();
             Progression = root.GetComponentInChildren<Progression.ProgressionService>();
+            Cosmetics = root.GetComponentInChildren<Progression.CosmeticsService>();
+            Stats = root.GetComponentInChildren<Progression.StatsService>();
+            Achievements = root.GetComponentInChildren<Progression.AchievementService>();
         }
 
         internal static void Unbind(GameServices root)
@@ -45,6 +51,9 @@ namespace GasSafari.Core
             Music = null;
             Vfx = null;
             Progression = null;
+            Cosmetics = null;
+            Stats = null;
+            Achievements = null;
         }
     }
 }

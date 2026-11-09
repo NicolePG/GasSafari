@@ -78,6 +78,9 @@ namespace GasSafari.Level
 
         public void Toggle(PlayerSlot who)
         {
+            // Con Opciones abiertas encima, Esc/Start pertenecen a ese menú.
+            if (UI.OptionsOverlay.IsOpen)
+                return;
             if (IsOpen)
                 Close();
             else

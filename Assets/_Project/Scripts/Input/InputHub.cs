@@ -145,6 +145,8 @@ namespace GasSafari.Input
         private void OnPlayerJoined(PlayerInput input)
         {
             input.transform.SetParent(transform, false);
+            // El remapeo guardado en Opciones.
+            Progression.GameSettings.ApplyBindings(input.actions);
             var slot = new PlayerSlot(input.playerIndex, palette.Get(input.playerIndex), input,
                 input.GetComponent<IPlayerCommandSource>());
             Services.Session.AddPlayer(slot);
