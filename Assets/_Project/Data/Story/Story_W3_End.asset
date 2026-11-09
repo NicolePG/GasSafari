@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f64a2919be7add84bb993b5e6035d536, type: 3}
+  m_Name: Story_W3_End
+  m_EditorClassIdentifier: 
+  id: W3_End
+  panels:
+  - image: {fileID: 21300000, guid: 504f0660941602341b590f4b5ad602cc, type: 3}
+    captionKey: story.w3_end.1
+  - image: {fileID: 21300000, guid: 30ea603a234020d4c9245356f6704033, type: 3}
+    captionKey: story.w3_end.2
+  - image: {fileID: 21300000, guid: 623cfa55d4300b346a2b917b71f7958e, type: 3}
+    captionKey: story.w3_end.3
+  - image: {fileID: 21300000, guid: 4e0d197acc9051e4d87d9fc0d2755183, type: 3}
+    captionKey: story.w3_end.4
+  secondsPerPanel: 5
+  strings: {fileID: 11400000, guid: fab426d67b2d25e4e99454d68fac0364, type: 2}
+  prefab: {fileID: 6876899938873223196, guid: 60899720667589b4fb5442a5a68cfaa2, type: 3}

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa70fd31440ca84c95bff7148e3c120, type: 3}
+  m_Name: StoryLibrary
+  m_EditorClassIdentifier: 
+  vignettes:
+  - {fileID: 11400000, guid: 46151d30c2a87814eb2765dc24ed7b62, type: 2}
+  - {fileID: 11400000, guid: 094f442387374394daa3015f3c1fe79a, type: 2}
+  - {fileID: 11400000, guid: 522d2d16e5213b741b46dfdd7032307c, type: 2}
+  - {fileID: 11400000, guid: bbe8f6019e795d044b9b63474d2dce99, type: 2}
+  - {fileID: 11400000, guid: e087e0775fb383a4abce798ad14f2481, type: 2}
+  - {fileID: 11400000, guid: fbe531f9dffba384e938e9520828cf05, type: 2}
+  - {fileID: 11400000, guid: 685c9a42744aca24db790d907cbb0db8, type: 2}
