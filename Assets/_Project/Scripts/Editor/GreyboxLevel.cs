@@ -15,14 +15,14 @@ using Object = UnityEngine.Object;
 
 namespace GasSafari.Editor
 {
-    // Greybox de un nivel (skill level-builder): parte de _LevelTemplate.unity y arma el cauce a partir de un trayecto de
+    // Greybox de un nivel (skill level-builder): parte de TEST_LevelTemplate.unity y arma el cauce a partir de un trayecto de
     // rectas y arcos (spline, paredes con rebote H01, agua), más los elementos del diseño: obstáculos y power-ups desde
     // sus prefabs, checkpoints, mangos dorados, secciones y marcas BotHint. Todo se coloca por distancia a lo largo del
     // cauce y desplazamiento lateral, no por coordenadas.
     public sealed class GreyboxLevel
     {
-        private const string TEMPLATE = "Assets/_Project/Scenes/Levels/_LevelTemplate.unity";
-        private const string SCENES = "Assets/_Project/Scenes/Levels/";
+        private const string TEMPLATE = "Assets/_Project/Scenes/Pruebas/TEST_LevelTemplate.unity";
+        private const string SCENES = "Assets/_Project/Scenes/Juego/Niveles/";
         private const string LEVEL_DATA = "Assets/_Project/Data/Levels/";
         private const string WALL_MATERIAL = "Assets/_Project/Art/Materials/Hazards/M_H01_Wall.mat";
         private const string WALL_CONFIG = "Assets/_Project/Data/Hazards/H01_Wall.asset";

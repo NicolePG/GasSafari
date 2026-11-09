@@ -14,7 +14,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W2-1 Cajas a la Deriva (M5-09)")]
         public static void BuildW2_1()
         {
-            var level = GreyboxLevel.Create("W2-1", "L_W2_1_CajasDeriva");
+            var level = GreyboxLevel.Create("W2-1", "N06_W2-1_CajasDeriva");
             level.OpenWater();
             level.StartPath(Vector3.zero, 0f).Straight(170f, 18f);                    // S1 campo de cajas flotantes
             float barrels = level.Length;
@@ -98,7 +98,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W2-2 La Tormenta (M5-10)")]
         public static void BuildW2_2()
         {
-            var level = GreyboxLevel.Create("W2-2", "L_W2_2_Tormenta");
+            var level = GreyboxLevel.Create("W2-2", "N07_W2-2_Tormenta");
             level.OpenWater();
             level.StartPath(Vector3.zero, 0f).Straight(180f, 18f);                   // S1 lluvia y olas grandes
             float gusts = level.Length;
@@ -274,7 +274,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W2-3 Cementerio de Barcos (M5-11)")]
         public static void BuildW2_3()
         {
-            var level = GreyboxLevel.Create("W2-3", "L_W2_3_CementerioBarcos");
+            var level = GreyboxLevel.Create("W2-3", "N08_W2-3_CementerioBarcos");
             level.OpenWater();
             level.StartPath(Vector3.zero, 0f).Straight(170f, 12f);                  // S1 pasillos entre cascos
             float masts = level.Length;
@@ -412,7 +412,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W2-4 El Gran Remolino (M5-12)")]
         public static void BuildW2_4()
         {
-            var level = GreyboxLevel.Create("W2-4", "L_W2_4_GranRemolino");
+            var level = GreyboxLevel.Create("W2-4", "N09_W2-4_GranRemolino");
             level.OpenWater();
             level.StartPath(Vector3.zero, 0f).Straight(150f, 20f);                  // S1 remolino de práctica
             float slalom = level.Length;
@@ -478,7 +478,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W2-5 Arrecife de Coral (M5-13)")]
         public static void BuildW2_5()
         {
-            var level = GreyboxLevel.Create("W2-5", "L_W2_5_ArrecifeJefe");
+            var level = GreyboxLevel.Create("W2-5", "N10_W2-5_ArrecifeJefe");
             level.OpenWater();
             level.StartPath(Vector3.zero, 0f).Straight(180f, 12f);                  // S1 pasillos de coral con pinchos
             float phase1 = level.Length;

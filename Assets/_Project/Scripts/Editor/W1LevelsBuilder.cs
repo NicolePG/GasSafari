@@ -17,7 +17,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W1-1 Fuentes del Zoo (M5-03)")]
         public static void BuildW1_1()
         {
-            var level = GreyboxLevel.Create("W1-1", "L_W1_1_FuentesZoo");
+            var level = GreyboxLevel.Create("W1-1", "N01_W1-1_FuentesZoo");
 
             // Trayecto: canal ancho, rotonda de 270° a la izquierda con salida a la derecha (así el cauce no se cruza), zigzag,
             // aproximación a la fuente central y canal de salida.
@@ -113,7 +113,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W1-2 Alcantarillas (M5-04)")]
         public static void BuildW1_2()
         {
-            var level = GreyboxLevel.Create("W1-2", "L_W1_2_Alcantarillas");
+            var level = GreyboxLevel.Create("W1-2", "N02_W1-2_Alcantarillas");
             level.StartPath(new Vector3(0f, W1_2_HEIGHT, 0f), 0f).Straight(60f, 8f);   // S1 túnel
             float gates = level.Length;
             level.Straight(90f, 8f);                                                     // S2 compuertas
@@ -242,7 +242,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W1-3 Rio de la Ciudad (M5-05)")]
         public static void BuildW1_3()
         {
-            var level = GreyboxLevel.Create("W1-3", "L_W1_3_RioCiudad");
+            var level = GreyboxLevel.Create("W1-3", "N03_W1-3_RioCiudad");
             level.StartPath(Vector3.zero, 0f).Straight(140f, 16f);      // S1 slalom
             float boats = level.Length;
             level.Straight(160f, 16f);                                 // S2 lanchas
@@ -356,7 +356,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W1-4 Mercado Flotante (M5-06)")]
         public static void BuildW1_4()
         {
-            var level = GreyboxLevel.Create("W1-4", "L_W1_4_MercadoFlotante");
+            var level = GreyboxLevel.Create("W1-4", "N04_W1-4_MercadoFlotante");
             level.StartPath(Vector3.zero, 0f).Straight(220f, 10f);                       // S1 pasillo de puestos
             float fork = level.Length;
             level.Arc(18f, -40f, 10f).Straight(25f, 10f).Arc(18f, 80f, 10f).Straight(25f, 10f).Arc(18f, -40f, 10f); // S2 vuelta segura
@@ -513,7 +513,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W1-5 Persecucion en el Puerto (M5-07)")]
         public static void BuildW1_5()
         {
-            var level = GreyboxLevel.Create("W1-5", "L_W1_5_PuertoJefe");
+            var level = GreyboxLevel.Create("W1-5", "N05_W1-5_PuertoJefe");
             level.StartPath(Vector3.zero, 0f).Straight(200f, 12f);          // S1 la grúa aparece: 3 ganchos
             float slide = level.Length;
             level.Straight(180f, 12f);                                      // S2 contenedores que se deslizan

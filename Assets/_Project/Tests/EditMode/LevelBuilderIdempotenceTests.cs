@@ -17,16 +17,16 @@ namespace GasSafari.Tests
     {
         public static IEnumerable<TestCaseData> Builders()
         {
-            yield return new TestCaseData((Action)W1LevelsBuilder.BuildW1_1, "L_W1_1_FuentesZoo").SetName("W1-1");
-            yield return new TestCaseData((Action)W2LevelsBuilder.BuildW2_1, "L_W2_1_CajasDeriva").SetName("W2-1 (agua abierta)");
-            yield return new TestCaseData((Action)W3LevelsBuilder.BuildW3_3, "L_W3_3_TerritorioFosas").SetName("W3-3");
-            yield return new TestCaseData((Action)W4LevelsBuilder.BuildW4_5, "L_W4_5_VolcanJefe").SetName("W4-5");
+            yield return new TestCaseData((Action)W1LevelsBuilder.BuildW1_1, "N01_W1-1_FuentesZoo").SetName("W1-1");
+            yield return new TestCaseData((Action)W2LevelsBuilder.BuildW2_1, "N06_W2-1_CajasDeriva").SetName("W2-1 (agua abierta)");
+            yield return new TestCaseData((Action)W3LevelsBuilder.BuildW3_3, "N13_W3-3_TerritorioFosas").SetName("W3-3");
+            yield return new TestCaseData((Action)W4LevelsBuilder.BuildW4_5, "N20_W4-5_VolcanJefe").SetName("W4-5");
         }
 
         [TestCaseSource(nameof(Builders))]
         public void RunningBuilderTwice_LeavesTheSameScene(Action build, string scene)
         {
-            string path = $"Assets/_Project/Scenes/Levels/{scene}.unity";
+            string path = $"Assets/_Project/Scenes/Juego/Niveles/{scene}.unity";
             build();
             string first = Fingerprint(path, out int generatedFirst);
             build();
@@ -40,7 +40,7 @@ namespace GasSafari.Tests
         [Test]
         public void ManualObjects_OutsideGenerated_SurviveARebuild()
         {
-            const string path = "Assets/_Project/Scenes/Levels/L_W1_1_FuentesZoo.unity";
+            const string path = "Assets/_Project/Scenes/Juego/Niveles/N01_W1-1_FuentesZoo.unity";
             W1LevelsBuilder.BuildW1_1();
             var scene = EditorSceneManager.OpenScene(path, OpenSceneMode.Additive);
             var manual = new GameObject("PruebaManual");

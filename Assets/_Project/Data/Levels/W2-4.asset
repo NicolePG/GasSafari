@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: W2-4
   m_EditorClassIdentifier: 
   id: W2-4
-  sceneName: L_W2_4_GranRemolino
+  sceneName: N09_W2-4_GranRemolino
   world: {fileID: 11400000, guid: 7a5cb2de31eda314d901a8d48f53c3fb, type: 2}
   orderInWorld: 4
   goldTime: 240

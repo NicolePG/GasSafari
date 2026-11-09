@@ -132,7 +132,7 @@ namespace GasSafari.Editor
             var app = MenuApp.Current;
             if (app == null)
             {
-                Debug.LogError("MenuScreenshots: no hay MenuApp (¿está abierta la escena 01_Title?)");
+                Debug.LogError("MenuScreenshots: no hay MenuApp (¿está abierta la escena 01_Titulo?)");
                 yield break;
             }
             yield return Frames(30);

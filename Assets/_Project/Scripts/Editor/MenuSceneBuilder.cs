@@ -10,12 +10,12 @@ using UnityEngine.SceneManagement;
 
 namespace GasSafari.Editor
 {
-    // M6-01: importa la escena 3D del título (Tools/Export/Menu/TitleScene.fbx) y arma la escena 01_Title: el fondo animado
+    // M6-01: importa la escena 3D del título (Tools/Export/Menu/TitleScene.fbx) y arma la escena 01_Titulo: el fondo animado
     // (balsa con los cinco animales en la piscina del zoológico, 12 s en bucle), su cámara y el MenuApp que dibuja los menús.
     public static class MenuSceneBuilder
     {
-        public const string SCENE_PATH = "Assets/_Project/Scenes/Menus/01_Title.unity";
-        public const string BOOT_PATH = "Assets/_Project/Scenes/Boot/00_Boot.unity";
+        public const string SCENE_PATH = "Assets/_Project/Scenes/Juego/01_Titulo.unity";
+        public const string BOOT_PATH = "Assets/_Project/Scenes/Juego/00_Boot.unity";
         private const string MODEL_SOURCE = "Tools/Export/Menu/TitleScene.fbx";
         private const string MODEL_PATH = "Assets/_Project/Art/Menu/TitleScene.fbx";
         private const string CONTROLLER_PATH = "Assets/_Project/Art/Menu/TitleScene.controller";
@@ -125,7 +125,7 @@ namespace GasSafari.Editor
             Debug.Log("M6-01 escena de título guardada: " + SCENE_PATH);
         }
 
-        // 00_Boot primero (crea los servicios), luego 01_Title y los niveles.
+        // 00_Boot primero (crea los servicios), luego 01_Titulo y los niveles.
         public static void RegisterInBuildSettings()
         {
             var current = EditorBuildSettings.scenes.Where(s => s.path != BOOT_PATH && s.path != SCENE_PATH).ToList();

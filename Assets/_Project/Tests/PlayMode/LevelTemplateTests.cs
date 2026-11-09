@@ -7,10 +7,10 @@ using UnityEngine.TestTools;
 
 namespace GasSafari.Tests
 {
-    // _LevelTemplate (docs/10 §3): arranca solo, la balsa flota en la salida y el nivel llega a Running.
+    // TEST_LevelTemplate (docs/10 §3): arranca solo, la balsa flota en la salida y el nivel llega a Running.
     public class LevelTemplateTests
     {
-        private const string TEMPLATE = "Assets/_Project/Scenes/Levels/_LevelTemplate.unity";
+        private const string TEMPLATE = "Assets/_Project/Scenes/Pruebas/TEST_LevelTemplate.unity";
 
         [UnityTest]
         public IEnumerator Template_LoadsAndRuns_RaftFloatsAtStart()
@@ -33,7 +33,7 @@ namespace GasSafari.Tests
             Assert.IsNotNull(Object.FindFirstObjectByType<CheckpointSystem>());
             Assert.IsNotNull(Camera.main);
 
-            var scene = SceneManager.GetSceneByName("_LevelTemplate");
+            var scene = SceneManager.GetSceneByName("TEST_LevelTemplate");
             yield return SceneManager.UnloadSceneAsync(scene);
             Object.Destroy(manager.Raft.gameObject);
 #else

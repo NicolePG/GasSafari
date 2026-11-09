@@ -28,7 +28,7 @@ Assets/_Project/
 ├── Data/ Balance/  Characters/  Abilities/  Levels/  Worlds/  Hazards/  PowerUps/  Sounds/  Music/
 │         Cosmetics/  Modes/  Modifiers/  Achievements/  Difficulty/  Endless/
 ├── Prefabs/ Raft/  Characters/  Hazards/  PowerUps/  Level/  UI/  VFX/  Endless/  Services/
-├── Scenes/ Boot/  Menus/  Levels/  Party/  Endless/  Test/
+├── Scenes/ Juego/ (00_Boot, 01_Titulo, Niveles/, Fiesta/, Infinito/)  Pruebas/ (TEST_*)  — ver Scenes/LEEME.md
 ├── Scripts/ Core/ Input/ Raft/ Characters/ Abilities/ Team/ Hazards/ PowerUps/ Level/ Modes/
 │            Bots/ Progression/ Save/ UI/ Audio/ VFX/ Net/ Utils/
 ├── Settings/ (URP assets, GasSafariControls.inputactions, volúmenes)
@@ -39,16 +39,20 @@ Ensamblados (asmdef): `GasSafari.Runtime` (Scripts), `GasSafari.Tests.EditMode`,
 
 ## 3. Escenas
 
-| Escena | Contenido |
+| Escena (`Scenes/Juego/`) | Contenido |
 |---|---|
-| Boot/00_Boot | Prefab `GameServices` (persistente) y carga el título |
-| Menus/01_Title, 02_MainMenu, 03_CharacterSelect, 04_WorldMap | Menús; Tienda, Logros y Opciones son paneles de MainMenu |
-| Menus/99_Loading | Escena aditiva de carga |
-| Levels/_LevelTemplate | Plantilla: LevelManager, StartGate, FinishGate, cámara, agua, luz, HUD, Volume |
-| Levels/L_T0_PiscinaZoo ... L_W6_5_CoronaReyJefe | Los 31 niveles (nombres en docs/04) |
-| Party/P_BalsaGol, P_ReyBalsa, P_PescaMangos, P_CarreraBurbujas, P_CocoCaliente | Minijuegos |
-| Endless/E_Endless | Infinito y Desafío Diario |
-| Test/Sandbox_Raft, Test/Sandbox_Hazards | Pruebas de física y obstáculos |
+| 00_Boot | Prefab `GameServices` (persistente) y carga el título |
+| 01_Titulo | Título con escena 3D animada; el menú principal, modos, selección de personajes, mapa de mundos, Tienda, Logros, Opciones y la carga son paneles de `MenuApp` y `SceneLoader` (no hay escenas 02-05 separadas) |
+| Niveles/N00_T0_PiscinaZoo ... N30_W6-5_CoronaRey | Los 31 niveles, numerados en orden de juego (`N<índice>_<ID>_<Nombre>`; nombres exactos en docs/04) |
+| Fiesta/ | Una escena por minijuego (BalsaGol, ReyBalsa, PescaMangos, CarreraBurbujas, CocoCaliente); aún vacía |
+| Infinito/ | Infinito y Desafío Diario; aún vacía |
+
+| Escena (`Scenes/Pruebas/`) | Contenido |
+|---|---|
+| TEST_LevelTemplate | Plantilla: LevelManager, StartGate, FinishGate, cámara, agua, luz, HUD, Volume. De aquí salen los niveles |
+| TEST_Sandbox_Raft, TEST_Sandbox_Hazards | Pruebas de física y obstáculos |
+
+Solo las escenas de `Juego/` están en Build Settings (00_Boot primero). Las de `Pruebas/` se abren por ruta desde el editor y las pruebas. Detalle en `Assets/_Project/Scenes/LEEME.md`.
 
 Arranque desde cualquier escena en el editor: `[RuntimeInitializeOnLoadMethod(BeforeSceneLoad)]` instancia `GameServices` desde `Resources/` si no existe.
 

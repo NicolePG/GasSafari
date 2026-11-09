@@ -20,7 +20,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W5-1 Rápidos del Cañón (M5-27)")]
         public static void BuildW5_1()
         {
-            var level = GreyboxLevel.Create("W5-1", "L_W5_1_RapidosCanon");
+            var level = GreyboxLevel.Create("W5-1", "N21_W5-1_RapidosCanon");
             level.StartPath(Vector3.zero, 0f).Straight(100f, 14f);                    // S1 entrada tranquila
             float class1 = level.Length;
             level.Straight(110f, 14f);                                                // S2 rápidos clase 1
@@ -84,7 +84,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W5-2 Rampas del Abismo (M5-28)")]
         public static void BuildW5_2()
         {
-            var level = GreyboxLevel.Create("W5-2", "L_W5_2_RampasAbismo");
+            var level = GreyboxLevel.Create("W5-2", "N22_W5-2_RampasAbismo");
             level.StartPath(Vector3.zero, 0f).Straight(30f, 14f);
             // S1: tres rampas pequeñas: sube 1 m en 8 m y un hueco de 2.5 m con el agua 1 m más abajo al otro lado.
             var gapsFrom = new float[3];
@@ -194,7 +194,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W5-3 Laberinto de Manglares (M5-29)")]
         public static void BuildW5_3()
         {
-            var level = GreyboxLevel.Create("W5-3", "L_W5_3_LaberintoManglares");
+            var level = GreyboxLevel.Create("W5-3", "N23_W5-3_LaberintoManglares");
             level.StartPath(Vector3.zero, 0f).Straight(70f, 14f);                     // entrada
             float fork1 = level.Length;
             level.Straight(110f, 14f);                                                // S1 primera bifurcación triple
@@ -293,7 +293,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W5-4 La Represa (M5-30)")]
         public static void BuildW5_4()
         {
-            var level = GreyboxLevel.Create("W5-4", "L_W5_4_Represa");
+            var level = GreyboxLevel.Create("W5-4", "N24_W5-4_Represa");
             level.StartPath(Vector3.zero, 0f).Straight(100f, 14f);                    // S1 canal de la represa
             float locks = level.Length;
             level.Straight(120f, 14f);                                                // S2 esclusas
@@ -358,7 +358,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W5-5 El Megatobogán Final (M5-31)")]
         public static void BuildW5_5()
         {
-            var level = GreyboxLevel.Create("W5-5", "L_W5_5_MegatoboganJefe");
+            var level = GreyboxLevel.Create("W5-5", "N25_W5-5_MegatoboganJefe");
             level.StartPath(Vector3.zero, 0f).Straight(70f, 14f);                     // S1 salida en la montaña
             level.Straight(40f, 14f, -4f);
             float bends = level.Length;

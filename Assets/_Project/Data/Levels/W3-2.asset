@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: W3-2
   m_EditorClassIdentifier: 
   id: W3-2
-  sceneName: L_W3_2_RioLianas
+  sceneName: N12_W3-2_RioLianas
   world: {fileID: 11400000, guid: 0f5391bdd06dc9147be393562fde8c49, type: 2}
   orderInWorld: 2
   goldTime: 225

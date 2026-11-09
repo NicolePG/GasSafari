@@ -12,10 +12,10 @@ using UnityEngine.TestTools;
 
 namespace GasSafari.Tests
 {
-    // HUD de docs/07 §3 dentro de _LevelTemplate con 2 jugadores.
+    // HUD de docs/07 §3 dentro de TEST_LevelTemplate con 2 jugadores.
     public class LevelHudTests
     {
-        private const string TEMPLATE = "Assets/_Project/Scenes/Levels/_LevelTemplate.unity";
+        private const string TEMPLATE = "Assets/_Project/Scenes/Pruebas/TEST_LevelTemplate.unity";
         private const string DATA = "Assets/_Project/Data/Characters/";
 
         private GameObject sources;
@@ -53,7 +53,7 @@ namespace GasSafari.Tests
                 Object.Destroy(avatar.gameObject);
             if (LevelManager.Current != null)
                 Object.Destroy(LevelManager.Current.Raft.gameObject);
-            yield return SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("_LevelTemplate"));
+            yield return SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("TEST_LevelTemplate"));
         }
 
         [UnityTest]

@@ -21,7 +21,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W4-1 Cascadas Escalonadas (M5-21)")]
         public static void BuildW4_1()
         {
-            var level = GreyboxLevel.Create("W4-1", "L_W4_1_CascadasEscalonadas");
+            var level = GreyboxLevel.Create("W4-1", "N16_W4-1_CascadasEscalonadas");
             var falls = new float[3];
             level.StartPath(Vector3.zero, 0f).Straight(60f, 12f);          // S1 tres cascadas pequeñas
             for (int i = 0; i < 3; i++)
@@ -90,7 +90,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W4-2 Cueva de Cristal (M5-22)")]
         public static void BuildW4_2()
         {
-            var level = GreyboxLevel.Create("W4-2", "L_W4_2_CuevaCristal");
+            var level = GreyboxLevel.Create("W4-2", "N17_W4-2_CuevaCristal");
             level.StartPath(Vector3.zero, 0f).Straight(100f, 12f);                    // S1 entrada con luciérnagas
             float crystals = level.Length;
             level.Straight(150f, 12f);                                                // S2 cristales con pinchos
@@ -166,7 +166,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W4-3 Géiseres de Vapor (M5-23)")]
         public static void BuildW4_3()
         {
-            var level = GreyboxLevel.Create("W4-3", "L_W4_3_GeiseresVapor");
+            var level = GreyboxLevel.Create("W4-3", "N18_W4-3_GeiseresVapor");
             level.StartPath(Vector3.zero, 0f).Straight(110f, 14f);                    // S1 géiseres como trampolín
             float pools = level.Length;
             level.Straight(130f, 16f);                                                // S2 aterrizajes en pozas
@@ -253,7 +253,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W4-4 Río Subterráneo (M5-24)")]
         public static void BuildW4_4()
         {
-            var level = GreyboxLevel.Create("W4-4", "L_W4_4_RioSubterraneo");
+            var level = GreyboxLevel.Create("W4-4", "N19_W4-4_RioSubterraneo");
             level.StartPath(Vector3.zero, 0f).Straight(120f, 14f);                    // S1 dos corrientes que chocan
             float field = level.Length;
             level.Straight(30f, 14f);                                                 // S2 campo de pinchos bajos
@@ -326,7 +326,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W4-5 Corazón del Volcán (M5-25)")]
         public static void BuildW4_5()
         {
-            var level = GreyboxLevel.Create("W4-5", "L_W4_5_VolcanJefe");
+            var level = GreyboxLevel.Create("W4-5", "N20_W4-5_VolcanJefe");
             level.StartPath(Vector3.zero, 0f).Straight(100f, 12f);                    // S1 río subterráneo con temblores
             float rocks = level.Length;
             level.Straight(130f, 12f);                                                // S2 rocas cayendo en patrón

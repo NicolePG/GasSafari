@@ -32,4 +32,4 @@ Valores: docs/02 §14 (`BalanceConfig`) y docs/03 (`CharacterData`). No escribir
 Cada ajuste se anota en docs/02 §14 si cambia el valor oficial.
 
 ## Verificación
-Escena `Test/Sandbox_Raft` y pruebas T-RAFT, T-GAS, T-SYNC de docs/11.
+Escena `Pruebas/TEST_Sandbox_Raft` y pruebas T-RAFT, T-GAS, T-SYNC de docs/11.

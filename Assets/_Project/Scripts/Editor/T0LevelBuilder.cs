@@ -179,7 +179,7 @@ namespace GasSafari.Editor
             EnsureCheckpointSound();
             AssetDatabase.SaveAssets();
 
-            var level = GreyboxLevel.Create("T-0", "L_T0_PiscinaZoo");
+            var level = GreyboxLevel.Create("T-0", "N00_T0_PiscinaZoo");
             // Piscina: tramos rectos con una zona ancha para la boya; tras el muro, el canal de la ciudad.
             level.StartPath(Vector3.zero, 0f).Straight(38f, WIDTH)   // L1-L2
                 .Straight(30f, 18f)                                  // L3 boya (piscina ancha)

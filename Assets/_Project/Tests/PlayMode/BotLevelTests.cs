@@ -14,7 +14,7 @@ namespace GasSafari.Tests
     // menos de Plata x1.3) espera a W1-1 (M5-03).
     public class BotLevelTests
     {
-        private const string TEMPLATE = "Assets/_Project/Scenes/Levels/_LevelTemplate.unity";
+        private const string TEMPLATE = "Assets/_Project/Scenes/Pruebas/TEST_LevelTemplate.unity";
         private const float TIME_LIMIT = 150f;
 
         private static readonly string[] Crew = { "Alex", "Marty", "Melman", "Gloria" };
@@ -55,7 +55,7 @@ namespace GasSafari.Tests
             foreach (var avatar in manager.Avatars)
                 Object.Destroy(avatar.gameObject);
             Object.Destroy(manager.Raft.gameObject);
-            yield return SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("_LevelTemplate"));
+            yield return SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("TEST_LevelTemplate"));
             Services.Session.ClearPlayers();
 #else
             yield break;

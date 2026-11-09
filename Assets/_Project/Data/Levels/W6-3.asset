@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: W6-3
   m_EditorClassIdentifier: 
   id: W6-3
-  sceneName: L_W6_3_Contracorriente
+  sceneName: N28_W6-3_Contracorriente
   world: {fileID: 11400000, guid: 9b6dea01fe91300418f8d9d65804331f, type: 2}
   orderInWorld: 3
   goldTime: 300

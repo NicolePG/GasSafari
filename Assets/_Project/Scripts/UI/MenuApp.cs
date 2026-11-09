@@ -28,7 +28,7 @@ namespace GasSafari.UI
     }
 
     // Raíz de los menús (docs/07 §1): el Canvas, el EventSystem, la pila de pantallas, avisos y diálogos de confirmación.
-    // Vive en la escena 01_Title, sobre el escenario 3D animado.
+    // Vive en la escena 01_Titulo, sobre el escenario 3D animado.
     public class MenuApp : MonoBehaviour
     {
         public static MenuApp Current { get; private set; }

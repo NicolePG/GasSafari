@@ -30,4 +30,4 @@ Fuente de verdad: docs/03 (Grep por el nombre del personaje).
 Toda habilidad nueva necesita su regla de uso en `BotBrain` (docs/10 §15).
 
 ## Verificación
-Prueba T-ABIL-01 (recarga) + probar en `Sandbox_Raft` con 1 y 2 jugadores.
+Prueba T-ABIL-01 (recarga) + probar en `TEST_Sandbox_Raft` con 1 y 2 jugadores.

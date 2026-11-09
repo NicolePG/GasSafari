@@ -12,7 +12,7 @@ using Object = UnityEngine.Object;
 namespace GasSafari.Editor
 {
     // M5-02: HazardConfig y prefabs de los obstáculos de W1 (H01, H03, H04, H05, H07, H24, H27, H28) con los modelos de
-    // Art/Environment/W1 y Art/Bosses, y la escena Test/Sandbox_Hazards. Los parámetros marcados "prov." no están en
+    // Art/Environment/W1 y Art/Bosses, y la escena Pruebas/TEST_Sandbox_Hazards. Los parámetros marcados "prov." no están en
     // docs/05 y se afinan con QA. Se puede repetir.
     public static class HazardBuilder
     {
@@ -20,8 +20,8 @@ namespace GasSafari.Editor
         private const string PREFABS = "Assets/_Project/Prefabs/Hazards/";
         private const string MATERIALS = "Assets/_Project/Art/Materials/Hazards/";
         private const string ENV = "Assets/_Project/Art/Environment/W1/";
-        private const string SANDBOX = "Assets/_Project/Scenes/Test/Sandbox_Hazards.unity";
-        private const string SANDBOX_SOURCE = "Assets/_Project/Scenes/Test/Sandbox_Raft.unity";
+        private const string SANDBOX = "Assets/_Project/Scenes/Pruebas/TEST_Sandbox_Hazards.unity";
+        private const string SANDBOX_SOURCE = "Assets/_Project/Scenes/Pruebas/TEST_Sandbox_Raft.unity";
 
         [MenuItem("Gas Safari/Setup/Crear obstáculos de W1 (M5-02)")]
         public static void Build()

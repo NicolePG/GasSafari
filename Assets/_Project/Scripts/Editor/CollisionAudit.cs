@@ -28,13 +28,13 @@ namespace GasSafari.Editor
 
         public static readonly string[] Scenes =
         {
-            "L_T0_PiscinaZoo", "L_W1_1_FuentesZoo", "L_W1_2_Alcantarillas", "L_W1_3_RioCiudad", "L_W1_4_MercadoFlotante",
-            "L_W1_5_PuertoJefe", "L_W2_1_CajasDeriva", "L_W2_2_Tormenta", "L_W2_3_CementerioBarcos", "L_W2_4_GranRemolino",
-            "L_W2_5_ArrecifeJefe",
-            "L_W3_1_PlayaLlegada", "L_W3_2_RioLianas", "L_W3_3_TerritorioFosas", "L_W3_4_PantanoCocodrilos", "L_W3_5_FiestaLemurJefe",
-            "L_W4_1_CascadasEscalonadas", "L_W4_2_CuevaCristal", "L_W4_3_GeiseresVapor", "L_W4_4_RioSubterraneo", "L_W4_5_VolcanJefe",
-            "L_W5_1_RapidosCanon", "L_W5_2_RampasAbismo", "L_W5_3_LaberintoManglares", "L_W5_4_Represa", "L_W5_5_MegatoboganJefe",
-            "L_W6_1_FiestaEspejo", "L_W6_2_NocheSinLuz", "L_W6_3_Contracorriente", "L_W6_4_LluviaCocos", "L_W6_5_CoronaReyJefe",
+            "N00_T0_PiscinaZoo", "N01_W1-1_FuentesZoo", "N02_W1-2_Alcantarillas", "N03_W1-3_RioCiudad", "N04_W1-4_MercadoFlotante",
+            "N05_W1-5_PuertoJefe", "N06_W2-1_CajasDeriva", "N07_W2-2_Tormenta", "N08_W2-3_CementerioBarcos", "N09_W2-4_GranRemolino",
+            "N10_W2-5_ArrecifeJefe",
+            "N11_W3-1_PlayaLlegada", "N12_W3-2_RioLianas", "N13_W3-3_TerritorioFosas", "N14_W3-4_PantanoCocodrilos", "N15_W3-5_FiestaLemurJefe",
+            "N16_W4-1_CascadasEscalonadas", "N17_W4-2_CuevaCristal", "N18_W4-3_GeiseresVapor", "N19_W4-4_RioSubterraneo", "N20_W4-5_VolcanJefe",
+            "N21_W5-1_RapidosCanon", "N22_W5-2_RampasAbismo", "N23_W5-3_LaberintoManglares", "N24_W5-4_Represa", "N25_W5-5_MegatoboganJefe",
+            "N26_W6-1_FiestaEspejo", "N27_W6-2_NocheSinLuz", "N28_W6-3_Contracorriente", "N29_W6-4_LluviaCocos", "N30_W6-5_CoronaRey",
         };
 
         [MenuItem("Gas Safari/QA/Auditar colisiones (T-0, W1-W6)")]
@@ -50,7 +50,7 @@ namespace GasSafari.Editor
         {
             var report = new List<string>();
             foreach (var name in Scenes)
-                report.AddRange(RunScene($"Assets/_Project/Scenes/Levels/{name}.unity"));
+                report.AddRange(RunScene($"Assets/_Project/Scenes/Juego/Niveles/{name}.unity"));
             return report;
         }
 
@@ -59,7 +59,7 @@ namespace GasSafari.Editor
         {
             foreach (var name in Scenes)
             {
-                string path = $"Assets/_Project/Scenes/Levels/{name}.unity";
+                string path = $"Assets/_Project/Scenes/Juego/Niveles/{name}.unity";
                 var before = RunScene(path, true);
                 var scene = SceneManager.GetActiveScene();
                 EditorSceneManager.MarkSceneDirty(scene);

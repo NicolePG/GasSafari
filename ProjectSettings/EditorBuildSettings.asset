@@ -6,102 +6,102 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Project/Scenes/Boot/00_Boot.unity
+    path: Assets/_Project/Scenes/Juego/00_Boot.unity
     guid: dfbd0e3851221924fbf1593cb539fdfe
   - enabled: 1
-    path: Assets/_Project/Scenes/Menus/01_Title.unity
+    path: Assets/_Project/Scenes/Juego/01_Titulo.unity
     guid: c97bc0f22f1136f4799dee617adff681
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W1_1_FuentesZoo.unity
-    guid: d369dceb51d67234d865519f8227e45c
+    path: Assets/_Project/Scenes/Juego/Niveles/N00_T0_PiscinaZoo.unity
+    guid: da5e91612a04e634b83f8a10735400fa
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_T0_PiscinaZoo.unity
-    guid: 5b3952e5ae8703c43b8845bfe73deed1
+    path: Assets/_Project/Scenes/Juego/Niveles/N01_W1-1_FuentesZoo.unity
+    guid: f2eef423e8463c84abb6e903ffc867b7
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W1_2_Alcantarillas.unity
-    guid: fa1c0d080e16c7e4b836a9b44fd19605
+    path: Assets/_Project/Scenes/Juego/Niveles/N02_W1-2_Alcantarillas.unity
+    guid: e924d53d2e62597468fd52363fc7ebeb
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W1_3_RioCiudad.unity
-    guid: b063fbd0bd1691948bc7e9ab71472aed
+    path: Assets/_Project/Scenes/Juego/Niveles/N03_W1-3_RioCiudad.unity
+    guid: bb5fd9502beeed1448926a4e4425699d
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W1_4_MercadoFlotante.unity
-    guid: 5dd0634748aaa5946924ba22f9b0da45
+    path: Assets/_Project/Scenes/Juego/Niveles/N04_W1-4_MercadoFlotante.unity
+    guid: e168c568884256543ab6b8f72101ec04
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W1_5_PuertoJefe.unity
-    guid: 71655d15482f5de4c88cb8b7d1c67bc2
+    path: Assets/_Project/Scenes/Juego/Niveles/N05_W1-5_PuertoJefe.unity
+    guid: ffbc3de38b3d318459b2587c77908a05
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W2_1_CajasDeriva.unity
-    guid: 54545f150d02d6a4ca09ab1a7d00f28d
+    path: Assets/_Project/Scenes/Juego/Niveles/N06_W2-1_CajasDeriva.unity
+    guid: d2305448c1d14ed429a1e6bfbb6f7c4f
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W2_2_Tormenta.unity
-    guid: f1036d22ef432b949b047033532971de
+    path: Assets/_Project/Scenes/Juego/Niveles/N07_W2-2_Tormenta.unity
+    guid: 647ed874d24ef4a42ab12bf869325e29
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W2_3_CementerioBarcos.unity
-    guid: 2054cef0ea786b544a36d0df52d58e9d
+    path: Assets/_Project/Scenes/Juego/Niveles/N08_W2-3_CementerioBarcos.unity
+    guid: 2b86b4bbd413cb848b38866391e6c36c
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W2_4_GranRemolino.unity
-    guid: 116b143a6baa01f43a14c1a4632cb14e
+    path: Assets/_Project/Scenes/Juego/Niveles/N09_W2-4_GranRemolino.unity
+    guid: 04ae326f543ce3640bc3c1fc2c5584c3
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W2_5_ArrecifeJefe.unity
-    guid: ecce01a399a531d4cbbe89362e014c33
+    path: Assets/_Project/Scenes/Juego/Niveles/N10_W2-5_ArrecifeJefe.unity
+    guid: d6b17ad032f880e4f964cd261b4cc027
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W3_1_PlayaLlegada.unity
-    guid: 5ed46bf7bf748ba4ea2b7b740b562524
+    path: Assets/_Project/Scenes/Juego/Niveles/N11_W3-1_PlayaLlegada.unity
+    guid: 5dc4721c3afa26643b517ae3213a65ca
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W3_3_TerritorioFosas.unity
-    guid: 525fa479a16c02447ac179b6cfb9aa3d
+    path: Assets/_Project/Scenes/Juego/Niveles/N12_W3-2_RioLianas.unity
+    guid: 2edacf6325d2b084c8626866675b487f
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W3_4_PantanoCocodrilos.unity
-    guid: 6bc2bcc7da7aa294c9908d5e023a359c
+    path: Assets/_Project/Scenes/Juego/Niveles/N13_W3-3_TerritorioFosas.unity
+    guid: d234d265faff9264aa0fe368983439f4
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W3_5_FiestaLemurJefe.unity
-    guid: 5d389ea6515f10f409c51475bb85850a
+    path: Assets/_Project/Scenes/Juego/Niveles/N14_W3-4_PantanoCocodrilos.unity
+    guid: 7efcb44cf3104d44c9269b395300e5ce
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W3_2_RioLianas.unity
-    guid: e95788153ae6e1c469c1a86622a3ee05
+    path: Assets/_Project/Scenes/Juego/Niveles/N15_W3-5_FiestaLemurJefe.unity
+    guid: 05141c7bf33566c489a28af269bd5c7f
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W4_1_CascadasEscalonadas.unity
-    guid: f5044e2408fa84c4f942d0d953d5ab27
+    path: Assets/_Project/Scenes/Juego/Niveles/N16_W4-1_CascadasEscalonadas.unity
+    guid: b14cfb2f25411ee479af850ccd3837bd
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W4_2_CuevaCristal.unity
-    guid: f97f11659e2e05a429786da7b796488d
+    path: Assets/_Project/Scenes/Juego/Niveles/N17_W4-2_CuevaCristal.unity
+    guid: 9bced93ad3145024bbed1a86fabf8592
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W4_3_GeiseresVapor.unity
-    guid: a59dd47e8b141de40b72bdca53d1296b
+    path: Assets/_Project/Scenes/Juego/Niveles/N18_W4-3_GeiseresVapor.unity
+    guid: 5a095230fca6c744f8f30dce1712bb42
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W4_4_RioSubterraneo.unity
-    guid: 0a2a141f9abde1549bcfb4904c8e9bb2
+    path: Assets/_Project/Scenes/Juego/Niveles/N19_W4-4_RioSubterraneo.unity
+    guid: edfa83aa21b34aa48916873d7887ed4d
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W4_5_VolcanJefe.unity
-    guid: d666bfd62283e4b42862f3a8fa435fb3
+    path: Assets/_Project/Scenes/Juego/Niveles/N20_W4-5_VolcanJefe.unity
+    guid: 8dd72317ad720fa4c9a59d3a6b35fa88
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W5_1_RapidosCanon.unity
+    path: Assets/_Project/Scenes/Juego/Niveles/N21_W5-1_RapidosCanon.unity
     guid: 2fbca8f2556f31a4aa52c8202629f746
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W5_2_RampasAbismo.unity
+    path: Assets/_Project/Scenes/Juego/Niveles/N22_W5-2_RampasAbismo.unity
     guid: 29142791d74011e419ed6fb259f76f0c
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W5_3_LaberintoManglares.unity
+    path: Assets/_Project/Scenes/Juego/Niveles/N23_W5-3_LaberintoManglares.unity
     guid: 35995a1441a6b734c96cb30ba5da3260
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W5_4_Represa.unity
+    path: Assets/_Project/Scenes/Juego/Niveles/N24_W5-4_Represa.unity
     guid: 7fcf7cd1e7f5dec48813bc8d75d1b8c4
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W5_5_MegatoboganJefe.unity
+    path: Assets/_Project/Scenes/Juego/Niveles/N25_W5-5_MegatoboganJefe.unity
     guid: ceec30e130b720144b5ef88f5fc2f211
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W6_1_FiestaEspejo.unity
+    path: Assets/_Project/Scenes/Juego/Niveles/N26_W6-1_FiestaEspejo.unity
     guid: 74cbecce62601d546b3827b1e0df44c1
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W6_2_NocheSinLuz.unity
+    path: Assets/_Project/Scenes/Juego/Niveles/N27_W6-2_NocheSinLuz.unity
     guid: 78ebe655003509640a652c5374637263
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W6_3_Contracorriente.unity
+    path: Assets/_Project/Scenes/Juego/Niveles/N28_W6-3_Contracorriente.unity
     guid: 6c41fe1b6081b6f4f95c1a57d46a44b8
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W6_4_LluviaCocos.unity
+    path: Assets/_Project/Scenes/Juego/Niveles/N29_W6-4_LluviaCocos.unity
     guid: 93619effca388fe4aa58cb69967bb95b
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/L_W6_5_CoronaReyJefe.unity
+    path: Assets/_Project/Scenes/Juego/Niveles/N30_W6-5_CoronaRey.unity
     guid: 2d14053e1d8e3294b87ef039070fbb1b
   m_configObjects: {}

@@ -10,10 +10,10 @@ using UnityEngine.TestTools;
 
 namespace GasSafari.Tests
 {
-    // Meta → Finished → Results en _LevelTemplate con 2 jugadores.
+    // Meta → Finished → Results en TEST_LevelTemplate con 2 jugadores.
     public class ResultsFlowTests
     {
-        private const string TEMPLATE = "Assets/_Project/Scenes/Levels/_LevelTemplate.unity";
+        private const string TEMPLATE = "Assets/_Project/Scenes/Pruebas/TEST_LevelTemplate.unity";
 
         private GameObject sources;
         private string savePath;
@@ -57,7 +57,7 @@ namespace GasSafari.Tests
                 Object.Destroy(avatar.gameObject);
             if (LevelManager.Current != null)
                 Object.Destroy(LevelManager.Current.Raft.gameObject);
-            yield return SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("_LevelTemplate"));
+            yield return SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("TEST_LevelTemplate"));
         }
 
         [UnityTest]

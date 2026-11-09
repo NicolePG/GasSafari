@@ -24,7 +24,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W6-1 Fiesta en Espejo (M5-33)")]
         public static void BuildW6_1()
         {
-            var level = GreyboxLevel.Create("W6-1", "L_W6_1_FiestaEspejo");
+            var level = GreyboxLevel.Create("W6-1", "N26_W6-1_FiestaEspejo");
             level.StartPath(Vector3.zero, 0f).Straight(60f, 14f);
             level.Arc(40f, -90f, 14f).Straight(50f, 14f);                             // S1 puerto (tramo de W1 en espejo: gira a la izquierda)
             float forest = level.Length;
@@ -105,7 +105,7 @@ namespace GasSafari.Editor
         public static void BuildW6_2()
         {
             FireflyMaterials.Clear();
-            var level = GreyboxLevel.Create("W6-2", "L_W6_2_NocheSinLuz");
+            var level = GreyboxLevel.Create("W6-2", "N27_W6-2_NocheSinLuz");
             level.StartPath(Vector3.zero, 0f).Straight(100f, 14f);                    // S1 entrada a oscuras
             float pits = level.Length;
             level.Straight(60f, 14f).Arc(40f, 90f, 14f).Straight(60f, 14f);           // S2 fosas
@@ -175,7 +175,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W6-3 Todo a Contracorriente (M5-35)")]
         public static void BuildW6_3()
         {
-            var level = GreyboxLevel.Create("W6-3", "L_W6_3_Contracorriente");
+            var level = GreyboxLevel.Create("W6-3", "N28_W6-3_Contracorriente");
             level.StartPath(Vector3.zero, 0f).Straight(130f, 14f);                    // S1 contra la corriente
             float rapids = level.Length;
             level.Straight(130f, 14f);                                                // S2 rápidos inversos
@@ -258,7 +258,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W6-4 Lluvia de Cocos (M5-36)")]
         public static void BuildW6_4()
         {
-            var level = GreyboxLevel.Create("W6-4", "L_W6_4_LluviaCocos");
+            var level = GreyboxLevel.Create("W6-4", "N29_W6-4_LluviaCocos");
             level.StartPath(Vector3.zero, 0f).Straight(150f, 14f);                    // S1 palmeral
             float rain = level.Length;
             level.Straight(60f, 14f).Arc(45f, 90f, 14f).Straight(40f, 14f);           // S2 el centro de la lluvia
@@ -327,7 +327,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W6-5 La Corona del Rey (M5-37)")]
         public static void BuildW6_5()
         {
-            var level = GreyboxLevel.Create("W6-5", "L_W6_5_CoronaReyJefe");
+            var level = GreyboxLevel.Create("W6-5", "N30_W6-5_CoronaRey");
             level.StartPath(Vector3.zero, 0f).Straight(150f, 14f);                    // S1 puerto (W1)
             float storm = level.Length;
             level.Straight(150f, 14f);                                                // S2 tormenta (W2)

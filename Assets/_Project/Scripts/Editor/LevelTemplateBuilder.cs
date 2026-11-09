@@ -16,10 +16,10 @@ using Object = UnityEngine.Object;
 
 namespace GasSafari.Editor
 {
-    // Crea Scenes/Levels/_LevelTemplate.unity (docs/10 §3). Se ejecuta en una escena aditiva: no toca la escena abierta.
+    // Crea Scenes/Pruebas/TEST_LevelTemplate.unity (docs/10 §3). Se ejecuta en una escena aditiva: no toca la escena abierta.
     public static class LevelTemplateBuilder
     {
-        private const string SCENE_PATH = "Assets/_Project/Scenes/Levels/_LevelTemplate.unity";
+        private const string SCENE_PATH = "Assets/_Project/Scenes/Pruebas/TEST_LevelTemplate.unity";
         private const string PROFILE_PATH = "Assets/_Project/Settings/Volume_Default.asset";
         private const string BALANCE_PATH = "Assets/_Project/Data/Balance/BalanceConfig.asset";
         private const string RAFT_PREFAB = "Assets/_Project/Prefabs/Raft/Raft.prefab";

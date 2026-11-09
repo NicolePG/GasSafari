@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: W3-1
   m_EditorClassIdentifier: 
   id: W3-1
-  sceneName: L_W3_1_PlayaLlegada
+  sceneName: N11_W3-1_PlayaLlegada
   world: {fileID: 11400000, guid: 0f5391bdd06dc9147be393562fde8c49, type: 2}
   orderInWorld: 1
   goldTime: 210

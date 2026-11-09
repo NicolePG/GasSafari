@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: W4-2
   m_EditorClassIdentifier: 
   id: W4-2
-  sceneName: L_W4_2_CuevaCristal
+  sceneName: N17_W4-2_CuevaCristal
   world: {fileID: 11400000, guid: 8f60f5b27aa2a424095c9134e789a740, type: 2}
   orderInWorld: 2
   goldTime: 255

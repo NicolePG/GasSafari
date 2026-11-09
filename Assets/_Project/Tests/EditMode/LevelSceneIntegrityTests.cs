@@ -18,7 +18,7 @@ namespace GasSafari.Tests
             var problems = new System.Collections.Generic.List<string>();
             foreach (var name in CollisionAudit.Scenes)
             {
-                var scene = EditorSceneManager.OpenScene($"Assets/_Project/Scenes/Levels/{name}.unity", OpenSceneMode.Single);
+                var scene = EditorSceneManager.OpenScene($"Assets/_Project/Scenes/Juego/Niveles/{name}.unity", OpenSceneMode.Single);
                 var roots = scene.GetRootGameObjects();
                 // Los grupos cuelgan de _Generated (o están sueltos en escenas anteriores a esa raíz).
                 var all = roots.SelectMany(r => r.GetComponentsInChildren<Transform>(true)).ToArray();

@@ -60,7 +60,7 @@ namespace GasSafari.Tests
             Assert.AreEqual("W6-5", visited[30]);
             Assert.IsNull(catalog.NextLevel(catalog.FindLevel("W6-5")));
             Assert.AreEqual(catalog.worlds[2], catalog.WorldOf(catalog.FindLevel("W3-4")));
-            Assert.AreEqual("L_W1_1_FuentesZoo", catalog.FindLevel("W1-1").sceneName);
+            Assert.AreEqual("N01_W1-1_FuentesZoo", catalog.FindLevel("W1-1").sceneName);
             Assert.AreEqual(catalog.FindLevel("W4-2"), catalog.FindLevelByScene(catalog.FindLevel("W4-2").sceneName));
         }
 

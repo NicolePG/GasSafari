@@ -30,64 +30,64 @@ namespace GasSafari.Editor
         private static readonly Shot[] Shots =
         {
             // W2-1: derrumbar la montaña de cajas abre el atajo; la zona está tras la montaña (solo se llega rompiéndola).
-            new Shot { Scene = "L_W2_1_CajasDeriva", Id = "W2-1", Anchor = "MangoSpot_2", ZoneSize = new Vector3(16f, 6f, 10f),
+            new Shot { Scene = "N06_W2-1_CajasDeriva", Id = "W2-1", Anchor = "MangoSpot_2", ZoneSize = new Vector3(16f, 6f, 10f),
                 CameraOffset = new Vector3(-9f, 7f, -11f), Seconds = 3f, SlowMotion = true, MainPath = false },
             // W2-2: surfear la ola gigante hasta la playa del faro (cresta con el mango).
-            new Shot { Scene = "L_W2_2_Tormenta", Id = "W2-2", Anchor = "MangoSpot_2", ZoneSize = new Vector3(20f, 6f, 16f),
+            new Shot { Scene = "N07_W2-2_Tormenta", Id = "W2-2", Anchor = "MangoSpot_2", ZoneSize = new Vector3(20f, 6f, 16f),
                 CameraOffset = new Vector3(11f, 6f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
             // W2-3: Honda de la Selva alrededor del gran mástil.
-            new Shot { Scene = "L_W2_3_CementerioBarcos", Id = "W2-3", Anchor = "GranMastil", ZoneSize = new Vector3(34f, 8f, 20f),
+            new Shot { Scene = "N08_W2-3_CementerioBarcos", Id = "W2-3", Anchor = "GranMastil", ZoneSize = new Vector3(34f, 8f, 20f),
                 CameraOffset = new Vector3(-12f, 9f, -10f), Seconds = 3f, SlowMotion = false, MainPath = true },
             // W2-4: escapar del gran remolino (el carril lo bordea).
-            new Shot { Scene = "L_W2_4_GranRemolino", Id = "W2-4", Anchor = "Remolino_GranRemolino", ZoneSize = new Vector3(40f, 8f, 26f),
+            new Shot { Scene = "N09_W2-4_GranRemolino", Id = "W2-4", Anchor = "Remolino_GranRemolino", ZoneSize = new Vector3(40f, 8f, 26f),
                 CameraOffset = new Vector3(-6f, 13f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
             // W2-5: el pasillo final con los tentáculos golpeando detrás; la cámara va delante, mirando hacia atrás.
-            new Shot { Scene = "L_W2_5_ArrecifeJefe", Id = "W2-5", Anchor = "ZonaJefe_Fase3", ZoneSize = new Vector3(30f, 6f, 14f),
+            new Shot { Scene = "N10_W2-5_ArrecifeJefe", Id = "W2-5", Anchor = "ZonaJefe_Fase3", ZoneSize = new Vector3(30f, 6f, 14f),
                 CameraOffset = new Vector3(7f, 6f, 14f), Seconds = 3f, SlowMotion = false, MainPath = true },
             // W3: los constructores ponen un objeto 'EstrellaAncla' en el punto del momento estrella.
-            new Shot { Scene = "L_W3_1_PlayaLlegada", Id = "W3-1", Anchor = "EstrellaAncla", ZoneSize = new Vector3(20f, 6f, 16f),
+            new Shot { Scene = "N11_W3-1_PlayaLlegada", Id = "W3-1", Anchor = "EstrellaAncla", ZoneSize = new Vector3(20f, 6f, 16f),
                 CameraOffset = new Vector3(-10f, 6f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
-            new Shot { Scene = "L_W3_2_RioLianas", Id = "W3-2", Anchor = "EstrellaAncla", ZoneSize = new Vector3(14f, 6f, 40f),
+            new Shot { Scene = "N12_W3-2_RioLianas", Id = "W3-2", Anchor = "EstrellaAncla", ZoneSize = new Vector3(14f, 6f, 40f),
                 CameraOffset = new Vector3(9f, 5f, -14f), Seconds = 3f, SlowMotion = false, MainPath = true },
-            new Shot { Scene = "L_W3_3_TerritorioFosas", Id = "W3-3", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 6f, 30f),
+            new Shot { Scene = "N13_W3-3_TerritorioFosas", Id = "W3-3", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 6f, 30f),
                 CameraOffset = new Vector3(-12f, 8f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
-            new Shot { Scene = "L_W3_4_PantanoCocodrilos", Id = "W3-4", Anchor = "EstrellaAncla", ZoneSize = new Vector3(22f, 6f, 30f),
+            new Shot { Scene = "N14_W3-4_PantanoCocodrilos", Id = "W3-4", Anchor = "EstrellaAncla", ZoneSize = new Vector3(22f, 6f, 30f),
                 CameraOffset = new Vector3(10f, 8f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
-            new Shot { Scene = "L_W3_5_FiestaLemurJefe", Id = "W3-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 6f, 12f),
+            new Shot { Scene = "N15_W3-5_FiestaLemurJefe", Id = "W3-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 6f, 12f),
                 CameraOffset = new Vector3(-10f, 7f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
             // W4
-            new Shot { Scene = "L_W4_1_CascadasEscalonadas", Id = "W4-1", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 6f, 20f),
+            new Shot { Scene = "N16_W4-1_CascadasEscalonadas", Id = "W4-1", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 6f, 20f),
                 CameraOffset = new Vector3(-12f, 9f, -10f), Seconds = 3f, SlowMotion = true, MainPath = true },
-            new Shot { Scene = "L_W4_2_CuevaCristal", Id = "W4-2", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 6f, 30f),
+            new Shot { Scene = "N17_W4-2_CuevaCristal", Id = "W4-2", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 6f, 30f),
                 CameraOffset = new Vector3(9f, 6f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
-            new Shot { Scene = "L_W4_3_GeiseresVapor", Id = "W4-3", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 8f, 20f),
+            new Shot { Scene = "N18_W4-3_GeiseresVapor", Id = "W4-3", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 8f, 20f),
                 CameraOffset = new Vector3(-12f, 7f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
-            new Shot { Scene = "L_W4_4_RioSubterraneo", Id = "W4-4", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 6f, 40f),
+            new Shot { Scene = "N19_W4-4_RioSubterraneo", Id = "W4-4", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 6f, 40f),
                 CameraOffset = new Vector3(10f, 8f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
-            new Shot { Scene = "L_W4_5_VolcanJefe", Id = "W4-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 24f),
+            new Shot { Scene = "N20_W4-5_VolcanJefe", Id = "W4-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 24f),
                 CameraOffset = new Vector3(-10f, 8f, -12f), Seconds = 3f, SlowMotion = true, MainPath = true },
             // W5: rápido largo sin frenar; cruzar el abismo con el Súper Pedo; descubrir el atajo secreto; bajar por el aliviadero; el cocodrilo cierra la boca.
-            new Shot { Scene = "L_W5_1_RapidosCanon", Id = "W5-1", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 6f, 40f),
+            new Shot { Scene = "N21_W5-1_RapidosCanon", Id = "W5-1", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 6f, 40f),
                 CameraOffset = new Vector3(10f, 8f, -14f), Seconds = 3f, SlowMotion = false, MainPath = true },
-            new Shot { Scene = "L_W5_2_RampasAbismo", Id = "W5-2", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 20f),
+            new Shot { Scene = "N22_W5-2_RampasAbismo", Id = "W5-2", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 20f),
                 CameraOffset = new Vector3(-12f, 8f, -14f), Seconds = 3f, SlowMotion = true, MainPath = true },
-            new Shot { Scene = "L_W5_3_LaberintoManglares", Id = "W5-3", Anchor = "EstrellaAncla", ZoneSize = new Vector3(10f, 6f, 10f),
+            new Shot { Scene = "N23_W5-3_LaberintoManglares", Id = "W5-3", Anchor = "EstrellaAncla", ZoneSize = new Vector3(10f, 6f, 10f),
                 CameraOffset = new Vector3(8f, 6f, -10f), Seconds = 3f, SlowMotion = false, MainPath = false },
-            new Shot { Scene = "L_W5_4_Represa", Id = "W5-4", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 20f),
+            new Shot { Scene = "N24_W5-4_Represa", Id = "W5-4", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 20f),
                 CameraOffset = new Vector3(-12f, 9f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
-            new Shot { Scene = "L_W5_5_MegatoboganJefe", Id = "W5-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 16f),
+            new Shot { Scene = "N25_W5-5_MegatoboganJefe", Id = "W5-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 16f),
                 CameraOffset = new Vector3(10f, 8f, -14f), Seconds = 3f, SlowMotion = true, MainPath = true },
             // W6 (provisional, docs/04 no define el momento estrella): entrar al escenario del DJ; seguir a la luciérnaga gigante por el
             // remolino; cruzar el remanso a contracorriente; el aguacero final; el último salto antes del trono.
-            new Shot { Scene = "L_W6_1_FiestaEspejo", Id = "W6-1", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 8f, 24f),
+            new Shot { Scene = "N26_W6-1_FiestaEspejo", Id = "W6-1", Anchor = "EstrellaAncla", ZoneSize = new Vector3(18f, 8f, 24f),
                 CameraOffset = new Vector3(-12f, 8f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
-            new Shot { Scene = "L_W6_2_NocheSinLuz", Id = "W6-2", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 20f),
+            new Shot { Scene = "N27_W6-2_NocheSinLuz", Id = "W6-2", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 20f),
                 CameraOffset = new Vector3(10f, 8f, -12f), Seconds = 3f, SlowMotion = true, MainPath = true },
-            new Shot { Scene = "L_W6_3_Contracorriente", Id = "W6-3", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 20f),
+            new Shot { Scene = "N28_W6-3_Contracorriente", Id = "W6-3", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 20f),
                 CameraOffset = new Vector3(-12f, 8f, -12f), Seconds = 3f, SlowMotion = false, MainPath = true },
-            new Shot { Scene = "L_W6_4_LluviaCocos", Id = "W6-4", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 24f),
+            new Shot { Scene = "N29_W6-4_LluviaCocos", Id = "W6-4", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 24f),
                 CameraOffset = new Vector3(10f, 8f, -14f), Seconds = 3f, SlowMotion = false, MainPath = true },
-            new Shot { Scene = "L_W6_5_CoronaReyJefe", Id = "W6-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 16f),
+            new Shot { Scene = "N30_W6-5_CoronaRey", Id = "W6-5", Anchor = "EstrellaAncla", ZoneSize = new Vector3(16f, 8f, 16f),
                 CameraOffset = new Vector3(10f, 8f, -14f), Seconds = 3f, SlowMotion = true, MainPath = true },
         };
 
@@ -96,7 +96,7 @@ namespace GasSafari.Editor
         {
             foreach (var shot in Shots)
             {
-                var scene = EditorSceneManager.OpenScene($"Assets/_Project/Scenes/Levels/{shot.Scene}.unity", OpenSceneMode.Single);
+                var scene = EditorSceneManager.OpenScene($"Assets/_Project/Scenes/Juego/Niveles/{shot.Scene}.unity", OpenSceneMode.Single);
                 Apply(scene, shot.Id);
                 EditorSceneManager.MarkSceneDirty(scene);
                 EditorSceneManager.SaveScene(scene);

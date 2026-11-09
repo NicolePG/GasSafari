@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: W2-5
   m_EditorClassIdentifier: 
   id: W2-5
-  sceneName: L_W2_5_ArrecifeJefe
+  sceneName: N10_W2-5_ArrecifeJefe
   world: {fileID: 11400000, guid: 7a5cb2de31eda314d901a8d48f53c3fb, type: 2}
   orderInWorld: 5
   goldTime: 270

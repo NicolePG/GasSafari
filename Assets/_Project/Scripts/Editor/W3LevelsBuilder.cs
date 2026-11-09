@@ -20,7 +20,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W3-1 Playa de Llegada (M5-15)")]
         public static void BuildW3_1()
         {
-            var level = GreyboxLevel.Create("W3-1", "L_W3_1_PlayaLlegada");
+            var level = GreyboxLevel.Create("W3-1", "N11_W3-1_PlayaLlegada");
             level.StartPath(Vector3.zero, 0f).Straight(150f, 14f);                    // S1 aguas poco profundas
             float crabs = level.Length;
             level.Straight(150f, 12f);                                                // S2 cangrejos
@@ -78,7 +78,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W3-2 Río de Lianas (M5-16)")]
         public static void BuildW3_2()
         {
-            var level = GreyboxLevel.Create("W3-2", "L_W3_2_RioLianas");
+            var level = GreyboxLevel.Create("W3-2", "N12_W3-2_RioLianas");
             level.StartPath(Vector3.zero, 0f).Straight(100f, 12f);                    // S1 río cubierto de vegetación
             float curtains = level.Length;
             level.Arc(40f, 60f, 12f).Arc(40f, -120f, 12f).Arc(40f, 60f, 12f).Straight(20f, 12f); // S2 ruta normal: rodeo largo
@@ -223,7 +223,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W3-3 Territorio de las Fosas (M5-17)")]
         public static void BuildW3_3()
         {
-            var level = GreyboxLevel.Create("W3-3", "L_W3_3_TerritorioFosas");
+            var level = GreyboxLevel.Create("W3-3", "N13_W3-3_TerritorioFosas");
             level.StartPath(Vector3.zero, 0f).Straight(180f, 12f);                    // S1 orillas altas con fosas
             float roots = level.Length;
             level.Straight(150f, 12f);                                                // S2 puentes de raíces
@@ -295,7 +295,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W3-4 Pantano de los Cocodrilos (M5-18)")]
         public static void BuildW3_4()
         {
-            var level = GreyboxLevel.Create("W3-4", "L_W3_4_PantanoCocodrilos");
+            var level = GreyboxLevel.Create("W3-4", "N14_W3-4_PantanoCocodrilos");
             level.StartPath(Vector3.zero, 0f).Straight(140f, 14f);                    // S1 pantano con nenúfares
             float sleepers = level.Length;
             level.Straight(150f, 14f);                                                // S2 cocodrilos dormidos
@@ -385,7 +385,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Setup/Greybox W3-5 La Gran Fiesta Lémur (M5-19)")]
         public static void BuildW3_5()
         {
-            var level = GreyboxLevel.Create("W3-5", "L_W3_5_FiestaLemurJefe");
+            var level = GreyboxLevel.Create("W3-5", "N15_W3-5_FiestaLemurJefe");
             level.StartPath(Vector3.zero, 0f).Straight(120f, 14f);                    // S1 entrada con tambores
             float beats = level.Length;
             level.Straight(150f, 14f);                                                // S2 plataformas y chorros al ritmo (110 BPM)

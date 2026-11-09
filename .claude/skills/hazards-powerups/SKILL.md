@@ -28,4 +28,4 @@ Catálogo con IDs y parámetros: docs/05.
 6. `GameEvents.OnPowerUp`, sonido `pickup_*`, VFX `vfx_pickup` con el color del jugador.
 
 ## Verificación
-Escena `Test/Sandbox_Hazards`: un ejemplar de cada obstáculo nuevo, probado con balsa y con 2 jugadores.
+Escena `Pruebas/TEST_Sandbox_Hazards`: un ejemplar de cada obstáculo nuevo, probado con balsa y con 2 jugadores.

@@ -8,7 +8,7 @@ description: Construir o modificar un nivel o escenario (cauce, greybox, checkpo
 Diseño del nivel: docs/04 (Grep `## <ID>`, por ejemplo `## W3-2`). Obstáculos y power-ups: docs/05. Arte: docs/09.
 
 ## Pasos
-1. **Escena:** duplicar `Scenes/Levels/_LevelTemplate.unity` como `L_<ID>_<Nombre>.unity` (nombre exacto de docs/04). Agregarla a Build Settings.
+1. **Escena:** duplicar `Scenes/Pruebas/TEST_LevelTemplate.unity` como `Scenes/Juego/Niveles/N<índice>_<ID>_<Nombre>.unity` (nombre exacto de docs/04). Agregarla a Build Settings. Organización completa en `Scenes/LEEME.md`.
 2. **LevelData:** completar `Data/Levels/<ID>.asset` (tiempos Oro/Plata, música, texto de mecánica, `raceCompatible`).
 3. **Cauce:** `SplineContainer` con `FlowSpline`. Ancho normal 8-12 m, pasos estrechos 5 m. Curva de intensidad de corriente por tramo según las secciones del doc.
 4. **Greybox primero** con ProBuilder (canales, rampas, paredes). Probar el recorrido completo con 1 jugador antes de poner arte. Nunca greybox y arte en la misma tarea.
@@ -44,4 +44,4 @@ Aplica a todo nivel con arte (no al greybox). Perfiles de Bloom por mundo en `Se
 
 ## Shaders y plantilla
 - `SG_Toon` y `SG_ToonWater` según docs/09 §2. El URP Asset debe tener Depth Texture y Opaque Texture.
-- `_LevelTemplate` contiene: LevelManager, RaftSpawner, StartGate, FinishGate, CheckpointSystem, cámara Cinemachine, agua, Directional Light, Volume, HUD, EventSystem.
+- `TEST_LevelTemplate` contiene: LevelManager, RaftSpawner, StartGate, FinishGate, CheckpointSystem, cámara Cinemachine, agua, Directional Light, Volume, HUD, EventSystem.

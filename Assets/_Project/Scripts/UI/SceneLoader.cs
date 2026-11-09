@@ -13,7 +13,7 @@ namespace GasSafari.UI
     // Existe una sola, persistente, y se crea sola la primera vez que se pide.
     public class SceneLoader : MonoBehaviour
     {
-        public const string MENU_SCENE = "01_Title";
+        public const string MENU_SCENE = "01_Titulo";
         // Tiempo mínimo en pantalla para que se alcance a leer el consejo.
         public const float MIN_SHOW_TIME = 1.2f;
 

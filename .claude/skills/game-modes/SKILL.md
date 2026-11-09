@@ -16,7 +16,7 @@ Reglas: docs/06 §1 (modos) y §3 (dificultad y Ayuda Real).
 - **Contrarreloj:** `GhostRecorder` graba pose de la balsa a 10 Hz en un buffer prealocado; `GhostPlayer` interpola. Guardar solo el mejor intento por nivel.
 - **Espejo:** `LevelMirror` pone la raíz de geometría en escala X = -1 y espeja los nodos de las splines; verificar triggers y anclas.
 - **Modificadores:** cada `ModifierData` aplica su efecto al cargar el nivel y lo revierte al salir. Con modificadores activos no se guardan estrellas.
-- **Fiesta:** una escena por minijuego (`Scenes/Party/`), cada una con su controlador de reglas, puntaje y rondas. Mini balsa individual = prefab de balsa con radio 1 m y 1 asiento.
+- **Fiesta:** una escena por minijuego (`Scenes/Juego/Fiesta/`), cada una con su controlador de reglas, puntaje y rondas. Mini balsa individual = prefab de balsa con radio 1 m y 1 asiento.
 - **Infinito:** `EndlessGenerator` coloca `EndlessChunk` (prefabs con punto de entrada y salida alineados) según `EndlessChunkData`; recicla los tramos que quedan atrás con pool; dificultad +1 cada 200 m.
 - **Desafío Diario:** semilla `int.Parse(DateTime.Today.ToString("yyyyMMdd", CultureInfo.InvariantCulture))` → `System.Random` propio (nunca `UnityEngine.Random`) → 1500 m + 1 modificador.
 - **Carrera por Equipos:** 2 balsas; local con 2 cámaras (pantalla dividida vertical) y online con NGO. Usa niveles `raceCompatible` y sus `TeamRaceSpawn`.

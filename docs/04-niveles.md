@@ -10,7 +10,7 @@ Busca un nivel con Grep (por ejemplo `## W3-2`) y lee solo esa sección. IDs de 
 - 3 mangos dorados (P07) por nivel: 1 en la ruta, 1 que exige habilidad o riesgo, 1 escondido (atajo o rincón).
 - Estrellas: 1 por terminar; 2 con tiempo igual o menor a **Plata**; 3 con tiempo igual o menor a **Oro** y sin hundir la balsa.
 - Plata = Oro x 1.4, redondeado hacia arriba a múltiplo de 5 s.
-- Escena: `Assets/_Project/Scenes/Levels/L_<ID>_<Nombre>.unity` duplicada de `_LevelTemplate`.
+- Escena: `Assets/_Project/Scenes/Juego/Niveles/N<índice>_<ID>_<Nombre>.unity` (índice 00-30 en orden de juego), duplicada de `Scenes/Pruebas/TEST_LevelTemplate.unity`.
 - Datos: un `LevelData` por nivel en `Data/Levels/` (docs/10).
 - Ancho del cauce: normal 8-12 m; paso estrecho 5 m; agua abierta sin paredes en W2.
 
@@ -32,7 +32,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## T-0 Piscina del Zoológico
 
-- Escena `L_T0_PiscinaZoo` · Oro 2:30 · Plata 3:30 · Checkpoints 10 (uno por lección, al empezarla) · Sin cronómetro visible
+- Escena `N00_T0_PiscinaZoo` · Oro 2:30 · Plata 3:30 · Checkpoints 10 (uno por lección, al empezarla) · Sin cronómetro visible
 - Mecánica nueva: todas las básicas. No se avanza hasta cumplir cada lección (cartel grande + icono del botón del dispositivo de cada jugador). Sistema de tutorial: docs/07 §8 y docs/10 §5.
 - Lecciones:
   1. Tirarse un toque y ver moverse la balsa.
@@ -56,7 +56,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W1-1 Fuentes del Zoo
 
-- Escena `L_W1_1_FuentesZoo` · Oro 3:00 · Plata 4:15 · Checkpoints 3
+- Escena `N01_W1-1_FuentesZoo` · Oro 3:00 · Plata 4:15 · Checkpoints 3
 - Mecánica nueva: giros con puntería en curvas cerradas.
 - Secciones: 1) canal ancho entre bancas (H01); 2) rotonda alrededor de una estatua (giro de 270°); 3) zigzag entre fuentes que empujan (chorros laterales suaves); 4) fuente central que lanza la balsa (H27).
 - Power-ups: P01 x3.
@@ -65,7 +65,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W1-2 Alcantarillas
 
-- Escena `L_W1_2_Alcantarillas` · Oro 3:15 · Plata 4:35 · Checkpoints 4
+- Escena `N02_W1-2_Alcantarillas` · Oro 3:15 · Plata 4:35 · Checkpoints 4
 - Mecánica nueva: compuertas temporizadas (H03).
 - Secciones: 1) túnel con luz de rejillas; 2) 3 compuertas en secuencia (ciclos 3 s, 2.5 s, 2 s); 3) bifurcación: izquierda segura, derecha más corta con compuerta rápida; 4) tobogán en espiral dentro de una tubería gigante.
 - Power-ups: P01 x3, P03 x1 (en la ruta derecha).
@@ -74,7 +74,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W1-3 Río de la Ciudad
 
-- Escena `L_W1_3_RioCiudad` · Oro 3:30 · Plata 4:55 · Checkpoints 4
+- Escena `N03_W1-3_RioCiudad` · Oro 3:30 · Plata 4:55 · Checkpoints 4
 - Mecánica nueva: oleaje (H04) y corriente variable.
 - Secciones: 1) slalom de boyas; 2) lanchas que cruzan y dejan ola; 3) corriente fuerte junto al muelle (empuja hacia pilotes); 4) bajo los puentes, cruce del ferry (H28).
 - Power-ups: P01 x3, P03 x1.
@@ -83,7 +83,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W1-4 Mercado Flotante
 
-- Escena `L_W1_4_MercadoFlotante` · Oro 3:45 · Plata 5:15 · Checkpoints 4
+- Escena `N04_W1-4_MercadoFlotante` · Oro 3:45 · Plata 5:15 · Checkpoints 4
 - Mecánica nueva: power-ups especiales Locoto (P02) y Coco escudo (P04), y cadenas de toldos trampolín (H27).
 - Secciones: 1) pasillo de puestos con comida flotando; 2) cajas de cartón que se queman con locoto (atajo); 3) toldos trampolín que permiten saltar puestos; 4) puestos que se vuelcan al agua al pasar (H07 caen como obstáculo).
 - Power-ups: P01 x2, P02 x2, P03 x2, P04 x1.
@@ -92,7 +92,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W1-5 Persecución en el Puerto (JEFE)
 
-- Escena `L_W1_5_PuertoJefe` · Oro 4:00 · Plata 5:40 · Checkpoints 4
+- Escena `N05_W1-5_PuertoJefe` · Oro 4:00 · Plata 5:40 · Checkpoints 4
 - Mecánica nueva: persecución (H24 grúa con gancho) + obstáculos móviles grandes (H05).
 - Secciones: 1) la grúa aparece y baja el gancho 3 veces (sombra roja avisa 1 s antes); 2) pasillos de contenedores que se deslizan; 3) plataforma que se hunde (hay que salir antes de 6 s); 4) sprint final hacia la rampa del barco de carga mientras el gancho ataca cada 2 s.
 - Power-ups: P01 x3, P04 x2.
@@ -104,7 +104,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W2-1 Cajas a la Deriva
 
-- Escena `L_W2_1_CajasDeriva` · Oro 3:30 · Plata 4:55 · Checkpoints 4
+- Escena `N06_W2-1_CajasDeriva` · Oro 3:30 · Plata 4:55 · Checkpoints 4
 - Mecánica nueva: obstáculos rompibles (H07) y barriles explosivos (H06). Primer nivel sin paredes: límites con boyas y corriente que devuelve.
 - Secciones: 1) campo de cajas flotantes; 2) barriles con mecha (explotan 1.5 s después de tocarlos); 3) pasillo entre redes de pesca (atrapan y frenan); 4) montaña de cajas que se derrumba.
 - Power-ups: P01 x3, P02 x1, P04 x1.
@@ -113,7 +113,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W2-2 La Tormenta
 
-- Escena `L_W2_2_Tormenta` · Oro 3:45 · Plata 5:15 · Checkpoints 4
+- Escena `N07_W2-2_Tormenta` · Oro 3:45 · Plata 5:15 · Checkpoints 4
 - Mecánica nueva: viento lateral por ráfagas (H08) con indicador 1 s antes.
 - Secciones: 1) lluvia y olas grandes; 2) ráfagas alternas izquierda/derecha; 3) rayos que iluminan rocas ocultas; 4) faro como guía final; ola gigante surfeable.
 - Power-ups: P01 x3, P03 x2.
@@ -122,7 +122,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W2-3 Cementerio de Barcos
 
-- Escena `L_W2_3_CementerioBarcos` · Oro 4:00 · Plata 5:40 · Checkpoints 4
+- Escena `N08_W2-3_CementerioBarcos` · Oro 4:00 · Plata 5:40 · Checkpoints 4
 - Mecánica nueva: anclas (`Anchor`) para el Cuello Gancho de Melman. Sin Melman, las curvas se hacen con puntería y toques.
 - Secciones: 1) pasillos entre cascos hundidos; 2) mástiles con ancla en curvas de 180°; 3) bodega inundada (techo bajo, oscuro parcial); 4) salida entre dos barcos que se juntan lentamente.
 - Power-ups: P01 x3, P04 x1.
@@ -131,7 +131,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W2-4 El Gran Remolino
 
-- Escena `L_W2_4_GranRemolino` · Oro 4:00 · Plata 5:40 · Checkpoints 4
+- Escena `N09_W2-4_GranRemolino` · Oro 4:00 · Plata 5:40 · Checkpoints 4
 - Mecánica nueva: remolinos (H09).
 - Secciones: 1) remolino pequeño de práctica; 2) slalom entre dos remolinos; 3) cadena de 3 remolinos con corrientes cruzadas; 4) el gran remolino central (radio 15 m).
 - Power-ups: P01 x3, P03 x1.
@@ -140,7 +140,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W2-5 Arrecife de Coral (JEFE)
 
-- Escena `L_W2_5_ArrecifeJefe` · Oro 4:30 · Plata 6:20 · Checkpoints 4
+- Escena `N10_W2-5_ArrecifeJefe` · Oro 4:30 · Plata 6:20 · Checkpoints 4
 - Mecánica nueva: pinchos (H10) + jefe Tentáculos (H25) que golpean en patrón.
 - Secciones: 1) pasillos de coral con pinchos; 2) fase 1 del jefe: 2 tentáculos, golpes cada 3 s; 3) fase 2: 4 tentáculos, cada 2 s; 4) fase 3: pasillo final, cada 1.5 s.
 - Power-ups: P01 x3, P04 x3.
@@ -152,7 +152,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W3-1 Playa de Llegada
 
-- Escena `L_W3_1_PlayaLlegada` · Oro 3:30 · Plata 4:55 · Checkpoints 3
+- Escena `N11_W3-1_PlayaLlegada` · Oro 3:30 · Plata 4:55 · Checkpoints 3
 - Mecánica nueva: bancos de arena (H11): por debajo de 3 m/s la balsa encalla 2 s.
 - Secciones: 1) aguas poco profundas; 2) cangrejos (H29) que roban gas; 3) entrada al río montando una ola de marea.
 - Power-ups: P01 x3, P03 x1.
@@ -161,7 +161,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W3-2 Río de Lianas
 
-- Escena `L_W3_2_RioLianas` · Oro 3:45 · Plata 5:15 · Checkpoints 4
+- Escena `N12_W3-2_RioLianas` · Oro 3:45 · Plata 5:15 · Checkpoints 4
 - Mecánica nueva: lianas que bloquean (H12), se queman con locoto (P02); troncos giratorios (H13).
 - Secciones: 1) río cubierto de vegetación; 2) cortinas de lianas (ruta normal más larga o atajo quemando); 3) troncos giratorios; 4) túnel de lianas en llamas.
 - Power-ups: P01 x3, P02 x3.
@@ -170,7 +170,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W3-3 Territorio de las Fosas
 
-- Escena `L_W3_3_TerritorioFosas` · Oro 4:00 · Plata 5:40 · Checkpoints 4
+- Escena `N13_W3-3_TerritorioFosas` · Oro 4:00 · Plata 5:40 · Checkpoints 4
 - Mecánica nueva: fauna que tira animales al agua (H14 fosas) y rescate.
 - Secciones: 1) orillas altas con fosas que saltan (aviso: arbustos se mueven 1 s antes); 2) puentes de raíces; 3) emboscada en grupo (agarrarse y empujar por turnos); 4) cascada de salida.
 - Power-ups: P01 x3, P04 x1.
@@ -179,7 +179,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W3-4 Pantano de los Cocodrilos
 
-- Escena `L_W3_4_PantanoCocodrilos` · Oro 4:15 · Plata 6:00 · Checkpoints 4
+- Escena `N14_W3-4_PantanoCocodrilos` · Oro 4:15 · Plata 6:00 · Checkpoints 4
 - Mecánica nueva: cocodrilos (H15) que muerden cámaras; cebolla (P06) que ahuyenta fauna.
 - Secciones: 1) pantano con nenúfares; 2) cocodrilos dormidos que despiertan con ruido (pedos fuertes cerca); 3) pasaje en silencio (solo toques); 4) estampida de cocodrilos.
 - Power-ups: P01 x3, P04 x2, P06 x2.
@@ -188,7 +188,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W3-5 La Gran Fiesta Lémur (JEFE)
 
-- Escena `L_W3_5_FiestaLemurJefe` · Oro 4:30 · Plata 6:20 · Checkpoints 4
+- Escena `N15_W3-5_FiestaLemurJefe` · Oro 4:30 · Plata 6:20 · Checkpoints 4
 - Mecánica nueva: obstáculos rítmicos (H16) a 110 BPM. Pedo en el pulso (±0.1 s) = cuenta como sync y suma medidor.
 - Secciones: 1) entrada con tambores; 2) plataformas y chorros al ritmo; 3) cambio de canción a 128 BPM a mitad del nivel; 4) escenario final con lluvia de confeti.
 - Power-ups: P01 x3, P03 x2.
@@ -200,7 +200,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W4-1 Cascadas Escalonadas
 
-- Escena `L_W4_1_CascadasEscalonadas` · Oro 4:00 · Plata 5:40 · Checkpoints 4
+- Escena `N16_W4-1_CascadasEscalonadas` · Oro 4:00 · Plata 5:40 · Checkpoints 4
 - Mecánica nueva: caídas (H17): alinear antes del borde; aterrizar torcido hace rebotar.
 - Secciones: 1) 3 cascadas pequeñas; 2) pozas con corriente circular; 3) cascada doble con elección de lado; 4) cascada de 20 m.
 - Power-ups: P01 x3, P04 x1.
@@ -209,7 +209,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W4-2 Cueva de Cristal
 
-- Escena `L_W4_2_CuevaCristal` · Oro 4:15 · Plata 6:00 · Checkpoints 4
+- Escena `N17_W4-2_CuevaCristal` · Oro 4:15 · Plata 6:00 · Checkpoints 4
 - Mecánica nueva: oscuridad (H18). Luciérnagas iluminan zonas; Melman avisa antes.
 - Secciones: 1) entrada con luciérnagas; 2) cristales con pinchos (H10); 3) bifurcaciones sin luz; 4) las luciérnagas se apagan 20 s.
 - Power-ups: P01 x3, P04 x2.
@@ -218,7 +218,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W4-3 Géiseres de Vapor
 
-- Escena `L_W4_3_GeiseresVapor` · Oro 4:30 · Plata 6:20 · Checkpoints 4
+- Escena `N18_W4-3_GeiseresVapor` · Oro 4:30 · Plata 6:20 · Checkpoints 4
 - Mecánica nueva: géiseres (H19) y control en el aire.
 - Secciones: 1) géiseres como trampolín; 2) aterrizajes en pozas; 3) cadena de 3 géiseres sin tocar agua; 4) abismo de 10 m que exige Súper Pedo (rampa de despegue; géiser de gas dorado H36 justo antes que llena el medidor; puente de boyas si el equipo cae 2 veces).
 - Power-ups: P01 x3, P03 x2.
@@ -227,7 +227,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W4-4 Río Subterráneo
 
-- Escena `L_W4_4_RioSubterraneo` · Oro 4:30 · Plata 6:20 · Checkpoints 4
+- Escena `N19_W4-4_RioSubterraneo` · Oro 4:30 · Plata 6:20 · Checkpoints 4
 - Mecánica nueva: corrientes cruzadas (H31) y gaseosa (P05) para flotar sobre pinchos bajos; murciélagos (H26).
 - Secciones: 1) canales con dos corrientes que chocan; 2) campo de pinchos bajos (gaseosa o rodeo largo); 3) colonia de murciélagos; 4) salida por una grieta iluminada.
 - Power-ups: P01 x3, P05 x3, P06 x1.
@@ -236,7 +236,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W4-5 Corazón del Volcán (JEFE)
 
-- Escena `L_W4_5_VolcanJefe` · Oro 5:00 · Plata 7:00 · Checkpoints 5
+- Escena `N20_W4-5_VolcanJefe` · Oro 5:00 · Plata 7:00 · Checkpoints 5
 - Mecánica nueva: rocas que caen (H20) con sombra de aviso; escape contrarreloj (el techo se derrumba detrás).
 - Secciones: 1) río subterráneo con temblores; 2) rocas cayendo en patrón; 3) derrumbe que persigue (si alcanza la balsa, reaparición); 4) salida por la grieta del volcán con géiser final.
 - Power-ups: P01 x4, P04 x3.
@@ -248,7 +248,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W5-1 Rápidos del Cañón
 
-- Escena `L_W5_1_RapidosCanon` · Oro 4:00 · Plata 5:40 · Checkpoints 4
+- Escena `N21_W5-1_RapidosCanon` · Oro 4:00 · Plata 5:40 · Checkpoints 4
 - Mecánica nueva: rápidos (H21): corriente fuerte con rocas en el cauce.
 - Secciones: 1) entrada tranquila; 2) rápidos clase 1; 3) rápidos clase 2 con rocas; 4) el rápido más largo del juego.
 - Power-ups: P01 x3, P04 x2.
@@ -259,7 +259,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W5-2 Rampas del Abismo
 
-- Escena `L_W5_2_RampasAbismo` · Oro 4:30 · Plata 6:20 · Checkpoints 4
+- Escena `N22_W5-2_RampasAbismo` · Oro 4:30 · Plata 6:20 · Checkpoints 4
 - Mecánica nueva: abismos (H22) que exigen Súper Pedo; rampas de salto.
 - Secciones: 1) rampas pequeñas; 2) plataformas flotantes; 3) puentes rotos: dos huecos cortos de 4.5 m que se saltan con la rampa (sube 1.5 m en 8 m) y velocidad, sin Súper Pedo, con el tablero roto colgando encima; 4) el gran salto de 18 m (Súper Pedo obligatorio; el géiser de gas dorado H36 justo antes carga el medidor; puente de boyas tras 2 caídas).
 - Power-ups: P01 x3, P03 x3.
@@ -268,7 +268,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W5-3 Laberinto de Manglares
 
-- Escena `L_W5_3_LaberintoManglares` · Oro 5:00 · Plata 7:00 · Checkpoints 5
+- Escena `N23_W5-3_LaberintoManglares` · Oro 5:00 · Plata 7:00 · Checkpoints 5
 - Mecánica nueva: rutas alternativas: segura, rápida y la de mangos dorados; atajo secreto.
 - Secciones: 1) primera bifurcación triple; 2) raíces como anclas; 3) zona de niebla; 4) reunión de rutas y salida.
 - Power-ups: P01 x4, P02 x2, P06 x1.
@@ -277,7 +277,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W5-4 La Represa
 
-- Escena `L_W5_4_Represa` · Oro 4:45 · Plata 6:40 · Checkpoints 4
+- Escena `N24_W5-4_Represa` · Oro 4:45 · Plata 6:40 · Checkpoints 4
 - Mecánica nueva: compuertas gigantes que liberan oleadas: subir con la ola o esperar.
 - Secciones: 1) canal de la represa; 2) esclusas que suben y bajan el nivel del agua; 3) compuertas gigantes; 4) caída por el aliviadero.
 - Power-ups: P01 x3, P04 x2.
@@ -286,7 +286,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W5-5 El Megatobogán Final (JEFE)
 
-- Escena `L_W5_5_MegatoboganJefe` · Oro 6:00 · Plata 8:25 · Checkpoints 6
+- Escena `N25_W5-5_MegatoboganJefe` · Oro 6:00 · Plata 8:25 · Checkpoints 6
 - Mecánica nueva: todo combinado + cocodrilo gigante perseguidor (H23).
 - Secciones: 1) salida en la montaña; 2) curvas peraltadas; 3) túnel oscuro; 4) géiseres y rampa; 5) el cocodrilo muerde la cola del tobogán; 6) llegada al mar y al barco.
 - Power-ups: P01 x5, P04 x3, P03 x2.
@@ -299,7 +299,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W6-1 Fiesta en Espejo
 
-- Escena `L_W6_1_FiestaEspejo` · Oro 4:30 · Plata 6:20 · Checkpoints 4
+- Escena `N26_W6-1_FiestaEspejo` · Oro 4:30 · Plata 6:20 · Checkpoints 4
 - Remix: tramos de W1 y W3 en espejo (el puerto gira a la izquierda y la selva a la derecha), con obstáculos rítmicos (120 BPM).
 - Secciones: 1) puerto en espejo (compuertas H03, tambores); 2) selva en espejo (fosas H14, barras rítmicas); 3) ritmo (barras H16, chorros, tambores); 4) escenario del DJ.
 - Power-ups: P01 x6, P04 x2, P03 x1.
@@ -310,7 +310,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W6-2 Noche sin Luz
 
-- Escena `L_W6_2_NocheSinLuz` · Oro 4:45 · Plata 6:40 · Checkpoints 4
+- Escena `N27_W6-2_NocheSinLuz` · Oro 4:45 · Plata 6:40 · Checkpoints 4
 - Remix: oscuridad casi total (visibilidad de 6 m en todo el nivel) con luciérnagas móviles (`FireflyDrift`) + fosas + remolinos.
 - Secciones: 1) entrada a oscuras con la luciérnaga gigante; 2) fosas H14; 3) tres remolinos H09; 4) cueva y salida.
 - Power-ups: P01 x7, P04 x2, P05 x1, P06 x1.
@@ -319,7 +319,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W6-3 Todo a Contracorriente
 
-- Escena `L_W6_3_Contracorriente` · Oro 5:00 · Plata 7:00 · Checkpoints 5
+- Escena `N28_W6-3_Contracorriente` · Oro 5:00 · Plata 7:00 · Checkpoints 5
 - Remix: la corriente va en contra todo el nivel (-0.7 m/s²; los remansos la anulan); exige ráfagas sincronizadas y gestión de gas (frijoles frecuentes).
 - Secciones: 1) contra la corriente con un remanso; 2) rápidos H21 en contra; 3) tres compuertas temporizadas; 4) cascada; 5) final.
 - Power-ups: P01 x9, P04 x3, P03 x1.
@@ -328,7 +328,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W6-4 Lluvia de Cocos
 
-- Escena `L_W6_4_LluviaCocos` · Oro 5:00 · Plata 7:00 · Checkpoints 4
+- Escena `N29_W6-4_LluviaCocos` · Oro 5:00 · Plata 7:00 · Checkpoints 4
 - Remix: cocos caen del cielo (H30) con sombra; cocodrilos y pinchos.
 - Secciones: 1) palmeral con cocos aislados; 2) el centro de la lluvia (dos lluvias que se cruzan); 3) cocodrilos dormidos, pinchos y lluvia suave; 4) aguacero final.
 - Power-ups: P01 x6, P04 x4.
@@ -337,7 +337,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W6-5 La Corona del Rey (JEFE FINAL SECRETO)
 
-- Escena `L_W6_5_CoronaReyJefe` · Oro 6:30 · Plata 9:10 · Checkpoints 6
+- Escena `N30_W6-5_CoronaRey` · Oro 6:30 · Plata 9:10 · Checkpoints 6
 - Remix: recorrido con un tramo de cada mundo, 2 Súper Pedos obligatorios (receta de abismo de W4-3: géiser dorado H36 30 m antes, rampa de despegue, marca SuperFart, puente de boyas tras 2 caídas) y final rítmico.
 - Secciones: 1) puerto (W1: compuertas); 2) tormenta (W2: remolinos); 3) selva (W3: fosas y cocodrilos); 4) cueva (W4: abismo de 15 m); 5) cañón (W5: rápidos y abismo de 18 m); 6) final rítmico (barras, chorros y tambores a 120 BPM) hasta el trono y la corona gigante.
 - Power-ups: P01 x11, P03 x4, P04 x3, P05 x1.

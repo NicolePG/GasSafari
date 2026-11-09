@@ -12,7 +12,7 @@ namespace GasSafari.Tests
         private const string LEVELS_FOLDER = "Assets/_Project/Data/Levels/";
         private const string WORLDS_FOLDER = "Assets/_Project/Data/Worlds/";
         private static readonly Regex SceneLine = new Regex(
-            @"^## (?<id>T-0|W\d-\d) .*\n\n- Escena `(?<scene>\w+)` · Oro (?<gm>\d+):(?<gs>\d\d) · Plata (?<sm>\d+):(?<ss>\d\d) · Checkpoints (?<cp>\d+)",
+            @"^## (?<id>T-0|W\d-\d) .*\n\n- Escena `(?<scene>[\w-]+)` · Oro (?<gm>\d+):(?<gs>\d\d) · Plata (?<sm>\d+):(?<ss>\d\d) · Checkpoints (?<cp>\d+)",
             RegexOptions.Multiline);
 
         private static string DocText => File.ReadAllText("docs/04-niveles.md").Replace("\r\n", "\n");

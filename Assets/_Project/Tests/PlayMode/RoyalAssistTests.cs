@@ -16,7 +16,7 @@ namespace GasSafari.Tests
     // Ayuda Real (docs/06 §3): oferta tras 3 reapariciones en el mismo checkpoint, con tres ayudas.
     public class RoyalAssistTests
     {
-        private const string TEMPLATE = "Assets/_Project/Scenes/Levels/L_W1_1_FuentesZoo.unity";
+        private const string TEMPLATE = "Assets/_Project/Scenes/Juego/Niveles/N01_W1-1_FuentesZoo.unity";
 
         private GameObject sources;
         private CheckpointSystem checkpoints;
@@ -64,7 +64,7 @@ namespace GasSafari.Tests
                 Object.Destroy(avatar.gameObject);
             if (LevelManager.Current != null && LevelManager.Current.Raft != null)
                 Object.Destroy(LevelManager.Current.Raft.gameObject);
-            var scene = SceneManager.GetSceneByName("L_W1_1_FuentesZoo");
+            var scene = SceneManager.GetSceneByName("N01_W1-1_FuentesZoo");
             if (scene.IsValid())
                 yield return SceneManager.UnloadSceneAsync(scene);
         }

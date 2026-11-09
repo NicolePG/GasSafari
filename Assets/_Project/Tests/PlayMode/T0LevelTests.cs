@@ -12,7 +12,7 @@ namespace GasSafari.Tests
     // M5-01: la escena del T-0 tiene las 10 lecciones de docs/04 en orden, 10 checkpoints y el cartel de la 1 al empezar.
     public class T0LevelTests
     {
-        private const string SCENE = "L_T0_PiscinaZoo";
+        private const string SCENE = "N00_T0_PiscinaZoo";
 
         [UnityTest]
         public IEnumerator T0_HasTenLessonsInOrderAndShowsTheFirstCard()
@@ -22,7 +22,7 @@ namespace GasSafari.Tests
             var data = UnityEditor.AssetDatabase.LoadAssetAtPath<CharacterData>("Assets/_Project/Data/Characters/Alex.asset");
             Services.Session.AddPlayer(new PlayerSlot(0, Color.white, null, null) { Character = data });
             var op = UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(
-                $"Assets/_Project/Scenes/Levels/{SCENE}.unity", new LoadSceneParameters(LoadSceneMode.Additive));
+                $"Assets/_Project/Scenes/Juego/Niveles/{SCENE}.unity", new LoadSceneParameters(LoadSceneMode.Additive));
             yield return op;
             yield return new WaitForSeconds(0.5f);
 
@@ -122,7 +122,7 @@ namespace GasSafari.Tests
             var data = UnityEditor.AssetDatabase.LoadAssetAtPath<CharacterData>("Assets/_Project/Data/Characters/Alex.asset");
             Services.Session.AddPlayer(new PlayerSlot(0, Color.white, null, null) { Character = data });
             var op = UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(
-                $"Assets/_Project/Scenes/Levels/{SCENE}.unity", new LoadSceneParameters(LoadSceneMode.Additive));
+                $"Assets/_Project/Scenes/Juego/Niveles/{SCENE}.unity", new LoadSceneParameters(LoadSceneMode.Additive));
             yield return op;
             // Cuenta atrás de la salida.
             float t = 0f;

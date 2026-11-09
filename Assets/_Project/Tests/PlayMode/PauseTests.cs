@@ -10,10 +10,10 @@ using UnityEngine.TestTools;
 
 namespace GasSafari.Tests
 {
-    // Pausa de docs/07 §4 dentro de _LevelTemplate.
+    // Pausa de docs/07 §4 dentro de TEST_LevelTemplate.
     public class PauseTests
     {
-        private const string TEMPLATE = "Assets/_Project/Scenes/Levels/_LevelTemplate.unity";
+        private const string TEMPLATE = "Assets/_Project/Scenes/Pruebas/TEST_LevelTemplate.unity";
 
         private GameObject sources;
         private PauseController pause;
@@ -55,7 +55,7 @@ namespace GasSafari.Tests
                 Object.Destroy(avatar.gameObject);
             if (LevelManager.Current != null)
                 Object.Destroy(LevelManager.Current.Raft.gameObject);
-            yield return SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("_LevelTemplate"));
+            yield return SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("TEST_LevelTemplate"));
         }
 
         [UnityTest]

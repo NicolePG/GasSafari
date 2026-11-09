@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: W2-3
   m_EditorClassIdentifier: 
   id: W2-3
-  sceneName: L_W2_3_CementerioBarcos
+  sceneName: N08_W2-3_CementerioBarcos
   world: {fileID: 11400000, guid: 7a5cb2de31eda314d901a8d48f53c3fb, type: 2}
   orderInWorld: 3
   goldTime: 240
