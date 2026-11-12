@@ -31,6 +31,8 @@ namespace GasSafari.Level
             var raftObject = Instantiate(raftPrefab, startGate.Position, startGate.Rotation);
             Progression.CosmeticsApplier.ApplyRaft(raftObject);
             Raft = raftObject.GetComponent<RaftController>();
+            if (raftObject.GetComponent<RaftWake>() == null)
+                raftObject.AddComponent<RaftWake>();
             var seats = raftObject.GetComponent<RaftSeats>();
 
             avatars.Clear();

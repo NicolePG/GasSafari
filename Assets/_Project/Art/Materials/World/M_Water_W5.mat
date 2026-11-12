@@ -25,16 +25,28 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _DepthMax: 3
+    - _DepthMax: 2.2
     - _FlowSpeed: 0.15
     - _FoamScale: 2.5
-    - _FoamWidth: 0.4
+    - _FoamWidth: 0.18
+    - _FresnelStrength: 0.25
+    - _NormalStrength: 0.22
+    - _RippleScale: 0.8
+    - _RippleSpeed: 0.6
+    - _RippleStrength: 0.3
+    - _SparkleDensity: 0.03
+    - _SparkleScale: 2.2
+    - _SpecPower: 90
+    - _SpecStrength: 1.4
     - _WaveHeight: 0.08
     - _WaveLength: 6
     - _WaveSpeed: 1
     m_Colors:
-    - _DeepColor: {r: 0.5, g: 0.2, b: 0.1, a: 0.95}
+    - _DeepColor: {r: 0, g: 0.4, b: 0.6, a: 0.97}
     - _FlowDir: {r: 0, g: 1, b: 0, a: 0}
-    - _FoamColor: {r: 1, g: 0.92, b: 0.75, a: 1}
-    - _ShallowColor: {r: 0.98, g: 0.64, b: 0.18, a: 0.8}
+    - _FoamColor: {r: 1, g: 1, b: 0.95, a: 1}
+    - _GlintColor: {r: 2.2, g: 2, b: 1.6, a: 1}
+    - _RippleColor: {r: 0.55, g: 1, b: 0.95, a: 1}
+    - _ShallowColor: {r: 0.04, g: 0.86, b: 0.86, a: 0.92}
+    - _SkyColor: {r: 1, g: 0.7, b: 0.5, a: 1}
   m_BuildTextureStacks: []
