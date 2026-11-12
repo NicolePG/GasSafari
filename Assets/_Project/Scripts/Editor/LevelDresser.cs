@@ -253,6 +253,8 @@ namespace GasSafari.Editor
                 Ground(level, theme, root.transform);
             Banks(level, theme, seed, root.transform);
             Landmark(theme, landmark, landmarkYaw, root.transform);
+            // Pulido visual: agua del mundo con cinta de corriente, cielo con nubes, niebla y fondos por capas.
+            LevelVisualPass.Apply(level.Scene, theme.World, theme.World == 2 && theme.FogEnd < 200f);
             foreach (var t in root.GetComponentsInChildren<Transform>(true))
             {
                 if (t.GetComponent<Spinner>() == null && t.GetComponentInParent<Spinner>() == null)

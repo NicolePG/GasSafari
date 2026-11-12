@@ -15,6 +15,8 @@ namespace GasSafari.Hazards
     public class DarkZone : MonoBehaviour
     {
         public const float FADE_SECONDS = 1.5f;
+        // El cielo (SG_SkyClouds) se oscurece con la zona: la niebla negra ya no deja siluetas contra un cielo claro.
+        private static readonly int SkyDark = Shader.PropertyToID("_GS_SkyDark");
         private const float AMBIENT_AT_BLACKOUT = 0.2f;
 
         [SerializeField] private float visibility = 6f;
@@ -108,6 +110,7 @@ namespace GasSafari.Hazards
             RenderSettings.fogColor = Color.black;
             RenderSettings.fogStartDistance = 0f;
             RenderSettings.fogEndDistance = visibility;
+            Shader.SetGlobalFloat(SkyDark, 1f);
             if (blackoutSeconds > 0f && !blackoutActive)
             {
                 blackoutActive = true;
@@ -172,6 +175,7 @@ namespace GasSafari.Hazards
             if (--occupied > 0)
                 return;
             occupied = 0;
+            Shader.SetGlobalFloat(SkyDark, 0f);
             RenderSettings.fog = savedFog;
             RenderSettings.fogMode = savedMode;
             RenderSettings.fogColor = savedColor;

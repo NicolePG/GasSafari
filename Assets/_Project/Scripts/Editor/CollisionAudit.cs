@@ -179,7 +179,8 @@ namespace GasSafari.Editor
                 if (n == "BoyaRoja" || n.StartsWith("Luciernaga"))
                     return true;
                 if (n == "Ground" || n == "Banks" || n == "Acera" || n.StartsWith("Water") || n == "Sky" || n == "Art"
-                    || n == "Decor" || n == "Mangos" || n == "PowerUps" || n.StartsWith("Cloud") || n.StartsWith("Fog") || n.StartsWith("Rain") || n == "Backdrop")
+                    || n == "Decor" || n == "Mangos" || n == "PowerUps" || n.StartsWith("Cloud") || n.StartsWith("Fog") || n.StartsWith("Rain") || n == "Backdrop"
+                    || n == "VisualPass") // fondos por capas y cinta de corriente: lejos del cauce y sin colliders a propósito
                     return true;
             }
             return false;
