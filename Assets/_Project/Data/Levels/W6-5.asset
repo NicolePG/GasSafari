@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N30_W6-5_CoronaRey
   world: {fileID: 11400000, guid: 9b6dea01fe91300418f8d9d65804331f, type: 2}
   orderInWorld: 5
-  goldTime: 390
-  silverTime: 550
+  goldTime: 360
+  silverTime: 505
   mangoCount: 3
   checkpointCount: 6
   isBoss: 1

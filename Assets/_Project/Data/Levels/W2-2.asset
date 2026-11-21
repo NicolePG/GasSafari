@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N07_W2-2_Tormenta
   world: {fileID: 11400000, guid: 7a5cb2de31eda314d901a8d48f53c3fb, type: 2}
   orderInWorld: 2
-  goldTime: 225
-  silverTime: 315
+  goldTime: 200
+  silverTime: 280
   mangoCount: 3
   checkpointCount: 4
   isBoss: 0

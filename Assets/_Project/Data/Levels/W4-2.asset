@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N17_W4-2_CuevaCristal
   world: {fileID: 11400000, guid: 8f60f5b27aa2a424095c9134e789a740, type: 2}
   orderInWorld: 2
-  goldTime: 255
-  silverTime: 360
+  goldTime: 190
+  silverTime: 270
   mangoCount: 3
   checkpointCount: 4
   isBoss: 0

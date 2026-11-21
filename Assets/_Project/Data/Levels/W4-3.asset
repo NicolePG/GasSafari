@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N18_W4-3_GeiseresVapor
   world: {fileID: 11400000, guid: 8f60f5b27aa2a424095c9134e789a740, type: 2}
   orderInWorld: 3
-  goldTime: 270
-  silverTime: 380
+  goldTime: 135
+  silverTime: 190
   mangoCount: 3
   checkpointCount: 4
   isBoss: 0

@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N06_W2-1_CajasDeriva
   world: {fileID: 11400000, guid: 7a5cb2de31eda314d901a8d48f53c3fb, type: 2}
   orderInWorld: 1
-  goldTime: 210
-  silverTime: 295
+  goldTime: 290
+  silverTime: 410
   mangoCount: 3
   checkpointCount: 4
   isBoss: 0

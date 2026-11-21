@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N26_W6-1_FiestaEspejo
   world: {fileID: 11400000, guid: 9b6dea01fe91300418f8d9d65804331f, type: 2}
   orderInWorld: 1
-  goldTime: 270
-  silverTime: 380
+  goldTime: 190
+  silverTime: 270
   mangoCount: 3
   checkpointCount: 4
   isBoss: 0

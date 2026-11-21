@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N23_W5-3_LaberintoManglares
   world: {fileID: 11400000, guid: 0a1894024f02f864e8cbf94065433908, type: 2}
   orderInWorld: 3
-  goldTime: 300
-  silverTime: 420
+  goldTime: 360
+  silverTime: 505
   mangoCount: 3
   checkpointCount: 5
   isBoss: 0

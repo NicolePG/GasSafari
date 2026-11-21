@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N10_W2-5_ArrecifeJefe
   world: {fileID: 11400000, guid: 7a5cb2de31eda314d901a8d48f53c3fb, type: 2}
   orderInWorld: 5
-  goldTime: 270
-  silverTime: 380
+  goldTime: 390
+  silverTime: 550
   mangoCount: 3
   checkpointCount: 4
   isBoss: 1
