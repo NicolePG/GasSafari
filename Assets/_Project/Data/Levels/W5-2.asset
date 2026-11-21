@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N22_W5-2_RampasAbismo
   world: {fileID: 11400000, guid: 0a1894024f02f864e8cbf94065433908, type: 2}
   orderInWorld: 2
-  goldTime: 360
-  silverTime: 505
+  goldTime: 305
+  silverTime: 430
   mangoCount: 3
   checkpointCount: 4
   isBoss: 0

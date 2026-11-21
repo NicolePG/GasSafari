@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N11_W3-1_PlayaLlegada
   world: {fileID: 11400000, guid: 0f5391bdd06dc9147be393562fde8c49, type: 2}
   orderInWorld: 1
-  goldTime: 180
-  silverTime: 255
+  goldTime: 175
+  silverTime: 245
   mangoCount: 3
   checkpointCount: 3
   isBoss: 0

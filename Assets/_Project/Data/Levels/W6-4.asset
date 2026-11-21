@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N29_W6-4_LluviaCocos
   world: {fileID: 11400000, guid: 9b6dea01fe91300418f8d9d65804331f, type: 2}
   orderInWorld: 4
-  goldTime: 200
-  silverTime: 280
+  goldTime: 205
+  silverTime: 290
   mangoCount: 3
   checkpointCount: 4
   isBoss: 0

@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N20_W4-5_VolcanJefe
   world: {fileID: 11400000, guid: 8f60f5b27aa2a424095c9134e789a740, type: 2}
   orderInWorld: 5
-  goldTime: 155
-  silverTime: 220
+  goldTime: 165
+  silverTime: 235
   mangoCount: 3
   checkpointCount: 5
   isBoss: 1

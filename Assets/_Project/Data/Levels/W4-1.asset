@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N16_W4-1_CascadasEscalonadas
   world: {fileID: 11400000, guid: 8f60f5b27aa2a424095c9134e789a740, type: 2}
   orderInWorld: 1
-  goldTime: 180
-  silverTime: 255
+  goldTime: 170
+  silverTime: 240
   mangoCount: 3
   checkpointCount: 4
   isBoss: 0

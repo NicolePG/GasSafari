@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N28_W6-3_Contracorriente
   world: {fileID: 11400000, guid: 9b6dea01fe91300418f8d9d65804331f, type: 2}
   orderInWorld: 3
-  goldTime: 380
-  silverTime: 535
+  goldTime: 445
+  silverTime: 625
   mangoCount: 3
   checkpointCount: 5
   isBoss: 0

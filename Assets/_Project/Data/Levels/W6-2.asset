@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N27_W6-2_NocheSinLuz
   world: {fileID: 11400000, guid: 9b6dea01fe91300418f8d9d65804331f, type: 2}
   orderInWorld: 2
-  goldTime: 315
-  silverTime: 445
+  goldTime: 265
+  silverTime: 375
   mangoCount: 3
   checkpointCount: 4
   isBoss: 0

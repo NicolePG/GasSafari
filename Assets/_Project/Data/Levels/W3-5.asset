@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N15_W3-5_FiestaLemurJefe
   world: {fileID: 11400000, guid: 0f5391bdd06dc9147be393562fde8c49, type: 2}
   orderInWorld: 5
-  goldTime: 160
-  silverTime: 225
+  goldTime: 165
+  silverTime: 235
   mangoCount: 3
   checkpointCount: 4
   isBoss: 1

@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N13_W3-3_TerritorioFosas
   world: {fileID: 11400000, guid: 0f5391bdd06dc9147be393562fde8c49, type: 2}
   orderInWorld: 3
-  goldTime: 170
-  silverTime: 240
+  goldTime: 175
+  silverTime: 245
   mangoCount: 3
   checkpointCount: 4
   isBoss: 0

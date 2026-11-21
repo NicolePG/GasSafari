@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N08_W2-3_CementerioBarcos
   world: {fileID: 11400000, guid: 7a5cb2de31eda314d901a8d48f53c3fb, type: 2}
   orderInWorld: 3
-  goldTime: 220
-  silverTime: 310
+  goldTime: 225
+  silverTime: 315
   mangoCount: 3
   checkpointCount: 4
   isBoss: 0

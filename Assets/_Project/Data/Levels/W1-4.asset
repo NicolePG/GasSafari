@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N04_W1-4_MercadoFlotante
   world: {fileID: 11400000, guid: d2aebf93b7238ff43bea309d15bb3673, type: 2}
   orderInWorld: 4
-  goldTime: 260
-  silverTime: 365
+  goldTime: 285
+  silverTime: 400
   mangoCount: 3
   checkpointCount: 4
   isBoss: 0

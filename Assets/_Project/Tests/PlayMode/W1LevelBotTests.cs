@@ -23,49 +23,49 @@ namespace GasSafari.Tests
         [UnityTest, Timeout(600000)]
         public IEnumerator W1_1_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N01_W1-1_FuentesZoo", "W1-1", 410f * 1.3f);
+            yield return RunLevel("N01_W1-1_FuentesZoo", "W1-1", 445f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W1_2_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N02_W1-2_Alcantarillas", "W1-2", 315f * 1.3f);
+            yield return RunLevel("N02_W1-2_Alcantarillas", "W1-2", 310f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W1_3_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N03_W1-3_RioCiudad", "W1-3", 365f * 1.3f);
+            yield return RunLevel("N03_W1-3_RioCiudad", "W1-3", 360f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W1_4_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N04_W1-4_MercadoFlotante", "W1-4", 365f * 1.3f);
+            yield return RunLevel("N04_W1-4_MercadoFlotante", "W1-4", 400f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W1_5_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N05_W1-5_PuertoJefe", "W1-5", 410f * 1.3f);
+            yield return RunLevel("N05_W1-5_PuertoJefe", "W1-5", 420f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W2_1_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N06_W2-1_CajasDeriva", "W2-1", 410f * 1.3f);
+            yield return RunLevel("N06_W2-1_CajasDeriva", "W2-1", 435f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W2_2_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N07_W2-2_Tormenta", "W2-2", 280f * 1.3f);
+            yield return RunLevel("N07_W2-2_Tormenta", "W2-2", 295f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W2_3_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N08_W2-3_CementerioBarcos", "W2-3", 310f * 1.3f);
+            yield return RunLevel("N08_W2-3_CementerioBarcos", "W2-3", 315f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
@@ -77,43 +77,43 @@ namespace GasSafari.Tests
         [UnityTest, Timeout(600000)]
         public IEnumerator W2_5_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N10_W2-5_ArrecifeJefe", "W2-5", 550f * 1.3f);
+            yield return RunLevel("N10_W2-5_ArrecifeJefe", "W2-5", 485f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W3_1_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N11_W3-1_PlayaLlegada", "W3-1", 255f * 1.3f);
+            yield return RunLevel("N11_W3-1_PlayaLlegada", "W3-1", 245f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W3_2_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N12_W3-2_RioLianas", "W3-2", 375f * 1.3f);
+            yield return RunLevel("N12_W3-2_RioLianas", "W3-2", 330f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W3_3_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N13_W3-3_TerritorioFosas", "W3-3", 240f * 1.3f);
+            yield return RunLevel("N13_W3-3_TerritorioFosas", "W3-3", 245f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W3_4_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N14_W3-4_PantanoCocodrilos", "W3-4", 380f * 1.3f);
+            yield return RunLevel("N14_W3-4_PantanoCocodrilos", "W3-4", 365f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W3_5_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N15_W3-5_FiestaLemurJefe", "W3-5", 225f * 1.3f);
+            yield return RunLevel("N15_W3-5_FiestaLemurJefe", "W3-5", 235f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W4_1_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N16_W4-1_CascadasEscalonadas", "W4-1", 255f * 1.3f);
+            yield return RunLevel("N16_W4-1_CascadasEscalonadas", "W4-1", 240f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
@@ -131,37 +131,37 @@ namespace GasSafari.Tests
         [UnityTest, Timeout(600000)]
         public IEnumerator W4_4_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N19_W4-4_RioSubterraneo", "W4-4", 205f * 1.3f);
+            yield return RunLevel("N19_W4-4_RioSubterraneo", "W4-4", 235f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W4_5_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N20_W4-5_VolcanJefe", "W4-5", 220f * 1.3f);
+            yield return RunLevel("N20_W4-5_VolcanJefe", "W4-5", 235f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W5_1_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N21_W5-1_RapidosCanon", "W5-1", 290f * 1.3f);
+            yield return RunLevel("N21_W5-1_RapidosCanon", "W5-1", 245f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W5_2_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N22_W5-2_RampasAbismo", "W5-2", 505f * 1.3f);
+            yield return RunLevel("N22_W5-2_RampasAbismo", "W5-2", 430f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W5_3_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N23_W5-3_LaberintoManglares", "W5-3", 505f * 1.3f);
+            yield return RunLevel("N23_W5-3_LaberintoManglares", "W5-3", 490f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W5_4_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N24_W5-4_Represa", "W5-4", 220f * 1.3f);
+            yield return RunLevel("N24_W5-4_Represa", "W5-4", 235f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
@@ -193,31 +193,31 @@ namespace GasSafari.Tests
         [UnityTest, Timeout(600000)]
         public IEnumerator W6_1_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N26_W6-1_FiestaEspejo", "W6-1", 270f * 1.3f);
+            yield return RunLevel("N26_W6-1_FiestaEspejo", "W6-1", 290f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W6_2_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N27_W6-2_NocheSinLuz", "W6-2", 445f * 1.3f);
+            yield return RunLevel("N27_W6-2_NocheSinLuz", "W6-2", 375f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W6_3_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N28_W6-3_Contracorriente", "W6-3", 535f * 1.3f);
+            yield return RunLevel("N28_W6-3_Contracorriente", "W6-3", 625f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W6_4_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N29_W6-4_LluviaCocos", "W6-4", 280f * 1.3f);
+            yield return RunLevel("N29_W6-4_LluviaCocos", "W6-4", 290f * 1.3f);
         }
 
         [UnityTest, Timeout(600000)]
         public IEnumerator W6_5_FourBots_FinishUnderSilverTimes1Point3()
         {
-            yield return RunLevel("N30_W6-5_CoronaRey", "W6-5", 505f * 1.3f);
+            yield return RunLevel("N30_W6-5_CoronaRey", "W6-5", 575f * 1.3f);
         }
 
         private IEnumerator RunLevel(string scene, string id, float limit, string route = null)

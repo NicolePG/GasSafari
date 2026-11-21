@@ -16,8 +16,8 @@ MonoBehaviour:
   sceneName: N12_W3-2_RioLianas
   world: {fileID: 11400000, guid: 0f5391bdd06dc9147be393562fde8c49, type: 2}
   orderInWorld: 2
-  goldTime: 265
-  silverTime: 375
+  goldTime: 235
+  silverTime: 330
   mangoCount: 3
   checkpointCount: 4
   isBoss: 0
