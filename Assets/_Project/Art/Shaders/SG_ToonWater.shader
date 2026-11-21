@@ -9,6 +9,7 @@ Shader "GasSafari/SG_ToonWater"
         _ShallowColor("Color poco profundo", Color) = (0.36, 0.85, 0.85, 0.9)
         _DeepColor("Color profundo", Color) = (0.07, 0.35, 0.55, 0.97)
         _DepthMax("Profundidad del color profundo (m)", Float) = 3
+        _DeepMix("Mezcla máxima del color profundo", Range(0, 1)) = 1
         _FoamColor("Color espuma", Color) = (1, 1, 1, 1)
         _FoamWidth("Ancho de espuma (m)", Float) = 0.5
         _FoamScale("Escala del patrón de espuma", Float) = 2.5
@@ -55,6 +56,7 @@ Shader "GasSafari/SG_ToonWater"
                 half4 _ShallowColor;
                 half4 _DeepColor;
                 float _DepthMax;
+                half _DeepMix;
                 half4 _FoamColor;
                 float _FoamWidth;
                 float _FoamScale;
@@ -165,7 +167,7 @@ Shader "GasSafari/SG_ToonWater"
                 float surfaceDepth = IN.screenPos.w;
                 float depthDiff = max(sceneDepth - surfaceDepth, 0.0);
 
-                half4 water = lerp(_ShallowColor, _DeepColor, saturate(depthDiff / max(_DepthMax, 0.01)));
+                half4 water = lerp(_ShallowColor, _DeepColor, saturate(depthDiff / max(_DepthMax, 0.01)) * _DeepMix);
 
                 float2 p = IN.positionWS.xz;
                 float2 flow = normalize(_FlowDir.xy + 1e-5);

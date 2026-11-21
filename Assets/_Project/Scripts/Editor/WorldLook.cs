@@ -142,7 +142,8 @@ namespace GasSafari.Editor
             m.SetFloat("_SparkleDensity", look.SparkleDensity);
             m.SetFloat("_FresnelStrength", look.Fresnel);
             m.SetFloat("_FoamWidth", 0.18f);
-            m.SetFloat("_DepthMax", 2.2f);
+            m.SetFloat("_DeepMix", world == 2 ? 0.75f : 0.4f); // el agua nunca vira al azul profundo aunque el suelo quede lejos (tramos con desnivel)
+            m.SetFloat("_DepthMax", 6f); // con el suelo a 1.8 m el agua conserva su color poco profundo (turquesa), no vira al azul profundo
             m.SetFloat("_FlowSpeed", 0.15f);
             EditorUtility.SetDirty(m);
             return m;
@@ -179,6 +180,23 @@ namespace GasSafari.Editor
             m.SetFloat("_StarAmount", look.Stars);
             EditorUtility.SetDirty(m);
             return m;
+        }
+
+        // Rehace los materiales de agua, corriente y cielo de los 6 mundos sin abrir escenas (cuando solo cambian los valores).
+        [MenuItem("Gas Safari/Visual/Actualizar materiales de mundo")]
+        public static void UpdateAllMaterials()
+        {
+            for (int w = 1; w <= 6; w++)
+            {
+                bool sea = w == 2;
+                Water(w);
+                Flow(w, sea);
+                Sky(w);
+            }
+            Water(2, true);
+            Flow(2, true, true);
+            Sky(2, true);
+            AssetDatabase.SaveAssets();
         }
 
         // Material de la estela de la balsa: en Resources para que la balsa lo cargue en cualquier escena y la build incluya el shader.

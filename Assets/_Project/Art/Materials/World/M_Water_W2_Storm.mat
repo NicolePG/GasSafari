@@ -25,7 +25,8 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _DepthMax: 2.2
+    - _DeepMix: 0.75
+    - _DepthMax: 6
     - _FlowSpeed: 0.15
     - _FoamScale: 2.5
     - _FoamWidth: 0.18
