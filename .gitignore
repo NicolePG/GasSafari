@@ -119,3 +119,6 @@ Tools/Blender/previews/
 __pycache__/
 Tools/Audio/_packs/
 Screenshots/
+
+# Builds de Windows (cientos de MB)
+/Builds/
