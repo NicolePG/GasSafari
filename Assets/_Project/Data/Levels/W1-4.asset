@@ -19,7 +19,7 @@ MonoBehaviour:
   goldTime: 285
   silverTime: 400
   mangoCount: 3
-  checkpointCount: 4
+  checkpointCount: 5
   isBoss: 0
   showTimer: 1
   raceCompatible: 0

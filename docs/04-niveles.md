@@ -57,7 +57,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W1-1 Fuentes del Zoo
 
-- Escena `N01_W1-1_FuentesZoo` · Oro 5:15 · Plata 7:25 · Checkpoints 3
+- Escena `N01_W1-1_FuentesZoo` · Oro 5:15 · Plata 7:25 · Checkpoints 6
 - Mecánica nueva: giros con puntería en curvas cerradas.
 - Secciones: 1) canal ancho entre bancas (H01); 2) rotonda alrededor de una estatua (giro de 270°); 3) zigzag entre fuentes que empujan (chorros laterales suaves); 4) fuente central que lanza la balsa (H27).
 - Power-ups: P01 x3.
@@ -75,7 +75,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W1-3 Río de la Ciudad
 
-- Escena `N03_W1-3_RioCiudad` · Oro 4:15 · Plata 6:00 · Checkpoints 4
+- Escena `N03_W1-3_RioCiudad` · Oro 4:15 · Plata 6:00 · Checkpoints 5
 - Mecánica nueva: oleaje (H04) y corriente variable.
 - Secciones: 1) slalom de boyas; 2) lanchas que cruzan y dejan ola; 3) corriente fuerte junto al muelle (empuja hacia pilotes); 4) bajo los puentes, cruce del ferry (H28).
 - Power-ups: P01 x3, P03 x1.
@@ -84,7 +84,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W1-4 Mercado Flotante
 
-- Escena `N04_W1-4_MercadoFlotante` · Oro 4:45 · Plata 6:40 · Checkpoints 4
+- Escena `N04_W1-4_MercadoFlotante` · Oro 4:45 · Plata 6:40 · Checkpoints 5
 - Mecánica nueva: power-ups especiales Locoto (P02) y Coco escudo (P04), y cadenas de toldos trampolín (H27).
 - Secciones: 1) pasillo de puestos con comida flotando; 2) cajas de cartón que se queman con locoto (atajo); 3) toldos trampolín que permiten saltar puestos; 4) puestos que se vuelcan al agua al pasar (H07 caen como obstáculo).
 - Power-ups: P01 x2, P02 x2, P03 x2, P04 x1.
@@ -93,7 +93,7 @@ Cada jefe usa la versión `_boss` de la música del mundo.
 
 ## W1-5 Persecución en el Puerto (JEFE)
 
-- Escena `N05_W1-5_PuertoJefe` · Oro 5:00 · Plata 7:00 · Checkpoints 4
+- Escena `N05_W1-5_PuertoJefe` · Oro 5:00 · Plata 7:00 · Checkpoints 6
 - Mecánica nueva: persecución (H24 grúa con gancho) + obstáculos móviles grandes (H05).
 - Secciones: 1) la grúa aparece y baja el gancho 3 veces (sombra roja avisa 1 s antes); 2) pasillos de contenedores que se deslizan; 3) plataforma que se hunde (hay que salir antes de 6 s); 4) sprint final hacia la rampa del barco de carga mientras el gancho ataca cada 2 s.
 - Power-ups: P01 x3, P04 x2.

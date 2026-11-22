@@ -9,23 +9,21 @@ using UnityEngine.Splines;
 namespace GasSafari.Tests
 {
     // docs/04: checkpoint cada 70-190 m de recorrido (unos 20-40 s). level-reviewer encontró tramos fuera de rango; los
-    // corregidos quedan vigilados aquí. Excepciones: niveles largos cuyo número de checkpoints fija docs/04 (agregar
-    // checkpoints cambia el doc, LevelData y LevelSeedTable: decisión de diseño pendiente). Un nivel sale de la lista al arreglarse.
+    // corregidos quedan vigilados aquí. W1-1, W1-3, W1-4 y W1-5 tenían menos checkpoints de los necesarios y se agregaron en PV-11.
     public class CheckpointSpacingTests
     {
         private const float MIN = 59f; // W1-2 queda a 60 m entre la entrada y el primer checkpoint (aceptado en la revisión)
         private const float MAX = 191f;
         private const float MAX_TO_FINISH = 210f; // el último tramo incluye la recta de llegada (W2-1 208 m, W2-5 205 m)
-        private static readonly HashSet<string> PendingDesign = new HashSet<string> { "W1-1", "W1-3", "W1-4", "W1-5" };
 
         [Test]
-        public void Checkpoints_AreBetween60And190Metres_ExceptPendingLongLevels()
+        public void Checkpoints_AreBetween60And190Metres()
         {
             var problems = new List<string>();
             foreach (var name in CollisionAudit.Scenes)
             {
                 string id = System.Text.RegularExpressions.Regex.Match(name, @"N\d\d_(T0|W\d-\d)_").Groups[1].Value;
-                if (id == "T0" || PendingDesign.Contains(id))
+                if (id == "T0")
                     continue;
                 var scene = EditorSceneManager.OpenScene($"Assets/_Project/Scenes/Juego/Niveles/{name}.unity", OpenSceneMode.Single);
                 var container = Object.FindFirstObjectByType<SplineContainer>();

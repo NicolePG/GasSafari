@@ -54,8 +54,11 @@ namespace GasSafari.Editor
             level.Cylinder("Estatua", center, 14f, 6f, StatueColor);
             level.Mango(0, rotonda + 30f + 52f, -3.5f, 1f); // ruta: pegado a la estatua, a mitad de la rotonda
 
+            // Tramos de 150-180 m (docs/04: 60-190): uno a mitad del canal de bancas.
             level.AddCheckpoint(0f);
+            level.AddCheckpoint(150f);
             level.AddCheckpoint(rotonda);
+            level.AddCheckpoint(zigzag + 20f); // antes del primer chorro (zigzag + 25)
 
             // S3: zigzag entre fuentes que empujan hacia el centro; un chorro que eleva con el mango de riesgo.
             for (int i = 0; i < 8; i++)
@@ -71,6 +74,7 @@ namespace GasSafari.Editor
             level.Mango(1, zigzag + 165f, 0f, 1.2f); // riesgo: sobre un chorro, hay que dejarse elevar
 
             level.AddCheckpoint(fuente);
+            level.AddCheckpoint(fuente + 105f); // canal de salida, pasada la reja
 
             // S4: la fuente central lanza la balsa por encima de la reja hasta el canal de salida.
             level.PowerUp("P01", fuente + 10f, 0f);
@@ -261,6 +265,7 @@ namespace GasSafari.Editor
             level.AddCheckpoint(boats);
             level.AddCheckpoint(dock);
             level.AddCheckpoint(bridges);
+            level.AddCheckpoint(bridges + 135f); // entre el 2.º y el 3.er puente, tras el P01 (docs/04: tramos de 60-190 m)
 
             // S1: slalom de boyas alternadas y una ola H04 que se repite al final del tramo.
             for (int i = 0; i < 10; i++)
@@ -377,6 +382,7 @@ namespace GasSafari.Editor
             level.AddCheckpoint(fork - 30f);
             level.AddCheckpoint(awnings);
             level.AddCheckpoint(tips);
+            level.AddCheckpoint(tips + 123f); // entre el 4.º y el 5.º puesto que se vuelca (docs/04: tramos de 60-190 m)
 
             // S1: puestos en las dos orillas y comida flotando (decorado).
             var market = AssetDatabase.LoadAssetAtPath<GameObject>(ENV + "W1_MarketStall.fbx");
@@ -529,10 +535,13 @@ namespace GasSafari.Editor
             level.Section(2, "Contenedores", slide);
             level.Section(3, "Plataforma", sink);
             level.Section(4, "Sprint", sprint);
+            // docs/04: tramos de 60-190 m: uno a mitad de la grúa y otro a mitad del sprint.
             level.AddCheckpoint(0f);
+            level.AddCheckpoint(100f);
             level.AddCheckpoint(slide);
             level.AddCheckpoint(sink);
             level.AddCheckpoint(sprint);
+            level.AddCheckpoint(sprint + 105f);
 
             // La grúa (H24) espera en la orilla y sigue a la balsa por todo el puerto.
             var crane = level.Place(HZ + "H24_Crane.prefab", 25f, -14f, 90f).GetComponent<GasSafari.Hazards.CraneBoss>();
