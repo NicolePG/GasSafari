@@ -269,6 +269,26 @@ namespace GasSafari.Tests
                 Debug.Log($"W1BOT {id} REAPARECE desde ({p.x:F1},{p.y:F1},{p.z:F1}) checkpoint={checkpoints.CurrentIndex}");
             };
             checkpoints.RespawnStarted += respawning;
+            // Habilidades de Marty y Gloria junto a las marcas BotHint (PV-12): galope ante rampa o abismo, Panzazo en un remolino.
+            int gallops = 0, gallopsAtHint = 0, flops = 0, flopsAtHint = 0;
+            System.Action<PlayerAvatar, string> ability = (a, used) =>
+            {
+                var body = manager.Raft.Body;
+                var forward = body.velocity.sqrMagnitude > 1f ? body.velocity : manager.Raft.transform.forward;
+                if (used == "gallop")
+                {
+                    gallops++;
+                    if (BotHint.IsAhead(body.position, forward, 14f, BotHintType.Ramp) || BotHint.IsAhead(body.position, forward, 14f, BotHintType.Drop))
+                        gallopsAtHint++;
+                }
+                else if (used == "belly_flop")
+                {
+                    flops++;
+                    if (BotHint.IsInside(body.position, BotHintType.Whirlpool))
+                        flopsAtHint++;
+                }
+            };
+            GameEvents.OnAbilityUsed += ability;
 
             // Tiempo de juego x3: la física por paso no cambia y el límite se mide en tiempo de juego.
             // Por TimeController: así la cámara lenta del Súper Pedo no la devuelve a x1.
@@ -292,6 +312,8 @@ namespace GasSafari.Tests
             GameEvents.OnRaftCapsized -= capsized;
             GameEvents.OnChamberPopped -= popped;
             checkpoints.RespawnStarted -= respawning;
+            GameEvents.OnAbilityUsed -= ability;
+            Debug.Log($"W1BOT {id} habilidades galope={gallops} (ante marca {gallopsAtHint}) panzazo={flops} (en remolino marcado {flopsAtHint})");
 
             string csv = System.IO.Path.Combine(RaftHighSpeedTests.TelemetryFolder, $"bots_{id}.csv");
             telemetry.WriteCsv(csv);

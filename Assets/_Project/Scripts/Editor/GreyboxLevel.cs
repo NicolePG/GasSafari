@@ -702,6 +702,9 @@ namespace GasSafari.Editor
             manage.FindProperty("data").objectReferenceValue = data;
             manage.ApplyModifiedPropertiesWithoutUndo();
 
+            // Marcas BotHint de rampas, abismos y remolinos que el builder no puso (PV-12).
+            BotHintPass.Apply(Scene);
+
             // Todo lo creado durante la construcción (grupos, arte, momentos estrella...) pasa a _Generated.
             var generated = new GameObject(GENERATED_ROOT);
             SceneManager.MoveGameObjectToScene(generated, Scene);
