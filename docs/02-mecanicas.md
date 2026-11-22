@@ -129,15 +129,17 @@ Unidades: metros, segundos, kilogramos, newtons. Todos los valores viven en `Bal
 - Remapeo completo desde Opciones (Input System rebinding).
 
 ### Control doble (un mando, dos animales)
-Solo existe con mando, no con teclado. Para jugar solo con 2 animales o con otro jugador a mitad de mando.
-- **Animal A = mitad izquierda del mando:** stick izquierdo para moverse por el borde, LT pedo (toque o ráfaga), LB aguantar, X habilidad, L3 salto de Julien.
-- **Animal B = mitad derecha:** stick derecho, RT pedo, RB aguantar, Y habilidad, R3 salto de Julien.
-- **Puntería fija en 0 para los dos:** la balsa se gira disparando uno u otro animal.
-- **B / Círculo (mantener):** se agarran los dos.
-- **A / Cruz:** si alguno de los dos está en el agua, sube a la balsa; si no, es el Súper Pedo y cuenta como pulsado por los dos animales.
+Decisión provisional, pendiente de playtest (implementado en `DualHumanCommandSource`, pruebas `DualControlTests`; revisado 2026-11-22).
+Solo existe con mando, no con teclado. Para jugar solo con 2 animales o con otro jugador a mitad de mando. Se activa con `InputHub.EnableDualControl` (la selección de personajes aún no tiene el control para activarlo: pendiente); B ocupa el siguiente asiento trasero libre y se une como un jugador más, con su propio color. Si el dueño del mando sale, sale también B.
+- **Animal A = mitad izquierda del mando:** stick izquierdo para moverse por el borde (y para nadar), LT pedo (toque o ráfaga), LB aguantar, X habilidad, L3 salto de Julien.
+- **Animal B = mitad derecha:** stick derecho para moverse por el borde (y para nadar), RT pedo, RB aguantar, Y habilidad, R3 salto de Julien.
+- **Apuntar:** la puntería queda fija en 0 para los dos, también en el agua (el stick derecho ya mueve a B). La balsa se gira disparando uno u otro animal desde lados distintos.
+- **Agarrarse:** B / Círculo mantenido agarra a los dos a la vez; no hay forma de agarrar solo a uno.
+- **Súper Pedo:** A / Cruz mantenido es el botón de equipo de los dos animales: cuenta como pulsado por ambos (la potencia suma 2 de los jugadores a bordo, docs/02 §6). Si alguno de los dos está nadando, A / Cruz no lanza el Súper Pedo: sube a la balsa al que nada (o a los dos).
+- **Pings:** la cruceta da un solo ping por jugador, emitido por el animal A (aparece sobre A, con el color del jugador) y vale para los dos animales; el control doble cuenta como un jugador para la cuenta 3-2-1 de "¡Ahora!" (hacen falta 2 jugadores distintos). El ping automático "Sin gas" sigue saliendo de cada animal por separado.
 - Los pedos de A y B sí forman grupo de sincronía entre sí.
-- **Cruceta:** pings, un solo ping para el jugador (valen para los dos animales). **Start:** pausa.
-- B ocupa el siguiente asiento trasero libre (se une como un jugador más, con su propio color). Los bots compañeros usan la dificultad Normal (`BotConfig.dualControlSyncChance` = 0.75).
+- **Start:** pausa.
+- Los bots compañeros usan la dificultad Normal para la sincronía (`BotConfig.dualControlSyncChance` = 0.75).
 
 ## 14. Tabla maestra de balance (BalanceConfig)
 
