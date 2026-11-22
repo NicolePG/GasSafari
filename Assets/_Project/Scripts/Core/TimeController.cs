@@ -8,6 +8,7 @@ namespace GasSafari.Core
         private float baseFixedDeltaTime;
         private float slowTimer;
         private float slowScale = 1f;
+        private float baseScale = 1f;
         private bool paused;
 
         public bool IsSlowMotion => slowTimer > 0f;
@@ -16,6 +17,15 @@ namespace GasSafari.Core
         private void Awake()
         {
             baseFixedDeltaTime = Time.fixedDeltaTime;
+        }
+
+        // Velocidad normal del juego (1). Las pruebas de bots la suben para avanzar más rápido: se conserva tras la cámara
+        // lenta y la pausa (antes volvían a 1 y W6-5, con dos Súper Pedos, corría a tiempo real desde el primer abismo).
+        // El paso de física no cambia: cada paso simula lo mismo y solo hay más pasos por segundo real.
+        public void SetBaseScale(float scale)
+        {
+            baseScale = Mathf.Max(0.01f, scale);
+            SetScale(paused ? 0f : IsSlowMotion ? slowScale : 1f);
         }
 
         public void SlowMotion(float scale, float duration)
@@ -48,12 +58,13 @@ namespace GasSafari.Core
 
         private void OnDestroy()
         {
+            baseScale = 1f;
             SetScale(1f);
         }
 
         private void SetScale(float scale)
         {
-            Time.timeScale = scale;
+            Time.timeScale = scale * baseScale;
             Time.fixedDeltaTime = baseFixedDeltaTime * scale;
         }
     }

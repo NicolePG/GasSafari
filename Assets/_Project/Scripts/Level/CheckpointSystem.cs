@@ -11,6 +11,10 @@ namespace GasSafari.Level
     [RequireComponent(typeof(LevelTimer))]
     public class CheckpointSystem : MonoBehaviour
     {
+        // Red de seguridad: si la balsa sale del cauce (un géiser de W4-3 la lanzó por encima de la pared) y cae al vacío sin
+        // volcarse, nada la hundía y el nivel quedaba sin terminar. Por debajo del punto más bajo del recorrido, reaparece.
+        private const float OUT_OF_WORLD_DROP = 30f;
+
         [SerializeField] private BalanceConfig balance;
         [SerializeField] private RaftController raft;
         [SerializeField] private Checkpoint[] checkpoints;
@@ -23,6 +27,7 @@ namespace GasSafari.Level
         private RaftSeats seats;
         private int savedChambers;
         private float fadeTimer;
+        private float outOfWorldY = float.NegativeInfinity;
 
         public int CurrentIndex { get; private set; }
         public Checkpoint Current => active[CurrentIndex];
@@ -45,6 +50,24 @@ namespace GasSafari.Level
                 raft = FindFirstObjectByType<RaftController>();
             CacheRaft();
             ApplyFilter(Services.Session.Difficulty.checkpointFilter);
+            outOfWorldY = LowestCourseHeight() - OUT_OF_WORLD_DROP;
+        }
+
+        private float LowestCourseHeight()
+        {
+            float lowest = float.PositiveInfinity;
+            for (int i = 0; i < checkpoints.Length; i++)
+                lowest = Mathf.Min(lowest, checkpoints[i].transform.position.y);
+            var flow = FindFirstObjectByType<FlowSpline>();
+            if (flow != null && flow.SampleCount > 0)
+                lowest = Mathf.Min(lowest, flow.MinHeight);
+            return float.IsPositiveInfinity(lowest) ? float.NegativeInfinity : lowest;
+        }
+
+        private void FixedUpdate()
+        {
+            if (!IsRespawning && raft != null && raft.Body.position.y < outOfWorldY)
+                RequestRespawn();
         }
 
         private void OnEnable()

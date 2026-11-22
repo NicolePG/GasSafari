@@ -100,6 +100,20 @@ namespace GasSafari.Tests
             Assert.AreSame(start, system.Active[0]);
         }
 
+        // La balsa sale del cauce y cae al vacío sin volcarse: reaparece en el checkpoint (antes caía para siempre).
+        [UnityTest]
+        public IEnumerator FallingOutOfTheWorld_RespawnsAtCheckpoint()
+        {
+            var body = rig.Get<Rigidbody>();
+            body.position = new Vector3(30f, -40f, 5f);
+            body.velocity = Vector3.down * 10f;
+            yield return new WaitForFixedUpdate();
+            Assert.IsTrue(system.IsRespawning, "30 m por debajo del punto más bajo del recorrido pide la reaparición");
+            yield return WaitRespawn();
+            Assert.Greater(rig.Raft.transform.position.y, -1f);
+            Assert.AreEqual(start.transform.position.z, rig.Raft.transform.position.z, 0.5f);
+        }
+
         [UnityTest]
         public IEnumerator TCp01_RespawnKeepsChambersFromCheckpointPass()
         {

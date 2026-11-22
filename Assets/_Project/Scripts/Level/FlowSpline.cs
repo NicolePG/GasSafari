@@ -10,6 +10,7 @@ namespace GasSafari.Level
     {
         private const float SAMPLE_SPACING = 1f;
         private const int LOCAL_SEARCH = 8;
+        private const float FAR_MARGIN = 6f;   // m fuera del borde del cauce desde los que la ventana local ya no basta
 
         [Tooltip("Ancho del cauce en metros")]
         [SerializeField] private float width;
@@ -22,7 +23,9 @@ namespace GasSafari.Level
 
         public float Width => width;
         public float Length { get; private set; }
-        public int SampleCount => positions.Length;
+        public int SampleCount => positions != null ? positions.Length : 0;
+        // Altura del punto más bajo del cauce (red de seguridad de CheckpointSystem).
+        public float MinHeight { get; private set; }
 
         private void Awake()
         {
@@ -45,11 +48,13 @@ namespace GasSafari.Level
             directions = new Vector3[count];
             accelerations = new float[count];
 
+            MinHeight = float.PositiveInfinity;
             for (int i = 0; i < count; i++)
             {
                 float t = i / (count - 1f);
                 positions[i] = container.EvaluatePosition(t);
                 accelerations[i] = intensity.Evaluate(t);
+                MinHeight = Mathf.Min(MinHeight, positions[i].y);
             }
 
             // Tangente por diferencias entre muestras vecinas: no se anula en nodos con tangente cero.
@@ -100,20 +105,22 @@ namespace GasSafari.Level
             hint = Mathf.Clamp(hint, 0, last);
             int lo = Mathf.Max(0, hint - LOCAL_SEARCH);
             int hi = Mathf.Min(last, hint + LOCAL_SEARCH);
-            int best = Search(position, lo, hi);
+            int best = Search(position, lo, hi, out float bestDistance);
 
-            // En el borde de la ventana local (por ejemplo tras reaparecer): buscar en todo el cauce.
-            if ((best == lo && lo > 0) || (best == hi && hi < last))
-                best = Search(position, 0, last);
+            // En el borde de la ventana local (por ejemplo tras reaparecer) o lejos del cauce (un ramal como el atajo de W5-3, que
+            // corta 300 m de curvas: la ventana se quedaba en la primera curva y los bots volvían hacia ella al salir): todo el cauce.
+            float far = width * 0.5f + FAR_MARGIN;
+            if ((best == lo && lo > 0) || (best == hi && hi < last) || bestDistance > far * far)
+                best = Search(position, 0, last, out _);
 
             hint = best;
             return best;
         }
 
-        private int Search(Vector3 position, int from, int to)
+        private int Search(Vector3 position, int from, int to, out float bestDistance)
         {
             int best = from;
-            float bestDistance = float.MaxValue;
+            bestDistance = float.MaxValue;
             for (int i = from; i <= to; i++)
             {
                 float distance = (positions[i] - position).sqrMagnitude;

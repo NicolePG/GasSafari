@@ -220,6 +220,14 @@ namespace GasSafari.Tests
             yield return RunLevel("N30_W6-5_CoronaRey", "W6-5", 575f * 1.3f);
         }
 
+        private static void SetSpeed(float scale)
+        {
+            if (Services.TimeController != null)
+                Services.TimeController.SetBaseScale(scale);
+            else
+                Time.timeScale = scale;
+        }
+
         private IEnumerator RunLevel(string scene, string id, float limit, string route = null)
         {
 #if UNITY_EDITOR
@@ -255,8 +263,10 @@ namespace GasSafari.Tests
             GameEvents.OnChamberPopped += popped;
 
             // Tiempo de juego x3: la física por paso no cambia y el límite se mide en tiempo de juego.
-            Time.timeScale = 3f;
+            // Por TimeController: así la cámara lenta del Súper Pedo no la devuelve a x1.
+            SetSpeed(3f);
             float elapsed = 0f;
+            float realStart = Time.realtimeSinceStartup;
             while (finishedAt < 0f && elapsed < limit)
             {
                 yield return new WaitForSeconds(1f);
@@ -264,10 +274,10 @@ namespace GasSafari.Tests
                 if (((int)elapsed) % 20 == 0)
                 {
                     var p = manager.Raft.transform.position;
-                    Debug.Log($"W1BOT {id} t={elapsed:F0}s raft=({p.x:F0},{p.z:F0}) v={manager.Raft.Body.velocity.magnitude:F1} caídas={falls} reapariciones={respawns}");
+                    Debug.Log($"W1BOT {id} t={elapsed:F0}s real={Time.realtimeSinceStartup - realStart:F0}s raft=({p.x:F0},{p.z:F0}) v={manager.Raft.Body.velocity.magnitude:F1} caídas={falls} reapariciones={respawns}");
                 }
             }
-            Time.timeScale = 1f;
+            SetSpeed(1f);
             GameEvents.OnPlayerFell -= onFall;
             GameEvents.OnRespawn -= onRespawn;
             GameEvents.OnRaftSunk -= sunk;
@@ -284,7 +294,7 @@ namespace GasSafari.Tests
                 if (brain != null)
                     Debug.Log($"W1BOT {id} bot {avatar.Character.name} {brain.FireStats}");
             }
-            Debug.Log($"W1BOT {id} terminó={finishedAt >= 0f} tiempo={finishedAt:F1}s espera={elapsed:F0}s caídas={falls} reapariciones={respawns}");
+            Debug.Log($"W1BOT {id} terminó={finishedAt >= 0f} tiempo={finishedAt:F1}s espera={elapsed:F0}s real={Time.realtimeSinceStartup - realStart:F0}s caídas={falls} reapariciones={respawns}");
             // Tiempos de los bots para recalibrar Oro y Plata (Oro = tiempo medio de 4 bots x 1.25): un renglón por corrida.
             System.IO.File.AppendAllText("Screenshots/bot_times.csv",
                 string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0},{1},{2:F1},{3},{4}\n", id, route ?? "", finishedAt, falls, respawns));
