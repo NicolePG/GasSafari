@@ -9,6 +9,7 @@ using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.TestTools;
 
 namespace GasSafari.Tests
@@ -164,6 +165,15 @@ namespace GasSafari.Tests
             File.Delete(Application.temporaryCachePath + "/options_language_check.json");
         }
 
+        // Mismo nombre que muestra la fila (GetBindingDisplayString usa la distribución del teclado del sistema).
+        private static string KeyName(string path)
+        {
+            var action = new UnityEngine.InputSystem.InputAction(binding: path);
+            string text = action.GetBindingDisplayString();
+            action.Dispose();
+            return text;
+        }
+
         [UnityTest]
         public IEnumerator Options_Rebinding_ShowsKeysAndGamepadButtons_AndResets()
         {
@@ -172,11 +182,16 @@ namespace GasSafari.Tests
             yield return null;
             string ValueOf(int index) => options.Page(OptionsScreen.TAB_CONTROLS)[index].transform.Find("Value").GetComponent<TMP_Text>().text;
             // Filas: 0 vibración, 1 sensibilidad, 2 invertir, 3 dispositivo, 4 Pedo, 5 Aguantar, 6 Habilidad, 7 Agarrarse, 8 Súper Pedo...
-            Assert.AreEqual("Space", ValueOf(4));
-            Assert.AreEqual("Shift", ValueOf(5));
-            Assert.AreEqual("F", ValueOf(6));
+            // El nombre de la tecla lo da el sistema operativo según su idioma ("Space" / "Barra Espaciadora"):
+            // se compara con el mismo nombre en vez de con un texto fijo.
+            string space = KeyName("<Keyboard>/space");
+            string shift = KeyName("<Keyboard>/leftShift");
+            string fKey = KeyName("<Keyboard>/f");
+            Assert.AreEqual(space, ValueOf(4));
+            Assert.AreEqual(shift, ValueOf(5));
+            Assert.AreEqual(fKey, ValueOf(6));
             Step(options.Page(OptionsScreen.TAB_CONTROLS)[3], MoveDirection.Right);
-            Assert.AreNotEqual("Space", ValueOf(4), "el mando tiene otro botón");
+            Assert.AreNotEqual(space, ValueOf(4), "el mando tiene otro botón");
             Assert.AreNotEqual("-", ValueOf(4));
             var move = options.Page(OptionsScreen.TAB_CONTROLS)[11];
             Assert.IsFalse(move.interactable, "la palanca no se remapea");
