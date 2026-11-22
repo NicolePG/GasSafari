@@ -26,6 +26,8 @@ namespace GasSafari.UI
             timer = level.Timer;
             meter = level.Raft.GetComponent<TeamMeter>();
             superReadyText.SetText(strings.Get("hud.superfart_ready"));
+            // T-0 no muestra el cronómetro (docs/04); el medidor de equipo sí.
+            timeText.gameObject.SetActive(level.Data == null || level.Data.showTimer);
             GameEvents.OnTeamMeterChanged += OnMeterChanged;
             OnMeterChanged(meter.Value);
             Refresh(0f);

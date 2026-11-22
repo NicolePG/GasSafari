@@ -37,6 +37,11 @@ namespace GasSafari.Tests
             Assert.IsTrue(director.Card.IsShowing);
             Assert.AreEqual(director.Lessons[0].Step.title, director.Card.Title);
             Assert.IsFalse(director.Lessons[0].Barrier.IsOpen);
+            // docs/04: T-0 no muestra el cronómetro (el medidor de equipo sí).
+            var hudTimer = Object.FindFirstObjectByType<UI.HudTimer>();
+            Assert.IsNotNull(hudTimer);
+            Assert.IsFalse(hudTimer.transform.Find("Time").gameObject.activeSelf, "T-0 no muestra el cronómetro");
+            Assert.IsTrue(hudTimer.transform.Find("MeterBack").gameObject.activeSelf);
 
             var manager = LevelManager.Current;
             foreach (var avatar in manager.Avatars)

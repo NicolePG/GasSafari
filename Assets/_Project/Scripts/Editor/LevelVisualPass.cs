@@ -80,6 +80,8 @@ namespace GasSafari.Editor
             }
 
             LevelBackdrops.Build(scene, world == 0 ? 1 : world, storm, flow, route, root.transform); // T-0 usa las piezas del zoológico y la ciudad de W1
+            if (world == 0)
+                T0DayLook.Apply(scene, root.transform);
             foreach (var t in root.GetComponentsInChildren<Transform>(true))
             {
                 if (t.GetComponent<MeshRenderer>() != null && t.gameObject.name != "WaterFlow")
