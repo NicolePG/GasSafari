@@ -19,6 +19,8 @@ namespace GasSafari.Raft
 
         public bool HasShield { get; private set; }
         public bool IsSinking { get; private set; }
+        // Modificador Cámara única (docs/06 §1): la primera cámara reventada hunde la balsa.
+        public bool SingleChamber { get; set; }
         public int IntactMask => intactMask;
         public int IntactCount => CountBits(intactMask);
 
@@ -63,7 +65,7 @@ namespace GasSafari.Raft
             buoyancy.SetChamberFactor(chamber, balance.poppedFactor);
             GameEvents.RaiseChamberPopped(chamber);
 
-            if (intactMask == 0)
+            if (intactMask == 0 || SingleChamber)
                 StartSinking();
             return true;
         }

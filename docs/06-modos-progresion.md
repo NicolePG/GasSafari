@@ -46,6 +46,13 @@ Se activan desde un menú antes del nivel. Los tiempos con modificadores no cuen
 | Cámara mareada | La cámara se balancea | 60 estrellas |
 | Cámara única | La balsa se hunde al primer golpe | 70 estrellas |
 
+Decisiones provisionales, pendientes de playtest (M7-03, 2026-11-22):
+- Se combinan todos. El menú sale de la ficha del nivel (botón Modificadores, o Jugar con la tarjeta Modificadores); la selección queda en la partida para Repetir y Siguiente. Jugar sin ninguno pide elegir al menos uno.
+- Alcance de cada uno: Pedos al revés invierte toque, ráfaga y cargado (no el Súper Pedo ni las habilidades); Turbo corriente multiplica la corriente del cauce (no el viento ni las zonas de rápidos); Gravedad lunar afecta toda la física del nivel y se devuelve al salir; Cabezones agranda la cabeza x2 (el sombrero crece con ella); Cámara mareada gira la cámara ±6° y la mueve ±2° de lado en un vaivén de 4 s; Cámara única: el escudo de coco sigue parando un golpe.
+- Sin estrellas ni récord: tampoco graban fantasma ni entran en la tabla del Contrarreloj. Frijolitos: 20 por terminar + grupos x4 (sin "primera vez" ni estrellas nuevas, que no se guardan). Los mangos dorados recogidos sí cuentan (regla de M3-10).
+- Ayuda Real: se ofrece igual (con Cámara única llega antes); saltar la sección no cambia nada porque no hay estrellas.
+- Logros: cuentan los de acciones (pedos, sync, Súper Pedo, sinergias, Capitán Titanic) y las estadísticas; no cuentan los de terminar niveles (Sin un Rasguño, avance de Amistades Rotas; los de estrellas y mundos tampoco, porque no se guardan estrellas).
+
 ### Fiesta (minijuegos)
 
 | Minijuego | Reglas | Duración |

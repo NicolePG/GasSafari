@@ -27,6 +27,8 @@ namespace GasSafari.Raft
         public float WarningLeadBonus { get; set; }
         // Dúo Pesado: multiplica la fuerza de todos los pedos de la balsa mientras dura.
         public float FartForceMultiplier { get; private set; } = 1f;
+        // Modificador Pedos al revés (docs/06 §1): -1 invierte la fuerza de los pedos. ClearAll no lo toca.
+        public float FartSign { get; set; } = 1f;
 
         private void Awake()
         {

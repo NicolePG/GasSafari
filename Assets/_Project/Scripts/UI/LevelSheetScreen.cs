@@ -274,7 +274,14 @@ namespace GasSafari.UI
         {
             if (Level == null)
                 return;
-            ModeLauncher.Launch(Level, Level.showTimer ? ModeLauncher.RunModeFor(CardMode) : ProgressionRules.MODE_STORY);
+            string mode = Level.showTimer ? ModeLauncher.RunModeFor(CardMode) : ProgressionRules.MODE_STORY;
+            // Con la tarjeta Modificadores, Jugar pasa primero por el menú de modificadores.
+            if (mode == ProgressionRules.MODE_MODIFIERS)
+            {
+                OpenModifiers();
+                return;
+            }
+            ModeLauncher.Launch(Level, mode);
         }
 
         private void TimeTrial()
@@ -296,7 +303,14 @@ namespace GasSafari.UI
                 App.Toast("lock.stars", 30);
                 return;
             }
-            App.Toast("ui.soon");
+            OpenModifiers();
+        }
+
+        private void OpenModifiers()
+        {
+            var screen = App.Get<ModifiersScreen>();
+            screen.Level = Level;
+            App.Push<ModifiersScreen>();
         }
     }
 }

@@ -299,7 +299,7 @@ namespace GasSafari.Editor
                 (ProgressionRules.MODE_STORY, "story", "Icon_Mode_M1_Historia", true, 1, 4),
                 (ProgressionRules.MODE_TIME_TRIAL, "timetrial", "Icon_Mode_M2_Contrarreloj", true, 1, 4),
                 (ProgressionRules.MODE_MIRROR, "mirror", "Icon_Mode_M3_Espejo", true, 1, 4),
-                (ProgressionRules.MODE_MODIFIERS, "modifiers", "Icon_Mode_M4_Caos", false, 1, 4),
+                (ProgressionRules.MODE_MODIFIERS, "modifiers", "Icon_Mode_M4_Caos", true, 1, 4),
                 (ProgressionRules.MODE_PARTY, "party", "Icon_Mode_M5_Fiesta", false, 2, 4),
                 (ProgressionRules.MODE_ENDLESS, "endless", "Icon_Mode_M6_Infinito", false, 1, 4),
                 (ProgressionRules.MODE_DAILY, "daily", "Icon_Mode_M7_DesafioDiario", false, 1, 4),

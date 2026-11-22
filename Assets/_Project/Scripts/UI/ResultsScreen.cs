@@ -139,6 +139,8 @@ namespace GasSafari.UI
                     return (results.NewRecord ? "trial.result_record" : "trial.result_behind", new object[] { delta });
                 case Progression.ProgressionRules.MODE_MIRROR:
                     return ("mirror.bonus", new object[0]);
+                case Progression.ProgressionRules.MODE_MODIFIERS:
+                    return ("mod.warning", new object[0]);
                 default:
                     return (null, new object[0]);
             }

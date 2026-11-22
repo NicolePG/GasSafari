@@ -19,5 +19,13 @@ MonoBehaviour:
   splitShowSeconds: 3
   mirrorBeanMultiplier: 1.5
   mirrorMinDifficulty: Normal
-  modifiers: []
+  modifiers:
+  - {fileID: 11400000, guid: 7e992d1cb1dc32144b918e015fc6f6a3, type: 2}
+  - {fileID: 11400000, guid: 16c00b939bb0a7c4b947d250e6dd05c9, type: 2}
+  - {fileID: 11400000, guid: 2a27397066d6aab45b79bf52ef0187c4, type: 2}
+  - {fileID: 11400000, guid: 393641eb754a6194689393d4471c6fa0, type: 2}
+  - {fileID: 11400000, guid: dba0cdfebf85ee9478167ad027985eb2, type: 2}
+  - {fileID: 11400000, guid: 75b25731de30a5848a7302ef94723c49, type: 2}
+  - {fileID: 11400000, guid: 62cb86a2a25eb0942a5ede1246339c53, type: 2}
+  - {fileID: 11400000, guid: 7fbc99ca7e766ee41b5f08ad8c1d98bd, type: 2}
   dizzyPeriod: 4

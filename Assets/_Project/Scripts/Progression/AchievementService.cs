@@ -133,7 +133,8 @@ namespace GasSafari.Progression
         public void HandleLevelFinished(LevelData level, int chambersLost, string difficultyId, string runMode = ProgressionRules.MODE_STORY)
         {
             var data = Data;
-            if (level == null || data == null)
+            // Con modificadores no cuentan los logros de terminar niveles (docs/06: no dan estrellas); los de acciones sí.
+            if (level == null || data == null || runMode == ProgressionRules.MODE_MODIFIERS)
                 return;
             if (chambersLost == 0 && level.showTimer)
                 Unlock("not_a_scratch");

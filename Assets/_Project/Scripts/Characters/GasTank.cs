@@ -13,7 +13,9 @@ namespace GasSafari.Characters
         public float Gas => state.Gas;
         public float Capacity => state.Capacity;
         public float Normalized => state.Normalized;
-        public bool IsEmpty => state.IsEmpty;
+        public bool IsEmpty => !Infinite && state.IsEmpty;
+        // Modificador Gas infinito (docs/06 §1): gastar no descuenta.
+        public bool Infinite { get; set; }
 
         private void Awake()
         {
@@ -24,6 +26,8 @@ namespace GasSafari.Characters
 
         public bool TrySpend(float amount)
         {
+            if (Infinite)
+                return true;
             if (!state.TrySpend(amount))
                 return false;
             CheckEmpty();
@@ -32,6 +36,8 @@ namespace GasSafari.Characters
 
         public float Drain(float amount)
         {
+            if (Infinite)
+                return amount;
             float used = state.Drain(amount);
             CheckEmpty();
             return used;

@@ -610,6 +610,64 @@ namespace GasSafari.Tests
             }
         }
 
+        [UnityTest]
+        public IEnumerator Modifiers_LockByStars_Combine_AndPlayFromTheSheet()
+        {
+            GiveStars(45);
+            Services.Session.Modifiers.Clear();
+            Services.Session.ModeId = ProgressionRules.MODE_MODIFIERS;
+            LevelData launched = null;
+            ModeLauncher.Loader = l => launched = l;
+            try
+            {
+                var sheet = App.Get<LevelSheetScreen>();
+                sheet.Level = Catalog.FindLevel("W1-2");
+                App.Push<LevelSheetScreen>();
+                yield return null;
+                Assert.AreEqual("Modificadores", sheet.ModeBadgeText);
+                sheet.PlayButton.onClick.Invoke();
+                Assert.IsInstanceOf<ModifiersScreen>(App.Top, "con la tarjeta Modificadores, Jugar abre el menú previo");
+                Assert.IsNull(launched);
+
+                var mods = App.Get<ModifiersScreen>();
+                Assert.AreSame(sheet.Level, mods.Level);
+                Assert.AreEqual(8, mods.CardCount);
+                // 45 estrellas: abiertos los de 30 y 40; cerrados los de 50, 60 y 70 (docs/06).
+                for (int i = 0; i < 8; i++)
+                    Assert.AreEqual(i >= 4, mods.IsLocked(i), mods.CardId(i));
+                mods.CardButton(4).onClick.Invoke();
+                Assert.AreEqual("50 estrellas", App.ToastText);
+                Assert.IsEmpty(Services.Session.Modifiers);
+
+                mods.PlayButton.onClick.Invoke();
+                Assert.AreEqual("Elige al menos un modificador", App.ToastText);
+                Assert.IsNull(launched);
+
+                mods.CardButton(0).onClick.Invoke();
+                mods.CardButton(2).onClick.Invoke();
+                mods.CardButton(3).onClick.Invoke();
+                mods.CardButton(3).onClick.Invoke();
+                CollectionAssert.AreEqual(new[] { "soapy", "moon" }, Services.Session.Modifiers, "se combinan y se apagan con otra pulsación");
+                mods.PlayButton.onClick.Invoke();
+                Assert.AreSame(sheet.Level, launched);
+                Assert.AreEqual(ProgressionRules.MODE_MODIFIERS, Services.Session.RunMode);
+
+                // El botón Modificadores de la ficha (desde Historia) abre el mismo menú.
+                App.Back();
+                Services.Session.ModeId = ProgressionRules.MODE_STORY;
+                App.Push<LevelSheetScreen>();
+                sheet.ModifiersButton.onClick.Invoke();
+                Assert.IsInstanceOf<ModifiersScreen>(App.Top);
+            }
+            finally
+            {
+                ModeLauncher.Loader = SceneLoader.LoadLevel;
+                Services.Session.Modifiers.Clear();
+                Services.Session.ModeId = ProgressionRules.MODE_STORY;
+                Services.Session.RunMode = ProgressionRules.MODE_STORY;
+            }
+        }
+
         // ---------------------------------------------------------------- pantalla de carga
         [UnityTest]
         public IEnumerator Loading_ShowsATipInTheActiveLanguage()

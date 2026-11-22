@@ -64,6 +64,7 @@ namespace GasSafari.UI
             {
                 case ProgressionRules.MODE_TIME_TRIAL:
                 case ProgressionRules.MODE_MIRROR:
+                case ProgressionRules.MODE_MODIFIERS:
                     return cardMode;
                 default:
                     return ProgressionRules.MODE_STORY;

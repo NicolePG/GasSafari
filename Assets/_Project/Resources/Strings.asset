@@ -253,6 +253,9 @@ MonoBehaviour:
   - key: mod.warning
     text: Con modificadores no hay estrellas.
     en: No stars with modifiers on.
+  - key: mod.choose_one
+    text: Elige al menos un modificador
+    en: Pick at least one modifier
   - key: mod.soapy.name
     text: Balsa jabonosa
     en: Soapy Raft

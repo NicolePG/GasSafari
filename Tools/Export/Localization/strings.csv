@@ -79,6 +79,7 @@ race.lose_track,La otra balsa llegó antes.,The other raft got there first.,Carr
 race.win_match,¡Ganaron la carrera!,You won the race!,Carrera por Equipos: final del mejor de 3
 mod.title,Modificadores,Modifiers,Menú previo al nivel (docs/06 §1)
 mod.warning,Con modificadores no hay estrellas.,No stars with modifiers on.,Aviso en el menú
+mod.choose_one,Elige al menos un modificador,Pick at least one modifier,Aviso al pulsar Jugar sin modificadores
 mod.soapy.name,Balsa jabonosa,Soapy Raft,Modificador
 mod.soapy.desc,El agua frena la mitad.,Water drag is halved.,waterDrag x0.5
 mod.infinite_gas.name,Gas infinito,Infinite Gas,Modificador
