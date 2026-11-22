@@ -513,6 +513,7 @@ namespace GasSafari.Editor
             float d = (from + to) * 0.5f;
             var go = level.Place(HZ + "H22_Abyss.prefab", d, 0f, 0f, -33f);
             go.name = "Abismo";
+            go.transform.rotation = Quaternion.Euler(0f, go.transform.eulerAngles.y, 0f); // horizontal (ver Abyss.Awake)
             go.GetComponent<BoxCollider>().size = new Vector3(level.WidthAt(d) + 40f, 60f, to - from + 20f);
             var abyss = go.GetComponent<GasSafari.Hazards.Abyss>();
             abyss.Configure(level.BuoyBridge(from, to, bridgeWidth));

@@ -89,6 +89,30 @@ namespace GasSafari.Tests
             Assert.IsTrue(abyss.HelpActive);
         }
 
+        // Colocado con la pendiente de una rampa, el trigger asomaba a la línea del agua y la balsa reaparecía sobre el puente (W5-2).
+        [Test]
+        public void H22_Abyss_TriggerIsLevelAndWellBelowTheBridge()
+        {
+            var go = new GameObject("Abismo");
+            created.Add(go);
+            go.SetActive(false);
+            var box = go.AddComponent<BoxCollider>();
+            box.isTrigger = true;
+            box.size = new Vector3(20f, 60f, 22f);
+            go.transform.SetPositionAndRotation(new Vector3(0f, -29f, 0f), Quaternion.Euler(21.8f, 30f, 0f));
+            var bridge = new GameObject("PuenteBoyas");
+            created.Add(bridge);
+            bridge.SetActive(false);
+            var abyss = go.AddComponent<Abyss>();
+            abyss.Configure(bridge);
+            go.SetActive(true);
+
+            Assert.AreEqual(0f, Vector3.Angle(go.transform.up, Vector3.up), 0.01f, "sin inclinación");
+            Assert.AreEqual(30f, go.transform.eulerAngles.y, 0.01f, "conserva el giro en Y");
+            Physics.SyncTransforms();
+            Assert.LessOrEqual(box.bounds.max.y, bridge.transform.position.y - 4f + 0.01f, "el techo queda 4 m bajo el puente de boyas");
+        }
+
         [UnityTest]
         public IEnumerator H19_Geyser_LaunchesTheRaftEveryThreeSeconds()
         {

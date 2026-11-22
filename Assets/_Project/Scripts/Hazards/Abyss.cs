@@ -22,6 +22,23 @@ namespace GasSafari.Hazards
         public int Falls { get; private set; }
         public bool HelpActive => helpBridge != null && helpBridge.activeSelf;
 
+        // El trigger va horizontal y bien por debajo del puente de boyas: colocado con la pendiente de una rampa (W5-2, 21.8°) su
+        // esquina trasera subía hasta la línea del agua en el borde del hueco, y la balsa reaparecía antes de caer y también al
+        // cruzar el puente (W5-2 no se terminaba). Se conserva solo el giro en Y.
+        private const float BRIDGE_CLEARANCE = 4f;
+
+        private void Awake()
+        {
+            transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
+            if (helpBridge == null)
+                return;
+            var box = GetComponent<BoxCollider>();
+            float top = transform.TransformPoint(box.center).y + box.size.y * 0.5f * transform.lossyScale.y;
+            float maxTop = helpBridge.transform.position.y - BRIDGE_CLEARANCE;
+            if (top > maxTop)
+                transform.position += Vector3.down * (top - maxTop);
+        }
+
         public void Configure(GameObject bridge, int falls = 2)
         {
             helpBridge = bridge;

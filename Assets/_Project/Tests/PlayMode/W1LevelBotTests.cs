@@ -261,6 +261,14 @@ namespace GasSafari.Tests
             GameEvents.OnRaftSunk += sunk;
             GameEvents.OnRaftCapsized += capsized;
             GameEvents.OnChamberPopped += popped;
+            // De dónde sale cada reaparición (abismo, vuelco, hundida, atasco o caída fuera del mundo).
+            var checkpoints = Object.FindFirstObjectByType<CheckpointSystem>();
+            System.Action respawning = () =>
+            {
+                var p = manager.Raft.transform.position;
+                Debug.Log($"W1BOT {id} REAPARECE desde ({p.x:F1},{p.y:F1},{p.z:F1}) checkpoint={checkpoints.CurrentIndex}");
+            };
+            checkpoints.RespawnStarted += respawning;
 
             // Tiempo de juego x3: la física por paso no cambia y el límite se mide en tiempo de juego.
             // Por TimeController: así la cámara lenta del Súper Pedo no la devuelve a x1.
@@ -283,6 +291,7 @@ namespace GasSafari.Tests
             GameEvents.OnRaftSunk -= sunk;
             GameEvents.OnRaftCapsized -= capsized;
             GameEvents.OnChamberPopped -= popped;
+            checkpoints.RespawnStarted -= respawning;
 
             string csv = System.IO.Path.Combine(RaftHighSpeedTests.TelemetryFolder, $"bots_{id}.csv");
             telemetry.WriteCsv(csv);
