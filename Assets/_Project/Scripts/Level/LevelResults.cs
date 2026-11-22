@@ -25,5 +25,12 @@ namespace GasSafari.Level
         public bool Skipped;
         public readonly List<AwardResult> Awards = new List<AwardResult>();
         public ReplayClip Replay;
+        public int FullSyncGroups;
+        // Modo del nivel (ProgressionRules.MODE_*): lo llenan los modos de M7.
+        public string RunMode = "story";
+        public bool ModifiersActive;
+        // Contrarreloj: tiempo menos el del fantasma anterior (negativo = más rápido); NaN si no había fantasma.
+        public float GhostDelta = float.NaN;
+        public bool NewRecord;
     }
 }

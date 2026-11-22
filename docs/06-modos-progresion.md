@@ -16,6 +16,11 @@
 ### Contrarreloj
 - Fantasma: se graba posición y rotación de la balsa a 10 Hz del mejor tiempo del equipo; se reproduce semitransparente.
 - Tabla local con los 5 mejores tiempos por nivel (nombre del equipo + personajes).
+- Decisiones provisionales, pendientes de playtest (M7-01, 2026-11-22):
+  - El fantasma se graba en toda carrera limpia de Historia o Contrarreloj (sin modificadores, sin Espejo y sin saltar una sección con la Ayuda Real); se guarda solo el mejor por nivel, en `persistentDataPath/ghosts/<id>.ghost` junto al guardado. Así el primer Contrarreloj de un nivel ya terminado tiene fantasma. Solo la balsa, en la capa Ghost, sin colisiones.
+  - La tabla de los 5 mejores también se llena con esas carreras. No hay pantalla para escribir el nombre del equipo: se arma con los nombres de los animales ("Alex · Marty").
+  - La diferencia con el fantasma se muestra 3 s bajo el cronómetro al pasar cada checkpoint (verde si van adelante) y en la meta; en resultados, "¡Nuevo récord! -2.4 s frente al fantasma".
+  - Contrarreloj no ofrece la Ayuda Real; da estrellas, récord del nivel y frijolitos igual que Historia. No hay Contrarreloj en T-0 (no tiene cronómetro).
 
 ### Espejo
 - El nivel se carga con la raíz de la geometría en escala X = -1 (Unity invierte el culling solo) y las splines del cauce espejadas.

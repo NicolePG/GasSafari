@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab8ba94d9a9a524da225781fa7bcf04, type: 3}
+  m_Name: ModesConfig
+  m_EditorClassIdentifier: 
+  ghostSampleRate: 10
+  topTimes: 5
+  ghostMaterial: {fileID: 2100000, guid: 298e2cf91c3102e4a8cdb186775d3523, type: 2}
+  ghostColor: {r: 0.55, g: 0.9, b: 1, a: 0.35}
+  splitShowSeconds: 3
+  mirrorBeanMultiplier: 1.5
+  mirrorMinDifficulty: Normal
+  modifiers: []
+  dizzyPeriod: 4

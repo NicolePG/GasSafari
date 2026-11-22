@@ -244,6 +244,11 @@ results.retry,Repetir,Retry,Unity: Strings_es
 results.map,Mapa,Map,Unity: Strings_es
 results.sunk_note,Balsa hundida: sin 3.ª estrella,Raft sank: no 3rd star,Aviso opcional si se hundió
 results.skipped_note,Sección saltada: máximo 1 estrella,Section skipped: 1 star max,Si usaron la Ayuda Real 3
+trial.ghost_time,Fantasma {0},Ghost {0},Contrarreloj: tiempo del fantasma bajo el cronómetro (docs/06 §1)
+trial.no_ghost,Sin fantasma: ¡marquen el primer tiempo!,No ghost yet: set the first time!,Contrarreloj sin fantasma guardado
+trial.first_record,¡Primer récord! Ya tienen fantasma,First record! Your ghost is ready,Resultados del Contrarreloj sin fantasma previo
+trial.result_record,¡Nuevo récord! {0} frente al fantasma,New record! {0} vs. the ghost,"Resultados: {0} = diferencia, p. ej. -2.4 s"
+trial.result_behind,{0} frente al fantasma,{0} vs. the ghost,"Resultados sin récord: {0} = diferencia, p. ej. +1.5 s"
 award.sync_master,Maestro de la Sincronía,Sync Master,Positivo | Unity: Strings_es
 award.sync_master.desc,Más grupos de sync,Most sync groups,
 award.lifeguard,Salvavidas,Lifeguard,Positivo | Unity: Strings_es

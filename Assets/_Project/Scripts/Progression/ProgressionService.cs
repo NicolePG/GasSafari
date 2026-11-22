@@ -36,6 +36,7 @@ namespace GasSafari.Progression
         public void Initialize(SaveSystem saveSystem)
         {
             system = saveSystem;
+            GhostStore.Folder = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(saveSystem.FilePath), "ghosts");
             Data = system.Load();
             GameSettings.Apply(Data.settings);
         }
@@ -64,6 +65,46 @@ namespace GasSafari.Progression
             AddBeans(results.Beans);
             Save();
             Changed?.Invoke();
+        }
+
+        // Espejo (docs/06 §1): estrellas y tiempo en sus propios récords; los mangos son los del nivel.
+        public void CommitMirror(LevelData level, LevelResults results)
+        {
+            var record = Data.GetOrAddMirror(level.id);
+            record.stars = Mathf.Max(record.stars, results.Stars);
+            if (record.best <= 0f || results.Time < record.best)
+                record.best = results.Time;
+            Data.GetOrAddLevel(level.id).mangos |= results.MangoMask;
+            AddBeans(results.Beans);
+            Save();
+            Changed?.Invoke();
+        }
+
+        public int MirrorBestStars(string levelId)
+        {
+            var record = Data.FindMirror(levelId);
+            return record != null && record.stars > 0 ? record.stars : -1;
+        }
+
+        // Contrarreloj: agrega el tiempo a la tabla del nivel si entra entre los mejores. Devuelve el puesto (0 = el mejor)
+        // o -1 si no entró.
+        public int RecordTrial(string levelId, float time, string team, System.Collections.Generic.IList<string> characters, int keep)
+        {
+            var table = Data.GetOrAddTrial(levelId);
+            var entry = new SaveData.TrialEntry { time = time, team = team };
+            if (characters != null)
+                entry.characters.AddRange(characters);
+            int rank = table.entries.FindIndex(e => time < e.time);
+            if (rank < 0)
+                rank = table.entries.Count;
+            if (rank >= keep)
+                return -1;
+            table.entries.Insert(rank, entry);
+            if (table.entries.Count > keep)
+                table.entries.RemoveRange(keep, table.entries.Count - keep);
+            Save();
+            Changed?.Invoke();
+            return rank;
         }
 
         public void AddBeans(int amount)

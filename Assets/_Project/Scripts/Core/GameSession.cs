@@ -22,8 +22,15 @@ namespace GasSafari.Core
         }
 
         public Bots.BotConfig BotConfig => botConfig;
-        // Modo elegido en los menús (ProgressionRules.MODE_*) y nivel que se está jugando o se va a jugar.
+        // Modo elegido en la tarjeta de los menús (ProgressionRules.MODE_*) y nivel que se está jugando o se va a jugar.
         public string ModeId { get; set; } = "story";
+        // Modo del nivel en curso: el de la tarjeta o el que pidió la ficha (Contrarreloj, Modificadores). Repetir y Siguiente
+        // lo conservan (docs/06 §1).
+        public string RunMode { get; set; } = "story";
+        // Identificadores de los ModifierData activos en el modo Modificadores (Caos).
+        public List<string> Modifiers { get; } = new List<string>();
+        // Espejo pide dificultad Normal o más: la elegida antes de subirla, para devolverla al salir del modo.
+        public DifficultyData DifficultyBeforeMirror { get; set; }
         public Level.LevelData CurrentLevel { get; set; }
         public IReadOnlyList<PlayerSlot> Players => players;
         // Opción de accesibilidad (docs/07). La cargará el guardado.

@@ -50,6 +50,7 @@ namespace GasSafari.Level
             results.Stars = StarsFor(level, time, results.RaftSunk);
             if (results.Skipped)
                 results.Stars = Math.Min(results.Stars, 1);
+            results.FullSyncGroups = stats.FullSyncGroups;
             results.Beans = BeansFor(results.Stars, previousBestStars, stats.FullSyncGroups);
             PickAwards(stats, rng, results.Awards);
             return results;
@@ -73,6 +74,12 @@ namespace GasSafari.Level
                 beans += BEANS_FIRST_TIME;
             beans += BEANS_PER_NEW_STAR * Math.Max(0, stars - Math.Max(previousBestStars, 0));
             return beans + Math.Min(BEANS_FULL_SYNC_MAX, fullSyncGroups);
+        }
+
+        // Con modificadores no hay estrellas nuevas ni "primera vez" (no se guardan): solo terminar y los grupos x4.
+        public static int BeansWithoutProgress(int fullSyncGroups)
+        {
+            return BEANS_FINISH + Math.Min(BEANS_FULL_SYNC_MAX, fullSyncGroups);
         }
 
         // 3 al azar entre los que tengan ganador, con al menos un positivo y uno de vergüenza.

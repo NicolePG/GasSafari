@@ -60,6 +60,22 @@ namespace GasSafari.Save
             public float best;
         }
 
+        // Contrarreloj (docs/06 §1): los 5 mejores tiempos de un nivel, con el equipo que los hizo.
+        [Serializable]
+        public class TrialEntry
+        {
+            public float time;
+            public string team;
+            public List<string> characters = new List<string>();
+        }
+
+        [Serializable]
+        public class TrialTable
+        {
+            public string id;
+            public List<TrialEntry> entries = new List<TrialEntry>();
+        }
+
         [Serializable]
         public class SettingsRecord
         {
@@ -105,6 +121,9 @@ namespace GasSafari.Save
         public int endlessMeters;
         public StatsRecord stats = new StatsRecord();
         public DailyRecord daily = new DailyRecord();
+        // Espejo: récords propios por nivel (docs/06 §1); no suman a las 93 estrellas.
+        public List<LevelRecord> mirrorLevels = new List<LevelRecord>();
+        public List<TrialTable> trials = new List<TrialTable>();
         public SettingsRecord settings = new SettingsRecord();
 
         public LevelRecord FindLevel(string id)
@@ -125,6 +144,30 @@ namespace GasSafari.Save
             record = new LevelRecord { id = id };
             levels.Add(record);
             return record;
+        }
+
+        public LevelRecord FindMirror(string id) => mirrorLevels.Find(r => r.id == id);
+
+        public LevelRecord GetOrAddMirror(string id)
+        {
+            var record = FindMirror(id);
+            if (record != null)
+                return record;
+            record = new LevelRecord { id = id };
+            mirrorLevels.Add(record);
+            return record;
+        }
+
+        public TrialTable FindTrial(string id) => trials.Find(t => t.id == id);
+
+        public TrialTable GetOrAddTrial(string id)
+        {
+            var table = FindTrial(id);
+            if (table != null)
+                return table;
+            table = new TrialTable { id = id };
+            trials.Add(table);
+            return table;
         }
     }
 }

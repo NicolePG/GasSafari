@@ -28,6 +28,10 @@ namespace GasSafari.UI
         private Button back;
         private Image timeTrialLock;
         private Image modifiersLock;
+        private LocalizedText modeBadge;
+        private GameObject starsPanelObject;
+        private GameObject trialPanel;
+        private readonly LocalizedText[] trialRows = new LocalizedText[5];
 
         public LevelData Level { get; set; }
 
@@ -41,6 +45,11 @@ namespace GasSafari.UI
         public string SilverText => silver != null ? silver.Label.text : string.Empty;
         public string MangosLabelText => mangosText != null ? mangosText.Label.text : string.Empty;
         public bool TimesVisible => gold != null && gold.transform.parent.gameObject.activeSelf;
+        public string ModeBadgeText => modeBadge != null && modeBadge.gameObject.activeSelf ? modeBadge.Label.text : string.Empty;
+        public bool TrialTableVisible => trialPanel != null && trialPanel.activeSelf;
+        public string TrialRowText(int i) => trialRows[i] != null ? trialRows[i].Label.text : string.Empty;
+        // Modo de la tarjeta elegida en "Elegir modo".
+        private static string CardMode => Services.IsReady ? Services.Session.ModeId : ProgressionRules.MODE_STORY;
 
         public static string FormatTime(float seconds)
         {
@@ -57,6 +66,9 @@ namespace GasSafari.UI
             TopRow(worldName.Label.rectTransform, 40f, 46f, 0f, 0.6f, 70f, 0f);
             levelName = UiFactory.Label(card.transform, "Name", "level.w1_1.name", 70f, TextAlignmentOptions.Left, UiFactory.Ink, FontStyles.Bold);
             TopRow(levelName.Label.rectTransform, 84f, 96f, 0f, 1f, 70f, 70f);
+            // Modo con el que se juega (Contrarreloj, Espejo, Modificadores); en Historia no se muestra.
+            modeBadge = UiFactory.Label(card.transform, "Mode", "mode.timetrial.name", 34f, TextAlignmentOptions.Right, new Color(0.15f, 0.45f, 0.85f), FontStyles.Bold);
+            TopRow(modeBadge.Label.rectTransform, 40f, 46f, 0.6f, 1f, 0f, 70f);
 
             // Mecánica nueva.
             var mechanicTitle = UiFactory.Label(card.transform, "MechanicTitle", "sheet.new_mechanic", 32f, TextAlignmentOptions.Left, new Color(0.85f, 0.45f, 0.1f), FontStyles.Bold);
@@ -73,6 +85,7 @@ namespace GasSafari.UI
 
             var starsPanel = UiFactory.Panel(card.transform, "StarsPanel", "Panel_Inset");
             TopRow(starsPanel.rectTransform, 372f, 238f, 0.44f, 1f, 10f, 70f);
+            starsPanelObject = starsPanel.gameObject;
             for (int i = 0; i < 3; i++)
             {
                 float y = 18f + i * 70f;
@@ -82,6 +95,19 @@ namespace GasSafari.UI
                 criteria[i] = UiFactory.Label(starsPanel.transform, "Criteria" + i, "sheet.star" + (i + 1), 30f, TextAlignmentOptions.MidlineLeft, UiFactory.Ink, FontStyles.Bold);
                 TopRow(criteria[i].Label.rectTransform, y, 62f, 0f, 1f, 110f, 24f);
             }
+
+            // Contrarreloj: los 5 mejores tiempos del nivel (docs/06 §1) en lugar de las condiciones de las estrellas.
+            var trial = UiFactory.Panel(card.transform, "TrialTable", "Panel_Inset");
+            TopRow(trial.rectTransform, 372f, 238f, 0.44f, 1f, 10f, 70f);
+            trialPanel = trial.gameObject;
+            var trialTitle = UiFactory.Label(trial.transform, "Title", "tt.top5", 28f, TextAlignmentOptions.MidlineLeft, new Color(0.85f, 0.45f, 0.1f), FontStyles.Bold);
+            TopRow(trialTitle.Label.rectTransform, 8f, 36f, 0f, 1f, 30f, 24f);
+            for (int i = 0; i < trialRows.Length; i++)
+            {
+                trialRows[i] = UiFactory.Literal(trial.transform, "Row" + i, string.Empty, 26f, TextAlignmentOptions.MidlineLeft, UiFactory.Ink, FontStyles.Bold);
+                TopRow(trialRows[i].Label.rectTransform, 46f + i * 37f, 36f, 0f, 1f, 30f, 24f);
+            }
+            trialPanel.SetActive(false);
 
             // Mangos.
             for (int i = 0; i < 3; i++)
@@ -178,7 +204,45 @@ namespace GasSafari.UI
             SetLocked(timeTrial, !trialUnlocked, "Blue");
             SetLocked(modifiers, !modsUnlocked, "Blue");
             gold.transform.parent.gameObject.SetActive(!tutorial);
+            ShowMode(data, tutorial);
             UiFactory.LinkHorizontal(play, timeTrial.gameObject.activeSelf ? timeTrial : null, modifiers.gameObject.activeSelf ? modifiers : null, back);
+        }
+
+        private void ShowMode(SaveData data, bool tutorial)
+        {
+            string mode = tutorial ? ProgressionRules.MODE_STORY : ModeLauncher.RunModeFor(CardMode);
+            bool story = mode == ProgressionRules.MODE_STORY;
+            modeBadge.gameObject.SetActive(!story);
+            if (!story)
+                modeBadge.SetKey(ModeNameKey(mode));
+            bool trial = mode == ProgressionRules.MODE_TIME_TRIAL;
+            trialPanel.SetActive(trial);
+            starsPanelObject.SetActive(!trial);
+            if (trial)
+                FillTrialTable(data);
+        }
+
+        public static string ModeNameKey(string mode)
+        {
+            switch (mode)
+            {
+                case ProgressionRules.MODE_TIME_TRIAL: return "mode.timetrial.name";
+                case ProgressionRules.MODE_MIRROR: return "mode.mirror.name";
+                case ProgressionRules.MODE_MODIFIERS: return "mode.modifiers.name";
+                default: return "mode.story.name";
+            }
+        }
+
+        private void FillTrialTable(SaveData data)
+        {
+            var table = data.FindTrial(Level.id);
+            for (int i = 0; i < trialRows.Length; i++)
+            {
+                if (table != null && i < table.entries.Count)
+                    trialRows[i].SetLiteral((i + 1) + ".  " + FormatTime(table.entries[i].time) + "   " + table.entries[i].team);
+                else
+                    trialRows[i].SetLiteral((i + 1) + ".  --:--");
+            }
         }
 
         // Un botón bloqueado se ve gris pero se puede enfocar, y al pulsarlo dice qué falta.
@@ -207,9 +271,7 @@ namespace GasSafari.UI
         {
             if (Level == null)
                 return;
-            if (Services.IsReady)
-                Services.Session.ModeId = ProgressionRules.MODE_STORY;
-            SceneLoader.LoadLevel(Level);
+            ModeLauncher.Launch(Level, Level.showTimer ? ModeLauncher.RunModeFor(CardMode) : ProgressionRules.MODE_STORY);
         }
 
         private void TimeTrial()
@@ -220,7 +282,7 @@ namespace GasSafari.UI
                 App.Toast("lock.any_level");
                 return;
             }
-            App.Toast("ui.soon");
+            ModeLauncher.Launch(Level, ProgressionRules.MODE_TIME_TRIAL);
         }
 
         private void Modifiers()

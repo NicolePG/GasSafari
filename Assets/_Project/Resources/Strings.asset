@@ -749,6 +749,21 @@ MonoBehaviour:
   - key: results.skipped_note
     text: "Secci\xF3n saltada: m\xE1ximo 1 estrella"
     en: 'Section skipped: 1 star max'
+  - key: trial.ghost_time
+    text: Fantasma {0}
+    en: Ghost {0}
+  - key: trial.no_ghost
+    text: "Sin fantasma: \xA1marquen el primer tiempo!"
+    en: 'No ghost yet: set the first time!'
+  - key: trial.first_record
+    text: "\xA1Primer r\xE9cord! Ya tienen fantasma"
+    en: First record! Your ghost is ready
+  - key: trial.result_record
+    text: "\xA1Nuevo r\xE9cord! {0} frente al fantasma"
+    en: New record! {0} vs. the ghost
+  - key: trial.result_behind
+    text: '{0} frente al fantasma'
+    en: '{0} vs. the ghost'
   - key: award.sync_master
     text: "Maestro de la Sincron\xEDa"
     en: Sync Master

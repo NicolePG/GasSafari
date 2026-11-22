@@ -297,7 +297,7 @@ namespace GasSafari.Editor
             var defs = new (string id, string key, string icon, bool implemented, int min, int max)[]
             {
                 (ProgressionRules.MODE_STORY, "story", "Icon_Mode_M1_Historia", true, 1, 4),
-                (ProgressionRules.MODE_TIME_TRIAL, "timetrial", "Icon_Mode_M2_Contrarreloj", false, 1, 4),
+                (ProgressionRules.MODE_TIME_TRIAL, "timetrial", "Icon_Mode_M2_Contrarreloj", true, 1, 4),
                 (ProgressionRules.MODE_MIRROR, "mirror", "Icon_Mode_M3_Espejo", false, 1, 4),
                 (ProgressionRules.MODE_MODIFIERS, "modifiers", "Icon_Mode_M4_Caos", false, 1, 4),
                 (ProgressionRules.MODE_PARTY, "party", "Icon_Mode_M5_Fiesta", false, 2, 4),

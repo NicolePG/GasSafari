@@ -129,7 +129,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [x] **M6-08** Créditos desde `CREDITS.md` · ui-hud · 07 §2 · hecho 2026-11-09 · `CreditsScreen` compone el texto de `Assets/_Project/CREDITS.md` (herramientas y packs externos con su licencia); falta la sección Equipo (nombres) y un aviso legal de proyecto no comercial: pendientes de decidir
 
 ## M7 · Modos (8-9 nov)
-- [ ] **M7-01** Contrarreloj con fantasma · game-modes · 06 §1
+- [x] **M7-01** Contrarreloj con fantasma · game-modes · 06 §1 · hecho 2026-11-22 (PV-19) · `Modes/` con `GameModeBase` y `ModeDirector` (LevelFlow pone el modo de `GameSession.RunMode` al cargar el nivel); `GhostRecorder` a 10 Hz, `GhostStore` (binario por nivel junto al guardado), `GhostPlayer` semitransparente, `TimeTrialHud` con la diferencia por checkpoint, nota en resultados, tabla de 5 mejores en `SaveData.trials` y en la ficha; tarjeta y botón de la ficha activos; `Resources/ModesConfig.asset` por `Gas Safari/Setup/Crear modos de M7`; pruebas `TimeTrialTests` y `TimeTrialModeTests`
 - [ ] **M7-02** Modo Espejo · game-modes · 06 §1
 - [ ] **M7-03** Modificadores (Caos) · game-modes · 06 §1
 - [ ] **M7-04** Fiesta: Balsa-Gol · game-modes · 06 §1

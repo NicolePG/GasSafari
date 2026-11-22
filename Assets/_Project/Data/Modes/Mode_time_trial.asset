@@ -16,6 +16,6 @@ MonoBehaviour:
   order: 2
   keyBase: timetrial
   icon: {fileID: 21300000, guid: 099762860a928c2479f52b691edd73e2, type: 3}
-  implemented: 0
+  implemented: 1
   minPlayers: 1
   maxPlayers: 4

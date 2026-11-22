@@ -495,9 +495,20 @@ namespace GasSafari.Tests
             Assert.AreEqual("Mangos 2/3", sheet.MangosLabelText);
             Assert.IsTrue(sheet.TimesVisible);
 
-            // Contrarreloj se abre al terminar un nivel; Modificadores pide 30 estrellas; ninguno tiene escena todavía.
-            sheet.TimeTrialButton.onClick.Invoke();
-            Assert.AreEqual("Próximamente", App.ToastText);
+            // Contrarreloj se abre al terminar un nivel y empieza el nivel en ese modo (M7-01); Modificadores pide 30 estrellas.
+            LevelData launched = null;
+            ModeLauncher.Loader = l => launched = l;
+            try
+            {
+                sheet.TimeTrialButton.onClick.Invoke();
+            }
+            finally
+            {
+                ModeLauncher.Loader = SceneLoader.LoadLevel;
+            }
+            Assert.AreSame(level, launched);
+            Assert.AreEqual(ProgressionRules.MODE_TIME_TRIAL, Services.Session.RunMode);
+            Services.Session.RunMode = ProgressionRules.MODE_STORY;
             sheet.ModifiersButton.onClick.Invoke();
             Assert.AreEqual("30 estrellas", App.ToastText);
 
@@ -523,6 +534,48 @@ namespace GasSafari.Tests
             Assert.IsFalse(sheet.TimeTrialButton.gameObject.activeSelf);
             Assert.IsFalse(sheet.ModifiersButton.gameObject.activeSelf);
             Assert.AreEqual("Piscina del Zoológico", sheet.LevelNameText);
+        }
+
+        [UnityTest]
+        public IEnumerator LevelSheet_TimeTrialCard_ShowsTheModeAndTheBestTimes()
+        {
+            Give("W1-1", 2, 0, 90f);
+            Services.Progression.RecordTrial("W1-1", 75.2f, "Alex · Marty", new[] { "Alex", "Marty" }, 5);
+            Services.Progression.RecordTrial("W1-1", 90f, "Gloria", new[] { "Gloria" }, 5);
+            Services.Session.ModeId = ProgressionRules.MODE_TIME_TRIAL;
+            try
+            {
+                var sheet = App.Get<LevelSheetScreen>();
+                sheet.Level = Catalog.FindLevel("W1-1");
+                App.Push<LevelSheetScreen>();
+                yield return null;
+                Assert.AreEqual("Contrarreloj", sheet.ModeBadgeText);
+                Assert.IsTrue(sheet.TrialTableVisible);
+                Assert.AreEqual("1.  1:16   Alex · Marty", sheet.TrialRowText(0));
+                Assert.AreEqual("2.  1:30   Gloria", sheet.TrialRowText(1));
+                Assert.AreEqual("3.  --:--", sheet.TrialRowText(2));
+
+                LevelData launched = null;
+                ModeLauncher.Loader = l => launched = l;
+                sheet.PlayButton.onClick.Invoke();
+                Assert.AreSame(sheet.Level, launched);
+                Assert.AreEqual(ProgressionRules.MODE_TIME_TRIAL, Services.Session.RunMode, "Jugar usa el modo de la tarjeta");
+
+                // Historia no muestra insignia ni tabla.
+                Services.Session.ModeId = ProgressionRules.MODE_STORY;
+                App.Back();
+                App.Push<LevelSheetScreen>();
+                Assert.AreEqual(string.Empty, sheet.ModeBadgeText);
+                Assert.IsFalse(sheet.TrialTableVisible);
+                sheet.PlayButton.onClick.Invoke();
+                Assert.AreEqual(ProgressionRules.MODE_STORY, Services.Session.RunMode);
+            }
+            finally
+            {
+                ModeLauncher.Loader = SceneLoader.LoadLevel;
+                Services.Session.ModeId = ProgressionRules.MODE_STORY;
+                Services.Session.RunMode = ProgressionRules.MODE_STORY;
+            }
         }
 
         // ---------------------------------------------------------------- pantalla de carga

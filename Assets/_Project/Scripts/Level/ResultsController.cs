@@ -11,6 +11,9 @@ namespace GasSafari.Level
         // Guarda el resultado (nivel, resultados, modificadores activos). Lo conecta ProgressionService.
         public static Action<LevelData, LevelResults, bool> Commit = (level, results, modifiers) => { };
 
+        // Modo del nivel en curso (Contrarreloj, Espejo, Modificadores). null = reglas de Historia.
+        public static ILevelRunMode ActiveMode { get; set; }
+
         public static void ResetHooks()
         {
             PreviousBestStars = _ => -1;
@@ -46,9 +49,18 @@ namespace GasSafari.Level
                 return;
 
             string id = level.Data != null ? level.Data.id : string.Empty;
-            Results = ResultsBuilder.Build(level.Data, level.Timer.Total, stats.Data, PreviousBestStars(id), recorder.Worst, Rng);
+            var mode = ActiveMode;
+            int previous = mode != null ? mode.PreviousBestStars(id) : PreviousBestStars(id);
+            Results = ResultsBuilder.Build(level.Data, level.Timer.Total, stats.Data, previous, recorder.Worst, Rng);
+            if (mode != null)
+                mode.BuildResults(Results);
             if (level.Data != null)
-                Commit(level.Data, Results, false);
+            {
+                if (mode != null)
+                    mode.Commit(level.Data, Results);
+                else
+                    Commit(level.Data, Results, false);
+            }
             ResultsReady?.Invoke(Results);
         }
     }

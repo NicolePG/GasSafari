@@ -143,13 +143,15 @@ namespace GasSafari.Tests
         }
 
         [Test]
-        public void Modes_AreEight_AndOnlyStoryIsPlayableForNow()
+        public void Modes_AreEight_AndOnlyTheBuiltOnesArePlayable()
         {
             Assert.AreEqual(8, catalog.modes.Length);
             Assert.AreEqual(ProgressionRules.MODE_STORY, catalog.modes.OrderBy(m => m.order).First().id);
             foreach (var mode in catalog.modes)
                 Assert.IsNotNull(mode.icon, mode.id);
-            Assert.AreEqual(new[] { ProgressionRules.MODE_STORY }, catalog.modes.Where(m => m.implemented).Select(m => m.id).ToArray());
+            // Historia más los modos de M7 que ya tienen su lógica; los demás siguen en "Próximamente".
+            var expected = new[] { ProgressionRules.MODE_STORY }.Concat(GasSafari.Editor.ModesDataBuilder.Implemented).OrderBy(id => id).ToArray();
+            Assert.AreEqual(expected, catalog.modes.Where(m => m.implemented).Select(m => m.id).OrderBy(id => id).ToArray());
         }
 
         // ---------------------------------------------------------------- arte

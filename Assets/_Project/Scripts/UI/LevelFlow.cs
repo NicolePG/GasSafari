@@ -64,13 +64,18 @@ namespace GasSafari.UI
                 results.RetryRequested += Retry;
                 results.MapRequested += ToMap;
             }
+            // Modo de la partida (docs/06 §1) sobre el nivel recién cargado.
+            var mode = LevelManager.Current != null && Services.IsReady
+                ? Modes.ModeDirector.Attach(LevelManager.Current, Services.Session.RunMode)
+                : null;
             if (AssistArmed)
             {
                 var checkpoints = Object.FindFirstObjectByType<CheckpointSystem>();
                 if (checkpoints != null && checkpoints.GetComponent<RoyalAssist>() == null && LevelManager.Current != null)
                 {
                     AssistArmed = false;
-                    checkpoints.gameObject.AddComponent<RoyalAssist>().Bind(LevelManager.Current, checkpoints);
+                    if (mode == null || mode.AllowsRoyalAssist)
+                        checkpoints.gameObject.AddComponent<RoyalAssist>().Bind(LevelManager.Current, checkpoints);
                 }
             }
             foreach (var pause in Object.FindObjectsByType<PauseController>(FindObjectsInactive.Include, FindObjectsSortMode.None))

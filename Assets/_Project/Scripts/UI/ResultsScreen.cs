@@ -32,6 +32,8 @@ namespace GasSafari.UI
         [SerializeField] private Color starOff = new Color(0.3f, 0.3f, 0.3f);
 
         private LocalizedText note;
+        private LocalizedText modeNote;
+        public string ModeNoteText => modeNote != null && modeNote.gameObject.activeSelf ? modeNote.Label.text : string.Empty;
         public string NoteText => note != null && note.gameObject.activeSelf ? note.Label.text : string.Empty;
         private int starsToShow;
         private int starsShown;
@@ -109,6 +111,35 @@ namespace GasSafari.UI
                 note.SetKey("results.skipped_note");
             else if (sunk)
                 note.SetKey("results.sunk_note");
+
+            if (modeNote == null)
+            {
+                modeNote = UiFactory.Label(timeText.transform.parent, "ModeNote", null, 32f, TMPro.TextAlignmentOptions.Center, new Color(0.55f, 0.9f, 1f), TMPro.FontStyles.Bold);
+                var rect = modeNote.Label.rectTransform;
+                rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);
+                rect.pivot = new Vector2(0f, 1f);
+                rect.sizeDelta = new Vector2(700f, 50f);
+                rect.anchoredPosition = new Vector2(30f, -520f);
+            }
+            var mode = ModeNote(results);
+            modeNote.gameObject.SetActive(mode.key != null);
+            if (mode.key != null)
+                modeNote.SetKey(mode.key, mode.args);
+        }
+
+        // Línea del modo (docs/06 §1): diferencia con el fantasma, frijolitos del Espejo o aviso de los modificadores.
+        public static (string key, object[] args) ModeNote(LevelResults results)
+        {
+            switch (results.RunMode)
+            {
+                case Progression.ProgressionRules.MODE_TIME_TRIAL:
+                    if (float.IsNaN(results.GhostDelta))
+                        return (results.NewRecord ? "trial.first_record" : null, new object[0]);
+                    string delta = Modes.TimeTrialHud.FormatDelta(results.GhostDelta);
+                    return (results.NewRecord ? "trial.result_record" : "trial.result_behind", new object[] { delta });
+                default:
+                    return (null, new object[0]);
+            }
         }
 
         private void ShowAwards(LevelResults results)
