@@ -12,6 +12,7 @@ namespace GasSafari.Hazards
         private const float SPIN_GAIN = 2f;
 
         private float lastStep = -1f;
+        private SphereCollider sphere;
 
         public float Attraction => Config.Get("attraction", 4f);
         public float SpinDegrees => Config.Get("spin", 60f);
@@ -19,10 +20,14 @@ namespace GasSafari.Hazards
         {
             get
             {
-                var sphere = GetComponent<SphereCollider>();
+                if (sphere == null)
+                    sphere = GetComponent<SphereCollider>();
                 return sphere.radius * Mathf.Max(transform.lossyScale.x, transform.lossyScale.z);
             }
         }
+        // Avisa antes de que la balsa entre en su radio de atracción (HUD, Melman y bots).
+        protected override bool WarnsOnApproach => true;
+        public override float WarningRadius => Radius;
 
         protected override void OnRaftStay(RaftController raft)
         {

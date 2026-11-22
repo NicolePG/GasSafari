@@ -218,7 +218,7 @@ namespace GasSafari.Bots
                 }
             }
             if (nearest < 0)
-                return heading;
+                return AvoidWarned(position, heading);
 
             var toHit = Flatten(hazardHits[nearest].point - position, false);
             float side = Mathf.Sign(Vector3.Cross(heading, toHit).y); // + : el obstáculo queda a la derecha
@@ -273,7 +273,8 @@ namespace GasSafari.Bots
             float deficit = config.cruiseSpeed - Vector3.Dot(velocity, heading);
             var current = speed > 1.5f ? velocity : Flatten(seat.Raft.transform.forward);
             bool needsCorrection = Mathf.Abs(Vector3.SignedAngle(current, heading, Vector3.up)) > config.bigHeadingError;
-            bool straight = IsStraight(position, speed);
+            // Perseguidos por el cocodrilo gigante, las ráfagas valen también en curva (docs/05: no detenerse).
+            bool straight = IsStraight(position, speed) || IsChased;
             // Una balsa muy inclinada que sigue inclinándose está a punto de volcar: nadie dispara hasta que se estabilice.
             // Una inclinación quieta (cámaras reventadas de un lado) no bloquea: si no, el equipo quedaba parado para siempre.
             float tilt = Vector3.Angle(seat.Raft.transform.up, Vector3.up);

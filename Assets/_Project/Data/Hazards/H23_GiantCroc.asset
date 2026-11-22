@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: H23
   displayName: Cocodrilo gigante
-  warningTime: 0
+  warningTime: 0.5
   warningSound: 0
   alwaysDamagesChambers: 1
   parameters:

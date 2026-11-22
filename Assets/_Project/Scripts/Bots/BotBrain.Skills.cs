@@ -177,6 +177,9 @@ namespace GasSafari.Bots
         {
             if (source == null || seat.Raft == null || hazard == null || hazard.Config == null)
                 return;
+            // Cocodrilo gigante, remolinos, pinchos y redes: BotBrain.Warnings (apurarse o rodear).
+            if (HearWarning(hazard))
+                return;
             if (!hazard.TryGetComponent<HazardTags>(out var tags) || !tags.Has(HazardTag.Fauna))
                 return;
             var offset = hazard.transform.position - seat.Raft.transform.position;

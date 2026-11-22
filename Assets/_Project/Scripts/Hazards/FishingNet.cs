@@ -5,13 +5,20 @@ using UnityEngine;
 namespace GasSafari.Hazards
 {
     // H32 Red de pesca (docs/05): mientras la balsa está dentro, waterDrag x3. El Rugido la rompe (Fragile).
-    // Vuelve al reaparecer.
+    // Vuelve al reaparecer. Avisa al acercarse la balsa (aviso por cercanía de HazardBase) mientras no está rota.
     public class FishingNet : HazardBase, IBreakable
     {
         private RaftBuoyancy caught;
+        private Vector3 center;
+        private float radius;
 
         public float DragMultiplier => Config.Get("dragMultiplier", 3f);
         public bool Broken { get; private set; }
+        protected override bool WarnsOnApproach => !Broken;
+        public override float WarningRadius => radius;
+        public override Vector3 WarningCenter => center;
+
+        private void Awake() => MeasureColliders(out center, out radius);
 
         private void OnEnable() => GameEvents.OnRespawn += Restore;
 

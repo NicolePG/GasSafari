@@ -56,7 +56,7 @@ namespace GasSafari.UI
                 if (remaining[i] <= 0f)
                     continue;
                 remaining[i] -= Time.unscaledDeltaTime;
-                bool visible = remaining[i] > 0f && Place(arrows[i], targets[i].transform.position);
+                bool visible = remaining[i] > 0f && targets[i] != null && Place(arrows[i], targets[i].WarningCenter);
                 arrows[i].gameObject.SetActive(visible);
             }
         }

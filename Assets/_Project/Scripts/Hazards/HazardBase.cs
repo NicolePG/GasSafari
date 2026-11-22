@@ -9,9 +9,15 @@ namespace GasSafari.Hazards
     // comunes y ofrece el aviso previo: Warn() abre la ventana y OnWarningEnded() es el momento de actuar.
     public abstract class HazardBase : MonoBehaviour
     {
+        // Aviso por cercanía: también avisa con la balsa a menos de esto del borde, vaya a la velocidad que vaya.
+        private const float APPROACH_MIN_GAP = 3f;
+        // Se rearma cuando todas las balsas están más allá de su distancia de aviso más este margen.
+        private const float APPROACH_REARM_MARGIN = 10f;
+
         [SerializeField] private HazardConfig config;
 
         private float warningTimer;
+        private bool approachArmed = true;
 
         public HazardConfig Config => config;
         public bool IsWarning { get; private set; }
@@ -26,6 +32,13 @@ namespace GasSafari.Hazards
                 return difficulty != null ? difficulty.hazardSpeed : 1f;
             }
         }
+
+        // Obstáculos quietos sin aviso propio (remolino, pinchos, red): avisan al acercarse la balsa (UpdateApproachWarning).
+        protected virtual bool WarnsOnApproach => false;
+        // m del centro al borde que la balsa no debe tocar (aviso por cercanía y esquive de los bots).
+        public virtual float WarningRadius => 0f;
+        // Dónde está el peligro: centro del aviso por cercanía, flecha del HUD y esquive de los bots.
+        public virtual Vector3 WarningCenter => transform.position;
 
         public void Configure(HazardConfig hazardConfig)
         {
@@ -80,6 +93,8 @@ namespace GasSafari.Hazards
 
         protected virtual void Update()
         {
+            if (WarnsOnApproach)
+                UpdateApproachWarning();
             if (!IsWarning)
                 return;
 
@@ -88,6 +103,57 @@ namespace GasSafari.Hazards
                 return;
             IsWarning = false;
             OnWarningEnded();
+        }
+
+        // docs/05: todo peligro avisa al menos 0.5 s antes. Avisa cuando una balsa, a su velocidad de acercamiento, llegaría al
+        // borde en warningTime s, o ya está a APPROACH_MIN_GAP m. Vista Alta (Melman a bordo, docs/03) suma WarningLeadBonus s.
+        private void UpdateApproachWarning()
+        {
+            var rafts = RaftController.Active;
+            var center = WarningCenter;
+            float radius = WarningRadius;
+            bool reach = false;
+            bool allFar = true;
+            for (int i = 0; i < rafts.Count; i++)
+            {
+                var body = rafts[i].Body;
+                var offset = center - body.worldCenterOfMass;
+                offset.y = 0f;
+                float distance = offset.magnitude;
+                float closing = distance > 0.01f ? Mathf.Max(0f, Vector3.Dot(body.velocity, offset) / distance) : 0f;
+                var effects = rafts[i].Effects;
+                float lead = config.warningTime + (effects != null ? effects.WarningLeadBonus : 0f);
+                float warnGap = APPROACH_MIN_GAP + closing * lead;
+                float gap = distance - radius;
+                if (gap <= warnGap)
+                    reach = true;
+                if (gap <= warnGap + APPROACH_REARM_MARGIN)
+                    allFar = false;
+            }
+            if (!approachArmed)
+            {
+                approachArmed = allFar;
+                return;
+            }
+            if (!reach)
+                return;
+            approachArmed = false;
+            Warn();
+        }
+
+        // Centro y radio horizontal de los colliders del obstáculo (para los que no tienen un radio propio).
+        protected void MeasureColliders(out Vector3 center, out float radius)
+        {
+            center = transform.position;
+            radius = 0f;
+            var colliders = GetComponentsInChildren<Collider>();
+            if (colliders.Length == 0)
+                return;
+            var bounds = colliders[0].bounds;
+            for (int i = 1; i < colliders.Length; i++)
+                bounds.Encapsulate(colliders[i].bounds);
+            center = bounds.center;
+            radius = Mathf.Max(bounds.extents.x, bounds.extents.z);
         }
 
         private void OnTriggerEnter(Collider other) => Dispatch(other.attachedRigidbody, 0);

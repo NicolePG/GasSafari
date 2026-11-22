@@ -8,7 +8,8 @@ namespace GasSafari.Hazards
     // H23 Cocodrilo gigante (jefe de W5, docs/05): al entrar la balsa en su zona de salida, persigue por 'path' (el cauce) a
     // 'speedFactor' (90 %) de la velocidad media del equipo (media móvil de 4 s, entre 'minSpeed' y 'maxSpeed'). Si alcanza la
     // balsa (a menos de 'catchDistance' m), reaparición en el checkpoint. El Rugido (IScareable) lo frena 'duration' s (2).
-    // En el final, Snap() lo pone detrás de la balsa y cierra la boca (momento estrella).
+    // En el final, Snap() lo pone detrás de la balsa y cierra la boca (momento estrella). Avisa (Warn) al empezar cada persecución:
+    // HUD, Melman y bots (que no se agarran: siguen remando, docs/05 "no detenerse").
     [RequireComponent(typeof(BoxCollider))]
     public class GiantCrocChaser : HazardBase, IScareable
     {
@@ -33,6 +34,8 @@ namespace GasSafari.Hazards
         public float AverageRaftSpeed => averageSpeed;
         public bool Scared => Time.time < scaredUntil;
         public int Catches { get; private set; }
+        // El peligro es el cocodrilo, no la zona que arranca la persecución (flecha del HUD).
+        public override Vector3 WarningCenter => body != null ? body.position : transform.position;
 
         public void Configure(Transform crocBody, Vector3[] waypoints, float factor = 0.9f, float catchRadius = 5f)
         {
@@ -80,10 +83,12 @@ namespace GasSafari.Hazards
             Chasing = true;
             averageSpeed = FlatSpeed(raft);
             Trigger("Swim");
+            Warn();
         }
 
         private void ResetChase()
         {
+            CancelWarning();
             Chasing = false;
             snapped = false;
             index = 0;
@@ -105,6 +110,7 @@ namespace GasSafari.Hazards
             Trigger("Swim");
             if (Services.IsReady && Services.Audio != null)
                 Services.Audio.Play(Audio.SoundId.RockWarn, body != null ? body.position : transform.position);
+            Warn();
         }
 
         // Rugido de Alex (u otra fuente): lo frena.

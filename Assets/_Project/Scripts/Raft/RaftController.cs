@@ -17,11 +17,16 @@ namespace GasSafari.Raft
 
         [SerializeField] private BalanceConfig balance;
 
+        private static readonly List<RaftController> ActiveRafts = new List<RaftController>();
+
         private readonly List<WeightPoint> weights = new List<WeightPoint>();
         private Rigidbody rb;
 
+        // Balsas activas (una, o varias en Carrera por Equipos): las leen los avisos por cercanía de los obstáculos.
+        public static IReadOnlyList<RaftController> Active => ActiveRafts;
         public Rigidbody Body => rb;
         public RaftBuoyancy Buoyancy { get; private set; }
+        public RaftEffects Effects { get; private set; }
         public BalanceConfig Balance => balance;
         public float OnboardWeight { get; private set; }
         // 0 anula la inclinación por peso (Dúo Pesado).
@@ -34,11 +39,15 @@ namespace GasSafari.Raft
         {
             rb = GetComponent<Rigidbody>();
             Buoyancy = GetComponent<RaftBuoyancy>();
+            Effects = GetComponent<RaftEffects>();
             rb.interpolation = RigidbodyInterpolation.Interpolate;
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.centerOfMass = balance.centerOfMassOffset;
             UpdateMass();
         }
+
+        private void OnEnable() => ActiveRafts.Add(this);
+        private void OnDisable() => ActiveRafts.Remove(this);
 
         public void ApplyThrust(Vector3 force, Vector3 point, ForceMode mode)
         {

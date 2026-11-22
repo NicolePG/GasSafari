@@ -137,5 +137,28 @@ namespace GasSafari.Tests
             yield return null;
             Assert.IsFalse(ready.gameObject.activeSelf);
         }
+
+        // Aviso de un remolino fuera de cámara (detrás de la balsa): el HUD muestra una flecha mientras dura el aviso.
+        [UnityTest]
+        public IEnumerator HazardWarning_OffscreenWhirlpool_ShowsAnEdgeArrow()
+        {
+            yield return new WaitForSeconds(0.3f);
+            var arrows = Object.FindFirstObjectByType<HudHazardArrows>();
+            Assert.IsNotNull(arrows);
+            var cam = Camera.main;
+            GameObject go = null;
+#if UNITY_EDITOR
+            go = Object.Instantiate(UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_Project/Prefabs/Hazards/H09_Whirlpool.prefab"),
+                cam.transform.position - cam.transform.forward * 40f, Quaternion.identity);
+#endif
+            go.GetComponent<Hazards.Whirlpool>().Warn();
+            yield return null;
+            yield return null;
+            int active = 0;
+            foreach (Transform child in arrows.transform)
+                active += child.gameObject.activeSelf ? 1 : 0;
+            Object.Destroy(go);
+            Assert.AreEqual(1, active, "una flecha hacia el remolino");
+        }
     }
 }
