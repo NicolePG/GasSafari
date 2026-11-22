@@ -117,6 +117,8 @@ select.title,Elige tu animal,Pick your animal,Selección de personajes (docs/07 
 select.add_bot,Añadir bot,Add bot,Solo anfitrión
 select.remove_bot,Quitar bot,Remove bot,Solo anfitrión
 select.bot,Bot,Bot,Etiqueta en la columna de un bot
+select.dual,Doble: {0},Dual: {0},"Interruptor del control doble (un mando, dos animales) en la columna de quien juega con mando; {0} = Sí o No"
+select.dual_partner,2.º animal,2nd animal,Etiqueta en la columna del segundo animal de un control doble
 select.difficulty,Dificultad,Difficulty,Selector de dificultad (partida)
 select.hat,Sombrero,Hat,Selector de la columna
 select.gas,Color de gas,Gas color,Selector de la columna

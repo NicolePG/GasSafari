@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using GasSafari.Characters;
 using GasSafari.Core;
+using GasSafari.Input;
 using GasSafari.Progression;
 using TMPro;
 using UnityEngine;
@@ -19,7 +20,8 @@ namespace GasSafari.UI
         private const int ROW_CHARACTER = 0;
         private const int ROW_HAT = 1;
         private const int ROW_GAS = 2;
-        private const int ROW_BAR = 3;
+        private const int ROW_DUAL = 3;
+        private const int ROW_BAR = 4;
         private const float ARM_TIME = 0.35f;
         private const float START_DELAY = 0.9f;
         private const float STICK = 0.6f;
@@ -47,7 +49,9 @@ namespace GasSafari.UI
             public LocalizedText HatValue;
             public Image GasIcon;
             public LocalizedText GasValue;
-            public Image[] RowHighlight = new Image[3];
+            public Image[] RowHighlight = new Image[4];
+            public Button DualButton;
+            public LocalizedText DualLabel;
             public Button ReadyButton;
             public LocalizedText ReadyLabel;
             public GameObject ReadyBadge;
@@ -215,6 +219,15 @@ namespace GasSafari.UI
             column.ReadyButton.onClick.AddListener(() => ToggleReady(columns[captured]));
             column.ReadyButton.navigation = new Navigation { mode = Navigation.Mode.None };
 
+            // Control doble (docs/02 §13): solo para quien juega con mando. Abajo a la izquierda, junto a "Listo".
+            column.DualButton = UiFactory.MakeButton(filled, "Dual", null, ButtonStyle.Blue, new Vector2(196f, 52f), null, 26f);
+            UiFactory.Place((RectTransform)column.DualButton.transform, new Vector2(0f, 0f), new Vector2(196f, 52f), new Vector2(24f, 12f));
+            column.DualButton.navigation = new Navigation { mode = Navigation.Mode.None };
+            column.DualLabel = UiFactory.Label(column.DualButton.transform, "Label", "select.dual", 26f, TextAlignmentOptions.Center, Color.white, FontStyles.Bold).Outlined();
+            UiFactory.Region(column.DualLabel.Label.rectTransform, Vector2.zero, Vector2.one, new Vector4(8f, 4f, 8f, 4f));
+            column.RowHighlight[ROW_DUAL] = column.DualButton.image;
+            column.DualButton.onClick.AddListener(() => ToggleDual(columns[captured]));
+
             column.ReadyBadge = UiFactory.Label(filled, "Bot", "select.bot", 34f, TextAlignmentOptions.Left, UiFactory.Cream, FontStyles.Bold).gameObject;
             UiFactory.Place(column.ReadyBadge.GetComponent<RectTransform>(), new Vector2(0f, 0f), new Vector2(200f, 52f), new Vector2(30f, 12f));
 
@@ -346,7 +359,10 @@ namespace GasSafari.UI
             }
             SetUiMaps(false);
             if (!proceeding)
+            {
                 RemoveBots();
+                RemoveDualControls();
+            }
         }
 
         private void OnPlayerJoined(PlayerSlot slot)
@@ -526,6 +542,17 @@ namespace GasSafari.UI
             return false;
         }
 
+        private void RemoveDualControls()
+        {
+            if (!Services.IsReady || Services.InputHub == null)
+                return;
+            foreach (var column in columns)
+            {
+                if (column.Slot != null && column.Slot.Partner != null)
+                    Services.InputHub.DisableDualControl(column.Slot);
+            }
+        }
+
         private void RemoveBots()
         {
             if (!Services.IsReady)
@@ -558,9 +585,65 @@ namespace GasSafari.UI
         }
 
         // ---------------------------------------------------------------- listo / salir
+        // El segundo animal de un control doble no tiene mando propio: sigue al dueño (que elige su personaje en la fila "Doble").
+        public bool IsPartner(Column column)
+        {
+            if (column.Slot == null)
+                return false;
+            foreach (var other in columns)
+            {
+                if (other.Slot != null && other.Slot.Partner == column.Slot)
+                    return true;
+            }
+            return false;
+        }
+
+        private Column PartnerColumn(Column owner)
+        {
+            if (owner.Slot == null || owner.Slot.Partner == null)
+                return null;
+            foreach (var other in columns)
+            {
+                if (other.Slot == owner.Slot.Partner)
+                    return other;
+            }
+            return null;
+        }
+
+        private bool CanDual(Column column) => column.IsOccupied && !column.IsBot && !IsPartner(column) && InputHub.SupportsDualControl(column.Slot);
+
+        // Activa o desactiva el control doble de este mando: aparece (o se va) un segundo animal en la siguiente columna libre.
+        public bool ToggleDual(Column column)
+        {
+            if (!Services.IsReady || Services.InputHub == null || !CanDual(column))
+                return false;
+            if (column.Slot.Partner == null)
+            {
+                var partner = Services.InputHub.EnableDualControl(column.Slot);
+                if (partner == null)
+                    return false;
+                Bind(partner);
+            }
+            else
+            {
+                var partnerColumn = PartnerColumn(column);
+                Services.InputHub.DisableDualControl(column.Slot);
+                if (partnerColumn != null)
+                {
+                    partnerColumn.Slot = null;
+                    partnerColumn.Character = null;
+                    partnerColumn.Ready = false;
+                    partnerColumn.Row = ROW_CHARACTER;
+                }
+            }
+            startTimer = -1f;
+            Refresh();
+            return true;
+        }
+
         public void ToggleReady(Column column)
         {
-            if (!column.IsOccupied || column.IsBot)
+            if (!column.IsOccupied || column.IsBot || IsPartner(column))
                 return;
             column.Ready = !column.Ready;
             startTimer = -1f;
@@ -660,8 +743,11 @@ namespace GasSafari.UI
         {
             if (column.Ready)
                 return;
-            int max = leader ? ROW_BAR : ROW_GAS;
-            column.Row = Mathf.Clamp(column.Row + step, ROW_CHARACTER, max);
+            int max = leader ? ROW_BAR : CanDual(column) ? ROW_DUAL : ROW_GAS;
+            int row = Mathf.Clamp(column.Row + step, ROW_CHARACTER, max);
+            if (row == ROW_DUAL && !CanDual(column))
+                row = Mathf.Clamp(row + step, ROW_CHARACTER, max);
+            column.Row = row;
             if (column.Row == ROW_BAR)
                 SelectBar();
             else
@@ -683,6 +769,12 @@ namespace GasSafari.UI
                 case ROW_GAS:
                     CycleCosmetic(column, CosmeticCategory.Gas, step, false);
                     break;
+                case ROW_DUAL:
+                    // Con el segundo animal activo, izquierda/derecha cambian su personaje.
+                    var partnerColumn = PartnerColumn(column);
+                    if (partnerColumn != null)
+                        CycleCharacter(partnerColumn, step);
+                    break;
                 case ROW_BAR:
                     barIndex = Mathf.Clamp(barIndex + step, 0, bar.Length - 1);
                     SelectBar();
@@ -692,6 +784,11 @@ namespace GasSafari.UI
 
         private void Submit(Column column, bool leader)
         {
+            if (column.Row == ROW_DUAL && !column.Ready)
+            {
+                ToggleDual(column);
+                return;
+            }
             if (column.Row == ROW_BAR && leader)
             {
                 bar[barIndex].onClick.Invoke();
@@ -711,7 +808,7 @@ namespace GasSafari.UI
             }
             if (column.Row == ROW_BAR)
             {
-                column.Row = ROW_GAS;
+                column.Row = CanDual(column) ? ROW_DUAL : ROW_GAS;
                 ClearBarSelection();
                 return;
             }
@@ -758,7 +855,7 @@ namespace GasSafari.UI
             bool allReady = true;
             foreach (var column in columns)
             {
-                if (!column.IsOccupied || column.IsBot)
+                if (!column.IsOccupied || column.IsBot || IsPartner(column))
                     continue;
                 humans++;
                 allReady &= column.Ready;
@@ -808,9 +905,19 @@ namespace GasSafari.UI
 
                 var character = column.Character;
                 column.Tag.SetLiteral("J" + (column.Index + 1));
-                column.ReadyButton.gameObject.SetActive(!column.IsBot);
-                column.ReadyBadge.SetActive(column.IsBot);
+                bool partner = IsPartner(column);
+                column.ReadyButton.gameObject.SetActive(!column.IsBot && !partner);
+                column.ReadyBadge.SetActive(column.IsBot || partner);
+                if (partner || column.IsBot)
+                    column.ReadyBadge.GetComponent<LocalizedText>().SetKey(partner ? "select.dual_partner" : "select.bot");
                 column.ReadyLabel.SetKey("ui.ready");
+                bool canDual = CanDual(column);
+                column.DualButton.gameObject.SetActive(canDual);
+                if (canDual)
+                {
+                    column.DualLabel.SetKey("select.dual", Localized(column.Slot.Partner != null ? "ui.yes" : "ui.no"));
+                    column.DualButton.interactable = column.Slot.Partner != null || FreeSlots() > 0;
+                }
                 column.ReadyButton.image.color = column.Ready ? new Color(0.65f, 1f, 0.65f) : Color.white;
 
                 if (character != null)
@@ -891,7 +998,7 @@ namespace GasSafari.UI
                 if (!column.IsOccupied)
                     continue;
                 bool human = !column.IsBot;
-                for (int row = 0; row < 3; row++)
+                for (int row = 0; row < ROW_BAR; row++)
                 {
                     var highlight = column.RowHighlight[row];
                     bool active = human && column.Row == row && !column.Ready;

@@ -367,6 +367,12 @@ MonoBehaviour:
   - key: select.bot
     text: Bot
     en: Bot
+  - key: select.dual
+    text: 'Doble: {0}'
+    en: 'Dual: {0}'
+  - key: select.dual_partner
+    text: "2.\xBA animal"
+    en: 2nd animal
   - key: select.difficulty
     text: Dificultad
     en: Difficulty

@@ -99,6 +99,13 @@ namespace GasSafari.Input
             return second;
         }
 
+        // ¿El mando de este jugador puede manejar dos animales? (solo con gamepad, docs/02 §13). La selección de personajes lo usa
+        // para mostrar el interruptor del control doble.
+        public static bool SupportsDualControl(PlayerSlot slot)
+        {
+            return slot != null && slot.Input != null && HasGamepad(slot.Input);
+        }
+
         // Vuelve al control normal de un solo animal.
         public void DisableDualControl(PlayerSlot owner)
         {
