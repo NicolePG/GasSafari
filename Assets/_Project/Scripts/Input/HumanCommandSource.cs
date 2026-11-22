@@ -18,7 +18,8 @@ namespace GasSafari.Input
             get
             {
                 var moveValue = move.ReadValue<Vector2>();
-                return new PlayerCommand
+                // Modo Espejo: lo que el jugador ve a la izquierda es la derecha del mundo.
+                return Core.MirrorView.Apply(new PlayerCommand
                 {
                     SeatMove = moveValue.x,
                     Aim = Mathf.Clamp(aim.ReadValue<Vector2>().x * Progression.GameSettings.AimFactor, -1f, 1f),
@@ -32,7 +33,7 @@ namespace GasSafari.Input
                     JumpPresses = jumpPresses,
                     Ping = ToPing(ping.ReadValue<Vector2>()),
                     Swim = moveValue
-                };
+                });
             }
         }
 

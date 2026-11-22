@@ -228,7 +228,8 @@ namespace GasSafari.Tests
                 Time.timeScale = scale;
         }
 
-        private IEnumerator RunLevel(string scene, string id, float limit, string route = null)
+        // runMode: modo de M7 que se pone sobre el nivel (MirrorBotTests usa el Espejo); null = Historia sin modo.
+        internal static IEnumerator RunLevel(string scene, string id, float limit, string route = null, string runMode = null)
         {
 #if UNITY_EDITOR
             BotHint.ForcedRoute = route;
@@ -245,6 +246,8 @@ namespace GasSafari.Tests
             yield return null;
 
             var manager = LevelManager.Current;
+            if (runMode != null)
+                GasSafari.Modes.ModeDirector.Attach(manager, runMode);
             var telemetry = manager.Raft.gameObject.AddComponent<RaftTelemetry>();
             float finishedAt = -1f;
             manager.Finished += time => finishedAt = time;
@@ -332,6 +335,9 @@ namespace GasSafari.Tests
             // Se evalúa antes de limpiar y se afirma después: un fallo no debe dejar la escena ni la balsa cargadas
             // (contaminaba las pruebas siguientes).
             var problems = new System.Collections.Generic.List<string>();
+            if (runMode == GasSafari.Progression.ProgressionRules.MODE_MIRROR
+                && (!MirrorView.Active || Camera.main == null || Camera.main.targetTexture == null))
+                problems.Add($"{id}: el Espejo no quedó activo (imagen sin invertir)");
             if (finishedAt < 0f)
                 problems.Add($"{id}: los bots llegan a la meta en menos de {limit:F0} s");
             // Cabeceo en el agua con las cámaras sanas: la balsa va plana salvo en rampas y caídas (W2-2 da 3.7°).

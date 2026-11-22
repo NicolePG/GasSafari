@@ -19,7 +19,7 @@ namespace GasSafari.Input
         {
             public PlayerCommand Command;
             public Func<bool> InWater = () => false;
-            public PlayerCommand Current => Command;
+            public PlayerCommand Current => Core.MirrorView.Apply(Command);
 
             public void Bind(PlayerAvatar avatar)
             {

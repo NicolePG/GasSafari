@@ -25,6 +25,12 @@
 ### Espejo
 - El nivel se carga con la raíz de la geometría en escala X = -1 (Unity invierte el culling solo) y las splines del cauce espejadas.
 - Récords propios; recompensa de frijolitos x1.5.
+- Decisión provisional, pendiente de playtest (M7-02, 2026-11-22): **se invierte la imagen y la entrada, no la geometría.** Las ~800 piezas de cada escena van en static batching (sus mallas se combinan al construir), así que una raíz con escala X = -1 en tiempo de ejecución movería los colisionadores pero no lo que se ve; tener 31 escenas espejo aparte sumaría ~100 MB al repositorio. En su lugar:
+  - La cámara del nivel dibuja en una textura y una imagen a pantalla completa la muestra invertida en X, debajo del HUD (`MirrorScreen`); el HUD, la pausa y los resultados no se invierten.
+  - La entrada de los humanos se invierte en X (moverse por el borde, apuntar, nadar) y los pings izquierda/derecha cambian de lado (`MirrorView`). Bots, física, splines, corriente, peligros, checkpoints y BotHints quedan iguales, por eso funcionan en los 31 niveles sin cambios.
+  - Las flechas de peligro del HUD, los iconos de animales en el agua y los avisos (`Warn()`) usan la posición de pantalla invertida; los textos del mundo (carteles 3D, anillos y pings sobre los animales) se voltean para leerse al derecho; la repetición "¿Quién fue?" también se ve invertida.
+  - Se nota en: los animales y los objetos con letras pintadas en la textura se ven espejados.
+- Más decisiones provisionales: en Familiar la dificultad sube a Normal mientras se juega Espejo y vuelve a la elegida al jugar otro modo; Espejo no graba fantasma; los mangos dorados que se recogen cuentan para el nivel; terminar en Espejo con Amistades Rotas no cuenta para el logro "Amistades Rotas" (pide la historia). T-0 no tiene Espejo (se juega normal).
 
 ### Modificadores (Caos)
 Se activan desde un menú antes del nivel. Los tiempos con modificadores no cuentan para estrellas.

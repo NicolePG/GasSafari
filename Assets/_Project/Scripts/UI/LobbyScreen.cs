@@ -576,6 +576,8 @@ namespace GasSafari.UI
             int index = System.Array.IndexOf(catalog.difficulties, Services.Session.Difficulty);
             var next = catalog.difficulties[(index + 1) % catalog.difficulties.Length];
             Services.Session.Difficulty = next;
+            // Elegida a mano: el Espejo ya no tiene que devolver la de antes.
+            Services.Session.DifficultyBeforeMirror = null;
             if (Services.Progression != null)
             {
                 Services.Progression.Data.settings.difficulty = next.id;

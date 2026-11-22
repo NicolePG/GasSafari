@@ -20,6 +20,7 @@ namespace GasSafari.Modes
             switch (timed ? runMode : ProgressionRules.MODE_STORY)
             {
                 case ProgressionRules.MODE_TIME_TRIAL: mode = level.gameObject.AddComponent<TimeTrialMode>(); break;
+                case ProgressionRules.MODE_MIRROR: mode = level.gameObject.AddComponent<MirrorMode>(); break;
                 default: mode = level.gameObject.AddComponent<StoryMode>(); break;
             }
             mode.Bind(level);

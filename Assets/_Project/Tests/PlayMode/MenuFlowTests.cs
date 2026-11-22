@@ -578,6 +578,38 @@ namespace GasSafari.Tests
             }
         }
 
+        [UnityTest]
+        public IEnumerator LevelSheet_MirrorCard_ShowsMirrorRecords_AndPlaysInMirror()
+        {
+            Give("W2-1", 3, 1, 100f);
+            var mirror = Services.Progression.Data.GetOrAddMirror("W2-1");
+            mirror.stars = 1;
+            mirror.best = 200f;
+            Services.Session.ModeId = ProgressionRules.MODE_MIRROR;
+            try
+            {
+                var sheet = App.Get<LevelSheetScreen>();
+                sheet.Level = Catalog.FindLevel("W2-1");
+                App.Push<LevelSheetScreen>();
+                yield return null;
+                Assert.AreEqual("Espejo", sheet.ModeBadgeText);
+                Assert.AreEqual("3:20", sheet.BestTimeText, "récord propio del Espejo");
+                Assert.AreEqual("Mangos 1/3", sheet.MangosLabelText, "los mangos son los del nivel");
+                Assert.IsFalse(sheet.TrialTableVisible);
+                LevelData launched = null;
+                ModeLauncher.Loader = l => launched = l;
+                sheet.PlayButton.onClick.Invoke();
+                Assert.AreSame(sheet.Level, launched);
+                Assert.AreEqual(ProgressionRules.MODE_MIRROR, Services.Session.RunMode);
+            }
+            finally
+            {
+                ModeLauncher.Loader = SceneLoader.LoadLevel;
+                ModeLauncher.Prepare(Services.Session, ProgressionRules.MODE_STORY);
+                Services.Session.ModeId = ProgressionRules.MODE_STORY;
+            }
+        }
+
         // ---------------------------------------------------------------- pantalla de carga
         [UnityTest]
         public IEnumerator Loading_ShowsATipInTheActiveLanguage()

@@ -177,13 +177,16 @@ namespace GasSafari.UI
 
             gold.SetLiteral(FormatTime(Level.goldTime));
             silver.SetLiteral(FormatTime(Level.silverTime));
-            var record = data.FindLevel(Level.id);
+            // Espejo tiene récords propios (docs/06 §1); los mangos son los del nivel.
+            bool mirror = Level.showTimer && ModeLauncher.RunModeFor(CardMode) == ProgressionRules.MODE_MIRROR;
+            var mangoRecord = data.FindLevel(Level.id);
+            var record = mirror ? data.FindMirror(Level.id) : mangoRecord;
             best.SetLiteral(record != null && record.best > 0f ? FormatTime(record.best) : LocalizedText.Table != null ? LocalizedText.Table.Get("sheet.no_time") : "--:--");
 
             int earned = record != null ? record.stars : 0;
             for (int i = 0; i < 3; i++)
                 stars[i].sprite = UiFactory.Sprite(i < earned ? "Icon_Star_Full" : "Icon_Star_Empty");
-            int mask = record != null ? record.mangos : 0;
+            int mask = mangoRecord != null ? mangoRecord.mangos : 0;
             int count = 0;
             for (int i = 0; i < 3; i++)
             {

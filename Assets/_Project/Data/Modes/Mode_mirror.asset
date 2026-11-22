@@ -16,6 +16,6 @@ MonoBehaviour:
   order: 3
   keyBase: mirror
   icon: {fileID: 21300000, guid: 21541a6d4f1750944965ff2ad82893d7, type: 3}
-  implemented: 0
+  implemented: 1
   minPlayers: 1
   maxPlayers: 4

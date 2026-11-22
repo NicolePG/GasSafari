@@ -122,19 +122,23 @@ namespace GasSafari.Progression
         private void OnLevelFinished(float time)
         {
             var level = LevelManager.Current != null ? LevelManager.Current.Data : null;
-            var difficulty = Services.IsReady && Services.Session != null ? Services.Session.Difficulty : null;
-            HandleLevelFinished(level, choppedChambers, difficulty != null ? difficulty.id : string.Empty);
+            var session = Services.IsReady ? Services.Session : null;
+            var difficulty = session != null ? session.Difficulty : null;
+            HandleLevelFinished(level, choppedChambers, difficulty != null ? difficulty.id : string.Empty,
+                session != null ? session.RunMode : ProgressionRules.MODE_STORY);
         }
 
         // Al cruzar la meta: "Sin un Rasguño" (ninguna cámara reventada) y el registro de niveles en Amistades Rotas.
-        public void HandleLevelFinished(LevelData level, int chambersLost, string difficultyId)
+        // Espejo (récords propios) no cuenta para "Amistades Rotas", que pide la historia (decisión provisional, docs/06).
+        public void HandleLevelFinished(LevelData level, int chambersLost, string difficultyId, string runMode = ProgressionRules.MODE_STORY)
         {
             var data = Data;
             if (level == null || data == null)
                 return;
             if (chambersLost == 0 && level.showTimer)
                 Unlock("not_a_scratch");
-            if (difficultyId == DIFFICULTY_HARDEST && !data.brokenLevels.Contains(level.id))
+            bool story = runMode != ProgressionRules.MODE_MIRROR;
+            if (story && difficultyId == DIFFICULTY_HARDEST && !data.brokenLevels.Contains(level.id))
                 data.brokenLevels.Add(level.id);
         }
 

@@ -130,7 +130,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 
 ## M7 · Modos (8-9 nov)
 - [x] **M7-01** Contrarreloj con fantasma · game-modes · 06 §1 · hecho 2026-11-22 (PV-19) · `Modes/` con `GameModeBase` y `ModeDirector` (LevelFlow pone el modo de `GameSession.RunMode` al cargar el nivel); `GhostRecorder` a 10 Hz, `GhostStore` (binario por nivel junto al guardado), `GhostPlayer` semitransparente, `TimeTrialHud` con la diferencia por checkpoint, nota en resultados, tabla de 5 mejores en `SaveData.trials` y en la ficha; tarjeta y botón de la ficha activos; `Resources/ModesConfig.asset` por `Gas Safari/Setup/Crear modos de M7`; pruebas `TimeTrialTests` y `TimeTrialModeTests`
-- [ ] **M7-02** Modo Espejo · game-modes · 06 §1
+- [x] **M7-02** Modo Espejo · game-modes · 06 §1 · hecho 2026-11-22 (PV-20) · decisión provisional: se invierten imagen (`MirrorScreen`, cámara a textura mostrada en X = -1 bajo el HUD) y entrada (`MirrorView`: borde, puntería, nado y pings), no la geometría (static batching; ver docs/06); flechas del HUD, iconos de nadadores, textos del mundo y repetición respetan el espejo; récords propios (`SaveData.mirrorLevels`), frijolitos x1.5, mínimo Normal; auditoría de los 31 niveles (una cámara con CinemachineBrain, sin lienzos Screen Space - Camera) y bots en Espejo de W1-2, W2-2, W3-1, W4-1, W5-4 y W6-1 (122-180 s, límites Plata x1.3); pruebas `MirrorTests`, `MirrorModeTests`, `MirrorBotTests`
 - [ ] **M7-03** Modificadores (Caos) · game-modes · 06 §1
 - [ ] **M7-04** Fiesta: Balsa-Gol · game-modes · 06 §1
 - [ ] **M7-05** Fiesta: Rey de la Balsa · game-modes · 06 §1

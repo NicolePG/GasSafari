@@ -13,7 +13,7 @@ namespace GasSafari.Editor
         private const string MODES = "Assets/_Project/Data/Modes/";
 
         // Modos de M7 que ya tienen su lógica (los demás siguen en "Próximamente").
-        public static readonly string[] Implemented = { ProgressionRules.MODE_TIME_TRIAL };
+        public static readonly string[] Implemented = { ProgressionRules.MODE_TIME_TRIAL, ProgressionRules.MODE_MIRROR };
 
         [MenuItem("Gas Safari/Setup/Crear modos de M7")]
         public static void Build()

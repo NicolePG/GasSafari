@@ -66,7 +66,7 @@ namespace GasSafari.UI
         {
             if (cam == null)
                 return false;
-            var view = cam.WorldToViewportPoint(worldPoint);
+            var view = MirrorView.Viewport(cam.WorldToViewportPoint(worldPoint));
             bool onScreen = view.z > 0f && view.x > 0f && view.x < 1f && view.y > 0f && view.y < 1f;
             if (onScreen)
                 return false;

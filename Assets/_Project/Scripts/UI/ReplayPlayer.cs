@@ -36,6 +36,8 @@ namespace GasSafari.UI
             time = 0f;
             texture = new RenderTexture(TEXTURE_WIDTH, TEXTURE_HEIGHT, 16);
             view.texture = texture;
+            // Modo Espejo: la repetición se ve igual que el nivel.
+            view.uvRect = Core.MirrorView.Active ? new Rect(1f, 0f, -1f, 1f) : new Rect(0f, 0f, 1f, 1f);
             view.gameObject.SetActive(true);
 
             var cameraObject = new GameObject("ReplayCamera");
@@ -57,6 +59,8 @@ namespace GasSafari.UI
             var label = new GameObject("Label").AddComponent<TextMeshPro>();
             label.transform.SetParent(markerObject.transform, false);
             label.transform.localPosition = Vector3.up * 1.2f;
+            if (Core.MirrorView.Active)
+                label.transform.localScale = new Vector3(-1f, 1f, 1f);
             label.text = culpritLabel;
             label.fontSize = 6f;
             label.alignment = TextAlignmentOptions.Center;

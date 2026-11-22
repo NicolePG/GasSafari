@@ -111,7 +111,7 @@ namespace GasSafari.UI
         // false si el animal está a la vista (no hace falta icono).
         private bool Place(Marker marker, Vector3 worldPoint)
         {
-            var view = cam.WorldToViewportPoint(worldPoint);
+            var view = MirrorView.Viewport(cam.WorldToViewportPoint(worldPoint));
             bool onScreen = view.z > 0f && view.x > VIEWPORT_MARGIN && view.x < 1f - VIEWPORT_MARGIN
                 && view.y > VIEWPORT_MARGIN && view.y < 1f - VIEWPORT_MARGIN;
             if (onScreen)
