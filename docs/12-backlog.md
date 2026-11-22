@@ -140,6 +140,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 - [ ] **M7-09** Infinito (tramos y generador) · game-modes · 06 §1
 - [ ] **M7-10** Desafío Diario + prueba T-DAILY-01 · game-modes · 06 §1
 - [ ] **M7-11** Carrera por Equipos local (pantalla dividida) · game-modes · 06 §1
+- [ ] **M7-12** `TeamRaceSpawn` (docs/10 §5, marcador del nivel): puntos de salida de cada balsa en los niveles compatibles con Carrera por Equipos; va con M7-11 · game-modes, level-builder · 06 §1, 10 §5 · anotado 2026-11-22, sin empezar
 
 ## M8 · Online (9 nov)
 - [ ] **M8-01** `NetSession`: autenticación anónima, Relay y Lobby · netcode-ngo · 10 §14
@@ -153,6 +154,7 @@ Orden pensado para que el juego sea jugable desde el día 2 y cada día crezca. 
 ## M9 · Pulido y entrega (9-10 nov)
 - [ ] **M9-01** Pase de juice: sacudidas, cámara lenta, destellos, squash · vfx-juice · 09 §6
 - [ ] **M9-02** Mezcla de audio y snapshots · audio-sfx · 08 §1
+- [ ] **M9-10** Stingers de 2-4 s: `stinger_victory` y `stinger_fail` duran hoy 1-1.4 s (docs/08 §5 los da como 0.9-1.4 s); alargarlos a 2-4 s al pulir el audio · audio-sfx · 08 §5 · anotado 2026-11-22, sin empezar
 - [ ] **M9-03** Rendimiento según presupuestos · qa-check · 10 §16
 - [ ] **M9-04** (TÚ) Playtest con 2 grupos · — · 11 §6
 - [ ] **M9-05** Ajustes de balance del playtest · raft-physics · 02 §14
