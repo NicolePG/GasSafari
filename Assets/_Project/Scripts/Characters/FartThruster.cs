@@ -194,6 +194,7 @@ namespace GasSafari.Characters
         {
             coughTimer = balance.emptyCoughTime;
             Coughed?.Invoke();
+            GameEvents.RaiseFartFailed(avatar);
         }
 
         private void CancelPress()

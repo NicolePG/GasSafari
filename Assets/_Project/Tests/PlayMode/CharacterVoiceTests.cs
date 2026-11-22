@@ -8,7 +8,7 @@ using UnityEngine.TestTools;
 
 namespace GasSafari.Tests
 {
-    // Cuándo habla cada personaje (docs/08 §2 "Voces"). El enfriamiento de 3 s se prueba en VoiceGateTests.
+    // Cuándo habla cada personaje (docs/08 §2 y §4, provisional). El enfriamiento de 3 s se prueba en VoiceGateTests.
     public class CharacterVoiceTests
     {
         private RaftTestRig rig;
@@ -57,12 +57,31 @@ namespace GasSafari.Tests
             Assert.AreEqual(VoiceKind.Effort, voice.LastSpoken);
         }
 
+        [UnityTest]
+        public IEnumerator OwnPuff_MakesEffort()
+        {
+            yield return new WaitForSeconds(0.3f);
+            avatar.GetComponent<ScriptedCommandSource>().Command.FartPresses++;
+            yield return null;
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+            Assert.AreEqual(VoiceKind.Effort, voice.LastSpoken, "lanzar un pedo");
+        }
+
         [Test]
         public void OwnFall_MakesTheFallVoice_EvenRightAfterAnotherVoice()
         {
             GameEvents.RaiseSuperFart(1f);
             GameEvents.RaisePlayerFell(avatar);
             Assert.AreEqual(VoiceKind.Fall, voice.LastSpoken, "caer siempre suena");
+        }
+
+        [Test]
+        public void RaftSinking_MakesTheFallVoice()
+        {
+            GameEvents.RaiseCheckpoint(1);
+            GameEvents.RaiseRaftSunk();
+            Assert.AreEqual(VoiceKind.Fall, voice.LastSpoken, "hundirse corta lo que sonaba");
         }
 
         [Test]
@@ -79,13 +98,21 @@ namespace GasSafari.Tests
         }
 
         [Test]
-        public void Sync_LaughsFromThreePlayers()
+        public void AnotherPlayersFailedFart_Laughs_OwnDoesNot()
         {
-            GameEvents.RaiseSync(2, 1.5f);
-            Assert.IsNull(voice.LastSpoken, "x2 no hace reír");
-
-            GameEvents.RaiseSync(3, 2f);
+            GameEvents.RaiseFartFailed(avatar);
+            Assert.IsNull(voice.LastSpoken, "no se ríe de su propia tos");
+            GameEvents.RaiseFartFailed(other);
             Assert.AreEqual(VoiceKind.Laugh, voice.LastSpoken);
+        }
+
+        [Test]
+        public void Sync_Cheers_EvenRightAfterTheEffortOfThePuff()
+        {
+            GameEvents.RaiseSuperFart(1f);
+            Assert.AreEqual(VoiceKind.Effort, voice.LastSpoken);
+            GameEvents.RaiseSync(2, 1.5f);
+            Assert.AreEqual(VoiceKind.Cheer, voice.LastSpoken, "el festejo corta el esfuerzo");
         }
 
         [Test]
@@ -103,20 +130,11 @@ namespace GasSafari.Tests
         }
 
         [Test]
-        public void Achievement_Cheers()
+        public void AchievementAndSynergy_NoLongerCheer()
         {
             GameEvents.RaiseAchievementUnlocked("first_sync");
-            Assert.AreEqual(VoiceKind.Cheer, voice.LastSpoken);
-        }
-
-        [Test]
-        public void Synergy_CheersOnlyTheFirstTime()
-        {
-            GameEvents.RaiseSynergy("duo_pesado", false);
-            Assert.IsNull(voice.LastSpoken);
-
             GameEvents.RaiseSynergy("duo_pesado", true);
-            Assert.AreEqual(VoiceKind.Cheer, voice.LastSpoken);
+            Assert.IsNull(voice.LastSpoken);
         }
 
         [Test]
@@ -124,7 +142,8 @@ namespace GasSafari.Tests
         {
             GameEvents.RaiseCheckpoint(1);
             now += 1f;
-            GameEvents.RaiseSync(4, 3f);
+            CharacterVoice.Random01 = () => 0f;
+            GameEvents.RaisePlayerFell(other);
             Assert.AreEqual(VoiceKind.Cheer, voice.LastSpoken, "la risa espera el enfriamiento");
         }
     }

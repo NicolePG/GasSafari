@@ -18,12 +18,7 @@ Parámetros expuestos: `vol_master`, `vol_music`, `vol_sfx`, `vol_voices`, `vol_
 - Todo pasa por `AudioDirector.Play(SoundId id, Vector3 pos)`: pool de 16 `AudioSource` 3D + 4 2D para UI.
 - Variación: pitch aleatorio 0.9-1.15 y nunca el mismo clip dos veces seguidas del mismo `SoundId`.
 - Límite de voces: máximo 4 pedos simultáneos; el pedo que completa un grupo de sync suena +3 dB.
-- Voces de personaje (CharacterVoice, clips oice_<pj>_<tipo> del SfxSet): cada personaje tiene 3 s de enfriamiento entre voces y nunca dice dos a la vez. Cuándo suena cada una:
-  - **effort**: al soltar un pedo cargado, al lanzar el Súper Pedo y al subir a la balsa.
-  - **fall**: siempre que cae al agua (ignora el enfriamiento y corta la voz que estuviera sonando).
-  - **laugh**: cuando el equipo hace sync x3 o x4, y con 30 % de probabilidad cuando otro jugador cae al agua.
-  - **cheer**: en checkpoint, en la meta, la primera vez de cada sinergia y al desbloquear un logro.
-  - Un animal que está en el agua solo emite effort (al subir) y fall; no se ríe ni celebra desde ahí.
+- Voces de personaje (`CharacterVoice`, clips `voice_<pj>_<tipo>` del `SfxSet`): cada personaje tiene 3 s de enfriamiento entre voces y nunca dice dos a la vez. Cuándo suena cada una: §4 "Voces".
 - Cada `SoundId` apunta a un `SoundDef` (SO): lista de clips, grupo del mixer, volumen, rango de pitch, 2D/3D, distancia máxima.
 
 ## 3. Importación
@@ -58,6 +53,15 @@ Ruta: `Assets/_Project/Audio/{SFX,Music,Voices}/`. Nombre: `<categoria>_<nombre>
 | ability_party | Fiesta Real: 4 s de loop de fiesta |
 | ability_repair | Botiquín de Melman (parche + inflado) |
 | voice_<pj>_effort / fall / laugh / cheer | Sin palabras, grabadas por el equipo: 3 / 2 / 2 / 2 clips |
+
+**Voces: cuándo suena cada una** (decisión provisional, pendiente de playtest; 2026-11-22). Con la variación normal de `AudioDirector` (pitch del `SoundDef`, 0.9-1.15) y nunca el mismo clip dos veces seguidas (`SoundDef.NextClip`):
+- **effort**: al lanzar un pedo (toque, cargado o Súper Pedo) o empujar (al empezar una ráfaga).
+- **fall**: al caer al agua o cuando se hunde la balsa (los que siguen a bordo). Ignora el enfriamiento y corta la voz que estuviera sonando.
+- **laugh**: cuando otro animal cae al agua o falla un pedo (tose sin gas), con 30 % de probabilidad por animal para que no se ría todo el equipo a coro.
+- **cheer**: en checkpoint, en cada sincronía (x2 a x4) y en la meta.
+- El esfuerzo es la voz más frecuente: la risa y el festejo lo cortan aunque no hayan pasado los 3 s (el pedo que completa una sincronía hace esfuerzo y enseguida festeja).
+- Un animal en el agua solo emite fall; no se esfuerza, ríe ni festeja desde ahí.
+- Antes (M2-13 a PV-12) effort sonaba solo con el pedo cargado, el Súper Pedo y al subir a la balsa; laugh con sync x3-x4; cheer también con sinergias y logros. Ya no.
 
 ### Balsa y agua
 raft_hit_soft, raft_hit_hard, raft_chamber_pop, raft_chamber_repair, raft_sink, raft_land_water, raft_bounce, raft_creak_loop, water_splash_small, water_splash_big, water_flow_loop, water_rapids_loop, water_waterfall_loop, swim_stroke, climb_aboard.

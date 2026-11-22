@@ -13,16 +13,19 @@ namespace GasSafari.Audio
         Cheer
     }
 
-    // Voces sin palabras de un animal (docs/08 §2 "Voces"). Cada personaje respeta 3 s entre voces y no dice dos a la vez.
-    //   effort: al soltar un pedo cargado, al lanzar el Súper Pedo y al subir a la balsa.
-    //   fall:   siempre que cae al agua.
-    //   laugh:  sync x3 o x4 del equipo, y 30 % de probabilidad cuando otro jugador cae al agua.
-    //   cheer:  checkpoint, meta, primera vez de cada sinergia y logro desbloqueado.
+    // Voces sin palabras de un animal (docs/08 §2 y §4, decisión provisional pendiente de playtest). Cada personaje respeta 3 s
+    // entre voces y no dice dos a la vez; los clips varían como cualquier sonido de AudioDirector (pitch del SoundDef y nunca
+    // el mismo clip dos veces seguidas).
+    //   effort: al lanzar un pedo (toque, cargado, Súper Pedo) o empujar (empezar una ráfaga).
+    //   fall:   al caer al agua o al hundirse la balsa (suena siempre y corta la voz anterior).
+    //   laugh:  cuando otro animal cae al agua o falla un pedo (tose sin gas), con LAUGH_CHANCE para que no se ría todo el equipo.
+    //   cheer:  en checkpoint, en cada sincronía y en la meta.
+    // El esfuerzo es la voz más frecuente: risa y festejo lo cortan aunque no hayan pasado los 3 s (el pedo que completa una
+    // sincronía hace esfuerzo y enseguida festeja).
     [RequireComponent(typeof(PlayerAvatar), typeof(AvatarStateMachine), typeof(FartThruster))]
     public class CharacterVoice : MonoBehaviour
     {
-        public const float LAUGH_ON_FALL_CHANCE = 0.3f;
-        private const int LAUGH_MIN_SYNC = 3;
+        public const float LAUGH_CHANCE = 0.3f;
 
         // Pruebas: sustituyen el azar y el reloj.
         public static Func<float> Random01 = () => UnityEngine.Random.value;
@@ -46,84 +49,81 @@ namespace GasSafari.Audio
         private void OnEnable()
         {
             thruster.Farted += OnFarted;
-            states.StateChanged += OnStateChanged;
             GameEvents.OnSuperFart += OnSuperFart;
             GameEvents.OnPlayerFell += OnPlayerFell;
+            GameEvents.OnFartFailed += OnFartFailed;
+            GameEvents.OnRaftSunk += OnRaftSunk;
             GameEvents.OnSync += OnSync;
             GameEvents.OnCheckpoint += OnCheckpoint;
             GameEvents.OnLevelFinished += OnLevelFinished;
-            GameEvents.OnSynergy += OnSynergy;
-            GameEvents.OnAchievementUnlocked += OnAchievement;
         }
 
         private void OnDisable()
         {
             thruster.Farted -= OnFarted;
-            states.StateChanged -= OnStateChanged;
             GameEvents.OnSuperFart -= OnSuperFart;
             GameEvents.OnPlayerFell -= OnPlayerFell;
+            GameEvents.OnFartFailed -= OnFartFailed;
+            GameEvents.OnRaftSunk -= OnRaftSunk;
             GameEvents.OnSync -= OnSync;
             GameEvents.OnCheckpoint -= OnCheckpoint;
             GameEvents.OnLevelFinished -= OnLevelFinished;
-            GameEvents.OnSynergy -= OnSynergy;
-            GameEvents.OnAchievementUnlocked -= OnAchievement;
         }
 
         // ---------------------------------------------------------------- disparadores
-        private void OnFarted(FartType type, float impulse, float multiplier)
-        {
-            if (type == FartType.Charged)
-                Speak(VoiceKind.Effort);
-        }
+        // Toque, cargado y comienzo de ráfaga (empujar).
+        private void OnFarted(FartType type, float impulse, float multiplier) => Speak(VoiceKind.Effort);
 
         private void OnSuperFart(float power) => Speak(VoiceKind.Effort);
-
-        private void OnStateChanged(AvatarState from, AvatarState to)
-        {
-            if (to == AvatarState.Climbing)
-                Speak(VoiceKind.Effort);
-        }
 
         private void OnPlayerFell(PlayerAvatar who)
         {
             if (who == avatar)
                 Speak(VoiceKind.Fall, true);
-            else if (Random01() < LAUGH_ON_FALL_CHANCE)
-                Speak(VoiceKind.Laugh);
+            else
+                MaybeLaugh();
         }
 
-        private void OnSync(int players, float multiplier)
+        private void OnFartFailed(PlayerAvatar who)
         {
-            if (players >= LAUGH_MIN_SYNC)
-                Speak(VoiceKind.Laugh);
+            if (who != avatar)
+                MaybeLaugh();
         }
+
+        // Solo los que seguían a bordo (los que están en el agua ya gritaron al caer).
+        private void OnRaftSunk()
+        {
+            if (!InWater)
+                Speak(VoiceKind.Fall, true);
+        }
+
+        private bool InWater => states.State == AvatarState.Falling || states.State == AvatarState.Swimming;
+
+        private void OnSync(int players, float multiplier) => Speak(VoiceKind.Cheer);
 
         private void OnCheckpoint(int index) => Speak(VoiceKind.Cheer);
 
         private void OnLevelFinished(float time) => Speak(VoiceKind.Cheer);
 
-        private void OnSynergy(string id, bool firstTime)
+        private void MaybeLaugh()
         {
-            if (firstTime)
-                Speak(VoiceKind.Cheer);
+            if (Random01() < LAUGH_CHANCE)
+                Speak(VoiceKind.Laugh);
         }
-
-        private void OnAchievement(string id) => Speak(VoiceKind.Cheer);
 
         // ---------------------------------------------------------------- reproducción
         public bool Speak(VoiceKind kind, bool force = false)
         {
-            // Un animal en el agua solo grita (esfuerzo al subir, y la caída); no se ríe ni celebra desde ahí.
-            var state = states.State;
-            bool inWater = state == AvatarState.Falling || state == AvatarState.Swimming;
-            if (!force && inWater && kind != VoiceKind.Effort)
+            // Un animal en el agua solo grita (la caída); no se esfuerza, ríe ni celebra desde ahí.
+            if (!force && InWater)
                 return false;
 
             var def = Pick(kind);
             if (def == null || !Services.IsReady)
                 return false;
             bool speaking = handle != 0 && Services.Audio.IsPlaying(handle);
-            if (!gate.TryStart(Clock(), speaking, force))
+            bool overEffort = LastSpoken == VoiceKind.Effort && kind != VoiceKind.Effort;
+            if (!gate.TryStart(Clock(), speaking, force || overEffort))
                 return false;
 
             if (speaking)

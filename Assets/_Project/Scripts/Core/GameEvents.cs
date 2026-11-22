@@ -13,6 +13,8 @@ namespace GasSafari.Core
         public static event Action OnRaftCapsized;
         public static event Action<PlayerAvatar> OnGasEmpty;
         public static event Action<PlayerAvatar, FartType, float> OnFart;
+        // Un pedo que no sale: el animal tose sin gas.
+        public static event Action<PlayerAvatar> OnFartFailed;
         public static event Action<int, float> OnSync;
         public static event Action<float> OnTeamMeterChanged;
         public static event Action<float> OnSuperFart;
@@ -56,6 +58,7 @@ namespace GasSafari.Core
         public static void RaiseRaftSunk() => OnRaftSunk?.Invoke();
         public static void RaiseRaftCapsized() => OnRaftCapsized?.Invoke();
         public static void RaiseGasEmpty(PlayerAvatar avatar) => OnGasEmpty?.Invoke(avatar);
+        public static void RaiseFartFailed(PlayerAvatar avatar) => OnFartFailed?.Invoke(avatar);
 
         // Al descargar un nivel.
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -67,6 +70,7 @@ namespace GasSafari.Core
             OnRaftCapsized = null;
             OnGasEmpty = null;
             OnFart = null;
+            OnFartFailed = null;
             OnSync = null;
             OnTeamMeterChanged = null;
             OnSuperFart = null;
