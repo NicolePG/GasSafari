@@ -33,6 +33,7 @@ namespace GasSafari.Hazards
         private static Color savedColor, savedSky, savedEquator, savedGround;
 
         private bool inside;
+        private Transform raft;
         private bool blackoutActive;
         private float blackoutUntil = -1f;
         private float darkness;
@@ -94,6 +95,7 @@ namespace GasSafari.Hazards
             if (inside || other.GetComponentInParent<RaftController>() == null)
                 return;
             inside = true;
+            raft = other.GetComponentInParent<RaftController>().transform;
             if (occupied++ == 0)
             {
                 savedFog = RenderSettings.fog;
@@ -108,8 +110,8 @@ namespace GasSafari.Hazards
             RenderSettings.fog = true;
             RenderSettings.fogMode = FogMode.Linear;
             RenderSettings.fogColor = Color.black;
-            RenderSettings.fogStartDistance = 0f;
-            RenderSettings.fogEndDistance = visibility;
+            RenderSettings.fogStartDistance = ViewerDistance();
+            RenderSettings.fogEndDistance = visibility + ViewerDistance();
             Shader.SetGlobalFloat(SkyDark, 1f);
             if (blackoutSeconds > 0f && !blackoutActive)
             {
@@ -140,12 +142,21 @@ namespace GasSafari.Hazards
             ApplyLights();
             if (inside)
             {
-                RenderSettings.fogEndDistance = Mathf.Lerp(visibility, Mathf.Min(blackoutVisibility, visibility), darkness);
+                RenderSettings.fogStartDistance = ViewerDistance();
+                RenderSettings.fogEndDistance = Mathf.Lerp(visibility, Mathf.Min(blackoutVisibility, visibility), darkness) + ViewerDistance();
                 float ambient = Mathf.Lerp(1f, AMBIENT_AT_BLACKOUT, darkness);
                 RenderSettings.ambientSkyColor = savedSky * ambient;
                 RenderSettings.ambientEquatorColor = savedEquator * ambient;
                 RenderSettings.ambientGroundColor = savedGround * ambient;
             }
+        }
+
+        // La niebla se mide desde la cámara, que va a unos 17 m de la balsa: la visibilidad de la zona cuenta desde la balsa,
+        // así que se suma esa distancia (sin esto la balsa y los animales quedaban negros dentro de la zona).
+        private float ViewerDistance()
+        {
+            var camera = Camera.main;
+            return camera != null && raft != null ? Vector3.Distance(camera.transform.position, raft.position) : 0f;
         }
 
         // Cada luciérnaga se apaga y se enciende a su turno (escalonado por índice) y parpadea mientras cambia.

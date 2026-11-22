@@ -180,7 +180,7 @@ namespace GasSafari.Editor
             level.Hint(Bots.BotHintType.SuperFart, abyss - 1.5f, 0f, 6f);
             var air = level.Mango(2, 0f, 0f, 1f);
             air.transform.position = level.PointAt((abyss + abyssEnd) * 0.5f, 0f, 3.6f);
-            level.PowerUp("P01", abyss - 40f, 0f);
+            // docs/04: W5-2 lleva P01 x3; el de abyss - 40 sobraba (pegado al géiser H36)
             level.PowerUp("P03", jump + 12f, 0f);
             Anchor(level, abyss - 6f, 0f);
 

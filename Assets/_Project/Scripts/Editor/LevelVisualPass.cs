@@ -43,7 +43,7 @@ namespace GasSafari.Editor
         public static int WorldOf(string sceneName)
         {
             var m = Regex.Match(sceneName, @"_W(\d)-");
-            return m.Success ? int.Parse(m.Groups[1].Value) : 1;
+            return m.Success ? int.Parse(m.Groups[1].Value) : 0; // sin "_W<N>-": el tutorial T-0 (mundo 0)
         }
 
         public static void Apply(Scene scene)
@@ -70,6 +70,8 @@ namespace GasSafari.Editor
             BuildFlowRibbon(scene, flow, root.transform, WorldLook.Flow(world, openSea, storm), scene.name);
 
             WorldLook.ApplyEnvironment(world, storm);
+            if (world == 0)
+                DayLighting(scene);
             var camera = scene.GetRootGameObjects().Select(g => g.GetComponent<Camera>()).FirstOrDefault(c => c != null);
             if (camera != null)
             {
@@ -77,7 +79,7 @@ namespace GasSafari.Editor
                 camera.farClipPlane = Mathf.Max(camera.farClipPlane, 4000f);
             }
 
-            LevelBackdrops.Build(scene, world, storm, flow, route, root.transform);
+            LevelBackdrops.Build(scene, world == 0 ? 1 : world, storm, flow, route, root.transform); // T-0 usa las piezas del zoológico y la ciudad de W1
             foreach (var t in root.GetComponentsInChildren<Transform>(true))
             {
                 if (t.GetComponent<MeshRenderer>() != null && t.gameObject.name != "WaterFlow")
@@ -85,6 +87,22 @@ namespace GasSafari.Editor
             }
             EditorSceneManager.MarkSceneDirty(scene);
             Debug.Log($"VISUAL {scene.name}: mundo {world}{(storm ? " tormenta" : "")}, ruta {route.size.x:F0}x{route.size.z:F0}");
+        }
+
+        // T-0 es de día: luz cálida y ambiente celeste (los mundos 1-6 los fija LevelDresser).
+        private static void DayLighting(Scene scene)
+        {
+            var light = scene.GetRootGameObjects().Select(g => g.GetComponent<Light>()).FirstOrDefault(l => l != null && l.type == LightType.Directional);
+            if (light != null)
+            {
+                light.color = new Color(1f, 0.96f, 0.88f);
+                light.intensity = 1.2f;
+                light.transform.rotation = Quaternion.Euler(50f, -30f, 0f);
+            }
+            RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Trilight;
+            RenderSettings.ambientSkyColor = new Color(0.62f, 0.8f, 0.95f);
+            RenderSettings.ambientEquatorColor = new Color(0.5f, 0.7f, 0.75f);
+            RenderSettings.ambientGroundColor = new Color(0.3f, 0.4f, 0.4f);
         }
 
         // Todos los renderers de la capa Water (plano base, cintas y ramales) usan el material del mundo.

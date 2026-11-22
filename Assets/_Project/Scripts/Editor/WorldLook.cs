@@ -23,6 +23,18 @@ namespace GasSafari.Editor
 
         public static string[] Names = { "T0", "W1", "W2", "W3", "W4", "W5", "W6" };
 
+        // T-0 (docs/04): piscina del zoológico de día, celestes y blancos.
+        private static readonly Look T0 = new Look
+        {
+            WaterShallow = new Color(0.35f, 0.88f, 0.98f, 0.92f), WaterDeep = new Color(0.05f, 0.5f, 0.85f, 0.97f),
+            WaterFoam = Color.white, Ripple = new Color(0.9f, 1f, 1f), Glint = new Color(2f, 2f, 1.9f),
+            WaterSky = new Color(0.75f, 0.9f, 1f), FlowLine = new Color(1f, 1f, 1f, 0.4f),
+            SkyTop = new Color(0.3f, 0.62f, 0.95f), SkyHorizon = new Color(0.86f, 0.94f, 1f), SkyGround = new Color(0.7f, 0.82f, 0.92f),
+            CloudLit = Color.white, CloudShade = new Color(0.78f, 0.87f, 0.97f), SunGlow = new Color(1f, 0.95f, 0.75f, 0.4f),
+            CloudCover = 0.5f, CloudOpacity = 0.92f,
+            Fog = new Color(0.86f, 0.94f, 1f), FogStart = 60f, FogEnd = 900f,
+        };
+
         // W1: ciudad de noche, azul profundo con reflejos de neón cian y rosa.
         private static readonly Look W1 = new Look
         {
@@ -114,12 +126,13 @@ namespace GasSafari.Editor
         {
             switch (world)
             {
+                case 0: return T0;
                 case 2: return storm ? W2Storm : W2;
                 case 3: return W3;
                 case 4: return W4;
                 case 5: return W5;
                 case 6: return W6;
-                default: return W1; // W1 y el tutorial T-0 (el zoológico de la ciudad)
+                default: return W1;
             }
         }
 
@@ -186,7 +199,7 @@ namespace GasSafari.Editor
         [MenuItem("Gas Safari/Visual/Actualizar materiales de mundo")]
         public static void UpdateAllMaterials()
         {
-            for (int w = 1; w <= 6; w++)
+            for (int w = 0; w <= 6; w++)
             {
                 bool sea = w == 2;
                 Water(w);

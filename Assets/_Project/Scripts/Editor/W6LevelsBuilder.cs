@@ -385,7 +385,7 @@ namespace GasSafari.Editor
             Pool(level, "B", storm + 100f, 3.5f, 7f);
             level.Mango(0, storm + 70f, 0f, 1f);                                      // primer tercio: entre los dos remolinos
             level.PowerUp("P01", storm + 10f, 0f);
-            level.PowerUp("P05", storm + 70f, 0f);
+            level.PowerUp("P05", storm + 86f, -2f); // el mango 0 está en storm + 70
             level.PowerUp("P01", storm + 120f, 0f);
 
             // S3: selva: fosas y dos cocodrilos dormidos.

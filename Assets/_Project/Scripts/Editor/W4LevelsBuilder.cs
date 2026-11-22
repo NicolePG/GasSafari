@@ -42,7 +42,7 @@ namespace GasSafari.Editor
             level.Section(3, "Doble", dbl);
             level.Section(4, "Grande", big);
             level.AddCheckpoint(0f);
-            level.AddCheckpoint(pools);
+            level.AddCheckpoint(pools - 12f); // 192 m: pasaba de 190
             level.AddCheckpoint(dbl);
             level.AddCheckpoint(big);
 
@@ -139,7 +139,7 @@ namespace GasSafari.Editor
             branchMango.transform.position = mid + Vector3.up;
             Solid(level, "W4_Stalagmite_A", forks + 40f, -5.2f, Quaternion.identity, 0.8f, 0f).name = "Estalagmita";
             level.Mango(2, forks + 40f, -5.2f, 2.6f);
-            level.PowerUp("P04", forks + 6f, 0f);
+            // docs/04: W4-2 lleva P04 x2 (cristales y zona oscura); el de forks + 6 sobraba
             level.PowerUp("P01", join + 6f, 0f);
 
             DarkSpan(level, forks, dark, null, 0f);
@@ -192,7 +192,7 @@ namespace GasSafari.Editor
             level.Section(4, "Abismo", gap1End + 20f);
             level.AddCheckpoint(0f);
             level.AddCheckpoint(pools);
-            level.AddCheckpoint(chain);
+            level.AddCheckpoint(chain - 25f); // 58 m hasta el siguiente: bajo 70
             level.AddCheckpoint(gap1End + 20f);
 
             // S1: géiseres de trampolín (H19); mango en lo alto del primero.
@@ -341,8 +341,8 @@ namespace GasSafari.Editor
             level.Section(3, "Derrumbe", chase);
             level.Section(4, "Grieta", exit);
             level.AddCheckpoint(0f);
-            level.AddCheckpoint(rocks);
-            level.AddCheckpoint(rocks + 70f);
+            level.AddCheckpoint(rocks - 10f);
+            level.AddCheckpoint(rocks + 60f); // 60 m hasta chase: ahora 70
             level.AddCheckpoint(chase);
             level.AddCheckpoint(exit);
 

@@ -294,7 +294,7 @@ namespace GasSafari.Editor
             level.Section(4, "Salida", exit);
             level.AddCheckpoint(0f);
             level.AddCheckpoint(masts);
-            level.AddCheckpoint(hold);
+            level.AddCheckpoint(hold - 50f); // 232 m desde masts: se acerca a la bodega
             level.AddCheckpoint(exit);
 
             // S1: cascos hundidos a los dos lados, escalonados (hacen de paredes del pasillo).

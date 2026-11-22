@@ -135,8 +135,8 @@ namespace GasSafari.Editor
             level.Section(4, "Espiral", spiral);
             level.AddCheckpoint(0f);
             level.AddCheckpoint(gates);
-            level.AddCheckpoint(join + 2f);
-            level.AddCheckpoint(spiral);
+            level.AddCheckpoint(fork);        // antes join + 2: quedaba a 18 m del siguiente
+            level.AddCheckpoint(spiral + 15f);
 
             // S1: nicho oscuro tras una cascada de desagüe (mango escondido), en la pared izquierda.
             float niche = 40f;
