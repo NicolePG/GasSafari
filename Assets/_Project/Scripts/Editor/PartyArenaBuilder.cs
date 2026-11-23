@@ -218,7 +218,7 @@ namespace GasSafari.Editor
             try
             {
                 const float radius = 10f;
-                var root = Common(data, scene, out var spawner, new Vector3(0f, 17f, -15f), new Vector3(0f, 0f, -0.5f));
+                var root = Common(data, scene, out var spawner, new Vector3(0f, 14.5f, -12.5f), new Vector3(0f, 0f, -0.8f));
                 var game = root.AddComponent<ReyBalsaGame>();
                 Water(root.transform, new Vector2(radius + 4f, radius + 4f));
                 var deck = Mat("M_Party_Deck", new Color(0.95f, 0.86f, 0.66f));
@@ -233,7 +233,16 @@ namespace GasSafari.Editor
                 {
                     float angle = i * 360f / segments;
                     var direction = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
-                    Block(arena, "Ring_" + i, direction * (radius + ringDepth * 0.5f), new Vector3(width, 0f, ringDepth), i % 2 == 0 ? deck : stripe, angle);
+                    Block(arena, "Ring_" + i, direction * (radius + ringDepth * 0.5f), new Vector3(width, 0f, ringDepth), deck, angle);
+                    // Borde de baldosas de colores (solo se ve): una franja fina sobre el filo de la piscina.
+                    var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    tile.name = "RimTile_" + i;
+                    Object.DestroyImmediate(tile.GetComponent<Collider>());
+                    tile.transform.SetParent(arena, false);
+                    tile.transform.localPosition = direction * (radius + 0.45f) + Vector3.up * (DECK_TOP + 0.01f);
+                    tile.transform.localRotation = Quaternion.Euler(0f, angle, 0f);
+                    tile.transform.localScale = new Vector3(2f * Mathf.PI * (radius + 0.45f) / segments * 1.02f, 0.04f, 0.9f);
+                    tile.GetComponent<MeshRenderer>().sharedMaterial = i % 2 == 0 ? stripe : Mat("M_Party_Buoy", new Color(1f, 0.97f, 0.9f));
                 }
                 Skirt(arena, radius + 4f, radius + 4f);
                 var center = Marker(root.transform, "Center", new Vector3(0f, 0.3f, 0f), Quaternion.identity);

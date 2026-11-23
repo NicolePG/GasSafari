@@ -23,6 +23,8 @@ namespace GasSafari.Modes
         private float[] hideTimer = new float[0];
         private float[] botGrab = new float[0];
         private float[] botCooldown = new float[0];
+        private float[] botAim = new float[0];
+        private readonly List<float> roundLengths = new List<float>();
         private readonly List<int> everyone = new List<int>();
         private RaftController raft;
         private int round;
@@ -34,6 +36,8 @@ namespace GasSafari.Modes
         public bool IsOut(int player) => isOut[player];
         public bool BetweenRounds => betweenTimer > 0f;
         public int RoundsPlayed { get; private set; }
+        // Segundos de juego de cada ronda terminada (pruebas y ajuste).
+        public IReadOnlyList<float> RoundLengths => roundLengths;
 
         public void ConfigureArena(Transform poolCenter) => center = poolCenter;
 
@@ -56,6 +60,7 @@ namespace GasSafari.Modes
             hideTimer = new float[n];
             botGrab = new float[n];
             botCooldown = new float[n];
+            botAim = new float[n];
             everyone.Clear();
             for (int i = 0; i < n; i++)
                 everyone.Add(i);
@@ -73,12 +78,42 @@ namespace GasSafari.Modes
             {
                 isOut[i] = false;
                 hideTimer[i] = 0f;
+                botAim[i] = -1f;
             }
+            SpreadSeats();
             Announce("party.round", round);
+        }
+
+        // Provisional: cada ronda empieza con todos repartidos por igual en el borde (con 4, a 90°: 2.8 m, fuera del
+        // alcance de 2.5 m). Con las salidas de docs/02 (60° entre vecinos, 2 m) el primer pedo ya tiraba a alguien.
+        private void SpreadSeats()
+        {
+            var seats = raft.GetComponent<RaftSeats>();
+            int n = avatars.Count;
+            for (int i = 0; i < n; i++)
+            {
+                var seat = avatars[i] != null ? avatars[i].GetComponent<PlayerSeat>() : null;
+                if (seat != null && seat.IsSeated)
+                    seat.Leave();
+            }
+            for (int i = 0; i < n; i++)
+            {
+                var seat = avatars[i] != null ? avatars[i].GetComponent<PlayerSeat>() : null;
+                if (seat != null && !avatars[i].GetComponent<AvatarFall>().IsOverboard)
+                    seat.Sit(seats, 180f + i * 360f / n);
+            }
         }
 
         protected override void Tick(float deltaTime)
         {
+            for (int i = 0; i < hideTimer.Length; i++)
+            {
+                if (hideTimer[i] <= 0f)
+                    continue;
+                hideTimer[i] -= deltaTime;
+                if (hideTimer[i] <= 0f)
+                    Hide(i);
+            }
             if (betweenTimer > 0f)
             {
                 betweenTimer -= deltaTime;
@@ -89,14 +124,6 @@ namespace GasSafari.Modes
                     SetLocked(false);
                 }
                 return;
-            }
-            for (int i = 0; i < hideTimer.Length; i++)
-            {
-                if (hideTimer[i] <= 0f)
-                    continue;
-                hideTimer[i] -= deltaTime;
-                if (hideTimer[i] <= 0f)
-                    Hide(i);
             }
             roundTime += deltaTime;
             if (data.roundSeconds > 0f && roundTime >= data.roundSeconds)
@@ -133,7 +160,7 @@ namespace GasSafari.Modes
             if (State != PartyState.Playing || betweenTimer > 0f)
                 return;
             int i = IndexOf(avatar);
-            if (i < 0 || isOut[i])
+            if (i < 0 || isOut[i] || State != PartyState.Playing)
                 return;
             isOut[i] = true;
             avatar.InputLocked = true;
@@ -166,6 +193,7 @@ namespace GasSafari.Modes
         private void EndRound(int winner)
         {
             RoundsPlayed++;
+            roundLengths.Add(roundTime);
             if (winner >= 0)
             {
                 scores[winner]++;
@@ -260,14 +288,23 @@ namespace GasSafari.Modes
             }
 
             bool inRange = best <= data.pushRadius * 0.9f;
-            if (inRange && botCooldown[me] <= 0f && bot.Gas.Gas >= balance.puffCost && !bot.Thruster.IsCoughing)
+            // Reacción de bot (provisional): al tener a alguien a tiro tarda 0.8-1.8 s en tirarse el pedo y, mientras,
+            // se agarra a ratos (20 % por decisión, 0.6-1.5 s) por si el otro dispara primero.
+            if (!inRange)
+                botAim[me] = -1f;
+            else if (botAim[me] < 0f)
+                botAim[me] = Random.Range(0.8f, 1.8f);
+            else
+                botAim[me] -= dt;
+            if (inRange && botAim[me] <= 0f && botCooldown[me] <= 0f && bot.Gas.Gas >= balance.puffCost && !bot.Thruster.IsCoughing)
             {
                 bot.Source.PressFart();
-                botCooldown[me] = Random.Range(0.35f, 0.9f);
+                botCooldown[me] = Random.Range(0.6f, 1.2f);
+                botAim[me] = Random.Range(0.8f, 1.8f);
             }
-            else if (inRange && Random.value < 0.08f)
+            else if (inRange && Random.value < 0.2f)
             {
-                botGrab[me] = Random.Range(0.4f, 1f);
+                botGrab[me] = Random.Range(0.6f, 1.5f);
             }
 
             float targetAngle = avatars[target].GetComponent<PlayerSeat>().Angle;
