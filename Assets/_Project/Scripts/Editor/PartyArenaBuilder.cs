@@ -263,7 +263,7 @@ namespace GasSafari.Editor
             try
             {
                 const float half = 13f;
-                var root = Common(data, scene, out var spawner, new Vector3(0f, 26f, -21f), new Vector3(0f, 0f, -1f));
+                var root = Common(data, scene, out var spawner, new Vector3(0f, 22f, -17.5f), new Vector3(0f, 0f, -1.2f));
                 var game = root.AddComponent<PescaMangosGame>();
                 Water(root.transform, new Vector2(half + 4f, half + 4f));
                 var deck = Mat("M_Party_Deck", new Color(0.95f, 0.86f, 0.66f));

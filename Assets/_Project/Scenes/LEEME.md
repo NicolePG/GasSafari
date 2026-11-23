@@ -6,7 +6,7 @@ Scenes/
 │   ├── 00_Boot.unity        crea los servicios y carga el título
 │   ├── 01_Titulo.unity      título 3D animado; el menú, modos, selección, mapa, tienda, opciones y carga son paneles de MenuApp
 │   ├── Niveles/             N00_T0_PiscinaZoo ... N30_W6-5_CoronaRey (31 niveles, en orden de juego)
-│   ├── Fiesta/              minijuegos de Fiesta (aún vacía)
+│   ├── Fiesta/              minijuegos de Fiesta: BalsaGol, ReyBalsa, PescaMangos (los arma Gas Safari/Setup/Crear minijuegos de Fiesta (M7))
 │   └── Infinito/            Infinito y Desafío Diario (aún vacía)
 └── Pruebas/      todo lo que no se publica, con prefijo TEST_
     ├── TEST_LevelTemplate.unity   plantilla de la que salen los niveles

@@ -49,8 +49,9 @@ namespace GasSafari.Modes
                 int place = Mathf.Clamp(players[i].Index, 0, spawns.Length - 1);
                 single.Clear();
                 single.Add(i);
-                SpawnRaft(spawns[place].position, spawns[place].rotation, single, data.miniRaftRadius,
+                var raft = SpawnRaft(spawns[place].position, spawns[place].rotation, single, data.miniRaftRadius,
                     place < miniModels.Length ? miniModels[place] : null);
+                MiniRaft.Tint(raft, players[i].Color);
             }
             for (int i = 0; i < data.mangosAtOnce; i++)
             {
