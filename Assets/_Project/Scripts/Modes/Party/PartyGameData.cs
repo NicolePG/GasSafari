@@ -42,6 +42,21 @@ namespace GasSafari.Modes
         [Tooltip("Segundos hasta que aparece otro mango tras recoger uno")] public float mangoRespawnSeconds = 1.5f;
         [Tooltip("Skill game-modes: mini balsa de radio 1 m y 1 asiento")] public float miniRaftRadius = 1f;
 
+        [Header("Carrera de Burbujas (provisional salvo lo indicado)")]
+        [Tooltip("docs/06: 3 vueltas")] public int laps = 3;
+        [Tooltip("docs/05 P05: la gaseosa hace flotar la balsa a 1 m sobre el agua; aquí no se acaba")] public float bubbleHover = 1f;
+        [Tooltip("Segundos que tienen los demás para llegar después del primero")] public float finishGraceSeconds = 20f;
+        [Tooltip("Tope de la carrera; después cuenta lo que avanzó cada uno")] public float raceLimitSeconds = 240f;
+        [Tooltip("Segundos en el agua antes de que la burbuja devuelva al animal a su mini balsa")] public float overboardReturnSeconds = 2.5f;
+        [Tooltip("Si una balsa avanza menos de 1 m en estos segundos, vuelve a la pista donde estaba")] public float stuckSeconds = 8f;
+        [Tooltip("Segundos hasta que reaparece un frijol de la pista")] public float pickupRespawnSeconds = 4f;
+
+        [Header("Coco Caliente (provisional)")]
+        [Tooltip("La mecha dura un valor al azar entre estos dos (s)")] public float fuseMinSeconds = 8f;
+        public float fuseMaxSeconds = 14f;
+        [Tooltip("Segundos que debe esperar quien recibe el coco antes de pasarlo")] public float passCooldown = 0.8f;
+        [Tooltip("Velocidad horizontal con que sale volando quien tiene el coco al explotar (m/s)")] public float blastSpeed = 6f;
+
         public string NameKey => "party." + id + ".name";
         public string DescKey => "party." + id + ".desc";
     }

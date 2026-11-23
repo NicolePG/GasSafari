@@ -64,7 +64,7 @@ namespace GasSafari.Tests
             var screen = App.Get<PartySelectScreen>();
             yield return null;
             Assert.AreEqual(5, screen.Cards.Count, "los 5 minijuegos de docs/06");
-            var expected = new Dictionary<string, string> { { "goal", "BalsaGol" }, { "king", "ReyBalsa" }, { "fishing", "PescaMangos" } };
+            var expected = new Dictionary<string, string> { { "goal", "BalsaGol" }, { "king", "ReyBalsa" }, { "fishing", "PescaMangos" }, { "bubble", "CarreraBurbujas" } };
             foreach (var card in screen.Cards)
             {
                 loaded.Clear();
@@ -79,7 +79,7 @@ namespace GasSafari.Tests
                 }
                 else
                 {
-                    Assert.IsFalse(started, card.game.id + " llega con M7-07/08");
+                    Assert.IsFalse(started, card.game.id + " llega con M7-08");
                     Assert.IsEmpty(loaded);
                 }
             }

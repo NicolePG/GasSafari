@@ -14,7 +14,7 @@ namespace GasSafari.Editor
     // Minijuegos de Fiesta (docs/06 §1, M7-04..06): datos en Data/Party, escenas BalsaGol, ReyBalsa y PescaMangos en
     // Scenes/Juego/Fiesta (docs/10 §3) y su lugar en Build Settings. Arenas greybox: piscina con borde de baldosa, agua
     // de la piscina del zoo (T-0, de día), cámara fija que encuadra toda la arena. Se puede repetir: rehace las escenas.
-    public static class PartyArenaBuilder
+    public static partial class PartyArenaBuilder
     {
         public const string SCENES = "Assets/_Project/Scenes/Juego/Fiesta/";
         private const string DATA = "Assets/_Project/Data/Party/";
@@ -31,8 +31,8 @@ namespace GasSafari.Editor
         private const float DECK_BOTTOM = -2.2f;
         private const float POOL_FLOOR = -1.8f;
 
-        // Los tres primeros tienen escena; Carrera de Burbujas y Coco Caliente llegan con M7-07 y M7-08.
-        public static readonly string[] Implemented = { "goal", "king", "fishing" };
+        // Coco Caliente llega con M7-08.
+        public static readonly string[] Implemented = { "goal", "king", "fishing", "bubble" };
 
         [MenuItem("Gas Safari/Setup/Crear minijuegos de Fiesta (M7)")]
         public static void BuildAll()
@@ -41,9 +41,21 @@ namespace GasSafari.Editor
             BuildGoal(games[0]);
             BuildKing(games[1]);
             BuildFishing(games[2]);
+            BuildBubble(games[3]);
             AddToBuildSettings(games);
             AssetDatabase.SaveAssets();
             Debug.Log("M7 Fiesta: datos y escenas listos");
+        }
+
+        // Rehace solo una escena (las demás no cambian: rehacerlas cambia todos sus fileID en Git).
+        [MenuItem("Gas Safari/Setup/Fiesta: rehacer solo Carrera de Burbujas")]
+        public static void BuildBubbleOnly()
+        {
+            var games = BuildData();
+            BuildBubble(games[3]);
+            AddToBuildSettings(games);
+            AssetDatabase.SaveAssets();
+            Debug.Log("M7 Fiesta: Carrera de Burbujas lista");
         }
 
         // ---------------------------------------------------------------- datos
@@ -387,16 +399,16 @@ namespace GasSafari.Editor
         }
 
         // Bloque del borde (capa Environment): de DECK_BOTTOM a DECK_TOP, 'size.y' se ignora.
-        private static void Block(Transform parent, string name, Vector3 center, Vector3 size, Material material, float yaw = 0f)
+        private static void Block(Transform parent, string name, Vector3 center, Vector3 size, Material material, float yaw = 0f, float top = DECK_TOP)
         {
             var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
             go.name = name;
             go.layer = GameLayers.Environment;
             go.isStatic = true;
             go.transform.SetParent(parent, false);
-            go.transform.localPosition = new Vector3(center.x, (DECK_TOP + DECK_BOTTOM) * 0.5f, center.z);
+            go.transform.localPosition = new Vector3(center.x, (top + DECK_BOTTOM) * 0.5f, center.z);
             go.transform.localRotation = Quaternion.Euler(0f, yaw, 0f);
-            go.transform.localScale = new Vector3(size.x, DECK_TOP - DECK_BOTTOM, size.z);
+            go.transform.localScale = new Vector3(size.x, top - DECK_BOTTOM, size.z);
             go.GetComponent<MeshRenderer>().sharedMaterial = material;
         }
 

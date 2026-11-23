@@ -406,6 +406,12 @@ MonoBehaviour:
   - key: party.ball_reset
     text: "\xA1Saque neutral!"
     en: Drop ball!
+  - key: party.final_lap
+    text: "\xA1\xDAltima vuelta!"
+    en: Final lap!
+  - key: party.first_finish
+    text: "\xA1{0} lleg\xF3 a la meta! Quedan {1} s"
+    en: '{0} finished! {1} s left'
   - key: select.title
     text: Elige tu animal
     en: Pick your animal

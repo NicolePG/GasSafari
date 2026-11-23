@@ -113,4 +113,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Juego/Fiesta/PescaMangos.unity
     guid: 521186148704e73428f703b1cfb85762
+  - enabled: 1
+    path: Assets/_Project/Scenes/Juego/Fiesta/CarreraBurbujas.unity
+    guid: 2fbcad60cf1ec464fa839311426fbe4e
   m_configObjects: {}

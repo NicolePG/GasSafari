@@ -130,6 +130,8 @@ party.no_games,Todavía no jugaron ningún minijuego.,No minigames played yet.,P
 party.end,Terminar la Fiesta,End the Party,Botón: muestra el ranking final
 party.final_title,Ranking final,Final ranking,Fin de la Fiesta
 party.ball_reset,¡Saque neutral!,Drop ball!,Balsa-Gol: la pelota quieta vuelve al centro (provisional)
+party.final_lap,¡Última vuelta!,Final lap!,Carrera de Burbujas: el primero empieza la última vuelta
+party.first_finish,¡{0} llegó a la meta! Quedan {1} s,{0} finished! {1} s left,"Carrera de Burbujas: los demás tienen {1} s para llegar (provisional)"
 select.title,Elige tu animal,Pick your animal,Selección de personajes (docs/07 §2)
 select.add_bot,Añadir bot,Add bot,Solo anfitrión
 select.remove_bot,Quitar bot,Remove bot,Solo anfitrión

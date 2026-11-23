@@ -29,10 +29,21 @@ MonoBehaviour:
   ballMass: 2
   goalPauseSeconds: 2.5
   ballStallSeconds: 6
-  ballStallSpeed: 0.4
+  ballStallDistance: 1.5
   pushRadius: 2.5
   pushSpeed: 3.5
   spinDegreesPerSecond: 30
   mangosAtOnce: 8
   mangoRespawnSeconds: 1.5
   miniRaftRadius: 1
+  laps: 3
+  bubbleHover: 1
+  finishGraceSeconds: 20
+  raceLimitSeconds: 240
+  overboardReturnSeconds: 2.5
+  stuckSeconds: 8
+  pickupRespawnSeconds: 4
+  fuseMinSeconds: 8
+  fuseMaxSeconds: 14
+  passCooldown: 0.8
+  blastSpeed: 6
