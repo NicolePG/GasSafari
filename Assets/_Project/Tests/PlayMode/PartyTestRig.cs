@@ -61,13 +61,19 @@ namespace GasSafari.Tests
         }
 
         // Juega hasta los resultados; saca la captura cuando el minijuego pasó 'shotAt' segundos de juego.
-        public IEnumerator PlayToResults(float shotAt, float realLimit)
+        public IEnumerator PlayToResults(float shotAt, float realLimit, System.Action sample = null)
         {
             float start = Time.realtimeSinceStartup;
             bool shot = false;
+            float nextSample = 5f;
             while (Game.State != PartyState.Results)
             {
                 Assert.Less(Time.realtimeSinceStartup - start, realLimit, "el minijuego termina solo con bots");
+                if (sample != null && Game.State == PartyState.Playing && Game.Elapsed >= nextSample)
+                {
+                    nextSample += 5f;
+                    sample();
+                }
                 if (!shot && Game.State == PartyState.Playing && Game.Elapsed >= shotAt)
                 {
                     shot = true;

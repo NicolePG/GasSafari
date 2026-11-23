@@ -26,7 +26,7 @@ MonoBehaviour:
   maxRounds: 0
   roundSeconds: 0
   ballRadius: 1.4
-  ballMass: 3
+  ballMass: 2
   goalPauseSeconds: 2.5
   ballStallSeconds: 6
   ballStallSpeed: 0.4

@@ -290,6 +290,10 @@ namespace GasSafari.Bots
             bool needsCorrection = Mathf.Abs(Vector3.SignedAngle(current, heading, Vector3.up)) > config.bigHeadingError;
             // Perseguidos por el cocodrilo gigante, las ráfagas valen también en curva (docs/05: no detenerse).
             bool straight = IsStraight(position, speed) || IsChased;
+            // Minijuegos de Fiesta (sin cauce): "recta" mientras sobra gas; con poco gas, toques. Si no, en una arena
+            // todo es recta, el bot solo hacía ráfagas, se quedaba sin gas y casi no se movía.
+            if (Goal != null && flow == null)
+                straight = blasting ? frac > config.blastStopGas : frac >= config.blastStartGas;
             // Una balsa muy inclinada que sigue inclinándose está a punto de volcar: nadie dispara hasta que se estabilice.
             // Una inclinación quieta (cámaras reventadas de un lado) no bloquea: si no, el equipo quedaba parado para siempre.
             float tilt = Vector3.Angle(seat.Raft.transform.up, Vector3.up);

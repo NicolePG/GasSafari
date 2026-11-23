@@ -27,10 +27,10 @@ namespace GasSafari.Modes
 
         [Header("Balsa-Gol (provisional salvo lo indicado)")]
         [Tooltip("Radio de la pelota de playa gigante (m)")] public float ballRadius = 1.4f;
-        public float ballMass = 3f;
+        public float ballMass = 2f;
         [Tooltip("Segundos entre un gol y el saque")] public float goalPauseSeconds = 2.5f;
-        [Tooltip("Saque neutral: si la pelota casi no se mueve en estos segundos, vuelve al centro")] public float ballStallSeconds = 6f;
-        [Tooltip("Velocidad (m/s) por debajo de la cual la pelota cuenta como quieta")] public float ballStallSpeed = 0.4f;
+        [Tooltip("Saque neutral: si la pelota se mueve menos de ballStallDistance en estos segundos, vuelve al centro")] public float ballStallSeconds = 5f;
+        [Tooltip("Metros en horizontal que debe moverse la pelota en ballStallSeconds (flotando nunca está del todo quieta)")] public float ballStallDistance = 1.5f;
 
         [Header("Rey de la Balsa")]
         [Tooltip("docs/06: cada pedo empuja a los animales a menos de 2.5 m")] public float pushRadius = 2.5f;

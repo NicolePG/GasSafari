@@ -16,6 +16,8 @@ namespace GasSafari.Modes
         [SerializeField] private Transform ballSpawn;
         [SerializeField] private PartyBall ball;
         [SerializeField] private GoalZone[] goals = new GoalZone[2];
+        [Tooltip("Mitad de la cancha donde pueden ir los bots (m)")]
+        [SerializeField] private Vector2 fieldHalf = new Vector2(18f, 10f);
         [Tooltip("Color de cada equipo para la bandera de su balsa")]
         [SerializeField] private Material[] teamMaterials = new Material[2];
 
@@ -25,6 +27,11 @@ namespace GasSafari.Modes
         private int[] teamOf = new int[0];
         private float goalPause;
         private float stallTimer;
+        private Vector3 stallFrom;
+        // Ángulo de llegada de cada equipo a la pelota (grados): cambia cada pocos segundos para que las dos balsas de bots
+        // no lleguen siempre de frente y se queden empujando a la par.
+        private readonly float[] approachJitter = new float[2];
+        private float jitterTimer;
 
         public PartyBall Ball => ball;
         public int GoalsOf(int team) => goalsFor[team];
@@ -121,6 +128,13 @@ namespace GasSafari.Modes
 
         protected override void Tick(float deltaTime)
         {
+            jitterTimer -= deltaTime;
+            if (jitterTimer <= 0f)
+            {
+                jitterTimer = 3f;
+                for (int team = 0; team < 2; team++)
+                    approachJitter[team] = Random.Range(-30f, 30f);
+            }
             if (goalPause <= 0f)
             {
                 CheckStall(deltaTime);
@@ -136,13 +150,20 @@ namespace GasSafari.Modes
         // Provisional (docs/06 no lo define): pelota atascada contra un borde o un poste → vuelve al centro.
         private void CheckStall(float deltaTime)
         {
-            stallTimer = ball.Body.velocity.magnitude < data.ballStallSpeed ? stallTimer + deltaTime : 0f;
+            // Se mide el desplazamiento y no la velocidad: la pelota cabecea al flotar aunque esté atrapada contra un borde.
+            stallTimer += deltaTime;
             if (data.ballStallSeconds <= 0f || stallTimer < data.ballStallSeconds)
                 return;
             stallTimer = 0f;
+            var position = Flat(ball.transform.position);
+            bool stuck = (position - stallFrom).magnitude < data.ballStallDistance;
+            stallFrom = position;
+            if (!stuck)
+                return;
             NeutralDrops++;
             // Un poco corrida del centro: si no, las dos balsas vuelven a chocar de frente sobre ella.
             ball.ResetTo(ballSpawn.position + new Vector3(Random.Range(-2f, 2f), 0f, Random.Range(-5f, 5f)));
+            stallFrom = Flat(ball.transform.position);
             Announce("party.ball_reset");
         }
 
@@ -153,6 +174,7 @@ namespace GasSafari.Modes
                 ResetRaft(teamRafts[team], teamSpawns[team].position, teamSpawns[team].rotation);
             ball.ResetTo(ballSpawn.position);
             stallTimer = 0f;
+            stallFrom = Flat(ballSpawn.position);
         }
 
         protected override void AnnounceWinner()
@@ -191,6 +213,9 @@ namespace GasSafari.Modes
             if (player < 0 || ball == null)
                 return false;
             var target = BotTarget(teamOf[player], raftPosition, bot.Seat.Raft != null ? bot.Seat.Raft.Controller.Radius : 2f);
+            // Un punto detrás de la pelota pegada a un borde queda fuera de la cancha: se lo trae adentro.
+            target.x = Mathf.Clamp(target.x, -fieldHalf.x, fieldHalf.x);
+            target.z = Mathf.Clamp(target.z, -fieldHalf.y, fieldHalf.y);
             heading = Flat(target - raftPosition);
             if (heading.sqrMagnitude < 0.01f)
                 heading = Flat(ball.transform.position - raftPosition);
@@ -216,12 +241,14 @@ namespace GasSafari.Modes
             var offset = position - ballPosition;
             float along = Vector3.Dot(offset, toGoal);
             var lateral = offset - toGoal * along;
+            // Llegada con el ángulo del equipo; el empuje final apunta a la portería.
+            var approach = Quaternion.AngleAxis(approachJitter[team], Vector3.up) * toGoal;
             if (along < -reach * 0.5f)
             {
                 // Detrás de la pelota: si está bien alineado, atraviesa la pelota hacia la portería.
                 if (lateral.magnitude < reach * 0.6f)
                     return ballPosition + toGoal * 3f;
-                return ballPosition - toGoal * (reach + 1.5f);
+                return ballPosition - approach * (reach + 1.5f);
             }
             var side = Vector3.Cross(Vector3.up, toGoal);
             float sign = Vector3.Dot(offset, side) >= 0f ? 1f : -1f;

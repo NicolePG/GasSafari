@@ -31,7 +31,20 @@ namespace GasSafari.Tests
             Assert.AreEqual(2, game.TeamRaft(1).GetComponent<Raft.RaftSeats>().Crew.Count);
             Assert.AreNotEqual(game.TeamOf(0), game.TeamOf(1), "J1 y J2 en equipos distintos");
 
-            yield return rig.PlayToResults(30f, 120f);
+            yield return rig.PlayToResults(30f, 120f, () =>
+            {
+                var b = game.Ball.transform.position;
+                string line = "PARTYGOL t=" + game.Elapsed.ToString("0") + " pelota=(" + b.x.ToString("0.0") + "," + b.z.ToString("0.0") + ")";
+                for (int team = 0; team < 2; team++)
+                {
+                    var raft = game.TeamRaft(team);
+                    float gas = 0f;
+                    foreach (var seat in raft.GetComponent<Raft.RaftSeats>().Crew)
+                        gas += seat.Avatar.Gas.Gas;
+                    line += " e" + team + " pos=(" + raft.transform.position.x.ToString("0.0") + "," + raft.transform.position.z.ToString("0.0") + ") v=" + raft.Body.velocity.magnitude.ToString("0.0") + " gas=" + gas.ToString("0");
+                }
+                UnityEngine.Debug.Log(line);
+            });
 
             int goals = game.GoalsOf(0) + game.GoalsOf(1);
             UnityEngine.Debug.Log("PARTYTEST BalsaGol goles=" + game.GoalsOf(0) + "-" + game.GoalsOf(1) + " saques neutrales=" + game.NeutralDrops);
