@@ -15,9 +15,19 @@ namespace GasSafari.Modes
         // Quién jugó en cada lugar (incluidos los bots de relleno), para el ranking de la Fiesta.
         private static readonly PlayerSlot[] seen = new PlayerSlot[GameSession.MAX_PLAYERS];
 
+        private static readonly int[] DefaultBeans = { 25, 15, 10, 5 };
+
         public static int GamesPlayed { get; private set; }
         // Minijuego que se va a jugar o se está jugando (lo fija la pantalla de minijuegos).
         public static PartyGameData Current { get; set; }
+        // Fiesta completa (provisional): los 5 minijuegos en orden, uno detrás de otro, y al final el ranking.
+        public static bool Tour { get; private set; }
+        // Índice en Order del minijuego que se está jugando en la Fiesta completa.
+        public static int TourIndex { get; private set; }
+        // Al volver al menú tras el último minijuego de la Fiesta completa, la pantalla de minijuegos abre el ranking final.
+        public static bool ShowFinalOnReturn { get; set; }
+        // Frijolitos ya entregados en esta Fiesta (el ranking final se puede abrir más de una vez).
+        public static int BeansAwarded { get; private set; } = -1;
 
         public static void Reset()
         {
@@ -27,6 +37,91 @@ namespace GasSafari.Modes
                 seen[i] = null;
             }
             GamesPlayed = 0;
+            Tour = false;
+            TourIndex = 0;
+            ShowFinalOnReturn = false;
+            BeansAwarded = -1;
+        }
+
+        // Los minijuegos de ModesConfig que ya tienen escena, por su orden (docs/06 §1).
+        public static List<PartyGameData> Order()
+        {
+            var list = new List<PartyGameData>();
+            if (ModesConfig.Instance == null)
+                return list;
+            foreach (var game in ModesConfig.Instance.partyGames)
+            {
+                if (game != null && game.implemented)
+                    list.Add(game);
+            }
+            list.Sort((a, b) => a.order.CompareTo(b.order));
+            return list;
+        }
+
+        // Empieza una Fiesta completa con los puntos en cero; devuelve el primer minijuego.
+        public static PartyGameData StartTour()
+        {
+            Reset();
+            var order = Order();
+            if (order.Count == 0)
+                return null;
+            Tour = true;
+            TourIndex = 0;
+            return order[0];
+        }
+
+        public static int TourLength => Tour ? Order().Count : 0;
+
+        // El minijuego que sigue en la Fiesta completa, o null si el que se jugó era el último.
+        public static PartyGameData PeekNext()
+        {
+            if (!Tour)
+                return null;
+            var order = Order();
+            return TourIndex + 1 < order.Count ? order[TourIndex + 1] : null;
+        }
+
+        public static PartyGameData AdvanceTour()
+        {
+            var next = PeekNext();
+            if (next != null)
+                TourIndex++;
+            return next;
+        }
+
+        // Provisional (docs/06 §2: Fiesta da 5 a 25 frijolitos según resultado): por el mejor puesto de un humano en el
+        // ranking final (1.º 25, 2.º 15, 3.º 10, 4.º 5), proporcional a los minijuegos jugados de 5 y nunca menos de 5.
+        public static int BeansFor(int bestHumanRank, int gamesPlayed)
+        {
+            if (gamesPlayed <= 0)
+                return 0;
+            int full = bestHumanRank >= 1 && bestHumanRank <= DefaultBeans.Length ? DefaultBeans[bestHumanRank - 1] : DefaultBeans[DefaultBeans.Length - 1];
+            float share = Mathf.Min(1f, gamesPlayed / (float)AchievementService.PARTY_GAMES);
+            return Mathf.Max(5, Mathf.RoundToInt(full * share));
+        }
+
+        // Entrega los frijolitos de la Fiesta una sola vez y devuelve cuántos fueron. Sin humanos (pruebas), cuenta el mejor.
+        public static int AwardBeans()
+        {
+            if (BeansAwarded >= 0)
+                return BeansAwarded;
+            var standings = Standings();
+            int best = int.MaxValue, bestAny = int.MaxValue;
+            foreach (var entry in standings)
+            {
+                bestAny = Mathf.Min(bestAny, entry.rank);
+                if (!entry.slot.IsBot)
+                    best = Mathf.Min(best, entry.rank);
+            }
+            if (best == int.MaxValue)
+                best = bestAny;
+            BeansAwarded = BeansFor(best, GamesPlayed);
+            if (BeansAwarded > 0 && Services.IsReady && Services.Progression != null)
+            {
+                Services.Progression.AddBeans(BeansAwarded);
+                Services.Progression.Save();
+            }
+            return BeansAwarded;
         }
 
         public static int Points(int slotIndex) => slotIndex >= 0 && slotIndex < points.Length ? points[slotIndex] : 0;

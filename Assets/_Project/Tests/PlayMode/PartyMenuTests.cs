@@ -110,6 +110,48 @@ namespace GasSafari.Tests
             Assert.AreEqual(0, PartyCup.GamesPlayed, "la Fiesta terminó");
         }
 
+        [UnityTest]
+        public IEnumerator FullPartyCard_StartsTheTourFromZero_AndAfterTheLastGameOpensTheFinalRankingWithBeans()
+        {
+            var alex = new PlayerSlot(0, Color.red, null, null) { Character = Catalog.FindCharacter("Alex") };
+            var gloria = new PlayerSlot(1, Color.blue, null, null) { IsBot = true, Character = Catalog.FindCharacter("Gloria") };
+            PartyCup.Award(new[] { alex, gloria }, new[] { 2, 1 });
+            App.Push<PartySelectScreen>();
+            var screen = App.Get<PartySelectScreen>();
+            yield return null;
+            Assert.IsTrue(screen.TourButton.gameObject.activeInHierarchy, "tarjeta Fiesta completa");
+            screen.TourButton.onClick.Invoke();
+            CollectionAssert.AreEqual(new[] { "BalsaGol" }, loaded, "empieza por el primer minijuego");
+            Assert.IsTrue(PartyCup.Tour);
+            Assert.AreEqual(0, PartyCup.GamesPlayed, "la Fiesta completa empieza con los puntos en cero");
+            Assert.AreEqual(5, PartyCup.TourLength);
+
+            // Fin de los 5: Alex (humano) 2.º y Gloria (bot) 1.ª en cada uno.
+            for (int i = 0; i < 5; i++)
+                PartyCup.Award(new[] { alex, gloria }, new[] { 2, 1 });
+            PartyCup.ShowFinalOnReturn = true;
+            int before = Data.frijolitos;
+            screen.OnShow();
+            yield return null;
+            Assert.IsTrue(screen.FinalPanel.activeSelf, "al volver del último minijuego se ve el ranking final");
+            Assert.AreEqual(15, PartyCup.BeansAwarded, "el mejor humano quedó 2.º en 5 minijuegos: 15 frijolitos");
+            Assert.AreEqual(before + 15, Data.frijolitos);
+            StringAssert.Contains("15", screen.FinalBeansText);
+            screen.ShowFinal();
+            Assert.AreEqual(before + 15, Data.frijolitos, "los frijolitos se dan una sola vez");
+            Assert.AreEqual("mus_results", Services.Music.CurrentId);
+        }
+
+        [Test]
+        public void PartyBeans_GoFrom5To25_ByBestHumanPlace_AndGamesPlayed()
+        {
+            Assert.AreEqual(25, PartyCup.BeansFor(1, 5));
+            Assert.AreEqual(5, PartyCup.BeansFor(4, 5));
+            Assert.AreEqual(5, PartyCup.BeansFor(1, 1), "un solo minijuego: 25 x 1/5");
+            Assert.AreEqual(15, PartyCup.BeansFor(1, 3));
+            Assert.AreEqual(0, PartyCup.BeansFor(1, 0), "sin minijuegos no hay frijolitos");
+        }
+
         private static bool UnityEditorSceneInBuild(string scene)
         {
 #if UNITY_EDITOR

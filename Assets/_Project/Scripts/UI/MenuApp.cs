@@ -242,12 +242,16 @@ namespace GasSafari.UI
             Select(screen.FirstSelected);
         }
 
-        // Música de los menús (docs/08): título, selección de personajes y mapa.
+        // Música de los menús (docs/08): título, selección de personajes, mapa y Fiesta.
         private void PlayMusicFor(MenuScreen screen)
         {
             if (isOverlay || !Services.IsReady || Services.Music == null)
                 return;
-            string id = screen is LobbyScreen ? "mus_select" : screen is WorldMapScreen || screen is LevelSheetScreen ? "mus_map" : "mus_title";
+            // Al volver de un minijuego se pasa por el menú principal camino a la Fiesta: no corta mus_party.
+            if (screen is MainMenuScreen && MenuRequest.StartAt == MenuRequest.Start.Party)
+                return;
+            // Fiesta: mus_party también en la pantalla de minijuegos, así sigue sin cortes entre minijuego y minijuego.
+            string id = screen is LobbyScreen ? "mus_select" : screen is WorldMapScreen || screen is LevelSheetScreen ? "mus_map" : screen is PartySelectScreen ? "mus_party" : "mus_title";
             if (Services.Music.CurrentId != id)
                 Services.Music.Play(id);
         }

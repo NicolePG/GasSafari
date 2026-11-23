@@ -167,6 +167,7 @@ namespace GasSafari.Modes
             if (laps <= lapsDone[i])
                 return;
             lapsDone[i] = laps;
+            scores[i] = laps;
             NotifyScores();
             if (Services.IsReady && Services.Audio != null)
                 Services.Audio.Play(SoundId.Checkpoint, rafts[i].Body.position);

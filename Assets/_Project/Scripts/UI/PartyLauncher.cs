@@ -24,6 +24,21 @@ namespace GasSafari.UI
 
         public static void BackToParty() => MenuLoader();
 
+        public static bool StartTour() => Play(PartyCup.StartTour());
+
+        // Fiesta completa: el minijuego que sigue o, después del último, el ranking final en la pantalla de minijuegos.
+        public static void Next()
+        {
+            var next = PartyCup.AdvanceTour();
+            if (next != null)
+            {
+                Play(next);
+                return;
+            }
+            PartyCup.ShowFinalOnReturn = true;
+            MenuLoader();
+        }
+
         private static void LoadScene(string scene) => SceneLoader.LoadScene(scene, "Loading_W1");
 
         private static void LoadMenu() => SceneLoader.LoadMenu(MenuRequest.Start.Party);

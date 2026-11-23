@@ -191,9 +191,28 @@ namespace GasSafari.Modes
                 return;
             announce.gameObject.SetActive(false);
             FillResults();
+            if (PartyCup.Tour)
+                UseTourButtons();
             results.SetActive(true);
             if (EventSystem.current != null)
                 EventSystem.current.SetSelectedGameObject(other.gameObject);
+        }
+
+        // Fiesta completa: sin "Repetir"; "Siguiente minijuego (n/5)" o, tras el último, "Ver ranking final".
+        private void UseTourButtons()
+        {
+            retry.gameObject.SetActive(false);
+            var label = other.GetComponentInChildren<LocalizedText>(true);
+            if (label != null)
+            {
+                if (PartyCup.PeekNext() != null)
+                    label.SetKey("party.next_game", PartyCup.TourIndex + 2, PartyCup.TourLength);
+                else
+                    label.SetKey("party.see_final");
+            }
+            other.onClick.RemoveAllListeners();
+            other.onClick.AddListener(PartyLauncher.Next);
+            other.navigation = new Navigation { mode = Navigation.Mode.None };
         }
 
         // Una fila por jugador, del primero al último: puesto, color, nombre, resultado, puntos ganados y total de la Fiesta.

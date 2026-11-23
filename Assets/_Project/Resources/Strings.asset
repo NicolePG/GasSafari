@@ -421,6 +421,21 @@ MonoBehaviour:
   - key: party.rounds_survived
     text: 'Rondas: {0}'
     en: 'Rounds: {0}'
+  - key: party.play_all
+    text: Fiesta completa
+    en: Full Party
+  - key: party.play_all.desc
+    text: Los 5 minijuegos seguidos. Los puntos empiezan en cero.
+    en: All 5 minigames in a row. Points start at zero.
+  - key: party.next_game
+    text: Siguiente ({0}/{1})
+    en: Next ({0}/{1})
+  - key: party.see_final
+    text: Ranking final
+    en: Final ranking
+  - key: party.beans
+    text: +{0} frijolitos
+    en: +{0} beans
   - key: select.title
     text: Elige tu animal
     en: Pick your animal

@@ -135,6 +135,11 @@ party.first_finish,¡{0} llegó a la meta! Quedan {1} s,{0} finished! {1} s left
 party.coconut_tag,¡Coco!,Coconut!,Coco Caliente: marcador de quien lo tiene
 party.coconut_out,¡Bum! {0} sale volando,Boom! {0} goes flying,Coco Caliente: explotó el coco ({0} = nombre del jugador)
 party.rounds_survived,Rondas: {0},Rounds: {0},Coco Caliente: rondas que aguantó en la tabla de resultados
+party.play_all,Fiesta completa,Full Party,Pantalla de minijuegos: tarjeta para jugar los 5 seguidos
+party.play_all.desc,Los 5 minijuegos seguidos. Los puntos empiezan en cero.,All 5 minigames in a row. Points start at zero.,Pantalla de minijuegos (provisional)
+party.next_game,Siguiente ({0}/{1}),Next ({0}/{1}),Fiesta completa: botón de resultados ({0} = número del que sigue; {1} = total)
+party.see_final,Ranking final,Final ranking,Fiesta completa: botón de resultados del último minijuego
+party.beans,+{0} frijolitos,+{0} beans,Ranking final de la Fiesta (docs/06 §2: 5 a 25)
 select.title,Elige tu animal,Pick your animal,Selección de personajes (docs/07 §2)
 select.add_bot,Añadir bot,Add bot,Solo anfitrión
 select.remove_bot,Quitar bot,Remove bot,Solo anfitrión

@@ -11,8 +11,9 @@ using UnityEngine.SceneManagement;
 
 namespace GasSafari.Tests
 {
-    // Arranca un minijuego de Fiesta con bots (docs/06 §1) a x3 en su escena de Scenes/Juego/Fiesta, con datos clonados
-    // (tiempos cortos), guardado temporal y una captura a mitad de partida en Screenshots/M7/<escena>.png.
+    // Arranca minijuegos de Fiesta con bots (docs/06 §1) a x3 en su escena de Scenes/Juego/Fiesta, con datos clonados
+    // (tiempos cortos), guardado temporal y una captura a mitad de partida en Screenshots/M7/<escena>.png. Prepare + Load
+    // y Unload permiten jugar varios seguidos (la Fiesta completa); SetUp y TearDown hacen todo para uno solo.
     internal sealed class PartyTestRig
     {
         private static readonly string[] Characters = { "Alex", "Marty", "Melman", "Gloria" };
@@ -27,18 +28,19 @@ namespace GasSafari.Tests
 
         public IEnumerator SetUp(string id, int sessionBots, System.Action<PartyGameData> tweak)
         {
+            Prepare(sessionBots);
+            yield return Load(id, tweak);
+        }
+
+        // Sesión con 'sessionBots' bots (Alex, Marty, Melman, Gloria), guardado temporal y la Fiesta en cero.
+        public void Prepare(int sessionBots)
+        {
             Services.Achievements.enabled = false;
             Services.Achievements.enabled = true;
             Services.Session.ClearPlayers();
             savePath = Path.Combine(Path.GetTempPath(), "gasSafariParty_" + System.Guid.NewGuid().ToString("N"), "save.json");
             Services.Progression.Initialize(new SaveSystem(savePath));
             PartyCup.Reset();
-            var source = ModesConfig.Instance.FindPartyGame(id);
-            Assert.IsNotNull(source, "ModesConfig tiene el minijuego " + id);
-            Assert.IsTrue(source.implemented, id + " está activo");
-            clone = Object.Instantiate(source);
-            tweak?.Invoke(clone);
-            sceneName = source.sceneName;
 #if UNITY_EDITOR
             for (int i = 0; i < sessionBots; i++)
             {
@@ -46,7 +48,20 @@ namespace GasSafari.Tests
                 var color = Progression.GameCatalog.Instance.playerPalette.Get(i);
                 Services.Session.AddPlayer(new PlayerSlot(i, color, null, null) { IsBot = true, Character = data });
             }
+#endif
+        }
+
+        // Carga la escena del minijuego y lo empieza con una copia de sus datos.
+        public IEnumerator Load(string id, System.Action<PartyGameData> tweak)
+        {
+            var source = ModesConfig.Instance.FindPartyGame(id);
+            Assert.IsNotNull(source, "ModesConfig tiene el minijuego " + id);
+            Assert.IsTrue(source.implemented, id + " está activo");
+            clone = Object.Instantiate(source);
+            tweak?.Invoke(clone);
+            sceneName = source.sceneName;
             PartyGameBase.AutoBegin = false;
+#if UNITY_EDITOR
             yield return UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(
                 "Assets/_Project/Scenes/Juego/Fiesta/" + sceneName + ".unity", new LoadSceneParameters(LoadSceneMode.Additive));
 #else
@@ -74,7 +89,7 @@ namespace GasSafari.Tests
                     nextSample += 5f;
                     sample();
                 }
-                if (!shot && Game.State == PartyState.Playing && Game.Elapsed >= shotAt)
+                if (!shot && shotAt >= 0f && Game.State == PartyState.Playing && Game.Elapsed >= shotAt)
                 {
                     shot = true;
                     yield return new WaitForEndOfFrame();
@@ -108,10 +123,10 @@ namespace GasSafari.Tests
             Assert.IsTrue(Game.Hud.ResultsPanel.activeSelf, "se ve la tabla de resultados");
         }
 
-        public IEnumerator TearDown()
+        // Descarga la escena del minijuego y lo que creó (balsas y animales viven fuera de ella).
+        public IEnumerator Unload()
         {
             Services.TimeController.SetBaseScale(1f);
-            PartyGameBase.AutoBegin = true;
             var rafts = Object.FindObjectsByType<RaftController>(FindObjectsSortMode.None);
             var avatars = Object.FindObjectsByType<PlayerAvatar>(FindObjectsInactive.Include, FindObjectsSortMode.None);
             var scene = SceneManager.GetSceneByName(sceneName);
@@ -127,10 +142,19 @@ namespace GasSafari.Tests
                 if (raft != null)
                     Object.Destroy(raft.gameObject);
             }
-            Services.Session.ClearPlayers();
-            PartyCup.Reset();
             if (clone != null)
                 Object.Destroy(clone);
+            clone = null;
+            Game = null;
+            yield return null;
+        }
+
+        public IEnumerator TearDown()
+        {
+            yield return Unload();
+            PartyGameBase.AutoBegin = true;
+            Services.Session.ClearPlayers();
+            PartyCup.Reset();
             string dir = Path.GetDirectoryName(savePath);
             if (dir != null && Directory.Exists(dir))
                 Directory.Delete(dir, true);
