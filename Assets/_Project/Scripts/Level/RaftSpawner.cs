@@ -46,6 +46,27 @@ namespace GasSafari.Level
             return Raft;
         }
 
+        // Balsa adicional con su tripulación (minijuegos de Fiesta, Carrera por Equipos): no cambia Raft ni Avatars.
+        // 'radius' > 0 la convierte en mini balsa con ese radio. Los animales creados se agregan a 'crew'.
+        public RaftController SpawnExtra(Vector3 position, Quaternion rotation, IReadOnlyList<PlayerSlot> slots,
+            List<PlayerAvatar> crew, bool applySkin = true)
+        {
+            var raftObject = Instantiate(raftPrefab, position, rotation);
+            if (applySkin)
+                Progression.CosmeticsApplier.ApplyRaft(raftObject);
+            var raft = raftObject.GetComponent<RaftController>();
+            if (raftObject.GetComponent<RaftWake>() == null)
+                raftObject.AddComponent<RaftWake>();
+            var seats = raftObject.GetComponent<RaftSeats>();
+            int count = Mathf.Clamp(slots.Count, 0, GameSession.MAX_PLAYERS);
+            if (count == 0)
+                return raft;
+            var angles = seats.GetStartAngles(count);
+            for (int i = 0; i < count; i++)
+                crew.Add(SpawnAvatar(slots[i], seats, angles[i]));
+            return raft;
+        }
+
         // Un slot de bot: su BotBrain escribe los comandos en un BotCommandSource.
         private static void AttachBot(PlayerAvatar avatar, PlayerSlot slot)
         {

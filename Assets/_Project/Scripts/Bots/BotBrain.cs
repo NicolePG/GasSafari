@@ -44,7 +44,15 @@ namespace GasSafari.Bots
         private bool tiltLocked;
         private float lastTilt;
 
+        // Minijuego de Fiesta en curso (docs/06 §1): manda sobre el cauce.
+        public static IBotGoal Goal { get; set; }
+
         public BotConfig Config => config;
+        public PlayerAvatar Avatar => avatar;
+        public PlayerSeat Seat => seat;
+        public GasTank Gas => gas;
+        public AvatarStateMachine States => states;
+        public FartThruster Thruster => thruster;
         public BotCommandSource Source => source;
         public bool IsBlasting => blasting;
         public bool IsTiltLocked => tiltLocked;
@@ -117,10 +125,12 @@ namespace GasSafari.Bots
             {
                 case AvatarState.Seated:
                 case AvatarState.Charging:
-                    Navigate(ref cmd);
+                    if (Goal == null || !Goal.Drive(this, ref cmd))
+                        Navigate(ref cmd);
                     break;
                 case AvatarState.Grabbing:
-                    HoldOn(ref cmd);
+                    if (Goal == null || !Goal.Drive(this, ref cmd))
+                        HoldOn(ref cmd);
                     break;
                 case AvatarState.Falling:
                 case AvatarState.Swimming:
@@ -131,6 +141,9 @@ namespace GasSafari.Bots
                     break;
             }
         }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetGoal() => Goal = null;
 
         private static void Idle(ref Input.PlayerCommand cmd)
         {
@@ -181,6 +194,8 @@ namespace GasSafari.Bots
 
         private Vector3 DesiredHeading(Vector3 position, float speed)
         {
+            if (Goal != null && Goal.TryGetHeading(this, position, out var goalHeading))
+                return goalHeading;
             // Ruta alternativa forzada (BotHint Route): los puntos de la ruta mandan hasta soltarla.
             if (BotHint.ForcedRoute != null || routeHint != null)
             {

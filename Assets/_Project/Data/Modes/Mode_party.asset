@@ -16,6 +16,6 @@ MonoBehaviour:
   order: 5
   keyBase: party
   icon: {fileID: 21300000, guid: 6e4d3de938de57a48af82036dcf9c4cd, type: 3}
-  implemented: 0
+  implemented: 1
   minPlayers: 2
   maxPlayers: 4

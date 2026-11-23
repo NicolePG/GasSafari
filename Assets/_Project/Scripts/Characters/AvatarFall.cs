@@ -212,7 +212,7 @@ namespace GasSafari.Characters
             side.y = 0f;
             if (side.sqrMagnitude < 1e-4f)
                 side = raftTransform.right;
-            var position = raftTransform.position + side.normalized * (balance.raftRadius + BESIDE_RAFT_GAP);
+            var position = raftTransform.position + side.normalized * (HomeRaft.Controller.Radius + BESIDE_RAFT_GAP);
             float height = WaterSurface.TryGetHeight(position + Vector3.up * 2f, out float water) ? water : raftTransform.position.y;
             position.y = height - 0.05f;
 

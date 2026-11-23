@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GasSafari.Modes
 {
-    // Valores de Contrarreloj, Espejo y Modificadores (docs/06 §1). Vive en Resources/ModesConfig.asset y lo llena
+    // Valores de Contrarreloj, Espejo, Modificadores y Fiesta (docs/06 §1). Vive en Resources/ModesConfig.asset y lo llena
     // "Gas Safari/Setup/Crear modos de M7". Los marcados como provisionales están documentados en docs/06.
     [CreateAssetMenu(menuName = "Gas Safari/Modes Config", fileName = "ModesConfig")]
     public class ModesConfig : ScriptableObject
@@ -24,12 +24,26 @@ namespace GasSafari.Modes
         public ModifierData[] modifiers = new ModifierData[0];
         [Tooltip("Provisional: segundos de un vaivén completo de Cámara mareada")] public float dizzyPeriod = 4f;
 
+        [Header("Fiesta")]
+        [Tooltip("Los 5 minijuegos en orden (Data/Party)")] public PartyGameData[] partyGames = new PartyGameData[0];
+        [Tooltip("Provisional: puntos de la Fiesta por puesto en cada minijuego (1.º, 2.º, 3.º, 4.º)")] public int[] partyPoints = { 3, 2, 1, 0 };
+
         private static ModesConfig instance;
 
         public static ModesConfig Instance
         {
             get => instance != null ? instance : instance = Resources.Load<ModesConfig>(RESOURCE_PATH);
             set => instance = value;
+        }
+
+        public PartyGameData FindPartyGame(string id)
+        {
+            for (int i = 0; i < partyGames.Length; i++)
+            {
+                if (partyGames[i] != null && partyGames[i].id == id)
+                    return partyGames[i];
+            }
+            return null;
         }
 
         public ModifierData FindModifier(string id)

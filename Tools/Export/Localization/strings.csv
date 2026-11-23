@@ -114,6 +114,22 @@ party.lap,Vuelta {0}/{1},Lap {0}/{1},Carrera de Burbujas
 party.winner,¡Gana {0}!,{0} wins!,Ganador del minijuego ({0} = nombre del jugador o equipo)
 party.mangos_count,Mangos: {0},Mangos: {0},Pesca de Mangos
 party.hot_potato,¡Tienes el coco!,You've got it!,Coco Caliente: aviso al que lo tiene
+party.draw,¡Empate!,Draw!,Minijuego sin ganador
+party.team.blue,Equipo Azul,Blue Team,Balsa-Gol: balsa de J1 y J3
+party.team.orange,Equipo Naranja,Orange Team,Balsa-Gol: balsa de J2 y J4
+party.round_won,¡{0} gana la ronda!,{0} wins the round!,Rey de la Balsa ({0} = nombre del jugador)
+party.round_draw,Ronda sin ganador,No one wins the round,Rey de la Balsa: se acabó el tiempo de la ronda o cayeron todos
+party.rank,{0}.º,#{0},Puesto en el ranking de Fiesta
+party.points,+{0} pts,+{0} pts,Puntos de la Fiesta ganados en el minijuego
+party.total,Total: {0},Total: {0},Puntos de la Fiesta acumulados
+party.other_game,Otro minijuego,Another minigame,Botón de los resultados del minijuego
+party.results_header,Puesto · Jugador · Resultado · Puntos · Total,Place · Player · Result · Points · Total,Encabezado de la tabla de resultados del minijuego
+party.cup_title,Puntos de la Fiesta,Party points,Pantalla de minijuegos
+party.games_played,Minijuegos jugados: {0},Minigames played: {0},Pantalla de minijuegos
+party.no_games,Todavía no jugaron ningún minijuego.,No minigames played yet.,Pantalla de minijuegos (ustedes = el grupo)
+party.end,Terminar la Fiesta,End the Party,Botón: muestra el ranking final
+party.final_title,Ranking final,Final ranking,Fin de la Fiesta
+party.ball_reset,¡Saque neutral!,Drop ball!,Balsa-Gol: la pelota quieta vuelve al centro (provisional)
 select.title,Elige tu animal,Pick your animal,Selección de personajes (docs/07 §2)
 select.add_bot,Añadir bot,Add bot,Solo anfitrión
 select.remove_bot,Quitar bot,Remove bot,Solo anfitrión

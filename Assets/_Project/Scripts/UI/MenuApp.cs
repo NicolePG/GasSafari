@@ -18,7 +18,9 @@ namespace GasSafari.UI
         {
             Splash,
             MainMenu,
-            WorldMap
+            WorldMap,
+            // Pantalla de minijuegos al volver de uno (Fiesta).
+            Party
         }
 
         public static Start StartAt = Start.Splash;
@@ -105,6 +107,10 @@ namespace GasSafari.UI
                 case MenuRequest.Start.WorldMap:
                     GoTo<MainMenuScreen>();
                     Push<WorldMapScreen>();
+                    break;
+                case MenuRequest.Start.Party:
+                    GoTo<MainMenuScreen>();
+                    Push<PartySelectScreen>();
                     break;
                 default:
                     GoTo<TitleScreen>();

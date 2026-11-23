@@ -23,6 +23,17 @@ namespace GasSafari.Raft
         // Todo el equipo de esta balsa, incluidos los que están en el agua.
         public IReadOnlyList<PlayerSeat> Crew => crew;
 
+        // Sin Awake todavía (pruebas de editor) se busca el controlador al vuelo.
+        private float Radius
+        {
+            get
+            {
+                if (Controller == null)
+                    Controller = GetComponent<RaftController>();
+                return Controller.Radius;
+            }
+        }
+
         private void Awake()
         {
             Controller = GetComponent<RaftController>();
@@ -58,7 +69,7 @@ namespace GasSafari.Raft
         {
             var offset = worldPoint - transform.position;
             offset.y = 0f;
-            return offset.magnitude - balance.raftRadius;
+            return offset.magnitude - Radius;
         }
 
         // Sobre la cubierta y a más de 'margin' del borde, medido en el espacio de la balsa (sirve inclinada).
@@ -66,7 +77,7 @@ namespace GasSafari.Raft
         {
             var local = transform.InverseTransformPoint(worldPoint);
             float radial = new Vector2(local.x, local.z).magnitude;
-            return local.y > 0f && radial < balance.raftRadius - margin;
+            return local.y > 0f && radial < Radius - margin;
         }
 
         // El ángulo libre más cercano al pedido, respetando la separación mínima.
@@ -95,7 +106,8 @@ namespace GasSafari.Raft
         public Vector3 LocalSeatPosition(float angle)
         {
             float rad = angle * Mathf.Deg2Rad;
-            return new Vector3(Mathf.Sin(rad) * balance.raftRadius, seatHeight, Mathf.Cos(rad) * balance.raftRadius);
+            float radius = Radius;
+            return new Vector3(Mathf.Sin(rad) * radius, seatHeight, Mathf.Cos(rad) * radius);
         }
 
         // Recorta el giro de un asiento para respetar la separación mínima con los demás.

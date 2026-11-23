@@ -244,12 +244,14 @@ namespace GasSafari.Tests
             buttons[5].onClick.Invoke();
             Assert.AreEqual("Termina W2-5", App.ToastText);
 
-            // Con W1-5 terminado, Fiesta se abre, pero su escena llega con M7.
+            // Con W1-5 terminado, Fiesta se abre y sigue a "Local / online" como los demás (M7-04).
             Give("W1-5", 1);
             App.Back();
             App.Push<ModeSelectScreen>();
             buttons[4].onClick.Invoke();
-            Assert.AreEqual("Próximamente", App.ToastText);
+            Assert.IsInstanceOf<PlayTypeScreen>(App.Top);
+            Assert.AreEqual(ProgressionRules.MODE_PARTY, Services.Session.ModeId);
+            App.Back();
             Assert.AreSame(modes, App.Top);
 
             // Historia sigue a "Local / online".

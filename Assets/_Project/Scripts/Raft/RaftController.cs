@@ -21,6 +21,7 @@ namespace GasSafari.Raft
 
         private readonly List<WeightPoint> weights = new List<WeightPoint>();
         private Rigidbody rb;
+        private float radiusOverride;
 
         // Balsas activas (una, o varias en Carrera por Equipos): las leen los avisos por cercanía de los obstáculos.
         public static IReadOnlyList<RaftController> Active => ActiveRafts;
@@ -28,6 +29,8 @@ namespace GasSafari.Raft
         public RaftBuoyancy Buoyancy { get; private set; }
         public RaftEffects Effects { get; private set; }
         public BalanceConfig Balance => balance;
+        // Radio del borde donde se sientan los animales: el de BalanceConfig o el de una mini balsa de Fiesta (docs/06 §1).
+        public float Radius => radiusOverride > 0f ? radiusOverride : balance.raftRadius;
         public float OnboardWeight { get; private set; }
         // 0 anula la inclinación por peso (Dúo Pesado).
         public float WeightTiltScale { get; set; } = 1f;
@@ -61,6 +64,12 @@ namespace GasSafari.Raft
         {
             seatPoint.y = rb.worldCenterOfMass.y;
             return seatPoint;
+        }
+
+        // Mini balsa individual (Fiesta): radio propio; 0 vuelve al de BalanceConfig.
+        public void SetRadius(float radius)
+        {
+            radiusOverride = radius;
         }
 
         // Panzazo de Gloria: anula el giro de golpe.

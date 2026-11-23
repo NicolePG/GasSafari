@@ -102,7 +102,7 @@ namespace GasSafari.VFX
             if (raft != null && group.FindMember(raft.transform) >= 0)
                 group.RemoveMember(raft.transform);
             raft = levelRaft;
-            group.AddMember(raft.transform, balance.cameraRaftWeight, balance.raftRadius);
+            group.AddMember(raft.transform, balance.cameraRaftWeight, raft.Radius);
         }
 
         public void Shake(float force)

@@ -44,7 +44,7 @@ Ensamblados (asmdef): `GasSafari.Runtime` (Scripts), `GasSafari.Tests.EditMode`,
 | 00_Boot | Prefab `GameServices` (persistente) y carga el título |
 | 01_Titulo | Título con escena 3D animada; el menú principal, modos, selección de personajes, mapa de mundos, Tienda, Logros, Opciones y la carga son paneles de `MenuApp` y `SceneLoader` (no hay escenas 02-05 separadas) |
 | Niveles/N00_T0_PiscinaZoo ... N30_W6-5_CoronaRey | Los 31 niveles, numerados en orden de juego (`N<índice>_<ID>_<Nombre>`; nombres exactos en docs/04) |
-| Fiesta/ | Una escena por minijuego (BalsaGol, ReyBalsa, PescaMangos, CarreraBurbujas, CocoCaliente); aún vacía |
+| Fiesta/ | Una escena por minijuego (BalsaGol, ReyBalsa, PescaMangos, CarreraBurbujas, CocoCaliente); las arma `Gas Safari/Setup/Crear minijuegos de Fiesta (M7)` (`PartyArenaBuilder`). Cada una tiene un controlador que hereda de `PartyGameBase` (`Scripts/Modes/Party`: participantes y bots de relleno, cuenta 3-2-1, tiempo, puntaje, puestos y puntos de la Fiesta en `PartyCup`, HUD `PartyHud`) y es el objetivo de los bots (`IBotGoal` en `BotBrain.Goal`). Datos en `Data/Party/Party_<id>.asset` y `ModesConfig.partyGames` |
 | Infinito/ | Infinito y Desafío Diario; aún vacía |
 
 | Escena (`Scenes/Pruebas/`) | Contenido |

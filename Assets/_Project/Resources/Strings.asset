@@ -358,6 +358,54 @@ MonoBehaviour:
   - key: party.hot_potato
     text: "\xA1Tienes el coco!"
     en: You've got it!
+  - key: party.draw
+    text: "\xA1Empate!"
+    en: Draw!
+  - key: party.team.blue
+    text: Equipo Azul
+    en: Blue Team
+  - key: party.team.orange
+    text: Equipo Naranja
+    en: Orange Team
+  - key: party.round_won
+    text: "\xA1{0} gana la ronda!"
+    en: '{0} wins the round!'
+  - key: party.round_draw
+    text: Ronda sin ganador
+    en: No one wins the round
+  - key: party.rank
+    text: "{0}.\xBA"
+    en: '#{0}'
+  - key: party.points
+    text: +{0} pts
+    en: +{0} pts
+  - key: party.total
+    text: 'Total: {0}'
+    en: 'Total: {0}'
+  - key: party.other_game
+    text: Otro minijuego
+    en: Another minigame
+  - key: party.results_header
+    text: "Puesto \xB7 Jugador \xB7 Resultado \xB7 Puntos \xB7 Total"
+    en: "Place \xB7 Player \xB7 Result \xB7 Points \xB7 Total"
+  - key: party.cup_title
+    text: Puntos de la Fiesta
+    en: Party points
+  - key: party.games_played
+    text: 'Minijuegos jugados: {0}'
+    en: 'Minigames played: {0}'
+  - key: party.no_games
+    text: "Todav\xEDa no jugaron ning\xFAn minijuego."
+    en: No minigames played yet.
+  - key: party.end
+    text: Terminar la Fiesta
+    en: End the Party
+  - key: party.final_title
+    text: Ranking final
+    en: Final ranking
+  - key: party.ball_reset
+    text: "\xA1Saque neutral!"
+    en: Drop ball!
   - key: select.title
     text: Elige tu animal
     en: Pick your animal

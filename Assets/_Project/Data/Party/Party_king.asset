@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6efa059dff0766b45bf0c2d28cf6d093, type: 3}
+  m_Name: Party_king
+  m_EditorClassIdentifier: 
+  id: king
+  sceneName: ReyBalsa
+  order: 2
+  implemented: 1
+  icon: Icon_Mode_M5_Fiesta
+  minPlayers: 2
+  maxPlayers: 4
+  evenPlayers: 0
+  durationSeconds: 0
+  targetScore: 0
+  roundsToWin: 2
+  maxRounds: 5
+  roundSeconds: 60
+  ballRadius: 1.4
+  ballMass: 3
+  goalPauseSeconds: 2.5
+  ballStallSeconds: 6
+  ballStallSpeed: 0.4
+  pushRadius: 2.5
+  pushSpeed: 3.5
+  spinDegreesPerSecond: 30
+  mangosAtOnce: 8
+  mangoRespawnSeconds: 1.5
+  miniRaftRadius: 1

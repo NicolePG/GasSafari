@@ -889,6 +889,13 @@ namespace GasSafari.UI
                 if (Services.Cosmetics != null)
                     Services.Cosmetics.Apply(column.Slot);
             }
+            // Fiesta (docs/06 §1): de la sala a los minijuegos, con los puntos en cero.
+            if (Services.IsReady && Services.Session.ModeId == Progression.ProgressionRules.MODE_PARTY)
+            {
+                Modes.PartyCup.Reset();
+                App.Push<PartySelectScreen>();
+                return;
+            }
             App.Push<WorldMapScreen>();
         }
 

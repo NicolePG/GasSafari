@@ -341,7 +341,9 @@ namespace GasSafari.Tests
             var scenes = EditorBuildSettings.scenes.Where(s => s.enabled).Select(s => s.path).ToList();
             Assert.AreEqual(MenuSceneBuilder.BOOT_PATH, scenes[0]);
             Assert.AreEqual(MenuSceneBuilder.SCENE_PATH, scenes[1]);
-            Assert.AreEqual(31 + 2, scenes.Count, "boot + título + 31 niveles");
+            int party = scenes.Count(s => s.StartsWith(GasSafari.Editor.PartyArenaBuilder.SCENES));
+            Assert.AreEqual(GasSafari.Editor.PartyArenaBuilder.Implemented.Length, party, "una escena por minijuego de Fiesta hecho");
+            Assert.AreEqual(31 + 2 + party, scenes.Count, "boot + título + 31 niveles + minijuegos de Fiesta");
             Assert.IsTrue(File.Exists(MenuSceneBuilder.SCENE_PATH));
         }
     }

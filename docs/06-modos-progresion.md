@@ -63,6 +63,14 @@ Decisiones provisionales, pendientes de playtest (M7-03, 2026-11-22):
 | Carrera de Burbujas | Mini balsas individuales con gaseosa infinita sobre una pista de obstáculos | 3 vueltas |
 | Coco Caliente | Balsa compartida; un coco-bomba pasa a quien se tira un pedo más cerca; al explotar lanza al agua a quien lo tiene | Rondas hasta que quede uno |
 
+Decisiones provisionales, pendientes de playtest (M7-04, 2026-11-23):
+- Flujo: tarjeta Fiesta → Local → sala (la Fiesta empieza con los puntos en cero) → pantalla de minijuegos (`PartySelectScreen`: los 5, los que faltan dicen "Próximamente", y los puntos acumulados) → escena del minijuego (`Scenes/Juego/Fiesta/<Escena>`) → resultados con "Otro minijuego" o "Repetir". "Terminar la Fiesta" muestra el ranking final y vuelve al menú principal.
+- Participantes: los de la sala (humanos y bots) y, si faltan, bots de relleno hasta el mínimo del minijuego (2); Balsa-Gol pide número par, así que 3 se completan a 2 vs 2. Los bots de relleno usan los lugares y animales libres; no entran en la sala.
+- Puntos de la Fiesta por puesto en cada minijuego: 1.º 3, 2.º 2, 3.º 1, 4.º 0. Los empatados comparten puesto (en un 2 vs 2 los ganadores son 1.º y los perdedores 3.º; un empate deja a todos 1.º). Valores en `ModesConfig.partyPoints`.
+- Arenas: piscinas greybox con el agua y el cielo de día de T-0 y cámara fija que ve toda la arena. Los minijuegos no tienen pausa todavía.
+- Cada minijuego terminado cuenta para el logro "Animal de Fiesta" (`partyPlayed`). Los pedos y las caídas suman a las estadísticas como en un nivel.
+- Balsa-Gol: J1 y J3 en la balsa azul, J2 y J4 en la naranja (bandera del color en la balsa). Pelota de 1.4 m de radio y 3 kg que flota. Portería de 10 m de boca y 3.5 m de fondo, con chaflanes a los lados y esquinas de la cancha a 45°. Tras un gol, 2.5 s de pausa y saque desde las salidas. Si la pelota pasa 6 s casi quieta (menos de 0.4 m/s), "¡Saque neutral!": vuelve cerca del centro. Si se acaba el tiempo con empate, es empate. Los bots se ponen detrás de la pelota mirando a la portería rival y empujan; si el rival está pegado del otro lado, la sacan de costado. En pruebas con 4 bots meten 1 gol cada 90 s, así que conviene afinarlos en el playtest.
+
 ### Infinito
 - Tramos prefabricados de 30-60 m (`EndlessChunk`) etiquetados por mundo y dificultad (1-5).
 - La dificultad sube cada 200 m. Un checkpoint cada 3 tramos. Termina al hundirse 3 veces.
