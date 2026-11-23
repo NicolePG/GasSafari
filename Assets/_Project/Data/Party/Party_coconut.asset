@@ -15,7 +15,7 @@ MonoBehaviour:
   id: coconut
   sceneName: CocoCaliente
   order: 5
-  implemented: 0
+  implemented: 1
   icon: Icon_Mode_M5_Fiesta
   minPlayers: 2
   maxPlayers: 4

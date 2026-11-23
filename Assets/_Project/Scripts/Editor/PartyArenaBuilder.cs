@@ -31,8 +31,8 @@ namespace GasSafari.Editor
         private const float DECK_BOTTOM = -2.2f;
         private const float POOL_FLOOR = -1.8f;
 
-        // Coco Caliente llega con M7-08.
-        public static readonly string[] Implemented = { "goal", "king", "fishing", "bubble" };
+        // Los 5 minijuegos de docs/06 §1.
+        public static readonly string[] Implemented = { "goal", "king", "fishing", "bubble", "coconut" };
 
         [MenuItem("Gas Safari/Setup/Crear minijuegos de Fiesta (M7)")]
         public static void BuildAll()
@@ -42,6 +42,7 @@ namespace GasSafari.Editor
             BuildKing(games[1]);
             BuildFishing(games[2]);
             BuildBubble(games[3]);
+            BuildCoconut(games[4]);
             AddToBuildSettings(games);
             AssetDatabase.SaveAssets();
             Debug.Log("M7 Fiesta: datos y escenas listos");
@@ -56,6 +57,16 @@ namespace GasSafari.Editor
             AddToBuildSettings(games);
             AssetDatabase.SaveAssets();
             Debug.Log("M7 Fiesta: Carrera de Burbujas lista");
+        }
+
+        [MenuItem("Gas Safari/Setup/Fiesta: rehacer solo Coco Caliente")]
+        public static void BuildCoconutOnly()
+        {
+            var games = BuildData();
+            BuildCoconut(games[4]);
+            AddToBuildSettings(games);
+            AssetDatabase.SaveAssets();
+            Debug.Log("M7 Fiesta: Coco Caliente listo");
         }
 
         // ---------------------------------------------------------------- datos
@@ -232,31 +243,7 @@ namespace GasSafari.Editor
                 const float radius = 10f;
                 var root = Common(data, scene, out var spawner, new Vector3(0f, 14.5f, -12.5f), new Vector3(0f, 0f, -0.8f));
                 var game = root.AddComponent<ReyBalsaGame>();
-                Water(root.transform, new Vector2(radius + 4f, radius + 4f));
-                var deck = Mat("M_Party_Deck", new Color(0.95f, 0.86f, 0.66f));
-                var stripe = Mat("M_Party_DeckStripe", new Color(0.35f, 0.75f, 0.95f));
-                var arena = new GameObject("Arena").transform;
-                arena.SetParent(root.transform, false);
-                // Anillo ancho: su borde exterior pasa las esquinas del agua cuadrada (radio + 4).
-                const int segments = 40;
-                const float ringDepth = 12f;
-                float width = 2f * Mathf.PI * (radius + ringDepth) / segments * 1.05f;
-                for (int i = 0; i < segments; i++)
-                {
-                    float angle = i * 360f / segments;
-                    var direction = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
-                    Block(arena, "Ring_" + i, direction * (radius + ringDepth * 0.5f), new Vector3(width, 0f, ringDepth), deck, angle);
-                    // Borde de baldosas de colores (solo se ve): una franja fina sobre el filo de la piscina.
-                    var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    tile.name = "RimTile_" + i;
-                    Object.DestroyImmediate(tile.GetComponent<Collider>());
-                    tile.transform.SetParent(arena, false);
-                    tile.transform.localPosition = direction * (radius + 0.45f) + Vector3.up * (DECK_TOP + 0.01f);
-                    tile.transform.localRotation = Quaternion.Euler(0f, angle, 0f);
-                    tile.transform.localScale = new Vector3(2f * Mathf.PI * (radius + 0.45f) / segments * 1.02f, 0.04f, 0.9f);
-                    tile.GetComponent<MeshRenderer>().sharedMaterial = i % 2 == 0 ? stripe : Mat("M_Party_Buoy", new Color(1f, 0.97f, 0.9f));
-                }
-                Skirt(arena, radius + 4f, radius + 4f);
+                RoundPool(root.transform, radius, Mat("M_Party_DeckStripe", new Color(0.35f, 0.75f, 0.95f)));
                 var center = Marker(root.transform, "Center", new Vector3(0f, 0.3f, 0f), Quaternion.identity);
                 game.Configure(data, spawner, Balance);
                 game.ConfigureArena(center);
@@ -266,6 +253,36 @@ namespace GasSafari.Editor
             {
                 End(scene);
             }
+        }
+
+        // Piscina redonda (Rey de la Balsa, Coco Caliente): anillo ancho de borde cuyo filo exterior pasa las esquinas del
+        // agua cuadrada, baldosas alternadas sobre el filo y la playa alrededor.
+        private static void RoundPool(Transform root, float radius, Material stripe)
+        {
+            Water(root, new Vector2(radius + 4f, radius + 4f));
+            var deck = Mat("M_Party_Deck", new Color(0.95f, 0.86f, 0.66f));
+            var arena = new GameObject("Arena").transform;
+            arena.SetParent(root, false);
+            // Anillo ancho: su borde exterior pasa las esquinas del agua cuadrada (radio + 4).
+            const int segments = 40;
+            const float ringDepth = 12f;
+            float width = 2f * Mathf.PI * (radius + ringDepth) / segments * 1.05f;
+            for (int i = 0; i < segments; i++)
+            {
+                float angle = i * 360f / segments;
+                var direction = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
+                Block(arena, "Ring_" + i, direction * (radius + ringDepth * 0.5f), new Vector3(width, 0f, ringDepth), deck, angle);
+                // Borde de baldosas de colores (solo se ve): una franja fina sobre el filo de la piscina.
+                var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                tile.name = "RimTile_" + i;
+                Object.DestroyImmediate(tile.GetComponent<Collider>());
+                tile.transform.SetParent(arena, false);
+                tile.transform.localPosition = direction * (radius + 0.45f) + Vector3.up * (DECK_TOP + 0.01f);
+                tile.transform.localRotation = Quaternion.Euler(0f, angle, 0f);
+                tile.transform.localScale = new Vector3(2f * Mathf.PI * (radius + 0.45f) / segments * 1.02f, 0.04f, 0.9f);
+                tile.GetComponent<MeshRenderer>().sharedMaterial = i % 2 == 0 ? stripe : Mat("M_Party_Buoy", new Color(1f, 0.97f, 0.9f));
+            }
+            Skirt(arena, radius + 4f, radius + 4f);
         }
 
         // ---------------------------------------------------------------- Pesca de Mangos

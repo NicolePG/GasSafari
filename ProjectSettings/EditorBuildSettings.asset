@@ -116,4 +116,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Juego/Fiesta/CarreraBurbujas.unity
     guid: 2fbcad60cf1ec464fa839311426fbe4e
+  - enabled: 1
+    path: Assets/_Project/Scenes/Juego/Fiesta/CocoCaliente.unity
+    guid: 69de2188761f51b4f95a8e38220f7fc6
   m_configObjects: {}

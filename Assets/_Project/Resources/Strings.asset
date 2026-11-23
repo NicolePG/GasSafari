@@ -412,6 +412,15 @@ MonoBehaviour:
   - key: party.first_finish
     text: "\xA1{0} lleg\xF3 a la meta! Quedan {1} s"
     en: '{0} finished! {1} s left'
+  - key: party.coconut_tag
+    text: "\xA1Coco!"
+    en: Coconut!
+  - key: party.coconut_out
+    text: "\xA1Bum! {0} sale volando"
+    en: Boom! {0} goes flying
+  - key: party.rounds_survived
+    text: 'Rondas: {0}'
+    en: 'Rounds: {0}'
   - key: select.title
     text: Elige tu animal
     en: Pick your animal
