@@ -104,6 +104,7 @@ Decisiones provisionales, pendientes de playtest (M7-04, 2026-11-23):
 - Pistas compatibles (marcadas `raceCompatible` en `LevelData`): W1-3, W2-2, W3-2, W4-1, W5-1, W5-5. Cada una tiene 2 puntos de salida.
 - Choques entre balsas permitidos. Power-ups compartidos en la pista.
 - Gana la primera balsa en la meta; mejor de 3 pistas.
+- Decisión provisional, pendiente de playtest (M7-12, 2026-11-24): las 2 salidas (`TeamRaceSpawn`, equipo 0 = Azul a la izquierda, 1 = Naranja a la derecha) van a la altura de la puerta de salida, con la misma orientación, centradas en el cauce libre que se mide con rayos contra las paredes y separadas ±(media del ancho libre / 2) entre 2.4 m (radio de la balsa + 0.4 m) y 4.5 m. Quedan: W1-3 ±4 m (16 m libres), W2-2 ±4.5 m (42 m), W3-2 y W4-1 ±3 m (12 m), W5-1 y W5-5 ±3.5 m (14 m). Las pone `TeamRaceSpawnPass` (menú `Gas Safari/Setup/Colocar salidas de Carrera por Equipos (M7-12)` y al reconstruir el nivel con `GreyboxLevel.Finish`).
 
 ## 2. Progresión
 

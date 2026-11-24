@@ -32,7 +32,8 @@ namespace GasSafari.Editor
         };
 
         // docs/06 Carrera por Equipos.
-        private static readonly string[] RaceTracks = { "W1-3", "W2-2", "W3-2", "W4-1", "W5-1", "W5-5" };
+        // Pistas de Carrera por Equipos (docs/06 §1); TeamRaceSpawnPass les pone las salidas (M7-12).
+        public static readonly string[] RaceTracks = { "W1-3", "W2-2", "W3-2", "W4-1", "W5-1", "W5-5" };
 
         [MenuItem("Gas Safari/Setup/Crear LevelData y WorldData")]
         public static void Build()

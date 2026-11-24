@@ -704,6 +704,8 @@ namespace GasSafari.Editor
 
             // Marcas BotHint de rampas, abismos y remolinos que el builder no puso (PV-12).
             BotHintPass.Apply(Scene);
+            // Salidas de Carrera por Equipos en los niveles compatibles (M7-12).
+            TeamRaceSpawnPass.Apply(Scene, data);
 
             // Todo lo creado durante la construcción (grupos, arte, momentos estrella...) pasa a _Generated.
             var generated = new GameObject(GENERATED_ROOT);
