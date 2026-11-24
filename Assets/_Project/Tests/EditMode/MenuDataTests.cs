@@ -343,7 +343,9 @@ namespace GasSafari.Tests
             Assert.AreEqual(MenuSceneBuilder.SCENE_PATH, scenes[1]);
             int party = scenes.Count(s => s.StartsWith(GasSafari.Editor.PartyArenaBuilder.SCENES));
             Assert.AreEqual(GasSafari.Editor.PartyArenaBuilder.Implemented.Length, party, "una escena por minijuego de Fiesta hecho");
-            Assert.AreEqual(31 + 2 + party, scenes.Count, "boot + título + 31 niveles + minijuegos de Fiesta");
+            int endless = scenes.Count(s => s == GasSafari.Editor.EndlessChunkBuilder.SCENE_PATH);
+            Assert.AreEqual(1, endless, "Infinito (también el Desafío Diario)");
+            Assert.AreEqual(31 + 2 + party + endless, scenes.Count, "boot + título + 31 niveles + minijuegos de Fiesta + Infinito");
             Assert.IsTrue(File.Exists(MenuSceneBuilder.SCENE_PATH));
         }
     }

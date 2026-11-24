@@ -134,7 +134,9 @@ namespace GasSafari.Progression
         {
             var data = Data;
             // Con modificadores no cuentan los logros de terminar niveles (docs/06: no dan estrellas); los de acciones sí.
-            if (level == null || data == null || runMode == ProgressionRules.MODE_MODIFIERS)
+            // Infinito y el Desafío Diario no son niveles: tienen sus propios logros (Kilómetro, Constante).
+            if (level == null || data == null || runMode == ProgressionRules.MODE_MODIFIERS
+                || runMode == ProgressionRules.MODE_ENDLESS || runMode == ProgressionRules.MODE_DAILY)
                 return;
             if (chambersLost == 0 && level.showTimer)
                 Unlock("not_a_scratch");

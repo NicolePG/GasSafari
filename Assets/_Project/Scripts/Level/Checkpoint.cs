@@ -17,6 +17,13 @@ namespace GasSafari.Level
         public bool FamiliarOnly => familiarOnly;
         public bool HardKeep => hardKeep;
 
+        // Checkpoints creados en tiempo de ejecución (tramos de Infinito).
+        public void Configure(bool isFamiliarOnly, bool isHardKeep)
+        {
+            familiarOnly = isFamiliarOnly;
+            hardKeep = isHardKeep;
+        }
+
         public void Bind(CheckpointSystem owner)
         {
             system = owner;

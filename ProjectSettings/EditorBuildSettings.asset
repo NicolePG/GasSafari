@@ -119,4 +119,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Juego/Fiesta/CocoCaliente.unity
     guid: 69de2188761f51b4f95a8e38220f7fc6
+  - enabled: 1
+    path: Assets/_Project/Scenes/Juego/Infinito/Infinito.unity
+    guid: c052cb02084702b41b6bbf021ca346a7
   m_configObjects: {}

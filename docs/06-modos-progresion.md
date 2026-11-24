@@ -80,11 +80,18 @@ Decisiones provisionales, pendientes de playtest (M7-04, 2026-11-23):
 - Tramos prefabricados de 30-60 m (`EndlessChunk`) etiquetados por mundo y dificultad (1-5).
 - La dificultad sube cada 200 m. Un checkpoint cada 3 tramos. Termina al hundirse 3 veces.
 - Récord de distancia local.
+- Decisiones provisionales, pendientes de playtest (M7-09, 2026-11-24):
+  - Flujo: tarjeta Infinito → Local → sala → escena `Scenes/Juego/Infinito/Infinito` (copia de la plantilla de nivel con `EndlessTrack`). "Siguiente" en los resultados vuelve a jugar y "Mapa" vuelve al menú principal.
+  - Tramos (`EndlessChunkData` + prefab, menú `Gas Safari/Setup/Crear tramos de Infinito (M7)`): 17 recetas de 40-55 m sacadas de secciones de los niveles de M5, con sus mismos peligros, laterales y ajustes, más una salida de 30 m: W1 chorros (W1-1), puestos (W1-4) y compuertas (W1-2); W2 cajas y barriles (W2-1) y remolino (W2-4); W3 bancos de arena (W3-1), troncos (W3-2), fosas (W3-3) y cocodrilos (W3-4); W4 cristales (W4-2), géiseres (W4-3) y murciélagos (W4-4); W5 rápidos (W5-1) y curva rápida (W5-5); W6 fosas con chorros (W6-1) y lluvia de cocos (W6-4). Cada uno con frijoles (P01) para que el gas alcance. Dificultad de cada receta: W1 1-2, W2 2-3, W3 2-4, W4 4, W5-W6 5. Los 5 tramos con curva (30° o 45°) tienen variante a la izquierda y a la derecha.
+  - Todos los tramos son planos, a la altura del agua base, con cauce de 12 m, paredes con rebote y una orilla del color del mundo: así encajan en cualquier orden. Por eso no hay tramos con rampas, cascadas ni abismos. El plano de agua sigue a la balsa. Arte greybox.
+  - Generador (`EndlessPlanner`, System.Random propio): la dificultad pedida es 1 + metros/200 (máximo 5); elige al azar entre los tramos de esa dificultad (peso 3) y de una menos (peso 1), nunca el mismo dos veces seguidas, y la variante de la curva que deja el rumbo dentro de ±45° de la salida (el río nunca se cruza consigo mismo). Corriente base 0.3 m/s².
+  - Checkpoint al entrar en cada tercer tramo; existen en todas las dificultades (también en Amistades Rotas). Se quitan los tramos anteriores al del checkpoint actual menos uno; el río se arma 240 m por delante y cada tramo se activa a 160 m. No hay pool: varios peligros guardan su posición del mundo al despertar (cocodrilos, cangrejos), así que los tramos se crean inactivos en su lugar por delante y se destruyen detrás.
+  - Hundirse o volcar cuenta como perder una balsa; las dos primeras veces se reaparece en el último checkpoint como en un nivel ("¡Última balsa! Agárrense" antes de la tercera) y la tercera termina la partida. La puntuación es la distancia en metros (la más lejana a la que llegó la balsa); el HUD muestra metros, récord, dificultad y hundimientos, y avisa "¡Dificultad N!" cada 200 m.
+  - Sin estrellas, tiempos de nivel, fantasma ni Ayuda Real; no cuenta para logros de terminar niveles. Guarda el récord (`SaveData.endlessMeters`, logro Kilómetro). Frijolitos: 5 + 1 cada 100 m, hasta 25.
 
 ### Desafío Diario
 - Semilla = fecha `yyyyMMdd`. Genera un recorrido de 1500 m con 1 modificador fijo para ese día.
 - Guarda mejor tiempo del día y racha de días seguidos.
-
 ### Carrera por Equipos
 - Pistas compatibles (marcadas `raceCompatible` en `LevelData`): W1-3, W2-2, W3-2, W4-1, W5-1, W5-5. Cada una tiene 2 puntos de salida.
 - Choques entre balsas permitidos. Power-ups compartidos en la pista.

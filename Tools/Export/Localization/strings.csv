@@ -67,6 +67,11 @@ endless.distance,{0} m,{0} m,Infinito: distancia recorrida
 endless.record,Récord: {0} m,Record: {0} m,Infinito: récord local
 endless.sinks,Hundimientos {0}/3,Sinkings {0}/3,Infinito: termina al hundirse 3 veces
 endless.over,Fin del recorrido,Run over,Infinito: pantalla final
+endless.hud.record_tier,Récord: {0} m · Dificultad {1},Record: {0} m · Difficulty {1},Infinito: bajo la distancia (récord y dificultad 1-5)
+endless.tier_up,¡Dificultad {0}!,Difficulty {0}!,Infinito: aviso al subir la dificultad cada 200 m
+endless.last_life,¡Última balsa! Agárrense,Last raft! Hold on tight,Infinito: aviso antes del tercer hundimiento
+endless.result,Recorrieron {0} m · Récord: {1} m,You covered {0} m · Record: {1} m,Resultados de Infinito
+endless.result_record,¡Nuevo récord! {0} m,New record! {0} m,Resultados de Infinito con récord
 daily.today,Desafío de hoy,Today's run,Desafío Diario: título
 daily.best,Mejor tiempo de hoy,Best time today,Desafío Diario
 daily.streak,Racha: {0},Streak: {0},Desafío Diario: días seguidos (número sin plural)

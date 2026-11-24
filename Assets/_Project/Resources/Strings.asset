@@ -217,6 +217,21 @@ MonoBehaviour:
   - key: endless.over
     text: Fin del recorrido
     en: Run over
+  - key: endless.hud.record_tier
+    text: "R\xE9cord: {0} m \xB7 Dificultad {1}"
+    en: "Record: {0} m \xB7 Difficulty {1}"
+  - key: endless.tier_up
+    text: "\xA1Dificultad {0}!"
+    en: Difficulty {0}!
+  - key: endless.last_life
+    text: "\xA1\xDAltima balsa! Ag\xE1rrense"
+    en: Last raft! Hold on tight
+  - key: endless.result
+    text: "Recorrieron {0} m \xB7 R\xE9cord: {1} m"
+    en: "You covered {0} m \xB7 Record: {1} m"
+  - key: endless.result_record
+    text: "\xA1Nuevo r\xE9cord! {0} m"
+    en: New record! {0} m
   - key: daily.today
     text: "Desaf\xEDo de hoy"
     en: Today's run

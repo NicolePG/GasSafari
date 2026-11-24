@@ -109,6 +109,12 @@ namespace GasSafari.UI
         public static void Next()
         {
             var level = CurrentLevel;
+            // Infinito y Diario no tienen nivel siguiente: "Siguiente" vuelve a jugar.
+            if (EndlessLauncher.IsEndlessLevel(level))
+            {
+                Retry();
+                return;
+            }
             var catalog = GameCatalog.Instance;
             var next = catalog != null ? catalog.NextLevel(level) : null;
             if (next != null)
@@ -119,6 +125,11 @@ namespace GasSafari.UI
 
         public static void ToMap()
         {
+            if (EndlessLauncher.IsEndlessLevel(CurrentLevel))
+            {
+                SceneLoader.LoadMenu(MenuRequest.Start.MainMenu);
+                return;
+            }
             SceneLoader.LoadMenu(MenuRequest.Start.WorldMap, CurrentLevel);
         }
     }

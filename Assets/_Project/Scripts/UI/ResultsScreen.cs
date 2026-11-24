@@ -84,6 +84,7 @@ namespace GasSafari.UI
             {
                 stars[i].color = starOff;
                 stars[i].transform.localScale = Vector3.one;
+                stars[i].gameObject.SetActive(results.ShowStars);
             }
             ShowNote(results);
             ShowAwards(results);
@@ -141,6 +142,12 @@ namespace GasSafari.UI
                     return ("mirror.bonus", new object[0]);
                 case Progression.ProgressionRules.MODE_MODIFIERS:
                     return ("mod.warning", new object[0]);
+                case Progression.ProgressionRules.MODE_ENDLESS:
+                    return (results.NewRecord ? "endless.result_record" : "endless.result",
+                        new object[] { Mathf.FloorToInt(results.Distance), Mathf.FloorToInt(results.BestDistance) });
+                case Progression.ProgressionRules.MODE_DAILY:
+                    return (results.NewRecord ? "daily.result_record" : "daily.result",
+                        new object[] { LevelSheetScreen.FormatTime(results.DailyBest), results.DailyStreak });
                 default:
                     return (null, new object[0]);
             }

@@ -896,6 +896,9 @@ namespace GasSafari.UI
                 App.Push<PartySelectScreen>();
                 return;
             }
+            // Infinito y Desafío Diario (docs/06 §1): de la sala directo al río.
+            if (Services.IsReady && EndlessLauncher.Play(Services.Session.ModeId))
+                return;
             App.Push<WorldMapScreen>();
         }
 

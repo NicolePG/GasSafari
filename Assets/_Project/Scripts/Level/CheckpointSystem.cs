@@ -98,6 +98,20 @@ namespace GasSafari.Level
             seats = raft.GetComponent<RaftSeats>();
         }
 
+        // Infinito (docs/06 §1): los tramos agregan sus checkpoints mientras se juega. Antes de Start entran con el filtro de
+        // la dificultad; después quedan activos (el generador los marca hardKeep, así existen en todas las dificultades).
+        public void Append(Checkpoint checkpoint)
+        {
+            var list = new Checkpoint[checkpoints.Length + 1];
+            System.Array.Copy(checkpoints, list, checkpoints.Length);
+            list[checkpoints.Length] = checkpoint;
+            checkpoints = list;
+            if (active.Count == 0)
+                return;
+            checkpoint.Bind(this);
+            active.Add(checkpoint);
+        }
+
         public void ApplyFilter(CheckpointFilter filter)
         {
             active.Clear();

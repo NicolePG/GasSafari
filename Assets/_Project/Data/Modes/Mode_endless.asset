@@ -16,6 +16,6 @@ MonoBehaviour:
   order: 6
   keyBase: endless
   icon: {fileID: 21300000, guid: 2ed6c96be4ed40f4992901a9615191eb, type: 3}
-  implemented: 0
+  implemented: 1
   minPlayers: 1
   maxPlayers: 4

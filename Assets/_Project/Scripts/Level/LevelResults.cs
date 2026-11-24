@@ -32,5 +32,13 @@ namespace GasSafari.Level
         // Contrarreloj: tiempo menos el del fantasma anterior (negativo = más rápido); NaN si no había fantasma.
         public float GhostDelta = float.NaN;
         public bool NewRecord;
+        // Infinito y Desafío Diario no dan estrellas (docs/06 §1).
+        public bool ShowStars = true;
+        // Infinito: metros recorridos (la puntuación) y el récord guardado.
+        public float Distance;
+        public float BestDistance;
+        // Desafío Diario: mejor tiempo del día y racha de días seguidos.
+        public float DailyBest;
+        public int DailyStreak;
     }
 }

@@ -14,11 +14,15 @@ namespace GasSafari.Modes
             var existing = level.GetComponent<GameModeBase>();
             if (existing != null)
                 return existing;
+            // La escena de Infinito solo se juega en Infinito o en el Desafío Diario (EndlessTrack decide con el mismo modo).
+            if (EndlessTrack.Current != null && runMode != ProgressionRules.MODE_DAILY)
+                runMode = ProgressionRules.MODE_ENDLESS;
             // El tutorial no tiene cronómetro: no hay fantasma, espejo ni modificadores.
             bool timed = level.Data != null && level.Data.showTimer;
             GameModeBase mode;
             switch (timed ? runMode : ProgressionRules.MODE_STORY)
             {
+                case ProgressionRules.MODE_ENDLESS: mode = level.gameObject.AddComponent<EndlessMode>(); break;
                 case ProgressionRules.MODE_TIME_TRIAL: mode = level.gameObject.AddComponent<TimeTrialMode>(); break;
                 case ProgressionRules.MODE_MIRROR: mode = level.gameObject.AddComponent<MirrorMode>(); break;
                 case ProgressionRules.MODE_MODIFIERS: mode = level.gameObject.AddComponent<ModifiersMode>(); break;

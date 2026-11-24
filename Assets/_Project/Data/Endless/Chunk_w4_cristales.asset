@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48ba2f855c36a148b7bf560ad67680c, type: 3}
+  m_Name: Chunk_w4_cristales
+  m_EditorClassIdentifier: 
+  id: w4_cristales
+  sourceLevel: W4-2
+  world: 4
+  difficulty: 4
+  length: 45.9
+  turn: 30
+  prefab: {fileID: 4947193795835963843, guid: 103d61e0a1d173642a30c910c5e6b764, type: 3}
+  mirroredPrefab: {fileID: 7798129121367809171, guid: e53b72e363c130245a77ebeeceae007e, type: 3}

@@ -27,9 +27,12 @@ namespace GasSafari.Level
         // Altura del punto más bajo del cauce (red de seguridad de CheckpointSystem).
         public float MinHeight { get; private set; }
 
+        private bool runtimePath;
+
         private void Awake()
         {
-            Bake();
+            if (!runtimePath)
+                Bake();
         }
 
         public void Configure(float channelWidth, AnimationCurve curve)
@@ -64,6 +67,58 @@ namespace GasSafari.Level
                 dir.y = 0f;
                 directions[i] = dir.normalized;
             }
+        }
+
+        // Cauce armado en tiempo de ejecución (Infinito, docs/06 §1): una polilínea con la aceleración de cada punto. Se
+        // remuestrea cada SAMPLE_SPACING m; la SplineContainer de la escena deja de usarse.
+        public void SetPath(System.Collections.Generic.IReadOnlyList<Vector3> points, System.Collections.Generic.IReadOnlyList<float> pointAccel, float channelWidth)
+        {
+            runtimePath = true;
+            width = channelWidth;
+            float total = 0f;
+            for (int i = 1; i < points.Count; i++)
+                total += Vector3.Distance(points[i - 1], points[i]);
+            Length = total;
+            int count = Mathf.Max(2, Mathf.CeilToInt(total / SAMPLE_SPACING) + 1);
+            if (positions == null || positions.Length != count)
+            {
+                positions = new Vector3[count];
+                directions = new Vector3[count];
+                accelerations = new float[count];
+            }
+            float step = total / (count - 1f);
+            int segment = 1;
+            float segmentStart = 0f;
+            float segmentLength = points.Count > 1 ? Vector3.Distance(points[0], points[1]) : 0f;
+            MinHeight = float.PositiveInfinity;
+            for (int i = 0; i < count; i++)
+            {
+                float at = i * step;
+                while (segment < points.Count - 1 && at > segmentStart + segmentLength)
+                {
+                    segmentStart += segmentLength;
+                    segment++;
+                    segmentLength = Vector3.Distance(points[segment - 1], points[segment]);
+                }
+                float t = segmentLength > 1e-4f ? Mathf.Clamp01((at - segmentStart) / segmentLength) : 0f;
+                int a = Mathf.Max(0, segment - 1);
+                int b = Mathf.Min(points.Count - 1, segment);
+                positions[i] = Vector3.Lerp(points[a], points[b], t);
+                accelerations[i] = Mathf.Lerp(pointAccel[a], pointAccel[b], t);
+                MinHeight = Mathf.Min(MinHeight, positions[i].y);
+            }
+            for (int i = 0; i < count; i++)
+            {
+                var dir = positions[Mathf.Min(i + 1, count - 1)] - positions[Mathf.Max(i - 1, 0)];
+                dir.y = 0f;
+                directions[i] = dir.normalized;
+            }
+        }
+
+        // Metros recorridos a lo largo del cauce hasta el punto más cercano a la posición (Infinito: distancia y dificultad).
+        public float GetDistance(Vector3 position, ref int hint)
+        {
+            return FindNearest(position, ref hint) * Length / Mathf.Max(1f, positions.Length - 1f);
         }
 
         // hint: tramo de la consulta anterior de quien pregunta (se actualiza).

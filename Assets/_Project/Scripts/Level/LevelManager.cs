@@ -187,7 +187,15 @@ namespace GasSafari.Level
 
         private void OnFinishCrossed(RaftController who)
         {
-            if (who != spawner.Raft || (State != LevelState.Running && State != LevelState.Respawning))
+            if (who != spawner.Raft)
+                return;
+            EndRun();
+        }
+
+        // Termina la carrera sin cruzar la meta (Infinito: al hundirse por última vez). Igual que llegar a la meta.
+        public void EndRun()
+        {
+            if (State != LevelState.Running && State != LevelState.Respawning)
                 return;
 
             timer.StopTimer();
