@@ -50,6 +50,8 @@ namespace GasSafari.Level
 
             string id = level.Data != null ? level.Data.id : string.Empty;
             var mode = ActiveMode;
+            if (mode != null && !mode.ShowsLevelResults)
+                return;
             int previous = mode != null ? mode.PreviousBestStars(id) : PreviousBestStars(id);
             Results = ResultsBuilder.Build(level.Data, level.Timer.Total, stats.Data, previous, recorder.Worst, Rng);
             if (mode != null)

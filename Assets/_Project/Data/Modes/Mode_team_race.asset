@@ -16,6 +16,6 @@ MonoBehaviour:
   order: 8
   keyBase: teamrace
   icon: {fileID: 21300000, guid: 1b12bb162a0c6a740b0d7b9279b55e03, type: 3}
-  implemented: 0
+  implemented: 1
   minPlayers: 2
   maxPlayers: 4

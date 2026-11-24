@@ -11,6 +11,9 @@ namespace GasSafari.Core
         public static event Action<int> OnChamberRepaired;
         public static event Action OnRaftSunk;
         public static event Action OnRaftCapsized;
+        // La balsa que se hundió o volcó (null = la del nivel, cuando lo pide código sin balsa). Va antes que OnRaftSunk y
+        // OnRaftCapsized; CheckpointSystem la usa para que reaparezca solo esa (Carrera por Equipos tiene dos).
+        public static event Action<Raft.RaftController> OnRaftLost;
         public static event Action<PlayerAvatar> OnGasEmpty;
         public static event Action<PlayerAvatar, FartType, float> OnFart;
         // Un pedo que no sale: el animal tose sin gas.
@@ -55,8 +58,20 @@ namespace GasSafari.Core
         public static void RaiseAchievementUnlocked(string id) => OnAchievementUnlocked?.Invoke(id);
         public static void RaiseChamberPopped(int chamber) => OnChamberPopped?.Invoke(chamber);
         public static void RaiseChamberRepaired(int chamber) => OnChamberRepaired?.Invoke(chamber);
-        public static void RaiseRaftSunk() => OnRaftSunk?.Invoke();
-        public static void RaiseRaftCapsized() => OnRaftCapsized?.Invoke();
+        public static void RaiseRaftSunk() => RaiseRaftSunk(null);
+        public static void RaiseRaftCapsized() => RaiseRaftCapsized(null);
+
+        public static void RaiseRaftSunk(Raft.RaftController raft)
+        {
+            OnRaftLost?.Invoke(raft);
+            OnRaftSunk?.Invoke();
+        }
+
+        public static void RaiseRaftCapsized(Raft.RaftController raft)
+        {
+            OnRaftLost?.Invoke(raft);
+            OnRaftCapsized?.Invoke();
+        }
         public static void RaiseGasEmpty(PlayerAvatar avatar) => OnGasEmpty?.Invoke(avatar);
         public static void RaiseFartFailed(PlayerAvatar avatar) => OnFartFailed?.Invoke(avatar);
 
@@ -68,6 +83,7 @@ namespace GasSafari.Core
             OnChamberRepaired = null;
             OnRaftSunk = null;
             OnRaftCapsized = null;
+            OnRaftLost = null;
             OnGasEmpty = null;
             OnFart = null;
             OnFartFailed = null;

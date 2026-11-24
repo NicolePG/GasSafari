@@ -24,10 +24,13 @@ namespace GasSafari.UI
         [SerializeField] private AvatarOverlay overlayPrefab;
 
         private readonly string[] countdownTexts = new string[MAX_COUNTDOWN_TEXTS];
+        private readonly System.Collections.Generic.List<GameObject> playerWidgets = new System.Collections.Generic.List<GameObject>();
         private LevelManager level;
 
         public HudEventText EventText => eventText;
         public HudProgress Progress => progress;
+        public HudChambers Chambers => chambers;
+        public UIStrings Strings => strings;
 
         private void Awake()
         {
@@ -71,14 +74,34 @@ namespace GasSafari.UI
         {
             var avatars = manager.Avatars;
             for (int i = 0; i < avatars.Count; i++)
-            {
-                var panel = Instantiate(panelPrefab, playersRoot);
-                PlacePanel((RectTransform)panel.transform, i);
-                panel.Bind(avatars[i], i + 1);
+                AddPlayer(avatars[i], i, i + 1);
+        }
 
-                var overlay = Instantiate(overlayPrefab, avatars[i].transform);
-                overlay.Bind(avatars[i], strings);
+        // Carrera por Equipos: rehace los paneles con los animales de las dos balsas. place: 0 y 2 a la izquierda, 1 y 3 a
+        // la derecha (cada equipo en su mitad de la pantalla); number: el número de jugador del panel.
+        public void ShowPlayers(System.Collections.Generic.IReadOnlyList<PlayerAvatar> avatars,
+            System.Collections.Generic.IReadOnlyList<int> places, System.Collections.Generic.IReadOnlyList<int> numbers)
+        {
+            foreach (var widget in playerWidgets)
+            {
+                if (widget != null)
+                    Destroy(widget);
             }
+            playerWidgets.Clear();
+            for (int i = 0; i < avatars.Count; i++)
+                AddPlayer(avatars[i], places[i], numbers[i]);
+        }
+
+        private void AddPlayer(PlayerAvatar avatar, int place, int number)
+        {
+            var panel = Instantiate(panelPrefab, playersRoot);
+            PlacePanel((RectTransform)panel.transform, place);
+            panel.Bind(avatar, number);
+            playerWidgets.Add(panel.gameObject);
+
+            var overlay = Instantiate(overlayPrefab, avatar.transform);
+            overlay.Bind(avatar, strings);
+            playerWidgets.Add(overlay.gameObject);
         }
 
         // Jugadores 1 y 3 a la izquierda, 2 y 4 a la derecha; los pares suben una fila.

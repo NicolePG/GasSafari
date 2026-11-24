@@ -28,10 +28,35 @@ namespace GasSafari.Editor
             Physics.defaultSolverIterations = SOLVER_ITERATIONS;
             // Las pruebas PlayMode por MCP lo dejan activo; el proyecto recarga el dominio al entrar a Play.
             EditorSettings.enterPlayModeOptionsEnabled = false;
+            EnsureLayer(Core.GameLayers.TEAM_CAMERA_A, 16);
+            EnsureLayer(Core.GameLayers.TEAM_CAMERA_B, 17);
 #if GS_URP
             SetupUrp();
 #endif
             AssetDatabase.SaveAssets();
+        }
+
+        // Capas sin objetos que separan las dos cámaras virtuales de la pantalla dividida (Carrera por Equipos, M7-11):
+        // con Cinemachine 2.x cada CinemachineBrain solo usa las cámaras virtuales cuya capa ve.
+        private static void EnsureLayer(string name, int preferred)
+        {
+            if (LayerMask.NameToLayer(name) >= 0)
+                return;
+            var tags = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
+            var layers = tags.FindProperty("layers");
+            int slot = string.IsNullOrEmpty(layers.GetArrayElementAtIndex(preferred).stringValue) ? preferred : -1;
+            for (int i = 8; slot < 0 && i < layers.arraySize; i++)
+            {
+                if (string.IsNullOrEmpty(layers.GetArrayElementAtIndex(i).stringValue))
+                    slot = i;
+            }
+            if (slot < 0)
+            {
+                Debug.LogError("No queda capa libre para " + name);
+                return;
+            }
+            layers.GetArrayElementAtIndex(slot).stringValue = name;
+            tags.ApplyModifiedPropertiesWithoutUndo();
         }
 
         private static void SetSerialized(string settingsName, string property, float value)

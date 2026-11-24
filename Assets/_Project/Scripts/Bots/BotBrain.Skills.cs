@@ -207,12 +207,15 @@ namespace GasSafari.Bots
         private void CheckStuckRestart(float speed)
         {
             var level = LevelManager.Current;
-            if (level == null || level.State != LevelState.Running || level.Raft == null || !OnlyBotsAboard())
+            var raft = seat.Raft != null ? seat.Raft.Controller : null;
+            // Carrera por Equipos: cada balsa mira solo a su tripulación (la otra puede ser de humanos).
+            bool onlyBots = raft != null && (level != null && raft == level.Raft ? OnlyBotsAboard() : OnlyBotsOn(seat.Raft));
+            if (level == null || level.State != LevelState.Running || raft == null || !onlyBots)
             {
                 stuckTimer = 0f;
                 return;
             }
-            var position = level.Raft.transform.position;
+            var position = raft.transform.position;
             if (stuckTimer <= 0f || (position - stuckAnchor).sqrMagnitude > 16f)
             {
                 stuckAnchor = position;
@@ -225,7 +228,18 @@ namespace GasSafari.Bots
             stuckTimer = 0f;
             var checkpoints = FindFirstObjectByType<CheckpointSystem>();
             if (checkpoints != null)
-                checkpoints.RequestRespawn();
+                checkpoints.RequestRespawn(raft);
+        }
+
+        private static bool OnlyBotsOn(RaftSeats seats)
+        {
+            var crew = seats.Crew;
+            for (int i = 0; i < crew.Count; i++)
+            {
+                if (crew[i].GetComponent<BotBrain>() == null)
+                    return false;
+            }
+            return true;
         }
 
         private static bool OnlyBotsAboard()

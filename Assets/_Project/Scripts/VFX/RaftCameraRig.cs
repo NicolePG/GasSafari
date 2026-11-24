@@ -31,6 +31,8 @@ namespace GasSafari.VFX
         public float Distance { get; private set; }
         public int TrackedSwimmers => swimmers.Count;
         public CinemachineTargetGroup Group => group;
+        public CinemachineVirtualCamera Vcam => vcam;
+        public RaftController Raft => raft;
 
         private void Awake()
         {
@@ -115,6 +117,9 @@ namespace GasSafari.VFX
         {
             var fall = avatar.GetComponent<AvatarFall>();
             if (swimmers.Contains(fall))
+                return;
+            // Con dos balsas (Carrera por Equipos) cada cámara encuadra solo a los caídos de la suya.
+            if (raft != null && fall.HomeRaft != null && fall.HomeRaft.Controller != raft)
                 return;
             swimmers.Add(fall);
             group.AddMember(avatar.transform, balance.cameraSwimmerWeight, avatar.Character.height * 0.5f);

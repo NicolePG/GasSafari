@@ -7,5 +7,7 @@ namespace GasSafari.Level
         int PreviousBestStars(string levelId);
         void BuildResults(LevelResults results);
         void Commit(LevelData level, LevelResults results);
+        // false: el modo muestra su propio final (Carrera por Equipos) y no se arman ni guardan los resultados del nivel.
+        bool ShowsLevelResults { get; }
     }
 }

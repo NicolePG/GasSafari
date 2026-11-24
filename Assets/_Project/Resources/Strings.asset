@@ -259,6 +259,42 @@ MonoBehaviour:
   - key: daily.result
     text: "Mejor de hoy: {0} \xB7 Racha: {1}"
     en: "Best today: {0} \xB7 Streak: {1}"
+  - key: teamrace.race
+    text: Carrera {0}/{1}
+    en: Race {0}/{1}
+  - key: teamrace.wins
+    text: 'Victorias: {0}/{1}'
+    en: 'Wins: {0}/{1}'
+  - key: teamrace.series_won
+    text: "\xA1{0} gana la serie!"
+    en: '{0} wins the series!'
+  - key: teamrace.next
+    text: Siguiente pista ({0}/{1})
+    en: Next track ({0}/{1})
+  - key: teamrace.to_menu
+    text: "Volver al men\xFA"
+    en: Back to menu
+  - key: teamrace.pending
+    text: Por correr
+    en: Not raced yet
+  - key: teamrace.lobby.title
+    text: Arma los equipos
+    en: Make your teams
+  - key: teamrace.lobby.hint
+    text: "Mu\xE9vete a la izquierda o a la derecha para cambiar de equipo"
+    en: Move left or right to switch teams
+  - key: teamrace.lobby.tracks
+    text: Pistas (al mejor de 3)
+    en: Tracks (best of 3)
+  - key: teamrace.lobby.shuffle
+    text: Sortear pistas
+    en: Shuffle tracks
+  - key: teamrace.lobby.start
+    text: "\xA1A correr!"
+    en: Race!
+  - key: teamrace.lobby.full
+    text: Ese equipo ya tiene 2 animales
+    en: That team already has 2 animals
   - key: daily.result_record
     text: "\xA1Mejor tiempo de hoy! Racha: {1}"
     en: 'Best time today! Streak: {1}'

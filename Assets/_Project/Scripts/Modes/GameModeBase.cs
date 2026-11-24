@@ -15,6 +15,7 @@ namespace GasSafari.Modes
         public abstract string ModeId { get; }
         // Ayuda Real (docs/06 §3) en este modo.
         public virtual bool AllowsRoyalAssist => true;
+        public virtual bool ShowsLevelResults => true;
 
         public void Bind(LevelManager level)
         {

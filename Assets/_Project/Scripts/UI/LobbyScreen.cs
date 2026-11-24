@@ -896,6 +896,12 @@ namespace GasSafari.UI
                 App.Push<PartySelectScreen>();
                 return;
             }
+            // Carrera por Equipos (docs/06 §1): de la sala al reparto de equipos y pistas.
+            if (Services.IsReady && Services.Session.ModeId == Progression.ProgressionRules.MODE_TEAM_RACE)
+            {
+                App.Push<TeamRaceScreen>();
+                return;
+            }
             // Infinito y Desafío Diario (docs/06 §1): de la sala directo al río.
             if (Services.IsReady && EndlessLauncher.Play(Services.Session.ModeId))
                 return;

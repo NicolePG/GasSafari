@@ -26,9 +26,12 @@ namespace GasSafari.Raft
 
         public event Action ShieldConsumed;
 
+        private RaftController controller;
+
         private void Awake()
         {
             buoyancy = GetComponent<RaftBuoyancy>();
+            controller = GetComponent<RaftController>();
         }
 
         public bool IsIntact(int chamber) => (intactMask & (1 << chamber)) != 0;
@@ -114,7 +117,7 @@ namespace GasSafari.Raft
 
             sinkTimer -= Time.deltaTime;
             if (sinkTimer <= 0f)
-                GameEvents.RaiseRaftSunk();
+                GameEvents.RaiseRaftSunk(controller);
         }
 
         private void OnCollisionEnter(Collision collision)

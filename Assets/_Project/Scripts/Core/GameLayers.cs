@@ -16,5 +16,9 @@ namespace GasSafari.Core
         public static readonly int Ghost = LayerMask.NameToLayer("Ghost");
 
         public static readonly int WaterMask = 1 << Water;
+
+        // Pantalla dividida de Carrera por Equipos: capa de la cámara virtual de cada mitad (sin objetos que se dibujen).
+        public const string TEAM_CAMERA_A = "TeamCamA";
+        public const string TEAM_CAMERA_B = "TeamCamB";
     }
 }

@@ -15,6 +15,9 @@ namespace GasSafari.Level
         [SerializeField] private StartGate startGate;
 
         private readonly List<PlayerAvatar> avatars = new List<PlayerAvatar>();
+        private bool hasStartPose;
+        private Vector3 startPosition;
+        private Quaternion startRotation;
 
         public RaftController Raft { get; private set; }
         public IReadOnlyList<PlayerAvatar> Avatars => avatars;
@@ -26,9 +29,19 @@ namespace GasSafari.Level
             startGate = gate;
         }
 
+        // Otra salida para la balsa del nivel en vez de la puerta (Carrera por Equipos: su TeamRaceSpawn).
+        public void SetStartPose(Vector3 position, Quaternion rotation)
+        {
+            hasStartPose = true;
+            startPosition = position;
+            startRotation = rotation;
+        }
+
         public RaftController Spawn(IReadOnlyList<PlayerSlot> slots)
         {
-            var raftObject = Instantiate(raftPrefab, startGate.Position, startGate.Rotation);
+            var raftObject = hasStartPose
+                ? Instantiate(raftPrefab, startPosition, startRotation)
+                : Instantiate(raftPrefab, startGate.Position, startGate.Rotation);
             Progression.CosmeticsApplier.ApplyRaft(raftObject);
             Raft = raftObject.GetComponent<RaftController>();
             if (raftObject.GetComponent<RaftWake>() == null)

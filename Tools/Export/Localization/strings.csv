@@ -81,6 +81,18 @@ daily.hud.modifier,Modificador del día: {0},Modifier of the day: {0},Desafío D
 daily.hud.best,Mejor de hoy: {0},Best today: {0},Desafío Diario: HUD (mejor tiempo del día)
 daily.hud.first,Primer intento de hoy,First run today,Desafío Diario: HUD sin tiempo hoy
 daily.result,Mejor de hoy: {0} · Racha: {1},Best today: {0} · Streak: {1},Resultados del Diario (racha como número sin plural)
+teamrace.race,Carrera {0}/{1},Race {0}/{1},Carrera por Equipos: número de carrera de la serie (HUD y resultados)
+teamrace.wins,Victorias: {0}/{1},Wins: {0}/{1},Carrera por Equipos: victorias del equipo ({1} = las que hacen falta para ganar la serie)
+teamrace.series_won,¡{0} gana la serie!,{0} wins the series!,Carrera por Equipos: fin de la serie ({0} = nombre del equipo)
+teamrace.next,Siguiente pista ({0}/{1}),Next track ({0}/{1}),Carrera por Equipos: botón de los resultados
+teamrace.to_menu,Volver al menú,Back to menu,Carrera por Equipos: botón de los resultados
+teamrace.pending,Por correr,Not raced yet,Carrera por Equipos: pista de la serie que todavía no se corrió
+teamrace.lobby.title,Arma los equipos,Make your teams,Carrera por Equipos: pantalla de equipos después de elegir animales
+teamrace.lobby.hint,Muévete a la izquierda o a la derecha para cambiar de equipo,Move left or right to switch teams,Carrera por Equipos: pantalla de equipos
+teamrace.lobby.tracks,Pistas (al mejor de 3),Tracks (best of 3),Carrera por Equipos: pantalla de equipos
+teamrace.lobby.shuffle,Sortear pistas,Shuffle tracks,Carrera por Equipos: botón que elige otras 3 pistas al azar
+teamrace.lobby.start,¡A correr!,Race!,Carrera por Equipos: botón que empieza la serie
+teamrace.lobby.full,Ese equipo ya tiene 2 animales,That team already has 2 animals,Carrera por Equipos: aviso al cambiar a un equipo lleno
 daily.result_record,¡Mejor tiempo de hoy! Racha: {1},Best time today! Streak: {1},Resultados del Diario con mejor tiempo del día
 race.track,Pista {0}/3,Track {0}/3,Carrera por Equipos: mejor de 3 pistas
 race.team_a,Equipo A,Team A,Carrera por Equipos

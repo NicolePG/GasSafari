@@ -150,7 +150,7 @@ namespace GasSafari.Hazards
                 Trigger("Bite");
                 var checkpoints = FindFirstObjectByType<CheckpointSystem>();
                 if (checkpoints != null)
-                    checkpoints.RequestRespawn();
+                    checkpoints.RequestRespawn(raft);
             }
         }
 

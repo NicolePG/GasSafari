@@ -59,12 +59,13 @@ namespace GasSafari.Hazards
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponentInParent<RaftController>() == null)
+            var raft = other.GetComponentInParent<RaftController>();
+            if (raft == null)
                 return;
             RegisterFall();
             var checkpoints = FindFirstObjectByType<CheckpointSystem>();
             if (checkpoints != null)
-                checkpoints.RequestRespawn();
+                checkpoints.RequestRespawn(raft);
         }
     }
 }

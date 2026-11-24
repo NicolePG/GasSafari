@@ -138,7 +138,7 @@ namespace GasSafari.Hazards
                 running = false;
                 var checkpoints = FindFirstObjectByType<CheckpointSystem>();
                 if (checkpoints != null)
-                    checkpoints.RequestRespawn();
+                    checkpoints.RequestRespawn(raft);
             }
         }
 

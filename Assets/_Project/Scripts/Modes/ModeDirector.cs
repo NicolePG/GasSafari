@@ -27,6 +27,8 @@ namespace GasSafari.Modes
                 case ProgressionRules.MODE_TIME_TRIAL: mode = level.gameObject.AddComponent<TimeTrialMode>(); break;
                 case ProgressionRules.MODE_MIRROR: mode = level.gameObject.AddComponent<MirrorMode>(); break;
                 case ProgressionRules.MODE_MODIFIERS: mode = level.gameObject.AddComponent<ModifiersMode>(); break;
+                // Solo en pistas con TeamRaceSpawn (docs/06 §1); en otro nivel se juega como Historia.
+                case ProgressionRules.MODE_TEAM_RACE when level.Data.raceCompatible: mode = level.gameObject.AddComponent<TeamRaceMode>(); break;
                 default: mode = level.gameObject.AddComponent<StoryMode>(); break;
             }
             mode.Bind(level);

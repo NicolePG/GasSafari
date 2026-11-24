@@ -74,7 +74,7 @@ namespace GasSafari.Raft
             if (!HasCapsized && capsizeTimer >= balance.capsizeTime)
             {
                 HasCapsized = true;
-                GameEvents.RaiseRaftCapsized();
+                GameEvents.RaiseRaftCapsized(raft);
             }
         }
 

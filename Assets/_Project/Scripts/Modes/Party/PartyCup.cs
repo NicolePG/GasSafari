@@ -203,7 +203,8 @@ namespace GasSafari.Modes
             return roster;
         }
 
-        private static PlayerSlot MakeBot(List<PlayerSlot> taken)
+        // Bot de relleno con el primer número de jugador libre y un animal que nadie usa (también Carrera por Equipos).
+        public static PlayerSlot MakeBot(List<PlayerSlot> taken)
         {
             int index = -1;
             for (int i = 0; i < GameSession.MAX_PLAYERS && index < 0; i++)

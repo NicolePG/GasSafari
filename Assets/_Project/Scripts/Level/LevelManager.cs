@@ -44,6 +44,11 @@ namespace GasSafari.Level
         public static LevelManager Current { get; private set; }
 
         public LevelData Data => data;
+        public RaftSpawner Spawner => spawner;
+        // Begin ya creó la balsa (un modo puede llamarlo antes de Start con otros jugadores, como Carrera por Equipos).
+        public bool HasBegun => hasBegun;
+        // false: llegar a la meta no avisa a GameEvents (estadísticas y logros de terminar un nivel). Carrera por Equipos.
+        public bool CountsAsLevelFinish { get; set; } = true;
         public LevelState State { get; private set; }
         public bool IsPaused { get; private set; }
         public RaftController Raft => spawner.Raft;
@@ -203,7 +208,8 @@ namespace GasSafari.Level
             stateTimer = finishDelay;
             SetState(LevelState.Finished);
             Finished?.Invoke(timer.Total);
-            GameEvents.RaiseLevelFinished(timer.Total);
+            if (CountsAsLevelFinish)
+                GameEvents.RaiseLevelFinished(timer.Total);
         }
 
         private void OnRespawnStarted()

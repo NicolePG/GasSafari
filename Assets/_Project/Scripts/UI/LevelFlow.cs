@@ -108,6 +108,11 @@ namespace GasSafari.UI
 
         public static void Next()
         {
+            if (Services.IsReady && Services.Session.RunMode == ProgressionRules.MODE_TEAM_RACE)
+            {
+                TeamRaceLauncher.Next();
+                return;
+            }
             var level = CurrentLevel;
             // Infinito y Diario no tienen nivel siguiente: "Siguiente" vuelve a jugar.
             if (EndlessLauncher.IsEndlessLevel(level))
@@ -125,6 +130,12 @@ namespace GasSafari.UI
 
         public static void ToMap()
         {
+            // Salir de una Carrera por Equipos abandona la serie y vuelve al menú.
+            if (Services.IsReady && Services.Session.RunMode == ProgressionRules.MODE_TEAM_RACE)
+            {
+                TeamRaceLauncher.Exit();
+                return;
+            }
             if (EndlessLauncher.IsEndlessLevel(CurrentLevel))
             {
                 SceneLoader.LoadMenu(MenuRequest.Start.MainMenu);
