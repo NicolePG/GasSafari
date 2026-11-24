@@ -244,6 +244,24 @@ MonoBehaviour:
   - key: daily.modifier
     text: "Modificador del d\xEDa"
     en: Modifier of the day
+  - key: daily.hud.distance
+    text: '{0} / {1} m'
+    en: '{0} / {1} m'
+  - key: daily.hud.modifier
+    text: "Modificador del d\xEDa: {0}"
+    en: 'Modifier of the day: {0}'
+  - key: daily.hud.best
+    text: 'Mejor de hoy: {0}'
+    en: 'Best today: {0}'
+  - key: daily.hud.first
+    text: Primer intento de hoy
+    en: First run today
+  - key: daily.result
+    text: "Mejor de hoy: {0} \xB7 Racha: {1}"
+    en: "Best today: {0} \xB7 Streak: {1}"
+  - key: daily.result_record
+    text: "\xA1Mejor tiempo de hoy! Racha: {1}"
+    en: 'Best time today! Streak: {1}'
   - key: race.track
     text: Pista {0}/3
     en: Track {0}/3

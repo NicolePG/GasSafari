@@ -111,6 +111,7 @@ namespace GasSafari.Tests
         public void Modes_EndlessAndDailyAreActive()
         {
             CollectionAssert.Contains(GasSafari.Editor.ModesDataBuilder.Implemented, ProgressionRules.MODE_ENDLESS);
+            CollectionAssert.Contains(GasSafari.Editor.ModesDataBuilder.Implemented, ProgressionRules.MODE_DAILY);
             var config = Config();
             Assert.IsNotNull(config.level, "datos de la escena Infinito");
             Assert.AreEqual("Infinito", config.level.sceneName);

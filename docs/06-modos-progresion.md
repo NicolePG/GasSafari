@@ -92,6 +92,14 @@ Decisiones provisionales, pendientes de playtest (M7-04, 2026-11-23):
 ### Desafío Diario
 - Semilla = fecha `yyyyMMdd`. Genera un recorrido de 1500 m con 1 modificador fijo para ese día.
 - Guarda mejor tiempo del día y racha de días seguidos.
+- Decisiones provisionales, pendientes de playtest (M7-10, 2026-11-24). docs/06 define la semilla, el largo, el modificador y lo que se guarda; el resto se tomó así:
+  - El recorrido sale del mismo generador de Infinito (M7-09) con la semilla `yyyyMMdd` de la fecha local del equipo: los mismos tramos, la misma dificultad que sube cada 200 m (llega a 5 a los 800 m) y un checkpoint cada 3 tramos, hasta pasar los 1500 m; la meta va al final del último tramo. Se arma completo al cargar la escena Infinito.
+  - El modificador del día sale de la misma semilla (mezclada) entre los 8 de Caos, sin mirar si están desbloqueados. Se aplica al crear la balsa y se deshace al salir, como en Modificadores.
+  - Es una carrera contra el reloj: hundirse reaparece en el checkpoint con la penalización de la dificultad, sin límite de hundimientos. Sin estrellas, récord de nivel, fantasma ni Ayuda Real; no cuenta para logros de terminar niveles.
+  - Solo se guarda un desafío terminado (llegar a la meta). En `SaveData.daily` (M3-10): `lastDate` (yyyyMMdd), `best` = mejor tiempo de ese día (con penalizaciones) y `streak` = días seguidos con el desafío terminado: sube si el anterior fue ayer, vuelve a 1 si pasó más de un día y no cambia al repetir el mismo día. Logro Constante con 7.
+  - Frijolitos (docs/06 §2, 5 a 25): la primera vez del día 15 + 2 por cada día de racha después del primero (máximo 25); repetirlo el mismo día, 5.
+  - HUD: metros de 1500, modificador del día y mejor tiempo de hoy; en resultados, "Mejor de hoy" y la racha.
+
 ### Carrera por Equipos
 - Pistas compatibles (marcadas `raceCompatible` en `LevelData`): W1-3, W2-2, W3-2, W4-1, W5-1, W5-5. Cada una tiene 2 puntos de salida.
 - Choques entre balsas permitidos. Power-ups compartidos en la pista.

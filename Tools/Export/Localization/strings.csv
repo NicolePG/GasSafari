@@ -76,6 +76,12 @@ daily.today,Desafío de hoy,Today's run,Desafío Diario: título
 daily.best,Mejor tiempo de hoy,Best time today,Desafío Diario
 daily.streak,Racha: {0},Streak: {0},Desafío Diario: días seguidos (número sin plural)
 daily.modifier,Modificador del día,Modifier of the day,Desafío Diario
+daily.hud.distance,{0} / {1} m,{0} / {1} m,Desafío Diario: metros recorridos de los 1500
+daily.hud.modifier,Modificador del día: {0},Modifier of the day: {0},Desafío Diario: HUD ({0} = nombre del modificador)
+daily.hud.best,Mejor de hoy: {0},Best today: {0},Desafío Diario: HUD (mejor tiempo del día)
+daily.hud.first,Primer intento de hoy,First run today,Desafío Diario: HUD sin tiempo hoy
+daily.result,Mejor de hoy: {0} · Racha: {1},Best today: {0} · Streak: {1},Resultados del Diario (racha como número sin plural)
+daily.result_record,¡Mejor tiempo de hoy! Racha: {1},Best time today! Streak: {1},Resultados del Diario con mejor tiempo del día
 race.track,Pista {0}/3,Track {0}/3,Carrera por Equipos: mejor de 3 pistas
 race.team_a,Equipo A,Team A,Carrera por Equipos
 race.team_b,Equipo B,Team B,Carrera por Equipos

@@ -145,7 +145,7 @@ namespace GasSafari.Editor
 
         private static void MarkModesImplemented()
         {
-            foreach (var id in new[] { ProgressionRules.MODE_ENDLESS })
+            foreach (var id in new[] { ProgressionRules.MODE_ENDLESS, ProgressionRules.MODE_DAILY })
             {
                 var mode = AssetDatabase.LoadAssetAtPath<GameModeData>(MODES + "Mode_" + id + ".asset");
                 if (mode == null)
